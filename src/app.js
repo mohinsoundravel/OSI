@@ -1189,16 +1189,22 @@
       url: (z, x, y) => `https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/${z}/${y}/${x}`,
       minZ: 6, maxZ: 18
     },
-    cartoDark: {
-      url: (z, x, y) => `https://${'abcd'[(x + y) % 4]}.basemaps.cartocdn.com/dark_all/${z}/${x}/${y}@2x.png`,
-      minZ: 0, maxZ: 19
+    /* CARTO's free basemaps now answer keyless requests with "API key required" tiles,
+       so the dark style uses Esri's keyless dark gray canvas (detail to zoom 16). */
+    esriDarkBase: {
+      url: (z, x, y) => `https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/${z}/${y}/${x}`,
+      minZ: 0, maxZ: 16
+    },
+    esriDarkLabels: {
+      url: (z, x, y) => `https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/${z}/${y}/${x}`,
+      minZ: 2, maxZ: 16
     }
   };
   const ESRI_CREDIT = 'Powered by Esri · Esri, Maxar, Earthstar Geographics, GIS User Community';
   const MAP_STYLES = {
     hybrid: { label: 'Hybrid', base: 'esriImagery', overlays: ['esriRoads', 'esriPlaces'], credit: ESRI_CREDIT },
     satellite: { label: 'Satellite', base: 'esriImagery', overlays: [], credit: ESRI_CREDIT },
-    dark: { label: 'Dark', base: 'cartoDark', overlays: [], credit: '© OpenStreetMap contributors © CARTO' }
+    dark: { label: 'Dark', base: 'esriDarkBase', overlays: ['esriDarkLabels'], credit: 'Powered by Esri \u00b7 Esri, HERE, Garmin, \u00a9 OpenStreetMap contributors' }
   };
   const STYLE_ORDER = ['hybrid', 'satellite', 'dark'];
 
