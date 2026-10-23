@@ -17,18 +17,19 @@ import { fetchSachet } from './sources/sachet.mjs';
 import { fetchRiverDischarge, fetchTemperatures, assessHeat } from './sources/openmeteo.mjs';
 import { fetchGdacs, fetchUsgs } from './sources/hazards.mjs';
 import { fetchFlights, expandFlights, FLIGHT_FIELDS } from './sources/flights.mjs';
+import { fetchTle } from './sources/tle.mjs';
 import { evaluate, SEVERITY_RANK } from './rules.mjs';
 import { buildMessages, createNotifier, heartbeat } from './notify.mjs';
 
 const DAY_MS = 24 * 3600 * 1000;
 const BASE_HOSTS = [
   'sachet.ndma.gov.in', 'flood-api.open-meteo.com', 'api.open-meteo.com',
-  'www.gdacs.org', 'earthquake.usgs.gov', 'opensky-network.org'
+  'www.gdacs.org', 'earthquake.usgs.gov', 'opensky-network.org', 'celestrak.org'
 ];
 const DEGRADED_AFTER_FAILURES = 3;
 /* Auxiliary sources feed the dashboard but are not safety-critical: their failures
    never trigger degraded notices or count toward "every source failed". */
-const AUXILIARY = new Set(['flights']);
+const AUXILIARY = new Set(['flights', 'satellites']);
 const MAX_EVENTS = 500;
 const MAX_RING_VERTICES = 160;
 /* Bump when the shape of persisted alerts changes. A mismatch re-parses SACHET and
@@ -126,6 +127,9 @@ export async function run(options = {}) {
     quakes: () => fetchUsgs({ http }),
     ...(config.flights?.enabled === false ? {} : {
       flights: () => fetchFlights({ http, lastFetchedAt: state.flightsFetchedAt ? Date.parse(state.flightsFetchedAt) : 0, now })
+    }),
+    ...(config.satellites?.enabled === false ? {} : {
+      satellites: () => fetchTle({ http, lastFetchedAt: state.tleFetchedAt ? Date.parse(state.tleFetchedAt) : 0, now })
     })
   };
 
@@ -190,6 +194,12 @@ export async function run(options = {}) {
     state.squawkSnapshot = expandFlights(data.flights).filter((f) => f.squawk && ['7500', '7600', '7700'].includes(f.squawk));
   }
   layerData.squawks = state.squawkSnapshot || [];
+
+  /* Satellites: republish CelesTrak TLEs for the dashboard (propagated in the browser). */
+  if (data.satellites) {
+    state.tleFetchedAt = new Date(now).toISOString();
+    await writeJsonAtomic(path.join(dataDir, 'tle.json'), { schema: 1, fetchedAt: state.tleFetchedAt, source: 'CelesTrak', groups: data.satellites });
+  }
 
   const candidates = evaluate({ config, data: layerData, normals });
 

@@ -64,6 +64,10 @@ test('end to end: baseline first, then only new or escalated alerts', async () =
     assert.equal(flights.states.length, 4, 'aircraft without a position are dropped');
     assert.deepEqual(flights.fields.slice(0, 5), ['icao24', 'callsign', 'country', 'lat', 'lng']);
     assert.equal(flights.states[0][1], 'AIC302', 'callsign trimmed');
+    const tle = JSON.parse(await readFile(path.join(env.dataDir, 'tle.json'), 'utf8'));
+    assert.deepEqual(tle.groups.map((g) => g.tag), ['Space stations', 'Brightest']);
+    assert.equal(tle.groups[0].tle.split('\n').length, 6, 'two valid satellites kept, malformed lines dropped');
+    assert.ok(tle.groups[0].tle.startsWith('ISS (ZARYA)\n1 25544U'));
     const riverAlert = r1.candidates.find((c) => c.key === 'river:vaigai-dam:high');
     assert.equal(riverAlert.origin, 'derived');
 

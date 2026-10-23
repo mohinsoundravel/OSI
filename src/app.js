@@ -375,12 +375,28 @@
 
   let satCatalog = [];
 
-  async function loadSatCatalog() {
+  /** TLE texts: the poller's republished copy first (fast, cached), then CelesTrak directly. */
+  async function fetchTleTexts() {
+    const base = backendBase();
+    if (base) {
+      try {
+        const snap = await getJson(`${base.replace(/\/+$/, '')}/tle.json`);
+        if (Array.isArray(snap.groups) && snap.groups.length) {
+          return snap.groups.slice(0, 10).map((g) => ({ status: 'fulfilled', value: { text: String(g.tle || '').slice(0, 200000), tag: str(g.tag, 40) } }));
+        }
+      } catch {
+        /* fall back to CelesTrak below */
+      }
+    }
     const groups = [['stations', 'Space stations'], ['visual', 'Brightest']];
-    const results = await Promise.allSettled(groups.map(async ([group, tag]) => {
-      const res = await fetchWithTimeout(`https://celestrak.org/NORAD/elements/gp.php?GROUP=${group}&FORMAT=tle`);
+    return Promise.allSettled(groups.map(async ([group, tag]) => {
+      const res = await fetchWithTimeout(`https://celestrak.org/NORAD/elements/gp.php?GROUP=${group}&FORMAT=tle`, 30000);
       return { text: await res.text(), tag };
     }));
+  }
+
+  async function loadSatCatalog() {
+    const results = await fetchTleTexts();
 
     const catalog = [];
     const ids = new Set();
