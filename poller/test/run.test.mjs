@@ -58,6 +58,12 @@ test('end to end: baseline first, then only new or escalated alerts', async () =
     assert.equal(byKey('sachet:IN-1006_6').severity, 'medium', 'very heavy rain is scaled to medium');
     assert.equal(byKey('sachet:IN-1009_43').severity, 'low', 'routine nowcast tagged Severe is scaled to low');
     assert.ok(!keys.includes('gdacs:FL-999:Orange'), 'GDACS events that are no longer current are ignored');
+    assert.equal(byKey('squawk:800abc:7700').severity, 'high', 'emergency squawk over Chennai alerts');
+    assert.ok(!keys.some((k) => k.startsWith('squawk:a1b2c3')), 'squawk outside zones ignored');
+    const flights = JSON.parse(await readFile(path.join(env.dataDir, 'flights.json'), 'utf8'));
+    assert.equal(flights.states.length, 4, 'aircraft without a position are dropped');
+    assert.deepEqual(flights.fields.slice(0, 5), ['icao24', 'callsign', 'country', 'lat', 'lng']);
+    assert.equal(flights.states[0][1], 'AIC302', 'callsign trimmed');
     const riverAlert = r1.candidates.find((c) => c.key === 'river:vaigai-dam:high');
     assert.equal(riverAlert.origin, 'derived');
 
@@ -172,6 +178,30 @@ test('heartbeat outcome is published without exposing the URL', async () => {
 
     const none = await run(base(env, { now: '2026-10-23T06:30:00Z' }));
     assert.deepEqual([none.latest.heartbeat.configured, none.latest.heartbeat.ok], [false, false]);
+  } finally {
+    await rm(env.dir, { recursive: true, force: true });
+  }
+});
+
+test('flights refresh at most every 25 minutes and never trigger degraded notices', async () => {
+  const env = await setup();
+  try {
+    await run(base(env));
+    const statePath = path.join(env.dataDir, 'state.json');
+    const first = JSON.parse(await readFile(statePath, 'utf8')).flightsFetchedAt;
+
+    await run(base(env, { now: '2026-10-23T06:15:00Z' }));
+    assert.equal(JSON.parse(await readFile(statePath, 'utf8')).flightsFetchedAt, first, 'skipped within 25 minutes');
+
+    await rm(path.join(env.fixtures, 'opensky-network.org_api_states_all'));
+    const notices = [];
+    for (let i = 1; i <= 4; i++) {
+      const r = await run(base(env, { now: `2026-10-23T${String(6 + i).padStart(2, '0')}:00:00Z` }));
+      assert.deepEqual(r.failures, ['flights']);
+      assert.equal(r.allFailed, false, 'an auxiliary failure is not a total failure');
+      notices.push(...r.messages.filter((m) => /degraded/i.test(m)));
+    }
+    assert.equal(notices.length, 0, 'no degraded notice for an auxiliary source');
   } finally {
     await rm(env.dir, { recursive: true, force: true });
   }

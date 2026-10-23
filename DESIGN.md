@@ -25,7 +25,8 @@ This is a personal context and cross-checking tool. It is **not** a primary warn
 
 | Concern | Where | Why |
 |---|---|---|
-| Flights, satellites | Browser | Minute-scale; useless at 15-minute polling. |
+| Satellites | Browser | Propagated locally at 10 Hz from TLEs. |
+| Flights | Poller snapshot, projected in the browser | OpenSky only allows its own site to read its API from a browser (CORS), so the poller fetches it every 30 min (4 of ~400 free daily credits per request) and the dashboard dead-reckons each aircraft along its track. Emergency squawks in zones also alert via Telegram. Flights are an auxiliary source: failures never trigger degraded notices. |
 | SACHET (flood, heat, dam, cyclone) | Poller | Feeds send no CORS headers; a browser cannot read them. |
 | River-rise and heat-wave signals | Poller | Needs batching, state and baselines. |
 | Notifications | Poller | Must work with the dashboard closed. |

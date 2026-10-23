@@ -14,6 +14,18 @@
 <body>
 
 <canvas id="globe"></canvas>
+<div id="tags" aria-hidden="true"></div>
+
+<div id="topbar">
+  <button class="status-pill" id="statusPill" type="button" aria-label="Open event feed">
+    <span class="led" id="statusLed"></span><span id="statusText">Starting</span>
+  </button>
+  <div class="search">
+    <input id="search" type="search" placeholder="Search flight, satellite, district" autocomplete="off" spellcheck="false" aria-label="Search">
+    <div class="results" id="searchResults" hidden></div>
+  </div>
+</div>
+<div id="chips" class="chips" role="toolbar" aria-label="Layers"></div>
 
 <button class="btn mobile-toggle" id="toggleLeft">Controls</button>
 <button class="btn mobile-toggle" id="toggleRight">Feed</button>

@@ -122,7 +122,8 @@
           ['ICAO24', it.id], ['Origin', it.country], ['Squawk', it.squawk || 'n/a'],
           ['Status', it.onGround ? 'on ground' : 'airborne'], ['Baro altitude', num(it.baroAltM, 0, ' m')],
           ['Ground speed', it.velocity == null ? 'n/a' : num(it.velocity * 3.6, 0, ' km/h')],
-          ['Track', num(it.track, 0, ' deg')], ['Vertical rate', num(it.verticalRate, 1, ' m/s')], ['Position', pos(it)]
+          ['Track', num(it.track, 0, ' deg')], ['Vertical rate', num(it.verticalRate, 1, ' m/s')], ['Position', pos(it)],
+          ...(Number.isFinite(it.reportedAt) ? [['Reported', `${relTime(it.reportedAt)}${it.projected ? ', position projected along track' : ''}`]] : [])
         ]
       })
     },
@@ -317,6 +318,52 @@
     return normalizeBackend(await getJson(url.href));
   }
 
+  /* ----- Flight snapshot from the poller, projected forward between refreshes (dead reckoning) ----- */
+  const FLIGHT_STALE_MS = 50 * 60 * 1000;
+  const MAX_PROJECTION_S = 45 * 60;
+  let flightSnapshot = null;
+
+  function parseFlightSnapshot(snap) {
+    if (!snap || !Array.isArray(snap.fields) || !Array.isArray(snap.states)) throw new Error('unexpected flights.json format');
+    const col = Object.fromEntries(snap.fields.map((f, i) => [f, i]));
+    for (const need of ['icao24', 'lat', 'lng']) if (!(need in col)) throw new Error(`flights.json missing ${need}`);
+    const fin = (v) => (Number.isFinite(v) ? v : null);
+    const rows = [];
+    for (const row of snap.states.slice(0, 30000)) {
+      if (!Array.isArray(row)) continue;
+      const lat = fin(row[col.lat]);
+      const lng = fin(row[col.lng]);
+      if (lat === null || lng === null) continue;
+      rows.push({
+        id: str(row[col.icao24], 8), callsign: str(row[col.callsign], 10) || 'N/A', country: str(row[col.country], 40),
+        lat0: lat, lng0: lng, baroAltM: fin(row[col.baroAltM]), onGround: row[col.onGround] === 1 || row[col.onGround] === true,
+        velocity: fin(row[col.velocity]), track: fin(row[col.track]), verticalRate: fin(row[col.verticalRate]),
+        squawk: typeof row[col.squawk] === 'string' ? row[col.squawk].slice(0, 4) : null,
+        t0: fin(row[col.positionTime]) || fin(snap.time) || Date.parse(snap.fetchedAt) / 1000
+      });
+    }
+    return { fetchedAt: Date.parse(snap.fetchedAt) || Date.now(), rows };
+  }
+
+  function projectFlights() {
+    if (!flightSnapshot) return [];
+    const nowS = Date.now() / 1000;
+    const items = flightSnapshot.rows.map((f) => {
+      const dt = Math.max(0, Math.min(MAX_PROJECTION_S, nowS - f.t0));
+      const moving = !f.onGround && Number.isFinite(f.velocity) && f.velocity > 1 && Number.isFinite(f.track);
+      const p = moving ? destination(f.lat0, f.lng0, f.track, (f.velocity * dt) / 1000) : { lat: f.lat0, lng: f.lng0 };
+      return {
+        id: f.id, callsign: f.callsign, country: f.country, lat: p.lat, lng: p.lng,
+        baroAltM: f.baroAltM, onGround: f.onGround, velocity: f.velocity, track: f.track, verticalRate: f.verticalRate,
+        squawk: f.squawk, altKm: f.baroAltM !== null ? f.baroAltM / 1000 : 0.3, reportedAt: f.t0 * 1000, projected: moving && dt > 30,
+        color: flightColor(f.squawk, f.onGround, f.verticalRate)
+      };
+    });
+    const age = Date.now() - flightSnapshot.fetchedAt;
+    if (age > FLIGHT_STALE_MS) items.warning = `stale: flight snapshot ${relTime(flightSnapshot.fetchedAt)}`;
+    return items;
+  }
+
   /* ===================== Fetchers (normalize to {id, lat, lng, altKm, ...}) ===================== */
 
   function flightColor(squawk, onGround, verticalRate) {
@@ -384,6 +431,13 @@
 
   const FETCHERS = {
     async flights() {
+      /* Preferred: the poller's snapshot (OpenSky blocks direct browser access from other sites). */
+      const base = backendBase();
+      if (base) {
+        const snap = await getJson(`${base.replace(/\/+$/, '')}/flights.json`);
+        flightSnapshot = parseFlightSnapshot(snap);
+        return projectFlights();
+      }
       const data = await getJson('https://opensky-network.org/api/states/all');
       return (data.states || [])
         .filter((s) => s[5] !== null && s[6] !== null)
@@ -551,8 +605,8 @@
     }));
   })();
 
-  function demoSatellites() {
-    const t = (Date.now() - demoStart) / 1000;
+  function demoSatellites(at = Date.now()) {
+    const t = (at - demoStart) / 1000;
     const obs = observerZone();
     const out = demoSatBase.map((s) => {
       const periodS = 2 * Math.PI * Math.sqrt(((EARTH_KM + s.altKm) * 1000) ** 3 / 3.986e14) / 20;
@@ -1078,6 +1132,262 @@
   const DOT_TEX = makeDotTexture(false);
   const GLOW_TEX = makeDotTexture(true);
 
+  /* ----- Icon atlas: white glyphs with a dark outline, tinted per point in the shader ----- */
+
+  const ICON = {
+    dot: 0, plane: 1, satellite: 2, quake: 3, cyclone: 4, flood: 5, fire: 6, volcano: 7,
+    camera: 8, warning: 9, heat: 10, river: 11, drought: 12, dam: 13, storm: 14, event: 15
+  };
+  const ATLAS_GRID = 4;
+  const ATLAS_CELL = 128;
+
+  function drawIcon(ctx, name) {
+    const P = (pts) => {
+      ctx.beginPath();
+      pts.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)));
+      ctx.closePath();
+    };
+    const circle = (x, y, r) => {
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+    };
+    switch (name) {
+      case 'dot': circle(0, 0, 0.55); return 'fill';
+      case 'plane':
+        P([[0, -0.95], [0.11, -0.78], [0.12, -0.3], [0.92, 0.12], [0.92, 0.3], [0.12, 0.1], [0.1, 0.6], [0.38, 0.8], [0.38, 0.93],
+          [0, 0.82], [-0.38, 0.93], [-0.38, 0.8], [-0.1, 0.6], [-0.12, 0.1], [-0.92, 0.3], [-0.92, 0.12], [-0.12, -0.3], [-0.11, -0.78]]);
+        return 'fill';
+      case 'satellite':
+        ctx.beginPath();
+        ctx.rect(-0.95, -0.22, 0.55, 0.44);
+        ctx.rect(0.4, -0.22, 0.55, 0.44);
+        ctx.rect(-0.4, -0.045, 0.8, 0.09);
+        ctx.moveTo(0, -0.34); ctx.lineTo(0.3, 0); ctx.lineTo(0, 0.34); ctx.lineTo(-0.3, 0); ctx.closePath();
+        return 'fill';
+      case 'quake':
+        ctx.beginPath();
+        ctx.arc(0, 0, 0.82, 0, Math.PI * 2);
+        ctx.moveTo(0.52, 0); ctx.arc(0, 0, 0.52, 0, Math.PI * 2);
+        ctx.moveTo(0.22, 0); ctx.arc(0, 0, 0.22, 0, Math.PI * 2);
+        return 'stroke';
+      case 'cyclone':
+        ctx.beginPath();
+        ctx.arc(0, 0, 0.2, 0, Math.PI * 2);
+        ctx.moveTo(0.2, 0); ctx.bezierCurveTo(0.25, -0.6, -0.35, -0.95, -0.9, -0.55);
+        ctx.moveTo(-0.2, 0); ctx.bezierCurveTo(-0.25, 0.6, 0.35, 0.95, 0.9, 0.55);
+        return 'stroke';
+      case 'flood':
+        ctx.beginPath();
+        ctx.moveTo(0, -0.95); ctx.bezierCurveTo(0.35, -0.45, 0.62, -0.1, 0.62, 0.25);
+        ctx.arc(0, 0.25, 0.62, 0, Math.PI); ctx.bezierCurveTo(-0.62, -0.1, -0.35, -0.45, 0, -0.95);
+        return 'fill';
+      case 'fire':
+        ctx.beginPath();
+        ctx.moveTo(0, -0.95); ctx.bezierCurveTo(0.2, -0.5, 0.7, -0.3, 0.62, 0.3);
+        ctx.bezierCurveTo(0.58, 0.75, 0.25, 0.92, 0, 0.92); ctx.bezierCurveTo(-0.25, 0.92, -0.62, 0.75, -0.62, 0.3);
+        ctx.bezierCurveTo(-0.62, -0.05, -0.35, -0.2, -0.3, -0.5); ctx.bezierCurveTo(-0.1, -0.3, 0, -0.55, 0, -0.95);
+        return 'fill';
+      case 'volcano':
+        P([[-0.92, 0.85], [-0.28, -0.25], [0.28, -0.25], [0.92, 0.85]]);
+        ctx.moveTo(-0.05, -0.4); ctx.arc(-0.12, -0.62, 0.2, 0, Math.PI * 2);
+        ctx.moveTo(0.42, -0.72); ctx.arc(0.25, -0.72, 0.17, 0, Math.PI * 2);
+        return 'fill';
+      case 'camera':
+        ctx.beginPath();
+        ctx.roundRect ? ctx.roundRect(-0.9, -0.45, 1.8, 1.25, 0.18) : ctx.rect(-0.9, -0.45, 1.8, 1.25);
+        ctx.rect(-0.3, -0.7, 0.6, 0.3);
+        return 'fill-hole-camera';
+      case 'warning':
+        P([[0, -0.92], [0.98, 0.82], [-0.98, 0.82]]);
+        return 'fill-hole-warning';
+      case 'heat':
+        ctx.beginPath();
+        ctx.roundRect ? ctx.roundRect(-0.18, -0.92, 0.36, 1.2, 0.18) : ctx.rect(-0.18, -0.92, 0.36, 1.2);
+        ctx.moveTo(0.38, 0.52); ctx.arc(0, 0.52, 0.38, 0, Math.PI * 2);
+        return 'fill';
+      case 'river':
+        ctx.beginPath();
+        for (const y of [-0.5, 0, 0.5]) {
+          ctx.moveTo(-0.9, y);
+          ctx.bezierCurveTo(-0.45, y - 0.3, -0.45, y + 0.3, 0, y);
+          ctx.bezierCurveTo(0.45, y - 0.3, 0.45, y + 0.3, 0.9, y);
+        }
+        return 'stroke';
+      case 'drought':
+        ctx.beginPath();
+        ctx.arc(0, 0, 0.42, 0, Math.PI * 2);
+        for (let k = 0; k < 8; k++) {
+          const a = (k * Math.PI) / 4;
+          ctx.moveTo(Math.cos(a) * 0.62, Math.sin(a) * 0.62);
+          ctx.lineTo(Math.cos(a) * 0.92, Math.sin(a) * 0.92);
+        }
+        return 'fill-stroke';
+      case 'dam':
+        P([[-0.95, -0.75], [-0.15, -0.75], [0.15, 0.85], [-0.95, 0.85]]);
+        ctx.moveTo(0.35, -0.35); ctx.lineTo(0.95, -0.35); ctx.moveTo(0.42, 0.05); ctx.lineTo(0.95, 0.05);
+        ctx.moveTo(0.5, 0.45); ctx.lineTo(0.95, 0.45);
+        return 'fill-stroke';
+      case 'storm':
+        ctx.beginPath();
+        ctx.arc(-0.35, -0.2, 0.38, Math.PI * 0.5, Math.PI * 1.6);
+        ctx.arc(0.1, -0.42, 0.42, Math.PI * 1.05, Math.PI * 1.95);
+        ctx.arc(0.5, -0.12, 0.35, Math.PI * 1.4, Math.PI * 0.5);
+        ctx.closePath();
+        ctx.moveTo(0.05, 0.2); ctx.lineTo(-0.25, 0.62); ctx.lineTo(0.02, 0.62); ctx.lineTo(-0.15, 0.98); ctx.lineTo(0.32, 0.45); ctx.lineTo(0.05, 0.45); ctx.lineTo(0.2, 0.2); ctx.closePath();
+        return 'fill';
+      default:
+        P([[0, -0.9], [0.75, 0], [0, 0.9], [-0.75, 0]]);
+        return 'fill';
+    }
+  }
+
+  function buildIconAtlas() {
+    const size = ATLAS_GRID * ATLAS_CELL;
+    const c = document.createElement('canvas');
+    c.width = size;
+    c.height = size;
+    const ctx = c.getContext('2d');
+    const urls = {};
+    for (const [name, index] of Object.entries(ICON)) {
+      const col = index % ATLAS_GRID;
+      const row = Math.floor(index / ATLAS_GRID);
+      ctx.save();
+      ctx.translate(col * ATLAS_CELL + ATLAS_CELL / 2, row * ATLAS_CELL + ATLAS_CELL / 2);
+      ctx.scale(ATLAS_CELL * 0.4, ATLAS_CELL * 0.4);
+      ctx.lineJoin = 'round';
+      ctx.lineCap = 'round';
+      const mode = drawIcon(ctx, name);
+      const strokeOnly = mode === 'stroke';
+      /* Dark halo first for contrast on any background, then the white glyph. */
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.8)';
+      ctx.lineWidth = strokeOnly ? 0.42 : 0.26;
+      ctx.stroke();
+      ctx.fillStyle = '#ffffff';
+      ctx.strokeStyle = '#ffffff';
+      if (strokeOnly) {
+        ctx.lineWidth = 0.17;
+        ctx.stroke();
+      } else {
+        ctx.fill('nonzero');
+        if (mode === 'fill-stroke') {
+          ctx.lineWidth = 0.16;
+          ctx.stroke();
+        }
+      }
+      if (mode === 'fill-hole-warning' || mode === 'fill-hole-camera') {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.85)';
+        ctx.beginPath();
+        if (mode === 'fill-hole-warning') {
+          ctx.rect(-0.08, -0.32, 0.16, 0.6);
+          ctx.rect(-0.08, 0.42, 0.16, 0.16);
+        } else {
+          ctx.arc(0, 0.17, 0.34, 0, Math.PI * 2);
+        }
+        ctx.fill();
+      }
+      ctx.restore();
+
+      /* Small standalone copy of each glyph for HTML (legend, chips, tags). */
+      const one = document.createElement('canvas');
+      one.width = 48;
+      one.height = 48;
+      one.getContext('2d').drawImage(c, col * ATLAS_CELL, row * ATLAS_CELL, ATLAS_CELL, ATLAS_CELL, 0, 0, 48, 48);
+      urls[name] = one.toDataURL('image/png');
+    }
+    const tex = new THREE.CanvasTexture(c);
+    tex.flipY = false;
+    tex.generateMipmaps = true;
+    tex.minFilter = THREE.LinearMipmapLinearFilter;
+    tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+    return { tex, urls };
+  }
+  const ATLAS = buildIconAtlas();
+
+  const ICON_VERTEX = `
+    attribute vec3 aColor;
+    attribute float aSize;
+    attribute float aIcon;
+    attribute vec3 aDir;
+    uniform float uScale;
+    uniform float uPixelRatio;
+    uniform float uAspect;
+    varying vec3 vColor;
+    varying float vIcon;
+    varying float vAngle;
+    void main() {
+      vec4 clip = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      gl_Position = clip;
+      gl_PointSize = aSize * uScale * uPixelRatio;
+      vColor = aColor;
+      vIcon = aIcon;
+      vAngle = 0.0;
+      if (dot(aDir, aDir) > 0.0) {
+        /* Screen-space heading: project a point slightly ahead along the track. */
+        vec4 clip2 = projectionMatrix * modelViewMatrix * vec4(position + aDir, 1.0);
+        vec2 d = (clip2.xy / clip2.w - clip.xy / clip.w) * vec2(uAspect, 1.0);
+        if (dot(d, d) > 1e-12) vAngle = atan(d.y, d.x) - 1.5707963;
+      }
+    }`;
+
+  const ICON_FRAGMENT = `
+    uniform sampler2D uAtlas;
+    uniform float uOpacity;
+    varying vec3 vColor;
+    varying float vIcon;
+    varying float vAngle;
+    void main() {
+      vec2 p = gl_PointCoord - 0.5;
+      vec2 q = vec2(p.x, -p.y);
+      float c = cos(-vAngle);
+      float s = sin(-vAngle);
+      vec2 t = vec2(c * q.x - s * q.y, s * q.x + c * q.y);
+      vec2 local = vec2(t.x, -t.y) + 0.5;
+      if (local.x < 0.0 || local.x > 1.0 || local.y < 0.0 || local.y > 1.0) discard;
+      float col = mod(vIcon, 4.0);
+      float row = floor(vIcon / 4.0 + 0.001);
+      vec4 tex = texture2D(uAtlas, (vec2(col, row) + local) / 4.0);
+      if (tex.a < 0.06) discard;
+      gl_FragColor = vec4(vColor * tex.rgb, tex.a * uOpacity);
+    }`;
+
+  function makeIconMaterial() {
+    return new THREE.ShaderMaterial({
+      uniforms: {
+        uAtlas: { value: ATLAS.tex },
+        uOpacity: { value: 0 },
+        uScale: { value: 1 },
+        uPixelRatio: { value: renderer.getPixelRatio() },
+        uAspect: { value: window.innerWidth / window.innerHeight }
+      },
+      vertexShader: ICON_VERTEX,
+      fragmentShader: ICON_FRAGMENT,
+      transparent: true,
+      depthWrite: false
+    });
+  }
+
+  const LAYER_ICON = { flights: 'plane', quakes: 'quake', gdacs: 'cyclone', eonet: 'fire', satellites: 'satellite', webcams: 'camera', alerts: 'warning' };
+  const GDACS_ICON = { 'Tropical cyclone': 'cyclone', Flood: 'flood', Earthquake: 'quake', Volcano: 'volcano', Drought: 'drought', Wildfire: 'fire', TC: 'cyclone', FL: 'flood', EQ: 'quake', VO: 'volcano', DR: 'drought', WF: 'fire' };
+  const EONET_ICON = { Wildfires: 'fire', 'Severe Storms': 'storm', Volcanoes: 'volcano', Floods: 'flood', Drought: 'drought', Earthquakes: 'quake' };
+  const ALERT_ICON = { dam: 'dam', flood: 'flood', heat: 'heat', cyclone: 'cyclone', rain: 'storm', thunderstorm: 'storm', tsunami: 'warning', earthquake: 'quake' };
+
+  /** Icon, on-screen size (CSS px) and whether the icon turns with the item's heading. */
+  function iconFor(key, it) {
+    switch (key) {
+      case 'flights':
+        return it.onGround ? { icon: 'dot', size: 6 } : { icon: 'plane', size: it.squawk && EMERGENCY_SQUAWKS.includes(it.squawk) ? 22 : 15, heading: it.track };
+      case 'satellites': return { icon: 'satellite', size: /ISS|ZARYA|TIANGONG|CSS/i.test(it.name || '') ? 24 : 18 };
+      case 'quakes': return { icon: 'quake', size: Math.max(10, Math.min(34, 6 + (it.mag || 0) * 4)) };
+      case 'gdacs': return { icon: GDACS_ICON[it.type] || 'event', size: it.alertLevel === 'Red' ? 28 : it.alertLevel === 'Orange' ? 24 : 18 };
+      case 'eonet': return { icon: EONET_ICON[it.category] || 'event', size: 18 };
+      case 'webcams': return { icon: 'camera', size: 16 };
+      case 'alerts':
+        if (!it.isAlert) return { icon: it.id && it.id.startsWith('river:') ? 'river' : 'heat', size: 13 };
+        return { icon: ALERT_ICON[it.kind] || 'warning', size: it.alertSeverity === 'critical' ? 30 : it.alertSeverity === 'high' ? 26 : 22 };
+      default: return { icon: 'dot', size: 10 };
+    }
+  }
+
   const selectorMesh = new THREE.Mesh(
     new THREE.RingGeometry(2.6, 3.3, 48),
     new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide, transparent: true, opacity: 0, depthWrite: false })
@@ -1094,32 +1404,46 @@
   function updateLayer(key) {
     const layer = LAYERS[key];
     const items = data[key];
-    const positions = new Float32Array(items.length * 3);
-    const colors = new Float32Array(items.length * 3);
+    const n = items.length;
+    const positions = new Float32Array(n * 3);
+    const colors = new Float32Array(n * 3);
+    const sizes = new Float32Array(n);
+    const icons = new Float32Array(n);
+    const dirs = new Float32Array(n * 3);
     const base = hexToRgb(layer.color);
     items.forEach((it, i) => {
-      const v = latLngToVector3(it.lat, it.lng, displayRadius(it.altKm));
+      const r = displayRadius(it.altKm);
+      const v = latLngToVector3(it.lat, it.lng, r);
       positions[i * 3] = v.x;
       positions[i * 3 + 1] = v.y;
       positions[i * 3 + 2] = v.z;
       colors.set(it.color || base, i * 3);
+      const look = iconFor(key, it);
+      sizes[i] = look.size;
+      icons[i] = ICON[look.icon] ?? 0;
+      if (Number.isFinite(look.heading)) {
+        const ahead = destination(it.lat, it.lng, look.heading, 150);
+        const w = latLngToVector3(ahead.lat, ahead.lng, r).sub(v).normalize().multiplyScalar(2);
+        dirs[i * 3] = w.x;
+        dirs[i * 3 + 1] = w.y;
+        dirs[i * 3 + 2] = w.z;
+      }
     });
     if (!layerObjects[key]) {
-      const obj = new THREE.Points(
-        new THREE.BufferGeometry(),
-        new THREE.PointsMaterial({
-          size: layer.size * 1.7, map: DOT_TEX, vertexColors: true, sizeAttenuation: false,
-          transparent: true, opacity: 0, depthWrite: false, alphaTest: 0.04
-        })
-      );
+      const obj = new THREE.Points(new THREE.BufferGeometry(), makeIconMaterial());
       obj.userData.targetOpacity = layer.visible ? 1 : 0;
       obj.visible = layer.visible;
+      /* Draw order: big event icons under small moving ones. */
+      obj.renderOrder = { alerts: 1, gdacs: 2, eonet: 3, quakes: 4, webcams: 5, satellites: 6, flights: 7 }[key] || 0;
       layerObjects[key] = obj;
       globeGroup.add(obj);
     }
     const geo = layerObjects[key].geometry;
     geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    geo.setAttribute('aColor', new THREE.BufferAttribute(colors, 3));
+    geo.setAttribute('aSize', new THREE.BufferAttribute(sizes, 1));
+    geo.setAttribute('aIcon', new THREE.BufferAttribute(icons, 1));
+    geo.setAttribute('aDir', new THREE.BufferAttribute(dirs, 3));
     geo.computeBoundingSphere();
   }
 
@@ -1311,13 +1635,58 @@
   const raycaster = new THREE.Raycaster();
   const pointer = new THREE.Vector2();
 
-  function handleGlobeClick(clientX, clientY) {
+  /** Finds what is under a screen point: an alert halo, a layer item, or nothing. */
+  function pickAt(clientX, clientY) {
     pointer.x = (clientX / window.innerWidth) * 2 - 1;
     pointer.y = -(clientY / window.innerHeight) * 2 + 1;
     raycaster.setFromCamera(pointer, camera);
     raycaster.params.Points.threshold = 2.2 * (camera.position.z / 330);
+    const earthHit = raycaster.intersectObject(earthMesh)[0];
+    const maxDist = earthHit ? earthHit.distance + 4 : Infinity;
+    const alertHit = raycaster.intersectObject(alertPoints).find((h) => h.distance < maxDist);
+    if (alertHit && alertItems[alertHit.index]) return { alert: alertItems[alertHit.index] };
+    let best = null;
+    for (const [key, obj] of Object.entries(layerObjects)) {
+      if (!LAYERS[key].visible) continue;
+      const hit = raycaster.intersectObject(obj).find((h) => h.distance < maxDist);
+      if (hit && (!best || hit.distanceToRay < best.hit.distanceToRay)) best = { key, hit };
+    }
+    if (!best) return null;
+    const it = data[best.key][best.hit.index];
+    return it ? { key: best.key, it, index: best.hit.index } : null;
+  }
 
+  /* Desktop hover: highlight and tag whatever is under the cursor. */
+  let hovered = null;
+  let hoverPending = false;
+  canvas.addEventListener('pointermove', (e) => {
+    if (e.pointerType !== 'mouse' || pointers.size || hoverPending) return;
+    hoverPending = true;
+    const x = e.clientX;
+    const y = e.clientY;
+    setTimeout(() => {
+      hoverPending = false;
+      const hit = pickMode ? null : pickAt(x, y);
+      const next = hit && hit.key ? { key: hit.key, id: hit.it.id } : null;
+      if (JSON.stringify(next) !== JSON.stringify(hovered)) {
+        hovered = next;
+        tagsDirty = true;
+      }
+      canvas.style.cursor = hit ? 'pointer' : '';
+    }, 40);
+  });
+  canvas.addEventListener('pointerleave', () => {
+    if (hovered) {
+      hovered = null;
+      tagsDirty = true;
+    }
+  });
+
+  function handleGlobeClick(clientX, clientY) {
     if (pickMode) {
+      pointer.x = (clientX / window.innerWidth) * 2 - 1;
+      pointer.y = -(clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(pointer, camera);
       const hit = raycaster.intersectObject(earthMesh)[0];
       if (!hit) return;
       const ll = vector3ToLatLng(globeGroup.worldToLocal(hit.point.clone()));
@@ -1328,29 +1697,258 @@
       return;
     }
 
-    /* Ignore hits on the far side of the globe. */
-    const earthHit = raycaster.intersectObject(earthMesh)[0];
-    const maxDist = earthHit ? earthHit.distance + 4 : Infinity;
+    const hit = pickAt(clientX, clientY);
+    if (hit && hit.alert) showEventDetail(hit.alert);
+    else if (hit) showItemDetail(hit.key, hit.it);
+    else if (isCompact()) closePanels();
+  }
 
-    const alertHit = raycaster.intersectObject(alertPoints).find((h) => h.distance < maxDist);
-    if (alertHit && alertItems[alertHit.index]) {
-      showEventDetail(alertItems[alertHit.index]);
-      return;
-    }
+  /* ===================== Tags (smart labels), paths, day/night ===================== */
 
-    let best = null;
-    for (const [key, obj] of Object.entries(layerObjects)) {
-      if (!LAYERS[key].visible) continue;
-      const hit = raycaster.intersectObject(obj).find((h) => h.distance < maxDist);
-      if (hit && (!best || hit.distanceToRay < best.hit.distanceToRay)) best = { key, hit };
-    }
-    if (best) {
-      const it = data[best.key][best.hit.index];
-      if (it) showItemDetail(best.key, it);
-    } else if (isCompact()) {
-      closePanels();
+  const tagHost = $('tags');
+  const TAG_POOL = [];
+  let tagsDirty = true;
+  let tagSet = [];
+  let lastTagPick = 0;
+  let selectedRef = null;
+
+  const SEV_RANK_N = { low: 0, medium: 1, high: 2, critical: 3 };
+  const clip = (str, n) => (str.length > n ? `${str.slice(0, n - 1)}\u2026` : str);
+
+  function tagText(key, it) {
+    switch (key) {
+      case 'flights': {
+        if (it.squawk && EMERGENCY_SQUAWKS.includes(it.squawk)) return `${it.callsign} \u00b7 SQK ${it.squawk}`;
+        const fl = it.onGround ? 'GND' : Number.isFinite(it.baroAltM) ? `FL${String(Math.round(it.baroAltM * 3.28084 / 100)).padStart(3, '0')}` : '';
+        const spd = Number.isFinite(it.velocity) && !it.onGround ? `${Math.round(it.velocity * 3.6)} km/h` : '';
+        return [it.callsign, fl, spd].filter(Boolean).join(' \u00b7 ');
+      }
+      case 'satellites': return `${clip((it.name || '').replace(/\s*\(.*?\)/g, ''), 18)} \u00b7 ${Math.round(it.altKm)} km`;
+      case 'quakes': return `M${(it.mag || 0).toFixed(1)}${it.tsunami ? ' \u00b7 tsunami' : ''}`;
+      case 'gdacs': return clip(`${it.alertLevel} \u00b7 ${it.name}`, 30);
+      case 'eonet': return clip(it.title || '', 26);
+      case 'webcams': return clip((it.title || '').replace(/\s*\[DEMO\]/, ''), 22);
+      case 'alerts': return clip((it.title || '').replace(/^Official: |^Derived: /, ''), 32);
+      default: return '';
     }
   }
+
+  function tagPriority(key, it, zoom) {
+    const id = it.id;
+    if (selectedRef && selectedRef.key === key && selectedRef.id === id) return 1000;
+    if (hovered && hovered.key === key && hovered.id === id) return 900;
+    switch (key) {
+      case 'alerts': return it.isAlert ? 500 + 50 * (SEV_RANK_N[it.alertSeverity] || 0) : zoom < 190 ? 60 : -1;
+      case 'flights': return it.squawk && EMERGENCY_SQUAWKS.includes(it.squawk) ? 600 : zoom < 210 ? 40 : -1;
+      case 'gdacs': return it.alertLevel === 'Red' ? 450 : it.alertLevel === 'Orange' ? 400 : zoom < 230 ? 70 : -1;
+      case 'quakes': return it.mag >= 5 ? 300 + it.mag : it.mag >= 3.5 && zoom < 250 ? 100 + it.mag : zoom < 170 ? 20 : -1;
+      case 'satellites': return /ISS|ZARYA|TIANGONG|CSS/i.test(it.name || '') ? 350 : zoom < 260 ? 80 : -1;
+      case 'eonet': return zoom < 260 ? 120 : -1;
+      case 'webcams': return zoom < 200 ? 30 : -1;
+      default: return -1;
+    }
+  }
+
+  const tmpV = new THREE.Vector3();
+  const camDir = new THREE.Vector3();
+
+  /** Screen position of item i in a layer, or null if it is behind the globe or off screen. */
+  function screenPos(key, i) {
+    const obj = layerObjects[key];
+    const attr = obj && obj.geometry.getAttribute('position');
+    if (!attr || i >= attr.count) return null;
+    tmpV.fromBufferAttribute(attr, i).applyMatrix4(globeGroup.matrixWorld);
+    camDir.copy(camera.position).normalize();
+    if (tmpV.clone().normalize().dot(camDir) < 0.1) return null;
+    tmpV.project(camera);
+    const x = (tmpV.x + 1) / 2 * window.innerWidth;
+    const y = (1 - tmpV.y) / 2 * window.innerHeight;
+    if (x < 0 || y < 0 || x > window.innerWidth || y > window.innerHeight) return null;
+    return { x, y };
+  }
+
+  /* Keep tags out from under panels, the search bar and the chip row. */
+  function overPanels(x, y) {
+    if (isCompact()) {
+      const sheetOpen = $('left').classList.contains('open') || $('right').classList.contains('open');
+      return y < 70 || (sheetOpen && y > window.innerHeight * 0.4) || y > window.innerHeight - 130;
+    }
+    return x < 344 || x > window.innerWidth - 344 || y < 104;
+  }
+
+  function pickTags() {
+    const zoom = camera.position.z;
+    const candidates = [];
+    for (const key of Object.keys(LAYERS)) {
+      if (!LAYERS[key].visible || !layerObjects[key]) continue;
+      const items = data[key];
+      for (let i = 0; i < items.length; i++) {
+        const pr = tagPriority(key, items[i], zoom);
+        if (pr < 0) continue;
+        candidates.push({ key, i, pr });
+      }
+    }
+    const cx = window.innerWidth / 2;
+    const cy = window.innerHeight / 2;
+    const placed = [];
+    const max = isCompact() ? 14 : 30;
+    const scored = [];
+    for (const c of candidates) {
+      const p = screenPos(c.key, c.i);
+      if (!p || (c.pr < 900 && overPanels(p.x, p.y))) continue;
+      scored.push({ ...c, ...p, d: Math.hypot(p.x - cx, p.y - cy) });
+    }
+    scored.sort((a, b) => b.pr - a.pr || a.d - b.d);
+    for (const c of scored) {
+      if (placed.length >= max) break;
+      const it = data[c.key][c.i];
+      const text = tagText(c.key, it);
+      if (!text) continue;
+      const w = text.length * 6.1 + 26;
+      /* Flip to the left of the icon near the right edge so tags never run off screen. */
+      const rightLimit = isCompact() ? window.innerWidth - 8 : window.innerWidth - 352;
+      const flip = c.x + 14 + w > rightLimit;
+      const box = { x: flip ? c.x - 14 - w : c.x + 14, y: c.y - 11, w, h: 22 };
+      if (c.pr < 900 && placed.some((b) => box.x < b.x + b.w + 4 && box.x + box.w + 4 > b.x && box.y < b.y + b.h + 2 && box.y + box.h + 2 > b.y)) continue;
+      placed.push({ ...box, key: c.key, i: c.i, id: it.id, text, pr: c.pr, flip });
+    }
+    tagSet = placed;
+
+    /* Keep the selection ring on a moving item (satellites, projected flights). */
+    if (selectedRef) {
+      const it = data[selectedRef.key] && data[selectedRef.key].find((x) => x.id === selectedRef.id);
+      if (it) placeSelector(it.lat, it.lng, it.altKm);
+    }
+  }
+
+  function renderTags(now) {
+    if (tagsDirty || now - lastTagPick > 200) {
+      pickTags();
+      lastTagPick = now;
+      tagsDirty = false;
+    }
+    while (TAG_POOL.length < tagSet.length) {
+      const el = document.createElement('div');
+      el.className = 'gtag';
+      el.innerHTML = '<span class="ic"></span><span></span>';
+      tagHost.appendChild(el);
+      TAG_POOL.push(el);
+    }
+    TAG_POOL.forEach((el, n) => {
+      const t = tagSet[n];
+      if (!t) {
+        el.style.opacity = '0';
+        return;
+      }
+      const items = data[t.key];
+      const p = items[t.i] && items[t.i].id === t.id ? screenPos(t.key, t.i) : null;
+      if (!p) {
+        el.style.opacity = '0';
+        return;
+      }
+      if (el.dataset.text !== t.text) {
+        el.dataset.text = t.text;
+        el.lastChild.textContent = t.text;
+      }
+      const icon = iconFor(t.key, items[t.i]).icon;
+      if (el.dataset.icon !== icon) {
+        el.dataset.icon = icon;
+        el.firstChild.style.setProperty('--m', `url(${ATLAS.urls[icon]})`);
+      }
+      const color = t.key === 'alerts' && items[t.i].alertSeverity ? SEV_COLOR[items[t.i].alertSeverity] : LAYERS[t.key].color;
+      el.style.setProperty('--c', color);
+      el.classList.toggle('focus', t.pr >= 900);
+      const x = t.flip ? p.x - 14 - el.offsetWidth : p.x + 14;
+      el.style.transform = `translate3d(${Math.round(x)}px, ${Math.round(p.y - 11)}px, 0)`;
+      el.style.opacity = '1';
+    });
+  }
+
+  /* Selected-item paths: orbit for satellites, projected 30-minute track for flights. */
+  let pathLine = null;
+  let pathUpdated = 0;
+
+  function clearPath() {
+    if (pathLine) {
+      globeGroup.remove(pathLine);
+      pathLine.geometry.dispose();
+      pathLine.material.dispose();
+      pathLine = null;
+    }
+  }
+
+  function computePath(key, it) {
+    const pts = [];
+    if (key === 'satellites') {
+      const now = Date.now();
+      if (DEMO) {
+        for (let k = 0; k <= 100; k++) {
+          const s = demoSatellites(now + k * 60000).find((x) => x.id === it.id);
+          if (s) pts.push(latLngToVector3(s.lat, s.lng, displayRadius(s.altKm)));
+        }
+      } else if (satLibOk) {
+        const rec = satCatalog.find((s) => s.noradId === it.id);
+        if (!rec) return pts;
+        for (let k = 0; k <= 100; k++) {
+          const t = new Date(now + k * 60000);
+          const pv = satellite.propagate(rec.satrec, t);
+          if (!pv || !pv.position || typeof pv.position !== 'object') continue;
+          const gd = satellite.eciToGeodetic(pv.position, satellite.gstime(t));
+          pts.push(latLngToVector3(satellite.degreesLat(gd.latitude), satellite.degreesLong(gd.longitude), displayRadius(gd.height)));
+        }
+      }
+    } else if (key === 'flights' && !it.onGround && Number.isFinite(it.track) && Number.isFinite(it.velocity)) {
+      const r = displayRadius(it.altKm);
+      for (let k = 0; k <= 30; k++) {
+        const p = destination(it.lat, it.lng, it.track, (it.velocity * k * 60) / 1000);
+        pts.push(latLngToVector3(p.lat, p.lng, r));
+      }
+    }
+    return pts;
+  }
+
+  function updatePath(force = false) {
+    if (!selectedRef || !['satellites', 'flights'].includes(selectedRef.key)) {
+      clearPath();
+      return;
+    }
+    if (!force && performance.now() - pathUpdated < 20000) return;
+    const it = data[selectedRef.key].find((x) => x.id === selectedRef.id);
+    clearPath();
+    if (!it) return;
+    const pts = computePath(selectedRef.key, it);
+    if (pts.length < 2) return;
+    const geo = new THREE.BufferGeometry().setFromPoints(pts);
+    const mat = new THREE.LineDashedMaterial({ color: LAYERS[selectedRef.key].color, dashSize: 1.6, gapSize: 1.1, transparent: true, opacity: 0.85, depthWrite: false });
+    pathLine = new THREE.Line(geo, mat);
+    pathLine.computeLineDistances();
+    globeGroup.add(pathLine);
+    pathUpdated = performance.now();
+  }
+
+  /* Night side shading from the real sun position (subsolar point). */
+  const nightMaterial = new THREE.ShaderMaterial({
+    uniforms: { uSun: { value: new THREE.Vector3(1, 0, 0) } },
+    vertexShader: 'varying vec3 vN; void main(){ vN = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
+    fragmentShader: 'uniform vec3 uSun; varying vec3 vN; void main(){ float d = dot(vN, uSun); float night = smoothstep(0.06, -0.14, d); gl_FragColor = vec4(0.0, 0.012, 0.045, night * 0.58); }',
+    transparent: true,
+    depthWrite: false
+  });
+  const nightMesh = new THREE.Mesh(new THREE.SphereGeometry(RADIUS + 0.1, 96, 64), nightMaterial);
+  nightMesh.renderOrder = -1;
+  globeGroup.add(nightMesh);
+
+  function updateSun() {
+    const now = new Date();
+    const start = Date.UTC(now.getUTCFullYear(), 0, 0);
+    const dayOfYear = (now.getTime() - start) / 86400000;
+    const decl = -23.44 * Math.cos((2 * Math.PI / 365) * (dayOfYear + 10));
+    const hours = now.getUTCHours() + now.getUTCMinutes() / 60 + now.getUTCSeconds() / 3600;
+    const lng = ((((-15 * (hours - 12)) + 540) % 360) - 180);
+    nightMaterial.uniforms.uSun.value.copy(latLngToVector3(decl, lng, 1).normalize());
+  }
+  updateSun();
+  setInterval(updateSun, 60000);
 
   window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -1390,10 +1988,19 @@
 
     camera.position.z += (cam.zoomTarget - camera.position.z) * smooth(8, dt);
 
+    /* Icons grow a little as you zoom in, like map symbols. */
+    const iconScale = Math.max(0.85, Math.min(1.7, 330 / camera.position.z));
+    const aspect = window.innerWidth / window.innerHeight;
     for (const obj of Object.values(layerObjects)) {
       const m = obj.material;
       m.opacity += (obj.userData.targetOpacity - m.opacity) * smooth(7, dt);
       if (obj.userData.targetOpacity === 0 && m.opacity < 0.01) obj.visible = false;
+      if (m.uniforms) {
+        m.uniforms.uOpacity.value = m.opacity;
+        m.uniforms.uScale.value = iconScale;
+        m.uniforms.uAspect.value = aspect;
+        m.uniforms.uPixelRatio.value = renderer.getPixelRatio();
+      }
     }
     for (const l of zoneLines) l.material.opacity += (0.6 - l.material.opacity) * smooth(4, dt);
     for (const l of alertPolyGroup.children) l.material.opacity += (0.9 - l.material.opacity) * smooth(4, dt);
@@ -1407,6 +2014,9 @@
     alertPoints.material.size = 22 + 8 * (0.5 + 0.5 * Math.sin(now / 520));
 
     renderer.render(scene, camera);
+    globeGroup.updateMatrixWorld();
+    renderTags(now);
+    updatePath();
     if (firstFrame) {
       firstFrame = false;
       canvas.classList.add('ready');
@@ -1446,6 +2056,9 @@
   }
 
   function closeDetail() {
+    selectedRef = null;
+    tagsDirty = true;
+    updatePath(true);
     $('detailWrap').classList.remove('open');
     selectedEventId = null;
     document.querySelectorAll('.ev.selected').forEach((n) => n.classList.remove('selected'));
@@ -1453,6 +2066,9 @@
   }
 
   function showItemDetail(key, it) {
+    selectedRef = { key, id: it.id };
+    tagsDirty = true;
+    updatePath(true);
     selectedEventId = null;
     document.querySelectorAll('.ev.selected').forEach((n) => n.classList.remove('selected'));
     const d = LAYERS[key].describe(it);
@@ -1463,6 +2079,9 @@
   let selectedEventId = null;
 
   function showEventDetail(ev) {
+    selectedRef = null;
+    tagsDirty = true;
+    updatePath(true);
     selectedEventId = ev.id;
     document.querySelectorAll('.ev').forEach((n) => n.classList.toggle('selected', n.dataset.ev === ev.id));
     renderDetail({
@@ -1579,7 +2198,7 @@
         <div class="src" data-src="${key}">
           <label class="src-head">
             <input type="checkbox" data-layer="${key}" ${l.visible ? 'checked' : ''}>
-            <span class="sw" style="background:${l.color};color:${l.color}"></span>
+            <span class="sw-ic" style="--c:${l.color};--m:url(${ATLAS.urls[LAYER_ICON[key]]})"></span>
             <span class="src-name">${esc(l.label)}<span class="src-sub">${esc(l.source)}</span></span>
             <span class="pill" data-f="pill"></span>
             <span class="count" data-f="count">0</span>
@@ -1607,8 +2226,9 @@
       const h = health[key];
       const f = (name) => row.querySelector(`[data-f="${name}"]`);
       const pill = f('pill');
-      if (pill.textContent !== h.status) {
-        pill.textContent = h.status;
+      const pillText = h.status === 'off' ? 'setup' : h.status;
+      if (pill.textContent !== pillText) {
+        pill.textContent = pillText;
         pill.className = `pill ${h.status}`;
       }
       const count = data[key].length.toLocaleString();
@@ -1871,25 +2491,232 @@
   function syncSheetState() {
     document.body.classList.toggle('sheet-open', $('left').classList.contains('open') || $('right').classList.contains('open'));
   }
-  function openPanel(side) {
+  function openPanel(side, full = false) {
     if (!isCompact()) return;
-    $(side === 'left' ? 'right' : 'left').classList.remove('open');
+    $(side === 'left' ? 'right' : 'left').classList.remove('open', 'full');
     $(side).classList.add('open');
+    $(side).classList.toggle('full', full);
     syncSheetState();
+    tagsDirty = true;
   }
   function closePanels() {
-    $('left').classList.remove('open');
-    $('right').classList.remove('open');
+    for (const id of ['left', 'right']) $(id).classList.remove('open', 'full');
     syncSheetState();
+    tagsDirty = true;
   }
   $('toggleLeft').addEventListener('click', () => openPanel('left'));
   $('toggleRight').addEventListener('click', () => openPanel('right'));
-  document.querySelectorAll('[data-close-sheet]').forEach((b) => b.addEventListener('click', closePanels));
+
+  /* Bottom sheets on phones: drag the grabber or header to snap between half, full and closed. */
+  for (const id of ['left', 'right']) {
+    const sheet = $(id);
+    let drag = null;
+    let suppressClick = false;
+    const start = (e) => {
+      if (!isCompact() || !sheet.classList.contains('open')) return;
+      if (e.target.closest('button:not(.grabber), input, select, a, label')) return;
+      const vh = window.innerHeight;
+      const base = sheet.classList.contains('full') ? 0 : 0.36 * vh;
+      drag = { y0: e.clientY, base, t0: performance.now(), lastY: e.clientY, lastT: performance.now(), moved: false };
+      sheet.classList.add('dragging');
+      e.currentTarget.setPointerCapture(e.pointerId);
+    };
+    const move = (e) => {
+      if (!drag) return;
+      const dy = e.clientY - drag.y0;
+      if (Math.abs(dy) > 4) drag.moved = true;
+      drag.vy = (e.clientY - drag.lastY) / Math.max(1, performance.now() - drag.lastT);
+      drag.lastY = e.clientY;
+      drag.lastT = performance.now();
+      sheet.style.transform = `translateY(${Math.max(0, drag.base + dy)}px)`;
+    };
+    const end = (e) => {
+      if (!drag) return;
+      const vh = window.innerHeight;
+      const y = Math.max(0, drag.base + (e.clientY - drag.y0));
+      const projected = y + (drag.vy || 0) * 180;
+      sheet.classList.remove('dragging');
+      sheet.style.transform = '';
+      if (drag.moved) {
+        suppressClick = true;
+        if (projected > 0.66 * vh) closePanels();
+        else if (projected < 0.18 * vh) openPanel(id, true);
+        else openPanel(id, false);
+      }
+      drag = null;
+    };
+    for (const handle of sheet.querySelectorAll('.grabber, .panel-head')) {
+      handle.addEventListener('pointerdown', start);
+      handle.addEventListener('pointermove', move);
+      handle.addEventListener('pointerup', end);
+      handle.addEventListener('pointercancel', end);
+    }
+    sheet.querySelector('.grabber').addEventListener('click', () => {
+      if (suppressClick) {
+        suppressClick = false;
+        return;
+      }
+      if (sheet.classList.contains('full')) openPanel(id, false);
+      else closePanels();
+    });
+  }
+
+  /* ----- Layer chips ----- */
+  const CHIP_LABEL = { flights: 'Flights', quakes: 'Quakes', gdacs: 'GDACS', eonet: 'Events', satellites: 'Satellites', webcams: 'Cams', alerts: 'India' };
+
+  function buildChips() {
+    $('chips').innerHTML = Object.keys(LAYERS).map((key) => `
+      <button class="chip${LAYERS[key].visible ? '' : ' off'}" type="button" data-chip="${key}" aria-pressed="${LAYERS[key].visible}">
+        <span class="ic" style="--c:${LAYERS[key].color};--m:url(${ATLAS.urls[LAYER_ICON[key]]})"></span>${CHIP_LABEL[key]}<span class="n" data-n="${key}"></span>
+      </button>`).join('');
+  }
+  function syncChips() {
+    for (const key of Object.keys(LAYERS)) {
+      const chip = document.querySelector(`[data-chip="${key}"]`);
+      if (!chip) continue;
+      chip.classList.toggle('off', !LAYERS[key].visible);
+      chip.setAttribute('aria-pressed', String(LAYERS[key].visible));
+      const n = data[key].length;
+      const label = n ? (n > 999 ? `${(n / 1000).toFixed(1)}k` : String(n)) : '';
+      const el = chip.querySelector('[data-n]');
+      if (el.textContent !== label) el.textContent = label;
+    }
+  }
+  $('chips').addEventListener('click', (e) => {
+    const chip = e.target.closest('[data-chip]');
+    if (!chip) return;
+    const key = chip.dataset.chip;
+    setLayerVisible(key, !LAYERS[key].visible);
+    const box = document.querySelector(`[data-layer="${key}"]`);
+    if (box) box.checked = LAYERS[key].visible;
+    tagsDirty = true;
+    syncChips();
+  });
+
+  /* ----- Status pill ----- */
+  function updateStatus() {
+    const keys = Object.keys(LAYERS);
+    const configured = keys.filter((k) => health[k].status !== 'off');
+    const failing = configured.filter((k) => health[k].status === 'error');
+    const stale = configured.filter((k) => health[k].status === 'stale');
+    const live = configured.length - failing.length - stale.length;
+    const alertsNow = alertItems.length;
+    $('statusText').textContent = `${alertsNow ? `${alertsNow} alert${alertsNow === 1 ? '' : 's'}` : 'No new alerts'} \u00b7 ${live}/${configured.length} live`;
+    const led = $('statusLed');
+    led.classList.toggle('bad', failing.length > configured.length / 2);
+    led.classList.toggle('warn', !(failing.length > configured.length / 2) && (failing.length + stale.length) > 0);
+  }
+  $('statusPill').addEventListener('click', () => {
+    if (isCompact()) openPanel('right');
+    else $('feed').scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* ----- Search ----- */
+  const SEARCH_FIELDS = {
+    flights: (it) => [it.callsign, it.id, it.country],
+    satellites: (it) => [it.name, it.id],
+    quakes: (it) => [it.place, `M${(it.mag || 0).toFixed(1)}`],
+    gdacs: (it) => [it.name, it.country, it.type],
+    eonet: (it) => [it.title, it.category],
+    webcams: (it) => [it.title, it.city],
+    alerts: (it) => [it.title, ...(it.districts || [])]
+  };
+  let searchHits = [];
+  let searchActive = 0;
+
+  function runSearch(q) {
+    const term = q.trim().toLowerCase();
+    if (term.length < 2) return [];
+    const hits = [];
+    for (const key of Object.keys(LAYERS)) {
+      const fields = SEARCH_FIELDS[key];
+      for (const it of data[key]) {
+        const texts = fields(it).filter(Boolean).map((t) => String(t).toLowerCase());
+        const exact = texts.some((t) => t === term);
+        const prefix = texts.some((t) => t.startsWith(term));
+        const any = prefix || texts.some((t) => t.includes(term));
+        if (!any) continue;
+        hits.push({ key, it, score: exact ? 3 : prefix ? 2 : 1 });
+        if (hits.length > 400) break;
+      }
+    }
+    return hits.sort((a, b) => b.score - a.score).slice(0, 8);
+  }
+
+  function renderSearch() {
+    const box = $('searchResults');
+    const q = $('search').value;
+    if (q.trim().length < 2) {
+      box.hidden = true;
+      return;
+    }
+    searchHits = runSearch(q);
+    searchActive = 0;
+    box.innerHTML = searchHits.length
+      ? searchHits.map((h, n) => `
+        <button type="button" data-hit="${n}" class="${n === 0 ? 'active' : ''}">
+          <span class="ic" style="--c:${LAYERS[h.key].color};--m:url(${ATLAS.urls[iconFor(h.key, h.it).icon]})"></span>
+          <span class="lbl">${esc(tagText(h.key, h.it) || h.it.title || h.it.name || h.it.id)}</span>
+          <span class="kind">${esc(CHIP_LABEL[h.key])}</span>
+        </button>`).join('')
+      : '<div class="none">No matches in the loaded layers.</div>';
+    box.hidden = false;
+  }
+
+  function chooseHit(n) {
+    const h = searchHits[n];
+    if (!h) return;
+    if (!LAYERS[h.key].visible) {
+      setLayerVisible(h.key, true);
+      syncChips();
+    }
+    flyTo(h.it.lat, h.it.lng, 190);
+    showItemDetail(h.key, h.it);
+    $('search').value = '';
+    $('searchResults').hidden = true;
+    $('search').blur();
+  }
+
+  let searchTimer = null;
+  $('search').addEventListener('input', () => {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(renderSearch, 120);
+  });
+  $('search').addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      $('search').value = '';
+      $('searchResults').hidden = true;
+      $('search').blur();
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      chooseHit(searchActive);
+    } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (!searchHits.length) return;
+      searchActive = (searchActive + (e.key === 'ArrowDown' ? 1 : -1) + searchHits.length) % searchHits.length;
+      document.querySelectorAll('#searchResults button').forEach((b, n) => b.classList.toggle('active', n === searchActive));
+    }
+  });
+  $('searchResults').addEventListener('click', (e) => {
+    const b = e.target.closest('[data-hit]');
+    if (b) chooseHit(Number(b.dataset.hit));
+  });
+  document.addEventListener('pointerdown', (e) => {
+    if (!e.target.closest('.search')) $('searchResults').hidden = true;
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && document.activeElement === document.body) {
+      e.preventDefault();
+      $('search').focus();
+    }
+  });
 
   setInterval(() => {
     const now = new Date();
     $('clock').innerHTML = `${now.toLocaleTimeString([], { hour12: false })}<br>${now.toISOString().slice(11, 16)} UTC`;
     if (activeTab === 'sources') renderSources();
+    updateStatus();
+    syncChips();
   }, 1000);
 
   /* ===================== Scheduler ===================== */
@@ -1903,7 +2730,7 @@
     const h = health[key];
     if (h.status === 'idle') h.status = 'loading';
     const t0 = performance.now();
-    const interval = DEMO ? DEMO_INTERVALS[key] : LAYERS[key].intervalMs;
+    const interval = DEMO ? DEMO_INTERVALS[key] : key === 'flights' && backendBase() ? 5 * 60 * 1000 : LAYERS[key].intervalMs;
     try {
       const items = await (DEMO ? DEMO_FETCHERS : FETCHERS)[key]();
       h.latencyMs = Math.round(performance.now() - t0);
@@ -1918,12 +2745,27 @@
       evaluate(key, items);
       schedule(key, interval);
     } catch (err) {
+      /* A source waiting for a key or URL is not broken: show it as needing setup, without backoff. */
+      if (/no API key|no poller data URL/.test(err.message)) {
+        h.status = 'off';
+        h.error = err.message;
+        h.failures = 0;
+        schedule(key, Math.max(interval, 60000));
+        return;
+      }
       h.failures++;
       h.status = 'error';
       h.error = err.message;
       schedule(key, Math.min(interval * 2 ** h.failures, 600000));
     }
   }
+
+  /* Flights from a snapshot move along their tracks every 5 s between refreshes. */
+  setInterval(() => {
+    if (DEMO || !flightSnapshot) return;
+    data.flights = projectFlights();
+    updateLayer('flights');
+  }, 5000);
 
   /* Satellites are re-propagated at 10 Hz so they glide instead of jumping; rules still run every 2 s. */
   let satTick = 0;
@@ -1962,6 +2804,12 @@
   updateZoneLines();
   updateAlertLayer();
   renderSources();
+  buildChips();
+  syncChips();
+  const setSearchPlaceholder = () => { $('search').placeholder = isCompact() ? 'Search' : 'Search flight, satellite, district'; };
+  setSearchPlaceholder();
+  window.addEventListener('resize', setSearchPlaceholder);
+  updateStatus();
   if (DEMO) {
     $('keyBox').innerHTML = '<div class="note">Demo mode: webcam points are synthetic and carry no images. Switch to live and add a Windy key for real feeds.</div>';
   } else {

@@ -22,12 +22,21 @@ See [DESIGN.md](DESIGN.md) for architecture, efficiency and safety decisions.
 | Heat wave forecast (derived, IMD criteria), 20 stations across Tamil Nadu | [Open-Meteo](https://open-meteo.com) forecast | Poller | 15 min |
 | Disaster alerts | [GDACS](https://www.gdacs.org) | Both | 5–15 min |
 | Earthquakes | [USGS](https://earthquake.usgs.gov/earthquakes/feed/) | Both | 2–15 min |
-| Flights (incl. emergency squawks) | [OpenSky Network](https://opensky-network.org) | Dashboard | 20 s |
+| Flights (incl. emergency squawks) | [OpenSky Network](https://opensky-network.org) via the poller (OpenSky blocks browsers on other sites) | Both | 30 min snapshot, projected along track every 5 s |
 | Natural events | [NASA EONET](https://eonet.gsfc.nasa.gov) | Dashboard | 5 min |
 | Satellites | [CelesTrak](https://celestrak.org) TLEs + SGP4 | Dashboard | 10 Hz |
 | Public webcams | [Windy Webcams API](https://api.windy.com/webcams) (owner-published only) | Dashboard | 9 min |
 
 Every alert is labelled **Official** or **Derived (not an official warning)** and links to its source.
+
+### Dashboard features
+
+- **Icons per layer** rendered on the GPU: aircraft point along their real heading; satellites, quake rings sized by magnitude, cyclone, flood, fire, volcano, dam, heat and camera symbols.
+- **Smart tags** such as `AIC302 · FL350 · 812 km/h` or `ISS · 420 km`, prioritised (alerts, selection, notable events first; flights once zoomed in) with overlap avoidance.
+- **Hover** (desktop) and **tap** for details; **orbit path** for a selected satellite and a **30-minute projected track** for a selected flight.
+- **Day/night shading** from the real sun position.
+- **Search** (`/` on desktop) for callsigns, satellites, districts and events, with fly-to.
+- **Layer chips**, a **status pill** (alerts and live sources), and on phones a **draggable bottom sheet** that snaps to half or full height.
 
 **Dam releases:** India has no public machine-readable dam-release feed. The poller detects releases from SACHET alert text and models river rise below dams. Coverage is partial; see [DESIGN.md](DESIGN.md#dam-releases).
 

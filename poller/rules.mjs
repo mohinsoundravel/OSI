@@ -143,5 +143,22 @@ export function evaluate({ config, data, normals }) {
     });
   }
 
+  /* Observed: aircraft squawking an emergency code inside a zone (from the latest flight snapshot). */
+  const SQUAWK = { 7500: ['critical', 'hijack'], 7700: ['high', 'general emergency'], 7600: ['medium', 'radio failure'] };
+  for (const f of data.squawks || []) {
+    const meaning = SQUAWK[f.squawk];
+    if (!meaning || !Number.isFinite(f.lat) || !Number.isFinite(f.lng)) continue;
+    const hit = zonesForPoint(f.lat, f.lng, zones);
+    if (!hit.length) continue;
+    out.push({
+      key: `squawk:${f.icao24}:${f.squawk}`,
+      rule: 'flight_squawk', origin: 'official', kind: 'aviation', severity: meaning[0],
+      title: `Squawk ${f.squawk} (${meaning[1]}): ${f.callsign || f.icao24}`,
+      summary: `Aircraft from ${f.country || 'unknown country'}${Number.isFinite(f.baroAltM) ? ` at ${Math.round(f.baroAltM)} m` : ''}. Transponder data via OpenSky; position may be up to 30 minutes old.`,
+      source: 'OpenSky Network', sourceUrl: `https://globe.adsbexchange.com/?icao=${encodeURIComponent(f.icao24)}`,
+      lat: f.lat, lng: f.lng, zones: zoneNames(hit)
+    });
+  }
+
   return out;
 }

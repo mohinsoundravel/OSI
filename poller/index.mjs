@@ -16,15 +16,19 @@ import { createHttpClient } from './lib/http.mjs';
 import { fetchSachet } from './sources/sachet.mjs';
 import { fetchRiverDischarge, fetchTemperatures, assessHeat } from './sources/openmeteo.mjs';
 import { fetchGdacs, fetchUsgs } from './sources/hazards.mjs';
+import { fetchFlights, expandFlights, FLIGHT_FIELDS } from './sources/flights.mjs';
 import { evaluate, SEVERITY_RANK } from './rules.mjs';
 import { buildMessages, createNotifier, heartbeat } from './notify.mjs';
 
 const DAY_MS = 24 * 3600 * 1000;
 const BASE_HOSTS = [
   'sachet.ndma.gov.in', 'flood-api.open-meteo.com', 'api.open-meteo.com',
-  'www.gdacs.org', 'earthquake.usgs.gov'
+  'www.gdacs.org', 'earthquake.usgs.gov', 'opensky-network.org'
 ];
 const DEGRADED_AFTER_FAILURES = 3;
+/* Auxiliary sources feed the dashboard but are not safety-critical: their failures
+   never trigger degraded notices or count toward "every source failed". */
+const AUXILIARY = new Set(['flights']);
 const MAX_EVENTS = 500;
 const MAX_RING_VERTICES = 160;
 /* Bump when the shape of persisted alerts changes. A mismatch re-parses SACHET and
@@ -119,7 +123,10 @@ export async function run(options = {}) {
     rivers: () => fetchRiverDischarge({ http, points: config.flood?.points || [], today }),
     heat: () => fetchTemperatures({ http, points: config.heat?.points || [] }),
     gdacs: () => fetchGdacs({ http }),
-    quakes: () => fetchUsgs({ http })
+    quakes: () => fetchUsgs({ http }),
+    ...(config.flights?.enabled === false ? {} : {
+      flights: () => fetchFlights({ http, lastFetchedAt: state.flightsFetchedAt ? Date.parse(state.flightsFetchedAt) : 0, now })
+    })
   };
 
   const names = Object.keys(tasks);
@@ -173,6 +180,17 @@ export async function run(options = {}) {
   if (data.gdacs) state.gdacsSnapshot = data.gdacs.filter((e) => e.alertLevel !== 'Green');
   if (data.quakes) state.quakesSnapshot = data.quakes.filter((q) => q.mag >= 4);
 
+  /* Flights: publish a compact snapshot for the dashboard; keep emergency squawks for rules. */
+  if (data.flights) {
+    state.flightsFetchedAt = new Date(now).toISOString();
+    await writeJsonAtomic(path.join(dataDir, 'flights.json'), {
+      schema: 1, fetchedAt: state.flightsFetchedAt, time: data.flights.time,
+      fields: FLIGHT_FIELDS, states: data.flights.states
+    });
+    state.squawkSnapshot = expandFlights(data.flights).filter((f) => f.squawk && ['7500', '7600', '7700'].includes(f.squawk));
+  }
+  layerData.squawks = state.squawkSnapshot || [];
+
   const candidates = evaluate({ config, data: layerData, normals });
 
   /* De-duplicate: each key notifies once per window; escalations carry a new key. */
@@ -208,7 +226,7 @@ export async function run(options = {}) {
 
   for (const name of names) {
     const h = state.health[name];
-    if (!h) continue;
+    if (!h || AUXILIARY.has(name)) continue;
     if (h.failures >= DEGRADED_AFTER_FAILURES && !h.degradedNotified) {
       messages.push(`Monitor degraded: ${name} has failed ${h.failures} runs in a row.\nLast error: ${h.error}\nAlerts from this source are paused until it recovers.`);
       h.degradedNotified = true;
@@ -254,7 +272,8 @@ export async function run(options = {}) {
   };
 
   /* Ping before writing outputs so the heartbeat result is published with them. */
-  const allFailed = failedSet.size >= names.length;
+  const critical = names.filter((n) => !AUXILIARY.has(n));
+  const allFailed = critical.every((n) => failedSet.has(n));
   const summary = `sources ok ${names.length - failedSet.size}/${names.length}; ${candidates.length} active, ${fresh.length} new; ${sent}/${messages.length} messages sent`;
   log(summary);
   const beat = await heartbeat(options.healthcheckUrl, { failed: allFailed, body: summary, log, fetchImpl: options.heartbeatFetch });
