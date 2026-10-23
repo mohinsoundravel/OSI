@@ -28,6 +28,49 @@ async function sample(label, url) {
   }
 }
 
+/** Status line only (for images and large documents). */
+async function probe(label, url) {
+  try {
+    const res = await fetch(url, { headers: { 'User-Agent': ua, Origin: 'https://example.org' }, signal: AbortSignal.timeout(30000) });
+    const buf = Buffer.from(await res.arrayBuffer());
+    console.log(`PROBE ${label}: HTTP ${res.status} | ${res.headers.get('content-type')} | ${buf.length} bytes | acao: ${res.headers.get('access-control-allow-origin')}`);
+    return { res, buf };
+  } catch (err) {
+    console.log(`PROBE ${label}: ERROR ${err.name}: ${err.message}`);
+    return null;
+  }
+}
+
+/* Weather overlays for the dashboard: RainViewer radar and NASA GIBS imagery. */
+{
+  const rv = await probe('RainViewer weather-maps.json', 'https://api.rainviewer.com/public/weather-maps.json');
+  if (rv && rv.res.ok) {
+    const j = JSON.parse(rv.buf.toString('utf8'));
+    console.log(`RainViewer host=${j.host} generated=${j.generated} keys=${Object.keys(j).join(',')} radarKeys=${Object.keys(j.radar || {}).join(',')} frames=${(j.radar?.past || []).length}`);
+    const last = (j.radar?.past || []).slice(-1)[0];
+    if (last) {
+      console.log(`RainViewer last frame time=${last.time} path=${last.path}`);
+      await probe('RainViewer tile z4 India 256', `${j.host}${last.path}/256/4/11/7/2/1_1.png`);
+      await probe('RainViewer tile z7 Chennai 256', `${j.host}${last.path}/256/7/92/60/2/1_1.png`);
+      await probe('RainViewer tile z8 (expect refusal)', `${j.host}${last.path}/256/8/185/121/2/1_1.png`);
+    }
+  }
+  const day = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+  await probe(`GIBS VIIRS SNPP true colour ${day} z0`, `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_SNPP_CorrectedReflectance_TrueColor/default/${day}/GoogleMapsCompatible_Level9/0/0/0.jpg`);
+  await probe(`GIBS VIIRS SNPP true colour ${day} z9`, `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_SNPP_CorrectedReflectance_TrueColor/default/${day}/GoogleMapsCompatible_Level9/9/240/367.jpg`);
+  const caps = await probe('GIBS capabilities', 'https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/1.0.0/WMTSCapabilities.xml');
+  if (caps && caps.res.ok) {
+    const xml = caps.buf.toString('utf8');
+    const want = /IMERG|VIIRS_SNPP_CorrectedReflectance_TrueColor|VIIRS_NOAA20_CorrectedReflectance_TrueColor|Himawari|Band13|Clean_Infrared/i;
+    for (const layer of xml.split('<Layer>').slice(1)) {
+      const id = /<ows:Identifier>([^<]+)</.exec(layer)?.[1];
+      if (!id || !want.test(id)) continue;
+      const pick = (re) => (re.exec(layer)?.[1] || '').trim();
+      console.log(`LAYER ${id} | format ${pick(/<Format>([^<]+)</)} | matrix ${pick(/<TileMatrixSet>([^<]+)</)} | time default ${pick(/<Default>([^<]+)</)} | time values ${pick(/<Value>([^<]+)</).slice(0, 120)} | url ${pick(/template="([^"]+)"/)}`);
+    }
+  }
+}
+
 /* Satellite TLE sources (CelesTrak refused GitHub runners with a network error). */
 await sample('CelesTrak .org', 'https://celestrak.org/NORAD/elements/gp.php?GROUP=stations&FORMAT=tle');
 await sample('CelesTrak .com', 'https://celestrak.com/NORAD/elements/gp.php?GROUP=stations&FORMAT=tle');
