@@ -81,6 +81,22 @@ async function probe(label, url) {
       console.log(`IMERG ${t} z${z}/${x}/${y}: ${pngInfo(await probe('imerg', `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/IMERG_Precipitation_Rate_30min/default/${t}/GoogleMapsCompatible_Level6/${z}/${y}/${x}.png`))}`);
     }
   }
+  {
+    const dump = async (label, url) => {
+      const r = await probe(label, url);
+      if (r && r.res.ok) console.log(`IMAGE ${label} ${r.buf.toString('base64')}`);
+    };
+    const t10 = floorTo(Date.now() - 40 * 60000, 10);
+    const t30 = floorTo(Date.now() - 330 * 60000, 30);
+    await dump('himawari-z4', `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/Himawari_AHI_Band13_Clean_Infrared/default/${t10}/GoogleMapsCompatible_Level6/4/7/11.png`);
+    await dump('imerg-z3', `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/IMERG_Precipitation_Rate_30min/default/${t30}/GoogleMapsCompatible_Level6/3/3/5.png`);
+    if (rv && rv.res.ok) {
+      const j = JSON.parse(rv.buf.toString('utf8'));
+      const last = (j.radar?.past || []).slice(-1)[0];
+      await dump('radar-z5', `${j.host}${last.path}/256/5/23/15/2/1_1.png`);
+      await dump('radar-z8', `${j.host}${last.path}/256/8/185/121/2/1_1.png`);
+    }
+  }
   const day = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
   await probe(`GIBS VIIRS SNPP true colour ${day} z0`, `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_SNPP_CorrectedReflectance_TrueColor/default/${day}/GoogleMapsCompatible_Level9/0/0/0.jpg`);
   await probe(`GIBS VIIRS SNPP true colour ${day} z9`, `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_SNPP_CorrectedReflectance_TrueColor/default/${day}/GoogleMapsCompatible_Level9/9/240/367.jpg`);
