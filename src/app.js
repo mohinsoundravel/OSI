@@ -995,6 +995,45 @@
   const globeGroup = new THREE.Group();
   scene.add(globeGroup);
 
+  /* Uniforms shared by many materials. SUN: subsolar direction in globe coordinates.
+     LIFT / MAXOFF: markers and lines float above the surface by their display height times
+     LIFT, capped at MAXOFF; both shrink as the camera descends so nothing hovers kilometres
+     above the imagery or above the camera. DIRSCALE: heading probe length for icons. */
+  const SUN = { value: new THREE.Vector3(1, 0, 0) };
+  const LIFT = { value: 1 };
+  const MAXOFF = { value: 1e9 };
+  const DIRSCALE = { value: 1 };
+  const R_GLSL = RADIUS.toFixed(1);
+  const LIFT_GLSL = `
+    uniform float uLift;
+    uniform float uMaxOff;
+    vec3 liftPos(vec3 p) {
+      float r = length(p);
+      if (r <= ${R_GLSL}) return p;
+      float off = min((r - ${R_GLSL}) * uLift, uMaxOff);
+      return p * ((${R_GLSL} + off) / r);
+    }`;
+
+  /** Applies the same lift to built-in materials (lines, points). */
+  function withLift(material) {
+    material.onBeforeCompile = (shader) => {
+      shader.uniforms.uLift = LIFT;
+      shader.uniforms.uMaxOff = MAXOFF;
+      shader.vertexShader = `${LIFT_GLSL}\n${shader.vertexShader}`.replace('#include <begin_vertex>', '#include <begin_vertex>\n  transformed = liftPos(transformed);');
+    };
+    return material;
+  }
+
+  /** CPU copy of liftPos, for picking and tag placement. */
+  function liftLocal(src, out) {
+    const r = src.length();
+    if (r <= RADIUS) return out.copy(src);
+    const off = Math.min((r - RADIUS) * LIFT.value, MAXOFF.value);
+    return out.copy(src).multiplyScalar((RADIUS + off) / r);
+  }
+
+  const vectorOnly = [];   /* graticule, coastlines, borders, night shell: shown only without imagery tiles */
+
   const earthMaterial = new THREE.MeshPhongMaterial({ color: 0x0b1626, shininess: 12, specular: 0x14233a });
   const earthMesh = new THREE.Mesh(new THREE.SphereGeometry(RADIUS, 96, 64), earthMaterial);
   globeGroup.add(earthMesh);
@@ -1004,7 +1043,8 @@
     new THREE.SphereGeometry(RADIUS * 1.13, 64, 48),
     new THREE.ShaderMaterial({
       vertexShader: 'varying vec3 vN; void main(){ vN = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
-      fragmentShader: 'varying vec3 vN; void main(){ float i = pow(0.62 - dot(vN, vec3(0.0, 0.0, 1.0)), 3.2); gl_FragColor = vec4(0.32, 0.62, 1.0, 1.0) * i; }',
+      uniforms: { uFade: { value: 1 } },
+      fragmentShader: 'uniform float uFade; varying vec3 vN; void main(){ float i = pow(0.62 - dot(vN, vec3(0.0, 0.0, 1.0)), 3.2); gl_FragColor = vec4(0.32, 0.62, 1.0, 1.0) * i * uFade; }',
       side: THREE.BackSide, blending: THREE.AdditiveBlending, transparent: true, depthWrite: false
     })
   );
@@ -1034,10 +1074,12 @@
     const push = (a, b) => pts.push(latLngToVector3(a[0], a[1], RADIUS + 0.12), latLngToVector3(b[0], b[1], RADIUS + 0.12));
     for (let lat = -60; lat <= 60; lat += 30) for (let lng = -180; lng < 180; lng += 3) push([lat, lng], [lat, lng + 3]);
     for (let lng = -180; lng < 180; lng += 30) for (let lat = -84; lat < 84; lat += 3) push([lat, lng], [lat + 3, lng]);
-    globeGroup.add(new THREE.LineSegments(
+    const grid = new THREE.LineSegments(
       new THREE.BufferGeometry().setFromPoints(pts),
-      new THREE.LineBasicMaterial({ color: 0x6f8fb5, transparent: true, opacity: 0.07, depthWrite: false })
-    ));
+      withLift(new THREE.LineBasicMaterial({ color: 0x6f8fb5, transparent: true, opacity: 0.07, depthWrite: false }))
+    );
+    globeGroup.add(grid);
+    vectorOnly.push(grid);
   })();
 
   /* ----- Countries: land fill texture + coastline/border lines from world-atlas ----- */
@@ -1107,7 +1149,7 @@
     }
     return new THREE.LineSegments(
       new THREE.BufferGeometry().setFromPoints(pts),
-      new THREE.LineBasicMaterial({ color, transparent: true, opacity, depthWrite: false })
+      withLift(new THREE.LineBasicMaterial({ color, transparent: true, opacity, depthWrite: false }))
     );
   }
 
@@ -1117,9 +1159,533 @@
     earthMaterial.map = buildLandTexture(topojson.feature(world, world.objects.land));
     earthMaterial.color.set(0xffffff);
     earthMaterial.needsUpdate = true;
-    globeGroup.add(buildLines(topojson.mesh(world, world.objects.countries, (x, y) => x !== y), RADIUS + 0.18, 0x51677f, 0.55));
-    globeGroup.add(buildLines(topojson.mesh(world, world.objects.land), RADIUS + 0.2, 0x7f9cbd, 0.7));
+    for (const line of [
+      buildLines(topojson.mesh(world, world.objects.countries, (x, y) => x !== y), RADIUS + 0.18, 0x51677f, 0.55),
+      buildLines(topojson.mesh(world, world.objects.land), RADIUS + 0.2, 0x7f9cbd, 0.7)
+    ]) {
+      line.visible = !tileState.enabled;
+      vectorOnly.push(line);
+      globeGroup.add(line);
+    }
   }
+
+  /* ===================== Imagery tiles: streamed level of detail, Google Earth style =====================
+     The globe is covered by Web Mercator XYZ tiles chosen per frame from a quadtree:
+     a tile is split while it would cover more than SPLIT_PX on screen, so detail follows
+     the camera from the whole planet down to street level. Each tile mesh is built
+     relative to its own centre so close-up views do not jitter in float32. While a tile's
+     own image loads, the nearest loaded ancestor is shown cropped, then cross-faded. */
+
+  const TILE_SOURCES = {
+    esriImagery: {
+      url: (z, x, y) => `https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/${z}/${y}/${x}`,
+      minZ: 0, maxZ: 18
+    },
+    esriPlaces: {
+      url: (z, x, y) => `https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/${z}/${y}/${x}`,
+      minZ: 2, maxZ: 18
+    },
+    esriRoads: {
+      url: (z, x, y) => `https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/${z}/${y}/${x}`,
+      minZ: 6, maxZ: 18
+    },
+    cartoDark: {
+      url: (z, x, y) => `https://${'abcd'[(x + y) % 4]}.basemaps.cartocdn.com/dark_all/${z}/${x}/${y}@2x.png`,
+      minZ: 0, maxZ: 19
+    }
+  };
+  const ESRI_CREDIT = 'Powered by Esri · Esri, Maxar, Earthstar Geographics, GIS User Community';
+  const MAP_STYLES = {
+    hybrid: { label: 'Hybrid', base: 'esriImagery', overlays: ['esriRoads', 'esriPlaces'], credit: ESRI_CREDIT },
+    satellite: { label: 'Satellite', base: 'esriImagery', overlays: [], credit: ESRI_CREDIT },
+    dark: { label: 'Dark', base: 'cartoDark', overlays: [], credit: '© OpenStreetMap contributors © CARTO' }
+  };
+  const STYLE_ORDER = ['hybrid', 'satellite', 'dark'];
+
+  const TILE_ROOT_Z = 2;
+  const SPLIT_PX = 256;
+  const FADE_MS = 280;
+  const OVERLAY_MAX_OVERZOOM = 3;
+  const ALT_MIN_TILES = 0.008;   /* ~500 m eye altitude (100 units = 6,371 km) */
+  const ALT_MIN_VECTOR = 40;
+  const ALT_MAX = 800;
+
+  const tileState = {
+    enabled: true,
+    style: MAP_STYLES[store.get('mapStyle', 'hybrid')] ? store.get('mapStyle', 'hybrid') : 'hybrid',
+    ok: 0,
+    failed: 0,
+    frame: 0
+  };
+
+  const BLANK_TEX = new THREE.DataTexture(new Uint8Array([10, 22, 38, 255]), 1, 1, THREE.RGBAFormat);
+  BLANK_TEX.needsUpdate = true;
+
+  const TILE_VERTEX = `
+    varying vec2 vUv;
+    varying vec3 vN;
+    void main() {
+      vUv = uv;
+      vN = normal;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }`;
+
+  const TILE_FRAGMENT = `
+    uniform sampler2D uA;
+    uniform vec4 uRectA;
+    uniform sampler2D uB;
+    uniform vec4 uRectB;
+    uniform float uMix;
+    uniform sampler2D uO1;
+    uniform vec4 uRectO1;
+    uniform float uO1On;
+    uniform sampler2D uO2;
+    uniform vec4 uRectO2;
+    uniform float uO2On;
+    uniform vec3 uSun;
+    uniform float uNight;
+    varying vec2 vUv;
+    varying vec3 vN;
+    void main() {
+      vec3 c = texture2D(uA, uRectA.xy + vUv * uRectA.zw).rgb;
+      if (uMix > 0.0) c = mix(c, texture2D(uB, uRectB.xy + vUv * uRectB.zw).rgb, uMix);
+      if (uO1On > 0.5) { vec4 o = texture2D(uO1, uRectO1.xy + vUv * uRectO1.zw); c = mix(c, o.rgb, o.a); }
+      if (uO2On > 0.5) { vec4 o = texture2D(uO2, uRectO2.xy + vUv * uRectO2.zw); c = mix(c, o.rgb, o.a); }
+      float night = smoothstep(0.06, -0.14, dot(normalize(vN), uSun)) * uNight;
+      c = mix(c, c * vec3(0.3, 0.34, 0.46), night);
+      gl_FragColor = vec4(c, 1.0);
+    }`;
+
+  const NIGHT_STRENGTH = { value: 1 };
+
+  function makeTileMaterial() {
+    const rect = () => ({ value: new THREE.Vector4(0, 0, 1, 1) });
+    return new THREE.ShaderMaterial({
+      uniforms: {
+        uA: { value: BLANK_TEX }, uRectA: rect(),
+        uB: { value: BLANK_TEX }, uRectB: rect(), uMix: { value: 0 },
+        uO1: { value: BLANK_TEX }, uRectO1: rect(), uO1On: { value: 0 },
+        uO2: { value: BLANK_TEX }, uRectO2: rect(), uO2On: { value: 0 },
+        uSun: SUN,
+        uNight: NIGHT_STRENGTH
+      },
+      vertexShader: TILE_VERTEX,
+      fragmentShader: TILE_FRAGMENT,
+      side: THREE.DoubleSide
+    });
+  }
+
+  const tileLat = (z, y) => Math.atan(Math.sinh(Math.PI * (1 - (2 * y) / 2 ** z))) / DEG;
+  const tileLng = (z, x) => (x / 2 ** z) * 360 - 180;
+
+  const tiles = new Map();
+  const tileGroup = new THREE.Group();
+  globeGroup.add(tileGroup);
+
+  function getTile(z, x, y) {
+    const key = `${z}/${x}/${y}`;
+    let t = tiles.get(key);
+    if (t) return t;
+    const n = 2 ** z;
+    const north = y === 0 ? 90 : tileLat(z, y);
+    const south = y === n - 1 ? -90 : tileLat(z, y + 1);
+    const west = tileLng(z, x);
+    const east = tileLng(z, x + 1);
+    const centerLat = tileLat(z, y + 0.5);
+    const center = latLngToVector3(centerLat, (west + east) / 2, RADIUS);
+    let radius = 0;
+    for (let a = 0; a <= 4; a++) {
+      for (let b = 0; b <= 4; b++) {
+        const p = latLngToVector3(north + ((south - north) * a) / 4, west + ((east - west) * b) / 4, RADIUS);
+        radius = Math.max(radius, p.distanceTo(center));
+      }
+    }
+    radius *= 1.04;
+    t = {
+      key, z, x, y, center, radius,
+      dir: center.clone().normalize(),
+      angRadius: 2 * Math.asin(Math.min(1, radius / (2 * RADIUS))),
+      widthUnits: (2 * Math.PI * RADIUS * Math.max(0.03, Math.cos(centerLat * DEG))) / n,
+      kids: null, parent: z > TILE_ROOT_Z ? getTile(z - 1, x >> 1, y >> 1) : null,
+      mesh: null, seen: 0, fade: null
+    };
+    tiles.set(key, t);
+    return t;
+  }
+
+  function tileChildren(t) {
+    if (!t.kids) {
+      const z = t.z + 1;
+      t.kids = [getTile(z, 2 * t.x, 2 * t.y), getTile(z, 2 * t.x + 1, 2 * t.y), getTile(z, 2 * t.x, 2 * t.y + 1), getTile(z, 2 * t.x + 1, 2 * t.y + 1)];
+    }
+    return t.kids;
+  }
+
+  function buildTileMesh(t) {
+    const S = t.z <= 3 ? 32 : 16;
+    const n = 2 ** t.z;
+    const rows = [];
+    if (t.y === 0) rows.push({ lat: 90, v: 0 });
+    for (let j = 0; j <= S; j++) rows.push({ lat: tileLat(t.z, t.y + j / S), v: j / S });
+    if (t.y === n - 1) rows.push({ lat: -90, v: 1 });
+    const cols = S + 1;
+    const positions = new Float32Array(rows.length * cols * 3);
+    const normals = new Float32Array(rows.length * cols * 3);
+    const uvs = new Float32Array(rows.length * cols * 2);
+    let k = 0;
+    for (const row of rows) {
+      for (let i = 0; i <= S; i++) {
+        const p = latLngToVector3(row.lat, tileLng(t.z, t.x + i / S), RADIUS);
+        normals[k * 3] = p.x / RADIUS;
+        normals[k * 3 + 1] = p.y / RADIUS;
+        normals[k * 3 + 2] = p.z / RADIUS;
+        positions[k * 3] = p.x - t.center.x;
+        positions[k * 3 + 1] = p.y - t.center.y;
+        positions[k * 3 + 2] = p.z - t.center.z;
+        uvs[k * 2] = i / S;
+        uvs[k * 2 + 1] = row.v;
+        k++;
+      }
+    }
+    const index = [];
+    for (let r = 0; r < rows.length - 1; r++) {
+      for (let i = 0; i < S; i++) {
+        const a = r * cols + i;
+        index.push(a, a + cols, a + 1, a + 1, a + cols, a + cols + 1);
+      }
+    }
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geo.setAttribute('normal', new THREE.BufferAttribute(normals, 3));
+    geo.setAttribute('uv', new THREE.BufferAttribute(uvs, 2));
+    geo.setIndex(index);
+    const mesh = new THREE.Mesh(geo, makeTileMaterial());
+    mesh.position.copy(t.center);
+    mesh.frustumCulled = false;
+    mesh.renderOrder = -3;
+    mesh.visible = false;
+    tileGroup.add(mesh);
+    t.mesh = mesh;
+  }
+
+  function disposeTileMesh(t) {
+    if (!t.mesh) return;
+    tileGroup.remove(t.mesh);
+    t.mesh.geometry.dispose();
+    t.mesh.material.dispose();
+    t.mesh = null;
+  }
+
+  /* ----- Texture cache and loader ----- */
+
+  const texCache = new Map();
+  const wanted = [];
+  const loading = new Set();
+  const MAX_ANISO = Math.min(8, renderer.capabilities.getMaxAnisotropy());
+
+  function texEntry(src, t) {
+    const id = `${src}|${t.key}`;
+    let e = texCache.get(id);
+    if (!e) {
+      e = { id, src, t, status: 'idle', tex: null, ctrl: null, used: 0, want: -1, prio: 0, fails: 0, retryAt: 0, readyAt: 0 };
+      texCache.set(id, e);
+    }
+    return e;
+  }
+
+  function want(e, prio) {
+    if (e.status !== 'idle' && e.status !== 'loading') return;
+    if (e.want !== tileState.frame) {
+      e.want = tileState.frame;
+      e.prio = prio;
+      if (e.status === 'idle') wanted.push(e);
+    } else {
+      e.prio = Math.min(e.prio, prio);
+    }
+  }
+
+  async function decodeTileImage(blob) {
+    if (typeof createImageBitmap === 'function') {
+      try { return await createImageBitmap(blob); } catch { /* fall back to an image element */ }
+    }
+    const url = URL.createObjectURL(blob);
+    try {
+      const img = new Image();
+      img.src = url;
+      await img.decode();
+      return img;
+    } finally {
+      URL.revokeObjectURL(url);
+    }
+  }
+
+  async function loadTileTexture(e) {
+    e.status = 'loading';
+    const ctrl = new AbortController();
+    e.ctrl = ctrl;
+    loading.add(e);
+    try {
+      const res = await fetch(TILE_SOURCES[e.src].url(e.t.z, e.t.x, e.t.y), {
+        signal: ctrl.signal, mode: 'cors', credentials: 'omit', referrerPolicy: 'strict-origin-when-cross-origin'
+      });
+      if (!res.ok) throw Object.assign(new Error(`HTTP ${res.status}`), { permanent: res.status === 404 || res.status === 400 });
+      const blob = await res.blob();
+      let image;
+      try {
+        image = await decodeTileImage(blob);
+      } catch {
+        throw Object.assign(new Error('not an image'), { permanent: true });
+      }
+      const tex = new THREE.Texture(image);
+      tex.flipY = false;
+      tex.generateMipmaps = true;
+      tex.minFilter = THREE.LinearMipmapLinearFilter;
+      tex.magFilter = THREE.LinearFilter;
+      tex.anisotropy = MAX_ANISO;
+      tex.needsUpdate = true;
+      e.tex = tex;
+      e.status = 'ready';
+      e.readyAt = performance.now();
+      if (e.src === MAP_STYLES[tileState.style].base) tileState.ok++;
+    } catch (err) {
+      if (err.name === 'AbortError') {
+        e.status = 'idle';
+      } else {
+        e.fails++;
+        e.status = err.permanent || e.fails >= 3 ? 'failed' : 'idle';
+        e.retryAt = performance.now() + 2500 * e.fails;
+        if (e.src === MAP_STYLES[tileState.style].base) tileState.failed++;
+      }
+    } finally {
+      e.ctrl = null;
+      loading.delete(e);
+    }
+  }
+
+  function pumpTileLoads() {
+    const now = performance.now();
+    /* Abort requests for tiles that left the view, so panning stays responsive. */
+    for (const e of loading) if (tileState.frame - e.want > 90 && e.ctrl) e.ctrl.abort();
+    const maxLoads = window.innerWidth <= 900 ? 6 : 10;
+    if (loading.size >= maxLoads || !wanted.length) return;
+    const queue = wanted.filter((e) => e.status === 'idle' && e.retryAt <= now).sort((a, b) => a.prio - b.prio);
+    for (const e of queue) {
+      if (loading.size >= maxLoads) break;
+      loadTileTexture(e);
+    }
+  }
+
+  function evictTiles() {
+    const budget = window.innerWidth <= 900 ? 180 : 360;
+    const ready = [];
+    for (const e of texCache.values()) if (e.status === 'ready') ready.push(e);
+    if (ready.length > budget) {
+      ready.sort((a, b) => a.used - b.used);
+      for (const e of ready.slice(0, ready.length - budget)) {
+        if (e.used >= tileState.frame) break;
+        e.tex.dispose();
+        if (e.tex.image && typeof e.tex.image.close === 'function') e.tex.image.close();
+        e.tex = null;
+        e.status = 'idle';
+      }
+    }
+    if (tileState.frame % 240 === 0) {
+      for (const t of tiles.values()) if (t.mesh && tileState.frame - t.seen > 600) disposeTileMesh(t);
+    }
+  }
+
+  /** Nearest ancestor (or the tile itself) whose texture for src is loaded. */
+  function readyTexFor(src, t, maxUp = 30) {
+    for (let a = t, up = 0; a && up <= maxUp; a = a.parent, up++) {
+      if (a.z < TILE_SOURCES[src].minZ) return null;
+      const e = texCache.get(`${src}|${a.key}`);
+      if (e && e.status === 'ready') return e;
+    }
+    return null;
+  }
+
+  function cropRect(target, from, out) {
+    const dz = target.z - from.t.z;
+    const n = 2 ** dz;
+    return out.set((target.x - from.t.x * n) / n, (target.y - from.t.y * n) / n, 1 / n, 1 / n);
+  }
+
+  /* ----- Per-frame selection ----- */
+
+  const tileFrustum = new THREE.Frustum();
+  const tileProj = new THREE.Matrix4();
+  const tileSphere = new THREE.Sphere();
+  const camLocal = new THREE.Vector3();
+  const camLocalDir = new THREE.Vector3();
+  const tileTmp = new THREE.Vector3();
+  const tileRoots = [];
+  for (let y = 0; y < 2 ** TILE_ROOT_Z; y++) for (let x = 0; x < 2 ** TILE_ROOT_Z; x++) tileRoots.push(getTile(TILE_ROOT_Z, x, y));
+  let shownTiles = [];
+  const view = { camDist: 330, horizon: 1, pxPerUnit: 1 };
+
+  function tileInView(t) {
+    const ang = Math.acos(Math.max(-1, Math.min(1, t.dir.dot(camLocalDir))));
+    if (ang - t.angRadius > view.horizon) return false;
+    tileTmp.copy(t.center).applyMatrix4(globeGroup.matrixWorld);
+    tileSphere.set(tileTmp, t.radius);
+    return tileFrustum.intersectsSphere(tileSphere);
+  }
+
+  function tileScreenPx(t) {
+    const d = Math.max(camLocal.distanceTo(t.center) - t.radius, (view.camDist - RADIUS) * 0.5, 1e-6);
+    return (t.widthUnits / d) * view.pxPerUnit;
+  }
+
+  function selectTiles(t, out, maxZ) {
+    if (!tileInView(t)) return;
+    t.seen = tileState.frame;
+    if (t.z < maxZ && tileScreenPx(t) > SPLIT_PX) {
+      for (const k of tileChildren(t)) selectTiles(k, out, maxZ);
+      return;
+    }
+    out.push(t);
+  }
+
+  function bindTile(t, now) {
+    const style = MAP_STYLES[tileState.style];
+    const frame = tileState.frame;
+    const dist = camLocal.distanceTo(t.center);
+    const rank = dist / (dist + view.camDist);
+    const own = texEntry(style.base, t);
+    if (t.z <= TILE_SOURCES[style.base].maxZ) want(own, t.z + rank);
+    const best = readyTexFor(style.base, t);
+    if (own.status !== 'ready' && t.parent && t.parent.z >= TILE_SOURCES[style.base].minZ) {
+      /* Fetch the parent too: one image covers four tiles, so detail arrives progressively. */
+      want(texEntry(style.base, t.parent), t.z - 1 + rank);
+    }
+    if (!best) {
+      if (t.mesh) t.mesh.visible = false;
+      return;
+    }
+    if (!t.mesh) buildTileMesh(t);
+    const u = t.mesh.material.uniforms;
+    best.used = frame;
+    if (best === own && t.fade && now - own.readyAt < FADE_MS) {
+      t.fade.used = frame;
+      u.uA.value = t.fade.tex;
+      cropRect(t, t.fade, u.uRectA.value);
+      u.uB.value = own.tex;
+      u.uRectB.value.set(0, 0, 1, 1);
+      u.uMix.value = (now - own.readyAt) / FADE_MS;
+    } else {
+      u.uA.value = best.tex;
+      cropRect(t, best, u.uRectA.value);
+      u.uMix.value = 0;
+      t.fade = best === own ? null : best;
+    }
+    if (t.fade && (t.fade.status !== 'ready' || !t.fade.tex)) t.fade = null;
+
+    const slots = [['uO1', 'uRectO1', 'uO1On'], ['uO2', 'uRectO2', 'uO2On']];
+    slots.forEach(([tk, rk, on], i) => {
+      const src = style.overlays[i];
+      u[on].value = 0;
+      if (!src) return;
+      const def = TILE_SOURCES[src];
+      if (t.z < def.minZ) return;
+      if (t.z <= def.maxZ) want(texEntry(src, t), t.z + 0.5 + rank);
+      const ov = readyTexFor(src, t, OVERLAY_MAX_OVERZOOM);
+      if (!ov) return;
+      ov.used = frame;
+      u[tk].value = ov.tex;
+      cropRect(t, ov, u[rk].value);
+      u[on].value = 1;
+    });
+    t.mesh.visible = true;
+  }
+
+  function updateTiles(now) {
+    if (!tileState.enabled) return;
+    tileState.frame++;
+    wanted.length = 0;
+    camera.updateMatrixWorld();
+    globeGroup.updateMatrixWorld();
+    tileProj.multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse);
+    tileFrustum.setFromProjectionMatrix(tileProj);
+    camLocal.copy(camera.position);
+    globeGroup.worldToLocal(camLocal);
+    view.camDist = camLocal.length();
+    camLocalDir.copy(camLocal).normalize();
+    view.horizon = Math.acos(Math.min(1, RADIUS / view.camDist));
+    view.pxPerUnit = window.innerHeight / 2 / Math.tan((camera.fov * DEG) / 2);
+
+    const maxZ = TILE_SOURCES[MAP_STYLES[tileState.style].base].maxZ;
+    const next = [];
+    for (const r of tileRoots) selectTiles(r, next, maxZ);
+    const keep = new Set(next);
+    for (const t of shownTiles) if (!keep.has(t) && t.mesh) t.mesh.visible = false;
+    shownTiles = next;
+    for (const t of next) bindTile(t, now);
+    pumpTileLoads();
+    evictTiles();
+
+    /* If imagery cannot be reached at all (offline, blocked network), fall back to the vector globe. */
+    if (tileState.ok === 0 && tileState.failed >= 16) {
+      setTilesEnabled(false);
+      toast({ severity: 'medium', title: 'Satellite imagery is unreachable from this network; showing the offline map.' });
+    }
+  }
+
+  function setTilesEnabled(on) {
+    tileState.enabled = on;
+    tileGroup.visible = on;
+    for (const o of vectorOnly) o.visible = !on;
+    earthMesh.scale.setScalar(on ? 0.9997 : 1);
+    if (!on) for (const t of shownTiles) if (t.mesh) t.mesh.visible = false;
+    cam.zoomTarget = clampZoom(cam.zoomTarget);
+    renderMapControls();
+  }
+
+  function setMapStyle(name) {
+    if (!MAP_STYLES[name]) return;
+    tileState.style = name;
+    tileState.ok = 0;
+    tileState.failed = 0;
+    store.set('mapStyle', name);
+    for (const t of tiles.values()) t.fade = null;
+    if (!tileState.enabled) setTilesEnabled(true);
+    renderMapControls();
+  }
+
+  /* ----- Map controls, eye-altitude readout and imagery credit ----- */
+
+  function fmtAltitude(units) {
+    const km = units * (EARTH_KM / RADIUS);
+    if (km < 1) return `${Math.round(km * 1000)} m`;
+    if (km < 100) return `${km.toFixed(1)} km`;
+    return `${Math.round(km).toLocaleString()} km`;
+  }
+
+  function renderMapControls() {
+    const btn = $('mapStyleBtn');
+    if (!btn) return;
+    btn.textContent = tileState.enabled ? MAP_STYLES[tileState.style].label : 'Offline';
+    btn.setAttribute('aria-label', `Map style: ${btn.textContent}. Tap to change.`);
+    $('mapCredit').textContent = tileState.enabled ? MAP_STYLES[tileState.style].credit : 'Natural Earth (offline outlines)';
+  }
+
+  let lastReadout = 0;
+  function updateReadout(now) {
+    if (now - lastReadout < 250) return;
+    lastReadout = now;
+    camLocal.copy(camera.position);
+    globeGroup.worldToLocal(camLocal);
+    const ll = vector3ToLatLng(camLocal);
+    const lat = `${Math.abs(ll.lat).toFixed(3)}°${ll.lat >= 0 ? 'N' : 'S'}`;
+    const lng = `${Math.abs(ll.lng).toFixed(3)}°${ll.lng >= 0 ? 'E' : 'W'}`;
+    $('mapReadout').textContent = `Eye ${fmtAltitude(camera.position.z - RADIUS)} · ${lat} ${lng}`;
+  }
+
+  $('mapStyleBtn').addEventListener('click', () => {
+    const i = STYLE_ORDER.indexOf(tileState.style);
+    setMapStyle(STYLE_ORDER[(i + 1) % STYLE_ORDER.length]);
+  });
+  $('zoomInBtn').addEventListener('click', () => { touch(); zoomBy(0.4); });
+  $('zoomOutBtn').addEventListener('click', () => { touch(); zoomBy(2.5); });
 
   /* ----- Point sprites ----- */
 
@@ -1319,7 +1885,8 @@
   }
   const ATLAS = buildIconAtlas();
 
-  const ICON_VERTEX = `
+  const ICON_VERTEX = `${LIFT_GLSL}
+    uniform float uDirScale;
     attribute vec3 aColor;
     attribute float aSize;
     attribute float aIcon;
@@ -1331,7 +1898,8 @@
     varying float vIcon;
     varying float vAngle;
     void main() {
-      vec4 clip = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      vec3 pos = liftPos(position);
+      vec4 clip = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
       gl_Position = clip;
       gl_PointSize = aSize * uScale * uPixelRatio;
       vColor = aColor;
@@ -1339,7 +1907,7 @@
       vAngle = 0.0;
       if (dot(aDir, aDir) > 0.0) {
         /* Screen-space heading: project a point slightly ahead along the track. */
-        vec4 clip2 = projectionMatrix * modelViewMatrix * vec4(position + aDir, 1.0);
+        vec4 clip2 = projectionMatrix * modelViewMatrix * vec4(pos + aDir * uDirScale, 1.0);
         vec2 d = (clip2.xy / clip2.w - clip.xy / clip.w) * vec2(uAspect, 1.0);
         if (dot(d, d) > 1e-12) vAngle = atan(d.y, d.x) - 1.5707963;
       }
@@ -1373,7 +1941,10 @@
         uOpacity: { value: 0 },
         uScale: { value: 1 },
         uPixelRatio: { value: renderer.getPixelRatio() },
-        uAspect: { value: window.innerWidth / window.innerHeight }
+        uAspect: { value: window.innerWidth / window.innerHeight },
+        uLift: LIFT,
+        uMaxOff: MAXOFF,
+        uDirScale: DIRSCALE
       },
       vertexShader: ICON_VERTEX,
       fragmentShader: ICON_FRAGMENT,
@@ -1475,10 +2046,10 @@
   let alertItems = [];
   const alertPoints = new THREE.Points(
     new THREE.BufferGeometry(),
-    new THREE.PointsMaterial({
+    withLift(new THREE.PointsMaterial({
       size: 26, map: GLOW_TEX, vertexColors: true, sizeAttenuation: false, transparent: true,
       opacity: 0.9, depthWrite: false, blending: THREE.AdditiveBlending
-    })
+    }))
   );
   globeGroup.add(alertPoints);
 
@@ -1510,7 +2081,7 @@
       }
       const line = new THREE.Line(
         new THREE.BufferGeometry().setFromPoints(pts),
-        new THREE.LineBasicMaterial({ color: 0x64d2b4, transparent: true, opacity: 0, depthWrite: false })
+        withLift(new THREE.LineBasicMaterial({ color: 0x64d2b4, transparent: true, opacity: 0, depthWrite: false }))
       );
       globeGroup.add(line);
       return line;
@@ -1534,16 +2105,18 @@
         const pts = ring.map(([lng, lat]) => latLngToVector3(lat, lng, RADIUS + 0.55));
         const line = new THREE.LineLoop(
           new THREE.BufferGeometry().setFromPoints(pts),
-          new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0, depthWrite: false })
+          withLift(new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0, depthWrite: false }))
         );
         alertPolyGroup.add(line);
       }
     }
   }
 
+  const selectorBase = new THREE.Vector3(0, 0, RADIUS + 1);
   function placeSelector(lat, lng, altKm) {
     const v = latLngToVector3(lat, lng, displayRadius(altKm) + 0.3);
-    selectorMesh.position.copy(v);
+    selectorBase.copy(v);
+    liftLocal(selectorBase, selectorMesh.position);
     selectorMesh.quaternion.setFromUnitVectors(Z_AXIS, v.clone().normalize());
     selectorTargetOpacity = 0.95;
   }
@@ -1551,8 +2124,6 @@
 
   /* ----- Camera: inertial drag, eased zoom, pinch, spring fly-to, idle auto-rotate ----- */
 
-  const ZOOM_MIN = 140;
-  const ZOOM_MAX = 900;
   const LAT_LIMIT = 1.25;
   const cam = {
     zoomTarget: 330, vx: 0, vy: 0, fly: null,
@@ -1570,6 +2141,16 @@
 
   function touch() { cam.lastInteraction = performance.now(); }
 
+  /* Zoom works on eye altitude (distance above the surface), so each wheel notch or pinch
+     step feels the same from orbit down to street level. */
+  function clampZoom(z) {
+    const min = tileState.enabled ? ALT_MIN_TILES : ALT_MIN_VECTOR;
+    return RADIUS + Math.max(min, Math.min(ALT_MAX, z - RADIUS));
+  }
+  function zoomBy(factor) {
+    cam.zoomTarget = clampZoom(RADIUS + (cam.zoomTarget - RADIUS) * factor);
+  }
+
   function flyTo(lat, lng, zoom = null) {
     touch();
     cam.vx = 0;
@@ -1577,7 +2158,7 @@
     const targetY = Math.PI / 2 - (lng + 180) * DEG;
     const y = globeGroup.rotation.y + wrapAngle(targetY - globeGroup.rotation.y);
     cam.fly = { x: clampLat(lat * DEG), y };
-    if (zoom !== null) cam.zoomTarget = zoom;
+    if (zoom !== null) cam.zoomTarget = clampZoom(zoom);
     else if (cam.zoomTarget > 300) cam.zoomTarget = 260;
   }
 
@@ -1610,7 +2191,7 @@
     if (pointers.size === 2) {
       const [p1, p2] = [...pointers.values()];
       const d = Math.hypot(p1.x - p2.x, p1.y - p2.y);
-      if (pinchDist > 0) cam.zoomTarget = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, cam.zoomTarget * (pinchDist / d)));
+      if (pinchDist > 0) zoomBy(pinchDist / d);
       pinchDist = d;
       dragMoved = true;
       return;
@@ -1619,7 +2200,7 @@
     const dx = cur.x - prev.x;
     const dy = cur.y - prev.y;
     if (Math.hypot(cur.x - downPos.x, cur.y - downPos.y) > 6) dragMoved = true;
-    const k = 0.0042 * (camera.position.z / 330);
+    const k = 0.0042 * ((camera.position.z - RADIUS) / 230);
     globeGroup.rotation.y += dx * k;
     globeGroup.rotation.x = clampLat(globeGroup.rotation.x + dy * k);
     const dt = Math.max(8, now - lastMove) / 1000;
@@ -1644,32 +2225,49 @@
   canvas.addEventListener('wheel', (e) => {
     e.preventDefault();
     touch();
-    const factor = Math.exp(e.deltaY * (e.ctrlKey ? 0.01 : 0.0015));
-    cam.zoomTarget = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, cam.zoomTarget * factor));
+    zoomBy(Math.exp(e.deltaY * (e.ctrlKey ? 0.012 : 0.003)));
   }, { passive: false });
 
   const raycaster = new THREE.Raycaster();
   const pointer = new THREE.Vector2();
 
-  /** Finds what is under a screen point: an alert halo, a layer item, or nothing. */
+  /** Finds what is under a screen point: an alert halo, a layer item, or nothing.
+      Done in screen space so the hit area matches the drawn (lifted) icon at any zoom. */
+  const pickTmp = new THREE.Vector3();
   function pickAt(clientX, clientY) {
-    pointer.x = (clientX / window.innerWidth) * 2 - 1;
-    pointer.y = -(clientY / window.innerHeight) * 2 + 1;
-    raycaster.setFromCamera(pointer, camera);
-    raycaster.params.Points.threshold = 2.2 * (camera.position.z / 330);
-    const earthHit = raycaster.intersectObject(earthMesh)[0];
-    const maxDist = earthHit ? earthHit.distance + 4 : Infinity;
-    const alertHit = raycaster.intersectObject(alertPoints).find((h) => h.distance < maxDist);
-    if (alertHit && alertItems[alertHit.index]) return { alert: alertItems[alertHit.index] };
+    const reach = isCompact() ? 20 : 13;
+    const near = (attr, i, extra) => {
+      pickTmp.fromBufferAttribute(attr, i);
+      const p = projectLocal(pickTmp);
+      if (!p) return Infinity;
+      const d = Math.hypot(p.x - clientX, p.y - clientY);
+      return d <= reach + extra ? d : Infinity;
+    };
+    const alertAttr = alertPoints.geometry.getAttribute('position');
+    if (alertAttr && LAYERS.alerts.visible) {
+      let bestI = -1;
+      let bestD = Infinity;
+      for (let i = 0; i < alertAttr.count; i++) {
+        const d = near(alertAttr, i, 4);
+        if (d < bestD) { bestD = d; bestI = i; }
+      }
+      if (bestI >= 0 && alertItems[bestI]) return { alert: alertItems[bestI] };
+    }
+    const iconScale = Math.max(0.85, Math.min(1.7, 330 / camera.position.z));
     let best = null;
     for (const [key, obj] of Object.entries(layerObjects)) {
       if (!LAYERS[key].visible) continue;
-      const hit = raycaster.intersectObject(obj).find((h) => h.distance < maxDist);
-      if (hit && (!best || hit.distanceToRay < best.hit.distanceToRay)) best = { key, hit };
+      const attr = obj.geometry.getAttribute('position');
+      const sizes = obj.geometry.getAttribute('aSize');
+      if (!attr) continue;
+      for (let i = 0; i < attr.count; i++) {
+        const d = near(attr, i, sizes ? (sizes.getX(i) * iconScale) / 2 - 8 : 0);
+        if (d < Infinity && (!best || d < best.d)) best = { key, i, d };
+      }
     }
     if (!best) return null;
-    const it = data[best.key][best.hit.index];
-    return it ? { key: best.key, it, index: best.hit.index } : null;
+    const it = data[best.key][best.i];
+    return it ? { key: best.key, it, index: best.i } : null;
   }
 
   /* Desktop hover: highlight and tag whatever is under the cursor. */
@@ -1698,7 +2296,25 @@
     }
   });
 
+  /* Double tap or double click zooms in on that spot, as in Google Earth. */
+  let lastTap = { t: 0, x: 0, y: 0 };
+  function groundAt(clientX, clientY) {
+    pointer.x = (clientX / window.innerWidth) * 2 - 1;
+    pointer.y = -(clientY / window.innerHeight) * 2 + 1;
+    raycaster.setFromCamera(pointer, camera);
+    const hit = raycaster.intersectObject(earthMesh)[0];
+    return hit ? vector3ToLatLng(globeGroup.worldToLocal(hit.point.clone())) : null;
+  }
+
   function handleGlobeClick(clientX, clientY) {
+    const tapAt = performance.now();
+    if (!pickMode && tapAt - lastTap.t < 330 && Math.hypot(clientX - lastTap.x, clientY - lastTap.y) < 32) {
+      lastTap.t = 0;
+      const ll = groundAt(clientX, clientY);
+      if (ll) flyTo(ll.lat, ll.lng, RADIUS + (cam.zoomTarget - RADIUS) * 0.3);
+      return;
+    }
+    lastTap = { t: tapAt, x: clientX, y: clientY };
     if (pickMode) {
       pointer.x = (clientX / window.innerWidth) * 2 - 1;
       pointer.y = -(clientY / window.innerHeight) * 2 + 1;
@@ -1773,10 +2389,22 @@
     const obj = layerObjects[key];
     const attr = obj && obj.geometry.getAttribute('position');
     if (!attr || i >= attr.count) return null;
-    tmpV.fromBufferAttribute(attr, i).applyMatrix4(globeGroup.matrixWorld);
-    camDir.copy(camera.position).normalize();
-    if (tmpV.clone().normalize().dot(camDir) < 0.1) return null;
+    tmpV.fromBufferAttribute(attr, i);
+    return projectLocal(tmpV);
+  }
+
+  /** Screen position of a globe-local point after lift, or null if hidden by the globe or off screen. */
+  function projectLocal(local) {
+    liftLocal(local, tmpV).applyMatrix4(globeGroup.matrixWorld);
+    const r = tmpV.length();
+    const d = camera.position.length();
+    camDir.copy(camera.position).divideScalar(d);
+    const cosAng = tmpV.dot(camDir) / r;
+    /* Visible while the angle from the eye's ground point is within both horizon angles. */
+    const lim = Math.acos(Math.min(1, RADIUS / d)) + Math.acos(Math.min(1, RADIUS / Math.max(r, RADIUS)));
+    if (Math.acos(Math.max(-1, Math.min(1, cosAng))) > lim) return null;
     tmpV.project(camera);
+    if (tmpV.z > 1) return null;
     const x = (tmpV.x + 1) / 2 * window.innerWidth;
     const y = (1 - tmpV.y) / 2 * window.innerHeight;
     if (x < 0 || y < 0 || x > window.innerWidth || y > window.innerHeight) return null;
@@ -1935,7 +2563,7 @@
     const pts = computePath(selectedRef.key, it);
     if (pts.length < 2) return;
     const geo = new THREE.BufferGeometry().setFromPoints(pts);
-    const mat = new THREE.LineDashedMaterial({ color: LAYERS[selectedRef.key].color, dashSize: 1.6, gapSize: 1.1, transparent: true, opacity: 0.85, depthWrite: false });
+    const mat = withLift(new THREE.LineDashedMaterial({ color: LAYERS[selectedRef.key].color, dashSize: 1.6, gapSize: 1.1, transparent: true, opacity: 0.85, depthWrite: false }));
     pathLine = new THREE.Line(geo, mat);
     pathLine.computeLineDistances();
     globeGroup.add(pathLine);
@@ -1944,8 +2572,8 @@
 
   /* Night side shading from the real sun position (subsolar point). */
   const nightMaterial = new THREE.ShaderMaterial({
-    uniforms: { uSun: { value: new THREE.Vector3(1, 0, 0) } },
-    vertexShader: 'varying vec3 vN; void main(){ vN = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
+    uniforms: { uSun: SUN, uLift: LIFT, uMaxOff: MAXOFF },
+    vertexShader: `${LIFT_GLSL}\n varying vec3 vN; void main(){ vN = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(liftPos(position), 1.0); }`,
     fragmentShader: 'uniform vec3 uSun; varying vec3 vN; void main(){ float d = dot(vN, uSun); float night = smoothstep(0.06, -0.14, d); gl_FragColor = vec4(0.0, 0.012, 0.045, night * 0.58); }',
     transparent: true,
     depthWrite: false
@@ -1953,6 +2581,7 @@
   const nightMesh = new THREE.Mesh(new THREE.SphereGeometry(RADIUS + 0.1, 96, 64), nightMaterial);
   nightMesh.renderOrder = -1;
   globeGroup.add(nightMesh);
+  vectorOnly.push(nightMesh);
 
   function updateSun() {
     const now = new Date();
@@ -1961,7 +2590,7 @@
     const decl = -23.44 * Math.cos((2 * Math.PI / 365) * (dayOfYear + 10));
     const hours = now.getUTCHours() + now.getUTCMinutes() / 60 + now.getUTCSeconds() / 3600;
     const lng = ((((-15 * (hours - 12)) + 540) % 360) - 180);
-    nightMaterial.uniforms.uSun.value.copy(latLngToVector3(decl, lng, 1).normalize());
+    SUN.value.copy(latLngToVector3(decl, lng, 1).normalize());
   }
   updateSun();
   setInterval(updateSun, 60000);
@@ -1998,11 +2627,27 @@
       cam.vy *= decay;
     }
 
-    const idle = !dragging && !cam.fly && now - cam.lastInteraction > cam.idleResumeMs && selectorTargetOpacity === 0;
+    /* Idle spin only from orbit; close to the ground it would sweep the view away. */
+    const idle = !dragging && !cam.fly && now - cam.lastInteraction > cam.idleResumeMs && selectorTargetOpacity === 0
+      && camera.position.z - RADIUS > 120;
     cam.autoSpeed += ((idle ? cam.autoMax : 0) - cam.autoSpeed) * smooth(idle ? 0.6 : 6, dt);
     globeGroup.rotation.y += cam.autoSpeed * dt;
 
-    camera.position.z += (cam.zoomTarget - camera.position.z) * smooth(8, dt);
+    /* Ease altitude in log space: equal time per order of magnitude, orbit to street. */
+    const altNow = Math.max(1e-5, camera.position.z - RADIUS);
+    const altGoal = Math.max(1e-5, cam.zoomTarget - RADIUS);
+    const alt = Math.exp(Math.log(altNow) + (Math.log(altGoal) - Math.log(altNow)) * smooth(7, dt));
+    camera.position.z = RADIUS + alt;
+    camera.near = Math.max(0.0004, alt * 0.25);
+    camera.far = camera.position.z + RADIUS * 1.5;
+    camera.updateProjectionMatrix();
+    LIFT.value = Math.min(1, 0.3 * alt);
+    MAXOFF.value = alt * 0.6;
+    DIRSCALE.value = Math.max(0.0005, Math.min(1, alt / 10));
+    NIGHT_STRENGTH.value = Math.max(0.35, Math.min(1, alt / 25));
+    atmosphere.material.uniforms.uFade.value = Math.max(0, Math.min(1, (camera.position.z - 114) / 20));
+    atmosphere.visible = camera.position.z > 114;
+    if (pathLine) pathLine.material.scale = Math.min(5000, 230 / alt);
 
     /* Icons grow a little as you zoom in, like map symbols. */
     const iconScale = Math.max(0.85, Math.min(1.7, 330 / camera.position.z));
@@ -2025,12 +2670,16 @@
     sm.opacity += (selectorTargetOpacity - sm.opacity) * smooth(9, dt);
     selectorMesh.visible = sm.opacity > 0.01;
     /* Keep the selection ring a constant on-screen size at any zoom level. */
-    selectorMesh.scale.setScalar((1 + 0.12 * Math.sin(now / 420)) * (camera.position.z / 330));
+    liftLocal(selectorBase, selectorMesh.position);
+    tmpV.copy(selectorMesh.position).applyMatrix4(globeGroup.matrixWorld);
+    selectorMesh.scale.setScalar((1 + 0.12 * Math.sin(now / 420)) * (tmpV.distanceTo(camera.position) / 230));
 
     alertPoints.material.size = 22 + 8 * (0.5 + 0.5 * Math.sin(now / 520));
 
+    updateTiles(now);
     renderer.render(scene, camera);
     globeGroup.updateMatrixWorld();
+    updateReadout(now);
     renderTags(now);
     updatePath();
     if (firstFrame) {
@@ -2837,6 +3486,7 @@
   requestAnimationFrame(animate);
   requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add('booted')));
 
+  setTilesEnabled(true);
   loadWorld().catch((err) => toast({ severity: 'medium', title: `Country outlines unavailable (${err.message}).` }));
   Object.keys(LAYERS).forEach((key, i) => setTimeout(() => runSource(key), 300 + i * 350));
 })();

@@ -31,6 +31,7 @@ Every alert is labelled **Official** or **Derived (not an official warning)** an
 
 ### Dashboard features
 
+- **Google Earth-style imagery**: satellite tiles stream in sharper as you zoom, from the whole planet down to about 500 m eye altitude (street level, zoom 18). Three styles: **Hybrid** (imagery with roads, borders and place names), **Satellite** (imagery only) and **Dark** (street map). Double tap or double click zooms in on a spot; the bottom line shows eye altitude and coordinates. If imagery cannot be reached, the globe falls back to offline outlines.
 - **Icons per layer** rendered on the GPU: aircraft point along their real heading; satellites, quake rings sized by magnitude, cyclone, flood, fire, volcano, dam, heat and camera symbols.
 - **Smart tags** such as `AIC302 · FL350 · 812 km/h` or `ISS · 420 km`, prioritised (alerts, selection, notable events first; flights once zoomed in) with overlap avoidance.
 - **Hover** (desktop) and **tap** for details; **orbit path** for a selected satellite and a **30-minute projected track** for a selected flight.
@@ -107,9 +108,10 @@ config/monitor.json        Zones, points, thresholds
 - **Diagnosing a broken source:** run the Monitor workflow with task `diagnose`; raw responses land on the `diagnostics` branch.
 - **Actions minutes** are free on public repositories. If the repo is made private again, switch the schedule back to every 30 minutes (see the comment in `monitor.yml`) to stay within GitHub Free's 2,000 minutes.
 - **Heat-wave baselines** build gradually (Open-Meteo's free limit allows about a dozen 30-year downloads a day); stations without one use IMD's absolute 45 °C rule until it arrives. A daily job fills them in.
+- **Imagery** comes from Esri World Imagery (dates and sharpness vary by place; some rural areas stop at a coarser zoom or show "Map data not yet available") and CARTO. There is no 3D terrain, no 3D buildings and no camera tilt yet: Google's photorealistic 3D tiles need a billed Google Maps key.
 - **Ships (AIS)** are not available client-side; AISStream requires a server that holds the key.
 - **Not a primary warning system.** Keep the official SACHET app and cell-broadcast alerts enabled.
 
 ## Data usage and ethics
 
-Only intentionally public feeds are used. The webcam layer lists cameras their owners chose to publish; it never discovers or accesses unsecured private cameras. The poller identifies itself with a User-Agent, polls government sites no more than twice an hour, and respects provider terms. Windy and Open-Meteo require attribution, which the dashboard and messages provide.
+Only intentionally public feeds are used. The webcam layer lists cameras their owners chose to publish; it never discovers or accesses unsecured private cameras. The poller identifies itself with a User-Agent, polls government sites no more than twice an hour, and respects provider terms. Windy, Open-Meteo, Esri and CARTO require attribution, which the dashboard and messages provide.

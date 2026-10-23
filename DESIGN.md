@@ -25,6 +25,7 @@ This is a personal context and cross-checking tool. It is **not** a primary warn
 
 | Concern | Where | Why |
 |---|---|---|
+| Base map | Browser, streamed tiles | Esri World Imagery (+ Esri reference roads and places for Hybrid) or CARTO Dark, as Web Mercator XYZ tiles. A quadtree picks tiles per frame (split while a tile would exceed 256 px on screen, with horizon and frustum culling). Meshes are built relative to each tile's centre to avoid float32 jitter near the ground; a missing tile shows its nearest loaded ancestor cropped, then cross-fades. Requests are capped (10 desktop, 6 phone), aborted when a tile leaves view, and textures are evicted least-recently-used (360 / 180). Markers and lines are lifted above the surface by a factor that shrinks with eye altitude, so they sit on the imagery up close. |
 | Satellites | Poller TLEs, propagated in the browser | CelesTrak timed out from some browsers and asks clients not to re-download more than every two hours; the poller republishes TLEs every 6 hours (auxiliary source) and the dashboard propagates positions locally at 10 Hz, falling back to CelesTrak directly. |
 | Flights | Poller snapshot, projected in the browser | OpenSky only allows its own site to read its API from a browser (CORS), so the poller fetches it every 30 min (4 of ~400 free daily credits per request) and the dashboard dead-reckons each aircraft along its track. Emergency squawks in zones also alert via Telegram. Flights are an auxiliary source: failures never trigger degraded notices. |
 | SACHET (flood, heat, dam, cyclone) | Poller | Feeds send no CORS headers; a browser cannot read them. |
@@ -128,6 +129,7 @@ Public-repo safeguards: the Monitor workflow only runs on schedule or manual dis
 
 ## Known limits
 
+- Imagery is flat (no terrain or 3D buildings) and the camera always looks straight down; Esri imagery dates and resolution vary by area.
 - 15-minute polling plus possible GitHub scheduling delays: suited to hour-scale hazards only.
 - SACHET is reachable from GitHub's runners (verified), but its polygon files are not; locations are district-level approximations.
 - District matching depends on English district names; an alert that names no known district only matches via real geometry, which SACHET does not currently provide.
