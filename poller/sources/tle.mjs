@@ -29,15 +29,36 @@ export function cleanTle(text) {
   return out.join('\n');
 }
 
+/* CelesTrak is unreliable from GitHub's runners (network failures, HTTP 500); AMSAT's
+   current-TLE file (ISS plus amateur and science satellites) is the fallback. */
+const AMSAT_URL = 'https://www.amsat.org/tle/current/nasabare.txt';
+
 /** Returns null when the previous snapshot is fresh enough; otherwise the groups. */
-export async function fetchTle({ http, lastFetchedAt = 0, now = Date.now(), minIntervalMs = TLE_MIN_INTERVAL_MS }) {
+export async function fetchTle({ http, lastFetchedAt = 0, now = Date.now(), minIntervalMs = TLE_MIN_INTERVAL_MS, log = () => {} }) {
   if (now - lastFetchedAt < minIntervalMs) return null;
   const groups = [];
+  const errors = [];
   for (const g of TLE_GROUPS) {
-    const { text } = await http.getText(`https://celestrak.org/NORAD/elements/gp.php?GROUP=${g.group}&FORMAT=tle`, { timeoutMs: 45000 });
-    const tle = cleanTle(text);
-    if (!tle) throw new Error(`CelesTrak returned no valid TLEs for ${g.group}`);
-    groups.push({ tag: g.tag, tle });
+    try {
+      const { text } = await http.getText(`https://celestrak.org/NORAD/elements/gp.php?GROUP=${g.group}&FORMAT=tle`, { timeoutMs: 45000 });
+      const tle = cleanTle(text);
+      if (tle) groups.push({ tag: g.tag, tle, source: 'CelesTrak' });
+      else errors.push(`CelesTrak ${g.group}: no valid TLEs`);
+    } catch (err) {
+      errors.push(`CelesTrak ${g.group}: ${err.message}`);
+    }
   }
+  if (!groups.length) {
+    try {
+      const { text } = await http.getText(AMSAT_URL, { timeoutMs: 45000 });
+      const tle = cleanTle(text);
+      if (tle) groups.push({ tag: 'AMSAT (ISS, amateur and science satellites)', tle, source: 'AMSAT' });
+      else errors.push('AMSAT: no valid TLEs');
+    } catch (err) {
+      errors.push(`AMSAT: ${err.message}`);
+    }
+  }
+  if (errors.length) log(`tle: ${errors.join('; ')}`);
+  if (!groups.length) throw new Error(errors.join('; ').slice(0, 280));
   return groups;
 }

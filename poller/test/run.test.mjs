@@ -210,3 +210,17 @@ test('flights refresh at most every 25 minutes and never trigger degraded notice
     await rm(env.dir, { recursive: true, force: true });
   }
 });
+
+test('satellite TLEs fall back to AMSAT when CelesTrak fails', async () => {
+  const env = await setup();
+  try {
+    await rm(path.join(env.fixtures, 'celestrak.org_NORAD_elements_gp.php'));
+    const r = await run(base(env));
+    assert.ok(!r.failures.includes('satellites'));
+    const tle = JSON.parse(await readFile(path.join(env.dataDir, 'tle.json'), 'utf8'));
+    assert.deepEqual(tle.groups.map((g) => g.source), ['AMSAT']);
+    assert.ok(tle.groups[0].tle.includes('1 25544U'));
+  } finally {
+    await rm(env.dir, { recursive: true, force: true });
+  }
+});

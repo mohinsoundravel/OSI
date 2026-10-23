@@ -24,7 +24,7 @@ import { buildMessages, createNotifier, heartbeat } from './notify.mjs';
 const DAY_MS = 24 * 3600 * 1000;
 const BASE_HOSTS = [
   'sachet.ndma.gov.in', 'flood-api.open-meteo.com', 'api.open-meteo.com',
-  'www.gdacs.org', 'earthquake.usgs.gov', 'opensky-network.org', 'celestrak.org'
+  'www.gdacs.org', 'earthquake.usgs.gov', 'opensky-network.org', 'celestrak.org', 'www.amsat.org'
 ];
 const DEGRADED_AFTER_FAILURES = 3;
 /* Auxiliary sources feed the dashboard but are not safety-critical: their failures
@@ -129,7 +129,7 @@ export async function run(options = {}) {
       flights: () => fetchFlights({ http, lastFetchedAt: state.flightsFetchedAt ? Date.parse(state.flightsFetchedAt) : 0, now })
     }),
     ...(config.satellites?.enabled === false ? {} : {
-      satellites: () => fetchTle({ http, lastFetchedAt: state.tleFetchedAt ? Date.parse(state.tleFetchedAt) : 0, now })
+      satellites: () => fetchTle({ http, lastFetchedAt: state.tleFetchedAt ? Date.parse(state.tleFetchedAt) : 0, now, log })
     })
   };
 
