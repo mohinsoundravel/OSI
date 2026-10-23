@@ -113,13 +113,13 @@ IMD also requires the criteria at two stations in a subdivision; a single foreca
 
 - **Zero runtime dependencies** in the poller; Node built-ins only.
 - **No third-party GitHub Actions**; checkout is a plain `git clone` with the job token.
-- **Least privilege**: CI has `contents: read`; only the monitor job has `contents: write`, used solely to push the data branch.
+- **Least privilege**: CI has `contents: read`; only the monitor job has `contents: write`, used solely to push the data and diagnostics branches. The token is passed per git command to the clone and publish steps only, never stored in git config, so the steps that parse untrusted feed data cannot read it.
 - **Secrets** (`TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `HEALTHCHECK_URL`, optional `MONITOR_CONFIG_JSON`) are passed only to the steps that need them and never logged.
 - **Dashboard**: Content Security Policy (scripts only from self and the pinned CDN) and Subresource Integrity hashes on every CDN script.
 
 ### Privacy
 
-The repository is public. Coverage is deliberately state-wide (all of Tamil Nadu: 20 heat stations, 12 river points, every district in the gazetteer) so the configuration does not single out any one place. Anything that should stay private can go in the `MONITOR_CONFIG_JSON` secret, which overrides `config/monitor.json`.
+The repository is public. Coverage is deliberately state-wide (all of Tamil Nadu: 20 heat stations, 12 river points, every district in the gazetteer) so the configuration does not single out any one place. The `MONITOR_CONFIG_JSON` secret overrides `config/monitor.json` and keeps a configuration out of the repository files, but it does **not** make monitored places private: the poller's outputs (`latest.json` on the public data branch, the dashboard, diagnostics) still show every river point, heat station and zone. Truly private points need a private repository and a private data source for the dashboard.
 
 Public-repo safeguards: the Monitor workflow only runs on schedule or manual dispatch (which requires write access), never on pull requests; CI runs on pull requests without secrets and with a read-only token; published data contains no secrets, and the heartbeat URL is recorded only as its host.
 

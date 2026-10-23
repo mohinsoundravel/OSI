@@ -14,6 +14,30 @@ export class HttpError extends Error {
 
 export const sha256 = (text) => createHash('sha256').update(text).digest('hex');
 
+/** Reads a response body, aborting as soon as it exceeds maxBytes (chunked bodies have no length header). */
+async function readCapped(res, maxBytes) {
+  if (!res.body || typeof res.body.getReader !== 'function') {
+    const text = await res.text();
+    if (text.length > maxBytes) throw new HttpError('response too large');
+    return text;
+  }
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+  let total = 0;
+  let text = '';
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    total += value.byteLength;
+    if (total > maxBytes) {
+      await reader.cancel().catch(() => {});
+      throw new HttpError('response too large');
+    }
+    text += decoder.decode(value, { stream: true });
+  }
+  return text + decoder.decode();
+}
+
 /**
  * HTTP client used by every source.
  *  - Only https URLs on an explicit host allowlist can be fetched, so a tampered
@@ -83,8 +107,7 @@ export function createHttpClient({ allowedHosts, userAgent, cache = {}, fixtures
 
     const declared = Number(res.headers.get('content-length'));
     if (Number.isFinite(declared) && declared > MAX_RESPONSE_BYTES) throw new HttpError(`response too large (${declared} bytes)`);
-    const text = await res.text();
-    if (text.length > MAX_RESPONSE_BYTES) throw new HttpError('response too large');
+    const text = await readCapped(res, MAX_RESPONSE_BYTES);
 
     const hash = sha256(text);
     if (conditional) {

@@ -270,3 +270,18 @@ test('per-request timeout overrides the client default', async () => {
   await assert.rejects(http.getText('https://ok.example/a'), /timeout after 0.02s/);
   assert.equal((await http.getText('https://ok.example/a', { timeoutMs: 500 })).text, 'ok');
 });
+
+test('http client aborts bodies over the size cap while streaming', async () => {
+  const { createHttpClient } = await import('../lib/http.mjs');
+  const chunk = new Uint8Array(1024 * 1024).fill(65);
+  let sent = 0;
+  const body = new ReadableStream({
+    pull(controller) {
+      if (sent++ < 20) controller.enqueue(chunk); else controller.close();
+    }
+  });
+  const fetchImpl = async () => new Response(body, { status: 200 });
+  const http = createHttpClient({ allowedHosts: ['example.org'], userAgent: 'test', fetchImpl });
+  await assert.rejects(() => http.getText('https://example.org/big'), /too large/);
+  assert.ok(sent < 12, `stopped early (read ${sent} MB)`);
+});

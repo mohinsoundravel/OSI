@@ -36,15 +36,17 @@ jobs:
     env:
       DATA_BRANCH: data
     steps:
+      # The write-capable job token is passed only to the steps that clone or push, and
+      # only per git command (never stored in git config), so the polling step, which
+      # parses untrusted feed data, has no credential to read.
       - name: Check out code and data branch
         env:
           TOKEN: ${{ github.token }}
         run: |
-          auth=$(printf 'x-access-token:%s' "$TOKEN" | base64 -w0)
-          git config --global http.https://github.com/.extraheader "AUTHORIZATION: basic $auth"
-          git clone --depth 1 --no-tags "https://github.com/${GITHUB_REPOSITORY}.git" .
-          if git ls-remote --exit-code --heads origin "$DATA_BRANCH" >/dev/null; then
-            git clone --depth 1 --no-tags --branch "$DATA_BRANCH" "https://github.com/${GITHUB_REPOSITORY}.git" data
+          auth="AUTHORIZATION: basic $(printf 'x-access-token:%s' "$TOKEN" | base64 -w0)"
+          git -c http.extraheader="$auth" clone --depth 1 --no-tags "https://github.com/${GITHUB_REPOSITORY}.git" .
+          if git -c http.extraheader="$auth" ls-remote --exit-code --heads origin "$DATA_BRANCH" >/dev/null; then
+            git -c http.extraheader="$auth" clone --depth 1 --no-tags --branch "$DATA_BRANCH" "https://github.com/${GITHUB_REPOSITORY}.git" data
           else
             echo "No $DATA_BRANCH branch yet; this is the first run."
             mkdir -p data
@@ -66,51 +68,52 @@ jobs:
           MONITOR_CONFIG_JSON: ${{ secrets.MONITOR_CONFIG_JSON }}
         run: node poller/build-heat-normals.mjs --data-dir data
 
-      # Sends one Telegram message. The result (never the token) is also pushed to the
-      # diagnostics branch so it can be read without downloading Actions logs.
+      # Sends one Telegram message. The result (never the token) is published to the
+      # diagnostics branch by the next step, so it can be read without Actions logs.
       - name: Send a Telegram test message
         if: inputs.task == 'test-telegram'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          status=0
-          node poller/notify-test.mjs > "$RUNNER_TEMP/diagnostics.txt" || status=$?
-          cat "$RUNNER_TEMP/diagnostics.txt"
-          mkdir -p "$RUNNER_TEMP/diag" && cp "$RUNNER_TEMP/diagnostics.txt" "$RUNNER_TEMP/diag/"
-          cd "$RUNNER_TEMP/diag"
-          git init -q -b diagnostics
-          git add diagnostics.txt
-          git -c user.name='github-actions[bot]' \
-              -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
-              commit -q -m "telegram test: run ${GITHUB_RUN_ID}"
-          git push -q -f "https://github.com/${GITHUB_REPOSITORY}.git" HEAD:refs/heads/diagnostics
-          exit "$status"
+          set -o pipefail
+          node poller/notify-test.mjs | tee "$RUNNER_TEMP/diagnostics.txt"
 
       - name: Print raw source samples (read-only)
         if: inputs.task == 'diagnose' || inputs.task == 'calibrate-rivers'
         env:
           MONITOR_CONFIG_JSON: ${{ secrets.MONITOR_CONFIG_JSON }}
           SCRIPT: ${{ inputs.task == 'calibrate-rivers' && 'poller/calibrate-rivers.mjs' || 'poller/diagnose.mjs' }}
-        # Output also goes to a single-commit "diagnostics" branch, readable via the
-        # contents API from environments that cannot download Actions logs.
         run: |
           set -o pipefail
           node "$SCRIPT" | tee "$RUNNER_TEMP/diagnostics.txt"
+
+      # Single-commit "diagnostics" branch, readable via the contents API from
+      # environments that cannot download Actions logs. Runs even if the test failed.
+      - name: Publish diagnostics branch
+        if: always() && (inputs.task == 'diagnose' || inputs.task == 'calibrate-rivers' || inputs.task == 'test-telegram')
+        env:
+          TOKEN: ${{ github.token }}
+          TASK: ${{ inputs.task }}
+        run: |
+          [ -f "$RUNNER_TEMP/diagnostics.txt" ] || { echo "No diagnostics output."; exit 0; }
           mkdir -p "$RUNNER_TEMP/diag" && cp "$RUNNER_TEMP/diagnostics.txt" "$RUNNER_TEMP/diag/"
           cd "$RUNNER_TEMP/diag"
           git init -q -b diagnostics
           git add diagnostics.txt
           git -c user.name='github-actions[bot]' \
               -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
-              commit -q -m "diagnostics: run ${GITHUB_RUN_ID}"
-          git push -q -f "https://github.com/${GITHUB_REPOSITORY}.git" HEAD:refs/heads/diagnostics
+              commit -q -m "${TASK}: run ${GITHUB_RUN_ID}"
+          git -c http.extraheader="AUTHORIZATION: basic $(printf 'x-access-token:%s' "$TOKEN" | base64 -w0)" \
+              push -q -f "https://github.com/${GITHUB_REPOSITORY}.git" HEAD:refs/heads/diagnostics
 
       # The data branch is rewritten as a single commit each run, so the
       # repository does not grow with every poll. Runs even if polling failed,
       # so failure counters persist and degraded notices fire correctly.
       - name: Publish data branch
         if: always() && inputs.task != 'diagnose' && inputs.task != 'test-telegram' && inputs.task != 'calibrate-rivers'
+        env:
+          TOKEN: ${{ github.token }}
         run: |
           cd data
           count=$(find . -maxdepth 1 -name '*.json' -type f | wc -l)
@@ -124,5 +127,6 @@ jobs:
           git -c user.name='github-actions[bot]' \
               -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
               commit -q -m "data: $(date -u +%Y-%m-%dT%H:%M:%SZ) (run ${GITHUB_RUN_ID})"
-          git push -q -f "https://github.com/${GITHUB_REPOSITORY}.git" "HEAD:refs/heads/${DATA_BRANCH}"
+          git -c http.extraheader="AUTHORIZATION: basic $(printf 'x-access-token:%s' "$TOKEN" | base64 -w0)" \
+              push -q -f "https://github.com/${GITHUB_REPOSITORY}.git" "HEAD:refs/heads/${DATA_BRANCH}"
           echo "Published ${count} files to ${DATA_BRANCH}."

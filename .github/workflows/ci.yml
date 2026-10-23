@@ -25,9 +25,12 @@ jobs:
           TOKEN: ${{ github.token }}
         run: |
           auth=$(printf 'x-access-token:%s' "$TOKEN" | base64 -w0)
+          # GITHUB_REF is refs/heads/main on push and refs/pull/N/merge on pull requests,
+          # which also works for pull requests from forks.
+          git init -q .
           git -c http.extraheader="AUTHORIZATION: basic $auth" \
-            clone --depth 1 --no-tags --branch "${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}" \
-            "https://github.com/${GITHUB_REPOSITORY}.git" .
+            fetch -q --depth 1 --no-tags "https://github.com/${GITHUB_REPOSITORY}.git" "$GITHUB_REF"
+          git checkout -q FETCH_HEAD
 
       - name: Node version
         run: node --version
