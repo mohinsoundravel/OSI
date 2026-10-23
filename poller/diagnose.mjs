@@ -23,10 +23,17 @@ async function sample(label, url) {
     console.log(`length ${text.length}\n----- body (first ${limit} chars) -----\n${text.slice(0, limit)}\n----- end -----`);
     return text;
   } catch (err) {
-    console.log(`ERROR ${err.name}: ${err.message}`);
+    console.log(`ERROR ${err.name}: ${err.message}${err.cause ? ` | cause: ${err.cause.code || ''} ${err.cause.message || err.cause}` : ''}`);
     return null;
   }
 }
+
+/* Satellite TLE sources (CelesTrak refused GitHub runners with a network error). */
+await sample('CelesTrak .org', 'https://celestrak.org/NORAD/elements/gp.php?GROUP=stations&FORMAT=tle');
+await sample('CelesTrak .com', 'https://celestrak.com/NORAD/elements/gp.php?GROUP=stations&FORMAT=tle');
+await sample('AMSAT nasabare', 'https://www.amsat.org/tle/current/nasabare.txt');
+await sample('SatNOGS TLE API (ISS)', 'https://db.satnogs.org/api/tle/?format=json&norad_cat_id=25544');
+await sample('TLE API (ISS)', 'https://tle.ivanstanojevic.me/api/tle/25544');
 
 for (const feed of config.sachet?.feeds || []) {
   const rss = await sample('SACHET RSS', feed);
