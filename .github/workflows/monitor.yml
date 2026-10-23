@@ -1,6 +1,8 @@
 name: Monitor
 
 # Every 15 minutes at off-peak minutes (top-of-hour schedules are the most delayed).
+# GitHub registers schedules from the default branch; a push that touches this file
+# re-registers them if scheduled runs never start.
 # Actions minutes are free for public repositories. If the repo is made private
 # again, return to '17,47 * * * *' to stay within GitHub Free's 2,000 minutes.
 # The daily schedule fills in any missing heat-wave baselines (no-op once complete).
