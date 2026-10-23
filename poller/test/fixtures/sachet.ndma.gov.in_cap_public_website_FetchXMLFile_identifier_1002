@@ -1,0 +1,43 @@
+<cap:alert xmlns:cap="urn:oasis:names:tc:emergency:cap:1.2">
+<cap:identifier>IN-1002_43</cap:identifier>
+<cap:sender>TN-SDMA</cap:sender>
+<cap:sent>2026-10-23T08:30:00+05:30</cap:sent>
+<cap:status>Actual</cap:status>
+<cap:msgType>Alert</cap:msgType>
+<cap:scope>Public</cap:scope>
+<cap:restriction/>
+<cap:note/>
+<cap:info>
+<cap:language>en-IN</cap:language>
+<cap:category>Met</cap:category>
+<cap:event>Flood</cap:event>
+<cap:urgency>Immediate</cap:urgency>
+<cap:severity>Severe</cap:severity>
+<cap:certainty>Likely</cap:certainty>
+<cap:effective>2026-10-23T08:30:00+05:30</cap:effective>
+<cap:expires>2026-10-25T08:30:00+05:30</cap:expires>
+<cap:headline><![CDATA[Mettur Dam shutters opened: surplus water release of 30,000 cusecs & rising. People along the banks should move to safer places.]]></cap:headline>
+<cap:description/>
+<cap:instruction></cap:instruction>
+<cap:parameter>
+<cap:valueName>Polygon URL</cap:valueName>
+<cap:value>https://sachet.ndma.gov.in/cap_public_website/FetchPolygonXMLFile?identifier=IN-1002_43</cap:value>
+</cap:parameter>
+<cap:area>
+<cap:areaDesc>Salem district of Tamil Nadu</cap:areaDesc>
+<cap:geocode>
+<cap:valueName>LGD District Code</cap:valueName>
+<cap:value>582</cap:value>
+</cap:geocode>
+<cap:altitude>0</cap:altitude>
+<cap:ceiling>0</cap:ceiling>
+</cap:area>
+</cap:info>
+<cap:info>
+<cap:language>TA</cap:language>
+<cap:event>Flood</cap:event>
+<cap:severity>Severe</cap:severity>
+<cap:headline>தமிழ் தலைப்பு</cap:headline>
+<cap:area><cap:areaDesc>Salem district of Tamil Nadu</cap:areaDesc></cap:area>
+</cap:info>
+</cap:alert>

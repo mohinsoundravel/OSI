@@ -1,0 +1,126 @@
+name: Monitor
+
+# Every 15 minutes at off-peak minutes (top-of-hour schedules are the most delayed).
+# Actions minutes are free for public repositories. If the repo is made private
+# again, return to '17,47 * * * *' to stay within GitHub Free's 2,000 minutes.
+# The daily schedule fills in any missing heat-wave baselines (no-op once complete).
+on:
+  schedule:
+    - cron: '7,22,37,52 * * * *'
+    - cron: '41 21 * * *'
+  workflow_dispatch:
+    inputs:
+      task:
+        description: 'What to run'
+        type: choice
+        options: [poll, test-telegram, build-normals, calibrate-rivers, diagnose]
+        default: poll
+      dry_run:
+        description: 'Evaluate rules without sending Telegram messages'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write   # needed only to push the data branch
+
+concurrency:
+  group: monitor
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      DATA_BRANCH: data
+    steps:
+      - name: Check out code and data branch
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          auth=$(printf 'x-access-token:%s' "$TOKEN" | base64 -w0)
+          git config --global http.https://github.com/.extraheader "AUTHORIZATION: basic $auth"
+          git clone --depth 1 --no-tags "https://github.com/${GITHUB_REPOSITORY}.git" .
+          if git ls-remote --exit-code --heads origin "$DATA_BRANCH" >/dev/null; then
+            git clone --depth 1 --no-tags --branch "$DATA_BRANCH" "https://github.com/${GITHUB_REPOSITORY}.git" data
+          else
+            echo "No $DATA_BRANCH branch yet; this is the first run."
+            mkdir -p data
+          fi
+
+      - name: Poll sources and evaluate rules
+        if: (github.event_name == 'schedule' && github.event.schedule != '41 21 * * *') || inputs.task == 'poll'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          HEALTHCHECK_URL: ${{ secrets.HEALTHCHECK_URL }}
+          MONITOR_CONFIG_JSON: ${{ secrets.MONITOR_CONFIG_JSON }}
+          DRY_RUN: ${{ inputs.dry_run && '--dry-run' || '' }}
+        run: node poller/index.mjs --data-dir data ${DRY_RUN:+"$DRY_RUN"}
+
+      - name: Build heat normals (1991-2020)
+        if: (github.event_name == 'schedule' && github.event.schedule == '41 21 * * *') || inputs.task == 'build-normals'
+        env:
+          MONITOR_CONFIG_JSON: ${{ secrets.MONITOR_CONFIG_JSON }}
+        run: node poller/build-heat-normals.mjs --data-dir data
+
+      # Sends one Telegram message. The result (never the token) is also pushed to the
+      # diagnostics branch so it can be read without downloading Actions logs.
+      - name: Send a Telegram test message
+        if: inputs.task == 'test-telegram'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          status=0
+          node poller/notify-test.mjs > "$RUNNER_TEMP/diagnostics.txt" || status=$?
+          cat "$RUNNER_TEMP/diagnostics.txt"
+          mkdir -p "$RUNNER_TEMP/diag" && cp "$RUNNER_TEMP/diagnostics.txt" "$RUNNER_TEMP/diag/"
+          cd "$RUNNER_TEMP/diag"
+          git init -q -b diagnostics
+          git add diagnostics.txt
+          git -c user.name='github-actions[bot]' \
+              -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+              commit -q -m "telegram test: run ${GITHUB_RUN_ID}"
+          git push -q -f "https://github.com/${GITHUB_REPOSITORY}.git" HEAD:refs/heads/diagnostics
+          exit "$status"
+
+      - name: Print raw source samples (read-only)
+        if: inputs.task == 'diagnose' || inputs.task == 'calibrate-rivers'
+        env:
+          MONITOR_CONFIG_JSON: ${{ secrets.MONITOR_CONFIG_JSON }}
+          SCRIPT: ${{ inputs.task == 'calibrate-rivers' && 'poller/calibrate-rivers.mjs' || 'poller/diagnose.mjs' }}
+        # Output also goes to a single-commit "diagnostics" branch, readable via the
+        # contents API from environments that cannot download Actions logs.
+        run: |
+          set -o pipefail
+          node "$SCRIPT" | tee "$RUNNER_TEMP/diagnostics.txt"
+          mkdir -p "$RUNNER_TEMP/diag" && cp "$RUNNER_TEMP/diagnostics.txt" "$RUNNER_TEMP/diag/"
+          cd "$RUNNER_TEMP/diag"
+          git init -q -b diagnostics
+          git add diagnostics.txt
+          git -c user.name='github-actions[bot]' \
+              -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+              commit -q -m "diagnostics: run ${GITHUB_RUN_ID}"
+          git push -q -f "https://github.com/${GITHUB_REPOSITORY}.git" HEAD:refs/heads/diagnostics
+
+      # The data branch is rewritten as a single commit each run, so the
+      # repository does not grow with every poll. Runs even if polling failed,
+      # so failure counters persist and degraded notices fire correctly.
+      - name: Publish data branch
+        if: always() && inputs.task != 'diagnose' && inputs.task != 'test-telegram' && inputs.task != 'calibrate-rivers'
+        run: |
+          cd data
+          count=$(find . -maxdepth 1 -name '*.json' -type f | wc -l)
+          if [ "$count" -eq 0 ]; then
+            echo "No data files to publish."
+            exit 0
+          fi
+          rm -rf .git
+          git init -q -b "$DATA_BRANCH"
+          git add -- *.json
+          git -c user.name='github-actions[bot]' \
+              -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+              commit -q -m "data: $(date -u +%Y-%m-%dT%H:%M:%SZ) (run ${GITHUB_RUN_ID})"
+          git push -q -f "https://github.com/${GITHUB_REPOSITORY}.git" "HEAD:refs/heads/${DATA_BRANCH}"
+          echo "Published ${count} files to ${DATA_BRANCH}."

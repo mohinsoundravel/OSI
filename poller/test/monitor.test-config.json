@@ -1,0 +1,127 @@
+{
+  "userAgent": "OSI-Monitor/1.0 (personal disaster monitor; github.com/mohinsoundravel/OSI)",
+  "zones": [
+    {
+      "id": "z-tn",
+      "name": "Tamil Nadu & coast",
+      "lat": 11.0,
+      "lng": 78.6,
+      "radiusKm": 450
+    },
+    {
+      "id": "z-in",
+      "name": "Indian subcontinent",
+      "lat": 22.0,
+      "lng": 80.0,
+      "radiusKm": 2200
+    },
+    {
+      "id": "z-io",
+      "name": "Northern Indian Ocean",
+      "lat": 8.0,
+      "lng": 75.0,
+      "radiusKm": 2800,
+      "enabled": false
+    }
+  ],
+  "sachet": {
+    "scope": "zones",
+    "feeds": [
+      "https://sachet.ndma.gov.in/cap_public_website/rss/rss_india.xml"
+    ]
+  },
+  "flood": {
+    "ratioMedium": 2,
+    "ratioHigh": 4,
+    "points": [
+      {
+        "id": "vaigai-dam",
+        "name": "Vaigai river near Vaigai Dam",
+        "lat": 10.05,
+        "lng": 77.58,
+        "minDischarge": 30
+      },
+      {
+        "id": "mullaperiyar",
+        "name": "Periyar near Mullaperiyar Dam",
+        "lat": 9.53,
+        "lng": 77.14,
+        "minDischarge": 30
+      },
+      {
+        "id": "cauvery-mettur",
+        "name": "Cauvery at Mettur",
+        "lat": 11.8,
+        "lng": 77.8,
+        "minDischarge": 100
+      },
+      {
+        "id": "thamirabarani",
+        "name": "Thamirabarani near Tirunelveli",
+        "lat": 8.73,
+        "lng": 77.7,
+        "minDischarge": 30
+      },
+      {
+        "id": "adyar-chennai",
+        "name": "Adyar river, Chennai",
+        "lat": 13.01,
+        "lng": 80.24,
+        "minDischarge": 20
+      }
+    ]
+  },
+  "heat": {
+    "points": [
+      {
+        "id": "namakkal",
+        "name": "Namakkal",
+        "lat": 11.22,
+        "lng": 78.17,
+        "region": "plains"
+      },
+      {
+        "id": "madurai",
+        "name": "Madurai",
+        "lat": 9.93,
+        "lng": 78.12,
+        "region": "plains"
+      },
+      {
+        "id": "vellore",
+        "name": "Vellore",
+        "lat": 12.92,
+        "lng": 79.13,
+        "region": "plains"
+      },
+      {
+        "id": "chennai",
+        "name": "Chennai",
+        "lat": 13.08,
+        "lng": 80.27,
+        "region": "coastal"
+      },
+      {
+        "id": "kodaikanal",
+        "name": "Kodaikanal",
+        "lat": 10.23,
+        "lng": 77.49,
+        "region": "hilly"
+      }
+    ]
+  },
+  "gdacs": {
+    "minLevel": "Orange"
+  },
+  "usgs": {
+    "minMagnitude": 4.5,
+    "zones": [
+      "z-tn"
+    ]
+  },
+  "notify": {
+    "minSeverity": "medium",
+    "dedupeDays": 3
+  },
+  "_note": "Frozen config for tests; production coverage lives in config/monitor.json."
+}

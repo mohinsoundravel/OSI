@@ -1,0 +1,19 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Dependencies and builds (none required today; reserved for future tooling)
+node_modules/
+dist/
+
+# Local secrets and environment files
+.env
+.env.*
+local.settings.json
+
+# Poller output (published to the `data` branch, never committed to main)
+/data/
+/.tmp/

@@ -1,0 +1,282 @@
+{
+  "userAgent": "OSI-Monitor/1.0 (personal disaster monitor; github.com/mohinsoundravel/OSI)",
+  "zones": [
+    {
+      "id": "z-tn",
+      "name": "Tamil Nadu & coast",
+      "lat": 11.0,
+      "lng": 78.6,
+      "radiusKm": 450
+    },
+    {
+      "id": "z-in",
+      "name": "Indian subcontinent",
+      "lat": 22.0,
+      "lng": 80.0,
+      "radiusKm": 2200
+    },
+    {
+      "id": "z-io",
+      "name": "Northern Indian Ocean",
+      "lat": 8.0,
+      "lng": 75.0,
+      "radiusKm": 2800,
+      "enabled": false
+    }
+  ],
+  "sachet": {
+    "scope": "zones",
+    "feeds": [
+      "https://sachet.ndma.gov.in/cap_public_website/rss/rss_india.xml"
+    ]
+  },
+  "flood": {
+    "ratioMedium": 2,
+    "ratioHigh": 4,
+    "points": [
+      {
+        "id": "cauvery-mettur",
+        "name": "Cauvery near Mettur reservoir",
+        "lat": 11.94,
+        "lng": 77.65,
+        "minDischarge": 125
+      },
+      {
+        "id": "cauvery-trichy",
+        "name": "Cauvery at Tiruchirappalli",
+        "lat": 10.91,
+        "lng": 78.45,
+        "minDischarge": 140
+      },
+      {
+        "id": "bhavani",
+        "name": "Bhavani at Bhavanisagar",
+        "lat": 11.47,
+        "lng": 77.13,
+        "minDischarge": 22
+      },
+      {
+        "id": "amaravathi-karur",
+        "name": "Amaravathi at Karur",
+        "lat": 10.96,
+        "lng": 78.08,
+        "minDischarge": 19
+      },
+      {
+        "id": "vaigai-dam",
+        "name": "Vaigai below Vaigai Dam",
+        "lat": 10.05,
+        "lng": 77.63,
+        "minDischarge": 10
+      },
+      {
+        "id": "vaigai-madurai",
+        "name": "Vaigai at Madurai",
+        "lat": 9.88,
+        "lng": 78.12,
+        "minDischarge": 16
+      },
+      {
+        "id": "thamirabarani",
+        "name": "Thamirabarani at Tirunelveli",
+        "lat": 8.68,
+        "lng": 77.8,
+        "minDischarge": 10
+      },
+      {
+        "id": "periyar-mullaperiyar",
+        "name": "Periyar at Mullaperiyar",
+        "lat": 9.53,
+        "lng": 77.14,
+        "minDischarge": 10
+      },
+      {
+        "id": "palar-vellore",
+        "name": "Palar near Vellore",
+        "lat": 12.92,
+        "lng": 79.28,
+        "minDischarge": 10
+      },
+      {
+        "id": "pennaiyar-krishnagiri",
+        "name": "Thenpennai near Krishnagiri",
+        "lat": 12.37,
+        "lng": 78.23,
+        "minDischarge": 10
+      },
+      {
+        "id": "pennaiyar-cuddalore",
+        "name": "Thenpennai near Cuddalore",
+        "lat": 11.76,
+        "lng": 79.7,
+        "minDischarge": 13
+      },
+      {
+        "id": "adyar-chennai",
+        "name": "Adyar, Chennai",
+        "lat": 13.01,
+        "lng": 80.24,
+        "minDischarge": 10
+      }
+    ],
+    "_note": "Coordinates snapped onto GloFAS river cells with the calibrate-rivers task (2026-10-23). Amaravathi and Mullaperiyar keep their original cells: the strongest nearby cell belonged to a different river."
+  },
+  "heat": {
+    "points": [
+      {
+        "id": "chennai",
+        "name": "Chennai",
+        "lat": 13.08,
+        "lng": 80.27,
+        "region": "coastal"
+      },
+      {
+        "id": "vellore",
+        "name": "Vellore",
+        "lat": 12.92,
+        "lng": 79.13,
+        "region": "plains"
+      },
+      {
+        "id": "tiruvannamalai",
+        "name": "Tiruvannamalai",
+        "lat": 12.23,
+        "lng": 79.07,
+        "region": "plains"
+      },
+      {
+        "id": "cuddalore",
+        "name": "Cuddalore",
+        "lat": 11.75,
+        "lng": 79.75,
+        "region": "coastal"
+      },
+      {
+        "id": "puducherry",
+        "name": "Puducherry",
+        "lat": 11.94,
+        "lng": 79.81,
+        "region": "coastal"
+      },
+      {
+        "id": "salem",
+        "name": "Salem",
+        "lat": 11.66,
+        "lng": 78.15,
+        "region": "plains"
+      },
+      {
+        "id": "dharmapuri",
+        "name": "Dharmapuri",
+        "lat": 12.13,
+        "lng": 78.16,
+        "region": "plains"
+      },
+      {
+        "id": "erode",
+        "name": "Erode",
+        "lat": 11.34,
+        "lng": 77.72,
+        "region": "plains"
+      },
+      {
+        "id": "coimbatore",
+        "name": "Coimbatore",
+        "lat": 11.02,
+        "lng": 76.96,
+        "region": "plains"
+      },
+      {
+        "id": "tiruchirappalli",
+        "name": "Tiruchirappalli",
+        "lat": 10.79,
+        "lng": 78.7,
+        "region": "plains"
+      },
+      {
+        "id": "karur",
+        "name": "Karur",
+        "lat": 10.96,
+        "lng": 78.08,
+        "region": "plains"
+      },
+      {
+        "id": "thanjavur",
+        "name": "Thanjavur",
+        "lat": 10.79,
+        "lng": 79.14,
+        "region": "plains"
+      },
+      {
+        "id": "nagapattinam",
+        "name": "Nagapattinam",
+        "lat": 10.77,
+        "lng": 79.84,
+        "region": "coastal"
+      },
+      {
+        "id": "madurai",
+        "name": "Madurai",
+        "lat": 9.93,
+        "lng": 78.12,
+        "region": "plains"
+      },
+      {
+        "id": "ramanathapuram",
+        "name": "Ramanathapuram",
+        "lat": 9.37,
+        "lng": 78.83,
+        "region": "coastal"
+      },
+      {
+        "id": "thoothukudi",
+        "name": "Thoothukudi",
+        "lat": 8.76,
+        "lng": 78.13,
+        "region": "coastal"
+      },
+      {
+        "id": "tirunelveli",
+        "name": "Tirunelveli",
+        "lat": 8.71,
+        "lng": 77.76,
+        "region": "plains"
+      },
+      {
+        "id": "kanniyakumari",
+        "name": "Kanniyakumari",
+        "lat": 8.18,
+        "lng": 77.41,
+        "region": "coastal"
+      },
+      {
+        "id": "nilgiris",
+        "name": "Nilgiris",
+        "lat": 11.41,
+        "lng": 76.7,
+        "region": "hilly"
+      },
+      {
+        "id": "kodaikanal",
+        "name": "Kodaikanal",
+        "lat": 10.23,
+        "lng": 77.49,
+        "region": "hilly"
+      }
+    ],
+    "_note": "20 stations spread across Tamil Nadu; regions follow IMD heat-wave criteria (plains 40 C, coastal 37 C, hilly 30 C)."
+  },
+  "gdacs": {
+    "minLevel": "Orange"
+  },
+  "usgs": {
+    "minMagnitude": 4.5,
+    "zones": [
+      "z-tn"
+    ]
+  },
+  "notify": {
+    "minSeverity": "medium",
+    "dedupeDays": 3
+  }
+}

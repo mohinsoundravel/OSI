@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['**.md', 'docs/**']
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      # Checkout without third-party actions: a shallow clone using the job token.
+      - name: Check out repository
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          auth=$(printf 'x-access-token:%s' "$TOKEN" | base64 -w0)
+          git -c http.extraheader="AUTHORIZATION: basic $auth" \
+            clone --depth 1 --no-tags --branch "${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}" \
+            "https://github.com/${GITHUB_REPOSITORY}.git" .
+
+      - name: Node version
+        run: node --version
+
+      - name: Syntax and config checks
+        run: npm run --silent check
+
+      - name: Unit and end-to-end tests
+        run: npm test

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>SACHET - CAP alerts (India)</title>
+    <item>
+      <title>Heat Wave Warning - Madurai</title>
+      <link>https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1001</link>
+      <guid>1001</guid>
+      <pubDate>Fri, 23 Oct 2026 03:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title><![CDATA[Vaigai Dam surplus water release & flood alert]]></title>
+      <link>https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1002</link>
+      <guid>1002</guid>
+      <pubDate>Fri, 23 Oct 2026 04:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>System test</title>
+      <link>https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1003</link>
+      <guid>1003</guid>
+    </item>
+    <item>
+      <title>Crafted document</title>
+      <link>https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1004</link>
+      <guid>1004</guid>
+    </item>
+    <item>
+      <title>Off-allowlist link</title>
+      <link>https://evil.example.com/cap.xml</link>
+      <guid>1005</guid>
+    </item>
+    <item>
+      <title>Item 1006</title>
+      <link>https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1006</link>
+      <guid>1006</guid>
+    </item>
+    <item>
+      <title>Item 1007</title>
+      <link>https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1007</link>
+      <guid>1007</guid>
+    </item>
+    <item>
+      <title>Item 1008</title>
+      <link>https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1008</link>
+      <guid>1008</guid>
+    </item>
+    <item>
+      <title>Item 1009</title>
+      <link>https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1009</link>
+      <guid>1009</guid>
+    </item>
+  </channel>
+</rss>
