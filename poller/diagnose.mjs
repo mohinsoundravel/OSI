@@ -5,6 +5,7 @@
  * developer machine or sandbox may not). Read-only: writes nothing, sends nothing.
  */
 import { readFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { parseArgs } from 'node:util';
 import { parseRss } from './sources/sachet.mjs';
 
@@ -53,6 +54,31 @@ async function probe(label, url) {
       await probe('RainViewer tile z4 India 256', `${j.host}${last.path}/256/4/11/7/2/1_1.png`);
       await probe('RainViewer tile z7 Chennai 256', `${j.host}${last.path}/256/7/92/60/2/1_1.png`);
       await probe('RainViewer tile z8 (expect refusal)', `${j.host}${last.path}/256/8/185/121/2/1_1.png`);
+    }
+  }
+  const pngInfo = (r) => {
+    if (!r || !r.buf || r.buf.length < 33 || r.buf.toString('ascii', 1, 4) !== 'PNG') return 'not png';
+    const colorType = r.buf[25];
+    const trns = r.buf.includes(Buffer.from('tRNS'));
+    return `png ${r.buf.readUInt32BE(16)}x${r.buf.readUInt32BE(20)} colorType ${colorType}${trns ? ' +tRNS' : ''} sha ${createHash('sha1').update(r.buf).digest('hex').slice(0, 10)}`;
+  };
+  const floorTo = (ms, stepMin) => new Date(Math.floor(ms / (stepMin * 60000)) * stepMin * 60000).toISOString().replace('.000Z', 'Z');
+  if (rv && rv.res.ok) {
+    const j = JSON.parse(rv.buf.toString('utf8'));
+    console.log(`RainViewer nowcast=${(j.radar?.nowcast || []).length} satellite=${JSON.stringify(j.satellite || {}).slice(0, 160)}`);
+    const last = (j.radar?.past || []).slice(-1)[0];
+    for (const [z, x, y] of [[4, 11, 7], [7, 92, 60], [8, 185, 121]]) console.log(`RainViewer z${z}: ${pngInfo(await probe(`rv z${z}`, `${j.host}${last.path}/256/${z}/${x}/${y}/2/1_1.png`))}`);
+  }
+  for (const lagMin of [40, 90]) {
+    const t = floorTo(Date.now() - lagMin * 60000, 10);
+    for (const [z, x, y] of [[5, 22, 15], [6, 45, 30], [6, 47, 29]]) {
+      console.log(`Himawari IR ${t} z${z}/${x}/${y}: ${pngInfo(await probe('him', `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/Himawari_AHI_Band13_Clean_Infrared/default/${t}/GoogleMapsCompatible_Level6/${z}/${y}/${x}.png`))}`);
+    }
+  }
+  for (const lagMin of [330, 390]) {
+    const t = floorTo(Date.now() - lagMin * 60000, 30);
+    for (const [z, x, y] of [[2, 2, 1], [5, 22, 15]]) {
+      console.log(`IMERG ${t} z${z}/${x}/${y}: ${pngInfo(await probe('imerg', `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/IMERG_Precipitation_Rate_30min/default/${t}/GoogleMapsCompatible_Level6/${z}/${y}/${x}.png`))}`);
     }
   }
   const day = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
