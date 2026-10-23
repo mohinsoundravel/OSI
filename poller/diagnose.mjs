@@ -41,6 +41,13 @@ for (const feed of config.sachet?.feeds || []) {
   if (tn) await sample(`SACHET CAP (Tamil Nadu candidate): ${tn.title}`, tn.link);
 }
 
+await sample('OpenSky (India bounding box)', 'https://opensky-network.org/api/states/all?lamin=5&lomin=65&lamax=37&lomax=98');
+const world = await sample('OpenSky (global)', 'https://opensky-network.org/api/states/all');
+if (world) {
+  try {
+    console.log(`OpenSky global states: ${JSON.parse(world).states?.length ?? 'n/a'}, bytes: ${world.length}`);
+  } catch { console.log('OpenSky global: not JSON'); }
+}
 await sample('GDACS SEARCH', 'https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;DR;WF&pageSize=100');
 
 const p = config.flood?.points?.[0];
