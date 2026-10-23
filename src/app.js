@@ -1206,7 +1206,145 @@
     satellite: { label: 'Satellite', base: 'esriImagery', overlays: [], credit: ESRI_CREDIT },
     dark: { label: 'Dark', base: 'esriDarkBase', overlays: ['esriDarkLabels'], credit: 'Powered by Esri \u00b7 Esri, HERE, Garmin, \u00a9 OpenStreetMap contributors' }
   };
-  const STYLE_ORDER = ['hybrid', 'satellite', 'dark'];
+  MAP_STYLES.today = {
+    label: 'NASA today', overlays: ['esriPlaces'],
+    dynamicBase: () => viirsSource(),
+    credit: () => `NASA GIBS \u00b7 VIIRS true colour ${viirsDate()} \u00b7 labels Esri`
+  };
+  const STYLE_ORDER = ['hybrid', 'satellite', 'today', 'dark'];
+
+  /** Registers a tile source created at runtime (dated or time-stepped imagery). */
+  function defineSource(id, def) {
+    if (!TILE_SOURCES[id]) TILE_SOURCES[id] = def;
+    return id;
+  }
+
+  /* NASA VIIRS (Suomi NPP) daily true colour, 375 m. Over India the afternoon pass is
+     published around 11:00 UTC, so before 12:00 UTC the previous day is shown. */
+  function viirsDate() {
+    const d = new Date();
+    if (d.getUTCHours() < 12) d.setUTCDate(d.getUTCDate() - 1);
+    return d.toISOString().slice(0, 10);
+  }
+  function viirsSource() {
+    const date = viirsDate();
+    return defineSource(`viirs:${date}`, {
+      url: (z, x, y) => `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_SNPP_CorrectedReflectance_TrueColor/default/${date}/GoogleMapsCompatible_Level9/${z}/${y}/${x}.jpg`,
+      minZ: 0, maxZ: 9
+    });
+  }
+  function styleBase() {
+    const st = MAP_STYLES[tileState.style];
+    return st.dynamicBase ? st.dynamicBase() : st.base;
+  }
+
+  /* ----- Weather overlay: radar, satellite rain estimate, infrared clouds -----
+     Verified from a GitHub runner (diagnose task): all three send CORS headers.
+     RainViewer's free tier is radar only, zoom 7 at most (zoom 8 returns a
+     "Zoom Level Not Supported" image) and 100 requests per minute per IP; it
+     includes the IMD radars at Chennai, Karaikal, Kochi and Thiruvananthapuram.
+     IMERG lags about 5 hours; Himawari about 20-30 minutes. Himawari tiles are
+     opaque enhanced-infrared images, so the shader keeps only cloud pixels. */
+  const WEATHER_ORDER = ['off', 'radar', 'rain', 'clouds'];
+  const WX = {
+    radar: { label: 'Radar', maxZ: 7, cloudMode: 0, opacity: 0.85, perMin: 80, credit: 'Radar: RainViewer' },
+    rain: { label: 'Rain', maxZ: 6, cloudMode: 0, opacity: 0.9, perMin: 240, credit: 'Rain: NASA GPM IMERG (about 5 h behind)' },
+    clouds: { label: 'Clouds', maxZ: 6, cloudMode: 1, opacity: 0.9, perMin: 240, credit: 'Clouds: JMA Himawari-9 infrared via NASA GIBS' }
+  };
+  const weather = { mode: WX[store.get('weather', 'off')] ? store.get('weather', 'off') : 'off', src: null, prev: null, frameMs: 0, error: null };
+  const floorMinutes = (ms, step) => Math.floor(ms / (step * 60000)) * step * 60000;
+  const gibsTime = (ms) => new Date(ms).toISOString().replace('.000Z', 'Z');
+
+  async function refreshWeather() {
+    const m = weather.mode;
+    if (m === 'off') return;
+    let id;
+    let url;
+    let frameMs;
+    if (m === 'radar') {
+      const j = await getJson('https://api.rainviewer.com/public/weather-maps.json');
+      const last = (j.radar && Array.isArray(j.radar.past) ? j.radar.past : []).slice(-1)[0];
+      if (!last || !/^https:\/\/[a-z0-9.-]+\.rainviewer\.com$/.test(j.host) || !/^\/[A-Za-z0-9/_-]+$/.test(last.path)) throw new Error('unexpected radar index');
+      const base = `${j.host}${last.path}`;
+      id = `wx:radar:${last.path}`;
+      url = (z, x, y) => `${base}/512/${z}/${x}/${y}/2/1_1.png`;
+      frameMs = Number(last.time) * 1000;
+    } else {
+      const layer = m === 'rain' ? 'IMERG_Precipitation_Rate_30min' : 'Himawari_AHI_Band13_Clean_Infrared';
+      frameMs = m === 'rain' ? floorMinutes(Date.now() - 330 * 60000, 30) : floorMinutes(Date.now() - 40 * 60000, 10);
+      const t = gibsTime(frameMs);
+      id = `wx:${m}:${t}`;
+      url = (z, x, y) => `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/${layer}/default/${t}/GoogleMapsCompatible_Level6/${z}/${y}/${x}.png`;
+    }
+    if (weather.mode !== m) return;
+    defineSource(id, { url, minZ: 0, maxZ: WX[m].maxZ, perMin: WX[m].perMin });
+    if (id !== weather.src) {
+      weather.prev = weather.src && weather.src.startsWith(`wx:${m}:`) ? weather.src : null;
+      weather.src = id;
+      dropWeatherTextures();
+    }
+    weather.frameMs = frameMs;
+    weather.error = null;
+    renderMapControls();
+  }
+
+  /** Frees textures of weather frames that are neither current nor the fallback. */
+  function dropWeatherTextures() {
+    for (const [key, e] of texCache) {
+      if (!e.src.startsWith('wx:') || e.src === weather.src || e.src === weather.prev) continue;
+      if (e.ctrl) e.ctrl.abort();
+      if (e.tex) {
+        e.tex.dispose();
+        if (e.tex.image && typeof e.tex.image.close === 'function') e.tex.image.close();
+      }
+      texCache.delete(key);
+    }
+    for (const id of Object.keys(TILE_SOURCES)) if (id.startsWith('wx:') && id !== weather.src && id !== weather.prev) delete TILE_SOURCES[id];
+  }
+
+  function setWeather(mode) {
+    weather.mode = mode;
+    weather.src = null;
+    weather.prev = null;
+    weather.error = null;
+    store.set('weather', mode);
+    dropWeatherTextures();
+    renderMapControls();
+    refreshWeather().catch((err) => {
+      weather.error = err.message;
+      renderMapControls();
+      toast({ severity: 'medium', title: `${WX[mode] ? WX[mode].label : 'Weather'} layer unavailable (${err.message}).` });
+    });
+  }
+  setInterval(() => {
+    if (weather.mode !== 'off' && !document.hidden) refreshWeather().catch((err) => { weather.error = err.message; });
+  }, 5 * 60000);
+
+  /* Per-source request budget (token bucket), so a quick zoom cannot exceed a provider's rate limit. */
+  const rateBuckets = new Map();
+  function takeToken(src) {
+    const def = TILE_SOURCES[src];
+    if (!def || !def.perMin) return true;
+    const key = src.split(':').slice(0, 2).join(':');
+    const now = performance.now();
+    let b = rateBuckets.get(key);
+    if (!b) {
+      b = { tokens: def.perMin / 2, at: now };
+      rateBuckets.set(key, b);
+    }
+    b.tokens = Math.min(def.perMin / 2, b.tokens + ((now - b.at) / 60000) * def.perMin);
+    b.at = now;
+    if (b.tokens < 1) return false;
+    b.tokens -= 1;
+    return true;
+  }
+
+  /** The tile's ancestor at level z (or the root tile when z is above the root level). */
+  function ancestorAt(t, z) {
+    let a = t;
+    while (a.z > z && a.parent) a = a.parent;
+    return a;
+  }
 
   const TILE_ROOT_Z = 2;
   const SPLIT_PX = 256;
@@ -1248,6 +1386,11 @@
     uniform sampler2D uO2;
     uniform vec4 uRectO2;
     uniform float uO2On;
+    uniform sampler2D uW;
+    uniform vec4 uRectW;
+    uniform float uWOn;
+    uniform float uWCloud;
+    uniform float uWOpacity;
     uniform vec3 uSun;
     uniform float uNight;
     varying vec2 vUv;
@@ -1259,6 +1402,19 @@
       if (uO2On > 0.5) { vec4 o = texture2D(uO2, uRectO2.xy + vUv * uRectO2.zw); c = mix(c, o.rgb, o.a); }
       float night = smoothstep(0.06, -0.14, dot(normalize(vN), uSun)) * uNight;
       c = mix(c, c * vec3(0.3, 0.34, 0.46), night);
+      /* Weather goes on after night shading so radar and rain stay readable at night. */
+      if (uWOn > 0.5) {
+        vec4 w = texture2D(uW, uRectW.xy + vUv * uRectW.zw);
+        float a = w.a;
+        if (uWCloud > 0.5) {
+          /* Enhanced infrared: grey = warm surface or low cloud, colour = cold cloud tops. */
+          float hi = max(max(w.r, w.g), w.b);
+          float lo = min(min(w.r, w.g), w.b);
+          float lum = dot(w.rgb, vec3(0.299, 0.587, 0.114));
+          a *= max(smoothstep(0.12, 0.35, hi - lo), smoothstep(0.5, 0.85, lum) * 0.85);
+        }
+        c = mix(c, w.rgb, a * uWOpacity);
+      }
       gl_FragColor = vec4(c, 1.0);
     }`;
 
@@ -1272,6 +1428,7 @@
         uB: { value: BLANK_TEX }, uRectB: rect(), uMix: { value: 0 },
         uO1: { value: BLANK_TEX }, uRectO1: rect(), uO1On: { value: 0 },
         uO2: { value: BLANK_TEX }, uRectO2: rect(), uO2On: { value: 0 },
+        uW: { value: BLANK_TEX }, uRectW: rect(), uWOn: { value: 0 }, uWCloud: { value: 0 }, uWOpacity: { value: 0.85 },
         uSun: SUN,
         uNight: NIGHT_STRENGTH
       },
@@ -1452,7 +1609,7 @@
       e.tex = tex;
       e.status = 'ready';
       e.readyAt = performance.now();
-      if (e.src === MAP_STYLES[tileState.style].base) tileState.ok++;
+      if (e.src === styleBase()) tileState.ok++;
     } catch (err) {
       if (err.name === 'AbortError') {
         e.status = 'idle';
@@ -1460,7 +1617,7 @@
         e.fails++;
         e.status = err.permanent || e.fails >= 3 ? 'failed' : 'idle';
         e.retryAt = performance.now() + 2500 * e.fails;
-        if (e.src === MAP_STYLES[tileState.style].base) tileState.failed++;
+        if (e.src === styleBase()) tileState.failed++;
       }
     } finally {
       e.ctrl = null;
@@ -1477,6 +1634,7 @@
     const queue = wanted.filter((e) => e.status === 'idle' && e.retryAt <= now).sort((a, b) => a.prio - b.prio);
     for (const e of queue) {
       if (loading.size >= maxLoads) break;
+      if (!takeToken(e.src)) continue;
       loadTileTexture(e);
     }
   }
@@ -1554,15 +1712,16 @@
 
   function bindTile(t, now) {
     const style = MAP_STYLES[tileState.style];
+    const baseSrc = styleBase();
     const frame = tileState.frame;
     const dist = camLocal.distanceTo(t.center);
     const rank = dist / (dist + view.camDist);
-    const own = texEntry(style.base, t);
-    if (t.z <= TILE_SOURCES[style.base].maxZ) want(own, t.z + rank);
-    const best = readyTexFor(style.base, t);
-    if (own.status !== 'ready' && t.parent && t.parent.z >= TILE_SOURCES[style.base].minZ) {
+    const own = texEntry(baseSrc, t);
+    if (t.z <= TILE_SOURCES[baseSrc].maxZ) want(own, t.z + rank);
+    const best = readyTexFor(baseSrc, t);
+    if (own.status !== 'ready' && t.parent && t.parent.z >= TILE_SOURCES[baseSrc].minZ) {
       /* Fetch the parent too: one image covers four tiles, so detail arrives progressively. */
-      want(texEntry(style.base, t.parent), t.z - 1 + rank);
+      want(texEntry(baseSrc, t.parent), t.z - 1 + rank);
     }
     if (!best) {
       if (t.mesh) t.mesh.visible = false;
@@ -1593,7 +1752,8 @@
       if (!src) return;
       const def = TILE_SOURCES[src];
       if (t.z < def.minZ) return;
-      if (t.z <= def.maxZ) want(texEntry(src, t), t.z + 0.5 + rank);
+      const target = ancestorAt(t, Math.min(t.z, def.maxZ));
+      if (t.z - target.z <= OVERLAY_MAX_OVERZOOM) want(texEntry(src, target), target.z + 0.5 + rank);
       const ov = readyTexFor(src, t, OVERLAY_MAX_OVERZOOM);
       if (!ov) return;
       ov.used = frame;
@@ -1601,6 +1761,24 @@
       cropRect(t, ov, u[rk].value);
       u[on].value = 1;
     });
+
+    u.uWOn.value = 0;
+    const wdef = weather.mode !== 'off' && weather.src ? TILE_SOURCES[weather.src] : null;
+    if (wdef) {
+      /* One level coarser than the imagery: weather data is coarse (radar uses 512 px tiles),
+         and it cuts requests fourfold, which matters under RainViewer's rate limit. */
+      const target = ancestorAt(t, Math.max(0, Math.min(t.z - 1, wdef.maxZ)));
+      want(texEntry(weather.src, target), target.z + 0.7 + rank);
+      const w = readyTexFor(weather.src, t) || (weather.prev && TILE_SOURCES[weather.prev] ? readyTexFor(weather.prev, t) : null);
+      if (w) {
+        w.used = frame;
+        u.uW.value = w.tex;
+        cropRect(t, w, u.uRectW.value);
+        u.uWOn.value = 1;
+        u.uWCloud.value = WX[weather.mode].cloudMode;
+        u.uWOpacity.value = WX[weather.mode].opacity;
+      }
+    }
     t.mesh.visible = true;
   }
 
@@ -1619,7 +1797,7 @@
     view.horizon = Math.acos(Math.min(1, RADIUS / view.camDist));
     view.pxPerUnit = window.innerHeight / 2 / Math.tan((camera.fov * DEG) / 2);
 
-    const maxZ = TILE_SOURCES[MAP_STYLES[tileState.style].base].maxZ;
+    const maxZ = TILE_SOURCES[styleBase()].maxZ;
     const next = [];
     for (const r of tileRoots) selectTiles(r, next, maxZ);
     const keep = new Set(next);
@@ -1669,9 +1847,22 @@
   function renderMapControls() {
     const btn = $('mapStyleBtn');
     if (!btn) return;
-    btn.textContent = tileState.enabled ? MAP_STYLES[tileState.style].label : 'Offline';
+    const st = MAP_STYLES[tileState.style];
+    btn.textContent = tileState.enabled ? st.label : 'Offline';
     btn.setAttribute('aria-label', `Map style: ${btn.textContent}. Tap to change.`);
-    $('mapCredit').textContent = tileState.enabled ? MAP_STYLES[tileState.style].credit : 'Natural Earth (offline outlines)';
+    const credits = [tileState.enabled ? (typeof st.credit === 'function' ? st.credit() : st.credit) : 'Natural Earth (offline outlines)'];
+    const wbtn = $('weatherBtn');
+    if (weather.mode === 'off') {
+      wbtn.textContent = 'Weather';
+      wbtn.classList.remove('on');
+    } else {
+      const at = weather.frameMs ? new Date(weather.frameMs).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false }) : '\u2026';
+      wbtn.textContent = weather.error ? `${WX[weather.mode].label} \u00b7 error` : `${WX[weather.mode].label} ${at}`;
+      wbtn.classList.add('on');
+      credits.push(WX[weather.mode].credit);
+    }
+    wbtn.setAttribute('aria-label', `Weather layer: ${wbtn.textContent}. Tap to change.`);
+    $('mapCredit').textContent = credits.join(' \u00b7 ');
   }
 
   let lastReadout = 0;
@@ -1689,6 +1880,10 @@
   $('mapStyleBtn').addEventListener('click', () => {
     const i = STYLE_ORDER.indexOf(tileState.style);
     setMapStyle(STYLE_ORDER[(i + 1) % STYLE_ORDER.length]);
+  });
+  $('weatherBtn').addEventListener('click', () => {
+    const i = WEATHER_ORDER.indexOf(weather.mode);
+    setWeather(WEATHER_ORDER[(i + 1) % WEATHER_ORDER.length]);
   });
   $('zoomInBtn').addEventListener('click', () => { touch(); zoomBy(0.4); });
   $('zoomOutBtn').addEventListener('click', () => { touch(); zoomBy(2.5); });
@@ -3493,6 +3688,7 @@
   requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add('booted')));
 
   setTilesEnabled(true);
+  if (weather.mode !== 'off') setWeather(weather.mode);
   loadWorld().catch((err) => toast({ severity: 'medium', title: `Country outlines unavailable (${err.message}).` }));
   Object.keys(LAYERS).forEach((key, i) => setTimeout(() => runSource(key), 300 + i * 350));
 })();

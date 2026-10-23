@@ -220,6 +220,7 @@ input[type=checkbox]:disabled { opacity: 0.4; cursor: default; }
 .mc:active { transform: scale(0.94); }
 .mc-style, .mc-zoom { border: 1px solid var(--stroke); border-radius: 14px; background: var(--glass);
   -webkit-backdrop-filter: blur(20px) saturate(160%); backdrop-filter: blur(20px) saturate(160%); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); }
+.mc-style.on { background: rgba(100, 210, 180, 0.22); border-color: rgba(100, 210, 180, 0.45); }
 .mc-zoom { display: flex; flex-direction: column; overflow: hidden; }
 .mc-zoom .mc { font-size: 19px; font-weight: 500; width: 40px; padding: 0; }
 .mc-zoom .mc + .mc { border-top: 1px solid var(--stroke); }
