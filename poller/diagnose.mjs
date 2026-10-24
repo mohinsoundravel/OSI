@@ -117,7 +117,7 @@ await probe('TN reservoir page', 'https://tnagriculture.in/people_app/more/reser
       const def = pick(/<Default>([^<]+)</);
       for (const t of ['default', def]) {
         const r = await probe(`${id} time=${t}`, `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/${id}/default/${t}/GoogleMapsCompatible_Level6/2/1/2.png`);
-        if (r) console.log(`  ${id} time=${t}: sha ${createHash('sha1').update(r.buf).digest('hex').slice(0, 12)} | last-modified ${r.res.headers.get('last-modified')} | cache-control ${r.res.headers.get('cache-control')} | headers ${[...r.res.headers.keys()].join(',')}`);
+        if (r) console.log(`  ${id} time=${t}: sha ${createHash('sha1').update(r.buf).digest('hex').slice(0, 12)} | last-modified ${r.res.headers.get('last-modified')} | cache-control ${r.res.headers.get('cache-control')} | ${[...r.res.headers.entries()].filter(([k]) => /^layer-|expose/.test(k)).map(([k, v]) => `${k}=${v}`).join(' ; ')}`);
       }
       const hrefs = [...layer.matchAll(/xlink:href="([^"]*colormaps[^"]*\.xml)"/g)].map((m) => m[1]);
       console.log(`  colormap hrefs: ${hrefs.join(' ')}`);
