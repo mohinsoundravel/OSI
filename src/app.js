@@ -299,8 +299,11 @@
   }
 
   /** Converts the poller's latest.json into layer items. The file is treated as untrusted input. */
+  let lastBackend = null;
+
   function normalizeBackend(latest) {
     if (!latest || typeof latest !== 'object' || !Array.isArray(latest.active)) throw new Error('unexpected latest.json format');
+    lastBackend = latest;
     const polygonsById = new Map((latest.layers?.sachet || []).map((a) => [`sachet:${a.id}`, alertShapes(a)]));
     const placesById = new Map((latest.layers?.sachet || []).map((a) => [`sachet:${a.id}`,
       (Array.isArray(a.places) ? a.places : []).map((p) => str(p.name, 60)).filter(Boolean).slice(0, 40)]));
@@ -1421,7 +1424,14 @@
     rain: { label: 'Rain', maxZ: 6, cloudMode: 0, opacity: 0.9, perMin: 240, credit: 'Rain: NASA GPM IMERG (about 5 h behind)' },
     clouds: { label: 'Clouds', maxZ: 6, cloudMode: 1, opacity: 0.9, perMin: 240, credit: 'Clouds: JMA Himawari-9 infrared via NASA GIBS' }
   };
-  const weather = { mode: WX[store.get('weather', 'off')] ? store.get('weather', 'off') : 'off', src: null, prev: null, frameMs: 0, error: null };
+  const weather = {
+    mode: WX[store.get('weather', 'off')] ? store.get('weather', 'off') : 'off', src: null, prev: null, frameMs: 0, error: null,
+    /* Radar loop: the last hour of frames, played at regional detail (zoom 5 at most) so six
+       frames fit RainViewer's 100 requests/minute and a phone's texture memory. */
+    frames: [], anim: { playing: false, idx: 0, nextAt: 0, missing: 0 }
+  };
+  const ANIM_FRAMES = 6;
+  const ANIM_MAX_Z = 5;
   const floorMinutes = (ms, step) => Math.floor(ms / (step * 60000)) * step * 60000;
   const gibsTime = (ms) => new Date(ms).toISOString().replace('.000Z', 'Z');
 
@@ -1433,16 +1443,31 @@
     let frameMs;
     if (m === 'radar') {
       const j = await getJson('https://api.rainviewer.com/public/weather-maps.json');
-      const last = (j.radar && Array.isArray(j.radar.past) ? j.radar.past : []).slice(-1)[0];
-      if (!last || !/^https:\/\/[a-z0-9.-]+\.rainviewer\.com$/.test(j.host) || !/^\/[A-Za-z0-9/_-]+$/.test(last.path)) throw new Error('unexpected radar index');
-      const base = `${j.host}${last.path}`;
+      const past = (j.radar && Array.isArray(j.radar.past) ? j.radar.past : [])
+        .filter((f) => f && /^\/[A-Za-z0-9/_-]+$/.test(f.path) && Number.isFinite(Number(f.time)));
+      const last = past[past.length - 1];
+      if (!last || !/^https:\/\/[a-z0-9.-]+\.rainviewer\.com$/.test(j.host)) throw new Error('unexpected radar index');
+      const frameSource = (f) => defineSource(`wx:radar:${f.path}`, {
+        url: (z, x, y) => `${j.host}${f.path}/512/${z}/${x}/${y}/2/1_1.png`, minZ: 0, maxZ: WX.radar.maxZ, perMin: WX.radar.perMin
+      });
+      weather.frames = past.slice(-ANIM_FRAMES).map((f) => ({ id: frameSource(f), ms: Number(f.time) * 1000 }));
+      if (weather.anim.idx >= weather.frames.length) weather.anim.idx = weather.frames.length - 1;
       id = `wx:radar:${last.path}`;
-      url = (z, x, y) => `${base}/512/${z}/${x}/${y}/2/1_1.png`;
+      url = TILE_SOURCES[id].url;
       frameMs = Number(last.time) * 1000;
     } else {
+      /* Latency varies (IMERG 5-7 h, Himawari 20-60 min), so ask GIBS for its latest frame:
+         a "default" tile reports the real time in the CORS-exposed layer-time-actual header. */
       const layer = m === 'rain' ? 'IMERG_Precipitation_Rate_30min' : 'Himawari_AHI_Band13_Clean_Infrared';
-      frameMs = m === 'rain' ? floorMinutes(Date.now() - 330 * 60000, 30) : floorMinutes(Date.now() - 40 * 60000, 10);
-      const t = gibsTime(frameMs);
+      let t = null;
+      try {
+        const res = await fetchWithTimeout(`https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/${layer}/default/default/GoogleMapsCompatible_Level6/0/0/0.png`, 15000);
+        const actual = res.headers.get('layer-time-actual');
+        if (actual && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/.test(actual)) t = actual;
+        await res.arrayBuffer();
+      } catch { /* fall back to an estimate below */ }
+      if (!t) t = gibsTime(m === 'rain' ? floorMinutes(Date.now() - 420 * 60000, 30) : floorMinutes(Date.now() - 70 * 60000, 10));
+      frameMs = Date.parse(t);
       id = `wx:${m}:${t}`;
       url = (z, x, y) => `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/${layer}/default/${t}/GoogleMapsCompatible_Level6/${z}/${y}/${x}.png`;
     }
@@ -1460,8 +1485,9 @@
 
   /** Frees textures of weather frames that are neither current nor the fallback. */
   function dropWeatherTextures() {
+    const keep = new Set([weather.src, weather.prev, ...(weather.mode === 'radar' ? weather.frames.map((f) => f.id) : [])]);
     for (const [key, e] of texCache) {
-      if (!e.src.startsWith('wx:') || e.src === weather.src || e.src === weather.prev) continue;
+      if (!e.src.startsWith('wx:') || keep.has(e.src)) continue;
       if (e.ctrl) e.ctrl.abort();
       if (e.tex) {
         e.tex.dispose();
@@ -1469,13 +1495,15 @@
       }
       texCache.delete(key);
     }
-    for (const id of Object.keys(TILE_SOURCES)) if (id.startsWith('wx:') && id !== weather.src && id !== weather.prev) delete TILE_SOURCES[id];
+    for (const id of Object.keys(TILE_SOURCES)) if (id.startsWith('wx:') && !keep.has(id)) delete TILE_SOURCES[id];
   }
 
   function setWeather(mode) {
     weather.mode = mode;
     weather.src = null;
     weather.prev = null;
+    weather.frames = [];
+    weather.anim.playing = false;
     weather.error = null;
     store.set('weather', mode);
     dropWeatherTextures();
@@ -1489,6 +1517,37 @@
   setInterval(() => {
     if (weather.mode !== 'off' && !document.hidden) refreshWeather().catch((err) => { weather.error = err.message; });
   }, 5 * 60000);
+
+  /** Steps the radar loop once every frame of the visible area has loaded; holds the latest frame longer. */
+  function advanceRadarLoop(now) {
+    const a = weather.anim;
+    if (!a.playing || weather.mode !== 'radar' || !weather.frames.length) return;
+    const loading = a.missing > 0;
+    if (loading !== a.wasLoading) {
+      a.wasLoading = loading;
+      renderMapControls();
+    }
+    if (loading || now < a.nextAt) return;
+    a.idx = (a.idx + 1) % weather.frames.length;
+    a.nextAt = now + (a.idx === weather.frames.length - 1 ? 1600 : 700);
+    weather.frameMs = weather.frames[a.idx].ms;
+    renderMapControls();
+  }
+
+  function toggleRadarLoop() {
+    const a = weather.anim;
+    if (weather.mode !== 'radar' || !weather.frames.length) return;
+    a.playing = !a.playing;
+    a.wasLoading = undefined;
+    if (!a.playing) {
+      a.idx = weather.frames.length - 1;
+      weather.frameMs = weather.frames[a.idx].ms;
+    } else {
+      a.idx = weather.frames.length - 1;
+      a.nextAt = 0;
+    }
+    renderMapControls();
+  }
 
   /* Per-source request budget (token bucket), so a quick zoom cannot exceed a provider's rate limit. */
   const rateBuckets = new Map();
@@ -1933,6 +1992,31 @@
     });
 
     u.uWOn.value = 0;
+    const anim = weather.anim;
+    if (weather.mode === 'radar' && anim.playing && weather.frames.length) {
+      const level = Math.max(TILE_ROOT_Z, Math.min(t.z - 1, ANIM_MAX_Z));
+      const target = ancestorAt(t, level);
+      weather.frames.forEach((f, k) => {
+        const e = texEntry(f.id, target);
+        if (e.status !== 'ready') {
+          want(e, target.z + 0.8 + k * 0.01 + rank);
+          if (e.status !== 'failed') anim.missing++;
+        }
+      });
+      const cur = weather.frames[anim.idx];
+      const w = readyTexFor(cur.id, t) || readyTexFor(weather.frames[weather.frames.length - 1].id, t);
+      for (const f of weather.frames) { const e = texCache.get(`${f.id}|${target.key}`); if (e) e.used = frame; }
+      if (w) {
+        w.used = frame;
+        u.uW.value = w.tex;
+        cropRect(t, w, u.uRectW.value);
+        u.uWOn.value = 1;
+        u.uWCloud.value = 0;
+        u.uWOpacity.value = WX.radar.opacity;
+      }
+      t.mesh.visible = true;
+      return;
+    }
     const wdef = weather.mode !== 'off' && weather.src ? TILE_SOURCES[weather.src] : null;
     if (wdef) {
       /* One level coarser than the imagery: weather data is coarse (radar uses 512 px tiles),
@@ -1973,7 +2057,9 @@
     const keep = new Set(next);
     for (const t of shownTiles) if (!keep.has(t) && t.mesh) t.mesh.visible = false;
     shownTiles = next;
+    weather.anim.missing = 0;
     for (const t of next) bindTile(t, now);
+    advanceRadarLoop(now);
     pumpTileLoads();
     evictTiles();
 
@@ -2032,7 +2118,17 @@
       credits.push(WX[weather.mode].credit);
     }
     wbtn.setAttribute('aria-label', `Weather layer: ${wbtn.textContent}. Tap to change.`);
+    const pbtn = $('radarPlayBtn');
+    const showPlay = tileState.enabled && weather.mode === 'radar' && weather.frames.length > 1;
+    pbtn.hidden = !showPlay;
+    if (showPlay) {
+      const a = weather.anim;
+      pbtn.textContent = !a.playing ? 'Play last hour' : a.missing > 0 ? 'Loading loop\u2026' : 'Pause';
+      pbtn.classList.toggle('on', a.playing);
+      pbtn.setAttribute('aria-pressed', String(a.playing));
+    }
     $('mapCredit').textContent = credits.join(' \u00b7 ');
+    if ($('legend') && !$('legend').hidden) renderLegend();
   }
 
   let lastReadout = 0;
@@ -2050,6 +2146,48 @@
   $('mapStyleBtn').addEventListener('click', () => {
     const i = STYLE_ORDER.indexOf(tileState.style);
     setMapStyle(STYLE_ORDER[(i + 1) % STYLE_ORDER.length]);
+  });
+  $('radarPlayBtn').addEventListener('click', toggleRadarLoop);
+
+  /* ----- Legend: only for what is on screen ----- */
+  const LEGENDS = {
+    alerts: ['India alerts', [['#7c8594', 'Low'], [SEV_COLOR.medium, 'Medium'], [SEV_COLOR.high, 'High'], [SEV_COLOR.critical, 'Critical'], ['#4fa3d9', 'Dam (daily level)'], ['#3d8fb0', 'River point (model)'], ['#8c6a3e', 'Heat station (forecast)']]],
+    flights: ['Flights', [['#7fd8c0', 'Cruising'], ['#ffb454', 'Climbing or descending'], ['#5a6472', 'On the ground'], [SEV_COLOR.critical, 'Emergency squawk']]],
+    ships: ['Ships', [['#6fd08c', 'Cargo'], ['#ff7a6b', 'Tanker'], ['#5ac8fa', 'Passenger'], ['#f5b14c', 'Fishing'], ['#d7a6ff', 'Military or rescue'], ['#b8c2cc', 'Other or unknown'], [SEV_COLOR.high, 'Aground, not under command, AIS-SART']]],
+    quakes: ['Earthquakes (size = magnitude)', [['#7a3a36', 'Below M3'], ['#e2554a', 'M3 to M5'], ['#ff4d5e', 'M5 and above']]],
+    gdacs: ['GDACS', [[GDACS_COLOR.Green, 'Green'], [GDACS_COLOR.Orange, 'Orange'], [GDACS_COLOR.Red, 'Red']]],
+    satellites: ['Satellites', [['#ffffff', 'Above your horizon now'], ['#8aa9f7', 'Below the horizon']]]
+  };
+  /* RainViewer "Universal Blue" scheme (official colour table, dBZ). */
+  const RADAR_SCALE = [['#cec087', '10 dBZ', 'drizzle'], ['#00a3e0', '20', 'light'], ['#005588', '30', 'moderate'], ['#ffaa00', '40', 'heavy'], ['#c10000', '50', 'very heavy'], ['#ff77ff', '60+', 'hail or extreme']];
+  const GIBS_LEGEND = {
+    rain: ['https://gibs.earthdata.nasa.gov/legends/GPM_Precipitation_Rate_H.svg', 'Rain rate, NASA GPM IMERG'],
+    clouds: ['https://gibs.earthdata.nasa.gov/legends/Clean_Longwave_Infrared_Window_Band_H.svg', 'Cloud-top temperature, Himawari band 13 (only clouds are drawn)']
+  };
+
+  function renderLegend() {
+    const el = $('legend');
+    const sections = [];
+    if (weather.mode === 'radar') {
+      sections.push(`<div class="lg-title">Radar reflectivity (RainViewer)</div><div class="lg-scale">${RADAR_SCALE.map(([c, v, w]) =>
+        `<span><i style="background:${c}"></i><b>${v}</b>${esc(w)}</span>`).join('')}</div>`);
+    } else if (GIBS_LEGEND[weather.mode]) {
+      const [src, title] = GIBS_LEGEND[weather.mode];
+      sections.push(`<div class="lg-title">${esc(title)}</div><img class="lg-img" src="${src}" alt="${esc(title)} legend" referrerpolicy="no-referrer">`);
+    }
+    for (const [key, [title, items]] of Object.entries(LEGENDS)) {
+      if (!LAYERS[key] || !LAYERS[key].visible) continue;
+      sections.push(`<div class="lg-title">${esc(title)}</div><div class="lg-items">${items.map(([c, label]) =>
+        `<span><i style="background:${c}"></i>${esc(label)}</span>`).join('')}</div>`);
+    }
+    el.innerHTML = sections.join('') || '<div class="lg-title">Nothing to explain: every layer is off.</div>';
+  }
+  $('legendBtn').addEventListener('click', () => {
+    const el = $('legend');
+    const open = el.hidden;
+    if (open) renderLegend();
+    el.hidden = !open;
+    $('legendBtn').classList.toggle('on', open);
   });
   $('weatherBtn').addEventListener('click', () => {
     const i = WEATHER_ORDER.indexOf(weather.mode);
@@ -2800,7 +2938,15 @@
   }
 
   /* Keep tags out from under panels, the search bar and the chip row. */
+  let controlsRect = null;
+  let controlsRectAt = 0;
   function overPanels(x, y) {
+    const now = performance.now();
+    if (now - controlsRectAt > 1000) {
+      controlsRect = $('mapControls').getBoundingClientRect();
+      controlsRectAt = now;
+    }
+    if (controlsRect && x > controlsRect.left - 12 && y > controlsRect.top - 12 && y < controlsRect.bottom + 12) return true;
     if (isCompact()) {
       const sheetOpen = $('left').classList.contains('open') || $('right').classList.contains('open');
       return y < 70 || (sheetOpen && y > window.innerHeight * 0.4) || y > window.innerHeight - 130;
@@ -2839,8 +2985,18 @@
       const w = text.length * 6.1 + 26;
       /* Flip to the left of the icon near the right edge so tags never run off screen. */
       const rightLimit = isCompact() ? window.innerWidth - 8 : window.innerWidth - 352;
-      const flip = c.x + 14 + w > rightLimit;
+      const cr = controlsRect;
+      const hitsControls = (bx) => cr && bx + w > cr.left - 6 && c.y + 11 > cr.top - 6 && c.y - 11 < cr.bottom + 6;
+      let flip = c.x + 14 + w > rightLimit;
+      /* Labels flip left rather than run under the map buttons. */
+      if (!flip && hitsControls(c.x + 14)) flip = true;
       const box = { x: flip ? c.x - 14 - w : c.x + 14, y: c.y - 11, w, h: 22 };
+      if (c.pr < 900 && hitsControls(box.x)) continue;
+      /* No room on either side: keep alerts (clamped on screen), drop minor labels. */
+      if (box.x < 4) {
+        if (c.pr < 400) continue;
+        box.x = 4;
+      }
       if (c.pr < 900 && placed.some((b) => box.x < b.x + b.w + 4 && box.x + box.w + 4 > b.x && box.y < b.y + b.h + 2 && box.y + box.h + 2 > b.y)) continue;
       placed.push({ ...box, key: c.key, i: c.i, id: it.id, text, pr: c.pr, flip });
     }
@@ -2890,7 +3046,7 @@
       const color = t.key === 'alerts' && items[t.i].alertSeverity ? SEV_COLOR[items[t.i].alertSeverity] : LAYERS[t.key].color;
       el.style.setProperty('--c', color);
       el.classList.toggle('focus', t.pr >= 900);
-      const x = t.flip ? p.x - 14 - el.offsetWidth : p.x + 14;
+      const x = Math.max(4, Math.min(window.innerWidth - 4 - el.offsetWidth, t.flip ? p.x - 14 - el.offsetWidth : p.x + 14));
       el.style.transform = `translate3d(${Math.round(x)}px, ${Math.round(p.y - 11)}px, 0)`;
       el.style.opacity = '1';
     });
@@ -3385,6 +3541,7 @@
     const key = e.target.dataset.layer;
     if (!key) return;
     setLayerVisible(key, e.target.checked);
+    leaveView();
   });
 
   /* ===================== UI: rules ===================== */
@@ -3650,12 +3807,16 @@
   const CHIP_LABEL = { flights: 'Flights', quakes: 'Quakes', gdacs: 'GDACS', eonet: 'Events', satellites: 'Satellites', webcams: 'Cams', live: 'Live', ships: 'Ships', alerts: 'India' };
 
   function buildChips() {
-    $('chips').innerHTML = Object.keys(LAYERS).map((key) => `
+    $('chips').innerHTML = Object.entries(VIEWS).map(([k, v]) => `
+      <button class="chip view" type="button" data-view="${k}" aria-pressed="false">${esc(v.label)}</button>`).join('')
+      + '<span class="chip-sep" aria-hidden="true"></span>'
+      + Object.keys(LAYERS).map((key) => `
       <button class="chip${LAYERS[key].visible ? '' : ' off'}" type="button" data-chip="${key}" aria-pressed="${LAYERS[key].visible}">
         <span class="ic" style="--c:${LAYERS[key].color};--m:url(${ATLAS.urls[LAYER_ICON[key]]})"></span>${CHIP_LABEL[key]}<span class="n" data-n="${key}"></span>
       </button>`).join('');
   }
   function syncChips() {
+    if ($('legend') && !$('legend').hidden) renderLegend();
     for (const key of Object.keys(LAYERS)) {
       const chip = document.querySelector(`[data-chip="${key}"]`);
       if (!chip) continue;
@@ -3668,8 +3829,14 @@
     }
   }
   $('chips').addEventListener('click', (e) => {
+    const view = e.target.closest('[data-view]');
+    if (view) {
+      applyView(view.dataset.view);
+      return;
+    }
     const chip = e.target.closest('[data-chip]');
     if (!chip) return;
+    leaveView();
     const key = chip.dataset.chip;
     setLayerVisible(key, !LAYERS[key].visible);
     const box = document.querySelector(`[data-layer="${key}"]`);
@@ -3677,6 +3844,143 @@
     tagsDirty = true;
     syncChips();
   });
+
+  /* ----- Situation brief: what matters in Tamil Nadu right now, in a few tappable lines ----- */
+  const BRIEF_SOURCES = new Set(['alerts', 'gdacs', 'quakes', 'ships']);
+  const TN = { lat: 10.9, lng: 78.4 };
+  let briefDirty = true;
+  const briefTargets = [];
+  const fmtInt = (v) => Math.round(v).toLocaleString('en-IN');
+
+  function briefRows() {
+    const rows = [];
+    const add = (color, text, target, sub = '') => rows.push({ color, text, sub, target });
+    const alerts = (data.alerts || []).filter((it) => it.isAlert)
+      .sort((a, b) => (SEV_RANK_N[b.alertSeverity] || 0) - (SEV_RANK_N[a.alertSeverity] || 0));
+    if (!alerts.length) add('#30d158', 'No active official or derived alerts in your zones', null);
+    for (const a of alerts.slice(0, 3)) add(SEV_COLOR[a.alertSeverity], a.title, { key: 'alerts', id: a.id }, a.origin === 'official' ? 'Official' : 'Derived');
+    if (alerts.length > 3) add('#8b93a1', `${alerts.length - 3} more alert${alerts.length - 3 === 1 ? '' : 's'} in the feed`, null);
+
+    const res = lastBackend && lastBackend.layers && lastBackend.layers.reservoirs;
+    const dams = res && Array.isArray(res.items) ? res.items.filter((d) => Number.isFinite(d.lat)) : [];
+    const used = new Set();
+    const damRow = (d, text) => {
+      if (!d || used.has(d.id)) return;
+      used.add(d.id);
+      add('#4fa3d9', text, { key: 'alerts', id: `reservoir:${d.id}`, lat: d.lat, lng: d.lng }, `Dam \u00b7 as on ${str(res.date, 12)}`);
+    };
+    const nearFull = dams.filter((d) => Number.isFinite(d.levelFt) && d.fullFt - d.levelFt <= 5).sort((a, b) => (a.fullFt - a.levelFt) - (b.fullFt - b.levelFt))[0];
+    if (nearFull) damRow(nearFull, `${nearFull.name}: ${num(nearFull.fullFt - nearFull.levelFt, 1)} ft from full (${num(nearFull.levelFt, 1)} of ${num(nearFull.fullFt, 0)} ft)`);
+    const rising = dams.filter((d) => Number.isFinite(d.levelChangeFt) && d.levelChangeFt >= 1).sort((a, b) => b.levelChangeFt - a.levelChangeFt)[0];
+    if (rising) damRow(rising, `${rising.name}: +${num(rising.levelChangeFt, 1)} ft in a day, inflow ${fmtInt(rising.inflow || 0)} cusecs`);
+    const inflow = dams.filter((d) => Number.isFinite(d.inflow) && d.inflow >= 5000).sort((a, b) => b.inflow - a.inflow)[0];
+    if (inflow) damRow(inflow, `${inflow.name}: inflow ${fmtInt(inflow.inflow)} cusecs, outflow ${fmtInt(inflow.outflow || 0)}`);
+
+    const rivers = (lastBackend && lastBackend.layers && Array.isArray(lastBackend.layers.rivers) ? lastBackend.layers.rivers : [])
+      .filter((r) => Number.isFinite(r.peak) && Number.isFinite(r.baseline) && r.baseline > 0 && Number.isFinite(r.lat))
+      .map((r) => ({ ...r, ratio: r.peak / r.baseline })).sort((a, b) => b.ratio - a.ratio);
+    if (rivers[0] && rivers[0].ratio >= 1.5) {
+      const r = rivers[0];
+      add('#3d8fb0', `${str(r.name, 60)}: forecast ${num(r.ratio, 1)}x the weekly mean by ${str(r.peakDate, 12)}`, { lat: r.lat, lng: r.lng }, 'River model (GloFAS)');
+    }
+
+    const heat = lastBackend && lastBackend.layers && Array.isArray(lastBackend.layers.heat) ? lastBackend.layers.heat : [];
+    let hottest = null;
+    for (const h of heat) for (const d of (Array.isArray(h.days) ? h.days : []).slice(0, 3)) {
+      if (Number.isFinite(d.tmax) && (!hottest || d.tmax > hottest.tmax)) hottest = { ...d, name: h.name, lat: h.lat, lng: h.lng };
+    }
+    if (hottest && hottest.tmax >= 36) add('#ff9f0a', `Hottest forecast: ${str(hottest.name, 30)} ${num(hottest.tmax, 1)} C on ${str(hottest.date, 12)}`, { lat: hottest.lat, lng: hottest.lng }, 'Forecast');
+
+    for (const e of (data.gdacs || []).filter((g) => /TC|cyclone/i.test(g.type) && haversineKm(TN.lat, TN.lng, g.lat, g.lng) < 2500).slice(0, 2)) {
+      add(GDACS_COLOR[e.alertLevel] || '#f5a623', `Cyclone ${e.name} (${e.alertLevel}), ${fmtInt(haversineKm(TN.lat, TN.lng, e.lat, e.lng))} km from central TN`, { key: 'gdacs', id: e.id }, 'GDACS');
+    }
+    const quakes = (data.quakes || []).filter((q) => q.mag >= 4.5 && haversineKm(TN.lat, TN.lng, q.lat, q.lng) < 1500);
+    if (quakes.length) {
+      const q = quakes.sort((a, b) => b.mag - a.mag)[0];
+      add('#e2554a', `${quakes.length} quake${quakes.length === 1 ? '' : 's'} M4.5+ within 1,500 km; largest M${q.mag.toFixed(1)} ${str(q.place, 50)}`, { key: 'quakes', id: q.id }, 'USGS, last 24 h');
+    }
+    const distress = (data.ships || []).filter((sh) => [2, 6, 14].includes(sh.status) && haversineKm(TN.lat, TN.lng, sh.lat, sh.lng) < 800);
+    for (const sh of distress.slice(0, 2)) add(SEV_COLOR.high, `${sh.name || `MMSI ${sh.id}`}: ${AIS_STATUS[sh.status]}`, { key: 'ships', id: sh.id }, 'AIS');
+    return rows;
+  }
+
+  function renderBrief() {
+    const el = $('brief');
+    if (!el) return;
+    briefDirty = false;
+    const genMs = lastBackend ? Date.parse(lastBackend.generatedAt) : NaN;
+    const ageMs = Date.now() - genMs;
+    const age = DEMO ? 'demo data' : Number.isFinite(genMs) ? `updated ${relTime(genMs)}` : 'waiting for poller data';
+    const stale = !DEMO && (!Number.isFinite(genMs) || ageMs > BACKEND_STALE_MS);
+    const rows = briefRows();
+    briefTargets.length = 0;
+    el.innerHTML = `
+      <div class="brief-head"><span>Tamil Nadu now</span><span class="brief-age${stale ? ' stale' : ''}">${esc(age)}</span></div>
+      ${rows.map((r) => {
+        const i = r.target ? briefTargets.push(r.target) - 1 : -1;
+        return `<button class="brief-row" type="button"${i >= 0 ? ` data-brief="${i}"` : ' disabled'}>
+          <span class="dot" style="background:${esc(r.color)}"></span>
+          <span class="brief-text">${esc(r.text)}${r.sub ? `<small>${esc(r.sub)}</small>` : ''}</span>
+        </button>`;
+      }).join('')}`;
+  }
+
+  $('brief').addEventListener('click', (e) => {
+    const row = e.target.closest('[data-brief]');
+    if (!row) return;
+    const t = briefTargets[Number(row.dataset.brief)];
+    if (!t) return;
+    const it = t.key ? (data[t.key] || []).find((x) => x.id === t.id) : null;
+    if (it) {
+      flyTo(it.lat, it.lng, RADIUS + 6);
+      showItemDetail(t.key, it);
+    } else if (Number.isFinite(t.lat)) {
+      flyTo(t.lat, t.lng, RADIUS + 6);
+    }
+  });
+  setInterval(() => { if (briefDirty || document.visibilityState === 'visible') renderBrief(); }, 30000);
+  setInterval(() => { if (briefDirty) renderBrief(); }, 1500);
+
+  /* ----- One-tap views: layers, camera and weather in a single tap ----- */
+  const VIEWS = {
+    tn: { label: 'TN Watch', layers: ['alerts', 'quakes', 'gdacs', 'eonet', 'ships', 'webcams', 'live'], fly: [10.9, 78.4, RADIUS + 11], weather: 'radar' },
+    airsea: { label: 'Air & Sea', layers: ['flights', 'ships', 'satellites', 'alerts'], fly: [15, 80, RADIUS + 45], weather: null },
+    global: { label: 'Global', layers: Object.keys(LAYERS), fly: [18, 79, 330], weather: null }
+  };
+  let currentView = store.get('view', '');
+
+  function applyView(name) {
+    const v = VIEWS[name];
+    if (!v) return;
+    currentView = name;
+    store.set('view', name);
+    for (const key of Object.keys(LAYERS)) {
+      const on = v.layers.includes(key);
+      if (LAYERS[key].visible !== on) setLayerVisible(key, on);
+      const box = document.querySelector(`[data-layer="${key}"]`);
+      if (box) box.checked = on;
+    }
+    if (v.weather && weather.mode !== v.weather) setWeather(v.weather);
+    if (!v.weather && name === 'airsea' && weather.mode !== 'off') setWeather('off');
+    flyTo(v.fly[0], v.fly[1], v.fly[2]);
+    tagsDirty = true;
+    syncChips();
+    syncViews();
+  }
+  function syncViews() {
+    document.querySelectorAll('[data-view]').forEach((b) => {
+      const on = b.dataset.view === currentView;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', String(on));
+    });
+  }
+  /* Any manual layer change leaves the preset. */
+  function leaveView() {
+    if (!currentView) return;
+    currentView = '';
+    store.set('view', '');
+    syncViews();
+  }
 
   /* ----- Status pill ----- */
   function updateStatus() {
@@ -3829,6 +4133,7 @@
       data[key] = items;
       updateLayer(key);
       if (key === 'alerts') updateAlertPolygons(items);
+      if (BRIEF_SOURCES.has(key)) briefDirty = true;
       evaluate(key, items);
       schedule(key, interval);
     } catch (err) {
@@ -3898,6 +4203,8 @@
   renderSources();
   buildChips();
   syncChips();
+  syncViews();
+  renderBrief();
   const setSearchPlaceholder = () => { $('search').placeholder = isCompact() ? 'Search' : 'Search flight, satellite, district'; };
   setSearchPlaceholder();
   window.addEventListener('resize', setSearchPlaceholder);

@@ -34,6 +34,10 @@ Every alert is labelled **Official** or **Derived (not an official warning)** an
 
 ### Dashboard features
 
+- **Situation brief** at the top of the feed: "Tamil Nadu now", with the most severe alerts, dams near full or rising fast, big inflows, the strongest river-rise forecast, the hottest forecast, nearby cyclones and quakes, and ships in distress, plus the data's age. Tap a line to fly to it.
+- **One-tap views**: TN Watch (Tamil Nadu, alerts, dams, ships, radar), Air & Sea (flights, ships, satellites) and Global.
+- **Radar loop**: "Play last hour" animates six 10-minute RainViewer frames at regional detail (kept under the free rate limit).
+- **Legend** for whatever is on screen: RainViewer's official dBZ colours, NASA's own legend images for rain and clouds, ship, flight, quake, GDACS and alert colours.
 - **Google Earth-style imagery**: satellite tiles stream in sharper as you zoom, from the whole planet down to about 500 m eye altitude (street level, zoom 18). Three styles: **Hybrid** (imagery with roads, borders and place names), **Satellite** (imagery only) and **Dark** (Esri dark gray map). Double tap or double click zooms in on a spot; the bottom line shows eye altitude and coordinates. If imagery cannot be reached, the globe falls back to offline outlines.
 - **NASA today** style: yesterday's or today's real satellite photo of the whole planet (NASA VIIRS, 375 m), useful for seeing cyclones, smoke and flood extent.
 - **Weather overlay** (button under the style button): **Radar** (RainViewer, every 10 min; IMD radars at Chennai, Karaikal, Kochi, Thiruvananthapuram), **Rain** (NASA GPM IMERG satellite estimate, global, about 5 h behind) and **Clouds** (Himawari-9 infrared, about 30 min behind, only cloud pixels shown). The button shows the frame time.

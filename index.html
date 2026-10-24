@@ -31,11 +31,14 @@
 <div id="mapControls" class="map-controls" role="toolbar" aria-label="Map">
   <button class="mc mc-style" id="mapStyleBtn" type="button">Hybrid</button>
   <button class="mc mc-style" id="weatherBtn" type="button">Weather</button>
+  <button class="mc mc-style" id="radarPlayBtn" type="button" hidden>Play last hour</button>
+  <button class="mc mc-style" id="legendBtn" type="button" aria-controls="legend">Legend</button>
   <div class="mc-zoom">
     <button class="mc" id="zoomInBtn" type="button" aria-label="Zoom in">+</button>
     <button class="mc" id="zoomOutBtn" type="button" aria-label="Zoom out">&minus;</button>
   </div>
 </div>
+<div id="legend" class="legend" hidden></div>
 <div id="mapInfo" class="map-info"><span id="mapReadout" class="mono"></span><span id="mapCredit"></span></div>
 
 <button class="btn mobile-toggle" id="toggleLeft">Controls</button>
@@ -73,6 +76,7 @@
       <button class="btn" id="btnClear">Clear</button>
     </div>
   </header>
+  <div id="brief" class="brief" aria-live="polite"></div>
   <div class="filters">
     <select id="sevFilter">
       <option value="low">All</option>
