@@ -19,6 +19,7 @@ import { fetchGdacs, fetchUsgs } from './sources/hazards.mjs';
 import { fetchFlights, expandFlights, FLIGHT_FIELDS } from './sources/flights.mjs';
 import { fetchTle } from './sources/tle.mjs';
 import { fetchReservoirs, reservoirLayer } from './sources/reservoirs.mjs';
+import { listenShips, mergeShips, SHIP_FIELDS } from './sources/ships.mjs';
 import { evaluate, SEVERITY_RANK } from './rules.mjs';
 import { buildMessages, createNotifier, heartbeat } from './notify.mjs';
 
@@ -31,7 +32,7 @@ const BASE_HOSTS = [
 const DEGRADED_AFTER_FAILURES = 3;
 /* Auxiliary sources feed the dashboard but are not safety-critical: their failures
    never trigger degraded notices or count toward "every source failed". */
-const AUXILIARY = new Set(['flights', 'satellites']);
+const AUXILIARY = new Set(['flights', 'satellites', 'ships']);
 const MAX_EVENTS = 500;
 const MAX_RING_VERTICES = 160;
 /* Bump when the shape of persisted alerts changes. A mismatch re-parses SACHET and
@@ -138,6 +139,10 @@ export async function run(options = {}) {
     ...(config.flights?.enabled === false ? {} : {
       flights: () => fetchFlights({ http, lastFetchedAt: state.flightsFetchedAt ? Date.parse(state.flightsFetchedAt) : 0, now })
     }),
+    /* Ships need an AISStream key (GitHub secret); without one the source is simply absent. */
+    ...(config.ships?.enabled === false || !options.aisKey ? {} : {
+      ships: () => listenShips({ apiKey: options.aisKey, listenMs: options.shipsListenMs ?? config.ships?.listenMs ?? 45000, connect: options.shipsConnect, userAgent: config.userAgent })
+    }),
     ...(config.satellites?.enabled === false ? {} : {
       satellites: () => fetchTle({ http, lastFetchedAt: state.tleFetchedAt ? Date.parse(state.tleFetchedAt) : 0, now, log })
     })
@@ -210,6 +215,16 @@ export async function run(options = {}) {
     state.squawkSnapshot = expandFlights(data.flights).filter((f) => f.squawk && ['7500', '7600', '7700'].includes(f.squawk));
   }
   layerData.squawks = state.squawkSnapshot || [];
+
+  /* Ships: merge this run's AIS window with earlier ones and publish a compact snapshot. */
+  if (data.ships) {
+    const rows = mergeShips(state, data.ships, now);
+    await writeJsonAtomic(path.join(dataDir, 'ships.json'), {
+      schema: 1, fetchedAt: new Date(now).toISOString(), source: 'AISStream.io', heardThisRun: data.ships.positions.size,
+      messages: data.ships.messages, fields: SHIP_FIELDS, ships: rows
+    });
+    log(`ships: heard ${data.ships.positions.size} positions in ${data.ships.messages} messages; publishing ${rows.length}`);
+  }
 
   /* Satellites: republish CelesTrak TLEs for the dashboard (propagated in the browser). */
   if (data.satellites) {
@@ -333,7 +348,8 @@ if (isMain) {
     now: values.now,
     telegramToken: process.env.TELEGRAM_BOT_TOKEN,
     telegramChatId: process.env.TELEGRAM_CHAT_ID,
-    healthcheckUrl: process.env.HEALTHCHECK_URL
+    healthcheckUrl: process.env.HEALTHCHECK_URL,
+    aisKey: process.env.AISSTREAM_API_KEY || null
   }).then((r) => {
     process.exitCode = r.allFailed ? 1 : 0;
   }).catch(async (err) => {

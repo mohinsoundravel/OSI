@@ -168,6 +168,21 @@
         url: it.url
       })
     },
+    ships: {
+      label: 'Ships (AIS)', source: 'AISStream via poller', color: '#5ac8fa', size: 4, intervalMs: 5 * 60 * 1000, visible: true,
+      describe: (it) => ({
+        title: it.name || `MMSI ${it.id}`,
+        fields: [
+          ['Type', shipTypeLabel(it.type)], ['MMSI', it.id], ['Call sign', it.callsign || 'n/a'],
+          ['Speed', Number.isFinite(it.sog) ? `${it.sog.toFixed(1)} kn` : 'n/a'], ['Course', num(it.cog, 0, ' deg')],
+          ['Status', AIS_STATUS[it.status] || 'n/a'], ['Destination', it.destination || 'n/a'],
+          ['Length', Number.isFinite(it.lengthM) ? `${it.lengthM} m` : 'n/a'],
+          ['Last AIS report', it.reportedAt ? `${relTime(it.reportedAt)}${it.projected ? ' (position estimated since)' : ''}` : 'n/a'],
+          ['Position', pos(it)]
+        ],
+        url: `https://www.marinetraffic.com/en/ais/details/ships/mmsi:${encodeURIComponent(it.id)}`
+      })
+    },
     gdacs: {
       label: 'Disaster alerts', source: 'GDACS', color: '#f5a623', size: 7, intervalMs: 300000, visible: true,
       describe: (it) => ({
@@ -244,9 +259,7 @@
     }
   };
 
-  const UNAVAILABLE_SOURCES = [
-    { label: 'Ships (AIS)', why: 'AISStream blocks browser connections by design; needs a backend proxy holding the key.' }
-  ];
+  const UNAVAILABLE_SOURCES = [];
 
   /* Windy free tier: image URLs carry tokens that expire after ~10 min, so the layer refreshes every 9 min.
      Search radius per query is capped server-side; larger zones are clamped. */
@@ -419,6 +432,76 @@
     return items;
   }
 
+  /* ----- Ship snapshot (AIS via the poller), dead-reckoned like flights ----- */
+  const SHIP_STALE_MS = 50 * 60 * 1000;
+  const SHIP_MAX_PROJECTION_S = 30 * 60;
+  const AIS_STATUS = {
+    0: 'Under way (engine)', 1: 'At anchor', 2: 'Not under command', 3: 'Restricted manoeuvrability', 4: 'Constrained by draught',
+    5: 'Moored', 6: 'Aground', 7: 'Fishing', 8: 'Under way (sailing)', 14: 'AIS-SART (search and rescue)'
+  };
+  function shipTypeLabel(t) {
+    if (!Number.isFinite(t)) return 'Unknown';
+    if (t === 30) return 'Fishing';
+    if (t === 31 || t === 32 || t === 52) return 'Tug';
+    if (t === 35) return 'Military';
+    if (t === 36 || t === 37) return 'Sailing / pleasure';
+    if (t === 51) return 'Search and rescue';
+    if (t === 50 || t === 53 || t === 54 || t === 55 || t === 58) return 'Port / special craft';
+    if (t >= 60 && t <= 69) return 'Passenger';
+    if (t >= 70 && t <= 79) return 'Cargo';
+    if (t >= 80 && t <= 89) return 'Tanker';
+    if (t >= 40 && t <= 49) return 'High-speed craft';
+    return 'Other';
+  }
+  function shipColor(t, status) {
+    if (status === 6 || status === 2 || status === 14) return hexToRgb(SEV_COLOR.high);
+    if (t >= 80 && t <= 89) return hexToRgb('#ff7a6b');
+    if (t >= 70 && t <= 79) return hexToRgb('#6fd08c');
+    if (t >= 60 && t <= 69) return hexToRgb('#5ac8fa');
+    if (t === 30) return hexToRgb('#f5b14c');
+    if (t === 35 || t === 51) return hexToRgb('#d7a6ff');
+    return hexToRgb('#b8c2cc');
+  }
+  let shipSnapshot = null;
+
+  function parseShipSnapshot(snap) {
+    if (!snap || !Array.isArray(snap.fields) || !Array.isArray(snap.ships)) throw new Error('unexpected ships.json format');
+    const col = Object.fromEntries(snap.fields.map((f, i) => [f, i]));
+    for (const need of ['mmsi', 'lat', 'lng']) if (!(need in col)) throw new Error(`ships.json missing ${need}`);
+    const fin = (v) => (Number.isFinite(v) ? v : null);
+    const rows = [];
+    for (const row of snap.ships.slice(0, 20000)) {
+      if (!Array.isArray(row)) continue;
+      const lat = fin(row[col.lat]);
+      const lng = fin(row[col.lng]);
+      const mmsi = fin(row[col.mmsi]);
+      if (lat === null || lng === null || mmsi === null) continue;
+      rows.push({
+        id: String(Math.trunc(mmsi)), name: str(row[col.name], 40), lat0: lat, lng0: lng,
+        sog: fin(row[col.sog]), cog: fin(row[col.cog]), heading: fin(row[col.heading]), type: fin(row[col.type]),
+        status: fin(row[col.status]), t0: fin(row[col.time]) || Date.parse(snap.fetchedAt) / 1000,
+        destination: str(row[col.destination], 30), callsign: str(row[col.callsign], 12), lengthM: fin(row[col.lengthM])
+      });
+    }
+    return { fetchedAt: Date.parse(snap.fetchedAt) || Date.now(), rows };
+  }
+
+  function projectShips() {
+    if (!shipSnapshot) return [];
+    const nowS = Date.now() / 1000;
+    const items = shipSnapshot.rows.map((s) => {
+      const dt = Math.max(0, Math.min(SHIP_MAX_PROJECTION_S, nowS - s.t0));
+      const moving = Number.isFinite(s.sog) && s.sog > 0.5 && Number.isFinite(s.cog);
+      const p = moving ? destination(s.lat0, s.lng0, s.cog, s.sog * 1.852 * (dt / 3600)) : { lat: s.lat0, lng: s.lng0 };
+      return {
+        ...s, lat: p.lat, lng: p.lng, altKm: 0, reportedAt: s.t0 * 1000, projected: moving && dt > 60,
+        moving, color: shipColor(s.type, s.status)
+      };
+    });
+    if (Date.now() - shipSnapshot.fetchedAt > SHIP_STALE_MS) items.warning = `stale: ship snapshot ${relTime(shipSnapshot.fetchedAt)}`;
+    return items;
+  }
+
   /* ===================== Fetchers (normalize to {id, lat, lng, altKm, ...}) ===================== */
 
   function flightColor(squawk, onGround, verticalRate) {
@@ -518,6 +601,18 @@
           squawk: s[14] || null, altKm: s[7] !== null ? s[7] / 1000 : 0.3,
           color: flightColor(s[14], s[8], s[11])
         }));
+    },
+    async ships() {
+      const base = backendBase();
+      if (!base) throw new Error('no poller data URL set (Sources tab)');
+      let snap;
+      try {
+        snap = await getJson(`${base.replace(/\/+$/, '')}/ships.json`);
+      } catch {
+        throw new Error('no ship data yet: add the AISSTREAM_API_KEY secret');
+      }
+      shipSnapshot = parseShipSnapshot(snap);
+      return projectShips();
     },
     async quakes() {
       const data = await getJson('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson');
@@ -631,7 +726,7 @@
     };
   }
 
-  const DEMO_INTERVALS = { flights: 10000, quakes: 15000, gdacs: 20000, eonet: 25000, satellites: 3600000, webcams: 30000, live: 3600000, alerts: 20000 };
+  const DEMO_INTERVALS = { flights: 10000, quakes: 15000, gdacs: 20000, eonet: 25000, satellites: 3600000, webcams: 30000, live: 3600000, ships: 30000, alerts: 20000 };
   const demoPoll = {};
   const nextPoll = (key) => (demoPoll[key] = (demoPoll[key] || 0) + 1);
   const wrapLng = (lng) => ((((lng + 180) % 360) + 360) % 360) - 180;
@@ -764,6 +859,19 @@
     },
     async live() {
       return liveStreamItems();
+    },
+    async ships() {
+      /* Synthetic traffic on real lanes: Chennai, Ennore, Tuticorin, Kochi and the Palk Strait. */
+      const lanes = [
+        ['MV DEMO CHENNAI', 70, 13.1, 80.45, 95, 11], ['MT DEMO ENNORE', 80, 13.3, 80.5, 30, 9], ['MV DEMO TUTICORIN', 70, 8.7, 78.35, 150, 12],
+        ['MV DEMO KOCHI', 70, 9.9, 76.1, 300, 13], ['FV DEMO RAMESWARAM', 30, 9.35, 79.4, 60, 5], ['MV DEMO PALK', 60, 9.6, 79.9, 10, 0]
+      ];
+      const t = Date.now() / 1000;
+      shipSnapshot = { fetchedAt: Date.now(), rows: lanes.map(([name, type, lat, lng, cog, sog], i) => ({
+        id: String(419900100 + i), name: `${name} [DEMO]`, lat0: lat, lng0: lng, sog, cog, heading: cog, type,
+        status: sog ? 0 : 1, t0: t - 120, destination: 'DEMO', callsign: '', lengthM: 120 + i * 15
+      })) };
+      return projectShips();
     },
     async webcams() {
       nextPoll('webcams');
@@ -1981,9 +2089,9 @@
 
   const ICON = {
     dot: 0, plane: 1, satellite: 2, quake: 3, cyclone: 4, flood: 5, fire: 6, volcano: 7,
-    camera: 8, warning: 9, heat: 10, river: 11, drought: 12, dam: 13, storm: 14, event: 15
+    camera: 8, warning: 9, heat: 10, river: 11, drought: 12, dam: 13, storm: 14, event: 15, ship: 16
   };
-  const ATLAS_GRID = 4;
+  const ATLAS_GRID = 5;
   const ATLAS_CELL = 128;
 
   function drawIcon(ctx, name) {
@@ -1998,6 +2106,10 @@
     };
     switch (name) {
       case 'dot': circle(0, 0, 0.55); return 'fill';
+      case 'ship':
+        /* Hull seen from above, bow up (rotated to the ship's heading in the shader). */
+        P([[0, -0.95], [0.32, -0.55], [0.36, 0.75], [0.26, 0.92], [-0.26, 0.92], [-0.36, 0.75], [-0.32, -0.55]]);
+        return 'fill';
       case 'plane':
         P([[0, -0.95], [0.11, -0.78], [0.12, -0.3], [0.92, 0.12], [0.92, 0.3], [0.12, 0.1], [0.1, 0.6], [0.38, 0.8], [0.38, 0.93],
           [0, 0.82], [-0.38, 0.93], [-0.38, 0.8], [-0.1, 0.6], [-0.12, 0.1], [-0.92, 0.3], [-0.92, 0.12], [-0.12, -0.3], [-0.11, -0.78]]);
@@ -2190,9 +2302,9 @@
       vec2 t = vec2(c * q.x - s * q.y, s * q.x + c * q.y);
       vec2 local = vec2(t.x, -t.y) + 0.5;
       if (local.x < 0.0 || local.x > 1.0 || local.y < 0.0 || local.y > 1.0) discard;
-      float col = mod(vIcon, 4.0);
-      float row = floor(vIcon / 4.0 + 0.001);
-      vec4 tex = texture2D(uAtlas, (vec2(col, row) + local) / 4.0);
+      float col = mod(vIcon, ${ATLAS_GRID.toFixed(1)});
+      float row = floor(vIcon / ${ATLAS_GRID.toFixed(1)} + 0.001);
+      vec4 tex = texture2D(uAtlas, (vec2(col, row) + local) / ${ATLAS_GRID.toFixed(1)});
       if (tex.a < 0.06) discard;
       gl_FragColor = vec4(vColor * tex.rgb, tex.a * uOpacity);
     }`;
@@ -2216,7 +2328,7 @@
     });
   }
 
-  const LAYER_ICON = { flights: 'plane', quakes: 'quake', gdacs: 'cyclone', eonet: 'fire', satellites: 'satellite', webcams: 'camera', live: 'camera', alerts: 'warning' };
+  const LAYER_ICON = { flights: 'plane', quakes: 'quake', gdacs: 'cyclone', eonet: 'fire', satellites: 'satellite', webcams: 'camera', live: 'camera', ships: 'ship', alerts: 'warning' };
   const GDACS_ICON = { 'Tropical cyclone': 'cyclone', Flood: 'flood', Earthquake: 'quake', Volcano: 'volcano', Drought: 'drought', Wildfire: 'fire', TC: 'cyclone', FL: 'flood', EQ: 'quake', VO: 'volcano', DR: 'drought', WF: 'fire' };
   const EONET_ICON = { Wildfires: 'fire', 'Severe Storms': 'storm', Volcanoes: 'volcano', Floods: 'flood', Drought: 'drought', Earthquakes: 'quake' };
   const ALERT_ICON = { dam: 'dam', flood: 'flood', heat: 'heat', cyclone: 'cyclone', rain: 'storm', thunderstorm: 'storm', tsunami: 'warning', earthquake: 'quake' };
@@ -2232,6 +2344,11 @@
       case 'eonet': return { icon: EONET_ICON[it.category] || 'event', size: 18 };
       case 'webcams': return { icon: 'camera', size: 16 };
       case 'live': return { icon: 'camera', size: 19 };
+      case 'ships': {
+        const size = Number.isFinite(it.lengthM) ? Math.max(11, Math.min(17, 9 + it.lengthM / 40)) : 12;
+        const heading = Number.isFinite(it.heading) ? it.heading : it.moving ? it.cog : undefined;
+        return { icon: 'ship', size, heading };
+      }
       case 'alerts':
         if (!it.isAlert) {
           if (it.id && it.id.startsWith('reservoir:')) return { icon: 'dam', size: 15 };
@@ -2288,7 +2405,7 @@
       obj.userData.targetOpacity = layer.visible ? 1 : 0;
       obj.visible = layer.visible;
       /* Draw order: big event icons under small moving ones. */
-      obj.renderOrder = { alerts: 1, gdacs: 2, eonet: 3, quakes: 4, webcams: 5, live: 5, satellites: 6, flights: 7 }[key] || 0;
+      obj.renderOrder = { alerts: 1, gdacs: 2, eonet: 3, quakes: 4, webcams: 5, live: 5, ships: 6, satellites: 6, flights: 7 }[key] || 0;
       layerObjects[key] = obj;
       globeGroup.add(obj);
     }
@@ -2628,6 +2745,7 @@
       case 'eonet': return clip(it.title || '', 26);
       case 'webcams': return clip((it.title || '').replace(/\s*\[DEMO\]/, ''), 22);
       case 'live': return clip(`LIVE \u00b7 ${it.channel}`, 26);
+      case 'ships': return clip([it.name || `MMSI ${it.id}`, Number.isFinite(it.sog) && it.sog > 0.5 ? `${it.sog.toFixed(0)} kn` : AIS_STATUS[it.status]].filter(Boolean).join(' \u00b7 '), 30);
       case 'alerts': return clip((it.title || '').replace(/^Official: |^Derived: /, ''), 32);
       default: return '';
     }
@@ -2646,6 +2764,7 @@
       case 'eonet': return zoom < 260 ? 120 : -1;
       case 'webcams': return zoom < 200 ? 30 : -1;
       case 'live': return zoom < 150 ? 85 : -1;
+      case 'ships': return [2, 6, 14].includes(it.status) ? 550 : zoom < 140 ? 35 : -1;
       default: return -1;
     }
   }
@@ -2810,6 +2929,11 @@
           pts.push(latLngToVector3(satellite.degreesLat(gd.latitude), satellite.degreesLong(gd.longitude), displayRadius(gd.height)));
         }
       }
+    } else if (key === 'ships' && it.moving) {
+      for (let k = 0; k <= 12; k++) {
+        const p = destination(it.lat, it.lng, it.cog, it.sog * 1.852 * (k * 5 / 60));
+        pts.push(latLngToVector3(p.lat, p.lng, RADIUS + 0.8));
+      }
     } else if (key === 'flights' && !it.onGround && Number.isFinite(it.track) && Number.isFinite(it.velocity)) {
       const r = displayRadius(it.altKm);
       for (let k = 0; k <= 30; k++) {
@@ -2821,7 +2945,7 @@
   }
 
   function updatePath(force = false) {
-    if (!selectedRef || !['satellites', 'flights'].includes(selectedRef.key)) {
+    if (!selectedRef || !['satellites', 'flights', 'ships'].includes(selectedRef.key)) {
       clearPath();
       return;
     }
@@ -3174,7 +3298,7 @@
         </div>`).join('');
     $('sourcesList').innerHTML = `
       <div class="section-label">Live layers</div><div class="group">${rows}</div>
-      <div class="section-label">Not available client-side</div><div class="group">${na}</div>
+      ${na ? `<div class="section-label">Not available client-side</div><div class="group">${na}</div>` : ''}
       <div class="note">Failed sources retry with exponential backoff (max 10 min). White satellites are above the observer's horizon right now.</div>`;
     sourcesBuilt = true;
   }
@@ -3523,7 +3647,7 @@
   }
 
   /* ----- Layer chips ----- */
-  const CHIP_LABEL = { flights: 'Flights', quakes: 'Quakes', gdacs: 'GDACS', eonet: 'Events', satellites: 'Satellites', webcams: 'Cams', live: 'Live', alerts: 'India' };
+  const CHIP_LABEL = { flights: 'Flights', quakes: 'Quakes', gdacs: 'GDACS', eonet: 'Events', satellites: 'Satellites', webcams: 'Cams', live: 'Live', ships: 'Ships', alerts: 'India' };
 
   function buildChips() {
     $('chips').innerHTML = Object.keys(LAYERS).map((key) => `
@@ -3581,6 +3705,7 @@
     eonet: (it) => [it.title, it.category],
     webcams: (it) => [it.title, it.city],
     live: (it) => [it.title, it.channel, it.type, it.where],
+    ships: (it) => [it.name, it.id, it.destination, it.callsign],
     alerts: (it) => [it.title, ...(it.districts || [])]
   };
   let searchHits = [];
@@ -3722,11 +3847,16 @@
     }
   }
 
-  /* Flights from a snapshot move along their tracks every 5 s between refreshes. */
+  /* Flights and ships from a snapshot move along their tracks every 5 s between refreshes. */
   setInterval(() => {
-    if (DEMO || !flightSnapshot) return;
-    data.flights = projectFlights();
-    updateLayer('flights');
+    if (!DEMO && flightSnapshot) {
+      data.flights = projectFlights();
+      updateLayer('flights');
+    }
+    if (shipSnapshot) {
+      data.ships = projectShips();
+      updateLayer('ships');
+    }
   }, 5000);
 
   /* Satellites are re-propagated at 10 Hz so they glide instead of jumping; rules still run every 2 s. */

@@ -8,6 +8,7 @@ import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { parseArgs } from 'node:util';
 import { parseRss } from './sources/sachet.mjs';
+import { connectWebSocket } from './lib/ws.mjs';
 
 const { values } = parseArgs({ options: { config: { type: 'string', default: 'config/monitor.json' }, bytes: { type: 'string', default: '4000' } } });
 const config = process.env.MONITOR_CONFIG_JSON ? JSON.parse(process.env.MONITOR_CONFIG_JSON) : JSON.parse(await readFile(values.config, 'utf8'));
@@ -39,6 +40,22 @@ async function probe(label, url) {
   } catch (err) {
     console.log(`PROBE ${label}: ERROR ${err.name}: ${err.message}`);
     return null;
+  }
+}
+
+/* AISStream handshake with a deliberately invalid key: proves the WebSocket client and
+   network path work; a real key is used only by the poll step. */
+{
+  const msgs = [];
+  let reason = null;
+  try {
+    const ws = await connectWebSocket('wss://stream.aisstream.io/v0/stream', { userAgent: ua, onMessage: (m) => msgs.push(m.slice(0, 200)), onClose: (r) => { reason = r; } });
+    ws.send(JSON.stringify({ APIKey: 'invalid-diagnose-key', BoundingBoxes: [[[0, 60], [26, 100]]] }));
+    await new Promise((r) => setTimeout(r, 6000));
+    ws.close();
+    console.log(`PROBE AISStream websocket: connected; messages ${JSON.stringify(msgs)}; close ${reason}`);
+  } catch (err) {
+    console.log(`PROBE AISStream websocket: ERROR ${err.message}`);
   }
 }
 

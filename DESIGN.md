@@ -31,6 +31,7 @@ This is a personal context and cross-checking tool. It is **not** a primary warn
 | Flights | Poller snapshot, projected in the browser | OpenSky only allows its own site to read its API from a browser (CORS), so the poller fetches it every 30 min (4 of ~400 free daily credits per request) and the dashboard dead-reckons each aircraft along its track. Emergency squawks in zones also alert via Telegram. Flights are an auxiliary source: failures never trigger degraded notices. |
 | SACHET (flood, heat, dam, cyclone) | Poller | Feeds send no CORS headers; a browser cannot read them. |
 | River-rise and heat-wave signals | Poller | Needs batching, state and baselines. |
+| Ships | Poller, projected in the browser | AISStream is a WebSocket API with a key, so the poller listens for 45 s per run (zero-dependency RFC 6455 client in `poller/lib/ws.mjs`, size-capped), merges with ships heard in the last 3 hours and publishes `ships.json`. Auxiliary: failures never page. |
 | Reservoirs | Poller | Official daily WRD figures, compared with the previous day's page; drives dam-release alerts. |
 | Live players | Browser | YouTube (privacy-enhanced, channel live embed) and Windy players, framed only on tap; CSP `frame-src` allows just those two hosts. |
 | Notifications | Poller | Must work with the dashboard closed. |

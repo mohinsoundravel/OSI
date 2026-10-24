@@ -317,3 +317,65 @@ test('reservoir rules: large release, gate-opening jump, near full', async () =>
   assert.deepEqual(assessReservoir({ ...base, levelFt: 117.5, outflow: 100 }), [{ type: 'full', severity: 'medium' }]);
   assert.deepEqual(assessReservoir({ ...base, levelFt: 119.8, outflow: null }), [{ type: 'full', severity: 'high' }]);
 });
+
+test('websocket frames: masked client frames round-trip, server frames reassemble, oversize rejected', async () => {
+  const { encodeFrame, parseFrames } = await import('../lib/ws.mjs');
+  const text = 'x'.repeat(70000);
+  const { frames, rest } = parseFrames(encodeFrame(0x1, Buffer.from(text)));
+  assert.equal(rest.length, 0);
+  assert.equal(frames[0].payload.toString(), text, '64-bit length, masked');
+  const server = (fin, opcode, body) => Buffer.concat([Buffer.from([(fin ? 0x80 : 0) | opcode, body.length]), body]);
+  const two = Buffer.concat([server(false, 0x1, Buffer.from('{"a":')), server(true, 0x0, Buffer.from('1}'))]);
+  const half = parseFrames(two.subarray(0, 4));
+  assert.equal(half.frames.length, 0, 'incomplete frame waits for more bytes');
+  const all = parseFrames(two);
+  assert.equal(Buffer.concat(all.frames.map((f) => f.payload)).toString(), '{"a":1}');
+  assert.deepEqual(all.frames.map((f) => f.fin), [false, true]);
+  const huge = Buffer.alloc(10);
+  huge[0] = 0x82; huge[1] = 127; huge.writeBigUInt64BE(BigInt(1e9), 2);
+  assert.equal(parseFrames(huge).error, 'frame too large');
+});
+
+const aisPosition = (mmsi, lat, lng, extra = {}) => JSON.stringify({
+  MessageType: 'PositionReport',
+  MetaData: { MMSI: mmsi, ShipName: 'TEST VESSEL  ', latitude: lat, longitude: lng, time_utc: '2026-10-24 15:00:00.123456 +0000 UTC' },
+  Message: { PositionReport: { Latitude: lat, Longitude: lng, Sog: 12.3, Cog: 87.5, TrueHeading: 88, NavigationalStatus: 0, UserID: mmsi, Valid: true, ...extra } }
+});
+
+test('AIS messages: positions and static data parsed, junk rejected', async () => {
+  const { parseAisMessage } = await import('../sources/ships.mjs');
+  const p = parseAisMessage(aisPosition(419000123, 13.1, 80.3));
+  assert.deepEqual([p.mmsi, p.name, p.position.lat, p.position.sog, p.position.heading], [419000123, 'TEST VESSEL', 13.1, 12.3, 88]);
+  assert.equal(new Date(p.position.time).toISOString(), '2026-10-24T15:00:00.123Z');
+  const s = parseAisMessage(JSON.stringify({
+    MessageType: 'ShipStaticData', MetaData: { MMSI: 419000123, ShipName: 'TEST VESSEL' },
+    Message: { ShipStaticData: { Name: 'TEST VESSEL@@@', Type: 70, Destination: 'CHENNAI@@', CallSign: 'AB12', Dimension: { A: 120, B: 30, C: 10, D: 12 } } }
+  }));
+  assert.deepEqual(s.static, { name: 'TEST VESSEL', type: 70, destination: 'CHENNAI', callsign: 'AB12', lengthM: 150 });
+  assert.equal(parseAisMessage('not json'), null);
+  assert.equal(parseAisMessage(aisPosition(123, 13, 80)), null, 'invalid MMSI');
+  assert.equal(parseAisMessage(aisPosition(419000124, 0, 0)), null, 'null island position dropped');
+  assert.equal(parseAisMessage(aisPosition(419000125, 95, 80)), null, 'out-of-range latitude');
+  assert.deepEqual(parseAisMessage('{"error":"Api Key Is Not Valid"}'), { error: 'Api Key Is Not Valid' });
+});
+
+test('ships: listen window, server error and merge with ageing', async () => {
+  const { listenShips, mergeShips } = await import('../sources/ships.mjs');
+  const fakeConnect = (messages) => async (url, { onMessage, onClose }) => {
+    let sent = null;
+    return {
+      send: (t) => { sent = JSON.parse(t); setTimeout(() => { for (const m of messages) onMessage(m); }, 5); },
+      close: () => { assert.ok(sent && sent.APIKey === 'k' && sent.BoundingBoxes, 'subscribed with key and box'); onClose('closed by client'); }
+    };
+  };
+  const heard = await listenShips({ apiKey: 'k', listenMs: 30, connect: fakeConnect([aisPosition(419000123, 13.1, 80.3), aisPosition(419000124, 12, 81)]) });
+  assert.equal(heard.positions.size, 2);
+  await assert.rejects(() => listenShips({ apiKey: 'k', listenMs: 30, connect: fakeConnect(['{"error":"Api Key Is Not Valid"}']) }), /Api Key/);
+  await assert.rejects(() => listenShips({ apiKey: '', connect: fakeConnect([]) }), /not set/);
+
+  const now = Date.parse('2026-10-24T15:05:00Z');
+  const state = { ships: { 111000111: { lat: 1, lng: 2, time: now - 4 * 3600 * 1000 } } };
+  const rows = mergeShips(state, heard, now);
+  assert.equal(rows.length, 2, 'ship older than 3 hours dropped');
+  assert.equal(rows[0][1], 'TEST VESSEL');
+});

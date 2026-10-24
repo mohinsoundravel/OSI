@@ -59,6 +59,7 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           HEALTHCHECK_URL: ${{ secrets.HEALTHCHECK_URL }}
           MONITOR_CONFIG_JSON: ${{ secrets.MONITOR_CONFIG_JSON }}
+          AISSTREAM_API_KEY: ${{ secrets.AISSTREAM_API_KEY }}
           DRY_RUN: ${{ inputs.dry_run && '--dry-run' || '' }}
         run: node poller/index.mjs --data-dir data ${DRY_RUN:+"$DRY_RUN"}
 

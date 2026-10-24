@@ -228,3 +228,36 @@ test('satellite TLEs fall back to AMSAT when CelesTrak fails', async () => {
     await rm(env.dir, { recursive: true, force: true });
   }
 });
+
+test('ships: published from the AIS window; a broken stream never degrades the monitor', async () => {
+  const env = await setup();
+  const position = (mmsi, lat, lng) => JSON.stringify({
+    MessageType: 'PositionReport', MetaData: { MMSI: mmsi, ShipName: 'COASTAL TRADER', time_utc: '2026-10-23 05:59:30.000000 +0000 UTC' },
+    Message: { PositionReport: { Latitude: lat, Longitude: lng, Sog: 10, Cog: 45, TrueHeading: 45, NavigationalStatus: 0, Valid: true } }
+  });
+  const connect = (messages, fail) => async (url, { onMessage, onClose }) => {
+    if (fail) throw new Error('connect ECONNREFUSED');
+    return { send: () => setTimeout(() => messages.forEach(onMessage), 1), close: () => onClose('closed by client') };
+  };
+  try {
+    const r1 = await run(base(env, { aisKey: 'test-key', shipsListenMs: 20, shipsConnect: connect([position(419000777, 13.1, 80.4)]) }));
+    assert.equal(r1.latest.health.ships.ok, true);
+    const snap = JSON.parse(await readFile(path.join(env.dataDir, 'ships.json'), 'utf8'));
+    assert.equal(snap.ships.length, 1);
+    const row = Object.fromEntries(snap.fields.map((f, i) => [f, snap.ships[0][i]]));
+    assert.deepEqual([row.mmsi, row.name, row.lat, row.sog], [419000777, 'COASTAL TRADER', 13.1, 10]);
+
+    for (let i = 0; i < 3; i++) {
+      const r = await run(base(env, { aisKey: 'test-key', shipsListenMs: 20, shipsConnect: connect([], true) }));
+      assert.equal(r.latest.health.ships.ok, false);
+      assert.ok(!r.messages.some((m) => /degraded/i.test(m)), 'ships is auxiliary: no degraded notice');
+    }
+    const kept = JSON.parse(await readFile(path.join(env.dataDir, 'ships.json'), 'utf8'));
+    assert.equal(kept.ships.length, 1, 'last good snapshot stays published');
+
+    const noKey = await run(base(env));
+    assert.equal(noKey.latest.health.ships, undefined, 'no key: source absent, not failing');
+  } finally {
+    await rm(env.dir, { recursive: true, force: true });
+  }
+});

@@ -24,6 +24,7 @@ See [DESIGN.md](DESIGN.md) for architecture, efficiency and safety decisions.
 | Disaster alerts | [GDACS](https://www.gdacs.org) | Both | 5–15 min |
 | Earthquakes | [USGS](https://earthquake.usgs.gov/earthquakes/feed/) | Both | 2–15 min |
 | Flights (incl. emergency squawks) | [OpenSky Network](https://opensky-network.org) via the poller (OpenSky blocks browsers on other sites) | Both | 30 min snapshot, projected along track every 5 s |
+| Ships (AIS), Arabian Sea, Bay of Bengal and around Sri Lanka | [AISStream.io](https://aisstream.io) via the poller (needs the `AISSTREAM_API_KEY` secret) | Both | 45 s listen per poll, projected along course every 5 s |
 | Natural events | [NASA EONET](https://eonet.gsfc.nasa.gov) | Dashboard | 5 min |
 | Satellites | [CelesTrak](https://celestrak.org) TLEs + SGP4 | Dashboard | 10 Hz |
 | Live streams | Official Tamil news channels on YouTube (Thanthi TV, Puthiya Thalaimurai, Polimer News); NASA live from the ISS card | Dashboard | tap to play |
@@ -116,7 +117,7 @@ config/monitor.json        Zones, points, thresholds
 - **Reservoir limits**: one figure per dam per day, from a single state web page; if its layout changes the source fails loudly (degraded notice) rather than guessing. Release thresholds are per-dam estimates, set above routine irrigation releases. Alerts: large release (high/critical), a jump of 5,000+ cusecs and 50% in a day (medium, the usual sign of gates opening), within 3 ft of full (medium) or 0.5 ft (high).
 - **Cameras**: only owner-published feeds. Windy webcams need a free key (Controls, Sources) and are mostly daylight timelapses, not live video. YouTube pins play only while the channel is live. Players load only when tapped, from URLs built from validated IDs, in sandboxed frames.
 - **Weather overlay limits**: radar exists only near radars and stops sharpening beyond zoom 7 (RainViewer's free tier, personal use, 100 requests a minute); IMERG is hours old, so it shows where it rained, not where it is raining; Himawari sees India near the edge of its view, so shapes over western India are stretched.
-- **Ships (AIS)** are not available client-side; AISStream requires a server that holds the key.
+- **Ships (AIS)**: AISStream uses volunteer coastal receivers, so coverage is good near receivers and thin or absent in open sea; there is no satellite AIS. Each poll listens for 45 seconds and keeps ships heard in the last 3 hours, so slow or anchored ships appear after a few polls.
 - **Not a primary warning system.** Keep the official SACHET app and cell-broadcast alerts enabled.
 
 ## Data usage and ethics
