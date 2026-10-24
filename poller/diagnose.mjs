@@ -59,6 +59,25 @@ async function probe(label, url) {
   }
 }
 
+/* GIBS colour maps for the dashboard legends. */
+for (const layer of ['IMERG_Precipitation_Rate_30min', 'Himawari_AHI_Band13_Clean_Infrared']) {
+  for (const ver of ['v1.3', 'v1.2']) {
+    const r = await probe(`GIBS colormap ${layer} ${ver}`, `https://gibs.earthdata.nasa.gov/colormaps/${ver}/${layer}.xml`);
+    if (!r || !r.res.ok) continue;
+    const xml = r.buf.toString('utf8');
+    const entries = [...xml.matchAll(/<ColorMapEntry\b([^>]*)\/?>/g)].map((m) => {
+      const at = (k) => (new RegExp(`${k}="([^"]*)"`).exec(m[1]) || [])[1] || '';
+      return `${at('rgb')}|${at('transparent')}|${at('value')}|${at('label')}`;
+    });
+    const units = (/units="([^"]*)"/.exec(xml) || [])[1] || '';
+    console.log(`COLORMAP ${layer} units=${units} n=${entries.length}`);
+    const step = Math.max(1, Math.floor(entries.length / 14));
+    for (let i = 0; i < entries.length; i += step) console.log(`  ${i}: ${entries[i]}`);
+    console.log(`  last: ${entries[entries.length - 1]}`);
+    break;
+  }
+}
+
 /* Reservoir level page (status only; the parser runs in every poll). */
 await probe('TN reservoir page', 'https://tnagriculture.in/people_app/more/reservoir/en/');
 
