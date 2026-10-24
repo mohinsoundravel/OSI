@@ -59,25 +59,6 @@ async function probe(label, url) {
   }
 }
 
-/* GIBS colour maps for the dashboard legends. */
-for (const layer of ['IMERG_Precipitation_Rate_30min', 'Himawari_AHI_Band13_Clean_Infrared']) {
-  for (const ver of ['v1.3', 'v1.2']) {
-    const r = await probe(`GIBS colormap ${layer} ${ver}`, `https://gibs.earthdata.nasa.gov/colormaps/${ver}/${layer}.xml`);
-    if (!r || !r.res.ok) continue;
-    const xml = r.buf.toString('utf8');
-    const entries = [...xml.matchAll(/<ColorMapEntry\b([^>]*)\/?>/g)].map((m) => {
-      const at = (k) => (new RegExp(`${k}="([^"]*)"`).exec(m[1]) || [])[1] || '';
-      return `${at('rgb')}|${at('transparent')}|${at('value')}|${at('label')}`;
-    });
-    const units = (/units="([^"]*)"/.exec(xml) || [])[1] || '';
-    console.log(`COLORMAP ${layer} units=${units} n=${entries.length}`);
-    const step = Math.max(1, Math.floor(entries.length / 14));
-    for (let i = 0; i < entries.length; i += step) console.log(`  ${i}: ${entries[i]}`);
-    console.log(`  last: ${entries[entries.length - 1]}`);
-    break;
-  }
-}
-
 /* Reservoir level page (status only; the parser runs in every poll). */
 await probe('TN reservoir page', 'https://tnagriculture.in/people_app/more/reservoir/en/');
 
@@ -132,6 +113,22 @@ await probe('TN reservoir page', 'https://tnagriculture.in/people_app/more/reser
       if (!id || !want.test(id)) continue;
       const pick = (re) => (re.exec(layer)?.[1] || '').trim();
       console.log(`LAYER ${id} | format ${pick(/<Format>([^<]+)</)} | matrix ${pick(/<TileMatrixSet>([^<]+)</)} | time default ${pick(/<Default>([^<]+)</)} | time values ${pick(/<Value>([^<]+)</).slice(0, 120)} | url ${pick(/template="([^"]+)"/)}`);
+      if (!/^(IMERG_Precipitation_Rate_30min|Himawari_AHI_Band13_Clean_Infrared)$/.test(id)) continue;
+      const hrefs = [...layer.matchAll(/xlink:href="([^"]*colormaps[^"]*\.xml)"/g)].map((m) => m[1]);
+      console.log(`  colormap hrefs: ${hrefs.join(' ')}`);
+      for (const href of hrefs.filter((h) => /v1\.3/.test(h)).slice(0, 1)) {
+        const r = await probe(`colormap ${id}`, href);
+        if (!r || !r.res.ok) continue;
+        const cm = r.buf.toString('utf8');
+        const entries = [...cm.matchAll(/<ColorMapEntry\b([^>]*)\/?>/g)].map((m) => {
+          const at = (k) => (new RegExp(`${k}="([^"]*)"`).exec(m[1]) || [])[1] || '';
+          return `${at('rgb')}|${at('transparent')}|${at('label') || at('value')}`;
+        });
+        console.log(`COLORMAP ${id} units=${(/units="([^"]*)"/.exec(cm) || [])[1] || ''} n=${entries.length}`);
+        const step = Math.max(1, Math.floor(entries.length / 14));
+        for (let i = 0; i < entries.length; i += step) console.log(`  ${i}: ${entries[i]}`);
+        console.log(`  last: ${entries[entries.length - 1]}`);
+      }
     }
   }
 }
