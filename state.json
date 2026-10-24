@@ -1,0 +1,3831 @@
+{
+ "httpCache": {
+  "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson": {
+   "lastModified": "Sat, 24 Oct 2026 20:07:13 GMT",
+   "hash": "398aa0ca4f570d8439ce56baf9789de5ee7ee03db7dc2e7ba43eceb077c56776"
+  },
+  "https://sachet.ndma.gov.in/cap_public_website/rss/rss_india.xml": {
+   "etag": "W/\"82123-1792871268430\"",
+   "lastModified": "Sat, 24 Oct 2026 19:47:48 GMT",
+   "hash": "d85c52fed4b756995f22205b3b0e5920be7efa5e60851c5b8fc906a46d4276dc"
+  },
+  "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;DR;WF&alertlevel=Orange;Red&pageSize=100": {
+   "hash": "2ef47d6af1d0eb6cd3580407d596127d75655137cf3a84c35a05c74b7cbce660"
+  }
+ },
+ "health": {
+  "sachet": {
+   "failures": 0,
+   "lastOk": "2026-10-24T20:07:17.000Z",
+   "error": null
+  },
+  "rivers": {
+   "failures": 0,
+   "lastOk": "2026-10-24T20:07:17.000Z",
+   "error": null
+  },
+  "heat": {
+   "failures": 0,
+   "lastOk": "2026-10-24T20:07:17.000Z",
+   "error": null
+  },
+  "gdacs": {
+   "failures": 0,
+   "error": null,
+   "lastError": "2026-10-24T09:04:08.348Z",
+   "lastOk": "2026-10-24T20:07:17.000Z"
+  },
+  "quakes": {
+   "failures": 0,
+   "lastOk": "2026-10-24T20:07:17.000Z",
+   "error": null
+  },
+  "flights": {
+   "failures": 0,
+   "lastOk": "2026-10-24T20:07:17.000Z",
+   "error": null
+  },
+  "satellites": {
+   "failures": 0,
+   "error": null,
+   "lastError": "2026-10-23T16:25:28.034Z",
+   "lastOk": "2026-10-24T20:07:17.000Z"
+  },
+  "reservoirs": {
+   "failures": 0,
+   "lastOk": "2026-10-24T20:07:17.000Z",
+   "error": null
+  },
+  "ships": {
+   "failures": 0,
+   "lastOk": "2026-10-24T20:07:17.000Z",
+   "error": null
+  },
+  "rain": {
+   "failures": 0,
+   "lastOk": "2026-10-24T20:07:17.000Z",
+   "error": null
+  }
+ },
+ "notified": {
+  "river:vaigai-dam:high": 1792766456693,
+  "river:mullaperiyar:medium": 1792766456693,
+  "river:thamirabarani:high": 1792766456693,
+  "river:adyar-chennai:medium": 1792766456693,
+  "usgs:us6000u49a": 1792766456693,
+  "usgs:us6000u45j": 1792766456693,
+  "usgs:us6000u45a": 1792766456693,
+  "usgs:us6000u458": 1792766456693,
+  "usgs:us6000u455": 1792766456693,
+  "usgs:us6000u451": 1792766456693,
+  "usgs:us6000u44w": 1792766456693,
+  "usgs:us6000u44u": 1792766456693,
+  "usgs:us6000u44n": 1792766456693,
+  "sachet:IN-1792763858163006_6": 1792767084421,
+  "sachet:IN-1792763508209006_6": 1792767084421,
+  "sachet:IN-1792763860621031_64": 1792767084421,
+  "sachet:IN-1792761947255041_41": 1792767084421,
+  "sachet:IN-1792761944217007_43": 1792767084421,
+  "sachet:IN-1792761943318007_43": 1792767084421,
+  "sachet:IN-1792760619411019_19": 1792767084421,
+  "gdacs:EQ-1573141:Red": 1792767084421,
+  "river:amaravathi-karur:medium": 1792769769731,
+  "river:vaigai-madurai:high": 1792769769731,
+  "river:periyar-mullaperiyar:medium": 1792769769731,
+  "river:palar-vellore:high": 1792769769731,
+  "river:pennaiyar-krishnagiri:medium": 1792769769731,
+  "river:pennaiyar-cuddalore:high": 1792769769731,
+  "sachet:IN-1792773656142041_41": 1792778411900,
+  "sachet:IN-1792773652889007_43": 1792778411900,
+  "sachet:IN-1792773652021007_43": 1792778411900,
+  "sachet:IN-1792783457574041_41": 1792789111451,
+  "sachet:IN-1792783454599007_43": 1792789111451,
+  "sachet:IN-1792783078086007_43": 1792789111451,
+  "sachet:IN-1792815213455007_43": 1792816070050,
+  "sachet:IN-1792810393495007_43": 1792816070050,
+  "sachet:IN-1792829580238006_6": 1792832648348,
+  "sachet:IN-1792821946553008_8": 1792832648348,
+  "sachet:IN-1792842966376041_41": 1792847760858,
+  "sachet:IN-1792842963597007_43": 1792847760858,
+  "sachet:IN-1792842837704007_43": 1792847760858,
+  "sachet:IN-1792838744689019_19": 1792847760858,
+  "sachet:IN-1792853094078006_6": 1792855117440,
+  "sachet:IN-1792852900581006_6": 1792855117440,
+  "sachet:IN-1792848423694041_41": 1792855117440,
+  "sachet:IN-1792848421546007_43": 1792855117440,
+  "sachet:IN-1792848420008007_43": 1792855117440,
+  "sachet:IN-1792855392814006_6": 1792856236902,
+  "sachet:IN-1792861531022007_43": 1792861638358,
+  "sachet:IN-1792861534644041_43": 1792861638358,
+  "river:palar-vellore:medium": 1792867039004,
+  "sachet:IN-1792871074288041_41": 1792871544129,
+  "sachet:IN-1792871071227007_43": 1792871544129
+ },
+ "quakesSnapshot": [
+  {
+   "id": "us6000u4p1",
+   "mag": 4.3,
+   "place": "71 km SW of Rikaze, China",
+   "time": 1792870453223,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4p1",
+   "lng": 88.3994,
+   "lat": 28.7603,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4ny",
+   "mag": 4.9,
+   "place": "73 km SW of Isangel, Vanuatu",
+   "time": 1792869500515,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4ny",
+   "lng": 168.7941,
+   "lat": -20.025,
+   "depthKm": 22.398
+  },
+  {
+   "id": "us6000u4nv",
+   "mag": 5,
+   "place": "193 km NW of Port-Olry, Vanuatu",
+   "time": 1792868835895,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4nv",
+   "lng": 165.6556,
+   "lat": -13.975,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4na",
+   "mag": 4.2,
+   "place": "74 km W of Ollagüe, Chile",
+   "time": 1792862070377,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4na",
+   "lng": -68.9699,
+   "lat": -21.3025,
+   "depthKm": 123.988
+  },
+  {
+   "id": "us6000u4n8",
+   "mag": 4.8,
+   "place": "153 km NW of Port-Olry, Vanuatu",
+   "time": 1792860855523,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4n8",
+   "lng": 165.9365,
+   "lat": -14.2056,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4my",
+   "mag": 4.7,
+   "place": "238 km WNW of Port-Olry, Vanuatu",
+   "time": 1792856747533,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4my",
+   "lng": 165.1696,
+   "lat": -13.9412,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4mn",
+   "mag": 5.8,
+   "place": "Bouvet Island region",
+   "time": 1792855459882,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4mn",
+   "lng": 7.0149,
+   "lat": -54.0304,
+   "depthKm": 12.486
+  },
+  {
+   "id": "us6000u4mm",
+   "mag": 4.9,
+   "place": "217 km NW of Port-Olry, Vanuatu",
+   "time": 1792855165185,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4mm",
+   "lng": 165.4608,
+   "lat": -13.8535,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4ml",
+   "mag": 4.8,
+   "place": "215 km NW of Port-Olry, Vanuatu",
+   "time": 1792854460810,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4ml",
+   "lng": 165.5148,
+   "lat": -13.8267,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4mi",
+   "mag": 4.8,
+   "place": "216 km NW of Port-Olry, Vanuatu",
+   "time": 1792849980775,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4mi",
+   "lng": 165.5398,
+   "lat": -13.7777,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4mg",
+   "mag": 4.6,
+   "place": "195 km NE of Nagqu, China",
+   "time": 1792848394296,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4mg",
+   "lng": 93.694,
+   "lat": 32.5629,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4m9",
+   "mag": 4.7,
+   "place": "72 km S of Basco, Philippines",
+   "time": 1792842488678,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4m9",
+   "lng": 122.0872,
+   "lat": 19.805,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4m7",
+   "mag": 4.2,
+   "place": "22 km ENE of Palora, Ecuador",
+   "time": 1792841445048,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4m7",
+   "lng": -77.7768,
+   "lat": -1.6316,
+   "depthKm": 181.216
+  },
+  {
+   "id": "us6000u4m6",
+   "mag": 4.9,
+   "place": "148 km NNW of Kilmia, Yemen",
+   "time": 1792840827157,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4m6",
+   "lng": 51.5108,
+   "lat": 13.3207,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4m5",
+   "mag": 4.9,
+   "place": "196 km W of Sola, Vanuatu",
+   "time": 1792840440121,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4m5",
+   "lng": 165.7345,
+   "lat": -13.8212,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4lz",
+   "mag": 4.4,
+   "place": "76 km S of Mawlaik, Burma (Myanmar)",
+   "time": 1792836983478,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4lz",
+   "lng": 94.4639,
+   "lat": 22.9496,
+   "depthKm": 103.324
+  },
+  {
+   "id": "us6000u4lr",
+   "mag": 4.9,
+   "place": "169 km NW of Port-Olry, Vanuatu",
+   "time": 1792834729138,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4lr",
+   "lng": 165.8048,
+   "lat": -14.1348,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4lp",
+   "mag": 5,
+   "place": "219 km WNW of Port-Olry, Vanuatu",
+   "time": 1792832820782,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4lp",
+   "lng": 165.2758,
+   "lat": -14.1064,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4lm",
+   "mag": 5.9,
+   "place": "196 km NW of Port-Olry, Vanuatu",
+   "time": 1792832188815,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4lm",
+   "lng": 165.6471,
+   "lat": -13.9418,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4ll",
+   "mag": 4.7,
+   "place": "187 km NW of Port-Olry, Vanuatu",
+   "time": 1792831555500,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4ll",
+   "lng": 165.7108,
+   "lat": -13.9869,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4lg",
+   "mag": 5.3,
+   "place": "223 km ENE of Nagqu, China",
+   "time": 1792831193139,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4lg",
+   "lng": 94.048,
+   "lat": 32.5629,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4ld",
+   "mag": 4.5,
+   "place": "81 km SSE of Akutan, Alaska",
+   "time": 1792830828499,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4ld",
+   "lng": -165.0962,
+   "lat": 53.5186,
+   "depthKm": 35
+  },
+  {
+   "id": "us6000u4lb",
+   "mag": 4.9,
+   "place": "41 km SSE of Kax, China",
+   "time": 1792830560689,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4lb",
+   "lng": 82.1076,
+   "lat": 43.3139,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4lc",
+   "mag": 5.1,
+   "place": "209 km NW of Port-Olry, Vanuatu",
+   "time": 1792830482029,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4lc",
+   "lng": 165.6088,
+   "lat": -13.7972,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4l9",
+   "mag": 5.1,
+   "place": "218 km NW of Port-Olry, Vanuatu",
+   "time": 1792830166296,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4l9",
+   "lng": 165.4664,
+   "lat": -13.833,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4l8",
+   "mag": 4.7,
+   "place": "222 km NW of Port-Olry, Vanuatu",
+   "time": 1792830001035,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4l8",
+   "lng": 165.4469,
+   "lat": -13.805,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4kz",
+   "mag": 4.4,
+   "place": "74 km SSW of Puerto Madero, Mexico",
+   "time": 1792827084597,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4kz",
+   "lng": -92.7995,
+   "lat": 14.1588,
+   "depthKm": 35
+  },
+  {
+   "id": "us6000u4kw",
+   "mag": 4.7,
+   "place": "195 km NW of Port-Olry, Vanuatu",
+   "time": 1792825083586,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4kw",
+   "lng": 165.7268,
+   "lat": -13.8532,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4ku",
+   "mag": 5,
+   "place": "219 km NW of Port-Olry, Vanuatu",
+   "time": 1792824724142,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4ku",
+   "lng": 165.4237,
+   "lat": -13.8777,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4kq",
+   "mag": 5.5,
+   "place": "55 km NNE of Port-Olry, Vanuatu",
+   "time": 1792824189602,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4kq",
+   "lng": 167.3063,
+   "lat": -14.5918,
+   "depthKm": 194.632
+  },
+  {
+   "id": "us6000u4kt",
+   "mag": 4.6,
+   "place": "206 km NW of Port-Olry, Vanuatu",
+   "time": 1792822856869,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4kt",
+   "lng": 165.6213,
+   "lat": -13.8228,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4kj",
+   "mag": 5.3,
+   "place": "174 km NW of Port-Olry, Vanuatu",
+   "time": 1792821856367,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4kj",
+   "lng": 165.7535,
+   "lat": -14.1278,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4kh",
+   "mag": 4.5,
+   "place": "175 km NW of Port-Olry, Vanuatu",
+   "time": 1792820266052,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4kh",
+   "lng": 165.8047,
+   "lat": -14.051,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4ke",
+   "mag": 4.5,
+   "place": "184 km NW of Port-Olry, Vanuatu",
+   "time": 1792820154921,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4ke",
+   "lng": 165.7483,
+   "lat": -13.9786,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4k6",
+   "mag": 5.8,
+   "place": "182 km NW of Port-Olry, Vanuatu",
+   "time": 1792819420747,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4k6",
+   "lng": 165.6982,
+   "lat": -14.0833,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4k5",
+   "mag": 4.8,
+   "place": "219 km WNW of Port-Olry, Vanuatu",
+   "time": 1792818634753,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4k5",
+   "lng": 165.3365,
+   "lat": -14.0054,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4k1",
+   "mag": 5.1,
+   "place": "217 km NW of Port-Olry, Vanuatu",
+   "time": 1792817361707,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4k1",
+   "lng": 165.4673,
+   "lat": -13.8521,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4k2",
+   "mag": 5,
+   "place": "161 km NW of Port-Olry, Vanuatu",
+   "time": 1792817085324,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4k2",
+   "lng": 165.8739,
+   "lat": -14.165,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4jy",
+   "mag": 5.3,
+   "place": "216 km W of Sola, Vanuatu",
+   "time": 1792815578628,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4jy",
+   "lng": 165.551,
+   "lat": -13.7325,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4jw",
+   "mag": 5.8,
+   "place": "203 km NW of Port-Olry, Vanuatu",
+   "time": 1792815125337,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4jw",
+   "lng": 165.5967,
+   "lat": -13.9017,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4ju",
+   "mag": 5.7,
+   "place": "205 km NW of Port-Olry, Vanuatu",
+   "time": 1792814736800,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4ju",
+   "lng": 165.5627,
+   "lat": -13.9084,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4jr",
+   "mag": 4.9,
+   "place": "186 km WNW of Port-Olry, Vanuatu",
+   "time": 1792813895267,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4jr",
+   "lng": 165.625,
+   "lat": -14.1222,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4jl",
+   "mag": 5.2,
+   "place": "202 km NW of Port-Olry, Vanuatu",
+   "time": 1792811875755,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4jl",
+   "lng": 165.6161,
+   "lat": -13.8805,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4ji",
+   "mag": 5.1,
+   "place": "170 km NW of Port-Olry, Vanuatu",
+   "time": 1792811325463,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4ji",
+   "lng": 165.8052,
+   "lat": -14.1211,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4jb",
+   "mag": 6.3,
+   "place": "170 km NW of Port-Olry, Vanuatu",
+   "time": 1792809357362,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4jb",
+   "lng": 165.8666,
+   "lat": -14.0424,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4j2",
+   "mag": 6.9,
+   "place": "197 km WNW of Port-Olry, Vanuatu",
+   "time": 1792809088641,
+   "tsunami": true,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4j2",
+   "lng": 165.5455,
+   "lat": -14.0558,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4ib",
+   "mag": 4.5,
+   "place": "195 km NW of Port-Olry, Vanuatu",
+   "time": 1792801664940,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4ib",
+   "lng": 165.6177,
+   "lat": -13.9871,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4i8",
+   "mag": 4.9,
+   "place": "209 km ENE of Nagqu, China",
+   "time": 1792800476787,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4i8",
+   "lng": 93.9004,
+   "lat": 32.5271,
+   "depthKm": 10
+  },
+  {
+   "id": "aka2026vaqtor",
+   "mag": 4,
+   "place": "65 km NNW of Nikolski, Alaska",
+   "time": 1792796905010,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vaqtor",
+   "lng": -169.17,
+   "lat": 53.502,
+   "depthKm": 242.9
+  },
+  {
+   "id": "us6000u4hr",
+   "mag": 4.9,
+   "place": "115 km NE of Norsup, Vanuatu",
+   "time": 1792795371088,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4hr",
+   "lng": 168.2523,
+   "lat": -15.4328,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4hp",
+   "mag": 4.3,
+   "place": "210 km NE of Nagqu, China",
+   "time": 1792795150336,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4hp",
+   "lng": 93.8538,
+   "lat": 32.596,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4hi",
+   "mag": 4.8,
+   "place": "6 km ENE of Starobachaty, Russia",
+   "time": 1792794256303,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4hi",
+   "lng": 86.2951,
+   "lat": 54.2668,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4h9",
+   "mag": 4.1,
+   "place": "55 km ESE of Farkhār, Afghanistan",
+   "time": 1792793395248,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4h9",
+   "lng": 70.4579,
+   "lat": 36.4546,
+   "depthKm": 211.11
+  },
+  {
+   "id": "us6000u4h7",
+   "mag": 5.1,
+   "place": "203 km NW of Port-Olry, Vanuatu",
+   "time": 1792793110711,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4h7",
+   "lng": 165.6172,
+   "lat": -13.8764,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4h0",
+   "mag": 4.6,
+   "place": "73 km ENE of Kinablangan, Philippines",
+   "time": 1792791664400,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4h0",
+   "lng": 127.1813,
+   "lat": 7.9163,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4gs",
+   "mag": 4.9,
+   "place": "40 km ESE of Hualien City, Taiwan",
+   "time": 1792789081491,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4gs",
+   "lng": 121.9479,
+   "lat": 23.7861,
+   "depthKm": 10
+  },
+  {
+   "id": "us6000u4gm",
+   "mag": 4.9,
+   "place": "35 km ESE of Hualien City, Taiwan",
+   "time": 1792788496356,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4gm",
+   "lng": 121.929,
+   "lat": 23.8528,
+   "depthKm": 13.817
+  },
+  {
+   "id": "us6000u4gj",
+   "mag": 4.8,
+   "place": "209 km ENE of Nagqu, China",
+   "time": 1792787861989,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4gj",
+   "lng": 93.943,
+   "lat": 32.4693,
+   "depthKm": 10
+  }
+ ],
+ "initialized": true,
+ "schema": 4,
+ "gdacsSnapshot": [
+  {
+   "id": "TC-1001338",
+   "type": "Tropical cyclone",
+   "name": "Tropical Cyclone CHAMPI-26",
+   "alertLevel": "Red",
+   "country": "Philippines, Guam, Northern Mariana Islands, Japan",
+   "lng": 123.8,
+   "lat": 22.7,
+   "url": "https://www.gdacs.org/report.aspx?eventid=1001338&episodeid=35&eventtype=TC"
+  },
+  {
+   "id": "EQ-1573141",
+   "type": "Earthquake",
+   "name": "Earthquake in China",
+   "alertLevel": "Red",
+   "country": "China",
+   "lng": 93.7797,
+   "lat": 32.3805,
+   "url": "https://www.gdacs.org/report.aspx?eventid=1573141&episodeid=1741837&eventtype=EQ"
+  }
+ ],
+ "sachetActive": {
+  "IN-1792827317396028_28": {
+   "identifier": "IN-1792827317396028_28",
+   "sender": "Rajasthan-SDMA",
+   "senderName": "",
+   "sent": "2026-10-24T08:53:52.000Z",
+   "status": "Actual",
+   "msgType": "Update",
+   "scope": "Public",
+   "references": "IMD-Jaipur,IN-1792827317396028_57,2026-10-24T13:04:37+05:30",
+   "categories": [
+    "Met"
+   ],
+   "event": "Thunderstorm with Lightning",
+   "urgency": "Expected",
+   "severity": "Moderate",
+   "certainty": "Possible",
+   "headline": "Thunderstorm/Lightning/Gusty winds(30-40 kmph) is likely to occur at isolated places over Alwar, Bharatpur, Churu, Deeg, Dholpur, Ganganagar, Hanumangarh, Jhunjhunu, Khairthal-Tijara, Kotputli-Behror, Sikar in next 24 hours.",
+   "description": "",
+   "instruction": "Please follow SDMA guidelines.",
+   "effective": "2026-10-24T07:29:00.000Z",
+   "onset": "2026-10-24T08:53:52.000Z",
+   "expires": "2026-10-25T07:29:00.000Z",
+   "web": "",
+   "areaDesc": "11 districts of Rajasthan",
+   "polygons": [],
+   "circles": [],
+   "places": [],
+   "geocodes": [
+    {
+     "name": "LGD District Code",
+     "value": "767"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "87"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "100"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "98"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "114"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "91"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "770"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "782"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "101"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "106"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "96"
+    }
+   ],
+   "locatedBy": "none",
+   "lat": null,
+   "lng": null,
+   "kinds": [
+    "thunderstorm"
+   ],
+   "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792827317396028"
+  },
+  "IN-1792830427901006_6": {
+   "identifier": "IN-1792830427901006_6",
+   "sender": "Kerala-SDMA",
+   "senderName": "",
+   "sent": "2026-10-24T08:48:20.000Z",
+   "status": "Actual",
+   "msgType": "Update",
+   "scope": "Public",
+   "references": "IMD-Thiruvananthapuram,IN-1792830427901006_64,2026-10-24T13:56:38+05:30",
+   "categories": [
+    "Met"
+   ],
+   "event": "Flash Flood",
+   "urgency": "Expected",
+   "severity": "Moderate",
+   "certainty": "Possible",
+   "headline": "Flash Flood is likely to occur at isolated places over Ernakulam, Idukki, Kannur, Kasaragod, Kozhikode, Wayanad in next 24 hours.",
+   "description": "",
+   "instruction": "Please follow SDMA guidelines.",
+   "effective": "2026-10-24T08:24:00.000Z",
+   "onset": "2026-10-24T08:48:20.000Z",
+   "expires": "2026-10-25T08:24:00.000Z",
+   "web": "",
+   "areaDesc": "Flash Flood Risk",
+   "polygons": [],
+   "circles": [],
+   "places": [],
+   "geocodes": [],
+   "locatedBy": "none",
+   "lat": null,
+   "lng": null,
+   "kinds": [
+    "flood"
+   ],
+   "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792830427901006"
+  },
+  "IN-1792829580238006_6": {
+   "identifier": "IN-1792829580238006_6",
+   "sender": "Kerala-SDMA",
+   "senderName": "",
+   "sent": "2026-10-24T08:17:50.000Z",
+   "status": "Actual",
+   "msgType": "Update",
+   "scope": "Public",
+   "references": "IMD-Thiruvananthapuram,IN-1792829580238006_64,2026-10-24T13:42:34+05:30",
+   "categories": [
+    "Met"
+   ],
+   "event": "Very Heavy Rain",
+   "urgency": "Expected",
+   "severity": "Severe",
+   "certainty": "Likely",
+   "headline": "Very Heavy Rain is likely to occur at isolated places over Kannur, Kasaragod, Kozhikode, Malappuram, Palakkad, Thrissur, Wayanad in next 24 hours.",
+   "description": "",
+   "instruction": "Please follow SDMA guidelines.",
+   "effective": "2026-10-24T08:11:00.000Z",
+   "onset": "2026-10-24T08:17:50.000Z",
+   "expires": "2026-10-25T08:11:00.000Z",
+   "web": "",
+   "areaDesc": "7 districts of Kerala",
+   "polygons": [],
+   "circles": [],
+   "places": [
+    {
+     "name": "Palakkad",
+     "state": "Kerala",
+     "lat": 10.78,
+     "lng": 76.65
+    },
+    {
+     "name": "Thrissur",
+     "state": "Kerala",
+     "lat": 10.53,
+     "lng": 76.21
+    },
+    {
+     "name": "Wayanad",
+     "state": "Kerala",
+     "lat": 11.69,
+     "lng": 76.13
+    }
+   ],
+   "geocodes": [
+    {
+     "name": "LGD District Code",
+     "value": "561"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "567"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "563"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "566"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "562"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "558"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "557"
+    }
+   ],
+   "locatedBy": "district-names",
+   "lat": 11,
+   "lng": 76.33,
+   "kinds": [
+    "rain"
+   ],
+   "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792829580238006"
+  },
+  "IN-1792827284000038_38": {
+   "identifier": "IN-1792827284000038_38",
+   "sender": "Andaman-and-Nicobar-SDMA",
+   "senderName": "",
+   "sent": "2026-10-24T07:41:35.000Z",
+   "status": "Actual",
+   "msgType": "Update",
+   "scope": "Public",
+   "references": "IMD-Kolkata,IN-1792827284000038_45,2026-10-24T13:04:18+05:30",
+   "categories": [
+    "Met"
+   ],
+   "event": "Heavy Rain",
+   "urgency": "Expected",
+   "severity": "Moderate",
+   "certainty": "Likely",
+   "headline": "Heavy rain (07-11 cm) accompanied with thunderstorm and lightning are very likely to occur at one or two places over Andaman Islands in the next 24 hours. People are advised to stay at safe places.",
+   "description": "",
+   "instruction": "Please follow SDMA guidelines.",
+   "effective": "2026-10-24T07:33:00.000Z",
+   "onset": "2026-10-24T07:41:35.000Z",
+   "expires": "2026-10-25T07:33:00.000Z",
+   "web": "",
+   "areaDesc": "North And Middle Andaman,South Andamans districts of Andaman and Nicobar Islands",
+   "polygons": [],
+   "circles": [],
+   "places": [],
+   "geocodes": [
+    {
+     "name": "LGD District Code",
+     "value": "602"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "632"
+    }
+   ],
+   "locatedBy": "none",
+   "lat": null,
+   "lng": null,
+   "kinds": [
+    "rain",
+    "thunderstorm"
+   ],
+   "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792827284000038"
+  },
+  "IN-1792816273103016_5": {
+   "identifier": "IN-1792816273103016_5",
+   "sender": "CWC",
+   "senderName": "",
+   "sent": "2026-10-24T04:30:38.000Z",
+   "status": "Actual",
+   "msgType": "Alert",
+   "scope": "Public",
+   "references": "",
+   "categories": [
+    "Met"
+   ],
+   "event": "Flood",
+   "urgency": "Future",
+   "severity": "Moderate",
+   "certainty": "Possible",
+   "headline": "River Gandak at Dumariaghat in Gopalganj district of Bihar continues to flow in above normal flood situation at 6:00 am today.",
+   "description": "River Gandak at Dumariaghat in Gopalganj district of Bihar continues to flow in above normal flood situation at 6:00 am today. At 6:00 am, it was flowing at a level of 61.35 m with steady trend which is 0.13 m above its Warning Level of 61.22 m and 0.87 m below its Danger Level of 62.22 m.",
+   "instruction": "",
+   "effective": "2026-10-24T00:30:00.000Z",
+   "onset": "2026-10-24T04:31:13.000Z",
+   "expires": "2026-10-25T00:30:00.000Z",
+   "web": "",
+   "areaDesc": "Gandak, Dumariaghat, Gopalganj, Bihar",
+   "polygons": [],
+   "circles": [],
+   "places": [],
+   "geocodes": [],
+   "locatedBy": "none",
+   "lat": null,
+   "lng": null,
+   "kinds": [
+    "flood"
+   ],
+   "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792816273103016"
+  },
+  "IN-1792853094078006_6": {
+   "identifier": "IN-1792853094078006_6",
+   "sender": "Kerala-SDMA",
+   "senderName": "",
+   "sent": "2026-10-24T14:52:50.000Z",
+   "status": "Actual",
+   "msgType": "Update",
+   "scope": "Public",
+   "references": "IMD-Thiruvananthapuram,IN-1792853094078006_64,2026-10-24T20:14:34+05:30",
+   "categories": [
+    "Met"
+   ],
+   "event": "Flash Flood",
+   "urgency": "Expected",
+   "severity": "Moderate",
+   "certainty": "Likely",
+   "headline": "Flash Flood is likely to occur at isolated places over Pathanamthitta district in next 24 hours. districts.",
+   "description": "",
+   "instruction": "Please follow SDMA guidelines.",
+   "effective": "2026-10-24T14:42:00.000Z",
+   "onset": "2026-10-24T14:52:50.000Z",
+   "expires": "2026-10-25T12:02:00.000Z",
+   "web": "",
+   "areaDesc": "Pathanamthitta districts",
+   "polygons": [],
+   "circles": [],
+   "places": [
+    {
+     "name": "Pathanamthitta",
+     "state": "Kerala",
+     "lat": 9.26,
+     "lng": 76.79
+    }
+   ],
+   "geocodes": [],
+   "locatedBy": "district-names",
+   "lat": 9.26,
+   "lng": 76.79,
+   "kinds": [
+    "flood"
+   ],
+   "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792853094078006"
+  },
+  "IN-1792852900581006_6": {
+   "identifier": "IN-1792852900581006_6",
+   "sender": "Kerala-SDMA",
+   "senderName": "",
+   "sent": "2026-10-24T14:49:27.000Z",
+   "status": "Actual",
+   "msgType": "Update",
+   "scope": "Public",
+   "references": "IMD-Thiruvananthapuram,IN-1792852900581006_64,2026-10-24T20:11:20+05:30",
+   "categories": [
+    "Met"
+   ],
+   "event": "Flash Flood",
+   "urgency": "Expected",
+   "severity": "Moderate",
+   "certainty": "Likely",
+   "headline": "Flash Flood is likely to occur at isolated places over Malappuram, Palakkad, and Thrissur districts in next 24 hours.",
+   "description": "",
+   "instruction": "Please follow SDMA guidelines.",
+   "effective": "2026-10-24T14:38:00.000Z",
+   "onset": "2026-10-24T14:49:27.000Z",
+   "expires": "2026-10-25T12:03:00.000Z",
+   "web": "",
+   "areaDesc": "palakkad, Malappuram and Thrissur districts",
+   "polygons": [],
+   "circles": [],
+   "places": [
+    {
+     "name": "Palakkad",
+     "state": "Kerala",
+     "lat": 10.78,
+     "lng": 76.65
+    },
+    {
+     "name": "Thrissur",
+     "state": "Kerala",
+     "lat": 10.53,
+     "lng": 76.21
+    }
+   ],
+   "geocodes": [],
+   "locatedBy": "district-names",
+   "lat": 10.655,
+   "lng": 76.43,
+   "kinds": [
+    "flood"
+   ],
+   "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792852900581006"
+  },
+  "IN-1792868873415022_48": {
+   "identifier": "IN-1792868873415022_48",
+   "sender": "IMD-New-Delhi",
+   "senderName": "",
+   "sent": "2026-10-24T19:07:19.000Z",
+   "status": "Actual",
+   "msgType": "Update",
+   "scope": "Public",
+   "references": "IMD-New-Delhi,IN-1792868303431022_48,2026-10-25T00:27:50+05:30",
+   "categories": [
+    "Met"
+   ],
+   "event": "Moderate Rain",
+   "urgency": "Expected",
+   "severity": "Severe",
+   "certainty": "Likely",
+   "headline": "Moderate Rain accompanied with Hail storm /Thunderstorm/Lightning (Wind Speed 30-40 KMPH gusting to 50 KMPH ) very likely at many places over Delhi. next 3 hours.",
+   "description": "",
+   "instruction": "Please follow SDMA guidelines.",
+   "effective": "2026-10-24T18:56:00.000Z",
+   "onset": "2026-10-24T19:07:53.000Z",
+   "expires": "2026-10-24T21:56:00.000Z",
+   "web": "",
+   "areaDesc": "Central, East, New Delhi, North, North East, North West, Shahdara, South, South East, South West, West districts of Delhi",
+   "polygons": [],
+   "circles": [],
+   "places": [],
+   "geocodes": [
+    {
+     "name": "LGD District Code",
+     "value": "83"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "79"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "670"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "82"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "77"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "81"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "84"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "78"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "85"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "80"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "671"
+    }
+   ],
+   "locatedBy": "none",
+   "lat": null,
+   "lng": null,
+   "kinds": [
+    "thunderstorm"
+   ],
+   "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792868873415022"
+  },
+  "IN-1792870286034029_46": {
+   "identifier": "IN-1792870286034029_46",
+   "sender": "IMD-Mumbai",
+   "senderName": "",
+   "sent": "2026-10-24T19:30:46.000Z",
+   "status": "Actual",
+   "msgType": "Alert",
+   "scope": "Public",
+   "references": "",
+   "categories": [
+    "Met"
+   ],
+   "event": "Moderate Rain",
+   "urgency": "Expected",
+   "severity": "Moderate",
+   "certainty": "Likely",
+   "headline": "Light to moderate spells of rain with possibility of thunder/ lightning in some areas very likely to occur at isolated places at Sindhudurg in next 3 hours.",
+   "description": "",
+   "instruction": "Please follow SDMA guidelines.",
+   "effective": "2026-10-24T19:30:00.000Z",
+   "onset": "2026-10-24T19:31:26.000Z",
+   "expires": "2026-10-24T22:30:00.000Z",
+   "web": "",
+   "areaDesc": "Sindhudurg district of Maharashtra",
+   "polygons": [],
+   "circles": [],
+   "places": [],
+   "geocodes": [
+    {
+     "name": "LGD District Code",
+     "value": "495"
+    }
+   ],
+   "locatedBy": "none",
+   "lat": null,
+   "lng": null,
+   "kinds": [
+    "thunderstorm"
+   ],
+   "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792870286034029"
+  },
+  "IN-1792871074288041_41": {
+   "identifier": "IN-1792871074288041_41",
+   "sender": "Puducherry-SDMA",
+   "senderName": "",
+   "sent": "2026-10-24T19:47:46.000Z",
+   "status": "Actual",
+   "msgType": "Update",
+   "scope": "Public",
+   "references": "IMD-Chennai,IN-1792871074288041_43,2026-10-25T01:13:56+05:30",
+   "categories": [
+    "Met"
+   ],
+   "event": "Moderate Rain",
+   "urgency": "Expected",
+   "severity": "Moderate",
+   "certainty": "Possible",
+   "headline": "Moderate Rain is likely to occur at a few places over Ariyalur, Chengalpattu, Chennai, Coimbatore, Cuddalore, Dharmapuri, Dindigul, Kancheepuram, Kanniyakumari, Karur, Krishnagiri, Nagapattinam, Namakkal, Pudukkottai, Salem, Thanjavur, Theni, The Nilgiris, Karaikal, Pondicherry in next 3 hours.",
+   "description": "",
+   "instruction": "Please follow SDMA guidelines.",
+   "effective": "2026-10-24T19:43:00.000Z",
+   "onset": "2026-10-24T19:47:46.000Z",
+   "expires": "2026-10-24T22:43:00.000Z",
+   "web": "",
+   "areaDesc": "Karaikal,Pondicherry districts of Puducherry",
+   "polygons": [],
+   "circles": [],
+   "places": [
+    {
+     "name": "Puducherry",
+     "state": "Puducherry",
+     "lat": 11.94,
+     "lng": 79.81
+    },
+    {
+     "name": "Karaikal",
+     "state": "Puducherry",
+     "lat": 10.93,
+     "lng": 79.84
+    }
+   ],
+   "geocodes": [
+    {
+     "name": "LGD District Code",
+     "value": "598"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "600"
+    }
+   ],
+   "locatedBy": "district-names",
+   "lat": 11.434999999999999,
+   "lng": 79.825,
+   "kinds": [
+    "other"
+   ],
+   "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792871074288041"
+  },
+  "IN-1792871071227007_43": {
+   "identifier": "IN-1792871071227007_43",
+   "sender": "IMD-Chennai",
+   "senderName": "",
+   "sent": "2026-10-24T19:43:56.000Z",
+   "status": "Actual",
+   "msgType": "Alert",
+   "scope": "Public",
+   "references": "",
+   "categories": [
+    "Met"
+   ],
+   "event": "Moderate Rain",
+   "urgency": "Expected",
+   "severity": "Moderate",
+   "certainty": "Possible",
+   "headline": "Moderate Rain is likely to occur at a few places over Ariyalur, Chengalpattu, Chennai, Coimbatore, Cuddalore, Dharmapuri, Dindigul, Kancheepuram, Kanniyakumari, Karur, Krishnagiri, Nagapattinam, Namakkal, Pudukkottai, Salem, Thanjavur, Theni, The Nilgiris, Karaikal, Pondicherry in next 3 hours.",
+   "description": "",
+   "instruction": "Please follow SDMA guidelines.",
+   "effective": "2026-10-24T19:43:00.000Z",
+   "onset": "2026-10-24T19:44:31.000Z",
+   "expires": "2026-10-24T22:43:00.000Z",
+   "web": "",
+   "areaDesc": "Ariyalur, Chengalpattu, Chennai, Coimbatore, Cuddalore, Dharmapuri, Dindigul, Kancheepuram, Kanniyakumari, Karur, Krishnagiri, Nagapattinam, Namakkal, Pudukkottai, Salem, Thanjavur, Theni, The Nilgiris, Thiruvarur, Vellore, Viluppuram districts of Tamil Nadu",
+   "polygons": [],
+   "circles": [],
+   "places": [
+    {
+     "name": "Ariyalur",
+     "state": "Tamil Nadu",
+     "lat": 11.14,
+     "lng": 79.08
+    },
+    {
+     "name": "Chengalpattu",
+     "state": "Tamil Nadu",
+     "lat": 12.69,
+     "lng": 79.98
+    },
+    {
+     "name": "Chennai",
+     "state": "Tamil Nadu",
+     "lat": 13.08,
+     "lng": 80.27
+    },
+    {
+     "name": "Coimbatore",
+     "state": "Tamil Nadu",
+     "lat": 11.02,
+     "lng": 76.96
+    },
+    {
+     "name": "Cuddalore",
+     "state": "Tamil Nadu",
+     "lat": 11.75,
+     "lng": 79.75
+    },
+    {
+     "name": "Dharmapuri",
+     "state": "Tamil Nadu",
+     "lat": 12.13,
+     "lng": 78.16
+    },
+    {
+     "name": "Dindigul",
+     "state": "Tamil Nadu",
+     "lat": 10.36,
+     "lng": 77.98
+    },
+    {
+     "name": "Kancheepuram",
+     "state": "Tamil Nadu",
+     "lat": 12.83,
+     "lng": 79.7
+    },
+    {
+     "name": "Kanniyakumari",
+     "state": "Tamil Nadu",
+     "lat": 8.18,
+     "lng": 77.41
+    },
+    {
+     "name": "Karur",
+     "state": "Tamil Nadu",
+     "lat": 10.96,
+     "lng": 78.08
+    },
+    {
+     "name": "Krishnagiri",
+     "state": "Tamil Nadu",
+     "lat": 12.52,
+     "lng": 78.21
+    },
+    {
+     "name": "Nagapattinam",
+     "state": "Tamil Nadu",
+     "lat": 10.77,
+     "lng": 79.84
+    },
+    {
+     "name": "Namakkal",
+     "state": "Tamil Nadu",
+     "lat": 11.22,
+     "lng": 78.17
+    },
+    {
+     "name": "Nilgiris",
+     "state": "Tamil Nadu",
+     "lat": 11.41,
+     "lng": 76.7
+    },
+    {
+     "name": "Pudukkottai",
+     "state": "Tamil Nadu",
+     "lat": 10.38,
+     "lng": 78.82
+    },
+    {
+     "name": "Salem",
+     "state": "Tamil Nadu",
+     "lat": 11.66,
+     "lng": 78.15
+    },
+    {
+     "name": "Thanjavur",
+     "state": "Tamil Nadu",
+     "lat": 10.79,
+     "lng": 79.14
+    },
+    {
+     "name": "Theni",
+     "state": "Tamil Nadu",
+     "lat": 10.01,
+     "lng": 77.48
+    },
+    {
+     "name": "Tiruvarur",
+     "state": "Tamil Nadu",
+     "lat": 10.77,
+     "lng": 79.64
+    },
+    {
+     "name": "Vellore",
+     "state": "Tamil Nadu",
+     "lat": 12.92,
+     "lng": 79.13
+    },
+    {
+     "name": "Viluppuram",
+     "state": "Tamil Nadu",
+     "lat": 11.94,
+     "lng": 79.49
+    }
+   ],
+   "geocodes": [
+    {
+     "name": "LGD District Code",
+     "value": "574"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "577"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "586"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "575"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "730"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "579"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "596"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "588"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "595"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "568"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "582"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "572"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "610"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "590"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "584"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "569"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "580"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "570"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "587"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "571"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "576"
+    }
+   ],
+   "locatedBy": "district-names",
+   "lat": 11.358571428571427,
+   "lng": 78.67333333333333,
+   "kinds": [
+    "other"
+   ],
+   "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792871071227007"
+  }
+ },
+ "sachetSeen": {
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792766828984031": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792763858163006": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792763508209006": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792763860621031": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792763642438028": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792761947255041": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792761944217007": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792761943318007": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792759763404029": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792761115811008": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792760751461019": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792760619411019": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792760444233019": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792760454733008": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792759344393008": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792758959516008": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792757693212008": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792756891767008": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792756758551028": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792755912389008": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792755784511029": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792755338666008": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792755127217013": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792753282679008": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792752826426024": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792752978767033": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792752722956008": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792748895753033": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792748896369033": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792752456528008": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792752128127008": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792751996965008": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792751530121007": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792751528006007": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792751158807008": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792750522007008": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792750283932008": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792749894797008": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792749495171028": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792749349113028": 1792769769731,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792774397538006": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792773656142041": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792773652889007": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792773652021007": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792749304223008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792748968491008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792748418084033": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792748442973008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792748122804008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792744613892033": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792747686302008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792745162631029": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792747429016008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792746963465008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792746370856008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792745961542008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792745793881008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792745283786008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792744975874008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792745074885008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792744814555008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792744626704008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792744135274008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792738653753033": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792743739002008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792743464347008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792742930177028": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792742964985008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792741348095038": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792741189621038": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792741440781008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792739970498008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792739292104008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792738704821008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792738240398008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792737874849008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792737633752008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792735673814008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792735522558008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792734873405008": 1792778411900,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792783457574041": 1792789111451,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792783454599007": 1792789111451,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792783078086007": 1792789111451,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792734479054008": 1792789111451,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792733708779008": 1792789111451,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792732428827008": 1792789111451,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792732061783008": 1792789111451,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792731550738008": 1792789111451,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792731388099008": 1792789111451,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792730874497008": 1792789111451,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792730555445016": 1792789111451,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792730206903031": 1792789111451,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792729322052028": 1792789111451,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792728413807008": 1792789111451,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792725539987008": 1792789111451,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792723855765008": 1792789111451,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792723707152008": 1792789111451,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792722493759008": 1792789111451,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792721663859008": 1792789111451,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792720116693008": 1792789111451,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792790157571028": 1792791816697,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792815213455007": 1792816070050,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792812997671008": 1792816070050,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792811742077028": 1792816070050,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792811814018008": 1792816070050,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792811702568008": 1792816070050,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792810393495007": 1792816070050,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792807635065008": 1792816070050,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792807502844008": 1792816070050,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792806387979031": 1792816070050,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792805651101008": 1792816070050,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792804486042008": 1792816070050,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792803071132008": 1792816070050,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792800996012028": 1792816070050,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792832428468008": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792832198245008": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792827317396028": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792830427901006": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792831538084008": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792831385792008": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792831419331033": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792828422281029": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792830479042008": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792830014624008": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792829580238006": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792829679459008": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792828396099019": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792827900941008": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792827284000038": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792827598568008": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792827395267038": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792827442567008": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792826697894008": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792826190442008": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792824525077008": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792824372178008": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792823939052008": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792823779073008": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792822222228008": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792821946553008": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792821442079008": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792820967157008": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792820354014008": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792817772069008": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792816273103016": 1792832648348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792846701927008": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792846219927028": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792846147728008": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792845967425008": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792845757084036": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792845759207024": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792845633088008": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792844879887008": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792844285175008": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792843808034008": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792842966376041": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792843122193008": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792842952035008": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792842963597007": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792842837704007": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792842550092008": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792841932879008": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792841775023008": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792841322436008": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792840529041008": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792838179059029": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792840071826008": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792839894548036": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792839896152024": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792839595922008": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792839313486008": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792839067977008": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792838744689019": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792838231222008": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792837573152008": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792837348461008": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792836780086033": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792836868832008": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792836548452008": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792836025702008": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792835697896008": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792835304359041": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792835334743008": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792835301894007": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792835300823007": 1792847760858,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792853094078006": 1792855117440,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792852900581006": 1792855117440,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792851255277008": 1792855117440,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792850893008008": 1792855117440,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792850261075008": 1792855117440,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792849544555029": 1792855117440,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792849454101008": 1792855117440,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792849082166008": 1792855117440,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792848423694041": 1792855117440,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792848421546007": 1792855117440,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792848420008007": 1792855117440,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792835170604008": 1792855117440,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792834738065008": 1792855117440,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792834515512008": 1792855117440,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792833582421028": 1792855117440,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792833252254008": 1792855117440,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792833003263009": 1792855117440,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792832934267008": 1792855117440,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792832760566008": 1792855117440,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792856081858024": 1792856236902,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792855392814006": 1792856236902,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792857313859013": 1792857508490,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792859773702029": 1792859838381,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792861531022007": 1792861638358,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792861534644041": 1792861638358,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792861046918009": 1792861638358,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792868303431022": 1792868688087,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792868873415022": 1792869741656,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792870286034029": 1792870637859,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792871074288041": 1792871544129,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792871071227007": 1792871544129
+ },
+ "flightsFetchedAt": "2026-10-24T19:52:24.129Z",
+ "squawkSnapshot": [
+  {
+   "icao24": "39d30a",
+   "callsign": "TVF87PU",
+   "country": "France",
+   "lat": 45.784,
+   "lng": 5.292,
+   "baroAltM": 2172,
+   "onGround": 0,
+   "velocity": 148.9,
+   "track": 330,
+   "verticalRate": -2.3,
+   "squawk": "7700",
+   "positionTime": 1792871538
+  }
+ ],
+ "tleFetchedAt": "2026-10-24T20:06:07.242Z",
+ "reservoirs": {
+  "current": {
+   "date": "2026-10-24",
+   "items": [
+    {
+     "id": "mettur",
+     "label": "METTUR",
+     "fullFt": 120,
+     "levelFt": 54.56,
+     "inflow": 1409,
+     "outflow": 2254
+    },
+    {
+     "id": "krs",
+     "label": "Krishna Raja Sagar",
+     "fullFt": 124.8,
+     "levelFt": 101.96,
+     "inflow": 2517,
+     "outflow": 1423
+    },
+    {
+     "id": "kabini",
+     "label": "Kabini",
+     "fullFt": 65,
+     "levelFt": 50.3,
+     "inflow": 1077,
+     "outflow": 500
+    },
+    {
+     "id": "harangi",
+     "label": "Harangi",
+     "fullFt": 129,
+     "levelFt": 114.9,
+     "inflow": 648,
+     "outflow": 200
+    },
+    {
+     "id": "hemavathy",
+     "label": "Hemavathy",
+     "fullFt": 117,
+     "levelFt": 88.96,
+     "inflow": 1518,
+     "outflow": 300
+    },
+    {
+     "id": "bhavanisagar",
+     "label": "BHAVANISAGAR",
+     "fullFt": 105,
+     "levelFt": 64.55,
+     "inflow": 11160,
+     "outflow": 5
+    },
+    {
+     "id": "amaravathi",
+     "label": "AMARAVATHI*",
+     "fullFt": 90,
+     "levelFt": 40.85,
+     "inflow": 1490,
+     "outflow": 50
+    },
+    {
+     "id": "periyar",
+     "label": "Periyar**",
+     "fullFt": 152,
+     "levelFt": 120.25,
+     "inflow": 1497,
+     "outflow": 400
+    },
+    {
+     "id": "vaigai",
+     "label": "Vaigai",
+     "fullFt": 71,
+     "levelFt": 48.69,
+     "inflow": 3095,
+     "outflow": 86
+    },
+    {
+     "id": "papanasam",
+     "label": "Papanasam (TN EB Dam)",
+     "fullFt": 143,
+     "levelFt": 54.95,
+     "inflow": 870,
+     "outflow": 100
+    },
+    {
+     "id": "manimuthar",
+     "label": "Manimuthar",
+     "fullFt": 118,
+     "levelFt": 63.27,
+     "inflow": 275,
+     "outflow": 50
+    },
+    {
+     "id": "pechiparai",
+     "label": "Pechiparai",
+     "fullFt": 48,
+     "levelFt": 22.77,
+     "inflow": 522,
+     "outflow": null
+    },
+    {
+     "id": "perunchani",
+     "label": "Perunchani",
+     "fullFt": 77,
+     "levelFt": 48.9,
+     "inflow": 523,
+     "outflow": 25
+    },
+    {
+     "id": "krishnagiri",
+     "label": "Krishnagiri",
+     "fullFt": 52,
+     "levelFt": 48.25,
+     "inflow": 537,
+     "outflow": 537
+    },
+    {
+     "id": "sathanur",
+     "label": "Sathanur",
+     "fullFt": 119,
+     "levelFt": 95.75,
+     "inflow": 544,
+     "outflow": null
+    },
+    {
+     "id": "sholayar",
+     "label": "Sholayar",
+     "fullFt": 160,
+     "levelFt": 60.83,
+     "inflow": 484,
+     "outflow": 85
+    },
+    {
+     "id": "parambikulam",
+     "label": "Parambikulam",
+     "fullFt": 72,
+     "levelFt": 59,
+     "inflow": 561,
+     "outflow": 850
+    },
+    {
+     "id": "aliyar",
+     "label": "Aliyar",
+     "fullFt": 120,
+     "levelFt": 57.7,
+     "inflow": 295,
+     "outflow": 50
+    },
+    {
+     "id": "thirumurthy",
+     "label": "Thirumurthy",
+     "fullFt": 60,
+     "levelFt": 34.93,
+     "inflow": 814,
+     "outflow": 21
+    }
+   ]
+  },
+  "previous": {
+   "date": "2026-10-23",
+   "items": [
+    {
+     "id": "mettur",
+     "label": "METTUR",
+     "fullFt": 120,
+     "levelFt": 54.68,
+     "inflow": 2319,
+     "outflow": 3002
+    },
+    {
+     "id": "krs",
+     "label": "Krishna Raja Sagar",
+     "fullFt": 124.8,
+     "levelFt": 101.86,
+     "inflow": 3080,
+     "outflow": 1420
+    },
+    {
+     "id": "kabini",
+     "label": "Kabini",
+     "fullFt": 65,
+     "levelFt": 50.21,
+     "inflow": 1021,
+     "outflow": 500
+    },
+    {
+     "id": "harangi",
+     "label": "Harangi",
+     "fullFt": 129,
+     "levelFt": 114.74,
+     "inflow": 278,
+     "outflow": 500
+    },
+    {
+     "id": "hemavathy",
+     "label": "Hemavathy",
+     "fullFt": 117,
+     "levelFt": 88.78,
+     "inflow": 1451,
+     "outflow": 300
+    },
+    {
+     "id": "bhavanisagar",
+     "label": "BHAVANISAGAR",
+     "fullFt": 105,
+     "levelFt": 61.82,
+     "inflow": 972,
+     "outflow": 97
+    },
+    {
+     "id": "amaravathi",
+     "label": "AMARAVATHI*",
+     "fullFt": 90,
+     "levelFt": 37.6,
+     "inflow": 642,
+     "outflow": 200
+    },
+    {
+     "id": "periyar",
+     "label": "Periyar**",
+     "fullFt": 152,
+     "levelFt": 119.75,
+     "inflow": 4271,
+     "outflow": 400
+    },
+    {
+     "id": "vaigai",
+     "label": "Vaigai",
+     "fullFt": 71,
+     "levelFt": 46.52,
+     "inflow": 1265,
+     "outflow": 86
+    },
+    {
+     "id": "papanasam",
+     "label": "Papanasam (TN EB Dam)",
+     "fullFt": 143,
+     "levelFt": 52.95,
+     "inflow": 892,
+     "outflow": 100
+    },
+    {
+     "id": "manimuthar",
+     "label": "Manimuthar",
+     "fullFt": 118,
+     "levelFt": 62.85,
+     "inflow": 619,
+     "outflow": 25
+    },
+    {
+     "id": "pechiparai",
+     "label": "Pechiparai",
+     "fullFt": 48,
+     "levelFt": 22.17,
+     "inflow": 816,
+     "outflow": null
+    },
+    {
+     "id": "perunchani",
+     "label": "Perunchani",
+     "fullFt": 77,
+     "levelFt": 47.85,
+     "inflow": 961,
+     "outflow": 25
+    },
+    {
+     "id": "krishnagiri",
+     "label": "Krishnagiri",
+     "fullFt": 52,
+     "levelFt": 48.25,
+     "inflow": 649,
+     "outflow": 537
+    },
+    {
+     "id": "sathanur",
+     "label": "Sathanur",
+     "fullFt": 119,
+     "levelFt": 95.4,
+     "inflow": 1204,
+     "outflow": null
+    },
+    {
+     "id": "sholayar",
+     "label": "Sholayar",
+     "fullFt": 160,
+     "levelFt": 59.45,
+     "inflow": 493,
+     "outflow": 85
+    },
+    {
+     "id": "parambikulam",
+     "label": "Parambikulam",
+     "fullFt": 72,
+     "levelFt": 59.12,
+     "inflow": 561,
+     "outflow": 850
+    },
+    {
+     "id": "aliyar",
+     "label": "Aliyar",
+     "fullFt": 120,
+     "levelFt": 57,
+     "inflow": 261,
+     "outflow": 50
+    },
+    {
+     "id": "thirumurthy",
+     "label": "Thirumurthy",
+     "fullFt": 60,
+     "levelFt": 32.83,
+     "inflow": 900,
+     "outflow": 21
+    }
+   ]
+  }
+ },
+ "reservoirsFetchedAt": "2026-10-24T20:06:07.242Z",
+ "ships": {
+  "220164000": {
+   "lat": 13.271365,
+   "lng": 80.338505,
+   "sog": 0,
+   "cog": 168.1,
+   "heading": 359,
+   "status": 5,
+   "time": 1792868712455,
+   "name": "CLEMENTINE MAERSK"
+  },
+  "419683000": {
+   "lat": 13.091266666666666,
+   "lng": 80.29926666666667,
+   "sog": 0,
+   "cog": 300.5,
+   "heading": 290,
+   "status": 5,
+   "time": 1792865276151,
+   "name": "SAGAR NIDHI"
+  },
+  "563187500": {
+   "lat": 13.10333,
+   "lng": 80.29842833333333,
+   "sog": 0,
+   "cog": 287.4,
+   "heading": 18,
+   "status": 5,
+   "time": 1792865218380,
+   "name": "WAN HAI 361"
+  },
+  "636016600": {
+   "lat": 13.09231,
+   "lng": 80.29616166666666,
+   "sog": 0,
+   "cog": 4.4,
+   "heading": 107,
+   "status": 5,
+   "time": 1792865218140,
+   "name": "AEOLOS"
+  }
+ },
+ "shipStatic": {
+  "636016600": {
+   "name": "",
+   "type": 70,
+   "destination": "",
+   "callsign": "D5GX9",
+   "lengthM": 200,
+   "seen": 1792861638358
+  }
+ },
+ "reservoirHistoryGaps": [
+  "2026-10-17"
+ ],
+ "rainSnapshot": [
+  {
+   "id": "ariyalur",
+   "name": "Ariyalur",
+   "state": "Tamil Nadu",
+   "lat": 11.14,
+   "lng": 79.08,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 19
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 39.5
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 6.1
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0.4
+    }
+   ],
+   "past24": 19,
+   "next72": 46,
+   "peakMm": 39.5,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "chengalpattu",
+   "name": "Chengalpattu",
+   "state": "Tamil Nadu",
+   "lat": 12.69,
+   "lng": 79.98,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 9.3
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 15.1
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 2.5
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 9.3,
+   "next72": 17.6,
+   "peakMm": 15.1,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "chennai",
+   "name": "Chennai",
+   "state": "Tamil Nadu",
+   "lat": 13.08,
+   "lng": 80.27,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 4.9
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 18.1
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 1.4
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 4.9,
+   "next72": 19.5,
+   "peakMm": 18.1,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "coimbatore",
+   "name": "Coimbatore",
+   "state": "Tamil Nadu",
+   "lat": 11.02,
+   "lng": 76.96,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 22.8
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 22.8
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 28.8
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0.6
+    }
+   ],
+   "past24": 22.8,
+   "next72": 52.2,
+   "peakMm": 28.8,
+   "peakDate": "2026-10-26"
+  },
+  {
+   "id": "cuddalore",
+   "name": "Cuddalore",
+   "state": "Tamil Nadu",
+   "lat": 11.75,
+   "lng": 79.75,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 20.9
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 30.3
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 12
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 20.9,
+   "next72": 42.3,
+   "peakMm": 30.3,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "dharmapuri",
+   "name": "Dharmapuri",
+   "state": "Tamil Nadu",
+   "lat": 12.13,
+   "lng": 78.16,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 12.4
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 34.7
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 0.3
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 12.4,
+   "next72": 35,
+   "peakMm": 34.7,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "dindigul",
+   "name": "Dindigul",
+   "state": "Tamil Nadu",
+   "lat": 10.36,
+   "lng": 77.98,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 13
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 58.9
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 23.6
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 13,
+   "next72": 82.5,
+   "peakMm": 58.9,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "erode",
+   "name": "Erode",
+   "state": "Tamil Nadu",
+   "lat": 11.34,
+   "lng": 77.72,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 31.9
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 48.5
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 0.7
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 31.9,
+   "next72": 49.2,
+   "peakMm": 48.5,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "kallakurichi",
+   "name": "Kallakurichi",
+   "state": "Tamil Nadu",
+   "lat": 11.74,
+   "lng": 78.96,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 27.8
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 32.6
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 1.4
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 27.8,
+   "next72": 34,
+   "peakMm": 32.6,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "kancheepuram",
+   "name": "Kancheepuram",
+   "state": "Tamil Nadu",
+   "lat": 12.83,
+   "lng": 79.7,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 11.8
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 17.4
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 0.9
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 11.8,
+   "next72": 18.3,
+   "peakMm": 17.4,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "kanniyakumari",
+   "name": "Kanniyakumari",
+   "state": "Tamil Nadu",
+   "lat": 8.18,
+   "lng": 77.41,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 14.7
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 26.2
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 16.3
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 6.2
+    }
+   ],
+   "past24": 14.7,
+   "next72": 48.7,
+   "peakMm": 26.2,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "karur",
+   "name": "Karur",
+   "state": "Tamil Nadu",
+   "lat": 10.96,
+   "lng": 78.08,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 47.1
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 38.6
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 14.7
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 47.1,
+   "next72": 53.3,
+   "peakMm": 38.6,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "krishnagiri",
+   "name": "Krishnagiri",
+   "state": "Tamil Nadu",
+   "lat": 12.52,
+   "lng": 78.21,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 11.9
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 25
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 1.2
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 11.9,
+   "next72": 26.2,
+   "peakMm": 25,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "madurai",
+   "name": "Madurai",
+   "state": "Tamil Nadu",
+   "lat": 9.93,
+   "lng": 78.12,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 12.1
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 32.4
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 45.6
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 3.2
+    }
+   ],
+   "past24": 12.1,
+   "next72": 81.2,
+   "peakMm": 45.6,
+   "peakDate": "2026-10-26"
+  },
+  {
+   "id": "mayiladuthurai",
+   "name": "Mayiladuthurai",
+   "state": "Tamil Nadu",
+   "lat": 11.1,
+   "lng": 79.65,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 25.2
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 40.9
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 14.9
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 25.2,
+   "next72": 55.8,
+   "peakMm": 40.9,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "nagapattinam",
+   "name": "Nagapattinam",
+   "state": "Tamil Nadu",
+   "lat": 10.77,
+   "lng": 79.84,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 20.4
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 35.2
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 30.2
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 20.4,
+   "next72": 65.4,
+   "peakMm": 35.2,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "namakkal",
+   "name": "Namakkal",
+   "state": "Tamil Nadu",
+   "lat": 11.22,
+   "lng": 78.17,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 19.8
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 33.6
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 1.6
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 19.8,
+   "next72": 35.2,
+   "peakMm": 33.6,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "nilgiris",
+   "name": "Nilgiris",
+   "state": "Tamil Nadu",
+   "lat": 11.41,
+   "lng": 76.7,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 56.2
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 54.3
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 7.6
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 56.2,
+   "next72": 61.9,
+   "peakMm": 54.3,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "perambalur",
+   "name": "Perambalur",
+   "state": "Tamil Nadu",
+   "lat": 11.23,
+   "lng": 78.88,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 14.6
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 37.2
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 4.6
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0.3
+    }
+   ],
+   "past24": 14.6,
+   "next72": 42.1,
+   "peakMm": 37.2,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "pudukkottai",
+   "name": "Pudukkottai",
+   "state": "Tamil Nadu",
+   "lat": 10.38,
+   "lng": 78.82,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 19.9
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 37.8
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 28.6
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0.1
+    }
+   ],
+   "past24": 19.9,
+   "next72": 66.5,
+   "peakMm": 37.8,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "ramanathapuram",
+   "name": "Ramanathapuram",
+   "state": "Tamil Nadu",
+   "lat": 9.37,
+   "lng": 78.83,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 8.5
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 16.9
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 73
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 1.6
+    }
+   ],
+   "past24": 8.5,
+   "next72": 91.5,
+   "peakMm": 73,
+   "peakDate": "2026-10-26"
+  },
+  {
+   "id": "ranipet",
+   "name": "Ranipet",
+   "state": "Tamil Nadu",
+   "lat": 12.93,
+   "lng": 79.33,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 12.1
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 21.6
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 0.7
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 12.1,
+   "next72": 22.3,
+   "peakMm": 21.6,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "salem",
+   "name": "Salem",
+   "state": "Tamil Nadu",
+   "lat": 11.66,
+   "lng": 78.15,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 24
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 32.2
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 1.1
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 24,
+   "next72": 33.3,
+   "peakMm": 32.2,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "sivaganga",
+   "name": "Sivaganga",
+   "state": "Tamil Nadu",
+   "lat": 9.85,
+   "lng": 78.48,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 9.9
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 42.8
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 52.5
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 1.3
+    }
+   ],
+   "past24": 9.9,
+   "next72": 96.6,
+   "peakMm": 52.5,
+   "peakDate": "2026-10-26"
+  },
+  {
+   "id": "tenkasi",
+   "name": "Tenkasi",
+   "state": "Tamil Nadu",
+   "lat": 8.96,
+   "lng": 77.3,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 16.3
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 13.2
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 17
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 2.1
+    }
+   ],
+   "past24": 16.3,
+   "next72": 32.3,
+   "peakMm": 17,
+   "peakDate": "2026-10-26"
+  },
+  {
+   "id": "thanjavur",
+   "name": "Thanjavur",
+   "state": "Tamil Nadu",
+   "lat": 10.79,
+   "lng": 79.14,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 20.6
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 39.9
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 26.8
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 20.6,
+   "next72": 66.7,
+   "peakMm": 39.9,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "theni",
+   "name": "Theni",
+   "state": "Tamil Nadu",
+   "lat": 10.01,
+   "lng": 77.48,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 22.7
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 26.5
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 72.3
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 3.2
+    }
+   ],
+   "past24": 22.7,
+   "next72": 102,
+   "peakMm": 72.3,
+   "peakDate": "2026-10-26"
+  },
+  {
+   "id": "thoothukudi",
+   "name": "Thoothukudi",
+   "state": "Tamil Nadu",
+   "lat": 8.76,
+   "lng": 78.13,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 2.1
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 4
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 30.5
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 16.5
+    }
+   ],
+   "past24": 2.1,
+   "next72": 51,
+   "peakMm": 30.5,
+   "peakDate": "2026-10-26"
+  },
+  {
+   "id": "tiruchirappalli",
+   "name": "Tiruchirappalli",
+   "state": "Tamil Nadu",
+   "lat": 10.79,
+   "lng": 78.7,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 22.5
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 34.6
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 11
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 22.5,
+   "next72": 45.6,
+   "peakMm": 34.6,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "tirunelveli",
+   "name": "Tirunelveli",
+   "state": "Tamil Nadu",
+   "lat": 8.71,
+   "lng": 77.76,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 3.5
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 2.6
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 23.9
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 3.4
+    }
+   ],
+   "past24": 3.5,
+   "next72": 29.9,
+   "peakMm": 23.9,
+   "peakDate": "2026-10-26"
+  },
+  {
+   "id": "tirupathur",
+   "name": "Tirupathur",
+   "state": "Tamil Nadu",
+   "lat": 12.5,
+   "lng": 78.57,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 12.4
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 15.3
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 12.4,
+   "next72": 15.3,
+   "peakMm": 15.3,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "tiruppur",
+   "name": "Tiruppur",
+   "state": "Tamil Nadu",
+   "lat": 11.11,
+   "lng": 77.34,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 22.2
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 31.3
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 4.1
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 22.2,
+   "next72": 35.4,
+   "peakMm": 31.3,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "tiruvallur",
+   "name": "Tiruvallur",
+   "state": "Tamil Nadu",
+   "lat": 13.14,
+   "lng": 79.91,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 4.8
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 31.8
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 0.5
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 4.8,
+   "next72": 32.3,
+   "peakMm": 31.8,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "tiruvannamalai",
+   "name": "Tiruvannamalai",
+   "state": "Tamil Nadu",
+   "lat": 12.23,
+   "lng": 79.07,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 28
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 31.7
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 0.4
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 28,
+   "next72": 32.1,
+   "peakMm": 31.7,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "tiruvarur",
+   "name": "Tiruvarur",
+   "state": "Tamil Nadu",
+   "lat": 10.77,
+   "lng": 79.64,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 18.3
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 35.9
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 23
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 18.3,
+   "next72": 58.9,
+   "peakMm": 35.9,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "vellore",
+   "name": "Vellore",
+   "state": "Tamil Nadu",
+   "lat": 12.92,
+   "lng": 79.13,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 6.6
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 16.2
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 0.3
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 6.6,
+   "next72": 16.5,
+   "peakMm": 16.2,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "viluppuram",
+   "name": "Viluppuram",
+   "state": "Tamil Nadu",
+   "lat": 11.94,
+   "lng": 79.49,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 25.8
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 21.9
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 2.7
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 25.8,
+   "next72": 24.6,
+   "peakMm": 21.9,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "virudhunagar",
+   "name": "Virudhunagar",
+   "state": "Tamil Nadu",
+   "lat": 9.58,
+   "lng": 77.96,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 6.3
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 27.3
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 29.7
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 7.7
+    }
+   ],
+   "past24": 6.3,
+   "next72": 64.7,
+   "peakMm": 29.7,
+   "peakDate": "2026-10-26"
+  },
+  {
+   "id": "puducherry",
+   "name": "Puducherry",
+   "state": "Puducherry",
+   "lat": 11.94,
+   "lng": 79.81,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 17.5
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 24.3
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 12.5
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 17.5,
+   "next72": 36.8,
+   "peakMm": 24.3,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "karaikal",
+   "name": "Karaikal",
+   "state": "Puducherry",
+   "lat": 10.93,
+   "lng": 79.84,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 16.5
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 29.8
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 32.6
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 16.5,
+   "next72": 62.4,
+   "peakMm": 32.6,
+   "peakDate": "2026-10-26"
+  },
+  {
+   "id": "idukki",
+   "name": "Idukki",
+   "state": "Kerala",
+   "lat": 9.85,
+   "lng": 76.97,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 15.8
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 49
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 30
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 2.8
+    }
+   ],
+   "past24": 15.8,
+   "next72": 81.8,
+   "peakMm": 49,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "palakkad",
+   "name": "Palakkad",
+   "state": "Kerala",
+   "lat": 10.78,
+   "lng": 76.65,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 25.1
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 43.5
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 12.1
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 5.5
+    }
+   ],
+   "past24": 25.1,
+   "next72": 61.1,
+   "peakMm": 43.5,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "thiruvananthapuram",
+   "name": "Thiruvananthapuram",
+   "state": "Kerala",
+   "lat": 8.52,
+   "lng": 76.94,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 26.2
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 52.1
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 20.7
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 2.2
+    }
+   ],
+   "past24": 26.2,
+   "next72": 75,
+   "peakMm": 52.1,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "kollam",
+   "name": "Kollam",
+   "state": "Kerala",
+   "lat": 8.89,
+   "lng": 76.61,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 18.6
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 40.1
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 14.7
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 1.9
+    }
+   ],
+   "past24": 18.6,
+   "next72": 56.7,
+   "peakMm": 40.1,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "pathanamthitta",
+   "name": "Pathanamthitta",
+   "state": "Kerala",
+   "lat": 9.26,
+   "lng": 76.79,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 18.3
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 51.4
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 30.9
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 3.4
+    }
+   ],
+   "past24": 18.3,
+   "next72": 85.7,
+   "peakMm": 51.4,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "kottayam",
+   "name": "Kottayam",
+   "state": "Kerala",
+   "lat": 9.59,
+   "lng": 76.52,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 18.2
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 48.5
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 26.4
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 2.6
+    }
+   ],
+   "past24": 18.2,
+   "next72": 77.5,
+   "peakMm": 48.5,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "ernakulam",
+   "name": "Ernakulam",
+   "state": "Kerala",
+   "lat": 9.98,
+   "lng": 76.28,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 23.4
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 38.1
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 8
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 2.5
+    }
+   ],
+   "past24": 23.4,
+   "next72": 48.6,
+   "peakMm": 38.1,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "thrissur",
+   "name": "Thrissur",
+   "state": "Kerala",
+   "lat": 10.53,
+   "lng": 76.21,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 24.4
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 15
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 14.4
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 2.5
+    }
+   ],
+   "past24": 24.4,
+   "next72": 31.9,
+   "peakMm": 15,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "wayanad",
+   "name": "Wayanad",
+   "state": "Kerala",
+   "lat": 11.69,
+   "lng": 76.13,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 87.8
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 34.6
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 0.1
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 87.8,
+   "next72": 34.7,
+   "peakMm": 34.6,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "chamarajanagar",
+   "name": "Chamarajanagar",
+   "state": "Karnataka",
+   "lat": 11.92,
+   "lng": 76.94,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 17.5
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 44.7
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 2.8
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 17.5,
+   "next72": 47.5,
+   "peakMm": 44.7,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "mysuru",
+   "name": "Mysuru",
+   "state": "Karnataka",
+   "lat": 12.3,
+   "lng": 76.64,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 26.6
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 23.1
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 0.4
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 26.6,
+   "next72": 23.5,
+   "peakMm": 23.1,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "bengaluru-urban",
+   "name": "Bengaluru Urban",
+   "state": "Karnataka",
+   "lat": 12.97,
+   "lng": 77.59,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 7.7
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 28.8
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 0.3
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 7.7,
+   "next72": 29.1,
+   "peakMm": 28.8,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "kolar",
+   "name": "Kolar",
+   "state": "Karnataka",
+   "lat": 13.14,
+   "lng": 78.13,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 22.7
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 7.4
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 0.4
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 22.7,
+   "next72": 7.8,
+   "peakMm": 7.4,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "chittoor",
+   "name": "Chittoor",
+   "state": "Andhra Pradesh",
+   "lat": 13.22,
+   "lng": 79.1,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 18.7
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 5.9
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 1.1
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 18.7,
+   "next72": 7,
+   "peakMm": 5.9,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "tirupati",
+   "name": "Tirupati",
+   "state": "Andhra Pradesh",
+   "lat": 13.63,
+   "lng": 79.42,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 22.6
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 5.4
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 2.3
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 22.6,
+   "next72": 7.7,
+   "peakMm": 5.4,
+   "peakDate": "2026-10-25"
+  },
+  {
+   "id": "nellore",
+   "name": "Nellore",
+   "state": "Andhra Pradesh",
+   "lat": 14.44,
+   "lng": 79.99,
+   "days": [
+    {
+     "date": "2026-10-24",
+     "mm": 2.7
+    },
+    {
+     "date": "2026-10-25",
+     "mm": 7.5
+    },
+    {
+     "date": "2026-10-26",
+     "mm": 1.2
+    },
+    {
+     "date": "2026-10-27",
+     "mm": 0
+    }
+   ],
+   "past24": 2.7,
+   "next72": 8.7,
+   "peakMm": 7.5,
+   "peakDate": "2026-10-25"
+  }
+ ],
+ "rainFetchedAt": "2026-10-24T20:07:17.000Z",
+ "telegramCommandsVersion": 1,
+ "telegramOffset": 360264234,
+ "tleCatalog": 2
+}
