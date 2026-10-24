@@ -95,7 +95,7 @@ export async function listenShips({ apiKey, listenMs = 45000, bbox = AIS_BBOX, c
   await done;
   clearTimeout(timer);
   if (serverError) throw new Error(`AISStream: ${serverError}`);
-  if (!messages && closeReason !== 'closed by client') throw new Error(`AISStream closed early (${closeReason})`);
+  if (!messages && closeReason !== 'closed by client') throw new Error(`AISStream closed the connection (${closeReason}); check the AISSTREAM_API_KEY secret`);
   return { positions, statics, messages };
 }
 
