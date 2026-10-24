@@ -1134,18 +1134,79 @@
     }
   }
 
+  /* Pop-ups: bursts within 400 ms merge into one summary; tap opens the alert (or the feed);
+     swipe sideways to dismiss. On phones they sit above the chips, away from the search bar. */
+  const toastQueue = [];
+  let toastTimer = null;
+
   function toast(ev) {
+    toastQueue.push(ev);
+    if (!toastTimer) toastTimer = setTimeout(flushToasts, 400);
+  }
+
+  function flushToasts() {
+    toastTimer = null;
+    const batch = toastQueue.splice(0);
+    if (!batch.length) return;
+    const top = batch.slice().sort((a, b) => (SEVERITY[b.severity] ?? 0) - (SEVERITY[a.severity] ?? 0))[0];
+    const isEvent = (e) => e && e.id && Number.isFinite(e.lat);
+    if (batch.length === 1) {
+      showToast({ severity: top.severity, html: `<b>${esc(String(top.severity).toUpperCase())}</b> ${esc(top.title)}`, onTap: isEvent(top) ? () => showEventDetail(top) : null });
+    } else {
+      const n = batch.filter(isEvent).length;
+      showToast({
+        severity: top.severity,
+        html: `<b>${batch.length} new</b> ${esc(top.title)}<small>${n ? 'Tap to open the feed' : `and ${batch.length - 1} more`}</small>`,
+        onTap: n ? () => { if (isCompact()) openPanel('right'); else $('feed').scrollTop = 0; } : null
+      });
+    }
+  }
+
+  function showToast({ severity, html, onTap }) {
     const host = $('toasts');
     const el = document.createElement('div');
-    el.className = 'toast';
-    el.innerHTML = `<span class="dot" style="background:${SEV_COLOR[ev.severity]};color:${SEV_COLOR[ev.severity]}"></span><span><b>${esc(ev.severity.toUpperCase())}</b> ${esc(ev.title)}</span>`;
+    el.className = `toast${onTap ? ' tappable' : ''}`;
+    el.setAttribute('role', 'status');
+    const color = SEV_COLOR[severity] || SEV_COLOR.medium;
+    el.innerHTML = `<span class="dot" style="background:${color};color:${color}"></span><span class="toast-text">${html}</span>`;
     host.prepend(el);
-    const dismiss = () => {
-      el.classList.add('out');
-      el.addEventListener('animationend', () => el.remove(), { once: true });
+    while (host.children.length > (isCompact() ? 2 : 3)) host.lastChild.remove();
+    let gone = false;
+    const dismiss = (dir = 0) => {
+      if (gone) return;
+      gone = true;
+      if (dir) {
+        el.style.transition = 'transform 0.25s var(--ease), opacity 0.25s var(--ease)';
+        el.style.transform = `translateX(${dir * 120}%)`;
+        el.style.opacity = '0';
+        setTimeout(() => el.remove(), 260);
+      } else {
+        el.classList.add('out');
+        el.addEventListener('animationend', () => el.remove(), { once: true });
+      }
     };
-    while (host.children.length > 3) host.lastChild.remove();
-    setTimeout(dismiss, 6000);
+    let startX = null;
+    let dx = 0;
+    el.addEventListener('pointerdown', (e) => { startX = e.clientX; dx = 0; el.setPointerCapture(e.pointerId); });
+    el.addEventListener('pointermove', (e) => {
+      if (startX === null) return;
+      dx = e.clientX - startX;
+      el.style.transform = `translateX(${dx}px)`;
+      el.style.opacity = String(Math.max(0.2, 1 - Math.abs(dx) / 220));
+    });
+    el.addEventListener('pointerup', () => {
+      if (startX === null) return;
+      startX = null;
+      if (Math.abs(dx) > 60) { dismiss(Math.sign(dx)); return; }
+      el.style.transform = '';
+      el.style.opacity = '';
+      if (Math.abs(dx) < 6) {
+        if (onTap) onTap();
+        dismiss();
+      }
+    });
+    el.addEventListener('pointercancel', () => { startX = null; el.style.transform = ''; el.style.opacity = ''; });
+    setTimeout(() => dismiss(), 7000);
   }
 
   /* ===================== Globe ===================== */
@@ -3241,7 +3302,7 @@
 
   const isHttps = (u) => typeof u === 'string' && /^https:\/\//.test(u);
 
-  function renderDetail({ kind, title, fields, url, severity, meta = [], image = null, imageLink = null, embed = null }) {
+  function renderDetail({ kind, title, fields, url, severity, meta = [], image = null, imageLink = null, embed = null, chartSlot = false }) {
     const el = $('detail');
     const rows = meta.concat(fields).map(([k, v]) => `<div class="kv"><span>${esc(k)}</span><span>${esc(v)}</span></div>`).join('');
     const link = isHttps(url)
@@ -3255,7 +3316,7 @@
       </figure>` : '';
     el.innerHTML = `
       <div class="kind"${severity ? ` style="color:${SEV_COLOR[severity]}"` : ''}>${esc(kind)}${severity ? ` &middot; ${esc(severity)}` : ''}</div>
-      <h2>${esc(title)}</h2>${playerHtml(embed)}${media}${rows}
+      <h2>${esc(title)}</h2>${playerHtml(embed)}${media}${chartSlot ? '<div class="chart-slot"></div>' : ''}${rows}
       <div class="detail-actions">${link}<button class="btn" data-action="close-detail">Close</button></div>`;
     const img = el.querySelector('.cam img');
     if (img) {
@@ -3266,6 +3327,7 @@
     }
     el.scrollTop = 0;
     $('detailWrap').classList.add('open');
+    $('right').classList.add('detail-open');
     openPanel('right');
   }
 
@@ -3300,10 +3362,149 @@
     selectedRef = null;
     tagsDirty = true;
     updatePath(true);
-    $('detailWrap').classList.remove('open');
+    $('detailWrap').classList.remove('open'); $('right').classList.remove('detail-open');
     selectedEventId = null;
     document.querySelectorAll('.ev.selected').forEach((n) => n.classList.remove('selected'));
     hideSelector();
+  }
+
+  /* ===================== Trend charts (inline SVG, no library) ===================== */
+
+  const CH = { w: 320, h: 132, l: 34, r: 8, t: 10, b: 22 };
+  const shortDate = (iso) => {
+    const d = new Date(`${iso}T00:00:00Z`);
+    return Number.isFinite(d.getTime()) ? d.toLocaleDateString([], { day: 'numeric', month: 'short', timeZone: 'UTC' }) : '';
+  };
+  const istToday = () => new Date(Date.now() + 5.5 * 3600 * 1000).toISOString().slice(0, 10);
+
+  function chartSvg(inner, aria, h = CH.h) {
+    return `<svg class="chart" viewBox="0 0 ${CH.w} ${h}" role="img" aria-label="${esc(aria)}">${inner}</svg>`;
+  }
+  function axisY(min, max, fmt, h = CH.h) {
+    const y = (v) => CH.t + (1 - (v - min) / (max - min || 1)) * (h - CH.t - CH.b);
+    const ticks = [min, (min + max) / 2, max];
+    return { y, svg: ticks.map((v) => `<line class="grid" x1="${CH.l}" x2="${CH.w - CH.r}" y1="${y(v).toFixed(1)}" y2="${y(v).toFixed(1)}"/><text class="tick" x="${CH.l - 4}" y="${(y(v) + 3).toFixed(1)}" text-anchor="end">${esc(fmt(v))}</text>`).join('') };
+  }
+  const xScale = (n) => (i) => CH.l + (n <= 1 ? 0.5 : i / (n - 1)) * (CH.w - CH.l - CH.r);
+  const pathOf = (pts) => pts.map(([x, y], i) => `${i ? 'L' : 'M'}${x.toFixed(1)},${y.toFixed(1)}`).join('');
+
+  /** Dam level over the stored history, against full depth, with daily inflow as faint bars. */
+  function damChart(rows, fullFt) {
+    const data = rows.filter((r) => Number.isFinite(r[1])).slice(-45);
+    if (data.length < 2) return '<div class="chart-note">Trend appears after a few days of history.</div>';
+    const levels = data.map((r) => r[1]);
+    const lo = Math.floor(Math.min(...levels) - 2);
+    const hi = Math.max(Math.ceil(fullFt), Math.ceil(Math.max(...levels) + 2));
+    const { y, svg } = axisY(lo, hi, (v) => `${Math.round(v)}`);
+    const x = xScale(data.length);
+    const inflows = data.map((r) => (Number.isFinite(r[2]) ? r[2] : 0));
+    const maxIn = Math.max(1, ...inflows);
+    const barW = Math.min(12, Math.max(1.5, (CH.w - CH.l - CH.r) / data.length - 1.5));
+    const bars = data.map((r, i) => {
+      const bh = (inflows[i] / maxIn) * 34;
+      const bx = Math.min(CH.w - CH.r - barW, Math.max(CH.l, x(i) - barW / 2));
+      return `<rect class="bar-in" x="${bx.toFixed(1)}" y="${(CH.h - CH.b - bh).toFixed(1)}" width="${barW.toFixed(1)}" height="${bh.toFixed(1)}"/>`;
+    }).join('');
+    const line = pathOf(data.map((r, i) => [x(i), y(r[1])]));
+    const last = data[data.length - 1];
+    return chartSvg(`${svg}${bars}
+      <line class="ref" x1="${CH.l}" x2="${CH.w - CH.r}" y1="${y(fullFt).toFixed(1)}" y2="${y(fullFt).toFixed(1)}"/>
+      <text class="ref-label" x="${CH.w - CH.r}" y="${(y(fullFt) - 3).toFixed(1)}" text-anchor="end">full ${Math.round(fullFt)} ft</text>
+      <path class="line dam" d="${line}"/>
+      <circle class="dot-end" cx="${x(data.length - 1).toFixed(1)}" cy="${y(last[1]).toFixed(1)}" r="3"/>
+      <text class="tick" x="${CH.l}" y="${CH.h - 6}">${esc(shortDate(data[0][0]))}</text>
+      <text class="tick" x="${CH.w - CH.r}" y="${CH.h - 6}" text-anchor="end">${esc(shortDate(last[0]))}</text>`,
+      `Level over ${data.length} days, from ${data[0][1]} to ${last[1]} feet; full is ${fullFt} feet`)
+      + `<div class="chart-legend"><span><i class="k-dam"></i>Level (ft)</span><span><i class="k-in"></i>Inflow (relative, max ${fmtInt(maxIn)} cusecs)</span></div>`;
+  }
+
+  /** River discharge: 7 days observed-model past (solid) and forecast (dashed), today marked. */
+  function riverChart(r) {
+    const series = (Array.isArray(r.series) ? r.series : []).filter((p) => Number.isFinite(p.q) && typeof p.date === 'string');
+    if (series.length < 2) return '';
+    const qs = series.map((p) => p.q);
+    const hi = Math.max(...qs, r.baseline || 0) * 1.1 || 1;
+    const { y, svg } = axisY(0, hi, (v) => (v >= 1000 ? `${(v / 1000).toFixed(1)}k` : `${Math.round(v)}`));
+    const x = xScale(series.length);
+    const today = istToday();
+    let ti = series.findIndex((p) => p.date >= today);
+    if (ti < 0) ti = series.length - 1;
+    const pts = series.map((p, i) => [x(i), y(p.q)]);
+    const past = pathOf(pts.slice(0, ti + 1));
+    const future = pathOf(pts.slice(ti));
+    const base = Number.isFinite(r.baseline) ? `<line class="ref" x1="${CH.l}" x2="${CH.w - CH.r}" y1="${y(r.baseline).toFixed(1)}" y2="${y(r.baseline).toFixed(1)}"/><text class="ref-label" x="${CH.l + 4}" y="${(y(r.baseline) - 3).toFixed(1)}">7-day mean</text>` : '';
+    return chartSvg(`${svg}${base}
+      <line class="today" x1="${x(ti).toFixed(1)}" x2="${x(ti).toFixed(1)}" y1="${CH.t}" y2="${CH.h - CH.b}"/>
+      <text class="tick" x="${x(ti).toFixed(1)}" y="${CH.h - 6}" text-anchor="middle">today</text>
+      <path class="line river" d="${past}"/><path class="line river fc" d="${future}"/>
+      <text class="tick" x="${CH.l}" y="${CH.h - 6}">${esc(shortDate(series[0].date))}</text>
+      <text class="tick" x="${CH.w - CH.r}" y="${CH.h - 6}" text-anchor="end">${esc(shortDate(series[series.length - 1].date))}</text>`,
+      `River discharge in cubic metres per second, peak ${Math.round(Math.max(...qs))}`)
+      + '<div class="chart-legend"><span><i class="k-river"></i>Discharge (m3/s), model</span><span><i class="k-fc"></i>Forecast</span></div>';
+  }
+
+  /** Daily maximum temperature forecast with the IMD heat-wave threshold for the region. */
+  function heatChart(h) {
+    const days = (Array.isArray(h.days) ? h.days : []).filter((d) => Number.isFinite(d.tmax)).slice(0, 10);
+    if (!days.length) return '';
+    const threshold = { plains: 40, coastal: 37, hilly: 30 }[h.region] || 40;
+    const lo = Math.floor(Math.min(...days.map((d) => d.tmax), threshold) - 3);
+    const hi = Math.ceil(Math.max(...days.map((d) => d.tmax), threshold) + 1);
+    const { y, svg } = axisY(lo, hi, (v) => `${Math.round(v)}`);
+    const slot = (CH.w - CH.l - CH.r) / days.length;
+    const bars = days.map((d, i) => {
+      const bx = CH.l + i * slot + slot * 0.18;
+      const top = y(d.tmax);
+      const label = new Date(`${d.date}T00:00:00Z`).toLocaleDateString([], { weekday: 'short', timeZone: 'UTC' });
+      return `<rect class="bar-heat${d.tmax >= threshold ? ' hot' : ''}" x="${bx.toFixed(1)}" y="${top.toFixed(1)}" width="${(slot * 0.64).toFixed(1)}" height="${(CH.h - CH.b - top).toFixed(1)}" rx="2"/>
+        <text class="tick" x="${(bx + slot * 0.32).toFixed(1)}" y="${CH.h - 6}" text-anchor="middle">${esc(label)}</text>`;
+    }).join('');
+    return chartSvg(`${svg}${bars}
+      <line class="ref" x1="${CH.l}" x2="${CH.w - CH.r}" y1="${y(threshold).toFixed(1)}" y2="${y(threshold).toFixed(1)}"/>
+      <text class="ref-label" x="${CH.w - CH.r}" y="${(y(threshold) - 3).toFixed(1)}" text-anchor="end">IMD ${threshold} C (${esc(h.region || 'plains')})</text>`,
+      `Forecast daily maximum temperature, highest ${Math.max(...days.map((d) => d.tmax))} C`)
+      + '<div class="chart-legend"><span><i class="k-heat"></i>Max temperature (C), forecast</span><span><i class="k-hot"></i>At or above the IMD threshold</span></div>';
+  }
+
+  let damHistory = null;
+  let damHistoryAt = 0;
+  async function loadDamHistory() {
+    if (damHistory && Date.now() - damHistoryAt < 10 * 60 * 1000) return damHistory;
+    const base = backendBase();
+    if (!base) return null;
+    try {
+      const h = await getJson(`${base.replace(/\/+$/, '')}/reservoir-history.json?t=${Math.floor(Date.now() / 600000)}`);
+      if (h && h.dams && typeof h.dams === 'object') {
+        damHistory = h;
+        damHistoryAt = Date.now();
+      }
+    } catch { /* charts are optional */ }
+    return damHistory;
+  }
+
+  /** Fills the detail panel's chart slot for dams, river points and heat stations (and their alerts). */
+  async function attachChart(key, it) {
+    const slot = document.querySelector('#detail .chart-slot');
+    if (!slot || key !== 'alerts' || !it || typeof it.id !== 'string') return;
+    const [kind, pid] = it.id.split(':');
+    const layers = lastBackend && lastBackend.layers ? lastBackend.layers : {};
+    if (kind === 'river') {
+      const r = (layers.rivers || []).find((x) => x.id === pid);
+      if (r) slot.innerHTML = `<div class="chart-title">River discharge, 7 days back and ahead</div>${riverChart(r)}`;
+    } else if (kind === 'heat') {
+      const h = (layers.heat || []).find((x) => x.id === pid);
+      if (h) slot.innerHTML = `<div class="chart-title">Temperature forecast</div>${heatChart(h)}`;
+    } else if (kind === 'reservoir') {
+      const site = (layers.reservoirs && layers.reservoirs.items || []).find((x) => x.id === pid);
+      slot.innerHTML = '<div class="chart-note">Loading level history\u2026</div>';
+      const hist = await loadDamHistory();
+      if (!document.body.contains(slot)) return;
+      const rows = hist && Array.isArray(hist.dams[pid]) ? hist.dams[pid] : [];
+      const fullFt = site ? site.fullFt : rows.length ? rows[rows.length - 1][4] : null;
+      slot.innerHTML = rows.length && Number.isFinite(fullFt)
+        ? `<div class="chart-title">Level, last ${Math.min(rows.length, 45)} days</div>${damChart(rows, fullFt)}`
+        : '<div class="chart-note">History is building (a few days are added each hour).</div>';
+    }
   }
 
   function showItemDetail(key, it) {
@@ -3313,7 +3514,8 @@
     selectedEventId = null;
     document.querySelectorAll('.ev.selected').forEach((n) => n.classList.remove('selected'));
     const d = LAYERS[key].describe(it);
-    renderDetail({ kind: LAYERS[key].label, title: d.title, fields: d.fields, url: d.url, image: d.image, imageLink: d.imageLink, embed: d.embed });
+    renderDetail({ kind: LAYERS[key].label, title: d.title, fields: d.fields, url: d.url, image: d.image, imageLink: d.imageLink, embed: d.embed, chartSlot: key === 'alerts' });
+    attachChart(key, it);
     placeSelector(it.lat, it.lng, it.altKm);
   }
 
@@ -4015,10 +4217,98 @@
   let searchHits = [];
   let searchActive = 0;
 
+  /* ----- Places: districts (the poller's gazetteer), dams, river points, heat stations, coordinates ----- */
+  let districts = [];
+  fetch('poller/data/districts.json').then((r) => (r.ok ? r.json() : null)).then((d) => {
+    if (d && Array.isArray(d.districts)) {
+      districts = d.districts.filter((x) => Number.isFinite(x.lat) && Number.isFinite(x.lng)).map((x) => ({
+        name: str(x.name, 60), sub: `District, ${str(x.state, 40)}`, lat: x.lat, lng: x.lng, alt: 1.6,
+        aliases: Array.isArray(x.aliases) ? x.aliases.map((a) => str(a, 60)) : []
+      }));
+    }
+  }).catch(() => {});
+
+  function placeList() {
+    const L = lastBackend && lastBackend.layers ? lastBackend.layers : {};
+    const dams = (L.reservoirs && Array.isArray(L.reservoirs.items) ? L.reservoirs.items : []).filter((d) => Number.isFinite(d.lat))
+      .map((d) => ({ name: str(d.name, 60), sub: `Dam, ${str(d.river, 30) || 'reservoir'}`, lat: d.lat, lng: d.lng, alt: 0.5, icon: 'dam', itemId: `reservoir:${d.id}` }));
+    const rivers = (Array.isArray(L.rivers) ? L.rivers : []).filter((r) => Number.isFinite(r.lat))
+      .map((r) => ({ name: str(r.name, 60), sub: 'River point (model)', lat: r.lat, lng: r.lng, alt: 0.6, icon: 'river', itemId: `river:${r.id}` }));
+    const heat = (Array.isArray(L.heat) ? L.heat : []).filter((h) => Number.isFinite(h.lat))
+      .map((h) => ({ name: str(h.name, 60), sub: 'Heat station (forecast)', lat: h.lat, lng: h.lng, alt: 1.2, icon: 'heat', itemId: `heat:${h.id}` }));
+    return [...districts, ...dams, ...rivers, ...heat];
+  }
+
+  const COORD_RE = /^\s*(-?\d{1,2}(?:\.\d+)?)\s*[,\s]\s*(-?\d{1,3}(?:\.\d+)?)\s*$/;
+
+  function placeHits(term) {
+    const out = [];
+    const m = COORD_RE.exec(term);
+    if (m) {
+      const lat = Number(m[1]);
+      const lng = Number(m[2]);
+      if (Math.abs(lat) <= 90 && Math.abs(lng) <= 180) out.push({ place: { name: `${lat.toFixed(4)}, ${lng.toFixed(4)}`, sub: 'Coordinates', lat, lng, alt: 0.8 }, score: 5 });
+    }
+    for (const p of placeList()) {
+      const texts = [p.name, ...(p.aliases || [])].map((t) => t.toLowerCase());
+      const exact = texts.some((t) => t === term);
+      const prefix = texts.some((t) => t.startsWith(term) || t.split(/[\s(]+/).some((w) => w.startsWith(term)));
+      if (!exact && !prefix && !texts.some((t) => t.includes(term))) continue;
+      out.push({ place: p, score: exact ? 3.5 : prefix ? 2.5 : 1.2 });
+    }
+    return out;
+  }
+
+  /* Worldwide place lookup on request only (OpenStreetMap Nominatim: one request per tap, attributed). */
+  let osmBusy = false;
+  async function searchOsm(q) {
+    if (osmBusy) return;
+    osmBusy = true;
+    const box = $('searchResults');
+    box.innerHTML = '<div class="none">Searching OpenStreetMap\u2026</div>';
+    try {
+      const params = new URLSearchParams({ q: q.slice(0, 120), format: 'jsonv2', limit: '6', 'accept-language': 'en' });
+      const rows = await getJson(`https://nominatim.openstreetmap.org/search?${params}`);
+      searchHits = (Array.isArray(rows) ? rows : []).map((r) => ({
+        place: { name: str(r.name || (r.display_name || '').split(',')[0], 60), sub: str(r.display_name, 90), lat: Number(r.lat), lng: Number(r.lon), alt: r.type === 'country' ? 25 : r.type === 'state' ? 8 : 1.2 },
+        score: 1
+      })).filter((h) => Number.isFinite(h.place.lat) && Number.isFinite(h.place.lng));
+      searchActive = 0;
+      box.innerHTML = searchHits.length
+        ? searchHits.map((h, n) => hitHtml(h, n)).join('') + '<div class="osm-credit">Search \u00a9 OpenStreetMap contributors</div>'
+        : '<div class="none">No places found.</div>';
+    } catch (err) {
+      box.innerHTML = `<div class="none">Place search failed (${esc(err.message)}).</div>`;
+    } finally {
+      setTimeout(() => { osmBusy = false; }, 1100);
+    }
+  }
+
+  function hitHtml(h, n) {
+    if (h.place) {
+      const icon = h.place.icon || 'dot';
+      return `
+        <button type="button" data-hit="${n}" class="${n === 0 ? 'active' : ''}">
+          <span class="ic" style="--c:#64d2b4;--m:url(${ATLAS.urls[icon]})"></span>
+          <span class="lbl">${esc(h.place.name)}<small>${esc(h.place.sub)}</small></span>
+          <span class="kind">Place</span>
+        </button>`;
+    }
+    if (h.osm) {
+      return `<button type="button" data-osm="1" class="osm-row"><span class="lbl">Search places worldwide for \u201c${esc(h.q)}\u201d</span><span class="kind">OSM</span></button>`;
+    }
+    return `
+        <button type="button" data-hit="${n}" class="${n === 0 ? 'active' : ''}">
+          <span class="ic" style="--c:${LAYERS[h.key].color};--m:url(${ATLAS.urls[iconFor(h.key, h.it).icon]})"></span>
+          <span class="lbl">${esc(tagText(h.key, h.it) || h.it.title || h.it.name || h.it.id)}</span>
+          <span class="kind">${esc(CHIP_LABEL[h.key])}</span>
+        </button>`;
+  }
+
   function runSearch(q) {
     const term = q.trim().toLowerCase();
     if (term.length < 2) return [];
-    const hits = [];
+    const hits = placeHits(term);
     for (const key of Object.keys(LAYERS)) {
       const fields = SEARCH_FIELDS[key];
       for (const it of data[key]) {
@@ -4034,6 +4324,7 @@
     return hits.sort((a, b) => b.score - a.score).slice(0, 8);
   }
 
+
   function renderSearch() {
     const box = $('searchResults');
     const q = $('search').value;
@@ -4043,20 +4334,28 @@
     }
     searchHits = runSearch(q);
     searchActive = 0;
-    box.innerHTML = searchHits.length
-      ? searchHits.map((h, n) => `
-        <button type="button" data-hit="${n}" class="${n === 0 ? 'active' : ''}">
-          <span class="ic" style="--c:${LAYERS[h.key].color};--m:url(${ATLAS.urls[iconFor(h.key, h.it).icon]})"></span>
-          <span class="lbl">${esc(tagText(h.key, h.it) || h.it.title || h.it.name || h.it.id)}</span>
-          <span class="kind">${esc(CHIP_LABEL[h.key])}</span>
-        </button>`).join('')
-      : '<div class="none">No matches in the loaded layers.</div>';
+    const osmRow = q.trim().length >= 3 && !COORD_RE.test(q) ? hitHtml({ osm: true, q: q.trim() }) : '';
+    box.innerHTML = (searchHits.length
+      ? searchHits.map((h, n) => hitHtml(h, n)).join('')
+      : '<div class="none">No matches on the map.</div>') + osmRow;
     box.hidden = false;
   }
 
   function chooseHit(n) {
     const h = searchHits[n];
     if (!h) return;
+    if (h.place) {
+      const p = h.place;
+      flyTo(p.lat, p.lng, RADIUS + p.alt);
+      /* An alerted point is replaced by its alert, whose id extends the point id (reservoir:vaigai:full:medium). */
+      const it = p.itemId ? (data.alerts || []).find((x) => x.id === p.itemId || x.id.startsWith(`${p.itemId}:`)) : null;
+      if (it) showItemDetail('alerts', it);
+      else placeSelector(p.lat, p.lng, 0);
+      $('search').value = '';
+      $('searchResults').hidden = true;
+      $('search').blur();
+      return;
+    }
     if (!LAYERS[h.key].visible) {
       setLayerVisible(h.key, true);
       syncChips();
@@ -4089,6 +4388,10 @@
     }
   });
   $('searchResults').addEventListener('click', (e) => {
+    if (e.target.closest('[data-osm]')) {
+      searchOsm($('search').value.trim());
+      return;
+    }
     const b = e.target.closest('[data-hit]');
     if (b) chooseHit(Number(b.dataset.hit));
   });

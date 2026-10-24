@@ -379,3 +379,32 @@ test('ships: listen window, server error and merge with ageing', async () => {
   assert.equal(rows.length, 2, 'ship older than 3 hours dropped');
   assert.equal(rows[0][1], 'TEST VESSEL');
 });
+
+test('reservoir history: merge by date, find gaps, backfill a few days per run', async () => {
+  const { addToHistory, missingDates, backfillHistory } = await import('../sources/reservoirs.mjs');
+  const page = (date, level) => ({ date, items: [{ id: 'mettur', fullFt: 120, levelFt: level, inflow: 1000, outflow: 2000 }] });
+  let h = addToHistory(null, page('2026-10-24', 54.5));
+  h = addToHistory(h, page('2026-10-23', 54.6));
+  h = addToHistory(h, page('2026-10-24', 54.56));
+  assert.deepEqual(h.dams.mettur.map((r) => [r[0], r[1]]), [['2026-10-23', 54.6], ['2026-10-24', 54.56]], 'sorted, same date replaced');
+  assert.equal(missingDates(h, '2026-10-24', 5).join(','), '2026-10-22,2026-10-21,2026-10-20,2026-10-19');
+
+  const html = (dmy) => `<p><span>As On Date:</span> <span class="x"> ${dmy}</span></p><h4 class="date-tt h-tt">METTUR</h4>
+    <ul class="leg1 d-flex"><li>Full Depth</li></ul><ul class="leg1 d-flex"><li>(Feet)</li></ul><ul class="leg1 d-flex"><li>120</li><li>53.9</li><li>900</li><li>2100</li></ul>`;
+  const requested = [];
+  const http = { getText: async (url) => {
+    const d = url.slice(-10);
+    requested.push(d);
+    if (d === '2026-10-21') throw new Error('HTTP 500');
+    if (d === '2026-10-20') return { text: html('24-10-2026') };   /* site returned the wrong day */
+    const [y, m, dd] = d.split('-');
+    return { text: html(`${dd}-${m}-${y}`) };
+  } };
+  const r = await backfillHistory({ http, history: h, latest: '2026-10-24', maxFetch: 3 });
+  assert.deepEqual(requested, ['2026-10-22', '2026-10-21', '2026-10-20']);
+  assert.ok(r.history.dams.mettur.some((x) => x[0] === '2026-10-22'), 'good day added');
+  assert.deepEqual(r.unavailable, ['2026-10-20', '2026-10-21'], 'failed and mismatched days are skipped next time');
+  const r2 = await backfillHistory({ http, history: r.history, latest: '2026-10-24', unavailable: r.unavailable, maxFetch: 1 });
+  assert.equal(requested[requested.length - 1], '2026-10-19', 'next run moves on to older days');
+  assert.ok(r2.history.dams.mettur.some((x) => x[0] === '2026-10-19'));
+});

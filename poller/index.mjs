@@ -18,7 +18,7 @@ import { fetchRiverDischarge, fetchTemperatures, assessHeat } from './sources/op
 import { fetchGdacs, fetchUsgs } from './sources/hazards.mjs';
 import { fetchFlights, expandFlights, FLIGHT_FIELDS } from './sources/flights.mjs';
 import { fetchTle } from './sources/tle.mjs';
-import { fetchReservoirs, reservoirLayer } from './sources/reservoirs.mjs';
+import { fetchReservoirs, reservoirLayer, addToHistory, backfillHistory } from './sources/reservoirs.mjs';
 import { listenShips, mergeShips, SHIP_FIELDS } from './sources/ships.mjs';
 import { evaluate, SEVERITY_RANK } from './rules.mjs';
 import { buildMessages, createNotifier, heartbeat } from './notify.mjs';
@@ -200,6 +200,21 @@ export async function run(options = {}) {
   if (data.reservoirs) {
     state.reservoirs = data.reservoirs;
     state.reservoirsFetchedAt = new Date(now).toISOString();
+    /* Daily history for trend charts: today's and yesterday's pages, plus a few missing past days per run. */
+    const histFile = path.join(dataDir, 'reservoir-history.json');
+    let history = await readJson(histFile, null).catch(() => null);
+    history = addToHistory(history, data.reservoirs.previous);
+    history = addToHistory(history, data.reservoirs.current);
+    try {
+      const filled = await backfillHistory({ http, history, latest: data.reservoirs.current.date, unavailable: state.reservoirHistoryGaps || [] });
+      history = filled.history;
+      state.reservoirHistoryGaps = filled.unavailable;
+    } catch (err) {
+      log(`reservoir history backfill skipped: ${err.message}`);
+    }
+    history.updatedAt = new Date(now).toISOString();
+    history.source = 'TN Agriculture Dept (WRD daily reservoir data)';
+    await writeJsonAtomic(histFile, history);
   }
   layerData.reservoirs = reservoirLayer(state.reservoirs);
   if (data.gdacs) state.gdacsSnapshot = data.gdacs.filter((e) => e.alertLevel !== 'Green');

@@ -170,3 +170,57 @@ export function assessReservoir(r) {
   }
   return out;
 }
+
+/* ----- Daily history (published as reservoir-history.json for the dashboard's trend charts) ----- */
+
+export const HISTORY_DAYS = 400;
+export const BACKFILL_DAYS = 30;
+
+/** Adds a parsed page to the history: { dams: { id: [[date, levelFt, inflow, outflow, fullFt], ...] } }. */
+export function addToHistory(history, page) {
+  if (!page || !page.date || !Array.isArray(page.items)) return history;
+  const h = history && typeof history === 'object' && history.dams ? history : { schema: 1, dams: {} };
+  for (const r of page.items) {
+    const rows = (h.dams[r.id] ||= []);
+    const row = [page.date, r.levelFt, r.inflow, r.outflow, r.fullFt];
+    const i = rows.findIndex((x) => x[0] === page.date);
+    if (i >= 0) rows[i] = row; else rows.push(row);
+    rows.sort((a, b) => (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0));
+    if (rows.length > HISTORY_DAYS) rows.splice(0, rows.length - HISTORY_DAYS);
+  }
+  return h;
+}
+
+/** Dates in the last BACKFILL_DAYS (before `latest`) with no history yet, newest first. */
+export function missingDates(history, latest, days = BACKFILL_DAYS) {
+  const have = new Set();
+  for (const rows of Object.values(history?.dams || {})) for (const r of rows) have.add(r[0]);
+  const out = [];
+  for (let k = 1; k <= days; k++) {
+    const d = new Date(Date.parse(`${latest}T00:00:00Z`) - k * 86400000).toISOString().slice(0, 10);
+    if (!have.has(d)) out.push(d);
+  }
+  return out;
+}
+
+/**
+ * Fills a few missing past days per run from the dated pages, so a month of history
+ * builds up within a day without hammering the state site. Dates the site cannot
+ * serve (wrong date returned, or an error) are remembered and skipped.
+ */
+export async function backfillHistory({ http, history, latest, unavailable = [], maxFetch = 4 }) {
+  let h = history;
+  const skip = new Set(unavailable);
+  const todo = missingDates(h, latest).filter((d) => !skip.has(d)).slice(0, maxFetch);
+  for (const d of todo) {
+    try {
+      const { text } = await http.getText(`${RESERVOIR_URL}${d}`, { timeoutMs: 30000 });
+      const page = parseReservoirPage(text);
+      if (page.date !== d) { skip.add(d); continue; }
+      h = addToHistory(h, page);
+    } catch {
+      skip.add(d);
+    }
+  }
+  return { history: h, unavailable: [...skip].sort().slice(-60) };
+}

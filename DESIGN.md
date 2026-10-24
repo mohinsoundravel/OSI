@@ -32,7 +32,7 @@ This is a personal context and cross-checking tool. It is **not** a primary warn
 | SACHET (flood, heat, dam, cyclone) | Poller | Feeds send no CORS headers; a browser cannot read them. |
 | River-rise and heat-wave signals | Poller | Needs batching, state and baselines. |
 | Ships | Poller, projected in the browser | AISStream is a WebSocket API with a key, so the poller listens for 45 s per run (zero-dependency RFC 6455 client in `poller/lib/ws.mjs`, size-capped), merges with ships heard in the last 3 hours and publishes `ships.json`. Auxiliary: failures never page. |
-| Reservoirs | Poller | Official daily WRD figures, compared with the previous day's page; drives dam-release alerts. |
+| Reservoirs | Poller | Official daily WRD figures, compared with the previous day's page; drives dam-release alerts. Daily history is kept in `reservoir-history.json` (400 days), backfilled from dated pages four days per run; days the site cannot serve are remembered and skipped. |
 | Live players | Browser | YouTube (privacy-enhanced, channel live embed) and Windy players, framed only on tap; CSP `frame-src` allows just those two hosts. |
 | Notifications | Poller | Must work with the dashboard closed. |
 
