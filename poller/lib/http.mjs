@@ -63,7 +63,9 @@ export function createHttpClient({ allowedHosts, userAgent, cache = {}, fixtures
 
   async function fromFixture(url) {
     const key = `${url.hostname}${url.pathname}${url.search}`.replace(/[^A-Za-z0-9._-]+/g, '_');
-    const candidates = [key, `${url.hostname}${url.pathname}`.replace(/[^A-Za-z0-9._-]+/g, '_')];
+    /* Long query strings (batched coordinates) exceed file-name limits: those use a hashed name. */
+    const hashed = `${url.hostname}${url.pathname}`.replace(/[^A-Za-z0-9._-]+/g, '_') + `_q${sha256(url.search).slice(0, 16)}`;
+    const candidates = [...(key.length <= 200 ? [key] : []), hashed, `${url.hostname}${url.pathname}`.replace(/[^A-Za-z0-9._-]+/g, '_')];
     for (const name of candidates) {
       try {
         return await readFile(path.join(fixturesDir, name), 'utf8');

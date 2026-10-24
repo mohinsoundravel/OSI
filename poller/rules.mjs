@@ -1,5 +1,5 @@
 import { zonesForArea, zonesForPoint } from './lib/geo.mjs';
-import { assessRiver, assessHeat } from './sources/openmeteo.mjs';
+import { assessRiver, assessHeat, assessRain } from './sources/openmeteo.mjs';
 import { assessReservoir } from './sources/reservoirs.mjs';
 
 export const SEVERITY_RANK = { low: 0, medium: 1, high: 2, critical: 3 };
@@ -100,6 +100,22 @@ export function evaluate({ config, data, normals }) {
       summary: `Max ${alert.tmax} C on ${alert.from} to ${alert.to}${normalNote}. Forecast meets IMD station criteria; not an IMD declaration.`,
       source: 'Open-Meteo forecast, IMD criteria', sourceUrl: 'https://open-meteo.com/en/docs',
       lat: p.lat, lng: p.lng, zones: zoneNames(zonesForPoint(p.lat, p.lng, zones))
+    });
+  }
+
+  /* Derived: very heavy or extremely heavy rain forecast for a district (IMD 24-hour categories). */
+  for (const r of data.rain || []) {
+    const v = assessRain(r);
+    if (!v || !Number.isFinite(r.lat)) continue;
+    const hit = zonesForPoint(r.lat, r.lng, zones);
+    if (!hit.length) continue;
+    out.push({
+      key: `rain:${r.id}:${v.severity}:${r.peakDate}`,
+      rule: 'rain_imd_category', origin: 'derived', kind: 'rain', severity: v.severity,
+      title: `${v.label} forecast: ${r.name}`,
+      summary: `${r.peakMm} mm forecast on ${r.peakDate} (3-day total ${r.next72} mm). IMD 24-hour category applied to a model forecast; not an IMD warning.`,
+      source: 'Open-Meteo forecast, IMD categories', sourceUrl: 'https://open-meteo.com/en/docs',
+      lat: r.lat, lng: r.lng, zones: zoneNames(hit)
     });
   }
 

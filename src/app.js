@@ -300,6 +300,9 @@
 
   /** Converts the poller's latest.json into layer items. The file is treated as untrusted input. */
   let lastBackend = null;
+  /* IMD 24-hour rain categories (mm): heavy 64.5, very heavy 115.6, extremely heavy 204.5. */
+  const RAIN_CATS = [[204.5, '#ff453a', 'Extremely heavy (204.5+ mm/day)'], [115.6, '#ff9f0a', 'Very heavy (115.6+)'], [64.5, '#ffd60a', 'Heavy (64.5+)'], [0, '#64a8ff', 'Light to moderate']];
+  const rainColor = (mm) => (RAIN_CATS.find(([min]) => (Number.isFinite(mm) ? mm : 0) >= min) || RAIN_CATS[3])[1];
 
   function normalizeBackend(latest) {
     if (!latest || typeof latest !== 'object' || !Array.isArray(latest.active)) throw new Error('unexpected latest.json format');
@@ -343,6 +346,16 @@
         id: `heat:${str(h.id, 60)}`, isAlert: false, title: `Temperature (forecast): ${str(h.name, 120)}`, source: 'Open-Meteo forecast',
         summary: `Forecast max up to ${Number.isFinite(peak) ? peak.toFixed(1) : 'n/a'} C (${str(h.region, 20)} criteria)`,
         lat: h.lat, lng: h.lng, altKm: 0, polygons: [], color: hexToRgb('#8c6a3e')
+      });
+    }
+
+    /* District rain forecast: shown where at least 10 mm is expected over three days. */
+    for (const r of Array.isArray(latest.layers?.rain) ? latest.layers.rain : []) {
+      if (!Number.isFinite(r.lat) || !Number.isFinite(r.lng) || !(r.next72 >= 10) || alertedPoints.has(`rain:${r.id}`)) continue;
+      items.push({
+        id: `rain:${str(r.id, 60)}`, isAlert: false, title: `Rain forecast: ${str(r.name, 60)}`, source: 'Open-Meteo forecast (model)',
+        summary: `3-day total ${num(r.next72, 0)} mm; wettest day ${num(r.peakMm, 0)} mm on ${str(r.peakDate, 12)}; last 24 h ${num(r.past24, 0)} mm`,
+        lat: r.lat, lng: r.lng, altKm: 0, polygons: [], color: hexToRgb(rainColor(r.peakMm)), rainPeak: r.peakMm, rainTotal: r.next72
       });
     }
 
@@ -2212,6 +2225,7 @@
 
   /* ----- Legend: only for what is on screen ----- */
   const LEGENDS = {
+    rain: ['District rain forecast (IMD categories)', RAIN_CATS.map(([, c, label]) => [c, label])],
     alerts: ['India alerts', [['#7c8594', 'Low'], [SEV_COLOR.medium, 'Medium'], [SEV_COLOR.high, 'High'], [SEV_COLOR.critical, 'Critical'], ['#4fa3d9', 'Dam (daily level)'], ['#3d8fb0', 'River point (model)'], ['#8c6a3e', 'Heat station (forecast)']]],
     flights: ['Flights', [['#7fd8c0', 'Cruising'], ['#ffb454', 'Climbing or descending'], ['#5a6472', 'On the ground'], [SEV_COLOR.critical, 'Emergency squawk']]],
     ships: ['Ships', [['#6fd08c', 'Cargo'], ['#ff7a6b', 'Tanker'], ['#5ac8fa', 'Passenger'], ['#f5b14c', 'Fishing'], ['#d7a6ff', 'Military or rescue'], ['#b8c2cc', 'Other or unknown'], [SEV_COLOR.high, 'Aground, not under command, AIS-SART']]],
@@ -2237,7 +2251,8 @@
       sections.push(`<div class="lg-title">${esc(title)}</div><img class="lg-img" src="${src}" alt="${esc(title)} legend" referrerpolicy="no-referrer">`);
     }
     for (const [key, [title, items]] of Object.entries(LEGENDS)) {
-      if (!LAYERS[key] || !LAYERS[key].visible) continue;
+      const layerKey = key === 'rain' ? 'alerts' : key;
+      if (!LAYERS[layerKey] || !LAYERS[layerKey].visible) continue;
       sections.push(`<div class="lg-title">${esc(title)}</div><div class="lg-items">${items.map(([c, label]) =>
         `<span><i style="background:${c}"></i>${esc(label)}</span>`).join('')}</div>`);
     }
@@ -2551,6 +2566,7 @@
       case 'alerts':
         if (!it.isAlert) {
           if (it.id && it.id.startsWith('reservoir:')) return { icon: 'dam', size: 15 };
+          if (it.id && it.id.startsWith('rain:')) return { icon: 'storm', size: Math.round(11 + Math.min(8, (it.rainTotal || 0) / 30)) };
           return { icon: it.id && it.id.startsWith('river:') ? 'river' : 'heat', size: 13 };
         }
         return { icon: ALERT_ICON[it.kind] || 'warning', size: it.alertSeverity === 'critical' ? 30 : it.alertSeverity === 'high' ? 26 : 22 };
@@ -2671,6 +2687,75 @@
     });
   }
 
+  /* ----- Private watch spots: stored only in this browser (never in the public repo or poller) ----- */
+  const MAX_SPOTS = 20;
+  let spots = (() => {
+    const raw = store.get('spots', []);
+    return Array.isArray(raw) ? raw.filter((x) => x && Number.isFinite(x.lat) && Number.isFinite(x.lng)).slice(0, MAX_SPOTS).map((x) => ({
+      id: String(x.id || Math.random().toString(36).slice(2)), name: str(x.name, 40) || 'Spot', lat: x.lat, lng: x.lng,
+      radiusKm: [10, 25, 50, 100].includes(x.radiusKm) ? x.radiusKm : 25
+    })) : [];
+  })();
+  let spotLines = [];
+
+  function saveSpots() {
+    store.set('spots', spots);
+    updateSpotLines();
+    renderZones();
+    briefDirty = true;
+  }
+
+  function updateSpotLines() {
+    spotLines.forEach((l) => { globeGroup.remove(l); l.geometry.dispose(); l.material.dispose(); });
+    spotLines = spots.map((sp) => {
+      const pts = [];
+      for (let b = 0; b <= 360; b += 6) {
+        const p = destination(sp.lat, sp.lng, b, sp.radiusKm);
+        pts.push(latLngToVector3(p.lat, p.lng, RADIUS + 0.45));
+      }
+      const line = new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints(pts),
+        withLift(new THREE.LineDashedMaterial({ color: 0xc58af7, dashSize: 0.6, gapSize: 0.4, transparent: true, opacity: 0.85, depthWrite: false }))
+      );
+      line.computeLineDistances();
+      globeGroup.add(line);
+      return line;
+    });
+  }
+
+  function addSpot(name, lat, lng) {
+    if (spots.length >= MAX_SPOTS) {
+      toast({ severity: 'medium', title: `Up to ${MAX_SPOTS} watch spots; delete one in Controls, Zones.` });
+      return;
+    }
+    spots.push({ id: Math.random().toString(36).slice(2, 10), name: str(name, 40) || 'Spot', lat: Math.round(lat * 1e4) / 1e4, lng: Math.round(lng * 1e4) / 1e4, radiusKm: 25 });
+    saveSpots();
+    toast({ severity: 'low', title: `Watch spot added: ${name}. Stored only in this browser.` });
+  }
+
+  /** Alerts inside a spot's radius; new ones pop up once (remembered across reloads). */
+  function spotAlerts(sp) {
+    return (data.alerts || []).filter((a) => a.isAlert && Number.isFinite(a.lat) && haversineKm(sp.lat, sp.lng, a.lat, a.lng) <= sp.radiusKm + 15);
+  }
+  function checkSpotAlerts() {
+    if (!spots.length) return;
+    const seen = new Set(store.get('spotSeen', []));
+    let changed = false;
+    for (const sp of spots) {
+      for (const a of spotAlerts(sp)) {
+        const k = `${sp.id}|${a.id}`;
+        if (seen.has(k)) continue;
+        seen.add(k);
+        changed = true;
+        toast({ severity: a.alertSeverity, title: `Near ${sp.name}: ${a.title}` });
+        if (notifyEnabled && 'Notification' in window && Notification.permission === 'granted') {
+          try { new Notification(`Near ${sp.name}`, { body: a.title, tag: k }); } catch { /* unsupported */ }
+        }
+      }
+    }
+    if (changed) store.set('spotSeen', [...seen].slice(-400));
+  }
+
   /* Outlines of official alert areas (CAP polygons), coloured by severity. */
   const alertPolyGroup = new THREE.Group();
   globeGroup.add(alertPolyGroup);
@@ -2746,7 +2831,7 @@
   }
 
   canvas.addEventListener('pointerdown', (e) => {
-    canvas.setPointerCapture(e.pointerId);
+    try { canvas.setPointerCapture(e.pointerId); } catch { /* pointer already released */ }
     pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
     if (pointers.size === 2) {
       const [p1, p2] = [...pointers.values()];
@@ -2761,6 +2846,23 @@
     cam.fly = null;
     canvas.classList.add('dragging');
     touch();
+    /* Long-press (touch): what is at this spot. Mouse users right-click instead. */
+    clearTimeout(longPressTimer);
+    if (e.pointerType !== 'mouse' && pointers.size === 1) {
+      const x = e.clientX;
+      const y = e.clientY;
+      longPressTimer = setTimeout(() => {
+        if (!dragMoved && pointers.size === 1) {
+          if (navigator.vibrate) navigator.vibrate(12);
+          showPlaceInfo(x, y);
+        }
+      }, 550);
+    }
+  });
+  let longPressTimer = null;
+  canvas.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    showPlaceInfo(e.clientX, e.clientY);
   });
 
   canvas.addEventListener('pointermove', (e) => {
@@ -2772,6 +2874,7 @@
     touch();
 
     if (pointers.size === 2) {
+      clearTimeout(longPressTimer);
       const [p1, p2] = [...pointers.values()];
       const d = Math.hypot(p1.x - p2.x, p1.y - p2.y);
       if (pinchDist > 0) zoomBy(pinchDist / d);
@@ -2793,6 +2896,7 @@
   });
 
   function endPointer(e) {
+    clearTimeout(longPressTimer);
     if (!pointers.has(e.pointerId)) return;
     pointers.delete(e.pointerId);
     if (pointers.size < 2) pinchDist = 0;
@@ -2889,6 +2993,85 @@
     return hit ? vector3ToLatLng(globeGroup.worldToLocal(hit.point.clone())) : null;
   }
 
+  /* ----- Place info (long-press / right-click): nearest district, dam, river point, heat
+     station, alerts within 75 km, and current weather from Open-Meteo. ----- */
+  let placeToken = 0;
+  const WMO = { 0: 'Clear', 1: 'Mainly clear', 2: 'Partly cloudy', 3: 'Overcast', 45: 'Fog', 48: 'Fog', 51: 'Drizzle', 53: 'Drizzle', 55: 'Drizzle',
+    61: 'Light rain', 63: 'Rain', 65: 'Heavy rain', 80: 'Showers', 81: 'Showers', 82: 'Violent showers', 95: 'Thunderstorm', 96: 'Thunderstorm, hail', 99: 'Thunderstorm, hail' };
+
+  function nearest(list, lat, lng) {
+    let best = null;
+    for (const p of list) {
+      if (!Number.isFinite(p.lat) || !Number.isFinite(p.lng)) continue;
+      const d = haversineKm(lat, lng, p.lat, p.lng);
+      if (!best || d < best.d) best = { p, d };
+    }
+    return best;
+  }
+
+  function placeFields(lat, lng, weatherRows) {
+    const L = lastBackend && lastBackend.layers ? lastBackend.layers : {};
+    const rows = [['Coordinates', `${lat.toFixed(4)}, ${lng.toFixed(4)}`]];
+    const dist = nearest(districts, lat, lng);
+    if (dist && dist.d < 120) rows.push(['Nearest district HQ', `${dist.p.name} (${Math.round(dist.d)} km)`]);
+    const dam = nearest(L.reservoirs && Array.isArray(L.reservoirs.items) ? L.reservoirs.items : [], lat, lng);
+    if (dam && dam.d < 150) rows.push(['Nearest dam', `${str(dam.p.name, 40)} (${Math.round(dam.d)} km): ${num(dam.p.levelFt, 1)} of ${num(dam.p.fullFt, 0)} ft`]);
+    const river = nearest(Array.isArray(L.rivers) ? L.rivers : [], lat, lng);
+    if (river && river.d < 100) rows.push(['Nearest river point', `${str(river.p.name, 50)} (${Math.round(river.d)} km), forecast peak ${num(river.p.peak, 0)} m3/s`]);
+    const rainD = nearest(Array.isArray(L.rain) ? L.rain : [], lat, lng);
+    if (rainD && rainD.d < 80) rows.push(['District rain forecast', `${rainD.p.name}: ${num(rainD.p.next72, 0)} mm over 3 days, wettest ${num(rainD.p.peakMm, 0)} mm`]);
+    const alerts = (data.alerts || []).filter((a) => a.isAlert && haversineKm(lat, lng, a.lat, a.lng) < 75);
+    rows.push(['Alerts within 75 km', alerts.length ? alerts.slice(0, 4).map((a) => `[${a.alertSeverity}] ${a.title}`).join('; ') : 'none']);
+    const storms = (data.gdacs || []).filter((g) => haversineKm(lat, lng, g.lat, g.lng) < 500);
+    if (storms.length) rows.push(['GDACS within 500 km', storms.slice(0, 3).map((g) => `${g.alertLevel} ${g.name}`).join('; ')]);
+    return rows.concat(weatherRows);
+  }
+
+  async function showPlaceInfo(clientX, clientY) {
+    const ll = groundAt(clientX, clientY);
+    if (ll) showPlaceAt(ll);
+  }
+
+  async function showPlaceAt(ll, name = null) {
+    const token = ++placeToken;
+    selectedRef = null;
+    tagsDirty = true;
+    const title = name || (() => {
+      const d = nearest(districts, ll.lat, ll.lng);
+      return d && d.d < 60 ? `Near ${d.p.name}` : 'This spot';
+    })();
+    const draw = (weatherRows) => {
+      renderDetail({ kind: 'Place info', title, fields: placeFields(ll.lat, ll.lng, weatherRows), url: null });
+      const actions = document.querySelector('#detail .detail-actions');
+      if (actions) {
+        actions.insertAdjacentHTML('afterbegin', `<button class="btn" type="button" data-action="add-spot" data-lat="${ll.lat.toFixed(4)}" data-lng="${ll.lng.toFixed(4)}" data-name="${esc(title)}">Add watch spot</button>`);
+      }
+    };
+    placeSelector(ll.lat, ll.lng, 0);
+    draw([['Weather now', 'loading\u2026']]);
+    try {
+      const q = new URLSearchParams({
+        latitude: ll.lat.toFixed(4), longitude: ll.lng.toFixed(4), timezone: 'auto', forecast_days: '3',
+        current: 'temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,weather_code',
+        daily: 'precipitation_sum,temperature_2m_max'
+      });
+      const w = await getJson(`https://api.open-meteo.com/v1/forecast?${q}`);
+      if (token !== placeToken) return;
+      const c = w.current || {};
+      const rain = (w.daily && Array.isArray(w.daily.precipitation_sum) ? w.daily.precipitation_sum : []).map((v) => (Number.isFinite(v) ? `${Math.round(v)}` : '?'));
+      const tmax = (w.daily && Array.isArray(w.daily.temperature_2m_max) ? w.daily.temperature_2m_max : []).map((v) => (Number.isFinite(v) ? `${Math.round(v)}` : '?'));
+      draw([
+        ['Weather now', `${WMO[c.weather_code] || 'n/a'}, ${num(c.temperature_2m, 0)} C, humidity ${num(c.relative_humidity_2m, 0)}%, wind ${num(c.wind_speed_10m, 0)} km/h`],
+        ['Rain, next 3 days', rain.length ? `${rain.join(' / ')} mm` : 'n/a'],
+        ['Max temperature, next 3 days', tmax.length ? `${tmax.join(' / ')} C` : 'n/a'],
+        ['Elevation', Number.isFinite(w.elevation) ? `${Math.round(w.elevation)} m` : 'n/a'],
+        ['Weather source', 'Open-Meteo forecast (model)']
+      ]);
+    } catch (err) {
+      if (token === placeToken) draw([['Weather now', `unavailable (${err.message})`]]);
+    }
+  }
+
   function handleGlobeClick(clientX, clientY) {
     const tapAt = performance.now();
     if (!pickMode && tapAt - lastTap.t < 330 && Math.hypot(clientX - lastTap.x, clientY - lastTap.y) < 32) {
@@ -2955,7 +3138,10 @@
     if (selectedRef && selectedRef.key === key && selectedRef.id === id) return 1000;
     if (hovered && hovered.key === key && hovered.id === id) return 900;
     switch (key) {
-      case 'alerts': return it.isAlert ? 500 + 50 * (SEV_RANK_N[it.alertSeverity] || 0) : zoom < 190 ? 60 : -1;
+      case 'alerts':
+        if (it.isAlert) return 500 + 50 * (SEV_RANK_N[it.alertSeverity] || 0);
+        if (it.id && it.id.startsWith('rain:')) return it.rainPeak >= 64.5 ? 200 : zoom < 140 ? 30 : -1;
+        return zoom < 190 ? 60 : -1;
       case 'flights': return it.squawk && EMERGENCY_SQUAWKS.includes(it.squawk) ? 600 : zoom < 210 ? 40 : -1;
       case 'gdacs': return it.alertLevel === 'Red' ? 450 : it.alertLevel === 'Orange' ? 400 : zoom < 230 ? 70 : -1;
       case 'quakes': return it.mag >= 5 ? 300 + it.mag : it.mag >= 3.5 && zoom < 250 ? 100 + it.mag : zoom < 170 ? 20 : -1;
@@ -3466,6 +3652,27 @@
       + '<div class="chart-legend"><span><i class="k-heat"></i>Max temperature (C), forecast</span><span><i class="k-hot"></i>At or above the IMD threshold</span></div>';
   }
 
+  /** Daily rain: yesterday (model) and the next three days, against IMD heavy / very heavy lines. */
+  function rainChart(r) {
+    const days = (Array.isArray(r.days) ? r.days : []).filter((d) => typeof d.date === 'string');
+    if (!days.length) return '';
+    const hi = Math.max(130, ...days.map((d) => (Number.isFinite(d.mm) ? d.mm : 0))) * 1.08;
+    const { y, svg } = axisY(0, hi, (v) => `${Math.round(v)}`);
+    const slot = (CH.w - CH.l - CH.r) / days.length;
+    const bars = days.map((d, i) => {
+      const mm = Number.isFinite(d.mm) ? d.mm : 0;
+      const bx = CH.l + i * slot + slot * 0.2;
+      const top = y(mm);
+      const label = i === 0 ? 'last 24 h' : new Date(`${d.date}T00:00:00Z`).toLocaleDateString([], { weekday: 'short', timeZone: 'UTC' });
+      return `<rect x="${bx.toFixed(1)}" y="${top.toFixed(1)}" width="${(slot * 0.6).toFixed(1)}" height="${(CH.h - CH.b - top).toFixed(1)}" rx="2" fill="${rainColor(mm)}" opacity="${i === 0 ? 0.55 : 0.9}"/>
+        <text class="tick" x="${(bx + slot * 0.3).toFixed(1)}" y="${(top - 3).toFixed(1)}" text-anchor="middle">${Math.round(mm)}</text>
+        <text class="tick" x="${(bx + slot * 0.3).toFixed(1)}" y="${CH.h - 6}" text-anchor="middle">${esc(label)}</text>`;
+    }).join('');
+    const line = (v, label) => `<line class="ref" x1="${CH.l}" x2="${CH.w - CH.r}" y1="${y(v).toFixed(1)}" y2="${y(v).toFixed(1)}"/><text class="ref-label" x="${CH.w - CH.r}" y="${(y(v) - 3).toFixed(1)}" text-anchor="end">${label}</text>`;
+    return chartSvg(`${svg}${line(64.5, 'heavy 64.5')}${line(115.6, 'very heavy 115.6')}${bars}`, `Rain in millimetres per day; 3-day forecast total ${r.next72}`)
+      + '<div class="chart-legend"><span>mm per day, model forecast; dashed lines are IMD 24-hour categories</span></div>';
+  }
+
   let damHistory = null;
   let damHistoryAt = 0;
   async function loadDamHistory() {
@@ -3491,6 +3698,9 @@
     if (kind === 'river') {
       const r = (layers.rivers || []).find((x) => x.id === pid);
       if (r) slot.innerHTML = `<div class="chart-title">River discharge, 7 days back and ahead</div>${riverChart(r)}`;
+    } else if (kind === 'rain') {
+      const r = (layers.rain || []).find((x) => x.id === pid);
+      if (r) slot.innerHTML = `<div class="chart-title">Rain, last 24 h and next 3 days</div>${rainChart(r)}`;
     } else if (kind === 'heat') {
       const h = (layers.heat || []).find((x) => x.id === pid);
       if (h) slot.innerHTML = `<div class="chart-title">Temperature forecast</div>${heatChart(h)}`;
@@ -3537,6 +3747,15 @@
 
   $('detail').addEventListener('click', (e) => {
     if (e.target.dataset.action === 'close-detail') closeDetail();
+    if (e.target.dataset.action === 'add-spot') {
+      const lat = Number(e.target.dataset.lat);
+      const lng = Number(e.target.dataset.lng);
+      if (Number.isFinite(lat) && Number.isFinite(lng)) {
+        addSpot(e.target.dataset.name || 'Spot', lat, lng);
+        e.target.disabled = true;
+        e.target.textContent = 'Added';
+      }
+    }
   });
 
   /* ===================== UI: feed ===================== */
@@ -3844,7 +4063,18 @@
         <button class="btn" data-zone-fly="${esc(z.id)}">View</button>
         <button class="btn" data-zone-del="${esc(z.id)}">Del</button>
       </div>`).join('');
+    const spotList = spots.map((sp) => `
+      <div class="zone">
+        <div class="grow"><div>${esc(sp.name)}</div><div class="meta">${sp.lat.toFixed(3)}, ${sp.lng.toFixed(3)}</div></div>
+        <select data-spot-radius="${esc(sp.id)}" aria-label="Radius for ${esc(sp.name)}">${[10, 25, 50, 100].map((r) => `<option value="${r}"${r === sp.radiusKm ? ' selected' : ''}>${r} km</option>`).join('')}</select>
+        <button class="btn" data-spot-fly="${esc(sp.id)}">View</button>
+        <button class="btn" data-spot-del="${esc(sp.id)}">Del</button>
+      </div>`).join('');
     $('tab-zones').innerHTML = `
+      <div class="section-label">My watch spots</div>
+      <div class="note">Private: stored only in this browser, never in the public repo. Long-press (or right-click) the globe and choose Add watch spot. Alerts inside a spot pop up while the dashboard is open; Telegram alerts still use the zones below.</div>
+      ${spotList ? `<div class="group">${spotList}</div>` : '<div class="empty">No watch spots yet.</div>'}
+      <div class="section-label">Monitoring zones</div>
       <div class="note">Zone-scoped rules fire only for items within an enabled zone (great-circle distance from centre).</div>
       ${list ? `<div class="group">${list}</div>` : '<div class="empty">No zones defined.</div>'}
       <form class="zone-form" id="zoneForm" autocomplete="off">
@@ -3868,6 +4098,12 @@
   }
 
   $('tab-zones').addEventListener('change', (e) => {
+    const sid = e.target.dataset.spotRadius;
+    if (sid) {
+      const sp = spots.find((x) => x.id === sid);
+      if (sp) { sp.radiusKm = Number(e.target.value); saveSpots(); }
+      return;
+    }
     const id = e.target.dataset.zoneEnable;
     if (!id) return;
     const z = zones.find((x) => x.id === id);
@@ -3877,6 +4113,16 @@
   $('tab-zones').addEventListener('click', (e) => {
     const t = e.target;
     if (t.id === 'pickBtn') { setPickMode(!pickMode); return; }
+    if (t.dataset.spotFly) {
+      const sp = spots.find((x) => x.id === t.dataset.spotFly);
+      if (sp) flyTo(sp.lat, sp.lng, RADIUS + 1.5);
+      return;
+    }
+    if (t.dataset.spotDel) {
+      spots = spots.filter((x) => x.id !== t.dataset.spotDel);
+      saveSpots();
+      return;
+    }
     if (t.dataset.zoneFly) {
       const z = zones.find((x) => x.id === t.dataset.zoneFly);
       if (z) flyTo(z.lat, z.lng);
@@ -4063,6 +4309,16 @@
     for (const a of alerts.slice(0, 3)) add(SEV_COLOR[a.alertSeverity], a.title, { key: 'alerts', id: a.id }, a.origin === 'official' ? 'Official' : 'Derived');
     if (alerts.length > 3) add('#8b93a1', `${alerts.length - 3} more alert${alerts.length - 3 === 1 ? '' : 's'} in the feed`, null);
 
+    const rainAll = lastBackend && lastBackend.layers && Array.isArray(lastBackend.layers.rain) ? lastBackend.layers.rain : [];
+    for (const sp of spots) {
+      const near = spotAlerts(sp).sort((a, b) => (SEV_RANK_N[b.alertSeverity] || 0) - (SEV_RANK_N[a.alertSeverity] || 0));
+      const rain = nearest(rainAll, sp.lat, sp.lng);
+      const rainText = rain && rain.d < 80 ? ` \u00b7 rain ${num(rain.p.next72, 0)} mm / 3 days` : '';
+      add(near.length ? SEV_COLOR[near[0].alertSeverity] : '#c58af7',
+        near.length ? `${sp.name}: ${near.length} alert${near.length === 1 ? '' : 's'}, ${near[0].title}${rainText}` : `${sp.name}: all clear${rainText}`,
+        near.length ? { key: 'alerts', id: near[0].id } : { lat: sp.lat, lng: sp.lng }, `Your watch spot \u00b7 ${sp.radiusKm} km`);
+    }
+
     const res = lastBackend && lastBackend.layers && lastBackend.layers.reservoirs;
     const dams = res && Array.isArray(res.items) ? res.items.filter((d) => Number.isFinite(d.lat)) : [];
     const used = new Set();
@@ -4084,6 +4340,12 @@
     if (rivers[0] && rivers[0].ratio >= 1.5) {
       const r = rivers[0];
       add('#3d8fb0', `${str(r.name, 60)}: forecast ${num(r.ratio, 1)}x the weekly mean by ${str(r.peakDate, 12)}`, { lat: r.lat, lng: r.lng }, 'River model (GloFAS)');
+    }
+
+    const rainList = lastBackend && lastBackend.layers && Array.isArray(lastBackend.layers.rain) ? lastBackend.layers.rain : [];
+    const wettest = rainList.filter((r) => r.state === 'Tamil Nadu' || r.state === 'Puducherry').sort((a, b) => (b.next72 || 0) - (a.next72 || 0))[0];
+    if (wettest && wettest.next72 >= 30) {
+      add(rainColor(wettest.peakMm), `Wettest forecast: ${str(wettest.name, 30)} ${num(wettest.next72, 0)} mm over 3 days (${num(wettest.peakMm, 0)} mm on ${shortDate(wettest.peakDate)})`, { key: 'alerts', id: `rain:${wettest.id}`, lat: wettest.lat, lng: wettest.lng }, 'Rain model, IMD categories');
     }
 
     const heat = lastBackend && lastBackend.layers && Array.isArray(lastBackend.layers.heat) ? lastBackend.layers.heat : [];
@@ -4132,7 +4394,7 @@
     if (!row) return;
     const t = briefTargets[Number(row.dataset.brief)];
     if (!t) return;
-    const it = t.key ? (data[t.key] || []).find((x) => x.id === t.id) : null;
+    const it = t.key ? (data[t.key] || []).find((x) => x.id === t.id || (typeof x.id === 'string' && x.id.startsWith(`${t.id}:`))) : null;
     if (it) {
       flyTo(it.lat, it.lng, RADIUS + 6);
       showItemDetail(t.key, it);
@@ -4223,6 +4485,7 @@
     if (d && Array.isArray(d.districts)) {
       districts = d.districts.filter((x) => Number.isFinite(x.lat) && Number.isFinite(x.lng)).map((x) => ({
         name: str(x.name, 60), sub: `District, ${str(x.state, 40)}`, lat: x.lat, lng: x.lng, alt: 1.6,
+        itemId: `rain:${String(x.name).toLowerCase().replace(/[^a-z]+/g, '-').replace(/^-|-$/g, '')}`,
         aliases: Array.isArray(x.aliases) ? x.aliases.map((a) => str(a, 60)) : []
       }));
     }
@@ -4350,7 +4613,7 @@
       /* An alerted point is replaced by its alert, whose id extends the point id (reservoir:vaigai:full:medium). */
       const it = p.itemId ? (data.alerts || []).find((x) => x.id === p.itemId || x.id.startsWith(`${p.itemId}:`)) : null;
       if (it) showItemDetail('alerts', it);
-      else placeSelector(p.lat, p.lng, 0);
+      else showPlaceAt({ lat: p.lat, lng: p.lng }, p.name);
       $('search').value = '';
       $('searchResults').hidden = true;
       $('search').blur();
@@ -4437,6 +4700,7 @@
       updateLayer(key);
       if (key === 'alerts') updateAlertPolygons(items);
       if (BRIEF_SOURCES.has(key)) briefDirty = true;
+      if (key === 'alerts') checkSpotAlerts();
       evaluate(key, items);
       schedule(key, interval);
     } catch (err) {
@@ -4507,6 +4771,7 @@
   buildChips();
   syncChips();
   syncViews();
+  updateSpotLines();
   renderBrief();
   const setSearchPlaceholder = () => { $('search').placeholder = isCompact() ? 'Search' : 'Search flight, satellite, district'; };
   setSearchPlaceholder();
@@ -4524,6 +4789,10 @@
   requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add('booted')));
 
   setTilesEnabled(true);
+  /* Home-screen app: offline shell and last-known data (https or localhost only). */
+  if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  }
   if (weather.mode !== 'off') setWeather(weather.mode);
   loadWorld().catch((err) => toast({ severity: 'medium', title: `Country outlines unavailable (${err.message}).` }));
   Object.keys(LAYERS).forEach((key, i) => setTimeout(() => runSource(key), 300 + i * 350));

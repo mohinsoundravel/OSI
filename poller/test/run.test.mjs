@@ -43,6 +43,8 @@ test('end to end: baseline first, then only new or escalated alerts', async () =
     assert.ok(keys.includes('reservoir:krs:release:medium'), 'release jump at KRS, which feeds Mettur');
     assert.ok(keys.includes('reservoir:vaigai:full:medium'), 'Vaigai near full');
     assert.ok(!keys.some((k) => k.startsWith('reservoir:kabini')), 'steady reservoir does not alert');
+    assert.ok(keys.includes('rain:nilgiris:medium:2026-10-24'), 'very heavy rain forecast (IMD category) for Nilgiris');
+    assert.ok(!keys.some((k) => k.startsWith('rain:chennai')), 'ordinary rain does not alert');
     const hist = JSON.parse(await readFile(path.join(env.dataDir, 'reservoir-history.json'), 'utf8'));
     assert.deepEqual(hist.dams.mettur.map((r) => r[0]), ['2026-10-23', '2026-10-24'], 'history holds yesterday and today');
     assert.ok(!keys.includes('usgs:us7000abcd'), 'ordinary quake outside usgs.zones is not alerted');

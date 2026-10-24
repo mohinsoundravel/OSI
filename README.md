@@ -20,6 +20,7 @@ See [DESIGN.md](DESIGN.md) for architecture, efficiency and safety decisions.
 | Official warnings: flood, heat wave, dam / reservoir release, cyclone, heavy rain | NDMA [SACHET](https://sachet.ndma.gov.in) CAP feed (IMD, state authorities, INCOIS) | Poller | 30 min |
 | River-rise forecast (derived), 12 points on major Tamil Nadu rivers | GloFAS via [Open-Meteo](https://open-meteo.com/en/docs/flood-api) | Poller | 15 min |
 | Reservoir levels and dam releases (derived from official daily figures), 19 dams: Mettur, Bhavanisagar, Vaigai, Periyar, Papanasam, Sathanur and others, plus Karnataka's KRS, Kabini, Harangi and Hemavathy that feed Mettur | [TN Agriculture Dept](https://tnagriculture.in/people_app/more/reservoir/en/) (WRD data) | Poller | hourly (data is daily) |
+| Rain forecast per district (derived, IMD 24-hour categories), 56 districts of Tamil Nadu, Puducherry and neighbours | [Open-Meteo](https://open-meteo.com) forecast | Poller | hourly |
 | Heat wave forecast (derived, IMD criteria), 20 stations across Tamil Nadu | [Open-Meteo](https://open-meteo.com) forecast | Poller | 15 min |
 | Disaster alerts | [GDACS](https://www.gdacs.org) | Both | 5–15 min |
 | Earthquakes | [USGS](https://earthquake.usgs.gov/earthquakes/feed/) | Both | 2–15 min |
@@ -34,6 +35,10 @@ Every alert is labelled **Official** or **Derived (not an official warning)** an
 
 ### Dashboard features
 
+- **Home-screen app**: add it from the browser menu for a full-screen app that opens with the last known data offline (service worker: app files and data network-first, map tiles cached).
+- **Long-press** (right-click on desktop) anywhere: nearest district, dam and river point, district rain forecast, alerts within 75 km, current weather and elevation.
+- **Private watch spots**: add from the long-press card; stored only in this browser, drawn as rings, summarised in the brief, with a pop-up when an alert falls inside one.
+- **Telegram commands**: `/status`, `/alerts`, `/dams`, `/rain`, `/help` in your bot chat, answered by the next poll (within about 15 minutes); other chats are ignored.
 - **Situation brief** at the top of the feed: "Tamil Nadu now", with the most severe alerts, dams near full or rising fast, big inflows, the strongest river-rise forecast, the hottest forecast, nearby cyclones and quakes, and ships in distress, plus the data's age. Tap a line to fly to it.
 - **One-tap views**: TN Watch (Tamil Nadu, alerts, dams, ships, radar), Air & Sea (flights, ships, satellites) and Global.
 - **Radar loop**: "Play last hour" animates six 10-minute RainViewer frames at regional detail (kept under the free rate limit).

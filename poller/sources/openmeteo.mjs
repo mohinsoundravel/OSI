@@ -142,3 +142,45 @@ export function assessHeat(point, normalsByMonth) {
   }
   return { days: levels, alert: best, usedNormals: Boolean(normalsByMonth) };
 }
+
+/* ----- District rainfall: 24 h past and 3-day forecast for every gazetteer district ----- */
+
+export const RAIN_MIN_INTERVAL_MS = 60 * 60 * 1000;
+/** IMD 24-hour categories (mm): heavy 64.5-115.5, very heavy 115.6-204.4, extremely heavy >= 204.5. */
+export const IMD_RAIN = { heavy: 64.5, veryHeavy: 115.6, extremelyHeavy: 204.5 };
+
+export async function fetchDistrictRain({ http, districts, lastFetchedAt = 0, now = Date.now(), minIntervalMs = RAIN_MIN_INTERVAL_MS }) {
+  if (now - lastFetchedAt < minIntervalMs) return null;
+  const points = districts.filter((d) => Number.isFinite(d.lat) && Number.isFinite(d.lng));
+  if (!points.length) return [];
+  const { json } = await http.getJson(batchUrl(FORECAST_URL, points, {
+    daily: 'precipitation_sum',
+    past_days: '1',
+    forecast_days: '3'
+  }));
+  const results = asArray(json);
+  if (results.length !== points.length) throw new Error(`rain forecast returned ${results.length} results for ${points.length} districts`);
+  return points.map((p, i) => {
+    const d = results[i]?.daily;
+    if (!d || !Array.isArray(d.time)) throw new Error(`rain forecast: no daily data for ${p.name}`);
+    const days = d.time.map((t, k) => ({ date: t, mm: round(d.precipitation_sum?.[k]) }));
+    const ahead = days.slice(1);
+    const next72 = ahead.reduce((s, x) => s + (Number.isFinite(x.mm) ? x.mm : 0), 0);
+    const peak = ahead.reduce((m, x) => (Number.isFinite(x.mm) && (!m || x.mm > m.mm) ? x : m), null);
+    return {
+      id: p.name.toLowerCase().replace(/[^a-z]+/g, '-').replace(/^-|-$/g, ''),
+      name: p.name, state: p.state, lat: p.lat, lng: p.lng, days,
+      past24: Number.isFinite(days[0]?.mm) ? days[0].mm : null,
+      next72: Math.round(next72 * 10) / 10,
+      peakMm: peak ? peak.mm : null, peakDate: peak ? peak.date : null
+    };
+  });
+}
+
+/** Derived alert level for one district's forecast peak day, by IMD 24-hour category. */
+export function assessRain(r) {
+  if (!Number.isFinite(r.peakMm)) return null;
+  if (r.peakMm >= IMD_RAIN.extremelyHeavy) return { severity: 'high', label: 'Extremely heavy rain' };
+  if (r.peakMm >= IMD_RAIN.veryHeavy) return { severity: 'medium', label: 'Very heavy rain' };
+  return null;
+}

@@ -14,7 +14,8 @@ import { pathToFileURL } from 'node:url';
 
 import { createHttpClient } from './lib/http.mjs';
 import { fetchSachet } from './sources/sachet.mjs';
-import { fetchRiverDischarge, fetchTemperatures, assessHeat } from './sources/openmeteo.mjs';
+import { fetchRiverDischarge, fetchTemperatures, assessHeat, fetchDistrictRain } from './sources/openmeteo.mjs';
+import { loadGazetteer } from './lib/places.mjs';
 import { fetchGdacs, fetchUsgs } from './sources/hazards.mjs';
 import { fetchFlights, expandFlights, FLIGHT_FIELDS } from './sources/flights.mjs';
 import { fetchTle } from './sources/tle.mjs';
@@ -22,6 +23,7 @@ import { fetchReservoirs, reservoirLayer, addToHistory, backfillHistory } from '
 import { listenShips, mergeShips, SHIP_FIELDS } from './sources/ships.mjs';
 import { evaluate, SEVERITY_RANK } from './rules.mjs';
 import { buildMessages, createNotifier, heartbeat } from './notify.mjs';
+import { handleCommands, registerCommands } from './commands.mjs';
 
 const DAY_MS = 24 * 3600 * 1000;
 const BASE_HOSTS = [
@@ -126,6 +128,9 @@ export async function run(options = {}) {
     sachet: () => fetchSachet({ http, feeds: config.sachet?.feeds || [], prev: state.sachetActive || {}, seenLinks: state.sachetSeen || {}, now, log }),
     rivers: () => fetchRiverDischarge({ http, points: config.flood?.points || [], today }),
     heat: () => fetchTemperatures({ http, points: config.heat?.points || [] }),
+    ...(config.rain?.enabled === false ? {} : {
+      rain: () => fetchDistrictRain({ http, districts: loadGazetteer(), lastFetchedAt: state.rainFetchedAt ? Date.parse(state.rainFetchedAt) : 0, now })
+    }),
     gdacs: () => fetchGdacs({ http }),
     quakes: () => fetchUsgs({ http }),
     ...(config.reservoirs?.enabled === false ? {} : {
@@ -217,6 +222,12 @@ export async function run(options = {}) {
     await writeJsonAtomic(histFile, history);
   }
   layerData.reservoirs = reservoirLayer(state.reservoirs);
+  /* District rain: fetched hourly (56 locations count against Open-Meteo's daily quota); reused in between. */
+  if (data.rain) {
+    state.rainSnapshot = data.rain;
+    state.rainFetchedAt = new Date(now).toISOString();
+  }
+  layerData.rain = state.rainSnapshot || [];
   if (data.gdacs) state.gdacsSnapshot = data.gdacs.filter((e) => e.alertLevel !== 'Green');
   if (data.quakes) state.quakesSnapshot = data.quakes.filter((q) => q.mag >= 4);
 
@@ -323,7 +334,8 @@ export async function run(options = {}) {
       rivers: layerData.rivers,
       heat: heatLayer,
       heatRaw: layerData.heat,
-      reservoirs: layerData.reservoirs
+      reservoirs: layerData.reservoirs,
+      rain: layerData.rain
     },
     active: candidates.map((c) => ({ ...c, polygons: undefined, circles: undefined }))
   };
@@ -336,6 +348,17 @@ export async function run(options = {}) {
   const beat = await heartbeat(options.healthcheckUrl, { failed: allFailed, body: summary, log, fetchImpl: options.heartbeatFetch });
   latest.heartbeat = beat;
   latest.notifications = { telegramConfigured: notifier.enabled, attempted: messages.length, sent };
+
+  /* Telegram commands (/status, /alerts, /dams, /rain) from the owner's chat, answered with this run's data. */
+  if (notifier.enabled && !options.dryRun) {
+    if (state.telegramCommandsVersion !== 1 && await registerCommands({ token: options.telegramToken, fetchImpl: options.telegramFetch })) state.telegramCommandsVersion = 1;
+    const cmd = await handleCommands({
+      token: options.telegramToken, chatId: options.telegramChatId, offset: state.telegramOffset || 0,
+      latest, send: notifier.send, fetchImpl: options.telegramFetch, log
+    });
+    state.telegramOffset = cmd.offset;
+    latest.notifications.commandsAnswered = cmd.handled;
+  }
 
   await writeJsonAtomic(path.join(dataDir, 'latest.json'), latest);
   await writeJsonAtomic(path.join(dataDir, 'events.json'), keptEvents);

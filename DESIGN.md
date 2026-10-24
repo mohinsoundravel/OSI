@@ -34,6 +34,8 @@ This is a personal context and cross-checking tool. It is **not** a primary warn
 | Ships | Poller, projected in the browser | AISStream is a WebSocket API with a key, so the poller listens for 45 s per run (zero-dependency RFC 6455 client in `poller/lib/ws.mjs`, size-capped), merges with ships heard in the last 3 hours and publishes `ships.json`. Auxiliary: failures never page. |
 | Reservoirs | Poller | Official daily WRD figures, compared with the previous day's page; drives dam-release alerts. Daily history is kept in `reservoir-history.json` (400 days), backfilled from dated pages four days per run; days the site cannot serve are remembered and skipped. |
 | Live players | Browser | YouTube (privacy-enhanced, channel live embed) and Windy players, framed only on tap; CSP `frame-src` allows just those two hosts. |
+| District rain | Poller | 56 gazetteer districts in one batched Open-Meteo request, hourly (each location counts toward the free daily quota). Very heavy (115.6 mm/day) and extremely heavy (204.5) forecasts become derived alerts. |
+| Telegram commands | Poller | `getUpdates` once per run with a stored offset; only the configured chat is answered, at most five replies per run, plain text. |
 | Notifications | Poller | Must work with the dashboard closed. |
 
 ## Sources

@@ -408,3 +408,45 @@ test('reservoir history: merge by date, find gaps, backfill a few days per run',
   assert.equal(requested[requested.length - 1], '2026-10-19', 'next run moves on to older days');
   assert.ok(r2.history.dams.mettur.some((x) => x[0] === '2026-10-19'));
 });
+
+test('rain: IMD 24-hour categories on the forecast peak day', async () => {
+  const { assessRain } = await import('../sources/openmeteo.mjs');
+  assert.equal(assessRain({ peakMm: 115.5 }), null, 'heavy (below very heavy) does not alert');
+  assert.equal(assessRain({ peakMm: 115.6 }).severity, 'medium');
+  assert.equal(assessRain({ peakMm: 204.5 }).severity, 'high');
+  assert.equal(assessRain({ peakMm: null }), null);
+});
+
+test('telegram commands: only the owner chat is answered, offset advances, replies are bounded', async () => {
+  const { handleCommands, answerCommand } = await import('../commands.mjs');
+  const latest = {
+    generatedAt: '2026-10-24T17:52:22Z', heartbeat: { ok: true, configured: true },
+    health: { sachet: { ok: true }, ships: { ok: false } },
+    active: [{ severity: 'high', title: 'Large release: Mettur', origin: 'derived' }],
+    layers: {
+      reservoirs: { date: '2026-10-24', items: [{ name: 'Mettur (Stanley)', levelFt: 54.56, fullFt: 120, pctDepth: 45.5, inflow: 1409, outflow: 2254, levelChangeFt: -0.12 }] },
+      rain: [{ name: 'Nilgiris', state: 'Tamil Nadu', next72: 255, peakMm: 130, peakDate: '2026-10-24' }]
+    }
+  };
+  assert.match(answerCommand('/status', latest), /updated 23:22 IST 2026-10-24[\s\S]*Sources ok 1\/2 \(failing: ships\)[\s\S]*1 high/);
+  assert.match(answerCommand('/dams@OsiBot', latest), /Mettur \(Stanley\): 54\.56\/120 ft \(-0\.12 ft\), in 1,409, out 2,254/);
+  assert.match(answerCommand('/rain', latest), /Nilgiris: 255 mm total/);
+  assert.match(answerCommand('/whatever', latest), /Unknown command/);
+
+  const sent = [];
+  const updates = [
+    { update_id: 10, message: { chat: { id: 979 }, text: '/status' } },
+    { update_id: 11, message: { chat: { id: 123 }, text: '/dams' } },
+    { update_id: 12, message: { chat: { id: 979 }, text: 'hello' } },
+    ...Array.from({ length: 8 }, (_, i) => ({ update_id: 13 + i, message: { chat: { id: 979 }, text: '/alerts' } }))
+  ];
+  let calledUrl = '';
+  const fetchImpl = async (url) => { calledUrl = url; return new Response(JSON.stringify({ ok: true, result: updates })); };
+  const r = await handleCommands({ token: 'T', chatId: '979', offset: 10, latest, send: async (t) => sent.push(t), fetchImpl });
+  assert.match(calledUrl, /getUpdates\?offset=10/);
+  assert.equal(r.offset, 21, 'offset moves past every update, answered or not');
+  assert.equal(sent.length, 5, 'at most five replies per run');
+  assert.ok(!sent.some((t) => /Reservoirs/.test(t)), 'other chats get no reply');
+  const failed = await handleCommands({ token: 'T', chatId: '979', offset: 21, latest, send: async () => {}, fetchImpl: async () => new Response('{}', { status: 409 }) });
+  assert.equal(failed.offset, 21, 'webhook conflict leaves the offset unchanged');
+});
