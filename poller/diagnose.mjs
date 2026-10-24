@@ -42,6 +42,16 @@ async function probe(label, url) {
   }
 }
 
+/* Reservoir level sources (official Tamil Nadu pages). Full HTML is dumped, base64, for offline parser work. */
+for (const [label, url] of [
+  ['tnagri-people-app', 'https://tnagriculture.in/people_app/more/reservoir/en/'],
+  ['tnagrisnet-ars', 'https://www.tnagrisnet.tn.gov.in/ARS/home/reservoir'],
+  ['metrowater-home', 'https://chennaimetrowater.tn.gov.in/']
+]) {
+  const r = await probe(label, url);
+  if (r && r.res.ok) console.log(`HTML ${label} ${r.buf.subarray(0, 400000).toString('base64')}`);
+}
+
 /* Weather overlays for the dashboard: RainViewer radar and NASA GIBS imagery. */
 {
   const rv = await probe('RainViewer weather-maps.json', 'https://api.rainviewer.com/public/weather-maps.json');
