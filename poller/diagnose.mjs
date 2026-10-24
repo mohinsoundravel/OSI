@@ -114,6 +114,7 @@ await probe('TN reservoir page', 'https://tnagriculture.in/people_app/more/reser
       const pick = (re) => (re.exec(layer)?.[1] || '').trim();
       console.log(`LAYER ${id} | format ${pick(/<Format>([^<]+)</)} | matrix ${pick(/<TileMatrixSet>([^<]+)</)} | time default ${pick(/<Default>([^<]+)</)} | time values ${pick(/<Value>([^<]+)</).slice(0, 120)} | url ${pick(/template="([^"]+)"/)}`);
       if (!/^(IMERG_Precipitation_Rate_30min|Himawari_AHI_Band13_Clean_Infrared)$/.test(id)) continue;
+      console.log(`  all hrefs: ${[...layer.matchAll(/xlink:href="([^"]+)"/g)].map((m) => m[1]).join(' ')}`);
       const hrefs = [...layer.matchAll(/xlink:href="([^"]*colormaps[^"]*\.xml)"/g)].map((m) => m[1]);
       console.log(`  colormap hrefs: ${hrefs.join(' ')}`);
       for (const href of hrefs.filter((h) => /v1\.3/.test(h)).slice(0, 1)) {
