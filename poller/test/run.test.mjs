@@ -39,6 +39,10 @@ test('end to end: baseline first, then only new or escalated alerts', async () =
     assert.ok(keys.includes('river:vaigai-dam:high'), 'derived river rise (5x)');
     assert.ok(keys.includes('heat:madurai:high:2026-10-23'), 'derived heat wave by absolute criterion');
     assert.ok(keys.includes('gdacs:TC-1000123:Orange'), 'GDACS cyclone in India zone');
+    assert.ok(keys.includes('reservoir:mettur:release:high'), 'large Mettur release from the reservoir page');
+    assert.ok(keys.includes('reservoir:krs:release:medium'), 'release jump at KRS, which feeds Mettur');
+    assert.ok(keys.includes('reservoir:vaigai:full:medium'), 'Vaigai near full');
+    assert.ok(!keys.some((k) => k.startsWith('reservoir:kabini')), 'steady reservoir does not alert');
     assert.ok(!keys.includes('usgs:us7000abcd'), 'ordinary quake outside usgs.zones is not alerted');
     assert.ok(!keys.some((k) => k.includes('TEST-1003')), 'test-status CAP ignored');
     assert.ok(!keys.some((k) => k.includes('555') || k.includes('chile')), 'out-of-zone events ignored');

@@ -18,13 +18,15 @@ import { fetchRiverDischarge, fetchTemperatures, assessHeat } from './sources/op
 import { fetchGdacs, fetchUsgs } from './sources/hazards.mjs';
 import { fetchFlights, expandFlights, FLIGHT_FIELDS } from './sources/flights.mjs';
 import { fetchTle } from './sources/tle.mjs';
+import { fetchReservoirs, reservoirLayer } from './sources/reservoirs.mjs';
 import { evaluate, SEVERITY_RANK } from './rules.mjs';
 import { buildMessages, createNotifier, heartbeat } from './notify.mjs';
 
 const DAY_MS = 24 * 3600 * 1000;
 const BASE_HOSTS = [
   'sachet.ndma.gov.in', 'flood-api.open-meteo.com', 'api.open-meteo.com',
-  'www.gdacs.org', 'earthquake.usgs.gov', 'opensky-network.org', 'celestrak.org', 'www.amsat.org'
+  'www.gdacs.org', 'earthquake.usgs.gov', 'opensky-network.org', 'celestrak.org', 'www.amsat.org',
+  'tnagriculture.in'
 ];
 const DEGRADED_AFTER_FAILURES = 3;
 /* Auxiliary sources feed the dashboard but are not safety-critical: their failures
@@ -125,6 +127,14 @@ export async function run(options = {}) {
     heat: () => fetchTemperatures({ http, points: config.heat?.points || [] }),
     gdacs: () => fetchGdacs({ http }),
     quakes: () => fetchUsgs({ http }),
+    ...(config.reservoirs?.enabled === false ? {} : {
+      reservoirs: () => fetchReservoirs({
+        http,
+        lastFetchedAt: state.reservoirsFetchedAt ? Date.parse(state.reservoirsFetchedAt) : 0,
+        known: [state.reservoirs?.current, state.reservoirs?.previous],
+        now
+      })
+    }),
     ...(config.flights?.enabled === false ? {} : {
       flights: () => fetchFlights({ http, lastFetchedAt: state.flightsFetchedAt ? Date.parse(state.flightsFetchedAt) : 0, now })
     }),
@@ -181,6 +191,12 @@ export async function run(options = {}) {
     gdacs: data.gdacs ?? state.gdacsSnapshot ?? [],
     quakes: data.quakes ?? state.quakesSnapshot ?? []
   };
+  /* Reservoirs: daily figures, fetched at most hourly; the last snapshot is reused in between. */
+  if (data.reservoirs) {
+    state.reservoirs = data.reservoirs;
+    state.reservoirsFetchedAt = new Date(now).toISOString();
+  }
+  layerData.reservoirs = reservoirLayer(state.reservoirs);
   if (data.gdacs) state.gdacsSnapshot = data.gdacs.filter((e) => e.alertLevel !== 'Green');
   if (data.quakes) state.quakesSnapshot = data.quakes.filter((q) => q.mag >= 4);
 
@@ -276,7 +292,8 @@ export async function run(options = {}) {
       })),
       rivers: layerData.rivers,
       heat: heatLayer,
-      heatRaw: layerData.heat
+      heatRaw: layerData.heat,
+      reservoirs: layerData.reservoirs
     },
     active: candidates.map((c) => ({ ...c, polygons: undefined, circles: undefined }))
   };

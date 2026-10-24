@@ -285,3 +285,35 @@ test('http client aborts bodies over the size cap while streaming', async () => 
   await assert.rejects(() => http.getText('https://example.org/big'), /too large/);
   assert.ok(sent < 12, `stopped early (read ${sent} MB)`);
 });
+
+test('reservoir page parses all 19 dams with known positions', async () => {
+  const { readFile } = await import('node:fs/promises');
+  const { parseReservoirPage, RESERVOIR_SITES } = await import('../sources/reservoirs.mjs');
+  const html = await readFile(new URL('./fixtures/tnagriculture.in_people_app_more_reservoir_en_2026-10-23', import.meta.url), 'utf8');
+  const page = parseReservoirPage(html);
+  assert.equal(page.date, '2026-10-23');
+  assert.equal(page.items.length, 19);
+  const unknown = page.items.filter((r) => !RESERVOIR_SITES[r.id]).map((r) => r.id);
+  assert.deepEqual(unknown, [], 'every dam maps to a site with coordinates');
+  const mettur = page.items.find((r) => r.id === 'mettur');
+  assert.deepEqual([mettur.fullFt, mettur.levelFt, mettur.inflow, mettur.outflow], [120, 54.56, 1409, 2254]);
+  const sathanur = page.items.find((r) => r.id === 'sathanur');
+  assert.equal(sathanur.outflow, null, 'blank cells become null, not 0');
+});
+
+test('reservoir parser fails loudly when the layout changes', async () => {
+  const { parseReservoirPage } = await import('../sources/reservoirs.mjs');
+  assert.throws(() => parseReservoirPage('<html><body>maintenance</body></html>'), /As On Date/);
+  assert.throws(() => parseReservoirPage('<p class="tt"><span>As On Date:</span> <span>24-10-2026</span></p>'), /no reservoirs/);
+});
+
+test('reservoir rules: large release, gate-opening jump, near full', async () => {
+  const { assessReservoir } = await import('../sources/reservoirs.mjs');
+  const base = { fullFt: 120, levelFt: 80, releaseHigh: 30000 };
+  assert.deepEqual(assessReservoir({ ...base, outflow: 61000, prevOutflow: 60000 }), [{ type: 'release', severity: 'critical' }]);
+  assert.deepEqual(assessReservoir({ ...base, outflow: 31000, prevOutflow: 30500 }), [{ type: 'release', severity: 'high' }]);
+  assert.deepEqual(assessReservoir({ ...base, outflow: 9000, prevOutflow: 2000 }), [{ type: 'release', severity: 'medium' }]);
+  assert.deepEqual(assessReservoir({ ...base, outflow: 18000, prevOutflow: 15000 }), [], 'routine irrigation release changes do not alert');
+  assert.deepEqual(assessReservoir({ ...base, levelFt: 117.5, outflow: 100 }), [{ type: 'full', severity: 'medium' }]);
+  assert.deepEqual(assessReservoir({ ...base, levelFt: 119.8, outflow: null }), [{ type: 'full', severity: 'high' }]);
+});

@@ -113,6 +113,36 @@
 
   /* ===================== Layers / sources ===================== */
 
+  /* ----- Embedded players: only URLs built here from validated IDs are ever framed. ----- */
+  const YT_CHANNEL_RE = /^UC[A-Za-z0-9_-]{22}$/;
+  const EMBED_SRC_RE = /^https:\/\/(www\.youtube-nocookie\.com\/embed\/live_stream\?channel=UC[A-Za-z0-9_-]{22}&[a-z0-9=&_]+|webcams\.windy\.com\/webcams\/public\/embed\/player\/\d{5,14}\/(live|day))$/;
+
+  function youtubeLiveEmbed(channelId, label = 'Play live stream') {
+    if (!YT_CHANNEL_RE.test(channelId)) return null;
+    return {
+      src: `https://www.youtube-nocookie.com/embed/live_stream?channel=${channelId}&autoplay=1&mute=1&playsinline=1&rel=0`,
+      open: `https://www.youtube.com/channel/${channelId}/live`,
+      label, note: 'YouTube, privacy-enhanced mode. Starts muted; shows an offline card when the channel is not live.'
+    };
+  }
+
+  function windyPlayerEmbed(webcamId, live) {
+    const id = String(webcamId);
+    if (!/^\d{5,14}$/.test(id)) return null;
+    const src = `https://webcams.windy.com/webcams/public/embed/player/${id}/${live ? 'live' : 'day'}`;
+    return { src, open: src, label: live ? 'Play live stream' : 'Play daylight timelapse', note: 'Windy webcam player (owner-published camera).' };
+  }
+
+  /* Official broadcaster channels, verified by channel ID (2026-10-24). Pins sit at the
+     channels' home city; the stream itself shows whatever they are broadcasting. */
+  const LIVE_STREAMS = [
+    { id: 'yt-thanthi', title: 'Thanthi TV (live)', channel: 'Thanthi TV', channelId: 'UC-JFyL0zDFOsPMpuWu39rPA', type: 'Tamil news', where: 'Chennai', lat: 13.045, lng: 80.25 },
+    { id: 'yt-puthiyathalaimurai', title: 'Puthiya Thalaimurai (live)', channel: 'Puthiya Thalaimurai TV', channelId: 'UCmyKnNRH0wH-r8I-ceP-dsg', type: 'Tamil news', where: 'Chennai', lat: 13.01, lng: 80.215 },
+    { id: 'yt-polimer', title: 'Polimer News (live)', channel: 'Polimer News', channelId: 'UC8Z-VjXBtDJTvq6aqkIskPg', type: 'Tamil news', where: 'Chennai', lat: 13.075, lng: 80.235 }
+  ];
+  const NASA_CHANNEL_ID = 'UCLA_DiR1FfKNvjuUpBHmylQ';
+  const liveStreamItems = () => LIVE_STREAMS.map((x) => ({ ...x, altKm: 0, embed: youtubeLiveEmbed(x.channelId), pageUrl: `https://www.youtube.com/channel/${x.channelId}/live` }));
+
   const LAYERS = {
     flights: {
       label: 'Flights', source: 'OpenSky Network', color: '#7fd8c0', size: 3.2, intervalMs: 20000, visible: true,
@@ -164,7 +194,8 @@
         fields: [
           ['NORAD ID', it.id], ['Group', it.group], ['Altitude', num(it.altKm, 0, ' km')],
           ['Speed', num(it.speedKms, 2, ' km/s')], ['Elevation from observer', num(it.elevDeg, 1, ' deg')], ['Sub-point', pos(it)]
-        ]
+        ],
+        embed: /ISS|ZARYA/i.test(it.name || '') ? youtubeLiveEmbed(NASA_CHANNEL_ID, 'Watch NASA live (ISS views when broadcasting)') : null
       })
     },
     webcams: {
@@ -179,11 +210,22 @@
           ['Status', it.status || 'n/a'], ['Image updated', it.lastUpdated ? fmtTime(it.lastUpdated) : 'n/a'],
           ['Zone', it.zone], ['Position', pos(it)]
         ],
+        url: it.pageUrl,
+        embed: it.embed || null
+      })
+    },
+    live: {
+      label: 'Live streams', source: 'Official YouTube channels', color: '#ff6b6b', size: 4.5,
+      intervalMs: 24 * 3600 * 1000, visible: true,
+      describe: (it) => ({
+        title: it.title,
+        embed: it.embed,
+        fields: [['Channel', it.channel], ['Type', it.type], ['Based in', it.where], ['Position', pos(it)]],
         url: it.pageUrl
       })
     },
     alerts: {
-      label: 'India alerts', source: 'SACHET + derived flood/heat (poller)', color: '#ff9f0a', size: 6.5,
+      label: 'India alerts', source: 'SACHET + derived flood/heat + reservoirs (poller)', color: '#ff9f0a', size: 6.5,
       intervalMs: 5 * 60 * 1000, visible: true,
       describe: (it) => ({
         title: it.title,
@@ -285,6 +327,19 @@
         id: `heat:${str(h.id, 60)}`, isAlert: false, title: `Temperature (forecast): ${str(h.name, 120)}`, source: 'Open-Meteo forecast',
         summary: `Forecast max up to ${Number.isFinite(peak) ? peak.toFixed(1) : 'n/a'} C (${str(h.region, 20)} criteria)`,
         lat: h.lat, lng: h.lng, altKm: 0, polygons: [], color: hexToRgb('#8c6a3e')
+      });
+    }
+
+    const res = latest.layers?.reservoirs;
+    const cusecs = (v) => (Number.isFinite(v) ? `${Math.round(v).toLocaleString('en-IN')} cusecs` : 'n/a');
+    for (const r of (res && Array.isArray(res.items) ? res.items : [])) {
+      if (!Number.isFinite(r.lat) || !Number.isFinite(r.lng) || alertedPoints.has(`reservoir:${r.id}`)) continue;
+      const change = Number.isFinite(r.levelChangeFt) && r.levelChangeFt !== 0 ? ` (${r.levelChangeFt > 0 ? '+' : ''}${num(r.levelChangeFt, 2)} ft in a day)` : '';
+      items.push({
+        id: `reservoir:${str(r.id, 60)}`, isAlert: false, title: `Reservoir: ${str(r.name, 120)}`,
+        source: 'TN Agriculture Dept (WRD daily reservoir data)', sourceUrl: str(res.source, 300),
+        summary: `${str(r.river, 40) ? `${str(r.river, 40)} \u00b7 ` : ''}level ${num(r.levelFt, 2)} of ${num(r.fullFt, 1)} ft (${num(r.pctDepth, 0)}% of depth)${change} \u00b7 inflow ${cusecs(r.inflow)} \u00b7 outflow ${cusecs(r.outflow)} \u00b7 as on ${str(res.date, 12)}`,
+        lat: r.lat, lng: r.lng, altKm: 0, polygons: [], color: hexToRgb('#4fa3d9')
       });
     }
 
@@ -507,6 +562,9 @@
         })
         .filter(Boolean);
     },
+    async live() {
+      return liveStreamItems();
+    },
     async satellites() {
       if (!satLibOk) throw new Error('satellite.js failed to load');
       await loadSatCatalog();
@@ -522,7 +580,7 @@
         const radius = Math.min(z.radiusKm, WEBCAM_MAX_RADIUS_KM);
         const params = new URLSearchParams({
           nearby: `${z.lat},${z.lng},${radius}`,
-          include: 'images,location,urls',
+          include: 'images,location,urls,player',
           limit: String(WEBCAM_LIMIT_PER_ZONE)
         });
         const res = await fetchWithTimeout(
@@ -550,7 +608,8 @@
             city: loc.city, region: loc.region, country: loc.country, zone,
             imageUrl: current.preview || current.thumbnail || null,
             lastUpdated: w.lastUpdatedOn ? Date.parse(w.lastUpdatedOn) : null,
-            pageUrl: (w.urls && (w.urls.detail || (w.urls.player && w.urls.player.day))) || null
+            pageUrl: (w.urls && (w.urls.detail || (w.urls.player && w.urls.player.day))) || null,
+            embed: windyPlayerEmbed(id, Boolean(w.player && w.player.live))
           });
         }
       }
@@ -572,7 +631,7 @@
     };
   }
 
-  const DEMO_INTERVALS = { flights: 10000, quakes: 15000, gdacs: 20000, eonet: 25000, satellites: 3600000, webcams: 30000, alerts: 20000 };
+  const DEMO_INTERVALS = { flights: 10000, quakes: 15000, gdacs: 20000, eonet: 25000, satellites: 3600000, webcams: 30000, live: 3600000, alerts: 20000 };
   const demoPoll = {};
   const nextPoll = (key) => (demoPoll[key] = (demoPoll[key] || 0) + 1);
   const wrapLng = (lng) => ((((lng + 180) % 360) + 360) % 360) - 180;
@@ -702,6 +761,9 @@
     },
     async satellites() {
       return demoSatellites();
+    },
+    async live() {
+      return liveStreamItems();
     },
     async webcams() {
       nextPoll('webcams');
@@ -2154,7 +2216,7 @@
     });
   }
 
-  const LAYER_ICON = { flights: 'plane', quakes: 'quake', gdacs: 'cyclone', eonet: 'fire', satellites: 'satellite', webcams: 'camera', alerts: 'warning' };
+  const LAYER_ICON = { flights: 'plane', quakes: 'quake', gdacs: 'cyclone', eonet: 'fire', satellites: 'satellite', webcams: 'camera', live: 'camera', alerts: 'warning' };
   const GDACS_ICON = { 'Tropical cyclone': 'cyclone', Flood: 'flood', Earthquake: 'quake', Volcano: 'volcano', Drought: 'drought', Wildfire: 'fire', TC: 'cyclone', FL: 'flood', EQ: 'quake', VO: 'volcano', DR: 'drought', WF: 'fire' };
   const EONET_ICON = { Wildfires: 'fire', 'Severe Storms': 'storm', Volcanoes: 'volcano', Floods: 'flood', Drought: 'drought', Earthquakes: 'quake' };
   const ALERT_ICON = { dam: 'dam', flood: 'flood', heat: 'heat', cyclone: 'cyclone', rain: 'storm', thunderstorm: 'storm', tsunami: 'warning', earthquake: 'quake' };
@@ -2169,8 +2231,12 @@
       case 'gdacs': return { icon: GDACS_ICON[it.type] || 'event', size: it.alertLevel === 'Red' ? 28 : it.alertLevel === 'Orange' ? 24 : 18 };
       case 'eonet': return { icon: EONET_ICON[it.category] || 'event', size: 18 };
       case 'webcams': return { icon: 'camera', size: 16 };
+      case 'live': return { icon: 'camera', size: 19 };
       case 'alerts':
-        if (!it.isAlert) return { icon: it.id && it.id.startsWith('river:') ? 'river' : 'heat', size: 13 };
+        if (!it.isAlert) {
+          if (it.id && it.id.startsWith('reservoir:')) return { icon: 'dam', size: 15 };
+          return { icon: it.id && it.id.startsWith('river:') ? 'river' : 'heat', size: 13 };
+        }
         return { icon: ALERT_ICON[it.kind] || 'warning', size: it.alertSeverity === 'critical' ? 30 : it.alertSeverity === 'high' ? 26 : 22 };
       default: return { icon: 'dot', size: 10 };
     }
@@ -2222,7 +2288,7 @@
       obj.userData.targetOpacity = layer.visible ? 1 : 0;
       obj.visible = layer.visible;
       /* Draw order: big event icons under small moving ones. */
-      obj.renderOrder = { alerts: 1, gdacs: 2, eonet: 3, quakes: 4, webcams: 5, satellites: 6, flights: 7 }[key] || 0;
+      obj.renderOrder = { alerts: 1, gdacs: 2, eonet: 3, quakes: 4, webcams: 5, live: 5, satellites: 6, flights: 7 }[key] || 0;
       layerObjects[key] = obj;
       globeGroup.add(obj);
     }
@@ -2561,6 +2627,7 @@
       case 'gdacs': return clip(`${it.alertLevel} \u00b7 ${it.name}`, 30);
       case 'eonet': return clip(it.title || '', 26);
       case 'webcams': return clip((it.title || '').replace(/\s*\[DEMO\]/, ''), 22);
+      case 'live': return clip(`LIVE \u00b7 ${it.channel}`, 26);
       case 'alerts': return clip((it.title || '').replace(/^Official: |^Derived: /, ''), 32);
       default: return '';
     }
@@ -2578,6 +2645,7 @@
       case 'satellites': return /ISS|ZARYA|TIANGONG|CSS/i.test(it.name || '') ? 350 : zoom < 260 ? 80 : -1;
       case 'eonet': return zoom < 260 ? 120 : -1;
       case 'webcams': return zoom < 200 ? 30 : -1;
+      case 'live': return zoom < 150 ? 85 : -1;
       default: return -1;
     }
   }
@@ -2893,7 +2961,7 @@
 
   const isHttps = (u) => typeof u === 'string' && /^https:\/\//.test(u);
 
-  function renderDetail({ kind, title, fields, url, severity, meta = [], image = null, imageLink = null }) {
+  function renderDetail({ kind, title, fields, url, severity, meta = [], image = null, imageLink = null, embed = null }) {
     const el = $('detail');
     const rows = meta.concat(fields).map(([k, v]) => `<div class="kv"><span>${esc(k)}</span><span>${esc(v)}</span></div>`).join('');
     const link = isHttps(url)
@@ -2907,7 +2975,7 @@
       </figure>` : '';
     el.innerHTML = `
       <div class="kind"${severity ? ` style="color:${SEV_COLOR[severity]}"` : ''}>${esc(kind)}${severity ? ` &middot; ${esc(severity)}` : ''}</div>
-      <h2>${esc(title)}</h2>${media}${rows}
+      <h2>${esc(title)}</h2>${playerHtml(embed)}${media}${rows}
       <div class="detail-actions">${link}<button class="btn" data-action="close-detail">Close</button></div>`;
     const img = el.querySelector('.cam img');
     if (img) {
@@ -2920,6 +2988,33 @@
     $('detailWrap').classList.add('open');
     openPanel('right');
   }
+
+  /** A tap-to-play placeholder; the iframe is created only on tap, from a re-validated URL. */
+  function playerHtml(embed) {
+    if (!embed || !EMBED_SRC_RE.test(embed.src)) return '';
+    return `
+      <div class="player" data-embed="${esc(embed.src)}">
+        <button class="play-btn" type="button" data-play><span class="tri" aria-hidden="true"></span>${esc(embed.label)}</button>
+        <div class="player-meta">${esc(embed.note)}${isHttps(embed.open) ? ` <a href="${esc(embed.open)}" target="_blank" rel="noopener noreferrer">Open</a>` : ''}</div>
+      </div>`;
+  }
+
+  $('detail').addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-play]');
+    if (!btn) return;
+    const box = btn.closest('.player');
+    const src = box && box.dataset.embed;
+    if (!src || !EMBED_SRC_RE.test(src)) return;
+    const frame = document.createElement('iframe');
+    frame.src = src;
+    frame.title = 'Live player';
+    frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    frame.allowFullscreen = true;
+    frame.referrerPolicy = 'strict-origin-when-cross-origin';
+    frame.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-popups allow-presentation');
+    box.classList.add('playing');
+    btn.replaceWith(frame);
+  });
 
   function closeDetail() {
     selectedRef = null;
@@ -2938,7 +3033,7 @@
     selectedEventId = null;
     document.querySelectorAll('.ev.selected').forEach((n) => n.classList.remove('selected'));
     const d = LAYERS[key].describe(it);
-    renderDetail({ kind: LAYERS[key].label, title: d.title, fields: d.fields, url: d.url, image: d.image, imageLink: d.imageLink });
+    renderDetail({ kind: LAYERS[key].label, title: d.title, fields: d.fields, url: d.url, image: d.image, imageLink: d.imageLink, embed: d.embed });
     placeSelector(it.lat, it.lng, it.altKm);
   }
 
@@ -3428,7 +3523,7 @@
   }
 
   /* ----- Layer chips ----- */
-  const CHIP_LABEL = { flights: 'Flights', quakes: 'Quakes', gdacs: 'GDACS', eonet: 'Events', satellites: 'Satellites', webcams: 'Cams', alerts: 'India' };
+  const CHIP_LABEL = { flights: 'Flights', quakes: 'Quakes', gdacs: 'GDACS', eonet: 'Events', satellites: 'Satellites', webcams: 'Cams', live: 'Live', alerts: 'India' };
 
   function buildChips() {
     $('chips').innerHTML = Object.keys(LAYERS).map((key) => `
@@ -3485,6 +3580,7 @@
     gdacs: (it) => [it.name, it.country, it.type],
     eonet: (it) => [it.title, it.category],
     webcams: (it) => [it.title, it.city],
+    live: (it) => [it.title, it.channel, it.type, it.where],
     alerts: (it) => [it.title, ...(it.districts || [])]
   };
   let searchHits = [];

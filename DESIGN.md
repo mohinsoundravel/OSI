@@ -31,6 +31,8 @@ This is a personal context and cross-checking tool. It is **not** a primary warn
 | Flights | Poller snapshot, projected in the browser | OpenSky only allows its own site to read its API from a browser (CORS), so the poller fetches it every 30 min (4 of ~400 free daily credits per request) and the dashboard dead-reckons each aircraft along its track. Emergency squawks in zones also alert via Telegram. Flights are an auxiliary source: failures never trigger degraded notices. |
 | SACHET (flood, heat, dam, cyclone) | Poller | Feeds send no CORS headers; a browser cannot read them. |
 | River-rise and heat-wave signals | Poller | Needs batching, state and baselines. |
+| Reservoirs | Poller | Official daily WRD figures, compared with the previous day's page; drives dam-release alerts. |
+| Live players | Browser | YouTube (privacy-enhanced, channel live embed) and Windy players, framed only on tap; CSP `frame-src` allows just those two hosts. |
 | Notifications | Poller | Must work with the dashboard closed. |
 
 ## Sources
@@ -62,7 +64,7 @@ IMD issues rain and thunderstorm nowcasts several times a day, often tagged CAP 
 
 ### Dam releases
 
-There is no public machine-readable feed of dam releases in India. CWC publishes **weekly** reservoir storage bulletins, not release events. Releases are announced by state water resources departments and district collectors, and only sometimes through SACHET.
+There is no public machine-readable feed of dam releases in India. CWC publishes **weekly** reservoir storage bulletins, not release events. Releases are announced by state water resources departments and district collectors, and only sometimes through SACHET. The Tamil Nadu Agriculture Department republishes WRD's **daily** level, inflow and outflow for 19 dams; the poller reads it hourly and compares outflow with the previous day, so a gate opening shows up within a day.
 
 The monitor therefore detects dam releases from SACHET alert text (dam, reservoir, shutter, spillway, crest gate, surplus release, outflow) and models river rise below dams with GloFAS. Coverage is partial by nature; this is stated rather than papered over.
 

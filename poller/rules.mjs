@@ -1,5 +1,6 @@
 import { zonesForArea, zonesForPoint } from './lib/geo.mjs';
 import { assessRiver, assessHeat } from './sources/openmeteo.mjs';
+import { assessReservoir } from './sources/reservoirs.mjs';
 
 export const SEVERITY_RANK = { low: 0, medium: 1, high: 2, critical: 3 };
 
@@ -100,6 +101,27 @@ export function evaluate({ config, data, normals }) {
       source: 'Open-Meteo forecast, IMD criteria', sourceUrl: 'https://open-meteo.com/en/docs',
       lat: p.lat, lng: p.lng, zones: zoneNames(zonesForPoint(p.lat, p.lng, zones))
     });
+  }
+
+  /* Derived from official daily figures: large or sharply increased dam releases, and
+     reservoirs near full (a surplus release usually follows). */
+  const fmt = (v) => (Number.isFinite(v) ? Math.round(v).toLocaleString('en-IN') : '?');
+  for (const r of data.reservoirs?.items || []) {
+    if (!Number.isFinite(r.lat) || !Number.isFinite(r.lng)) continue;
+    const hit = zonesForPoint(r.lat, r.lng, zones);
+    if (!hit.length) continue;
+    for (const v of assessReservoir(r)) {
+      const levelText = `level ${r.levelFt ?? '?'} of ${r.fullFt} ft${Number.isFinite(r.levelChangeFt) ? ` (${r.levelChangeFt >= 0 ? '+' : ''}${r.levelChangeFt} ft in a day)` : ''}`;
+      const flowText = `inflow ${fmt(r.inflow)}, outflow ${fmt(r.outflow)} cusecs${Number.isFinite(r.prevOutflow) ? ` (was ${fmt(r.prevOutflow)})` : ''}`;
+      out.push({
+        key: `reservoir:${r.id}:${v.type}:${v.severity}`,
+        rule: v.type === 'release' ? 'reservoir_release' : 'reservoir_full', origin: 'derived', kind: 'dam', severity: v.severity,
+        title: v.type === 'release' ? `Large release: ${r.name} dam` : `Near full: ${r.name} dam`,
+        summary: `${r.river ? `${r.river}, ` : ''}${levelText}; ${flowText}, as on ${data.reservoirs.date}. ${v.type === 'release' ? 'Downstream river levels may rise.' : 'Surplus release likely if inflow continues.'} Daily WRD figures; not an official flood warning.`,
+        source: 'TN Agriculture Dept (WRD reservoir data)', sourceUrl: data.reservoirs.source,
+        lat: r.lat, lng: r.lng, zones: zoneNames(hit)
+      });
+    }
   }
 
   /* Earthquakes from any source share one zone policy (see USGS below): a large circle

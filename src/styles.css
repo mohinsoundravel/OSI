@@ -144,6 +144,15 @@ input[type=checkbox]:disabled { opacity: 0.4; cursor: default; }
 .detail-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
 
 .cam { margin: 0 0 10px; }
+.player { margin: 0 0 12px; }
+.play-btn { width: 100%; aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid var(--stroke);
+  border-radius: 12px; background: radial-gradient(circle at 50% 45%, rgba(255, 107, 107, 0.22), rgba(0, 0, 0, 0.55)); color: var(--text);
+  font: inherit; font-weight: 600; cursor: pointer; transition: transform 0.2s var(--ease), background 0.2s var(--ease); }
+.play-btn:active { transform: scale(0.98); }
+.play-btn .tri { width: 0; height: 0; border-style: solid; border-width: 9px 0 9px 15px; border-color: transparent transparent transparent #fff; }
+.player iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 12px; background: #000; display: block; }
+.player-meta { color: var(--muted); font-size: 10.5px; margin-top: 6px; }
+.player-meta a { color: var(--accent); }
 .cam img { width: 100%; display: block; border-radius: 10px; background: #000; opacity: 0; transition: opacity 0.6s var(--ease); }
 .cam img.loaded { opacity: 1; }
 .cam figcaption { color: var(--muted); font-size: 10.5px; margin-top: 5px; }
