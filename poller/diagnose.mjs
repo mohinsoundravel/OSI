@@ -138,6 +138,20 @@ await probe('TN reservoir page', 'https://tnagriculture.in/people_app/more/reser
   }
 }
 
+/* Full satellite catalogues: count three-line records per source. */
+for (const [label, url] of [
+  ['CelesTrak active', 'https://celestrak.org/NORAD/elements/gp.php?GROUP=active&FORMAT=tle'],
+  ['CelesTrak active (.com)', 'https://celestrak.com/NORAD/elements/gp.php?GROUP=active&FORMAT=tle'],
+  ['CelesTrak starlink', 'https://celestrak.org/NORAD/elements/gp.php?GROUP=starlink&FORMAT=tle'],
+  ['SatNOGS all TLE', 'https://db.satnogs.org/api/tle/?format=json']
+]) {
+  const r = await probe(label, url);
+  if (!r || !r.res.ok) continue;
+  const text = r.buf.toString('utf8');
+  const n = label.startsWith('SatNOGS') ? (() => { try { return JSON.parse(text).length; } catch { return 'not json'; } })() : (text.match(/^1 \d{5}/gm) || []).length;
+  console.log(`CATALOG ${label}: ${n} records, ${r.buf.length} bytes, first: ${text.slice(0, 80).replace(/\s+/g, ' ')}`);
+}
+
 /* Satellite TLE sources (CelesTrak refused GitHub runners with a network error). */
 await sample('CelesTrak .org', 'https://celestrak.org/NORAD/elements/gp.php?GROUP=stations&FORMAT=tle');
 await sample('CelesTrak .com', 'https://celestrak.com/NORAD/elements/gp.php?GROUP=stations&FORMAT=tle');
