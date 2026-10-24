@@ -203,11 +203,11 @@
       })
     },
     satellites: {
-      label: 'Satellites', source: 'CelesTrak + SGP4', color: '#8aa9f7', size: 3.8, intervalMs: 6 * 3600 * 1000, visible: true,
+      label: 'Satellites', source: 'CelesTrak, all active + SGP4', color: '#8aa9f7', size: 3.8, intervalMs: 6 * 3600 * 1000, visible: true,
       describe: (it) => ({
         title: it.name,
         fields: [
-          ['NORAD ID', it.id], ['Group', it.group], ['Altitude', num(it.altKm, 0, ' km')],
+          ['NORAD ID', it.id], ['Type', it.cat && SAT_CATS[it.cat] ? SAT_CATS[it.cat].label : it.group], ['Altitude', num(it.altKm, 0, ' km')],
           ['Speed', num(it.speedKms, 2, ' km/s')], ['Elevation from observer', num(it.elevDeg, 1, ' deg')], ['Sub-point', pos(it)]
         ],
         embed: /ISS|ZARYA/i.test(it.name || '') ? youtubeLiveEmbed(NASA_CHANNEL_ID, 'Watch NASA live (ISS views when broadcasting)') : null
@@ -536,67 +536,205 @@
       try {
         const snap = await getJson(`${base.replace(/\/+$/, '')}/tle.json`);
         if (Array.isArray(snap.groups) && snap.groups.length) {
-          return snap.groups.slice(0, 10).map((g) => ({ status: 'fulfilled', value: { text: String(g.tle || '').slice(0, 200000), tag: str(g.tag, 40) } }));
+          return snap.groups.slice(0, 10).map((g) => ({ status: 'fulfilled', value: { text: String(g.tle || '').slice(0, 6000000), tag: str(g.tag, 40) } }));
         }
       } catch {
         /* fall back to CelesTrak below */
       }
     }
-    const groups = [['stations', 'Space stations'], ['visual', 'Brightest']];
+    const groups = [['active', 'Active satellites']];
     return Promise.allSettled(groups.map(async ([group, tag]) => {
       const res = await fetchWithTimeout(`https://celestrak.org/NORAD/elements/gp.php?GROUP=${group}&FORMAT=tle`, 30000);
       return { text: await res.text(), tag };
     }));
   }
 
+  /* ----- All active satellites (CelesTrak "active", ~16,000) ----- */
+  const SAT_CATS = {
+    station: { label: 'Space station', color: '#ffffff', icon: 'satellite', size: 24 },
+    india: { label: 'Indian (ISRO, incl. NavIC)', color: '#ff9933', icon: 'satellite', size: 15 },
+    gnss: { label: 'Navigation (GPS, GLONASS, Galileo, BeiDou, QZSS)', color: '#f5c542', icon: 'satellite', size: 12 },
+    weather: { label: 'Weather and Earth observation', color: '#5ac8fa', icon: 'satellite', size: 12 },
+    starlink: { label: 'Starlink', color: '#7f8ea3', icon: 'dot', size: 3.5 },
+    oneweb: { label: 'OneWeb', color: '#9b87f5', icon: 'dot', size: 3.5 },
+    other: { label: 'Other active', color: '#8aa9f7', icon: 'dot', size: 5 }
+  };
+  function satCategory(name) {
+    const n = String(name).toUpperCase();
+    if (/^ISS[ (]|ZARYA|TIANHE|TIANGONG|^CSS[ (]/.test(n)) return 'station';
+    if (n.startsWith('STARLINK')) return 'starlink';
+    if (n.startsWith('ONEWEB')) return 'oneweb';
+    if (/IRNSS|^NVS-|CARTOSAT|RISAT|OCEANSAT|RESOURCESAT|INSAT|^GSAT[- ]\d|^GSAT-|ASTROSAT|SCATSAT|HYSIS|EMISAT|^EOS-|MICROSAT|SARAL|MEGHA-TROPIQUES|^IRS[- ]|KALPANA|NISAR|ADITYA/.test(n)) return 'india';
+    if (/NAVSTAR|^GPS |GLONASS|GALILEO|BEIDOU|^QZS/.test(n)) return 'gnss';
+    if (/^NOAA|METOP|METEOSAT|HIMAWARI|^GOES|FENGYUN|^FY-|LANDSAT|SENTINEL|^TERRA|^AQUA|SUOMI|^JPSS|^GCOM|^DMSP|ELEKTRO|ARKTIKA|^SMAP|^GPM|^AURA|SENTINEL|^CALIPSO|^ICESAT|^SWOT|^GOSAT/.test(n)) return 'weather';
+    return 'other';
+  }
+  const satrecFor = (rec) => {
+    if (!rec.satrec) {
+      try { rec.satrec = satellite.twoline2satrec(rec.l1, rec.l2); } catch { rec.satrec = null; }
+    }
+    return rec.satrec;
+  };
+
   async function loadSatCatalog() {
     const results = await fetchTleTexts();
-
     const catalog = [];
     const ids = new Set();
     const errors = [];
     for (const r of results) {
       if (r.status !== 'fulfilled') { errors.push(r.reason.message); continue; }
       const lines = r.value.text.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
-      for (let i = 0; i + 2 < lines.length; i += 3) {
+      for (let i = 0; i + 2 < lines.length && catalog.length < 30000; i += 3) {
         const [name, l1, l2] = [lines[i], lines[i + 1], lines[i + 2]];
         if (l1[0] !== '1' || l2[0] !== '2') continue;
         const noradId = l1.substring(2, 7).trim();
         if (ids.has(noradId)) continue;
-        try {
-          catalog.push({ satrec: satellite.twoline2satrec(l1, l2), name, group: r.value.tag, noradId });
-          ids.add(noradId);
-        } catch { /* skip malformed TLE */ }
+        ids.add(noradId);
+        catalog.push({ name: name.slice(0, 40), group: r.value.tag, noradId, l1, l2, cat: satCategory(name), satrec: null });
       }
     }
     if (!catalog.length) throw new Error(errors.join('; ') || 'no TLEs parsed');
     satCatalog = catalog;
   }
 
-  function propagateSatellites() {
+  /* Keyframes from the worker every SAT_KEY_MS; the page interpolates between them. */
+  const SAT_KEY_MS = 10000;
+  let satWorker = null;
+  let satWorkerReady = null;
+  const satKeys = new Map();
+  const satKeyPending = new Set();
+  let satItems = [];
+
+  function satObserver() {
+    const obs = observerZone();
+    return obs ? { lat: obs.lat, lng: obs.lng } : null;
+  }
+
+  function startSatWorker() {
+    if (satWorker) satWorker.terminate();
+    satKeys.clear();
+    satKeyPending.clear();
+    satWorker = new Worker('src/sat-worker.js');
+    satWorkerReady = new Promise((resolve, reject) => {
+      satWorker.onerror = (e) => { reject(new Error(e.message || 'satellite worker failed')); };
+      satWorker.onmessage = (e) => {
+        const m = e.data;
+        if (m.type === 'ready') resolve(m.n);
+        else if (m.type === 'key') onSatKey(m);
+      };
+    });
+    satWorker.postMessage({ type: 'tle', lines: satCatalog.map((r) => [r.l1, r.l2]) });
+    return satWorkerReady;
+  }
+
+  function requestSatKey(t) {
+    if (!satWorker || satKeys.has(t) || satKeyPending.has(t)) return;
+    satKeyPending.add(t);
+    satWorker.postMessage({ type: 'key', t, observer: satObserver() });
+  }
+
+  let firstKeyResolve = null;
+  function onSatKey(k) {
+    satKeyPending.delete(k.t);
+    satKeys.set(k.t, k);
+    for (const t of satKeys.keys()) if (t < Date.now() - 2 * SAT_KEY_MS) satKeys.delete(t);
+    /* Item fields (detail, tags, search, rules) follow each keyframe. */
+    if (satItems.length === k.lat.length) {
+      for (let i = 0; i < satItems.length; i++) {
+        const it = satItems[i];
+        it.lat = k.lat[i];
+        it.lng = k.lng[i];
+        it.altKm = k.alt[i];
+        it.elevDeg = Number.isFinite(k.elev[i]) ? k.elev[i] : null;
+        it.speedKms = Number.isFinite(k.speed[i]) ? k.speed[i] : null;
+        it.valid = Number.isFinite(k.lat[i]);
+      }
+      if (layerObjects.satellites && data.satellites === satItems) evaluate('satellites', satItems);
+    }
+    if (firstKeyResolve) { firstKeyResolve(); firstKeyResolve = null; }
+  }
+
+  async function loadAllSatellites() {
+    await loadSatCatalog();
+    satItems = satCatalog.map((r) => ({
+      id: r.noradId, name: r.name, group: r.group, cat: r.cat, lat: 0, lng: 0, altKm: 0, elevDeg: null, speedKms: null,
+      valid: false, color: hexToRgb(SAT_CATS[r.cat].color)
+    }));
+    try {
+      if (typeof Worker === 'undefined') throw new Error('no Worker support');
+      await startSatWorker();
+      const now = Math.floor(Date.now() / SAT_KEY_MS) * SAT_KEY_MS;
+      const first = new Promise((resolve) => { firstKeyResolve = resolve; });
+      requestSatKey(now);
+      requestSatKey(now + SAT_KEY_MS);
+      await first;
+      return satItems;
+    } catch (err) {
+      /* Fallback without a worker: the main thread propagates only the notable satellites. */
+      satWorker = null;
+      const keep = satCatalog.filter((r) => ['station', 'india', 'gnss', 'weather'].includes(r.cat));
+      satItems = keep.map((r) => ({ id: r.noradId, name: r.name, group: r.group, cat: r.cat, color: hexToRgb(SAT_CATS[r.cat].color), valid: true }));
+      propagateNotable();
+      return satItems;
+    }
+  }
+
+  function propagateNotable() {
     const now = new Date();
     const gmst = satellite.gstime(now);
-    const obs = observerZone();
-    const observerGd = obs ? { latitude: obs.lat * DEG, longitude: obs.lng * DEG, height: 0 } : null;
-    const out = [];
-    for (const s of satCatalog) {
-      const pv = satellite.propagate(s.satrec, now);
-      if (!pv || !pv.position || typeof pv.position !== 'object') continue;
+    for (const it of satItems) {
+      const rec = satCatalog.find((r) => r.noradId === it.id);
+      const sr = rec && satrecFor(rec);
+      const pv = sr ? satellite.propagate(sr, now) : null;
+      if (!pv || !pv.position || typeof pv.position !== 'object') { it.valid = false; continue; }
       const gd = satellite.eciToGeodetic(pv.position, gmst);
-      let elevDeg = null;
-      if (observerGd) {
-        const look = satellite.ecfToLookAngles(observerGd, satellite.eciToEcf(pv.position, gmst));
-        elevDeg = look.elevation / DEG;
-      }
-      const v = pv.velocity;
-      out.push({
-        id: s.noradId, name: s.name, group: s.group,
-        lat: satellite.degreesLat(gd.latitude), lng: satellite.degreesLong(gd.longitude), altKm: gd.height,
-        elevDeg, speedKms: v ? Math.hypot(v.x, v.y, v.z) : null,
-        color: elevDeg !== null && elevDeg > 0 ? hexToRgb('#ffffff') : null
-      });
+      it.lat = satellite.degreesLat(gd.latitude);
+      it.lng = satellite.degreesLong(gd.longitude);
+      it.altKm = gd.height;
+      it.valid = true;
     }
-    return out;
+  }
+
+  /** Writes interpolated satellite positions into the GPU buffer (called ~30 times a second). */
+  function updateSatPositions() {
+    if (DEMO || !satWorker || data.satellites !== satItems || !layerObjects.satellites || !LAYERS.satellites.visible) return;
+    const nowMs = Date.now();
+    const base = Math.floor(nowMs / SAT_KEY_MS) * SAT_KEY_MS;
+    requestSatKey(base);
+    requestSatKey(base + SAT_KEY_MS);
+    if (satKeys.has(base + SAT_KEY_MS)) requestSatKey(base + 2 * SAT_KEY_MS);
+    const A = satKeys.get(base);
+    const B = satKeys.get(base + SAT_KEY_MS) || A;
+    if (!A) return;
+    const attr = layerObjects.satellites.geometry.getAttribute('position');
+    if (!attr || attr.array.length !== A.xyz.length) return;
+    const f = (nowMs - base) / SAT_KEY_MS;
+    const out = attr.array;
+    const a = A.xyz;
+    const b = B.xyz;
+    for (let i = 0; i < out.length; i++) out[i] = a[i] + (b[i] - a[i]) * f;
+    /* The selected satellite gets an exact position. */
+    if (selectedRef && selectedRef.key === 'satellites') {
+      const idx = satItems.findIndex((x) => x.id === selectedRef.id);
+      const rec = idx >= 0 ? satCatalog.find((r) => r.noradId === selectedRef.id) : null;
+      const sr = rec && satrecFor(rec);
+      if (sr) {
+        const t = new Date(nowMs);
+        const pv = satellite.propagate(sr, t);
+        if (pv && pv.position && typeof pv.position === 'object') {
+          const gd = satellite.eciToGeodetic(pv.position, satellite.gstime(t));
+          const it = satItems[idx];
+          it.lat = satellite.degreesLat(gd.latitude);
+          it.lng = satellite.degreesLong(gd.longitude);
+          it.altKm = gd.height;
+          const v = latLngToVector3(it.lat, it.lng, displayRadius(it.altKm));
+          out[idx * 3] = v.x;
+          out[idx * 3 + 1] = v.y;
+          out[idx * 3 + 2] = v.z;
+        }
+      }
+    }
+    attr.needsUpdate = true;
   }
 
   const FETCHERS = {
@@ -678,8 +816,7 @@
     },
     async satellites() {
       if (!satLibOk) throw new Error('satellite.js failed to load');
-      await loadSatCatalog();
-      return propagateSatellites();
+      return loadAllSatellites();
     },
     async webcams() {
       const apiKey = store.get('windyKey', '');
@@ -2231,7 +2368,7 @@
     ships: ['Ships', [['#6fd08c', 'Cargo'], ['#ff7a6b', 'Tanker'], ['#5ac8fa', 'Passenger'], ['#f5b14c', 'Fishing'], ['#d7a6ff', 'Military or rescue'], ['#b8c2cc', 'Other or unknown'], [SEV_COLOR.high, 'Aground, not under command, AIS-SART']]],
     quakes: ['Earthquakes (size = magnitude)', [['#7a3a36', 'Below M3'], ['#e2554a', 'M3 to M5'], ['#ff4d5e', 'M5 and above']]],
     gdacs: ['GDACS', [[GDACS_COLOR.Green, 'Green'], [GDACS_COLOR.Orange, 'Orange'], [GDACS_COLOR.Red, 'Red']]],
-    satellites: ['Satellites', [['#ffffff', 'Above your horizon now'], ['#8aa9f7', 'Below the horizon']]]
+    satellites: ['Satellites (all active)', Object.values(SAT_CATS).map((c) => [c.color, c.label])]
   };
   /* RainViewer "Universal Blue" scheme (official colour table, dBZ). */
   const RADAR_SCALE = [['#cec087', '10 dBZ', 'drizzle'], ['#00a3e0', '20', 'light'], ['#005588', '30', 'moderate'], ['#ffaa00', '40', 'heavy'], ['#c10000', '50', 'very heavy'], ['#ff77ff', '60+', 'hail or extreme']];
@@ -2552,7 +2689,10 @@
     switch (key) {
       case 'flights':
         return it.onGround ? { icon: 'dot', size: 6 } : { icon: 'plane', size: it.squawk && EMERGENCY_SQUAWKS.includes(it.squawk) ? 22 : 15, heading: it.track };
-      case 'satellites': return { icon: 'satellite', size: /ISS|ZARYA|TIANGONG|CSS/i.test(it.name || '') ? 24 : 18 };
+      case 'satellites': {
+        if (it.cat && SAT_CATS[it.cat]) return { icon: SAT_CATS[it.cat].icon, size: SAT_CATS[it.cat].size };
+        return { icon: 'satellite', size: /ISS|ZARYA|TIANGONG|CSS/i.test(it.name || '') ? 24 : 18 };
+      }
       case 'quakes': return { icon: 'quake', size: Math.max(10, Math.min(34, 6 + (it.mag || 0) * 4)) };
       case 'gdacs': return { icon: GDACS_ICON[it.type] || 'event', size: it.alertLevel === 'Red' ? 28 : it.alertLevel === 'Orange' ? 24 : 18 };
       case 'eonet': return { icon: EONET_ICON[it.category] || 'event', size: 18 };
@@ -3145,7 +3285,12 @@
       case 'flights': return it.squawk && EMERGENCY_SQUAWKS.includes(it.squawk) ? 600 : zoom < 210 ? 40 : -1;
       case 'gdacs': return it.alertLevel === 'Red' ? 450 : it.alertLevel === 'Orange' ? 400 : zoom < 230 ? 70 : -1;
       case 'quakes': return it.mag >= 5 ? 300 + it.mag : it.mag >= 3.5 && zoom < 250 ? 100 + it.mag : zoom < 170 ? 20 : -1;
-      case 'satellites': return /ISS|ZARYA|TIANGONG|CSS/i.test(it.name || '') ? 350 : zoom < 260 ? 80 : -1;
+      case 'satellites':
+        if (it.cat === 'station' || (!it.cat && /ISS|ZARYA|TIANGONG|CSS/i.test(it.name || ''))) return 350;
+        if (it.cat === 'starlink' || it.cat === 'oneweb' || it.valid === false) return -1;
+        if (it.cat === 'india') return zoom < 230 ? 90 : -1;
+        if (it.cat === 'gnss' || it.cat === 'weather') return zoom < 180 ? 70 : -1;
+        return zoom < 130 ? 20 : zoom < 260 && !it.cat ? 80 : -1;
       case 'eonet': return zoom < 260 ? 120 : -1;
       case 'webcams': return zoom < 200 ? 30 : -1;
       case 'live': return zoom < 150 ? 85 : -1;
@@ -3323,7 +3468,7 @@
         }
       } else if (satLibOk) {
         const rec = satCatalog.find((s) => s.noradId === it.id);
-        if (!rec) return pts;
+        if (!rec || !satrecFor(rec)) return pts;
         for (let k = 0; k <= 100; k++) {
           const t = new Date(now + k * 60000);
           const pv = satellite.propagate(rec.satrec, t);
@@ -4734,17 +4879,18 @@
   /* Satellites are re-propagated at 10 Hz so they glide instead of jumping; rules still run every 2 s. */
   let satTick = 0;
   setInterval(() => {
-    let items;
     if (DEMO) {
-      items = demoSatellites();
-    } else {
-      if (!satLibOk || !satCatalog.length) return;
-      items = propagateSatellites();
+      const items = demoSatellites();
+      data.satellites = items;
+      updateLayer('satellites');
+      if (++satTick % 20 === 0) evaluate('satellites', items);
+    } else if (!satWorker && satItems.length && data.satellites === satItems && ++satTick % 10 === 0) {
+      propagateNotable();
+      updateLayer('satellites');
     }
-    data.satellites = items;
-    updateLayer('satellites');
-    if (++satTick % 20 === 0) evaluate('satellites', items);
   }, 100);
+  /* All-satellite mode: interpolate worker keyframes ~30 times a second. */
+  setInterval(updateSatPositions, 33);
 
   /* ===================== Boot ===================== */
 

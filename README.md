@@ -27,7 +27,7 @@ See [DESIGN.md](DESIGN.md) for architecture, efficiency and safety decisions.
 | Flights (incl. emergency squawks) | [OpenSky Network](https://opensky-network.org) via the poller (OpenSky blocks browsers on other sites) | Both | 30 min snapshot, projected along track every 5 s |
 | Ships (AIS), Arabian Sea, Bay of Bengal and around Sri Lanka | [AISStream.io](https://aisstream.io) via the poller (needs the `AISSTREAM_API_KEY` secret) | Both | 45 s listen per poll, projected along course every 5 s |
 | Natural events | [NASA EONET](https://eonet.gsfc.nasa.gov) | Dashboard | 5 min |
-| Satellites | [CelesTrak](https://celestrak.org) TLEs + SGP4 | Dashboard | 10 Hz |
+| Satellites: every active satellite (about 16,000, incl. Starlink, OneWeb, GNSS, ISRO) | [CelesTrak](https://celestrak.org) via the poller (SatNOGS, then AMSAT as fallbacks) + SGP4 | Both | positions every 10 s in a background worker, interpolated every frame |
 | Live streams | Official Tamil news channels on YouTube (Thanthi TV, Puthiya Thalaimurai, Polimer News); NASA live from the ISS card | Dashboard | tap to play |
 | Public webcams | [Windy Webcams API](https://api.windy.com/webcams) (owner-published only) | Dashboard | 9 min |
 

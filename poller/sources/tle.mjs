@@ -8,12 +8,12 @@
  */
 
 export const TLE_MIN_INTERVAL_MS = 6 * 3600 * 1000;
+/* Every active satellite CelesTrak tracks (about 16,000 in late 2026, two thirds Starlink). */
 export const TLE_GROUPS = [
-  { group: 'stations', tag: 'Space stations' },
-  { group: 'visual', tag: 'Brightest' }
+  { group: 'active', tag: 'Active satellites' }
 ];
 
-const MAX_SATS_PER_GROUP = 400;
+const MAX_SATS_PER_GROUP = 25000;
 
 /** Keeps only well-formed three-line records (name, line 1, line 2). */
 export function cleanTle(text) {
@@ -29,9 +29,18 @@ export function cleanTle(text) {
   return out.join('\n');
 }
 
-/* CelesTrak is unreliable from GitHub's runners (network failures, HTTP 500); AMSAT's
-   current-TLE file (ISS plus amateur and science satellites) is the fallback. */
+/* CelesTrak has been unreliable from GitHub's runners at times (network failures, HTTP 500).
+   Fallbacks: SatNOGS (about 1,700 amateur and science satellites), then AMSAT's current file. */
 const AMSAT_URL = 'https://www.amsat.org/tle/current/nasabare.txt';
+const SATNOGS_URL = 'https://db.satnogs.org/api/tle/?format=json';
+
+/** SatNOGS returns [{tle0: "0 NAME", tle1, tle2}]; converts to plain three-line text. */
+export function satnogsToTle(json) {
+  if (!Array.isArray(json)) return '';
+  return json.slice(0, MAX_SATS_PER_GROUP)
+    .filter((r) => r && typeof r.tle1 === 'string' && typeof r.tle2 === 'string')
+    .map((r) => `${String(r.tle0 || '').replace(/^0 /, '') || r.tle1.slice(2, 7)}\n${r.tle1}\n${r.tle2}`).join('\n');
+}
 
 /** Returns null when the previous snapshot is fresh enough; otherwise the groups. */
 export async function fetchTle({ http, lastFetchedAt = 0, now = Date.now(), minIntervalMs = TLE_MIN_INTERVAL_MS, log = () => {} }) {
@@ -46,6 +55,16 @@ export async function fetchTle({ http, lastFetchedAt = 0, now = Date.now(), minI
       else errors.push(`CelesTrak ${g.group}: no valid TLEs`);
     } catch (err) {
       errors.push(`CelesTrak ${g.group}: ${err.message}`);
+    }
+  }
+  if (!groups.length) {
+    try {
+      const { json } = await http.getJson(SATNOGS_URL, { timeoutMs: 45000 });
+      const tle = cleanTle(satnogsToTle(json));
+      if (tle) groups.push({ tag: 'SatNOGS (amateur and science satellites)', tle, source: 'SatNOGS' });
+      else errors.push('SatNOGS: no valid TLEs');
+    } catch (err) {
+      errors.push(`SatNOGS: ${err.message}`);
     }
   }
   if (!groups.length) {

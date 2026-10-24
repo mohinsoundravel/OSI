@@ -29,7 +29,7 @@ const DAY_MS = 24 * 3600 * 1000;
 const BASE_HOSTS = [
   'sachet.ndma.gov.in', 'flood-api.open-meteo.com', 'api.open-meteo.com',
   'www.gdacs.org', 'earthquake.usgs.gov', 'opensky-network.org', 'celestrak.org', 'www.amsat.org',
-  'tnagriculture.in'
+  'tnagriculture.in', 'db.satnogs.org'
 ];
 const DEGRADED_AFTER_FAILURES = 3;
 /* Auxiliary sources feed the dashboard but are not safety-critical: their failures
@@ -149,7 +149,8 @@ export async function run(options = {}) {
       ships: () => listenShips({ apiKey: options.aisKey, listenMs: options.shipsListenMs ?? config.ships?.listenMs ?? 45000, connect: options.shipsConnect, userAgent: config.userAgent })
     }),
     ...(config.satellites?.enabled === false ? {} : {
-      satellites: () => fetchTle({ http, lastFetchedAt: state.tleFetchedAt ? Date.parse(state.tleFetchedAt) : 0, now, log })
+      /* tleCatalog 2 = all active satellites; an older snapshot is replaced immediately. */
+      satellites: () => fetchTle({ http, lastFetchedAt: state.tleFetchedAt && state.tleCatalog === 2 ? Date.parse(state.tleFetchedAt) : 0, now, log })
     })
   };
 
@@ -255,7 +256,8 @@ export async function run(options = {}) {
   /* Satellites: republish CelesTrak TLEs for the dashboard (propagated in the browser). */
   if (data.satellites) {
     state.tleFetchedAt = new Date(now).toISOString();
-    await writeJsonAtomic(path.join(dataDir, 'tle.json'), { schema: 1, fetchedAt: state.tleFetchedAt, source: 'CelesTrak', groups: data.satellites });
+    state.tleCatalog = 2;
+    await writeJsonAtomic(path.join(dataDir, 'tle.json'), { schema: 1, fetchedAt: state.tleFetchedAt, source: data.satellites[0]?.source || 'CelesTrak', groups: data.satellites });
   }
 
   const candidates = evaluate({ config, data: layerData, normals });

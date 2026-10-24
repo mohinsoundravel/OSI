@@ -7,13 +7,13 @@
  *  - Map tiles: cache first, capped, so revisited areas load instantly.
  * Nothing else is intercepted.
  */
-const VERSION = 'osi-v1';
+const VERSION = 'osi-v2';
 const SHELL = `${VERSION}-shell`;
 const DATA = `${VERSION}-data`;
 const TILES = `${VERSION}-tiles`;
 const MAX_TILES = 600;
 
-const SHELL_FILES = ['./', 'index.html', 'src/app.js', 'src/styles.css', 'manifest.webmanifest', 'icons/icon-192.png', 'poller/data/districts.json'];
+const SHELL_FILES = ['./', 'index.html', 'src/app.js', 'src/styles.css', 'src/sat-worker.js', 'src/vendor/satellite.min.js', 'manifest.webmanifest', 'icons/icon-192.png', 'poller/data/districts.json'];
 const CDN_FILES = [
   'https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js',
   'https://cdn.jsdelivr.net/npm/satellite.js@6.0.0/dist/satellite.min.js',

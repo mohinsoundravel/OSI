@@ -450,3 +450,12 @@ test('telegram commands: only the owner chat is answered, offset advances, repli
   const failed = await handleCommands({ token: 'T', chatId: '979', offset: 21, latest, send: async () => {}, fetchImpl: async () => new Response('{}', { status: 409 }) });
   assert.equal(failed.offset, 21, 'webhook conflict leaves the offset unchanged');
 });
+
+test('TLE fallback: SatNOGS records convert to three-line text', async () => {
+  const { satnogsToTle, cleanTle } = await import('../sources/tle.mjs');
+  const l1 = '1 25544U 98067A   26297.20915682  .00007800  00000+0  14234-3 0  9993';
+  const l2 = '2 25544  51.6390 123.4567 0003456  78.9012 281.2345 15.50000000 12345';
+  const text = cleanTle(satnogsToTle([{ tle0: '0 ISS (ZARYA)', tle1: l1, tle2: l2 }, { tle0: '0 BROKEN', tle1: 'x', tle2: null }]));
+  assert.equal(text, `ISS (ZARYA)\n${l1}\n${l2}`);
+  assert.equal(satnogsToTle({ detail: 'error' }), '');
+});
