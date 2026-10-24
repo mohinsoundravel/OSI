@@ -1,0 +1,550 @@
+PROBE AISStream websocket: connected; messages []; close socket closed
+PROBE TN reservoir page: HTTP 200 | text/html; charset=UTF-8 | 19408 bytes | acao: null
+PROBE RainViewer weather-maps.json: HTTP 200 | application/json | 818 bytes | acao: *
+RainViewer host=https://tilecache.rainviewer.com generated=1792871728 keys=version,generated,host,radar,satellite radarKeys=past,nowcast frames=13
+RainViewer last frame time=1792871400 path=/v2/radar/543ad063a053
+PROBE RainViewer tile z4 India 256: HTTP 200 | image/png | 3297 bytes | acao: *
+PROBE RainViewer tile z7 Chennai 256: HTTP 200 | image/png | 5158 bytes | acao: *
+PROBE RainViewer tile z8 (expect refusal): HTTP 200 | image/png | 1370 bytes | acao: *
+RainViewer nowcast=0 satellite={"infrared":[]}
+PROBE rv z4: HTTP 200 | image/png | 3297 bytes | acao: *
+RainViewer z4: png 256x256 colorType 6 sha be41809886
+PROBE rv z7: HTTP 200 | image/png | 5158 bytes | acao: *
+RainViewer z7: png 256x256 colorType 6 sha 36fc83f10b
+PROBE rv z8: HTTP 200 | image/png | 1370 bytes | acao: *
+RainViewer z8: png 256x256 colorType 3 +tRNS sha bcffdb4111
+PROBE him: HTTP 200 | image/png | 94370 bytes | acao: *
+Himawari IR 2026-10-24T19:10:00Z z5/22/15: png 256x256 colorType 6 sha e6bf9c9132
+PROBE him: HTTP 200 | image/png | 58310 bytes | acao: *
+Himawari IR 2026-10-24T19:10:00Z z6/45/30: png 256x256 colorType 6 sha 454976e7b1
+PROBE him: HTTP 200 | image/png | 45763 bytes | acao: *
+Himawari IR 2026-10-24T19:10:00Z z6/47/29: png 256x256 colorType 6 sha d0e931809a
+PROBE him: HTTP 200 | image/png | 89390 bytes | acao: *
+Himawari IR 2026-10-24T18:20:00Z z5/22/15: png 256x256 colorType 6 sha 3578f4d7b3
+PROBE him: HTTP 200 | image/png | 54978 bytes | acao: *
+Himawari IR 2026-10-24T18:20:00Z z6/45/30: png 256x256 colorType 6 sha 2781b82d19
+PROBE him: HTTP 200 | image/png | 44187 bytes | acao: *
+Himawari IR 2026-10-24T18:20:00Z z6/47/29: png 256x256 colorType 6 sha fdb34a07df
+PROBE imerg: HTTP 200 | image/png | 6663 bytes | acao: *
+IMERG 2026-10-24T14:00:00Z z2/2/1: png 256x256 colorType 3 +tRNS sha cf726980ce
+PROBE imerg: HTTP 200 | image/png | 5995 bytes | acao: *
+IMERG 2026-10-24T14:00:00Z z5/22/15: png 256x256 colorType 3 +tRNS sha ae024c01b8
+PROBE imerg: HTTP 200 | image/png | 6228 bytes | acao: *
+IMERG 2026-10-24T13:00:00Z z2/2/1: png 256x256 colorType 3 +tRNS sha 0bd6750e90
+PROBE imerg: HTTP 200 | image/png | 6704 bytes | acao: *
+IMERG 2026-10-24T13:00:00Z z5/22/15: png 256x256 colorType 3 +tRNS sha 2927a64a32
+PROBE GIBS VIIRS SNPP true colour 2026-10-23 z0: HTTP 200 | image/jpeg | 17563 bytes | acao: *
+PROBE GIBS VIIRS SNPP true colour 2026-10-23 z9: HTTP 200 | image/jpeg | 6808 bytes | acao: *
+PROBE GIBS capabilities: HTTP 200 | text/xml; charset=UTF-8 | 5839015 bytes | acao: *
+LAYER Himawari_AHI_Air_Mass | format image/png | matrix GoogleMapsCompatible_Level6 | time default 2026-10-24T19:20:00Z | time values 2026-10-03T07:10:00Z/2026-10-03T07:10:00Z/PT10M | url 
+LAYER GOES-East_ABI_Band13_Clean_Infrared | format image/png | matrix GoogleMapsCompatible_Level6 | time default 2026-10-24T19:30:00Z | time values 2026-07-31T23:30:00Z/2026-08-01T19:20:00Z/PT10M | url 
+LAYER GOES-West_ABI_Band13_Clean_Infrared | format image/png | matrix GoogleMapsCompatible_Level6 | time default 2026-10-24T19:30:00Z | time values 2026-07-30T20:00:00Z/2026-07-31T19:10:00Z/PT10M | url 
+LAYER Himawari_AHI_Band13_Clean_Infrared | format image/png | matrix GoogleMapsCompatible_Level6 | time default 2026-10-24T19:30:00Z | time values 2026-09-12T02:50:00Z/2026-09-12T14:30:00Z/PT10M | url 
+PROBE Himawari_AHI_Band13_Clean_Infrared time=default: HTTP 200 | image/png | 32013 bytes | acao: *
+  Himawari_AHI_Band13_Clean_Infrared time=default: sha 18be5e68598a | last-modified null | cache-control max-age=0, no-store, no-cache, must-revalidate | access-control-expose-headers=layer-identifier-request, layer-identifier-actual, layer-time-request, layer-time-actual ; layer-identifier-actual=Himawari_AHI_Band13_Clean_Infrared_v0_NRT ; layer-identifier-request=Himawari_AHI_Band13_Clean_Infrared ; layer-time-actual=2026-10-24T19:30:00Z ; layer-time-request=default
+PROBE Himawari_AHI_Band13_Clean_Infrared time=2026-10-24T19:30:00Z: HTTP 200 | image/png | 32013 bytes | acao: *
+  Himawari_AHI_Band13_Clean_Infrared time=2026-10-24T19:30:00Z: sha 18be5e68598a | last-modified null | cache-control max-age=0, no-store, no-cache, must-revalidate | access-control-expose-headers=layer-identifier-request, layer-identifier-actual, layer-time-request, layer-time-actual ; layer-identifier-actual=Himawari_AHI_Band13_Clean_Infrared_v0_NRT ; layer-identifier-request=Himawari_AHI_Band13_Clean_Infrared ; layer-time-actual=2026-10-24T19:30:00Z ; layer-time-request=2026-10-24T19:30:00Z
+  colormap hrefs: 
+LAYER VIIRS_NOAA20_CorrectedReflectance_TrueColor_Granule | format image/png | matrix GoogleMapsCompatible_Level9 | time default 2026-10-24T17:00:00Z | time values 2026-07-26T17:00:00Z/2026-10-24T17:00:00Z/PT6M | url 
+LAYER VIIRS_SNPP_CorrectedReflectance_TrueColor_Granule | format image/png | matrix GoogleMapsCompatible_Level9 | time default 2026-10-24T18:00:00Z | time values 2026-07-26T18:00:00Z/2026-10-24T18:00:00Z/PT6M | url 
+LAYER VIIRS_NOAA20_CorrectedReflectance_TrueColor | format image/jpeg | matrix GoogleMapsCompatible_Level9 | time default 2026-10-24 | time values 2018-01-05/2018-02-21/P1D | url 
+LAYER VIIRS_SNPP_CorrectedReflectance_TrueColor | format image/jpeg | matrix GoogleMapsCompatible_Level9 | time default 2026-10-24 | time values 2015-11-24/2022-07-27/P1D | url 
+LAYER IMERG_Precipitation_Rate | format image/png | matrix GoogleMapsCompatible_Level6 | time default 2026-10-23 | time values 2000-06-01/2025-10-22/P1D | url 
+LAYER IMERG_Precipitation_Rate_30min | format image/png | matrix GoogleMapsCompatible_Level6 | time default 2026-10-24T14:30:00Z | time values 2026-01-19T20:30:00Z/2026-01-19T21:30:00Z/PT30M | url 
+PROBE IMERG_Precipitation_Rate_30min time=default: HTTP 200 | image/png | 6363 bytes | acao: *
+  IMERG_Precipitation_Rate_30min time=default: sha a970548954fe | last-modified null | cache-control max-age=0, no-store, no-cache, must-revalidate | access-control-expose-headers=layer-identifier-request, layer-identifier-actual, layer-time-request, layer-time-actual ; layer-identifier-actual=IMERG_Precipitation_Rate_30min_v7_NRT ; layer-identifier-request=IMERG_Precipitation_Rate_30min ; layer-time-actual=2026-10-24T13:30:00Z ; layer-time-request=default
+PROBE IMERG_Precipitation_Rate_30min time=2026-10-24T14:30:00Z: HTTP 200 | image/png | 6702 bytes | acao: *
+  IMERG_Precipitation_Rate_30min time=2026-10-24T14:30:00Z: sha bb3de7bf6a43 | last-modified null | cache-control max-age=0, no-store, no-cache, must-revalidate | access-control-expose-headers=layer-identifier-request, layer-identifier-actual, layer-time-request, layer-time-actual ; layer-identifier-actual=IMERG_Precipitation_Rate_30min_v7_NRT ; layer-identifier-request=IMERG_Precipitation_Rate_30min ; layer-time-actual=2026-10-24T14:30:00Z ; layer-time-request=2026-10-24T14:30:00Z
+  colormap hrefs: 
+LAYER Himawari_AHI_Band3_Red_Visible_1km | format image/png | matrix GoogleMapsCompatible_Level7 | time default 2026-10-24T19:20:00Z | time values 2026-09-13T14:50:00Z/2026-09-14T02:30:00Z/PT10M | url 
+PROBE CelesTrak active: HTTP 200 | text/plain; charset=UTF-8 | 2673216 bytes | acao: *
+CATALOG CelesTrak active: 15912 records, 2673216 bytes, first: CALSPHERE 1 1 00900U 64063C 26297.12843975 .00000533 00000+0 
+PROBE CelesTrak active (.com): ERROR TypeError: fetch failed
+PROBE CelesTrak starlink: HTTP 200 | text/plain; charset=UTF-8 | 1787688 bytes | acao: *
+CATALOG CelesTrak starlink: 10641 records, 1787688 bytes, first: STARLINK-1008 1 44714U 19074B 26297.01253115 .00045264 00000+0 
+PROBE SatNOGS all TLE: HTTP 200 | application/json | 536874 bytes | acao: null
+CATALOG SatNOGS all TLE: 1734 records, 536874 bytes, first: [{"tle0":"0 ISS (ZARYA)","tle1":"1 25544U 98067A 26297.20915682 .00007800 00
+
+===== CelesTrak .org
+GET https://celestrak.org/NORAD/elements/gp.php?GROUP=stations&FORMAT=tle
+HTTP 200 | content-type: text/plain; charset=UTF-8 | etag: null | last-modified: null | access-control-allow-origin: *
+length 2688
+----- body (first 4000 chars) -----
+ISS (ZARYA)             
+1 25544U 98067A   26297.20915682  .00007800  00000+0  14938-3 0  9991
+2 25544  51.6335  21.6229 0006884 302.9098  57.1228 15.49030149591752
+POISK                   
+1 36086U 09060A   26297.20915682  .00007800  00000+0  14938-3 0  9999
+2 36086  51.6335  21.6229 0006884 302.9098  57.1228 15.49030149586535
+CSS (TIANHE)            
+1 48274U 21035A   26296.36963709  .00019264  00000+0  22520-3 0  9999
+2 48274  41.4688 263.3399 0002578 203.0250 157.0474 15.61120902313188
+ISS (NAUKA)             
+1 49044U 21066A   26297.20915682  .00007800  00000+0  14938-3 0  9997
+2 49044  51.6335  21.6229 0006884 302.9098  57.1228 15.49030149586577
+FREGAT DEB              
+1 49271U 11037PF  26296.79277866  .00008990  00000+0  12591-1 0  9996
+2 49271  51.6528 334.0425 0938756 212.0257 142.0104 12.45457635241056
+CSS (WENTIAN)           
+1 53239U 22085A   26296.36963709  .00019264  00000+0  22520-3 0  9992
+2 53239  41.4688 263.3399 0002578 203.0250 157.0474 15.61120902288232
+CSS (MENGTIAN)          
+1 54216U 22143A   26296.36963709  .00019264  00000+0  22520-3 0  9993
+2 54216  41.4688 263.3399 0002578 203.0250 157.0474 15.61120902308107
+SZ-21 MODULE            
+1 66515U 25246C   26296.17329384  .00120996  12645-4  35943-3 0  9990
+2 66515  41.4686 222.6013 0013405 230.5081 129.4584 15.91713329 54027
+DUPLEX                  
+1 66906U 98067XT  26297.20142101  .00062042  00000+0  42345-3 0  9998
+2 66906  51.6240 352.9659 0005281 348.2120  11.8755 15.74209208 50899
+KNACKSAT-2              
+1 67683U 98067YA  26297.22105754  .00091063  00000+0  59347-3 0  9991
+2 67683  51.6227 359.1282 0009700 347.6864  12.3896 15.75077091 40509
+GXIBA-1                 
+1 67685U 98067YC  26296.19300097  .00173598  00000+0  83299-3 0  9992
+2 67685  51.6180   0.4471 0011338 346.1789  13.8901 15.81576414 40395
+LEOPARD                 
+1 67687U 98067YE  26297.16514850  .00758722  26860-3  15881-2 0  9991
+2 67687  51.6140 354.1866 0012595   6.2255 353.8908 15.98246828 40483
+HMU-SAT2                
+1 67688U 98067YF  26296.58536851  .00385754  69781-4  99379-3 0  9998
+2 67688  51.6201 353.2774 0010397 356.0840   4.0084 15.94545870 40445
+PROGRESS-MS 34          
+1 68837U 26093A   26297.20915682  .00007800  00000+0  14938-3 0  9993
+2 68837  51.6335  21.6229 0006884 302.9098  57.1228 15.49030149587502
+TIANZHOU-10             
+1 69049U 26102A   26296.36963709  .00019264  00000+0  22520-3 0  9992
+2 69049  41.4688 263.3399 0002578 203.0250 157.0474 15.61120902311044
+SHENZHOU-23 (SZ-23)     
+1 69180U 26113A   26296.36963709  .00019264  00000+0  22520-3 0  9990
+2 69180  41.4688 263.3399 0002578 203.0250 157.0474 15.61120902307922
+
+----- end -----
+
+===== CelesTrak .com
+GET https://celestrak.com/NORAD/elements/gp.php?GROUP=stations&FORMAT=tle
+ERROR TypeError: fetch failed | cause: CERT_HAS_EXPIRED certificate has expired
+
+===== AMSAT nasabare
+GET https://www.amsat.org/tle/current/nasabare.txt
+HTTP 200 | content-type: text/plain | etag: "3862-65e9516a6e8be-gzip" | last-modified: Sat, 24 Oct 2026 12:18:03 GMT | access-control-allow-origin: null
+length 14434
+----- body (first 4000 chars) -----
+AO-07
+1 07530U 74089B   26297.00873089 -.00000027  00000-0  12410-3 0  9995
+2 07530 101.9895 311.5938 0011998 245.0486 142.4468 12.53700219376664
+UO-11
+1 14781U 84021B   26296.81082933  .00001188  00000-0  12552-3 0  9991
+2 14781  97.8246 261.0958 0008934 113.7976 246.4180 14.91083293276299
+LO-19
+1 20442U 90005G   26297.04329149  .00000092  00000-0  49552-4 0  9994
+2 20442  98.8775 322.3573 0011502 183.0018 177.1099 14.34152710920860
+AO-27
+1 22825U 93061C   26297.14798795  .00000068  00000-0  42698-4 0  9991
+2 22825  98.6744   4.4207 0009479  83.5006 276.7256 14.30969310725440
+FO-29
+1 24278U 96046B   26297.25205153 -.00000026  00000-0  62021-5 0  9992
+2 24278  98.5125 128.4132 0350690 121.3839 242.2108 13.53279786490627
+GO-32
+1 25397U 98043D   26297.24028601  .00000040  00000-0  37526-4 0  9990
+2 25397  99.0175 293.3246 0001236 158.3077 201.8154 14.24448964469704
+ISS
+1 25544U 98067A   26297.20915682  .00007800  00000-0  14938-3 0  9992
+2 25544  51.6335  21.6229 0006885 302.9098  57.1228 15.49030149591753
+NO-44
+1 26931U 01043C   26296.39366300  .00000102  00000-0  68834-4 0  9990
+2 26931  67.0498 272.6582 0006165 275.9916  84.0483 14.31995682308800
+SO-50
+1 27607U 02058C   26296.80597314  .00001114  00000-0  14853-3 0  9990
+2 27607  64.5513  90.9705 0069546 238.6763 120.7524 14.83280565283537
+CO-55
+1 27844U 03031E   26297.29039469  .00000232  00000-0  11902-3 0  9993
+2 27844  98.6763 304.2502 0009790 164.4589 195.6893 14.24400643210051
+RS-22
+1 27939U 03042A   26297.31734363  .00000720  00000-0  11862-3 0  9995
+2 27939  98.3453 125.3716 0010342 214.3976 318.6269 14.73654719234563
+CO-65
+1 32785U 08021C   26297.27221492  .00003762  00000-0  23246-3 0  9999
+2 32785  97.8420 281.5834 0007290 318.9588  41.1092 15.10489412  4688
+CO-66
+1 32791U 08021J   26296.96600562  .00018344  00000-0  51039-3 0  9993
+2 32791  97.7561 301.4630 0002329 155.8079 204.3274 15.36890039  7033
+RS-30
+1 32953U 08025A   26297.26568844  .00000050  00000-0  29140-3 0  9990
+2 32953  82.4986 275.1440 0020309  32.8622 327.3716 12.43184324835738
+SRMSAT
+1 37841U 11058D   26297.29898243  .00000383  00000-0  64042-4 0  9993
+2 37841  19.9730 357.9598 0011659 183.7389 236.8345 14.11600677776083
+ZACUBE-1
+1 39417U 13066B   26297.14986290  .00002777  00000-0  21296-3 0  9991
+2 39417  97.8199 260.2528 0039135 176.4240 183.7272 15.02071976700082
+Delfi-N3xt
+1 39428U 13066N   26297.22068822  .00004236  00000-0  35877-3 0  9996
+2 39428  97.8333 217.5090 0073317 135.6265 225.0864 14.96458879693910
+GOMX-1
+1 39430U 13066Q   26297.27638289  .00001339  00000-0  20516-3 0  9999
+2 39430  97.6398 129.5968 0128637  23.1439 337.5490 14.69793849688870
+LO-74
+1 39440U 13066AA  26297.31343556  .00003184  00000-0  29142-3 0  9999
+2 39440  97.9052 246.9982 0055765 320.3640  39.3509 14.94542284696272
+AO-73
+1 39444U 13066AE  26297.18736981  .00005497  00000-0  32769-3 0  9994
+2 39444  97.8439 271.5939 0036769 122.4586 238.0206 15.11034479699135
+DTUSAT-2
+1 40030U 14033W   26297.29821499  .00005776  00000-0  30056-3 0  9990
+2 40030  98.0913 303.4166 0008532 144.7774 215.4022 15.16444876672247
+LILACSAT-2
+1 40908U 15049K   26297.29154940  .00018588  00000-0  27163-3 0  9992
+2 40908  97.4498 339.3151 0007597 130.0578 230.1343 15.55657104615794
+Lapan A3
+1 41603U 16040E   26297.26401678  .00002735  00000-0  85890-4 0  9996
+2 41603  97.1592 289.3112 0007991 272.8739  87.1590 15.33816213574592
+CAS-2T
+1 41847U 16066G   26297.25998588  .00000925  00000-0  13675-3 0  9994
+2 41847  98.3713  11.4798 0342030  97.8128 266.2030 14.44929320523438
+TechnoSat
+1 42829U 17042E   26297.27659839  .00002069  00000-0  14720-3 0  9998
+2 42829  97.4444  90.2244 0017838  18.6312 341.5565 15.05603194506125
+AO-91
+1 43017U 17073E   26297.05874960  .00007790  00000-0  32921-3 0  9991
+2 43017  97.4484 161.6401 0144139 242.6888 115.9607 15.14483947484889
+S-Net D
+1 43186U 18014G   26297.20249727  .00004449  00000-0  22397-3 0  9992
+2 43186  97.5245 201.1773 0006322 298.2343  61.8252 15.17708434478329
+S-Net B
+1 43187U 18014H   26297.
+----- end -----
+
+===== SatNOGS TLE API (ISS)
+GET https://db.satnogs.org/api/tle/?format=json&norad_cat_id=25544
+HTTP 200 | content-type: application/json | etag: null | last-modified: null | access-control-allow-origin: null
+length 312
+----- body (first 4000 chars) -----
+[{"tle0":"0 ISS (ZARYA)","tle1":"1 25544U 98067A   26297.20915682  .00007800  00000-0  14938-3 0  9992","tle2":"2 25544  51.6335  21.6229 0006885 302.9098  57.1228 15.49030149591753","tle_source":"Space-Track.org","sat_id":"XSKZ-5603-1870-9019-3066","norad_cat_id":25544,"updated":"2026-10-24T11:25:33.072697Z"}]
+----- end -----
+
+===== TLE API (ISS)
+GET https://tle.ivanstanojevic.me/api/tle/25544
+HTTP 200 | content-type: application/json | etag: null | last-modified: null | access-control-allow-origin: *
+length 369
+----- body (first 4000 chars) -----
+{"@context":"https:\/\/www.w3.org\/ns\/hydra\/context.jsonld","@id":"https:\/\/tle.ivanstanojevic.me\/api\/tle\/25544","@type":"Tle","satelliteId":25544,"name":"ISS (ZARYA)","date":"2026-10-23T16:37:59+00:00","line1":"1 25544U 98067A   26296.69304404  .00008515  00000+0  16237-3 0  9995","line2":"2 25544  51.6336  24.1765 0006871 300.7285  59.3026 15.49021515591674"}
+----- end -----
+
+===== SACHET RSS
+GET https://sachet.ndma.gov.in/cap_public_website/rss/rss_india.xml
+HTTP 200 | content-type: application/xml | etag: W/"82123-1792871268430" | last-modified: Sat, 24 Oct 2026 19:47:48 GMT | access-control-allow-origin: null
+length 58597
+----- body (first 4000 chars) -----
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet title="XSL_formatting" type="text/xsl" href="feed.xsl"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>All India: CAP Disaster Alert Feeds</title>
+    <description>CAP Integrated Alert System Warning Updates</description>
+    <language>en</language>
+    <link>https://sachet.ndma.gov.in/cap_public_website/rss/rss_india.xml</link>
+    <atom:link href="https://sachet.ndma.gov.in/cap_public_website/rss/rss_india.xml" rel="self" type="application/rss+xml"/>
+    <copyright>public domain</copyright>
+    <pubDate>Fri, 16 Oct 2026 09:04:39 GMT</pubDate>
+    <item>
+      <title>Moderate Rain is likely to occur at a few places over Ariyalur, Chengalpattu, Chennai, Coimbatore, Cuddalore, Dharmapuri, Dindigul, Kancheepuram, Kanniyakumari, Karur, Krishnagiri, Nagapattinam, Namakkal, Pudukkottai, Salem, Thanjavur, Theni, The Nilgiris, Karaikal, Pondicherry in next 3 hours.</title>
+      <description/>
+      <category>Met</category>
+      <link>https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792871074288041</link>
+      <author>controlroom@ndma.gov.in (IMD Chennai)</author>
+      <guid isPermaLink="false">1792871074288041</guid>
+      <pubDate>Sat, 24 Oct 2026 19:47:48 GMT</pubDate>
+    </item>
+    <item>
+      <title>Moderate Rain is likely to occur at a few places over Ariyalur, Chengalpattu, Chennai, Coimbatore, Cuddalore, Dharmapuri, Dindigul, Kancheepuram, Kanniyakumari, Karur, Krishnagiri, Nagapattinam, Namakkal, Pudukkottai, Salem, Thanjavur, Theni, The Nilgiris, Karaikal, Pondicherry in next 3 hours.</title>
+      <description/>
+      <category>Met</category>
+      <link>https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792871071227007</link>
+      <author>controlroom@ndma.gov.in (IMD Chennai)</author>
+      <guid isPermaLink="false">1792871071227007</guid>
+      <pubDate>Sat, 24 Oct 2026 19:44:35 GMT</pubDate>
+    </item>
+    <item>
+      <title>पुढील ३ तासांत सिंधुदुर्ग जिल्ह्यातील काही ठिकाणी हलक्या ते मध्यम स्वरूपाचा पाऊस व काही भागांत मेघगर्जनेसह विजा चमकण्याचीही शक्यता आहे, नागरिकांनी सतर्क रहावे. मंत्रालय, मुंबई.</title>
+      <description/>
+      <category>Met</category>
+      <link>https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792870286034029</link>
+      <author>controlroom@ndma.gov.in (IMD Mumbai)</author>
+      <guid isPermaLink="false">1792870286034029</guid>
+      <pubDate>Sat, 24 Oct 2026 19:38:34 GMT</pubDate>
+    </item>
+    <item>
+      <title>Moderate Rain accompanied with Hail storm /Thunderstorm/Lightning (Wind Speed 30-40 KMPH gusting to 50 KMPH ) very likely at many places over Delhi. next 3 hours.</title>
+      <description/>
+      <category>Met</category>
+      <link>https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792868873415022</link>
+      <author>controlroom@ndma.gov.in (IMD New Delhi)</author>
+      <guid isPermaLink="false">1792868873415022</guid>
+      <pubDate>Sat, 24 Oct 2026 19:07:55 GMT</pubDate>
+    </item>
+    <item>
+      <title>Moderate Rain accompanied with Thunderstorm/Lightning (Wind Speed 30-40 KMPH gusting to 50 KMPH ) very likely at many places over Delhi. next 3 hours.</title>
+      <description/>
+      <category>Met</category>
+      <link>https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792868303431022</link>
+      <author>controlroom@ndma.gov.in (IMD New Delhi)</author>
+      <guid isPermaLink="false">1792868303431022</guid>
+      <pubDate>Sat, 24 Oct 2026 18:58:25 GMT</pubDate>
+    </item>
+    <item>
+      <title>Lt to Mod RA/TSL is likely to occur at isol places over ARY, CGP, Chennai, CDL, DRM, Erode, Kallakurichi, Karur, KYK, Karur, KRG, MYL, NPT, NMKL, Perambalur, PDKT, Ranipet, SLM, Tenkasi, TNJ, Theni, Thiruvarur, TVLAI, TRN, TPR, TVLAI, VLR, VLP, PDC in next 3 hours.</title>
+      <description/>
+      <category>Met</category>
+      <link>https://sachet.ndma.g
+----- end -----
+parsed 100 RSS items
+  item: Moderate Rain is likely to occur at a few places over Ariyalur, Chengalpattu, Chennai, Coimbatore, Cuddalore, Dharmapuri, Dindigul, Kancheep | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792871074288041
+  item: Moderate Rain is likely to occur at a few places over Ariyalur, Chengalpattu, Chennai, Coimbatore, Cuddalore, Dharmapuri, Dindigul, Kancheep | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792871071227007
+  item: पुढील ३ तासांत सिंधुदुर्ग जिल्ह्यातील काही ठिकाणी हलक्या ते मध्यम स्वरूपाचा पाऊस व काही भागांत मेघगर्जनेसह विजा चमकण्याचीही शक्यता आहे, नागर | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792870286034029
+  item: Moderate Rain accompanied with Hail storm /Thunderstorm/Lightning (Wind Speed 30-40 KMPH gusting to 50 KMPH ) very likely at many places ove | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792868873415022
+  item: Moderate Rain accompanied with Thunderstorm/Lightning (Wind Speed 30-40 KMPH gusting to 50 KMPH ) very likely at many places over Delhi. nex | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792868303431022
+  item: Lt to Mod RA/TSL is likely to occur at isol places over ARY, CGP, Chennai, CDL, DRM, Erode, Kallakurichi, Karur, KYK, Karur, KRG, MYL, NPT,  | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792861534644041
+  item: Lt to Mod RA/TSL is likely to occur at isol places over ARY, CGP, Chennai, CDL, DRM, Erode, Kallakurichi, Karur, KYK, Karur, KRG, MYL, NPT,  | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792861531022007
+  item: अगले ३ घंटों के दौरान उक्त जनपदों में कहीं-कहीं गर्जन के साथ आकाशीय बिजली चमकने/ झोंकेदार हवाएं (30-40 Kmph) चलने एवं हल्की वर्षा होने की सं | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792861046918009
+  item: पुढील ३ तासात कोल्हापूर, रत्नागिरी आणि सिंधुदुर्ग जिल्ह्यात काही ठिकाणी हलक्या ते मध्यम स्वरूपाच्या पावसाची, तसेच मेघगर्जनेसह विजा चमकण्याची | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792859773702029
+  item: अगले 3 घंटों के आपके जनपद के कुछ इलाकों में आंधी-तूफान (हवा की गति 30-40 किमी/घंटा, जो 50 किमी/घंटा तक पहुंच सकती है) और बिजली कड़कने के साथ | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792857313859013
+  item: Rain/ Moderate Thunderstorms with Gusty winds (40-50kmph) is likely to occur at a few places over Ambala, Karnal, Kurukshetra, Yamunanagar i | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792856081858024
+  item: അടുത്ത 3 മണിക്കൂറിൽ KNR, KSG, PKD ജില്ലകളിൽ ഒറ്റപ്പെട്ടയിടങ്ങളിൽ ഇടിമിന്നലോടുകൂടിയ ഇടത്തരം മഴയ്ക്കും 40-50 kmph വരെ വേഗതയിൽ ശക്തമായ കാറ്റിനു | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792855392814006
+  item: അടുത്ത 24 മണിക്കൂറിൽ പത്തനംതിട്ട ജില്ലയിൽ ഒറ്റപ്പെട്ടയിടങ്ങളിൽ വെള്ളപ്പൊക്കത്തിന് സാധ്യത. 24.10.2026; 08.14 PM ; IMD - KSDMA | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792853094078006
+  item: അടുത്ത 24 മണിക്കൂറിൽ തൃശ്ശൂർ, പാലക്കാട്, മലപ്പുറം ജില്ലകളിൽ വെള്ളപ്പൊക്കത്തിന് സാധ്യത. 24.10.2026; 08.11 PM ; IMD - KSDMA | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792852900581006
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792851255277008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792850893008008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792850261075008
+  item: पुढील ३ तासांत आपल्या जिल्ह्यांत काही ठिकाणी हलक्या ते मध्यम स्वरूपाच्या पावसाची, तसेच मेघगर्जनेसह विजा चमकण्याची शक्यता आहे. नागरिकांनी सतर | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792849544555029
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792849454101008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792849082166008
+  item: Light/modera Rain is likely to occur at isolated places over Ariyalur, Chengalpattu, Chennai, Coimbatore, Cuddalore, Kanche, Kanniyakumari,  | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792848423694041
+  item: Light/modera Rain is likely to occur at isolated places over Ariyalur, Chengalpattu, Chennai, Coimbatore, Cuddalore, Kanche, Kanniyakumari,  | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792848421546007
+  item: Moderate Rain with thunderstorm Light is very likely to occur at a few places over Dharmapuri, Dindigul, Erode, Kallakurichi, Karur, Namakka | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792848420008007
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792846701927008
+  item: Thunderstorm /Lightning and light to moderate rain with gusty wind 30-40 kmph is very likely to occur at isolated places over Hanumangarh in | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792846219927028
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792846147728008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792845967425008
+  item: ਅਗਲੇ 3 ਘੰਟਿਆਂ ਦੌਰਾਨ ਬਰਨਾਲਾ, ਫਰੀਦਕੋਟ, ਮਾਨਸਾ ਅਤੇ ਮੋਗਾ ਵਿੱਚ ਮੀਂਹ ਅਤੇ ਤੇਜ਼ ਹਵਾਵਾਂ ਚੱਲਣ ਦੀ ਸੰਭਾਵਨਾ ਹੈ। ਕਿਸੇ ਵੀ ਐਮਰਜੈਂਸੀ ਦੀ ਸਥਿਤੀ ਵਿੱਚ 112 ਤੇ ਕਾਲ  | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792845757084036
+  item: Thunderstorm with Lightning,rain and Gusty winds(40-60 kmph) is likely to occur at isolated places over Bhiwani, Fatehabad, Sirsa in next 3  | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792845759207024
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792845633088008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792844879887008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792844285175008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792843808034008
+  item: Moderate Rain is very likely to occur at a few places over Tenkasi, Thanjavur, Theni, The Nilgiris, Thiruvallur, Thiruvarur, Thoothukkudi, T | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792842966376041
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792843122193008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792842952035008
+  item: Moderate Rain is very likely to occur at a few places over Tenkasi, Thanjavur, Theni, The Nilgiris, Thiruvallur, Thiruvarur, Thoothukkudi, T | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792842963597007
+  item: Isol Moderate Rain TS is very likely to occur at isolated places over Chengalpattu, Chennai, Coimbatore, Dindigul, Kallakurichi, Kancheepura | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792842837704007
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792842550092008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792841932879008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792841775023008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792841322436008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792840529041008
+  item: पुढील ३ तासांत आपल्या जिल्ह्यांत काही ठिकाणी विजांच्या कडकडाटासह हलक्या ते मध्यम स्वरूपाच्या पावसाची शक्यता आहे. नागरिकांनी सतर्क रहावे, मंत | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792838179059029
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792840071826008
+  item: ਅਗਲੇ 3 ਘੰਟਿਆਂ ਦੌਰਾਨ ਅੰਮ੍ਰਿਤਸਰ, ਬਠਿੰਡਾ, ਫਿਰੋਜ਼ਪੁਰ, ਮਾਨਸਾ ਅਤੇ ਤਰਨਤਾਰਨ ਦੇ ਕੁਝ ਇਲਾਕਿਆਂ ਵਿੱਚ ਮੀਂਹ ਅਤੇ ਤੇਜ਼ ਹਵਾਵਾਂ ਚੱਲਣ ਦੀ ਸੰਭਾਵਨਾ ਹੈ। ਕਿਸੇ ਵੀ ਐਮਰ | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792839894548036
+  item: Thunderstorm with Lightning, RAIN AND Gusty winds(40-60 KMPH) is likely to occur at isolated places over Hisar, Sirsa in next 3 hours. | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792839896152024
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792839595922008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792839313486008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792839067977008
+  item: ಬಳ್ಳಾರಿ, ಬೆಳಗಾವಿ, ಚಾಮರಾಜನಗರ, ಚಿಕ್ಕಬಳ್ಳಾಪುರ, ಚಿಕ್ಕಮಗಳೂರು, ಚಿತ್ರದುರ್ಗ, ದಕ್ಷಿಣ ಕನ್ನಡ, ದಾವಣಗೆರೆ, ಹಾಸನ, ಕೊಡಗು, ಮೈಸೂರು, ಶಿವಮೊಗ್ಗ, ಉಡುಪಿ, ಉತ್ತರ ಕನ್ | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792838744689019
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792838231222008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792837573152008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792837348461008
+  item: Light to Moderate rainfall with short intense spells, accompanied by thunderstorms with lightning and gusty winds reaching 30 to 40 kmph, is | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792836780086033
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792836868832008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792836548452008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792836025702008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792835697896008
+  item: Light to Moderate Rain is likely to occur at isolated places over Ariyalur, Chennai, Cuddalore, Dindigul, Erode, Kallakurichi, Karur, Madura | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792835304359041
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792835334743008
+  item: Light to Moderate Rain is likely to occur at isolated places over Ariyalur, Chennai, Cuddalore, Dindigul, Erode, Kallakurichi, Karur, Madura | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792835301894007
+  item: Light to Moderate Rain with thunderstorm and lightning is likely to occur at a few places over Chengalpattu, Coimbatore, Dindigul, Kancheepu | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792835300823007
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792835170604008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792834738065008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792834515512008
+  item: अगले 3 घंटों में चुरू और हनुमानगढ़ के कुछ इलाकों में हल्की से मध्यम बारिश, आंधी-तूफान/बिजली कड़कने और 30-40 किमी प्रति घंटे की रफ्तार से तेज | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792833582421028
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792833252254008
+  item: अगले 3 घंटो में, क्षेत्र में , कहीं-कहीं हल्की वर्षा / बर्फ़बारी (3200 मीटर व उससे अधिक ऊँचाई वाले क्षेत्रो में) / गर्जन के साथ आकाशीय बिजली  | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792833003263009
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792832934267008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792832760566008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792832428468008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792832198245008
+  item: Thunderstorm/Lightning/Gusty winds(30-40 kmph) is likely to occur at isolated places over Alwar, Bharatpur, Churu, Deeg, Dholpur, Ganganagar | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792827317396028
+  item: അടുത്ത 24 മണിക്കൂറിൽ IDK, EKM, KZD, WYD, KNR, KSD ജില്ലകളിൽ ഒറ്റപ്പെട്ടയിടങ്ങളിൽ വെള്ളപ്പൊക്കത്തിന് സാധ്യത. 2.10 pm; 24/10/2026 IMD-KSDMA | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792830427901006
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792831538084008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792831385792008
+  item: *NOWCAST WEATHER WARNING ISSUED BY IMD GOA* *DATED: 24 October 2026 | TOI: 1400 HRS IST* Moderate rainfall with short intense spells, accomp | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792831419331033
+  item: पुढील ३ तासात कोल्हापूर, रत्नागिरी आणि सिंधुदुर्ग या जिल्ह्यात हलक्या पावसाच्या सरींसह मेघगर्जना आणि विजांच्या कडकडाटाची शक्यता आहे. नागरिका | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792828422281029
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792830479042008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792830014624008
+  item: അടുത്ത 24 മണിക്കൂറിൽ TSR, PKD, MLP, KZD, WYD, KNR, KSD ജില്ലകളിൽ ഒറ്റപ്പെട്ടയിടങ്ങളിൽ അതിശക്തമായ മഴയ്ക്ക് സാധ്യത 01.55 pm, 24.10.2026 IMD -K | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792829580238006
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792829679459008
+  item: Thunderstorm with Lightning is likely to occur at isolated places over Ballari, Davanagere and Vijayanagara districts during next 3 hours. S | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792828396099019
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792827900941008
+  item: Heavy rain (07-11 cm) accompanied with thunderstorm and lightning are very likely to occur at one or two places over Andaman Islands in the  | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792827284000038
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792827598568008
+  item: Squally weather with strong surface wind 40-50 Kmph gusting to 60 kmph very likely along and off Andaman and Nicobar coast. Sea conditions a | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792827395267038
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792827442567008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792826697894008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792826190442008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792824525077008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792824372178008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792823939052008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792823779073008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792822222228008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792821946553008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792821442079008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792820967157008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792820354014008
+
+===== SACHET CAP: Moderate Rain is likely to occur at a few places over Ariyalur, Chengalpattu, Chennai, Coimbatore, Cuddalore, Dharmapuri, Dindigul, Kancheepuram, Kanniyakumari, Karur, Krishnagiri, Nagapattinam, Namakkal, Pudukkottai, Salem, Thanjavur, Theni, The Nilgiris, Karaikal, Pondicherry in next 3 hours.
+GET https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792871074288041
+HTTP 200 | content-type: text/xml;charset=UTF-8 | etag: "5m/HSsTonIN35qVDDWk0cmaPd2u8M+rF9QBhkbN2qGE=" | last-modified: null | access-control-allow-origin: null
+length 1889
+----- body (first 4000 chars) -----
+<cap:alert xmlns:cap="urn:oasis:names:tc:emergency:cap:1.2">
+<cap:identifier>IN-1792871074288041_41</cap:identifier>
+<cap:sender>Puducherry-SDMA</cap:sender>
+<cap:sent>2026-10-25T01:17:46+05:30</cap:sent>
+<cap:status>Actual</cap:status>
+<cap:msgType>Update</cap:msgType>
+<cap:scope>Public</cap:scope>
+<cap:restriction/>
+<cap:addresses/>
+<cap:note/>
+<cap:references>IMD-Chennai,IN-1792871074288041_43,2026-10-25T01:13:56+05:30</cap:references>
+<cap:incidents/>
+<cap:info>
+<cap:language>en-IN</cap:language>
+<cap:category>Met</cap:category>
+<cap:event>Moderate Rain</cap:event>
+<cap:urgency>Expected</cap:urgency>
+<cap:severity>Moderate</cap:severity>
+<cap:certainty>Possible</cap:certainty>
+<cap:audience>1</cap:audience>
+<cap:effective>2026-10-25T01:13:00+05:30</cap:effective>
+<cap:onset>2026-10-25T01:17:46+05:30</cap:onset>
+<cap:expires>2026-10-25T04:13:00+05:30</cap:expires>
+<cap:headline>Moderate Rain is likely to occur at a few places over Ariyalur, Chengalpattu, Chennai, Coimbatore, Cuddalore, Dharmapuri, Dindigul, Kancheepuram, Kanniyakumari, Karur, Krishnagiri, Nagapattinam, Namakkal, Pudukkottai, Salem, Thanjavur, Theni, The Nilgiris, Karaikal, Pondicherry in next 3 hours.</cap:headline>
+<cap:description/>
+<cap:instruction>Please follow SDMA guidelines.</cap:instruction>
+<cap:contact/>
+<cap:parameter>
+<cap:valueName>Polygon URL</cap:valueName>
+<cap:value>https://sachet.ndma.gov.in/cap_public_website/FetchPolygonXMLFile?identifier=1792871074288041</cap:value>
+</cap:parameter>
+<cap:area>
+<cap:areaDesc>Karaikal,Pondicherry districts of Puducherry</cap:areaDesc>
+<cap:geocode>
+<cap:valueName>LGD District Code</cap:valueName>
+<cap:value>598</cap:value>
+</cap:geocode>
+<cap:geocode>
+<cap:valueName>LGD District Code</cap:valueName>
+<cap:value>600</cap:value>
+</cap:geocode>
+<cap:altitude>0</cap:altitude>
+<cap:ceiling>0</cap:ceiling>
+</cap:area>
+</cap:info>
+</cap:alert>
+----- end -----
+
+===== SACHET polygon document
+GET https://sachet.ndma.gov.in/cap_public_website/FetchPolygonXMLFile?identifier=1792871074288041
+HTTP 403 | content-type: text/html | etag: null | last-modified: null | access-control-allow-origin: null
+length 63
+----- body (first 4000 chars) -----
+Error Code: 403
+Reference Id: 6b3c454c57bb776bd0f0638944229c2f
+
+----- end -----
+
+===== SACHET CAP (Tamil Nadu candidate): Moderate Rain is likely to occur at a few places over Ariyalur, Chengalpattu, Chennai, Coimbatore, Cuddalore, Dharmapuri, Dindigul, Kancheepuram, Kanniyakumari, Karur, Krishnagiri, Nagapattinam, Namakkal, Pudukkottai, Salem, Thanjavur, Theni, The Nilgiris, Karaikal, Pondicherry in next 3 hours.
+GET https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792871074288041
+HTTP 200 | content-type: text/xml;charset=UTF-8 | etag: "5m/HSsTonIN35qVDDWk0cmaPd2u8M+rF9QBhkbN2qGE=" | last-modified: null | access-control-allow-origin: null
+length 1889
+----- body (first 4000 chars) -----
+<cap:alert xmlns:cap="urn:oasis:names:tc:emergency:cap:1.2">
+<cap:identifier>IN-1792871074288041_41</cap:identifier>
+<cap:sender>Puducherry-SDMA</cap:sender>
+<cap:sent>2026-10-25T01:17:46+05:30</cap:sent>
+<cap:status>Actual</cap:status>
+<cap:msgType>Update</cap:msgType>
+<cap:scope>Public</cap:scope>
+<cap:restriction/>
+<cap:addresses/>
+<cap:note/>
+<cap:references>IMD-Chennai,IN-1792871074288041_43,2026-10-25T01:13:56+05:30</cap:references>
+<cap:incidents/>
+<cap:info>
+<cap:language>en-IN</cap:language>
+<cap:category>Met</cap:category>
+<cap:event>Moderate Rain</cap:event>
+<cap:urgency>Expected</cap:urgency>
+<cap:severity>Moderate</cap:severity>
+<cap:certainty>Possible</cap:certainty>
+<cap:audience>1</cap:audience>
+<cap:effective>2026-10-25T01:13:00+05:30</cap:effective>
+<cap:onset>2026-10-25T01:17:46+05:30</cap:onset>
+<cap:expires>2026-10-25T04:13:00+05:30</cap:expires>
+<cap:headline>Moderate Rain is likely to occur at a few places over Ariyalur, Chengalpattu, Chennai, Coimbatore, Cuddalore, Dharmapuri, Dindigul, Kancheepuram, Kanniyakumari, Karur, Krishnagiri, Nagapattinam, Namakkal, Pudukkottai, Salem, Thanjavur, Theni, The Nilgiris, Karaikal, Pondicherry in next 3 hours.</cap:headline>
+<cap:description/>
+<cap:instruction>Please follow SDMA guidelines.</cap:instruction>
+<cap:contact/>
+<cap:parameter>
+<cap:valueName>Polygon URL</cap:valueName>
+<cap:value>https://sachet.ndma.gov.in/cap_public_website/FetchPolygonXMLFile?identifier=1792871074288041</cap:value>
+</cap:parameter>
+<cap:area>
+<cap:areaDesc>Karaikal,Pondicherry districts of Puducherry</cap:areaDesc>
+<cap:geocode>
+<cap:valueName>LGD District Code</cap:valueName>
+<cap:value>598</cap:value>
+</cap:geocode>
+<cap:geocode>
+<cap:valueName>LGD District Code</cap:valueName>
+<cap:value>600</cap:value>
+</cap:geocode>
+<cap:altitude>0</cap:altitude>
+<cap:ceiling>0</cap:ceiling>
+</cap:area>
+</cap:info>
+</cap:alert>
+----- end -----
+
+===== OpenSky (India bounding box)
+GET https://opensky-network.org/api/states/all?lamin=5&lomin=65&lamax=37&lomax=98
+HTTP 200 | content-type: application/json | etag: null | last-modified: null | access-control-allow-origin: https://opensky-network.org
+length 35064
+----- body (first 4000 chars) -----
+{"time":1792871918,"states":[["80162d","AXB1818 ","India",1792871917,1792871917,75.2382,26.9113,9540.24,false,262.98,29.02,-8.13,null,9898.38,null,false,0],["80163f","AIC8FX  ","India",1792871805,1792871805,74.0965,24.0687,11887.2,false,261.38,20.15,0,null,12481.56,"2445",false,0],["80160b","IGO6129 ","India",1792871910,1792871911,73.6409,22.6482,11574.78,false,210.68,182.94,0.33,null,12192,"0533",false,0],["801621","IGO207W ","India",1792871918,1792871918,77.0935,28.5633,null,true,11.32,284.06,null,null,null,null,false,0],["801625","AIC4336 ","India",1792871917,1792871918,84.5111,24.1648,11269.98,false,233.36,131.07,0,null,11902.44,"0511",false,0],["80167f","","India",1792871916,1792871916,77.0855,28.5634,null,true,0,14.06,null,null,null,null,false,0],["801699","AXB1121 ","India",1792871917,1792871917,77.8635,28.5759,4739.64,false,150.46,296.39,-7.8,null,4884.42,null,false,0],["801666","AIC161  ","India",1792871917,1792871917,76.3294,27.4432,8991.6,false,213.98,215.41,7.48,null,9281.16,null,false,0],["47b0e7","NBT916  ","Norway",1792871849,1792871849,77.0833,28.5639,null,true,0,14.06,null,null,null,null,false,0],["885230","THA350  ","Thailand",1792871916,1792871917,81.2079,27.1297,12496.8,false,261.56,124.5,0,null,13060.68,null,false,0],["885225","THA934  ","Thailand",1792871918,1792871918,87.0935,22.3806,10972.8,false,252.09,307.45,-0.33,null,11643.36,"0721",false,0],["8014dd","AIC2380 ","India",1792871916,1792871916,89.6773,16.3869,10675.62,false,237.55,134.56,0,null,null,null,false,0],["8014c1","IGO1631 ","India",1792871917,1792871918,89.7823,22.4998,7840.98,false,231.18,97.03,6.83,null,8290.56,"0414",false,0],["5003f3","T7AMY   ","San Marino",1792871918,1792871918,78.9432,25.2902,12496.8,false,267.98,118.68,0,null,13060.68,null,false,0],["80174d","IGO6671 ","India",1792871917,1792871918,74.933,26.1091,11269.98,false,264.57,20.73,0,null,11757.66,null,false,0],["801768","IGO461L ","India",1792871853,1792871853,74.1801,24.2771,10668,false,268.9,20.38,0,null,11186.16,"6332",false,0],["800441","AIC3GV  ","India",1792871917,1792871917,77.4836,11.8775,10660.38,false,231.94,188.42,0,null,11277.6,null,false,0],["800446","BDA201  ","India",1792871918,1792871918,76.9937,28.5882,723.9,false,68.37,103.93,-2.93,null,678.18,null,false,0],["801744","IGO6025 ","India",1792871918,1792871918,77.2236,27.1089,8793.48,false,239.44,2.46,-5.2,null,9121.14,null,false,0],["8852e5","THA316  ","Thailand",1792871917,1792871918,90.7462,20.0596,11887.2,false,247.22,128.32,0,null,12633.96,"0573",false,0],["8852e4","THA346  ","Thailand",1792871918,1792871918,79.5269,27.6189,11887.2,false,273.14,124.8,0,null,12382.5,null,false,0],["8852e1","THA941  ","Thailand",1792871917,1792871917,84.986,23.0308,11879.58,false,251.03,117.46,-0.33,null,12580.62,"0452",false,0],["8852e3","THA940  ","Thailand",1792871918,1792871918,86.6314,22.9883,10363.2,false,251.26,307.01,0,null,10988.04,"6124",false,0],["8016a4","IGO192P ","India",1792871918,1792871918,77.6038,13.2078,1356.36,false,68.42,90.43,-3.25,null,1310.64,null,false,0],["8016b7","IGO831  ","India",1792871917,1792871918,86.554,22.4016,8023.86,false,242.31,86.23,-8.45,null,8481.06,"6336",false,0],["8015c5","AIC2361 ","India",1792871918,1792871918,85.2849,24.4601,10363.2,false,218.98,300.96,0,null,10949.94,"2746",false,0],["8015e4","IGO35P  ","India",1792871918,1792871918,68.0096,20.5358,10972.8,false,209.24,287.45,0,null,11582.4,null,false,0],["3c4acd","DLH754  ","Germany",1792871918,1792871918,77.0455,13.9552,5097.78,false,204.71,148.15,-10.73,null,5295.9,null,false,0],["800401","AIC3ZM  ","India",1792871917,1792871917,76.4308,28.3896,3048,false,181.75,63.43,-0.65,null,3131.82,null,false,0],["702033","BBC342  ","Bangladesh",1792871916,1792871917,71.7774,23.9914,11277.6,false,280.95,93.67,0,null,11780.52,"7200",false,0],["80186e","IGO264  ","India",1792871918,1792871918,87.282,20.5748,10668,false,246.19,40.85,0,null,11330.94,"1000",false,0],["738071","ELY082  ","Israel",1792871918,1792871918,78.8544,13.4091,10363.
+----- end -----
+
+===== OpenSky (global)
+GET https://opensky-network.org/api/states/all
+HTTP 200 | content-type: application/json | etag: null | last-modified: null | access-control-allow-origin: https://opensky-network.org
+length 1500170
+----- body (first 4000 chars) -----
+{"time":1792871918,"states":[["a5f852","RTY484  ","United States",1792871918,1792871918,-104.4615,40.6323,2156.46,false,61.99,197.38,0,null,2240.28,"3603",true,0],["a09281","N136LM  ","United States",1792871916,1792871916,-84.5891,34.1894,853.44,false,58.17,231.1,0.65,null,967.74,null,false,0],["80162d","AXB1818 ","India",1792871917,1792871917,75.2382,26.9113,9540.24,false,262.98,29.02,-8.13,null,9898.38,null,false,0],["aa3cbe","N759PA  ","United States",1792871852,1792871882,-111.8531,41.7835,null,true,3.86,295.31,null,null,null,null,false,0],["39de4b","TVF8603 ","France",1792871917,1792871918,4.9132,44.5052,11582.4,false,186.95,348.41,0,null,11971.02,"1000",false,0],["aa9321","UAL1227 ","United States",1792871917,1792871917,-96.2271,40.5406,10972.8,false,226.54,272.34,0,null,11468.1,"2764",false,0],["39de4d","TVF934S ","France",1792871917,1792871918,-1.6478,44.0286,11582.4,false,202.09,28.26,0.33,null,12100.56,"1000",false,0],["39de4c","TVF44UX ","France",1792871918,1792871918,9.1601,45.5947,10363.2,false,204.01,288.98,0,null,10622.28,"3216",false,0],["39de57","TVF23QB ","France",1792871917,1792871917,3.0785,48.3278,2133.6,false,116.27,359.49,-0.65,null,2164.08,"1000",false,0],["39de58","TVF26YD ","France",1792871918,1792871918,0.3799,46.787,9479.28,false,181.64,28.6,-5.53,null,9845.04,"4360",false,0],["ab6fdd","AAL1492 ","United States",1792871918,1792871918,-87.4525,38.0924,11582.4,false,232.57,236.27,0,null,12092.94,"6607",false,0],["a3feee","N357BG  ","United States",1792871914,1792871915,-83.62,41.3906,null,true,0,323.44,null,null,null,null,false,0],["39de51","TVF59RG ","France",1792871918,1792871918,6.8435,46.5205,9829.8,false,188.78,291.25,-2.6,null,10111.74,"1000",false,0],["39de50","TVF87YR ","France",1792871918,1792871918,8.4145,45.3457,9753.6,false,189.07,301.31,0,null,10020.3,"7350",false,0],["39de53","TVF10RE ","France",1792871917,1792871917,2.6119,48.8003,922.02,false,70.93,293.96,-3.58,null,922.02,"1000",false,0],["ae1fa8","","United States",1792871855,1792871886,-96.6873,46.5062,518.16,false,46.31,347.82,0,null,579.12,null,false,0],["39de55","TVF35CT ","France",1792871917,1792871918,7.8471,46.2097,10972.8,false,186.03,292.95,0,null,11254.74,"1000",false,0],["39de54","TVF60SE ","France",1792871918,1792871918,5.6776,46.8517,9144,false,145.97,317.14,0,null,9418.32,"1000",false,0],["a1159e","N1691F  ","United States",1792871914,1792871914,-80.5704,34.5878,1386.84,false,41.56,74.93,0.33,null,1516.38,null,false,0],["a9a0fd","N7198S  ","United States",1792871917,1792871917,-81.1901,35.1622,556.26,false,38.52,145.89,1.63,null,624.84,null,false,0],["a3b88e","AAL1677 ","United States",1792871917,1792871917,-121.5861,38.6933,null,true,0,253.12,null,null,null,null,false,0],["00b22e","SAA372  ","South Africa",1792871918,1792871918,28.1674,-26.341,2476.5,false,135.65,41,-2.93,null,2697.48,null,false,0],["80163f","AIC8FX  ","India",1792871805,1792871805,74.0965,24.0687,11887.2,false,261.38,20.15,0,null,12481.56,"2445",false,0],["a36898","DAL1150 ","United States",1792871918,1792871918,-84.4132,32.5653,5791.2,false,245.94,179.04,4.88,null,6073.14,"7724",false,0],["a41ee6","N365AG  ","United States",1792871738,1792871738,-87.7549,41.78,null,true,3.34,140.62,null,null,null,"5775",false,0],["a36880","N319CP  ","United States",1792871824,1792871824,-89.6945,39.1536,358.14,false,64.11,22.66,-2.28,null,449.58,null,false,0],["80160b","IGO6129 ","India",1792871910,1792871911,73.6409,22.6482,11574.78,false,210.68,182.94,0.33,null,12192,"0533",false,0],["a3a578","VJA334  ","United States",1792871837,1792871863,-84.8819,44.4445,3116.58,false,150.32,306.79,-11.05,null,3261.36,"3075",false,0],["c047e9","CGBGA   ","Canada",1792871918,1792871918,-76.6321,44.8346,1219.2,false,59.65,246.09,-0.65,null,1303.02,null,false,0],["a23563","N241TD  ","United States",1792871918,1792871918,-118.3353,33.6648,1226.82,false,33.07,174.64,0.65,null,1226.82,"0150",false,0],["c81bf3","ZKHKX   ","New Zealand",1792871918,1792871918,174.3157,-35.8276,967.74,fal
+----- end -----
+OpenSky global states: 11377, bytes: 1500170
+
+===== GDACS SEARCH
+GET https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;DR;WF&pageSize=100
+HTTP 200 | content-type: application/json; charset=utf-8 | etag: null | last-modified: null | access-control-allow-origin: *
+length 124032
+----- body (first 4000 chars) -----
+{"type":"FeatureCollection","features":[{"type":"Feature","bbox":[123.8,22.7,123.8,22.7],"geometry":{"type":"Point","coordinates":[123.8,22.7]},"properties":{"eventtype":"TC","eventid":1001338,"episodeid":35,"eventname":"CHAMPI-26","glide":"TC-2026-000192-GUM","name":"Tropical Cyclone CHAMPI-26","description":"Tropical Cyclone CHAMPI-26","htmldescription":"Red Tropical Cyclone CHAMPI-26 in Philippines, Guam, Northern Mariana Islands, Japan from: 14 Oct 2026  to: 23 Oct 2026 .","icon":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconoverall":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","url":{"geometry":"https://www.gdacs.org/gdacsapi/api/polygons/getgeometry?eventtype=TC&eventid=1001338&episodeid=35","report":"https://www.gdacs.org/report.aspx?eventid=1001338&episodeid=35&eventtype=TC","details":"https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=TC&eventid=1001338"},"alertlevel":"Red","alertscore":3,"episodealertlevel":"Green","episodealertscore":1.0,"istemporary":"false","iscurrent":"true","country":"Philippines, Guam, Northern Mariana Islands, Japan","fromdate":"2026-10-14T12:00:00","todate":"2026-10-23T00:00:00","datemodified":"2026-10-23T03:00:34","iso3":"GUM","source":"JTWC","sourceid":"","polygonlabel":"Centroid","Class":"Point_Centroid","countryonland":"","affectedcountries":[{"iso2":"PH","iso3":"PHL","countryname":"Philippines"},{"iso2":"GU","iso3":"GUM","countryname":"Guam"},{"iso2":"JP","iso3":"JPN","countryname":"Japan"}],"severitydata":{"severity":296.2944,"severitytext":"Hurricane/Typhoon > 74 mph (maximum wind speed of 296 km/h)","severityunit":"km/h"}}},{"type":"Feature","bbox":[93.7797,32.3805,93.7797,32.3805],"geometry":{"type":"Point","coordinates":[93.7797,32.3805]},"properties":{"eventtype":"EQ","eventid":1573141,"episodeid":1741837,"eventname":"","glide":"EQ-2026-000195-CHN","name":"Earthquake in China","description":"Earthquake in China","htmldescription":"Red M 7 Earthquake in China at: 22 Oct 2026 14:33:40.","icon":"https://www.gdacs.org/images/gdacs_icons/maps/Red/EQ.png","iconoverall":"https://www.gdacs.org/images/gdacs_icons/maps/Red/EQ.png","url":{"geometry":"https://www.gdacs.org/gdacsapi/api/polygons/getgeometry?eventtype=EQ&eventid=1573141&episodeid=1741837","report":"https://www.gdacs.org/report.aspx?eventid=1573141&episodeid=1741837&eventtype=EQ","details":"https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=EQ&eventid=1573141"},"alertlevel":"Red","alertscore":3,"episodealertlevel":"Red","episodealertscore":2.07132412448536,"istemporary":"false","iscurrent":"true","country":"China","fromdate":"2026-10-22T14:33:40","todate":"2026-10-22T14:33:40","datemodified":"2026-10-23T15:02:54","iso3":"CHN","source":"NEIC","sourceid":"","polygonlabel":"Centroid","Class":"Point_Centroid","affectedcountries":[{"iso2":"CN","iso3":"CHN","countryname":"China"}],"severitydata":{"severity":7.0,"severitytext":"Magnitude 7M, Depth:18km","severityunit":"M"}}},{"type":"Feature","bbox":[32.075,-1.214,32.075,-1.214],"geometry":{"type":"Point","coordinates":[32.075,-1.214]},"properties":{"eventtype":"DR","eventid":1027465,"episodeid":9,"eventname":"Uganda, Kenya, Tanzania, Rwanda, Burundi-2026","glide":"DR-2026-000143-COD","name":"Drought in Burundi, Democratic Republic of Congo, Kenya, Rwanda, Tanzania, Uganda","description":"Drought in Burundi, Democratic Republic of Congo, Kenya, Rwanda, Tanzania, Uganda","htmldescription":"Orange Drought in Burundi, Democratic Republic of Congo, Kenya, Rwanda, Tanzania, Uganda from: 21 May 2026  to: 22 Oct 2026 .","icon":"https://www.gdacs.org/images/gdacs_icons/maps/Orange/DR.png","iconoverall":"https://www.gdacs.org/images/gdacs_icons/maps/Orange/DR.png","url":{"geometry":"https://www.gdacs.org/gdacsapi/api/polygons/getgeometry?eventtype=DR&eventid=1027465&episodeid=9","report":"https://www.gdacs.org/report.aspx?eventid=1027465&episodeid=9&eventtype=DR","details":"https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventt
+----- end -----
+
+===== Open-Meteo flood (first point)
+GET https://flood-api.open-meteo.com/v1/flood?latitude=11.94&longitude=77.65&daily=river_discharge&past_days=7&forecast_days=7
+HTTP 200 | content-type: application/json; charset=utf-8 | etag: null | last-modified: null | access-control-allow-origin: *
+length 547
+----- body (first 4000 chars) -----
+{"latitude":11.925003,"longitude":77.625,"generationtime_ms":0.055789947509765625,"utc_offset_seconds":0,"timezone":"GMT","timezone_abbreviation":"GMT","elevation":365.0,"daily_units":{"time":"iso8601","river_discharge":"m³/s"},"daily":{"time":["2026-10-17","2026-10-18","2026-10-19","2026-10-20","2026-10-21","2026-10-22","2026-10-23","2026-10-24","2026-10-25","2026-10-26","2026-10-27","2026-10-28","2026-10-29","2026-10-30"],"river_discharge":[218.79,185.21,196.70,180.55,165.72,151.76,149.66,168.82,218.79,268.77,298.92,279.54,241.66,210.35]}}
+----- end -----
