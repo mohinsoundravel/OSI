@@ -70,7 +70,7 @@ jobs:
     needs: [test, browser]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     permissions:
       contents: write   # only to push the site branch
     concurrency:
@@ -93,9 +93,13 @@ jobs:
           TOKEN: ${{ github.token }}
         run: |
           out="$RUNNER_TEMP/site"
-          mkdir -p "$out/poller/data"
+          mkdir -p "$out/poller/data" "$out/poller/lib"
           cp -r index.html manifest.webmanifest sw.js .nojekyll icons src "$out/"
-          cp poller/data/districts.json "$out/poller/data/"
+          # Shared with the dashboard: gazetteers and the headline module.
+          cp poller/data/districts.json poller/data/india-places.json "$out/poller/data/"
+          cp poller/lib/news-core.mjs "$out/poller/lib/"
+          # The exact files about to go live must pass the browser test too.
+          CHROME_PATH="$(command -v google-chrome)" node scripts/browser-test.mjs --site "$out"
           cd "$out"
           git init -q -b site
           git add -A

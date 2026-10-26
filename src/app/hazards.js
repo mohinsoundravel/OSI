@@ -8,6 +8,7 @@ import {
 } from './core.js';
 import { backendBase, getLatest, str } from './layers.js';
 import { globeGroup, latLngToVector3, withLift } from './globe.js';
+import { buildGazetteer, mergeNews, newsQueryUrl } from '../../poller/lib/news-core.mjs';
 
 const IST_MS = 5.5 * 3600 * 1000;
 const fin = (v) => (Number.isFinite(v) ? v : null);
@@ -249,14 +250,40 @@ export const NEWS_CATEGORY = {
   accident: ['Accident or explosion', '#ffd60a'], hazard: ['Natural hazard', '#5ac8fa']
 };
 
+let gazetteerPromise = null;
+const newsGazetteer = () => {
+  gazetteerPromise ||= Promise.all([getJson('poller/data/districts.json'), getJson('poller/data/india-places.json')])
+    .then(([districts, india]) => buildGazetteer(districts, india))
+    .catch((err) => { gazetteerPromise = null; throw err; });
+  return gazetteerPromise;
+};
+
+/**
+ * Headlines: GDELT directly from this browser (it allows cross-origin reads, and a home
+ * connection is not rate-limited the way GitHub's shared runners are), merged with the
+ * poller's copy; the poller's copy alone if GDELT does not answer.
+ */
 export async function fetchNewsItems() {
   const base = backendBase();
-  if (!base) throw new Error('no poller data URL set (Sources tab)');
-  const snap = await getJson(`${base.replace(/\/+$/, '')}/news.json?t=${Math.floor(Date.now() / 600000)}`);
-  const raw = Array.isArray(snap?.items) ? snap.items.slice(0, 400) : [];
+  const pollerItems = base
+    ? await getJson(`${base.replace(/\/+$/, '')}/news.json?t=${Math.floor(Date.now() / 600000)}`).then((s) => (Array.isArray(s?.items) ? s.items : [])).catch(() => [])
+    : [];
+  let raw = pollerItems;
+  let direct = false;
+  try {
+    const [gaz, body] = await Promise.all([newsGazetteer(), getJson(newsQueryUrl(12))]);
+    if (Array.isArray(body?.articles)) {
+      raw = mergeNews(body.articles, gaz, pollerItems.filter((x) => x && typeof x.title === 'string'));
+      direct = true;
+    }
+  } catch {
+    /* GDELT unreachable or busy: the poller's copy below. */
+  }
+  if (!base && !direct) throw new Error('GDELT unreachable and no poller data URL set');
+  raw = raw.slice(0, 400);
   /* Headlines placed on the same town would sit on one pixel: fan them out a few km. */
   const perPlace = new Map();
-  return raw.filter((n) => Number.isFinite(n.lat) && Number.isFinite(n.lng) && NEWS_CATEGORY[n.category]).map((n) => {
+  const items = raw.filter((n) => Number.isFinite(n.lat) && Number.isFinite(n.lng) && NEWS_CATEGORY[n.category]).map((n) => {
     const key = `${n.lat},${n.lng}`;
     const k = perPlace.get(key) || 0;
     perPlace.set(key, k + 1);
@@ -268,6 +295,7 @@ export async function fetchNewsItems() {
       color: hexToRgb(NEWS_CATEGORY[n.category][1])
     };
   });
+  return items;
 }
 
 export function describeNews(it) {

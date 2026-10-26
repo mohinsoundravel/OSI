@@ -9,7 +9,8 @@
  * 4. Fails on any uncaught page error and on any broken core flow (boot, layers, search,
  *    detail panel, legend, mobile layout, demo mode).
  *
- * Usage: node scripts/browser-test.mjs [--chrome /path/to/chrome] [--shots dir] [--keep-open]
+ * Usage: node scripts/browser-test.mjs [--chrome /path/to/chrome] [--site dir] [--shots dir] [--keep-open]
+ * --site serves the site from another folder (CI checks the exact files it is about to publish).
  * CHROME_PATH also selects the browser.
  */
 import http from 'node:http';
@@ -26,6 +27,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const { values: args } = parseArgs({
   options: {
     chrome: { type: 'string' },
+    site: { type: 'string' },
     shots: { type: 'string' },
     'keep-open': { type: 'boolean', default: false }
   }
@@ -61,12 +63,14 @@ async function findChrome() {
 
 /* ---------- Static server for the site and the fixture data ---------- */
 
+const SITE = args.site ? path.resolve(args.site) : ROOT;
+
 function startServer(dataDir) {
   const server = http.createServer(async (req, res) => {
     try {
       const url = new URL(req.url, 'http://127.0.0.1');
       let rel = decodeURIComponent(url.pathname);
-      let base = ROOT;
+      let base = SITE;
       if (rel.startsWith('/__data/')) {
         base = dataDir;
         rel = rel.slice('/__data'.length);
@@ -232,7 +236,7 @@ async function main() {
   const origin = `http://127.0.0.1:${server.address().port}`;
   const chromePath = await findChrome();
   const browser = await launchChrome(chromePath, path.join(tmp, 'profile'));
-  console.log(`Chrome: ${chromePath}\nSite:   ${origin}\n`);
+  console.log(`Chrome: ${chromePath}\nSite:   ${origin} (files from ${path.relative(ROOT, SITE) || '.'})\n`);
   let failed = false;
   try {
     const page = await openPage(browser);

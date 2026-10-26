@@ -6,7 +6,7 @@
  *  - Map tiles: cache first, capped, so revisited areas load instantly.
  * Nothing else is intercepted.
  */
-const VERSION = 'osi-v4';
+const VERSION = 'osi-v5';
 const SHELL = `${VERSION}-shell`;
 const DATA = `${VERSION}-data`;
 const TILES = `${VERSION}-tiles`;
@@ -14,7 +14,8 @@ const MAX_TILES = 600;
 
 /* Every file the page loads from this site; scripts/check-syntax.mjs fails if one is missing. */
 const SHELL_FILES = [
-  './', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'poller/data/districts.json',
+  './', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'poller/data/districts.json', 'poller/data/india-places.json',
+  'poller/lib/news-core.mjs',
   'src/styles.css', 'src/main.js', 'src/sat-worker.js',
   'src/app/app-state.js', 'src/app/boot.js', 'src/app/camera.js', 'src/app/core.js', 'src/app/demo.js',
   'src/app/fetchers.js', 'src/app/globe.js', 'src/app/hazards.js', 'src/app/icons.js', 'src/app/index.js', 'src/app/layers.js',
