@@ -1,11 +1,15 @@
 name: CI
 
+# Every push and pull request: syntax checks, poller tests and a headless-browser test of
+# the dashboard. A push to main that passes all of them publishes the site to the `site`
+# branch, which GitHub Pages serves, so a broken dashboard never goes live.
 on:
   push:
     branches: [main]
     paths-ignore: ['**.md', 'docs/**']
   pull_request:
     branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -40,3 +44,64 @@ jobs:
 
       - name: Unit and end-to-end tests
         run: npm test
+
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          auth=$(printf 'x-access-token:%s' "$TOKEN" | base64 -w0)
+          git init -q .
+          git -c http.extraheader="AUTHORIZATION: basic $auth" \
+            fetch -q --depth 1 --no-tags "https://github.com/${GITHUB_REPOSITORY}.git" "$GITHUB_REF"
+          git checkout -q FETCH_HEAD
+
+      # Uses the Chrome preinstalled on GitHub's Ubuntu image; every non-local host is
+      # blocked inside the browser, so the test does not depend on outside services.
+      - name: Dashboard in headless Chrome
+        run: |
+          google-chrome --version
+          CHROME_PATH="$(command -v google-chrome)" node scripts/browser-test.mjs
+
+  publish-site:
+    needs: [test, browser]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write   # only to push the site branch
+    concurrency:
+      group: publish-site
+      cancel-in-progress: false
+    steps:
+      - name: Check out repository
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          auth=$(printf 'x-access-token:%s' "$TOKEN" | base64 -w0)
+          git init -q .
+          git -c http.extraheader="AUTHORIZATION: basic $auth" \
+            fetch -q --depth 1 --no-tags "https://github.com/${GITHUB_REPOSITORY}.git" "$GITHUB_SHA"
+          git checkout -q FETCH_HEAD
+
+      # Single-commit branch with only what the browser needs (no poller, tests or docs).
+      - name: Publish the site branch
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          out="$RUNNER_TEMP/site"
+          mkdir -p "$out/poller/data"
+          cp -r index.html manifest.webmanifest sw.js .nojekyll icons src "$out/"
+          cp poller/data/districts.json "$out/poller/data/"
+          cd "$out"
+          git init -q -b site
+          git add -A
+          git -c user.name='github-actions[bot]' \
+              -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+              commit -q -m "Site from ${GITHUB_SHA::7} (tests passed)"
+          git -c http.extraheader="AUTHORIZATION: basic $(printf 'x-access-token:%s' "$TOKEN" | base64 -w0)" \
+            push -q --force "https://github.com/${GITHUB_REPOSITORY}.git" site
+          echo "Published $(git ls-files | wc -l) files to the site branch."

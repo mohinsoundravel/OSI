@@ -1,35 +1,28 @@
 /*
  * Service worker for the home-screen app.
  *  - App files: network first (updates arrive immediately when online), cached copy offline.
- *  - Pinned CDN libraries: cache first (versioned URLs never change).
  *  - Poller data (raw.githubusercontent.com): network first, last copy offline, so the
  *    dashboard opens with the last known state and its age instead of a blank globe.
  *  - Map tiles: cache first, capped, so revisited areas load instantly.
  * Nothing else is intercepted.
  */
-const VERSION = 'osi-v2';
+const VERSION = 'osi-v3';
 const SHELL = `${VERSION}-shell`;
 const DATA = `${VERSION}-data`;
 const TILES = `${VERSION}-tiles`;
 const MAX_TILES = 600;
 
-const SHELL_FILES = ['./', 'index.html', 'src/app.js', 'src/styles.css', 'src/sat-worker.js', 'src/vendor/satellite.min.js', 'manifest.webmanifest', 'icons/icon-192.png', 'poller/data/districts.json'];
-const CDN_FILES = [
-  'https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js',
-  'https://cdn.jsdelivr.net/npm/satellite.js@6.0.0/dist/satellite.min.js',
-  'https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js'
+/* Every file the page loads from this site; scripts/check-syntax.mjs fails if one is missing. */
+const SHELL_FILES = [
+  './', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'poller/data/districts.json',
+  'src/styles.css', 'src/app.js', 'src/sat-worker.js',
+  'src/vendor/three.min.js', 'src/vendor/satellite.min.js', 'src/vendor/topojson-client.min.js', 'src/vendor/countries-110m.json'
 ];
 
 self.addEventListener('install', (event) => {
   event.waitUntil((async () => {
     const cache = await caches.open(SHELL);
     await cache.addAll(SHELL_FILES);
-    await Promise.all(CDN_FILES.map(async (url) => {
-      try {
-        const res = await fetch(new Request(url, { mode: 'cors', credentials: 'omit' }));
-        if (res.ok) await cache.put(url, res);
-      } catch { /* cached on first normal load instead */ }
-    }));
     await self.skipWaiting();
   })());
 });
@@ -78,8 +71,6 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(req.url);
   if (url.origin === self.location.origin) {
     event.respondWith(networkFirst(req, SHELL, 5000));
-  } else if (url.hostname === 'cdn.jsdelivr.net' && /@\d+\.\d+\.\d+\//.test(url.pathname)) {
-    event.respondWith(cacheFirst(req, SHELL));
   } else if (url.hostname === 'raw.githubusercontent.com') {
     event.respondWith(networkFirst(req, DATA, 12000));
   } else if (url.hostname === 'server.arcgisonline.com' && url.pathname.includes('/tile/')) {

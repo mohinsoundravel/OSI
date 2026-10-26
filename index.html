@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="description" content="Real-time OSINT globe: flights, earthquakes, disaster alerts, satellites and public webcams with a rule-based alert engine.">
 <meta name="theme-color" content="#03050a">
-<!-- Scripts only from this site and the pinned CDN; no inline script, no plugins, no form posts. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; connect-src 'self' https: http://localhost:* http://127.0.0.1:*; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src https://www.youtube-nocookie.com https://webcams.windy.com; worker-src 'self'; manifest-src 'self'">
+<!-- Scripts only from this site (libraries are vendored in src/vendor with integrity hashes); no inline script, no plugins, no form posts. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; connect-src 'self' https: http://localhost:* http://127.0.0.1:*; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src https://www.youtube-nocookie.com https://webcams.windy.com; worker-src 'self'; manifest-src 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <!-- Personal monitor: keep it out of search engines. -->
 <meta name="robots" content="noindex, nofollow">
@@ -101,9 +101,9 @@
 
 <!-- Exact npm builds, pinned by version and verified by Subresource Integrity:
      if a CDN file is altered, the browser refuses to run it. -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js" integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/satellite.js@6.0.0/dist/satellite.min.js" integrity="sha384-MIBG+Y34qqectgEd35uAWHjNhqFaVGYfrgccleIhIQLWHcihnkwwAeLF7fB0kWWk" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js" integrity="sha384-Ukv1p/xTma6P4/2bY5KzWBw+ydSpXmhCMtyciIQVDJ1RmOxtCYNMF1uXT9T63H67" crossorigin="anonymous"></script>
+<script src="src/vendor/three.min.js" integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu"></script>
+<script src="src/vendor/satellite.min.js" integrity="sha384-MIBG+Y34qqectgEd35uAWHjNhqFaVGYfrgccleIhIQLWHcihnkwwAeLF7fB0kWWk"></script>
+<script src="src/vendor/topojson-client.min.js" integrity="sha384-Ukv1p/xTma6P4/2bY5KzWBw+ydSpXmhCMtyciIQVDJ1RmOxtCYNMF1uXT9T63H67"></script>
 <script src="src/app.js"></script>
 </body>
 </html>

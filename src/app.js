@@ -1468,7 +1468,7 @@
 
   /* ----- Countries: land fill texture + coastline/border lines from world-atlas ----- */
 
-  const WORLD_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json';
+  const WORLD_URL = 'src/vendor/countries-110m.json';
 
   function buildLandTexture(land) {
     const W = 4096;

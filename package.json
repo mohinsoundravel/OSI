@@ -14,6 +14,7 @@
     "poll:dry": "node poller/index.mjs --data-dir data --dry-run",
     "poll:fixtures": "node poller/index.mjs --data-dir .tmp/data --config poller/test/monitor.test-config.json --fixtures poller/test/fixtures --dry-run --now 2026-10-23T06:00:00Z",
     "build:normals": "node poller/build-heat-normals.mjs --data-dir data",
-    "serve": "python3 -m http.server 8080"
+    "serve": "python3 -m http.server 8080",
+    "test:browser": "node scripts/browser-test.mjs"
   }
 }

@@ -5,6 +5,7 @@
  * fragmented. Caps total bytes and frame size so a misbehaving server cannot
  * exhaust the runner's memory.
  */
+import http from 'node:http';
 import https from 'node:https';
 import { createHash, randomBytes } from 'node:crypto';
 
@@ -65,15 +66,18 @@ export function parseFrames(input) {
  * Connects and resolves to { send(text), close() }. onMessage receives each complete
  * message as a string. Resolves `done` when the connection ends, for any reason.
  */
-export function connectWebSocket(url, { onMessage, onClose = () => {}, maxBytes = 50 * 1024 * 1024, connectTimeoutMs = 15000, userAgent = 'OSI-Monitor/1.0' } = {}) {
+export function connectWebSocket(url, { onMessage, onClose = () => {}, maxBytes = 50 * 1024 * 1024, connectTimeoutMs = 15000, userAgent = 'OSI-Monitor/1.0', allowLoopback = false } = {}) {
   const target = new URL(url);
-  if (target.protocol !== 'wss:') throw new Error('only wss:// is allowed');
+  /* Plain ws:// only for a loopback address, and only when asked (the browser test's DevTools link). */
+  const loopback = allowLoopback && target.protocol === 'ws:' && ['127.0.0.1', 'localhost', '[::1]'].includes(target.hostname);
+  if (target.protocol !== 'wss:' && !loopback) throw new Error('only wss:// is allowed');
+  const transport = loopback ? http : https;
   const key = randomBytes(16).toString('base64');
   const expected = createHash('sha1').update(key + GUID).digest('base64');
 
   return new Promise((resolve, reject) => {
-    const req = https.request({
-      host: target.hostname, port: target.port || 443, path: `${target.pathname}${target.search}`, method: 'GET',
+    const req = transport.request({
+      host: target.hostname, port: target.port || (loopback ? 80 : 443), path: `${target.pathname}${target.search}`, method: 'GET',
       headers: {
         Connection: 'Upgrade', Upgrade: 'websocket', 'Sec-WebSocket-Version': '13', 'Sec-WebSocket-Key': key,
         'User-Agent': userAgent
