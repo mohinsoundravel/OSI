@@ -6,7 +6,7 @@
  *  - Map tiles: cache first, capped, so revisited areas load instantly.
  * Nothing else is intercepted.
  */
-const VERSION = 'osi-v3';
+const VERSION = 'osi-v4';
 const SHELL = `${VERSION}-shell`;
 const DATA = `${VERSION}-data`;
 const TILES = `${VERSION}-tiles`;
@@ -15,7 +15,15 @@ const MAX_TILES = 600;
 /* Every file the page loads from this site; scripts/check-syntax.mjs fails if one is missing. */
 const SHELL_FILES = [
   './', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'poller/data/districts.json',
-  'src/styles.css', 'src/app.js', 'src/sat-worker.js',
+  'src/styles.css', 'src/main.js', 'src/sat-worker.js',
+  'src/app/app-state.js', 'src/app/boot.js', 'src/app/camera.js', 'src/app/core.js', 'src/app/demo.js',
+  'src/app/fetchers.js', 'src/app/globe.js', 'src/app/icons.js', 'src/app/index.js', 'src/app/layers.js',
+  'src/app/map-controls.js', 'src/app/place-info.js', 'src/app/points.js', 'src/app/rules.js',
+  'src/app/satellites.js', 'src/app/scheduler.js', 'src/app/snapshots.js', 'src/app/spots.js',
+  'src/app/state.js', 'src/app/tags.js', 'src/app/texture-loader.js', 'src/app/tiles.js',
+  'src/app/ui/brief.js', 'src/app/ui/charts.js', 'src/app/ui/detail.js', 'src/app/ui/feed.js',
+  'src/app/ui/panels.js', 'src/app/ui/rules-panel.js', 'src/app/ui/search.js', 'src/app/ui/sources.js',
+  'src/app/ui/views.js', 'src/app/ui/zones-panel.js', 'src/app/weather.js',
   'src/vendor/three.min.js', 'src/vendor/satellite.min.js', 'src/vendor/topojson-client.min.js', 'src/vendor/countries-110m.json'
 ];
 

@@ -98,7 +98,7 @@ async function launchChrome(chromePath, profileDir) {
     '--disable-extensions', '--disable-sync', '--mute-audio', '--hide-scrollbars',
     '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist',
     /* Every host except the local server resolves to nothing: no external dependency. */
-    '--host-resolver-rules=MAP * ~NOTFOUND, EXCLUDE 127.0.0.1',
+    '--host-resolver-rules=MAP * ~NOTFOUND, EXCLUDE 127.0.0.1, EXCLUDE localhost',
     '--remote-debugging-port=0', `--user-data-dir=${profileDir}`, '--window-size=1440,900', 'about:blank'
   ];
   if (process.getuid && process.getuid() === 0) flags.unshift('--no-sandbox');
@@ -290,10 +290,11 @@ async function main() {
     });
 
     await check('frames keep rendering', async () => {
-      const fps = await page.evaluate(`new Promise((res) => { let n = 0; const t0 = performance.now();
-        const f = () => { n++; if (performance.now() - t0 < 2000) requestAnimationFrame(f); else res(n / 2); }; requestAnimationFrame(f); })`);
-      if (!(fps > 0.5)) throw new Error(`only ${fps} frames per second`);
-      return `${fps.toFixed(1)} fps (software rendering)`;
+      /* Software rendering in CI is slow; this only proves the render loop is alive. */
+      const frames = await page.evaluate(`new Promise((res) => { let n = 0; const t0 = performance.now();
+        const f = () => { n++; if (performance.now() - t0 < 3000) requestAnimationFrame(f); else res(n); }; requestAnimationFrame(f); })`);
+      if (!(frames >= 2)) throw new Error(`only ${frames} frames in 3 s`);
+      return `${(frames / 3).toFixed(1)} fps (software rendering)`;
     });
 
     await check('mobile layout has no horizontal scroll', async () => {
@@ -320,6 +321,24 @@ async function main() {
       const n = await page.waitFor(`document.querySelectorAll('#feed .ev').length || null`, 30000, 'demo events in the feed');
       await page.shot('demo');
       return `${n} events`;
+    });
+
+    await check('offline cache installs every app file', async () => {
+      /* The service worker registers on https or localhost only. */
+      const local = origin.replace('127.0.0.1', 'localhost');
+      await page.send('Page.addScriptToEvaluateOnNewDocument', {
+        source: `try { localStorage.setItem('gm.backendUrl', JSON.stringify('${local}/__data')); } catch (e) {}`
+      });
+      await page.navigate(`${local}/index.html`);
+      await page.waitFor(`location.hostname === 'localhost' && document.body.classList.contains('booted')`, 20000, 'localhost page booted');
+      const result = await page.waitFor(`(async () => {
+        const reg = await navigator.serviceWorker.ready;
+        const keys = await caches.keys();
+        const shell = keys.find((k) => k.endsWith('-shell'));
+        if (!reg.active || !shell) return null;
+        return { cache: shell, files: (await (await caches.open(shell)).keys()).length };
+      })()`, 20000, 'service worker active with a shell cache');
+      return `${result.files} files in ${result.cache}`;
     });
 
     if (page.problems.length) {
