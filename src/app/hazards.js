@@ -8,7 +8,7 @@ import {
 } from './core.js';
 import { backendBase, getLatest, str } from './layers.js';
 import { globeGroup, latLngToVector3, withLift } from './globe.js';
-import { buildGazetteer, mergeNews, newsQueryUrl } from '../../poller/lib/news-core.mjs';
+import { NEWS_REQUEST_GAP_MS, buildGazetteer, mergeNews, newsQueryUrls } from '../../poller/lib/news-core.mjs';
 
 const IST_MS = 5.5 * 3600 * 1000;
 const fin = (v) => (Number.isFinite(v) ? v : null);
@@ -271,13 +271,24 @@ export async function fetchNewsItems() {
   let raw = pollerItems;
   let direct = false;
   try {
-    const [gaz, body] = await Promise.all([newsGazetteer(), getJson(newsQueryUrl(12))]);
-    if (Array.isArray(body?.articles)) {
-      raw = mergeNews(body.articles, gaz, pollerItems.filter((x) => x && typeof x.title === 'string'));
-      direct = true;
+    const gaz = await newsGazetteer();
+    const articles = [];
+    const urls = newsQueryUrls(12);
+    for (let q = 0; q < urls.length; q++) {
+      if (q) await new Promise((r) => setTimeout(r, NEWS_REQUEST_GAP_MS));
+      try {
+        const body = await getJson(urls[q]);
+        if (Array.isArray(body?.articles)) {
+          articles.push(...body.articles);
+          direct = true;
+        }
+      } catch {
+        /* Busy or rejected: the other queries and the poller's copy still count. */
+      }
     }
+    if (direct) raw = mergeNews(articles, gaz, pollerItems.filter((x) => x && typeof x.title === 'string'));
   } catch {
-    /* GDELT unreachable or busy: the poller's copy below. */
+    /* Gazetteer unavailable: the poller's copy below. */
   }
   if (!base && !direct) throw new Error('GDELT unreachable and no poller data URL set');
   raw = raw.slice(0, 400);

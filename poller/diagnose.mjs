@@ -51,7 +51,7 @@ async function probe(label, url) {
   const raw = [];
   const wrapped = { getText: async (url, o) => { const r = await http.getText(url, o); raw.push(r.text); return r; } };
   try {
-    const r = await fetchNews({ http: wrapped, now: Date.now() });
+    const r = await fetchNews({ http: wrapped, now: Date.now(), retryWaitMs: 15000 });
     console.log(`NEWS fetched ${r.fetched}, placed ${r.items.length}, retries ${JSON.stringify(r.errors)}`);
     for (const i of r.items.slice(0, 15)) console.log(`  placed: ${i.category} | ${i.place} | ${i.title.slice(0, 100)}`);
   } catch (err) {

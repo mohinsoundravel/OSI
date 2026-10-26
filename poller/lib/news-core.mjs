@@ -9,14 +9,21 @@ export const GDELT_DOC_URL = 'https://api.gdeltproject.org/api/v2/doc/doc';
 export const NEWS_KEEP_MS = 48 * 3600 * 1000;
 export const NEWS_MAX_ITEMS = 300;
 
-/** Query URL for the last `hours` of Indian English headlines matching NEWS_QUERY. */
-export function newsQueryUrl(hours = 12) {
-  const params = new URLSearchParams({
-    query: `${NEWS_QUERY} sourcecountry:IN sourcelang:english`,
-    mode: 'artlist', format: 'json', maxrecords: '250', timespan: `${hours}h`, sort: 'datedesc'
+/**
+ * Query URLs for the last `hours` of Indian English headlines. GDELT rejects long queries
+ * ("too short or too long"), so the keywords are split into three; callers space the
+ * requests at least 5 seconds apart, as GDELT asks.
+ */
+export function newsQueryUrls(hours = 12) {
+  return NEWS_QUERIES.map((terms) => {
+    const params = new URLSearchParams({
+      query: `(${terms.join(' OR ')}) sourcecountry:IN sourcelang:english`,
+      mode: 'artlist', format: 'json', maxrecords: '100', timespan: `${hours}h`, sort: 'datedesc'
+    });
+    return `${GDELT_DOC_URL}?${params}`;
   });
-  return `${GDELT_DOC_URL}?${params}`;
 }
+export const NEWS_REQUEST_GAP_MS = 6000;
 
 /** 48-bit FNV-1a style hash as 12 hex characters: a stable id for a URL. */
 export function urlKey(text) {
@@ -30,14 +37,12 @@ export function urlKey(text) {
   return (h1.toString(16).padStart(8, '0') + h2.toString(16).padStart(8, '0')).slice(0, 12);
 }
 
-/* One request per fetch (GDELT rate-limits shared runner addresses); categories are assigned
-   locally. Terms must be at least four characters or quoted phrases. */
-export const NEWS_QUERY = `(${[
-  'flood', 'floods', 'cyclone', 'landslide', '"heavy rain"', 'earthquake', 'cloudburst', '"dam gates"',
-  'explosion', '"building collapse"', 'derailment', 'derailed', 'stampede', '"gas leak"', 'capsized', '"major fire"',
-  'riot', 'clashes', 'curfew', '"internet shutdown"', '"prohibitory orders"', 'encounter', 'militants', 'maoists',
-  '"ied blast"', 'terror', '"communal violence"'
-].join(' OR ')})`;
+/* Terms must be at least four characters or quoted phrases; categories are assigned locally. */
+export const NEWS_QUERIES = [
+  ['flood', 'floods', 'cyclone', 'landslide', '"heavy rain"', 'earthquake', 'cloudburst', '"dam gates"'],
+  ['explosion', '"building collapse"', 'derailment', 'derailed', 'stampede', '"gas leak"', 'capsized', '"major fire"'],
+  ['riot', 'clashes', 'curfew', '"internet shutdown"', '"prohibitory orders"', 'encounter', 'militants', 'maoists', '"ied blast"', '"communal violence"']
+];
 
 /* Most specific category wins when a headline matches several. */
 const CATEGORY_WORDS = [
