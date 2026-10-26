@@ -9,6 +9,8 @@ import { createHash } from 'node:crypto';
 import { parseArgs } from 'node:util';
 import { parseRss } from './sources/sachet.mjs';
 import { connectWebSocket } from './lib/ws.mjs';
+import { createHttpClient } from './lib/http.mjs';
+import { fetchNews, loadNewsGazetteer, categorize, placeHeadline } from './sources/news.mjs';
 
 const { values } = parseArgs({ options: { config: { type: 'string', default: 'config/monitor.json' }, bytes: { type: 'string', default: '4000' } } });
 const config = process.env.MONITOR_CONFIG_JSON ? JSON.parse(process.env.MONITOR_CONFIG_JSON) : JSON.parse(await readFile(values.config, 'utf8'));
@@ -40,6 +42,27 @@ async function probe(label, url) {
   } catch (err) {
     console.log(`PROBE ${label}: ERROR ${err.name}: ${err.message}`);
     return null;
+  }
+}
+
+/* News pipeline end to end with the real API: raw counts, errors, and why headlines were dropped. */
+{
+  const http = createHttpClient({ allowedHosts: ['api.gdeltproject.org'], userAgent: ua });
+  const raw = [];
+  const wrapped = { getText: async (url, o) => { const r = await http.getText(url, o); raw.push(r.text); return r; } };
+  try {
+    const r = await fetchNews({ http: wrapped, now: Date.now() });
+    console.log(`NEWS fetched ${r.fetched}, placed ${r.items.length}, errors ${JSON.stringify(r.errors)}`);
+    for (const i of r.items.slice(0, 15)) console.log(`  placed: ${i.category} | ${i.place} | ${i.title.slice(0, 100)}`);
+  } catch (err) {
+    console.log(`NEWS failed: ${err.message}`);
+  }
+  const gaz = loadNewsGazetteer();
+  for (const text of raw) {
+    console.log(`  raw response: ${text.slice(0, 200).replace(/\s+/g, ' ')}`);
+    let arts = [];
+    try { arts = JSON.parse(text).articles || []; } catch { continue; }
+    for (const a of arts.slice(0, 12)) console.log(`    ${a.language} | cat=${categorize(a.title || '')} | place=${placeHeadline(a.title || '', gaz)?.name} | ${String(a.title).slice(0, 100)}`);
   }
 }
 
