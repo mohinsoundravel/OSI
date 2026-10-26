@@ -28,6 +28,10 @@ See [DESIGN.md](DESIGN.md) for architecture, efficiency and safety decisions.
 | Ships (AIS), Arabian Sea, Bay of Bengal and around Sri Lanka | [AISStream.io](https://aisstream.io) via the poller (needs the `AISSTREAM_API_KEY` secret) | Both | 45 s listen per poll, projected along course every 5 s |
 | Natural events | [NASA EONET](https://eonet.gsfc.nasa.gov) | Dashboard | 5 min |
 | Satellites: every active satellite (about 16,000, incl. Starlink, OneWeb, GNSS, ISRO) | [CelesTrak](https://celestrak.org) via the poller (SatNOGS, then AMSAT as fallbacks) + SGP4 | Both | positions every 10 s in a background worker, interpolated every frame |
+| Cyclones in the North Indian Ocean: track, forecast track, uncertainty cone, 120 km/h wind swath, estimated landfall and closest approach to the Tamil Nadu coast | [GDACS](https://www.gdacs.org) (JTWC forecasts) via the poller | Both | list every 15 min; geometry per advisory |
+| Sea state at 11 points off the Tamil Nadu coast (WMO categories) | [Open-Meteo Marine](https://open-meteo.com/en/docs/marine-weather-api) via the poller | Both | hourly |
+| Fire hotspots across South Asia, 24 h; alerts for 8 Tamil Nadu forest areas | [NASA FIRMS](https://firms.modaps.eosdis.nasa.gov) VIIRS (NOAA-20, NOAA-21, S-NPP) via the poller | Both | hourly |
+| News headlines from Indian sources, placed by the town or state they name (unverified; never an alert) | [GDELT](https://www.gdeltproject.org) DOC 2.0 via the poller | Both | hourly, last 48 h |
 | Live streams | Official Tamil news channels on YouTube (Thanthi TV, Puthiya Thalaimurai, Polimer News); NASA live from the ISS card | Dashboard | tap to play |
 | Public webcams | [Windy Webcams API](https://api.windy.com/webcams) (owner-published only) | Dashboard | 9 min |
 
@@ -38,9 +42,10 @@ Every alert is labelled **Official** or **Derived (not an official warning)** an
 - **Home-screen app**: add it from the browser menu for a full-screen app that opens with the last known data offline (service worker: app files and data network-first, map tiles cached).
 - **Long-press** (right-click on desktop) anywhere: nearest district, dam and river point, district rain forecast, alerts within 75 km, current weather and elevation.
 - **Private watch spots**: add from the long-press card; stored only in this browser, drawn as rings, summarised in the brief, with a pop-up when an alert falls inside one.
-- **Telegram commands**: `/status`, `/alerts`, `/dams`, `/rain`, `/help` in your bot chat, answered by the next poll (within about 15 minutes); other chats are ignored.
-- **Situation brief** at the top of the feed: "Tamil Nadu now", with the most severe alerts, dams near full or rising fast, big inflows, the strongest river-rise forecast, the hottest forecast, nearby cyclones and quakes, and ships in distress, plus the data's age. Tap a line to fly to it.
-- **One-tap views**: TN Watch (Tamil Nadu, alerts, dams, ships, radar), Air & Sea (flights, ships, satellites) and Global.
+- **Telegram**: urgent alerts as they happen; a **morning digest at 07:00 IST** (overnight alerts, cyclones, dams, rain, sea, fires, headlines); on **Sunday** a weekly alert review and a link to the **weekly India disaster brief** (Markdown on the `data` branch, `briefs/`). Commands, answered by the next poll (within about 15 minutes), owner chat only: `/status`, `/alerts`, `/dams`, `/rain`, `/digest`, `/review`, `/brief`, `/mute <group> [days]`, `/unmute <group>`, `/muted`, `/help`.
+- **Alert feedback**: tap **Useful** or **Noise** under an alert. The weekly review counts alerts per rule with their ratings and, for rules mostly rated noise, names the config setting to change (or the `/mute` command). `ruleOverrides` in `config/monitor.json` caps notifications per rule; held-back alerts are still recorded and shown on the dashboard.
+- **Situation brief** at the top of the feed: "Tamil Nadu now", with the most severe alerts, dams near full or rising fast, big inflows, the strongest river-rise forecast, the hottest forecast, cyclones (closest approach and landfall), rough sea, fire hotspots, local headlines, quakes and ships in distress, plus the data's age. Tap a line to fly to it.
+- **One-tap views**: TN Watch (Tamil Nadu: alerts, cyclones, sea, fires, news, ships, radar), Air & Sea (flights, ships, satellites) and Global.
 - **Radar loop**: "Play last hour" animates six 10-minute RainViewer frames at regional detail (kept under the free rate limit).
 - **Trend charts** in the detail panel: dam level against full depth with daily inflow (history kept by the poller and backfilled 30 days), river discharge 7 days back and ahead with today marked, and the temperature forecast against the IMD threshold.
 - **Place search**: districts, dams, river points, heat stations and typed coordinates ("11.0, 78.6") instantly; "Search places worldwide" asks OpenStreetMap once per tap.
@@ -90,7 +95,7 @@ npm run serve          # python3 -m http.server 8080
 
 ### GitHub Pages
 
-The site deploys straight from `main` (no build step; `.nojekyll` disables Jekyll). One-time setup: **Settings → Pages → Build and deployment → Deploy from a branch → `main` / `(root)` → Save**. Every push to `main` then updates https://mohinsoundravel.github.io/OSI/ within a minute or two.
+CI publishes the site to the `site` branch only after the tests and the browser test pass, so a broken dashboard never goes live. One-time setup: **Settings → Pages → Build and deployment → Deploy from a branch → `site` / `(root)` → Save**. (Serving `main` directly still works, but skips that gate.)
 
 ## Development
 
@@ -98,24 +103,40 @@ Node 20+ and no dependencies.
 
 ```bash
 npm test               # unit + end-to-end tests against fixtures
-npm run check          # syntax and config validation
+npm run check          # syntax, cross-module imports, offline-cache list, config
+npm run test:browser   # headless Chrome against fixture data, every outside host blocked
 npm run poll:fixtures  # full poller run against fixtures, no network, no messages
 ```
+
+CI runs all three on every push. The browser test uses the Chrome preinstalled on GitHub's runners (locally: any Chrome or Chromium, or set `CHROME_PATH`).
 
 ## Project structure
 
 ```
-index.html                 Markup, CSP, SRI-pinned CDN scripts
+index.html                 Markup and CSP (scripts from this site only)
+src/main.js                Entry: starts the app modules once three.js is loaded
+src/app/                   Dashboard ES modules: core, layers, fetchers, satellites, hazards,
+                           globe, tiles, weather, icons, camera, tags, rules, scheduler, boot
+src/app/ui/                Panels: detail, charts, feed, sources, rules, zones, brief, views, search
+src/app/app-state.js       The few UI values several modules change
+src/sat-worker.js          Satellite propagation off the main thread
+src/vendor/                three.js, satellite.js, topojson-client, world-atlas (pinned, hashed)
 src/styles.css             Glass UI, animations, responsive bottom sheets
-src/app.js                 Live layers, rule engine, globe, UI
+sw.js                      Offline cache (scripts/check-syntax.mjs keeps its file list complete)
 poller/index.mjs           Poller entry: fetch, rules, de-duplicate, notify, publish
-poller/sources/            SACHET (CAP), Open-Meteo flood + heat, GDACS, USGS
-poller/lib/                Safe XML, allowlisted HTTP, geometry
+poller/sources/            SACHET, Open-Meteo (flood, heat, rain, marine), GDACS (events, cyclones),
+                           USGS, reservoirs, flights, ships, satellites, FIRMS fires, GDELT news
 poller/rules.mjs           Alert rules (official vs derived)
-poller/notify.mjs          Telegram messages, heartbeat
+poller/notify.mjs          Telegram messages, feedback buttons, heartbeat
+poller/commands.mjs        Telegram commands and button taps
+poller/feedback.mjs        Mutes, rule overrides, feedback and the weekly review
+poller/digest.mjs          Morning digest, daily log and the weekly brief
+poller/lib/                Safe XML, allowlisted HTTP, WebSocket client, geometry, gazetteer
+poller/data/               District and India place gazetteers
 poller/test/               node:test suites and fixtures
-config/monitor.json        Zones, points, thresholds
-.github/workflows/         CI and the scheduled Monitor
+scripts/                   Static checks and the browser test
+config/monitor.json        Zones, points, thresholds, digest time, rule overrides
+.github/workflows/         CI (tests, browser test, site publish) and the scheduled Monitor
 ```
 
 ## Known limits
@@ -130,6 +151,9 @@ config/monitor.json        Zones, points, thresholds
 - **Cameras**: only owner-published feeds. Windy webcams need a free key (Controls, Sources) and are mostly daylight timelapses, not live video. YouTube pins play only while the channel is live. Players load only when tapped, from URLs built from validated IDs, in sandboxed frames.
 - **Weather overlay limits**: radar exists only near radars and stops sharpening beyond zoom 7 (RainViewer's free tier, personal use, 100 requests a minute); IMERG is hours old, so it shows where it rained, not where it is raining; Himawari sees India near the edge of its view, so shapes over western India are stretched.
 - **Ships (AIS)**: AISStream uses volunteer coastal receivers, so coverage is good near receivers and thin or absent in open sea; there is no satellite AIS. Each poll listens for 45 seconds and keeps ships heard in the last 3 hours, so slow or anchored ships appear after a few polls.
+- **Cyclone forecasts** are JTWC tracks as republished by GDACS, not IMD's; landfall is where the forecast track crosses a simplified coastline (about 40 points), so treat the place and time as indicative.
+- **Fire hotspots** are thermal anomalies: in late October most of South Asia's are crop-residue burning in the north-west. Alerts are limited to eight forest areas in Tamil Nadu.
+- **News** is machine-collected: GDELT's coverage, its tagging and the place named in a headline decide what appears. Headlines that name no known Indian place are dropped. GDELT also rate-limits shared addresses such as GitHub's runners, so the layer can lag by an hour.
 - **Not a primary warning system.** Keep the official SACHET app and cell-broadcast alerts enabled.
 
 ## Data usage and ethics

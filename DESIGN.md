@@ -11,14 +11,18 @@ This is a personal context and cross-checking tool. It is **not** a primary warn
 ```
                  ┌──────────────── GitHub Actions (every 15 min) ────────────────┐
  SACHET (CAP) ──▶│                                                                │
- Open-Meteo  ──▶ │  poller/index.mjs                                              │──▶ Telegram
- GDACS, USGS ──▶ │  fetch ─▶ normalize ─▶ rules ─▶ de-duplicate ─▶ notify          │──▶ healthchecks.io (heartbeat)
-                 │                         │                                      │
-                 │                         └─▶ data branch: latest.json, events.json, state.json
+ Open-Meteo  ──▶ │  poller/index.mjs                                              │──▶ Telegram: alerts (with
+ GDACS, USGS ──▶ │  fetch ─▶ normalize ─▶ rules ─▶ de-duplicate ─▶ filter ─▶ notify│    feedback buttons), 07:00
+ FIRMS, GDELT ─▶ │                         │                     (overrides, mutes)│    digest, Sunday review
+ WRD, OpenSky ─▶ │                         │                                      │──▶ healthchecks.io (heartbeat)
+ AIS, CelesTrak ▶│                         └─▶ data branch: latest.json, events.json, state.json,
+                 │                             fires.json, news.json, tle.json, weekly-log.json, briefs/
                  └────────────────────────────────────────────────────────────────┘
                                                    │ public raw.githubusercontent.com
- Browser dashboard ◀── live: OpenSky, USGS, GDACS, EONET, CelesTrak, Windy
-                   ◀── poller: India alerts layer (official + derived)
+ Browser dashboard ◀── live: USGS, GDACS, EONET, Windy, RainViewer, NASA GIBS, Esri
+                   ◀── poller: alerts, cyclones, sea, fires, news, flights, ships, satellites
+
+ CI on every push: syntax and import checks ─▶ poller tests ─▶ headless-Chrome test ─▶ publish `site` branch (Pages)
 ```
 
 **Split of responsibilities**
@@ -27,8 +31,7 @@ This is a personal context and cross-checking tool. It is **not** a primary warn
 |---|---|---|
 | Base map | Browser, streamed tiles | Esri World Imagery (+ Esri reference roads and places for Hybrid) or Esri Dark Gray (CARTO's free tiles now require a key), as Web Mercator XYZ tiles. A quadtree picks tiles per frame (split while a tile would exceed 256 px on screen, with horizon and frustum culling). Meshes are built relative to each tile's centre to avoid float32 jitter near the ground; a missing tile shows its nearest loaded ancestor cropped, then cross-fades. Requests are capped (10 desktop, 6 phone), aborted when a tile leaves view, and textures are evicted least-recently-used (360 / 180). Markers and lines are lifted above the surface by a factor that shrinks with eye altitude, so they sit on the imagery up close. |
 | Weather overlay | Browser, streamed tiles | RainViewer radar (512 px tiles, zoom 7 max, latest of 13 ten-minute frames), NASA GIBS IMERG 30-minute rain rate and Himawari band 13 infrared (zoom 6 max). Requested one level coarser than the imagery, through a per-source token bucket (RainViewer allows 100 requests per minute per IP). A new frame keeps the previous one visible until it loads. Sources, formats, CORS and zoom limits were verified from a GitHub runner with the `diagnose` task. |
-| Satellites | Poller TLEs (CelesTrak `active`, ~16,000), propagated in a Web Worker | Keyframes every 10 s for all satellites off the main thread, interpolated ~30 times a second into the GPU buffer; the selected satellite is propagated exactly. satellite.js for the worker is served from `src/vendor` (same SHA-384 as the pinned CDN build). |
-| Satellites (previous design) | Poller TLEs, propagated in the browser | CelesTrak timed out from some browsers and asks clients not to re-download more than every two hours; the poller republishes TLEs every 6 hours (auxiliary source) and the dashboard propagates positions locally at 10 Hz, falling back to CelesTrak directly. |
+| Satellites | Poller TLEs (CelesTrak `active`, ~16,000), propagated in a Web Worker | Keyframes every 10 s for all satellites off the main thread, interpolated ~30 times a second into the GPU buffer; the selected satellite is propagated exactly. satellite.js for the worker is served from `src/vendor` (same SHA-384 as the upstream npm build). CelesTrak asks clients not to download more than every two hours, so the poller republishes TLEs every 6 hours.. |
 | Flights | Poller snapshot, projected in the browser | OpenSky only allows its own site to read its API from a browser (CORS), so the poller fetches it every 30 min (4 of ~400 free daily credits per request) and the dashboard dead-reckons each aircraft along its track. Emergency squawks in zones also alert via Telegram. Flights are an auxiliary source: failures never trigger degraded notices. |
 | SACHET (flood, heat, dam, cyclone) | Poller | Feeds send no CORS headers; a browser cannot read them. |
 | River-rise and heat-wave signals | Poller | Needs batching, state and baselines. |
@@ -36,7 +39,12 @@ This is a personal context and cross-checking tool. It is **not** a primary warn
 | Reservoirs | Poller | Official daily WRD figures, compared with the previous day's page; drives dam-release alerts. Daily history is kept in `reservoir-history.json` (400 days), backfilled from dated pages four days per run; days the site cannot serve are remembered and skipped. |
 | Live players | Browser | YouTube (privacy-enhanced, channel live embed) and Windy players, framed only on tap; CSP `frame-src` allows just those two hosts. |
 | District rain | Poller | 56 gazetteer districts in one batched Open-Meteo request, hourly (each location counts toward the free daily quota). Very heavy (115.6 mm/day) and extremely heavy (204.5) forecasts become derived alerts. |
-| Telegram commands | Poller | `getUpdates` once per run with a stored offset; only the configured chat is answered, at most five replies per run, plain text. |
+| Telegram commands | Poller | `getUpdates` once per run with a stored offset (messages and button taps); only the configured chat is answered, at most five replies per run, plain text. |
+| Cyclones | Poller | GDACS event list each run, filtered to current North Indian Ocean storms; each storm's geometry (about 200 KB) only when GDACS issues a new episode. Track points are the centres of GDACS's point circles, with intensity from the segment starting there; landfall is the first crossing of the forecast track with a 37-point Indian coastline, time interpolated along the segment. |
+| Sea state | Poller | One batched Open-Meteo Marine request for 11 offshore points, hourly; one coast-wide alert per severity and day. |
+| Fires | Poller | FIRMS' keyless 24-hour South Asia VIIRS files from three satellites, low-confidence rows dropped, merged on a ~1 km grid (strongest kept), capped at 8,000 rows in `fires.json`. |
+| News | Poller | One GDELT DOC request an hour (shared runner addresses get HTTP 429, so it retries twice with backoff), English and Indian sources only, placed by the most specific place in the headline (TN district, city, then state; ambiguous names such as Erode need "in/at/near"), near-duplicates merged. Never alerts. |
+| Digest, review, brief | Poller | Each run updates a 14-day daily log; at 07:00 IST the digest goes out once a day; on Sunday the weekly review and a Markdown brief (`briefs/YYYY-Www.md`) built only from the log. |
 | Notifications | Poller | Must work with the dashboard closed. |
 
 ## Sources
@@ -49,6 +57,10 @@ This is a personal context and cross-checking tool. It is **not** a primary warn
 | Open-Meteo Archive | 1991–2020 daily max | — | One-off monthly normals per heat point (`build-normals` task). |
 | GDACS | Global disaster alerts (`SEARCH` endpoint, current events only) | Official | Orange/Red inside zones. Re-fires on escalation. The `MAP` endpoint now rejects requests. |
 | USGS | Earthquakes M2.5+ (24 h) | Official | M4.5+ inside `usgs.zones` (Tamil Nadu by default); tsunami-flagged quakes inside any zone. A 2,200 km circle over India also covers Tibet, so it is not used for ordinary quakes. |
+| GDACS geometry | Cyclone track, cone, wind swaths | Forecast (JTWC) | Rule `cyclone_track`: forecast track within `cyclones.withinKm` (400 km) of a sea point; 150 km tier is high. GDACS level changes are left to the GDACS rule so one escalation is not sent twice. |
+| Open-Meteo Marine | Significant wave height | Derived | Rule `sea_state`: WMO rough (2.5 m) medium, very rough (4 m) high, next 48 h. INCOIS high-wave alerts arrive through SACHET. |
+| NASA FIRMS | VIIRS hotspots, 24 h | Observed | Rule `forest_fire`: at least `fires.minDetections` (3) inside a watched forest area; three times that is high. |
+| GDELT DOC 2.0 | Headlines | Unverified | Dashboard, digest and weekly brief only. |
 
 ### Locating SACHET alerts
 
@@ -86,8 +98,10 @@ IMD also requires the criteria at two stations in a subdivision; a single foreca
 1. **Candidates**: every rule emits alerts with a stable `key`.
 2. **Baseline**: on the very first run, everything already active is recorded but not sent; a single "monitor started" summary is sent instead.
 3. **De-duplication**: a key notifies once per 3-day window. Escalations (GDACS Orange→Red, river medium→high) produce a new key and notify again.
-4. **Delivery**: critical/high as individual messages; medium as one digest; hard cap of 8 messages per run.
-5. **Labelling**: every message states *Official* or *Derived (not an official warning)* and links its source.
+4. **Filter**: `ruleOverrides` (per-rule `minSeverity` or `enabled: false`) and `/mute <group> [days]` (at most 30) hold alerts back from Telegram; they are still recorded as events and shown on the dashboard.
+5. **Delivery**: critical/high as individual messages; medium as one digest; hard cap of 8 messages per run. Each message carries Useful / Noise buttons (callback data `fb:<u|n>:<10-hex id>`; the id maps to the alert keys in state for 21 days).
+6. **Labelling**: every message states *Official* or *Derived (not an official warning)* and links its source.
+7. **Review**: on Sunday, alerts fired in the last 7 days are counted per rule group with their ratings; a group with at least 3 ratings, half or more noise, gets a suggested config change or mute.
 
 ## Efficiency
 
@@ -122,7 +136,12 @@ IMD also requires the criteria at two stations in a subdivision; a single foreca
 - **No third-party GitHub Actions**; checkout is a plain `git clone` with the job token.
 - **Least privilege**: CI has `contents: read`; only the monitor job has `contents: write`, used solely to push the data and diagnostics branches. The token is passed per git command to the clone and publish steps only, never stored in git config, so the steps that parse untrusted feed data cannot read it.
 - **Secrets** (`TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `HEALTHCHECK_URL`, optional `MONITOR_CONFIG_JSON`) are passed only to the steps that need them and never logged.
-- **Dashboard**: Content Security Policy (scripts only from self and the pinned CDN) and Subresource Integrity hashes on every CDN script.
+- **Dashboard**: Content Security Policy allows scripts from this site only; three.js, satellite.js, topojson-client and the world-atlas outlines are vendored in `src/vendor` with their integrity hashes, so the page loads no third-party code.
+- **Release gate**: the site is published to the `site` branch by CI only after syntax, import, poller and browser tests pass. The browser test blocks every non-local host inside Chrome, so it tests the code, not the availability of outside services.
+
+### Dashboard code structure
+
+`src/app/` holds ES modules split from the former single `app.js` by a one-off tool that tracked every top-level binding: declarations stay at module top level; start-up code that depends on other modules runs in an exported `init()`, which `index.js` calls in the original order, so evaluation order did not change. The thirteen variables that several modules reassign live in `app-state.js`, because imported bindings are read-only. `scripts/check-syntax.mjs` verifies every named import resolves to an export and that `sw.js` caches every file.
 
 ### Privacy
 
@@ -147,4 +166,4 @@ Public-repo safeguards: the Monitor workflow only runs on schedule or manual dis
 ## Next steps
 
 1. Add per-point `warningDischarge` / `dangerDischarge` levels where they are known.
-2. Split `src/app.js` into ES modules.
+2. Tune thresholds from the weekly review once a few weeks of Useful / Noise ratings exist.
