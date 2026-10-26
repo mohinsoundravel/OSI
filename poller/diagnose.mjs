@@ -50,33 +50,42 @@ async function probe(label, url) {
   const list = await sample('GDACS TC events (30 days)', `https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=TC&fromdate=${from}&todate=${today}&alertlevel=green;orange;red`);
   let tcs = [];
   try { tcs = JSON.parse(list).features || []; } catch { /* printed above */ }
-  for (const f of tcs.slice(0, 3)) {
+  /* Indian Ocean systems first, then the most severe elsewhere. */
+  const io = (f) => { const [x, y] = f.geometry?.coordinates || []; return x > 40 && x < 100 && y > -15 && y < 30; };
+  const rank = { Red: 2, Orange: 1, Green: 0 };
+  tcs.sort((a, b) => (io(b) - io(a)) || (rank[b.properties?.alertlevel] - rank[a.properties?.alertlevel]));
+  for (const f of tcs.filter((x) => String(x.properties?.iscurrent) === 'true').slice(0, 2)) {
     const p = f.properties || {};
-    console.log(`TC ${p.eventid}/${p.episodeid} ${p.name} ${p.alertlevel} ${p.fromdate}..${p.todate} iscurrent=${p.iscurrent} url.geometry=${p.url?.geometry}`);
-    const geoUrl = p.url?.geometry || `https://www.gdacs.org/gdacsapi/api/polygons/getgeometry?eventtype=TC&eventid=${p.eventid}&episodeid=${p.episodeid}`;
-    const r = await probe(`GDACS geometry ${p.eventid}`, geoUrl);
+    console.log(`TC ${p.eventid}/${p.episodeid} ${p.name} ${p.alertlevel} at ${f.geometry?.coordinates} ${p.fromdate}..${p.todate} severity=${JSON.stringify(p.severitydata)}`);
+    const geoUrl = `https://www.gdacs.org/gdacsapi/api/polygons/getgeometry?eventtype=TC&eventid=${p.eventid}&episodeid=${p.episodeid}`;
+    let r = null;
+    for (let attempt = 0; attempt < 2 && !(r && r.res.ok); attempt++) {
+      try {
+        const res = await fetch(geoUrl, { headers: { 'User-Agent': ua }, signal: AbortSignal.timeout(90000) });
+        r = { res, buf: Buffer.from(await res.arrayBuffer()) };
+        console.log(`PROBE geometry ${p.eventid}: HTTP ${res.status} ${r.buf.length} bytes`);
+      } catch (err) { console.log(`PROBE geometry ${p.eventid}: ${err.message}`); }
+    }
     if (!r || !r.res.ok) continue;
     try {
       const g = JSON.parse(r.buf.toString('utf8'));
       const feats = g.features || [];
-      const summary = new Map();
+      const base = feats.find((x) => x.properties?.Class === 'Point_Centroid')?.properties || {};
       for (const x of feats) {
-        const k = `${x.geometry?.type}|${x.properties?.Class || x.properties?.class || ''}|${x.properties?.polygonlabel || x.properties?.polygontype || ''}`;
-        summary.set(k, (summary.get(k) || 0) + 1);
+        const props = x.properties || {};
+        const diff = Object.fromEntries(Object.entries(props).filter(([k, v]) => JSON.stringify(base[k]) !== JSON.stringify(v)));
+        const geom = x.geometry || {};
+        const coords = JSON.stringify(geom.coordinates || []);
+        console.log(`  ${geom.type} ${props.Class} | ${JSON.stringify(diff).slice(0, 500)} | coords ${coords.length}b ${coords.slice(0, 120)}`);
       }
-      console.log(`GEOMETRY ${p.eventid}: ${feats.length} features`);
-      for (const [k, n] of summary) console.log(`  ${n} x ${k}`);
-      const pts = feats.filter((x) => x.geometry?.type === 'Point').slice(0, 3);
-      for (const x of pts) console.log(`  point props: ${JSON.stringify(x.properties).slice(0, 600)}`);
-      const poly = feats.find((x) => /Polygon/.test(x.geometry?.type || ''));
-      if (poly) console.log(`  polygon props: ${JSON.stringify(poly.properties).slice(0, 600)}`);
     } catch (err) {
-      console.log(`  geometry not JSON: ${err.message} ${r.buf.toString('utf8').slice(0, 300)}`);
+      console.log(`  geometry not JSON: ${err.message}`);
     }
+    await sample(`GDACS event data ${p.eventid}`, `https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=TC&eventid=${p.eventid}`);
   }
   await sample('Open-Meteo marine (Chennai, Rameswaram)', 'https://marine-api.open-meteo.com/v1/marine?latitude=13.08,9.28&longitude=80.35,79.35&daily=wave_height_max,swell_wave_height_max,wave_period_max&hourly=wave_height&forecast_days=3&timezone=Asia%2FKolkata');
-  await sample('GDELT GEO (India hazards, 24 h)', 'https://api.gdeltproject.org/api/v2/geo/geo?query=(flood%20OR%20cyclone%20OR%20landslide%20OR%20explosion)%20sourcecountry:IN&format=GeoJSON&timespan=24h');
-  await sample('GDELT DOC (India hazards, 24 h)', 'https://api.gdeltproject.org/api/v2/doc/doc?query=(flood%20OR%20cyclone)%20sourcecountry:IN&mode=artlist&format=json&maxrecords=5&timespan=24h');
+  await sample('GDELT DOC (India unrest, 6 h, English)', 'https://api.gdeltproject.org/api/v2/doc/doc?query=(riot%20OR%20clash%20OR%20curfew%20OR%20explosion%20OR%20stampede)%20sourcecountry:IN%20sourcelang:english&mode=artlist&format=json&maxrecords=10&timespan=6h&sort=datedesc');
+  await sample('FIRMS NOAA-21 VIIRS South Asia 24h', 'https://firms.modaps.eosdis.nasa.gov/data/active_fire/noaa-21-viirs-c2/csv/J2_VIIRS_C2_South_Asia_24h.csv');
   for (const [label, url] of [
     ['FIRMS NOAA-20 VIIRS South Asia 24h', 'https://firms.modaps.eosdis.nasa.gov/data/active_fire/noaa-20-viirs-c2/csv/J1_VIIRS_C2_South_Asia_24h.csv'],
     ['FIRMS S-NPP VIIRS South Asia 24h', 'https://firms.modaps.eosdis.nasa.gov/data/active_fire/suomi-npp-viirs-c2/csv/SUOMI_VIIRS_C2_South_Asia_24h.csv'],
