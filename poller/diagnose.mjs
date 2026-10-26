@@ -43,6 +43,53 @@ async function probe(label, url) {
   }
 }
 
+/* ---- New sources: cyclone tracks, sea state, news events, fires ---- */
+{
+  const today = new Date().toISOString().slice(0, 10);
+  const from = new Date(Date.now() - 30 * 86400000).toISOString().slice(0, 10);
+  const list = await sample('GDACS TC events (30 days)', `https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=TC&fromdate=${from}&todate=${today}&alertlevel=green;orange;red`);
+  let tcs = [];
+  try { tcs = JSON.parse(list).features || []; } catch { /* printed above */ }
+  for (const f of tcs.slice(0, 3)) {
+    const p = f.properties || {};
+    console.log(`TC ${p.eventid}/${p.episodeid} ${p.name} ${p.alertlevel} ${p.fromdate}..${p.todate} iscurrent=${p.iscurrent} url.geometry=${p.url?.geometry}`);
+    const geoUrl = p.url?.geometry || `https://www.gdacs.org/gdacsapi/api/polygons/getgeometry?eventtype=TC&eventid=${p.eventid}&episodeid=${p.episodeid}`;
+    const r = await probe(`GDACS geometry ${p.eventid}`, geoUrl);
+    if (!r || !r.res.ok) continue;
+    try {
+      const g = JSON.parse(r.buf.toString('utf8'));
+      const feats = g.features || [];
+      const summary = new Map();
+      for (const x of feats) {
+        const k = `${x.geometry?.type}|${x.properties?.Class || x.properties?.class || ''}|${x.properties?.polygonlabel || x.properties?.polygontype || ''}`;
+        summary.set(k, (summary.get(k) || 0) + 1);
+      }
+      console.log(`GEOMETRY ${p.eventid}: ${feats.length} features`);
+      for (const [k, n] of summary) console.log(`  ${n} x ${k}`);
+      const pts = feats.filter((x) => x.geometry?.type === 'Point').slice(0, 3);
+      for (const x of pts) console.log(`  point props: ${JSON.stringify(x.properties).slice(0, 600)}`);
+      const poly = feats.find((x) => /Polygon/.test(x.geometry?.type || ''));
+      if (poly) console.log(`  polygon props: ${JSON.stringify(poly.properties).slice(0, 600)}`);
+    } catch (err) {
+      console.log(`  geometry not JSON: ${err.message} ${r.buf.toString('utf8').slice(0, 300)}`);
+    }
+  }
+  await sample('Open-Meteo marine (Chennai, Rameswaram)', 'https://marine-api.open-meteo.com/v1/marine?latitude=13.08,9.28&longitude=80.35,79.35&daily=wave_height_max,swell_wave_height_max,wave_period_max&hourly=wave_height&forecast_days=3&timezone=Asia%2FKolkata');
+  await sample('GDELT GEO (India hazards, 24 h)', 'https://api.gdeltproject.org/api/v2/geo/geo?query=(flood%20OR%20cyclone%20OR%20landslide%20OR%20explosion)%20sourcecountry:IN&format=GeoJSON&timespan=24h');
+  await sample('GDELT DOC (India hazards, 24 h)', 'https://api.gdeltproject.org/api/v2/doc/doc?query=(flood%20OR%20cyclone)%20sourcecountry:IN&mode=artlist&format=json&maxrecords=5&timespan=24h');
+  for (const [label, url] of [
+    ['FIRMS NOAA-20 VIIRS South Asia 24h', 'https://firms.modaps.eosdis.nasa.gov/data/active_fire/noaa-20-viirs-c2/csv/J1_VIIRS_C2_South_Asia_24h.csv'],
+    ['FIRMS S-NPP VIIRS South Asia 24h', 'https://firms.modaps.eosdis.nasa.gov/data/active_fire/suomi-npp-viirs-c2/csv/SUOMI_VIIRS_C2_South_Asia_24h.csv'],
+    ['FIRMS MODIS South Asia 24h', 'https://firms.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/csv/MODIS_C6_1_South_Asia_24h.csv']
+  ]) {
+    const r = await probe(label, url);
+    if (r && r.res.ok) {
+      const lines = r.buf.toString('utf8').split('\n');
+      console.log(`FIRMS ${label}: ${lines.length - 1} rows\n  ${lines.slice(0, 3).join('\n  ')}`);
+    }
+  }
+}
+
 /* AISStream handshake with a deliberately invalid key: proves the WebSocket client and
    network path work; a real key is used only by the poll step. */
 {
