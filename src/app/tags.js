@@ -46,7 +46,7 @@ export function tagText(key, it) {
     case 'cyclones':
       return it.kind === 'storm'
         ? clip(`${it.name}${it.maxWindKmh ? ` \u00b7 ${it.maxWindKmh} km/h` : ''}`, 30)
-        : `${istText(it.t).replace(' IST', '')} \u00b7 ${it.cat || '?'}`;
+        : [istText(it.t).replace(' IST', ''), it.cat].filter(Boolean).join(' \u00b7 ');
     case 'sea': return `${clip(it.name.replace(/\s*\(.*\)/, ''), 16)} \u00b7 ${Number.isFinite(it.peakM) ? it.peakM.toFixed(1) : '?'} m`;
     case 'fires': return Number.isFinite(it.frpMw) ? `Fire \u00b7 ${Math.round(it.frpMw)} MW` : 'Fire';
     case 'news': return clip(it.title || '', 34);

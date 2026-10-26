@@ -58,6 +58,13 @@ export function syncChips() {
 
 /** Runs this module's start-up code; index.js calls every module's init in order. */
 export function init() {
+  /* A mouse wheel scrolls the single row of chips sideways. */
+  $('chips').addEventListener('wheel', (e) => {
+    const el = $('chips');
+    if (el.scrollWidth <= el.clientWidth || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+    el.scrollLeft += e.deltaY;
+    e.preventDefault();
+  }, { passive: false });
   $('tabs').addEventListener('click', (e) => {
     const tab = e.target.dataset.tab;
     if (!tab || tab === activeTab) return;

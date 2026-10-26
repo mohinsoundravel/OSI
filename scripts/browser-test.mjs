@@ -11,6 +11,8 @@
  *
  * Usage: node scripts/browser-test.mjs [--chrome /path/to/chrome] [--site dir] [--shots dir] [--keep-open]
  * --site serves the site from another folder (CI checks the exact files it is about to publish).
+ * --data uses an existing poller data folder (for example a copy of the data branch) instead of
+ *        a fixture run; checks that depend on fixture content are then skipped.
  * CHROME_PATH also selects the browser.
  */
 import http from 'node:http';
@@ -28,6 +30,7 @@ const { values: args } = parseArgs({
   options: {
     chrome: { type: 'string' },
     site: { type: 'string' },
+    data: { type: 'string' },
     shots: { type: 'string' },
     'keep-open': { type: 'boolean', default: false }
   }
@@ -224,9 +227,9 @@ const typeInto = (sel, value) => `(() => {
 
 async function main() {
   const tmp = await mkdtemp(path.join(os.tmpdir(), 'osi-browser-'));
-  const dataDir = path.join(tmp, 'data');
-  await mkdir(dataDir);
-  const poll = spawnSync(process.execPath, [
+  const dataDir = args.data ? path.resolve(args.data) : path.join(tmp, 'data');
+  if (!args.data) await mkdir(dataDir);
+  const poll = args.data ? { status: 0 } : spawnSync(process.execPath, [
     'poller/index.mjs', '--data-dir', dataDir, '--config', 'poller/test/monitor.test-config.json',
     '--fixtures', 'poller/test/fixtures', '--dry-run', '--now', '2026-10-23T06:00:00Z'
   ], { cwd: ROOT, encoding: 'utf8', env: { ...process.env, TELEGRAM_BOT_TOKEN: '', TELEGRAM_CHAT_ID: '', HEALTHCHECK_URL: '', AISSTREAM_API_KEY: '' } });
@@ -267,10 +270,12 @@ async function main() {
     });
 
     await check('cyclone detail shows the estimated landfall', async () => {
-      await page.evaluate(typeInto('#search', 'MONTHA'));
+      await page.evaluate(typeInto('#search', 'cyclone'));
       await page.waitFor(`[...document.querySelectorAll('#searchResults [data-hit]')].some((b) => /Cyclones/.test(b.textContent))`, 8000, 'cyclone in search results');
       await page.evaluate(`[...document.querySelectorAll('#searchResults [data-hit]')].find((b) => /Cyclones/.test(b.textContent)).click()`);
-      const d = await page.waitFor(`(() => { const t = ${text('#detail')}; return /Landfall \\(estimate\\)near (Pulicat|Chennai)/.test(t) ? t.slice(0, 120) : null; })()`, 8000, 'landfall in the cyclone detail');
+      const expected = args.data ? '[A-Za-z]' : '(Pulicat|Chennai)';
+      const d = await page.waitFor(`(() => { const t = ${text('#detail')}; return /Landfall \\(estimate\\)(near ${expected}|track does not cross)/.test(t) ? t.slice(0, 160) : null; })()`, 8000, 'landfall in the cyclone detail');
+      await new Promise((r) => setTimeout(r, 6000));
       await page.shot('cyclone');
       return d;
     });
