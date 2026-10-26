@@ -21,7 +21,11 @@ const SEARCH_FIELDS = {
   webcams: (it) => [it.title, it.city],
   live: (it) => [it.title, it.channel, it.type, it.where],
   ships: (it) => [it.name, it.id, it.destination, it.callsign],
-  alerts: (it) => [it.title, ...(it.districts || [])]
+  alerts: (it) => [it.title, ...(it.districts || [])],
+  cyclones: (it) => (it.kind === 'storm' ? [it.name, `cyclone ${it.name}`] : []),
+  sea: (it) => [it.name, 'sea state'],
+  fires: () => [],
+  news: (it) => [it.title, it.place, it.state, it.domain]
 };
 let searchHits = [];
 let searchActive = 0;

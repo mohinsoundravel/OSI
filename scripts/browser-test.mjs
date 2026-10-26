@@ -223,7 +223,8 @@ async function main() {
   const dataDir = path.join(tmp, 'data');
   await mkdir(dataDir);
   const poll = spawnSync(process.execPath, [
-    'poller/index.mjs', '--data-dir', dataDir, '--fixtures', 'poller/test/fixtures', '--dry-run', '--now', '2026-10-23T06:00:00Z'
+    'poller/index.mjs', '--data-dir', dataDir, '--config', 'poller/test/monitor.test-config.json',
+    '--fixtures', 'poller/test/fixtures', '--dry-run', '--now', '2026-10-23T06:00:00Z'
   ], { cwd: ROOT, encoding: 'utf8', env: { ...process.env, TELEGRAM_BOT_TOKEN: '', TELEGRAM_CHAT_ID: '', HEALTHCHECK_URL: '', AISSTREAM_API_KEY: '' } });
   if (poll.status !== 0) throw new Error(`fixture poll failed:\n${poll.stderr || poll.stdout}`);
 
@@ -251,6 +252,23 @@ async function main() {
       const sats = await page.waitFor(`(() => { const t = ${text('[data-src=satellites]')}; const m = t.match(/live\\s*([\\d,]+)/); return m && Number(m[1].replace(/,/g, '')) > 0 ? m[1] : null; })()`, 30000, 'satellites live');
       const india = await page.waitFor(`(() => { const t = ${text('[data-src=alerts]')}; const m = t.match(/(?:live|stale)\\s*([\\d,]+)/); return m && Number(m[1].replace(/,/g, '')) > 0 ? m[1] : null; })()`, 30000, 'India alerts loaded');
       return `satellites ${sats}, India alerts ${india}`;
+    });
+
+    await check('hazard layers load: cyclone, sea, fires, news', async () => {
+      const counts = {};
+      for (const key of ['cyclones', 'sea', 'fires', 'news']) {
+        counts[key] = await page.waitFor(`(() => { const t = ${text(`[data-src=${key}]`)}; const m = t.match(/(?:live|stale)\\s*([\\d,]+)/); return m && Number(m[1].replace(/,/g, '')) > 0 ? m[1] : null; })()`, 30000, `${key} loaded`);
+      }
+      return Object.entries(counts).map(([k, v]) => `${k} ${v}`).join(', ');
+    });
+
+    await check('cyclone detail shows the estimated landfall', async () => {
+      await page.evaluate(typeInto('#search', 'MONTHA'));
+      await page.waitFor(`[...document.querySelectorAll('#searchResults [data-hit]')].some((b) => /Cyclones/.test(b.textContent))`, 8000, 'cyclone in search results');
+      await page.evaluate(`[...document.querySelectorAll('#searchResults [data-hit]')].find((b) => /Cyclones/.test(b.textContent)).click()`);
+      const d = await page.waitFor(`(() => { const t = ${text('#detail')}; return /Landfall \\(estimate\\)near (Pulicat|Chennai)/.test(t) ? t.slice(0, 120) : null; })()`, 8000, 'landfall in the cyclone detail');
+      await page.shot('cyclone');
+      return d;
     });
 
     await check('search finds a district and opens its detail', async () => {

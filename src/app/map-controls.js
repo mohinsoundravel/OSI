@@ -1,5 +1,6 @@
 /** Map buttons, eye-altitude readout, imagery credit and the legend. */
 import { $, EARTH_KM, GDACS_COLOR, RADIUS, SEV_COLOR, esc } from './core.js';
+import { CYCLONE_CLASS, FIRE_COLORS, NEWS_CATEGORY, SEA_COLORS } from './hazards.js';
 import { LAYERS, RAIN_CATS } from './layers.js';
 import { SAT_CATS } from './satellites.js';
 import { camera, globeGroup, vector3ToLatLng } from './globe.js';
@@ -102,7 +103,13 @@ export function init() {
     ships: ['Ships', [['#6fd08c', 'Cargo'], ['#ff7a6b', 'Tanker'], ['#5ac8fa', 'Passenger'], ['#f5b14c', 'Fishing'], ['#d7a6ff', 'Military or rescue'], ['#b8c2cc', 'Other or unknown'], [SEV_COLOR.high, 'Aground, not under command, AIS-SART']]],
     quakes: ['Earthquakes (size = magnitude)', [['#7a3a36', 'Below M3'], ['#e2554a', 'M3 to M5'], ['#ff4d5e', 'M5 and above']]],
     gdacs: ['GDACS', [[GDACS_COLOR.Green, 'Green'], [GDACS_COLOR.Orange, 'Orange'], [GDACS_COLOR.Red, 'Red']]],
-    satellites: ['Satellites (all active)', Object.values(SAT_CATS).map((c) => [c.color, c.label])]
+    satellites: ['Satellites (all active)', Object.values(SAT_CATS).map((c) => [c.color, c.label])],
+    cyclones: ['Cyclones (dashed: forecast track; white dashed: uncertainty cone; red: 120 km/h winds)',
+      [[GDACS_COLOR.Green, 'GDACS Green'], [GDACS_COLOR.Orange, 'GDACS Orange'], [GDACS_COLOR.Red, 'GDACS Red'],
+        ...Object.values(CYCLONE_CLASS).slice(0, 3).map(([label, color]) => [color, `Track point: ${label.toLowerCase()}`])]],
+    sea: ['Sea state, highest wave in 48 h (WMO)', SEA_COLORS.map(([, c, label]) => [c, label])],
+    fires: ['Fire hotspots, 24 h (radiative power)', FIRE_COLORS.map(([, c, label]) => [c, label])],
+    news: ['News headlines (unverified)', Object.values(NEWS_CATEGORY).map(([label, c]) => [c, label])]
   };
   $('legendBtn').addEventListener('click', () => {
     const el = $('legend');

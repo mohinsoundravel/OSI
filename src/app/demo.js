@@ -2,6 +2,7 @@
 import { appState } from './app-state.js';
 import { DEG, EARTH_KM, GDACS_COLOR, destination, haversineKm, hexToRgb } from './core.js';
 import { liveStreamItems, normalizeBackend } from './layers.js';
+import { NEWS_CATEGORY, cycloneItems, seaItems, updateCycloneOverlay } from './hazards.js';
 import { projectShips } from './snapshots.js';
 import { flightColor } from './fetchers.js';
 import { observerZone } from './rules.js';
@@ -17,7 +18,10 @@ function mulberry32(seed) {
   };
 }
 
-export const DEMO_INTERVALS = { flights: 10000, quakes: 15000, gdacs: 20000, eonet: 25000, satellites: 3600000, webcams: 30000, live: 3600000, ships: 30000, alerts: 20000 };
+export const DEMO_INTERVALS = {
+  flights: 10000, quakes: 15000, gdacs: 20000, eonet: 25000, satellites: 3600000, webcams: 30000, live: 3600000, ships: 30000, alerts: 20000,
+  cyclones: 60000, sea: 60000, fires: 60000, news: 60000
+};
 const demoPoll = {};
 const nextPoll = (key) => (demoPoll[key] = (demoPoll[key] || 0) + 1);
 const wrapLng = (lng) => ((((lng + 180) % 360) + 360) % 360) - 180;
@@ -88,6 +92,13 @@ export function demoSatellites(at = Date.now()) {
   }
   return out;
 }
+
+const DEMO_SEA = [
+  { id: 'pulicat', name: 'Pulicat [DEMO]', lat: 13.42, lng: 80.42, nowM: 1.9, peakM: 3.4, peakDate: '2026-10-27', state: 'Rough', days: [] },
+  { id: 'chennai', name: 'Chennai [DEMO]', lat: 13.08, lng: 80.4, nowM: 2.1, peakM: 4.3, peakDate: '2026-10-27', state: 'Very rough', days: [] },
+  { id: 'cuddalore', name: 'Cuddalore [DEMO]', lat: 11.72, lng: 79.88, nowM: 1.2, peakM: 2.2, peakDate: '2026-10-27', state: 'Moderate', days: [] },
+  { id: 'thoothukudi', name: 'Thoothukudi [DEMO]', lat: 8.75, lng: 78.3, nowM: 0.6, peakM: 0.9, peakDate: '2026-10-26', state: 'Slight', days: [] }
+];
 
 export const DEMO_FETCHERS = {
   async flights() {
@@ -175,6 +186,58 @@ export const DEMO_FETCHERS = {
       id: `dw${i}`, title: `${name} [DEMO]`, status: 'synthetic', lat, lng, altKm: 0,
       city: name.split(' ')[0], region: 'Tamil Nadu', country: 'India', zone: 'Tamil Nadu & coast',
       imageUrl: null, lastUpdated: Date.now(), pageUrl: null
+    }));
+  },
+  async cyclones() {
+    /* A synthetic Bay of Bengal storm heading for the north Tamil Nadu coast. */
+    const t0 = Date.now() - 6 * 3600 * 1000;
+    const path = [[87.5, 13.6, 'TS'], [86.0, 13.4, 'TS'], [84.4, 13.3, 'HU'], [82.8, 13.2, 'HU'], [81.3, 13.1, 'TS'], [79.9, 13.0, 'TS'], [78.6, 12.9, 'TD']];
+    const track = path.map(([lng, lat, cat], i) => ({ t: new Date(t0 + i * 12 * 3600 * 1000).toISOString(), lat, lng, cat, forecast: i > 0 }));
+    const items = cycloneItems({
+      layers: {
+        sea: DEMO_SEA,
+        cyclones: [{
+          id: 'TC-DEMO', eventId: 'DEMO', name: 'DEMO-26 [DEMO]', alertLevel: 'Orange', lat: 13.6, lng: 87.5, maxWindKmh: 130,
+          severityText: 'Synthetic cyclonic storm', source: 'Demo', updatedAt: new Date(t0).toISOString(), url: '',
+          track, cone: [[87.5, 13.1], [84.4, 12.5], [81.3, 11.9], [78.6, 11.4], [78.6, 14.4], [81.3, 14.3], [84.4, 14.1], [87.5, 14.1], [87.5, 13.1]],
+          swaths: { kmh120: [[87.7, 13.3], [81.0, 12.7], [81.0, 13.5], [87.7, 13.9], [87.7, 13.3]] },
+          landfall: { near: 'Chennai', at: new Date(t0 + 66 * 3600 * 1000).toISOString(), lat: 13.02, lng: 80.28 }
+        }]
+      }
+    });
+    updateCycloneOverlay(items);
+    return items;
+  },
+  async sea() {
+    return seaItems({ layers: { sea: DEMO_SEA } });
+  },
+  async fires() {
+    const rnd = mulberry32(7);
+    const clusters = [[30.6, 75.4, 300, 1.2], [29.6, 76.6, 160, 0.9], [9.7, 77.4, 6, 0.08], [11.55, 76.6, 3, 0.06], [22.5, 86.5, 40, 1.5]];
+    const items = [];
+    for (const [lat, lng, n, spread] of clusters) {
+      for (let i = 0; i < n; i++) {
+        const frp = rnd() < 0.1 ? 20 + rnd() * 60 : rnd() * 15;
+        items.push({
+          id: `fire:demo:${items.length}`, lat: lat + (rnd() - 0.5) * spread, lng: lng + (rnd() - 0.5) * spread, altKm: 0,
+          frpMw: Math.round(frp * 10) / 10, confidence: 'nominal', acquiredAt: new Date(Date.now() - rnd() * 86400000).toISOString(),
+          satellite: 'DEMO', color: hexToRgb(frp >= 20 ? '#ff453a' : frp >= 5 ? '#ff9f0a' : '#ffd60a')
+        });
+      }
+    }
+    return items;
+  },
+  async news() {
+    const rows = [
+      ['hazard', 'Heavy rain lashes Chennai, low-lying areas flooded [DEMO]', 'Chennai', 'Tamil Nadu', 13.08, 80.27],
+      ['hazard', 'Fishermen told not to venture into sea off Nagapattinam [DEMO]', 'Nagapattinam', 'Tamil Nadu', 10.77, 79.84],
+      ['accident', 'Fire at firecracker unit near Sivakasi [DEMO]', 'Virudhunagar', 'Tamil Nadu', 9.58, 77.96],
+      ['unrest', 'Prohibitory orders in parts of Imphal after clashes [DEMO]', 'Imphal', 'Manipur', 24.82, 93.94],
+      ['security', 'Encounter reported in Sukma district [DEMO]', 'Sukma', 'Chhattisgarh', 18.39, 81.66]
+    ];
+    return rows.map(([category, title, place, state, lat, lng], i) => ({
+      id: `news:demo${i}`, title, url: '', domain: 'demo.invalid', at: new Date(Date.now() - i * 3600000).toISOString(), category,
+      place, state, precision: 'district', sources: 1, lat, lng, altKm: 0, color: hexToRgb(NEWS_CATEGORY[category][1])
     }));
   },
   async alerts() {

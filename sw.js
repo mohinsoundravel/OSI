@@ -17,7 +17,7 @@ const SHELL_FILES = [
   './', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'poller/data/districts.json',
   'src/styles.css', 'src/main.js', 'src/sat-worker.js',
   'src/app/app-state.js', 'src/app/boot.js', 'src/app/camera.js', 'src/app/core.js', 'src/app/demo.js',
-  'src/app/fetchers.js', 'src/app/globe.js', 'src/app/icons.js', 'src/app/index.js', 'src/app/layers.js',
+  'src/app/fetchers.js', 'src/app/globe.js', 'src/app/hazards.js', 'src/app/icons.js', 'src/app/index.js', 'src/app/layers.js',
   'src/app/map-controls.js', 'src/app/place-info.js', 'src/app/points.js', 'src/app/rules.js',
   'src/app/satellites.js', 'src/app/scheduler.js', 'src/app/snapshots.js', 'src/app/spots.js',
   'src/app/state.js', 'src/app/tags.js', 'src/app/texture-loader.js', 'src/app/tiles.js',

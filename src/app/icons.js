@@ -6,6 +6,7 @@ import { SAT_CATS } from './satellites.js';
 import { data } from './state.js';
 import { DIRSCALE, LIFT, LIFT_GLSL, MAXOFF, globeGroup, latLngToVector3, renderer, withLift } from './globe.js';
 import { alertPolyGroup } from './spots.js';
+import { cycloneGroup } from './hazards.js';
 
 /* ----- Point sprites ----- */
 
@@ -38,7 +39,7 @@ let GLOW_TEX;
 
 const ICON = {
   dot: 0, plane: 1, satellite: 2, quake: 3, cyclone: 4, flood: 5, fire: 6, volcano: 7,
-  camera: 8, warning: 9, heat: 10, river: 11, drought: 12, dam: 13, storm: 14, event: 15, ship: 16
+  camera: 8, warning: 9, heat: 10, river: 11, drought: 12, dam: 13, storm: 14, event: 15, ship: 16, wave: 17, news: 18
 };
 const ATLAS_GRID = 5;
 const ATLAS_CELL = 128;
@@ -133,6 +134,22 @@ function drawIcon(ctx, name) {
       ctx.moveTo(0.35, -0.35); ctx.lineTo(0.95, -0.35); ctx.moveTo(0.42, 0.05); ctx.lineTo(0.95, 0.05);
       ctx.moveTo(0.5, 0.45); ctx.lineTo(0.95, 0.45);
       return 'fill-stroke';
+    case 'wave':
+      ctx.beginPath();
+      for (const y of [-0.42, 0.18]) {
+        ctx.moveTo(-0.95, y + 0.2);
+        ctx.bezierCurveTo(-0.6, y - 0.35, -0.25, y - 0.35, 0, y + 0.05);
+        ctx.bezierCurveTo(0.25, y + 0.42, 0.6, y + 0.42, 0.95, y);
+      }
+      ctx.moveTo(-0.95, 0.85); ctx.lineTo(0.95, 0.85);
+      return 'stroke';
+    case 'news':
+      ctx.beginPath();
+      ctx.roundRect ? ctx.roundRect(-0.85, -0.75, 1.7, 1.5, 0.14) : ctx.rect(-0.85, -0.75, 1.7, 1.5);
+      ctx.moveTo(-0.55, -0.4); ctx.lineTo(0.55, -0.4);
+      ctx.moveTo(-0.55, 0); ctx.lineTo(0.55, 0);
+      ctx.moveTo(-0.55, 0.4); ctx.lineTo(0.2, 0.4);
+      return 'stroke';
     case 'storm':
       ctx.beginPath();
       ctx.arc(-0.35, -0.2, 0.38, Math.PI * 0.5, Math.PI * 1.6);
@@ -250,7 +267,10 @@ function makeIconMaterial() {
   });
 }
 
-export const LAYER_ICON = { flights: 'plane', quakes: 'quake', gdacs: 'cyclone', eonet: 'fire', satellites: 'satellite', webcams: 'camera', live: 'camera', ships: 'ship', alerts: 'warning' };
+export const LAYER_ICON = {
+  flights: 'plane', quakes: 'quake', gdacs: 'cyclone', eonet: 'fire', satellites: 'satellite', webcams: 'camera', live: 'camera',
+  ships: 'ship', alerts: 'warning', cyclones: 'cyclone', sea: 'wave', fires: 'fire', news: 'news'
+};
 const GDACS_ICON = { 'Tropical cyclone': 'cyclone', Flood: 'flood', Earthquake: 'quake', Volcano: 'volcano', Drought: 'drought', Wildfire: 'fire', TC: 'cyclone', FL: 'flood', EQ: 'quake', VO: 'volcano', DR: 'drought', WF: 'fire' };
 const EONET_ICON = { Wildfires: 'fire', 'Severe Storms': 'storm', Volcanoes: 'volcano', Floods: 'flood', Drought: 'drought', Earthquakes: 'quake' };
 const ALERT_ICON = { dam: 'dam', flood: 'flood', heat: 'heat', cyclone: 'cyclone', rain: 'storm', thunderstorm: 'storm', tsunami: 'warning', earthquake: 'quake' };
@@ -281,6 +301,11 @@ export function iconFor(key, it) {
         return { icon: it.id && it.id.startsWith('river:') ? 'river' : 'heat', size: 13 };
       }
       return { icon: ALERT_ICON[it.kind] || 'warning', size: it.alertSeverity === 'critical' ? 30 : it.alertSeverity === 'high' ? 26 : 22 };
+    case 'cyclones':
+      return it.kind === 'storm' ? { icon: 'cyclone', size: it.alertLevel === 'Red' ? 34 : it.alertLevel === 'Orange' ? 30 : 26 } : { icon: 'dot', size: it.forecast ? 7 : 6 };
+    case 'sea': return { icon: 'wave', size: Math.round(13 + Math.min(9, (it.peakM || 0) * 2)) };
+    case 'fires': return { icon: 'dot', size: it.frpMw >= 20 ? 7 : it.frpMw >= 5 ? 5.5 : 4.5 };
+    case 'news': return { icon: 'news', size: 13 + Math.min(5, (it.sources || 1) - 1) };
     default: return { icon: 'dot', size: 10 };
   }
 }
@@ -329,7 +354,7 @@ export function updateLayer(key) {
     obj.userData.targetOpacity = layer.visible ? 1 : 0;
     obj.visible = layer.visible;
     /* Draw order: big event icons under small moving ones. */
-    obj.renderOrder = { alerts: 1, gdacs: 2, eonet: 3, quakes: 4, webcams: 5, live: 5, ships: 6, satellites: 6, flights: 7 }[key] || 0;
+    obj.renderOrder = { fires: 0, alerts: 1, sea: 1, news: 2, gdacs: 2, cyclones: 3, eonet: 3, quakes: 4, webcams: 5, live: 5, ships: 6, satellites: 6, flights: 7 }[key] || 0;
     layerObjects[key] = obj;
     globeGroup.add(obj);
   }
@@ -345,6 +370,7 @@ export function updateLayer(key) {
 export function setLayerVisible(key, visible) {
   LAYERS[key].visible = visible;
   if (key === 'alerts') alertPolyGroup.visible = visible;
+  if (key === 'cyclones') cycloneGroup.visible = visible;
   const obj = layerObjects[key];
   if (!obj) return;
   obj.userData.targetOpacity = visible ? 1 : 0;

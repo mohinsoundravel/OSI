@@ -12,16 +12,19 @@ import { createHash } from 'node:crypto';
 
 export const NEWS_MIN_INTERVAL_MS = 60 * 60 * 1000;
 const DOC_URL = 'https://api.gdeltproject.org/api/v2/doc/doc';
-/* GDELT asks for at most one request every 5 seconds. */
-const REQUEST_GAP_MS = 6000;
+/* GDELT asks for at most one request every 5 seconds and answers 429 when busy. */
+const RETRY_WAIT_MS = 8000;
 const KEEP_MS = 48 * 3600 * 1000;
 const MAX_ITEMS = 300;
 
-const QUERIES = [
-  ['hazard', '(flood OR floods OR cyclone OR landslide OR "heavy rain" OR earthquake OR cloudburst OR "dam gates")'],
-  ['accident', '(explosion OR "building collapse" OR derailment OR derailed OR stampede OR "gas leak" OR capsized OR "major fire" OR "fire breaks out")'],
-  ['unrest', '(riot OR clashes OR curfew OR "internet shutdown" OR "prohibitory orders" OR encounter OR militants OR maoists OR "ied" OR terror OR "communal violence")']
-];
+/* One request per fetch (GDELT rate-limits shared runner addresses); categories are assigned
+   locally. Terms must be at least four characters or quoted phrases. */
+const QUERY = `(${[
+  'flood', 'floods', 'cyclone', 'landslide', '"heavy rain"', 'earthquake', 'cloudburst', '"dam gates"',
+  'explosion', '"building collapse"', 'derailment', 'derailed', 'stampede', '"gas leak"', 'capsized', '"major fire"',
+  'riot', 'clashes', 'curfew', '"internet shutdown"', '"prohibitory orders"', 'encounter', 'militants', 'maoists',
+  '"ied blast"', 'terror', '"communal violence"'
+].join(' OR ')})`;
 
 /* Most specific category wins when a headline matches several. */
 const CATEGORY_WORDS = [
@@ -109,27 +112,28 @@ export function normalizeArticles(articles, gazetteer, seed = []) {
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-export async function fetchNews({ http, previous = [], lastFetchedAt = 0, now = Date.now(), minIntervalMs = NEWS_MIN_INTERVAL_MS, gapMs = REQUEST_GAP_MS, gazetteer = loadNewsGazetteer() }) {
+export async function fetchNews({ http, previous = [], lastFetchedAt = 0, now = Date.now(), minIntervalMs = NEWS_MIN_INTERVAL_MS, retryWaitMs = RETRY_WAIT_MS, gazetteer = loadNewsGazetteer() }) {
   if (now - lastFetchedAt < minIntervalMs) return null;
-  const articles = [];
+  const params = new URLSearchParams({
+    query: `${QUERY} sourcecountry:IN sourcelang:english`,
+    mode: 'artlist', format: 'json', maxrecords: '250', timespan: '12h', sort: 'datedesc'
+  });
   const errors = [];
-  for (let i = 0; i < QUERIES.length; i++) {
-    if (i) await sleep(gapMs);
-    const params = new URLSearchParams({
-      query: `${QUERIES[i][1]} sourcecountry:IN sourcelang:english`,
-      mode: 'artlist', format: 'json', maxrecords: '75', timespan: '12h', sort: 'datedesc'
-    });
+  let articles = null;
+  for (let attempt = 0; attempt < 3 && !articles; attempt++) {
+    if (attempt) await sleep(retryWaitMs * attempt);
     try {
       const { text } = await http.getText(`${DOC_URL}?${params}`, { timeoutMs: 30000 });
-      /* Rate-limit and query errors come back as plain text with HTTP 200. */
+      /* Query errors come back as plain text with HTTP 200. */
       let body;
       try { body = JSON.parse(text); } catch { throw new Error(text.slice(0, 120).trim() || 'not JSON'); }
-      articles.push(...(Array.isArray(body.articles) ? body.articles : []));
+      articles = Array.isArray(body.articles) ? body.articles : [];
     } catch (err) {
-      errors.push(`${QUERIES[i][0]}: ${err.message}`);
+      errors.push(err.message);
+      if (!/HTTP 429|HTTP 5\d\d|timeout|network/.test(err.message)) break;
     }
   }
-  if (errors.length === QUERIES.length) throw new Error(`GDELT: ${errors.join('; ')}`);
+  if (!articles) throw new Error(`GDELT: ${errors.join('; ')}`);
   const kept = previous.filter((x) => now - Date.parse(x.at) < KEEP_MS);
   const items = normalizeArticles(articles, gazetteer, kept)
     .filter((x) => now - Date.parse(x.at) < KEEP_MS)

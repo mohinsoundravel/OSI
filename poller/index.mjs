@@ -170,7 +170,7 @@ export async function run(options = {}) {
     ...(config.news?.enabled === false ? {} : {
       news: async () => fetchNews({
         http, previous: (await readJson(path.join(dataDir, 'news.json'), {}).catch(() => ({}))).items || [],
-        lastFetchedAt: state.newsFetchedAt ? Date.parse(state.newsFetchedAt) : 0, now, gapMs: options.fixturesDir ? 0 : undefined
+        lastFetchedAt: state.newsFetchedAt ? Date.parse(state.newsFetchedAt) : 0, now, retryWaitMs: options.fixturesDir ? 0 : undefined
       })
     })
   };

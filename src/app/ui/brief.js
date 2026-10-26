@@ -10,9 +10,10 @@ import { nearest } from '../place-info.js';
 import { SEV_RANK_N } from '../tags.js';
 import { showItemDetail } from './detail.js';
 import { shortDate } from './charts.js';
+import { istText } from '../hazards.js';
 
 /* ----- Situation brief: what matters in Tamil Nadu right now, in a few tappable lines ----- */
-export const BRIEF_SOURCES = new Set(['alerts', 'gdacs', 'quakes', 'ships']);
+export const BRIEF_SOURCES = new Set(['alerts', 'gdacs', 'quakes', 'ships', 'cyclones', 'sea', 'fires', 'news']);
 const TN = { lat: 10.9, lng: 78.4 };
 const briefTargets = [];
 export const fmtInt = (v) => Math.round(v).toLocaleString('en-IN');
@@ -72,9 +73,29 @@ function briefRows() {
   }
   if (hottest && hottest.tmax >= 36) add('#ff9f0a', `Hottest forecast: ${str(hottest.name, 30)} ${num(hottest.tmax, 1)} C on ${str(hottest.date, 12)}`, { lat: hottest.lat, lng: hottest.lng }, 'Forecast');
 
-  for (const e of (data.gdacs || []).filter((g) => /TC|cyclone/i.test(g.type) && haversineKm(TN.lat, TN.lng, g.lat, g.lng) < 2500).slice(0, 2)) {
-    add(GDACS_COLOR[e.alertLevel] || '#f5a623', `Cyclone ${e.name} (${e.alertLevel}), ${fmtInt(haversineKm(TN.lat, TN.lng, e.lat, e.lng))} km from central TN`, { key: 'gdacs', id: e.id }, 'GDACS');
+  /* Cyclones: the poller's tracks (landfall and closest approach) when present, else GDACS points. */
+  const storms = (data.cyclones || []).filter((c) => c.kind === 'storm');
+  for (const c of storms.slice(0, 2)) {
+    const near = c.nearCoast ? `, closest ${fmtInt(c.nearCoast.km)} km off ${c.nearCoast.place}` : '';
+    const landfall = c.landfall && Date.parse(c.landfall.at) > Date.now() ? `; landfall near ${c.landfall.near} ${istText(c.landfall.at)}` : '';
+    add(GDACS_COLOR[c.alertLevel] || '#f5a623', `Cyclone ${c.name}${near}${landfall}`, { key: 'cyclones', id: c.id }, `GDACS ${c.alertLevel} \u00b7 forecast track`);
   }
+  if (!storms.length) {
+    for (const e of (data.gdacs || []).filter((g) => /TC|cyclone/i.test(g.type) && haversineKm(TN.lat, TN.lng, g.lat, g.lng) < 2500).slice(0, 2)) {
+      add(GDACS_COLOR[e.alertLevel] || '#f5a623', `Cyclone ${e.name} (${e.alertLevel}), ${fmtInt(haversineKm(TN.lat, TN.lng, e.lat, e.lng))} km from central TN`, { key: 'gdacs', id: e.id }, 'GDACS');
+    }
+  }
+  const sea = (data.sea || []).filter((p) => Number.isFinite(p.peakM)).sort((a, b) => b.peakM - a.peakM)[0];
+  if (sea && sea.peakM >= 2.5) {
+    add(sea.peakM >= 4 ? '#ff9f0a' : '#ffd60a', `${sea.state} sea off ${str(sea.name, 30)}: waves up to ${num(sea.peakM, 1)} m on ${shortDate(sea.peakDate)}`, { key: 'sea', id: sea.id }, 'Wave model, next 48 h');
+  }
+  const tnFires = (data.fires || []).filter((f) => haversineKm(TN.lat, TN.lng, f.lat, f.lng) < 330);
+  if (tnFires.length >= 3) {
+    const big = tnFires.reduce((a, b) => ((b.frpMw || 0) > (a.frpMw || 0) ? b : a));
+    add('#ff9f0a', `${tnFires.length} fire hotspots in Tamil Nadu in 24 h`, { key: 'fires', id: big.id }, 'NASA FIRMS (VIIRS)');
+  }
+  const tnNews = (data.news || []).filter((n) => n.state === 'Tamil Nadu' || n.state === 'Puducherry');
+  if (tnNews.length) add('#9aa4b2', `${tnNews.length} Tamil Nadu headline${tnNews.length === 1 ? '' : 's'}: ${str(tnNews[0].title, 80)}`, { key: 'news', id: tnNews[0].id }, 'GDELT, unverified');
   const quakes = (data.quakes || []).filter((q) => q.mag >= 4.5 && haversineKm(TN.lat, TN.lng, q.lat, q.lng) < 1500);
   if (quakes.length) {
     const q = quakes.sort((a, b) => b.mag - a.mag)[0];

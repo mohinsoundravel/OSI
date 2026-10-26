@@ -4,6 +4,7 @@ import {
 } from './core.js';
 import { AIS_STATUS, shipTypeLabel } from './snapshots.js';
 import { SAT_CATS } from './satellites.js';
+import { describeCyclone, describeFire, describeNews, describeSea } from './hazards.js';
 
 /* ----- Embedded players: only URLs built here from validated IDs are ever framed. ----- */
 const YT_CHANNEL_RE = /^UC[A-Za-z0-9_-]{22}$/;
@@ -148,6 +149,22 @@ export const LAYERS = {
       ],
       url: it.sourceUrl
     })
+  },
+  cyclones: {
+    label: 'Cyclones', source: 'GDACS tracks via poller', color: '#ffd60a', size: 6, intervalMs: 5 * 60 * 1000, visible: true,
+    describe: (it) => describeCyclone(it)
+  },
+  sea: {
+    label: 'Sea state', source: 'Open-Meteo Marine via poller', color: '#5ac8fa', size: 5, intervalMs: 15 * 60 * 1000, visible: true,
+    describe: (it) => describeSea(it)
+  },
+  fires: {
+    label: 'Fires', source: 'NASA FIRMS (VIIRS, 24 h) via poller', color: '#ff9f0a', size: 3, intervalMs: 15 * 60 * 1000, visible: true,
+    describe: (it) => describeFire(it)
+  },
+  news: {
+    label: 'News', source: 'GDELT headlines via poller (unverified)', color: '#9aa4b2', size: 4, intervalMs: 15 * 60 * 1000, visible: true,
+    describe: (it) => describeNews(it)
   }
 };
 
@@ -286,10 +303,29 @@ export function autoBackendUrl() {
 
 export const backendBase = () => store.get('backendUrl', '') || autoBackendUrl();
 
+/* latest.json feeds several layers; one download serves them all for a minute. */
+const LATEST_TTL_MS = 60 * 1000;
+let latestAt = 0;
+let latestPromise = null;
+let latestCached = null;
+
+export function getLatest() {
+  if (latestCached && Date.now() - latestAt < LATEST_TTL_MS) return Promise.resolve(latestCached);
+  if (!latestPromise) {
+    latestPromise = (async () => {
+      const base = backendBase();
+      if (!base) throw new Error('no poller data URL set (Sources tab)');
+      const url = new URL(`${base.replace(/\/+$/, '')}/latest.json`);
+      url.searchParams.set('t', String(Math.floor(Date.now() / 60000)));
+      const json = await getJson(url.href);
+      latestCached = json;
+      latestAt = Date.now();
+      return json;
+    })().finally(() => { latestPromise = null; });
+  }
+  return latestPromise;
+}
+
 export async function fetchBackendAlerts() {
-  const base = backendBase();
-  if (!base) throw new Error('no poller data URL set (Sources tab)');
-  const url = new URL(`${base.replace(/\/+$/, '')}/latest.json`);
-  url.searchParams.set('t', String(Math.floor(Date.now() / 60000)));
-  return normalizeBackend(await getJson(url.href));
+  return normalizeBackend(await getLatest());
 }

@@ -10,11 +10,11 @@ import { openPanel } from './panels.js';
 
 const isHttps = (u) => typeof u === 'string' && /^https:\/\//.test(u);
 
-export function renderDetail({ kind, title, fields, url, severity, meta = [], image = null, imageLink = null, embed = null, chartSlot = false }) {
+export function renderDetail({ kind, title, fields, url, linkLabel = 'Source report', severity, meta = [], image = null, imageLink = null, embed = null, chartSlot = false }) {
   const el = $('detail');
   const rows = meta.concat(fields).map(([k, v]) => `<div class="kv"><span>${esc(k)}</span><span>${esc(v)}</span></div>`).join('');
   const link = isHttps(url)
-    ? `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">Source report</a>` : '<span></span>';
+    ? `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(linkLabel)}</a>` : '<span></span>';
   const media = isHttps(image) ? `
       <figure class="cam">
         <a href="${esc(isHttps(imageLink) ? imageLink : image)}" target="_blank" rel="noopener noreferrer">
@@ -66,7 +66,7 @@ export function showItemDetail(key, it) {
   selectedEventId = null;
   document.querySelectorAll('.ev.selected').forEach((n) => n.classList.remove('selected'));
   const d = LAYERS[key].describe(it);
-  renderDetail({ kind: LAYERS[key].label, title: d.title, fields: d.fields, url: d.url, image: d.image, imageLink: d.imageLink, embed: d.embed, chartSlot: key === 'alerts' });
+  renderDetail({ kind: LAYERS[key].label, title: d.title, fields: d.fields, url: d.url, linkLabel: d.linkLabel, image: d.image, imageLink: d.imageLink, embed: d.embed, chartSlot: key === 'alerts' });
   attachChart(key, it);
   placeSelector(it.lat, it.lng, it.altKm);
 }

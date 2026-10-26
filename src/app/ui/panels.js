@@ -31,7 +31,7 @@ export function closePanels() {
 }
 
 /* ----- Layer chips ----- */
-export const CHIP_LABEL = { flights: 'Flights', quakes: 'Quakes', gdacs: 'GDACS', eonet: 'Events', satellites: 'Satellites', webcams: 'Cams', live: 'Live', ships: 'Ships', alerts: 'India' };
+export const CHIP_LABEL = { flights: 'Flights', quakes: 'Quakes', gdacs: 'GDACS', eonet: 'Events', satellites: 'Satellites', webcams: 'Cams', live: 'Live', ships: 'Ships', cyclones: 'Cyclones', sea: 'Sea', fires: 'Fires', news: 'News', alerts: 'India' };
 
 export function buildChips() {
   $('chips').innerHTML = Object.entries(VIEWS).map(([k, v]) => `

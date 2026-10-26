@@ -62,7 +62,7 @@ export function updateStatus() {
 export function init() {
   /* ----- One-tap views: layers, camera and weather in a single tap ----- */
   VIEWS = {
-    tn: { label: 'TN Watch', layers: ['alerts', 'quakes', 'gdacs', 'eonet', 'ships', 'webcams', 'live'], fly: [10.9, 78.4, RADIUS + 11], weather: 'radar' },
+    tn: { label: 'TN Watch', layers: ['alerts', 'cyclones', 'sea', 'fires', 'news', 'quakes', 'gdacs', 'ships', 'webcams', 'live'], fly: [10.9, 78.4, RADIUS + 11], weather: 'radar' },
     airsea: { label: 'Air & Sea', layers: ['flights', 'ships', 'satellites', 'alerts'], fly: [15, 80, RADIUS + 45], weather: null },
     global: { label: 'Global', layers: Object.keys(LAYERS), fly: [18, 79, 330], weather: null }
   };

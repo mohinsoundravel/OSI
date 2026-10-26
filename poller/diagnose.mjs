@@ -52,7 +52,7 @@ async function probe(label, url) {
   const wrapped = { getText: async (url, o) => { const r = await http.getText(url, o); raw.push(r.text); return r; } };
   try {
     const r = await fetchNews({ http: wrapped, now: Date.now() });
-    console.log(`NEWS fetched ${r.fetched}, placed ${r.items.length}, errors ${JSON.stringify(r.errors)}`);
+    console.log(`NEWS fetched ${r.fetched}, placed ${r.items.length}, retries ${JSON.stringify(r.errors)}`);
     for (const i of r.items.slice(0, 15)) console.log(`  placed: ${i.category} | ${i.place} | ${i.title.slice(0, 100)}`);
   } catch (err) {
     console.log(`NEWS failed: ${err.message}`);
@@ -62,7 +62,7 @@ async function probe(label, url) {
     console.log(`  raw response: ${text.slice(0, 200).replace(/\s+/g, ' ')}`);
     let arts = [];
     try { arts = JSON.parse(text).articles || []; } catch { continue; }
-    for (const a of arts.slice(0, 12)) console.log(`    ${a.language} | cat=${categorize(a.title || '')} | place=${placeHeadline(a.title || '', gaz)?.name} | ${String(a.title).slice(0, 100)}`);
+    for (const a of arts.slice(0, 40)) console.log(`    ${a.language} | cat=${categorize(a.title || '')} | place=${placeHeadline(a.title || '', gaz)?.name} | ${String(a.title).slice(0, 100)}`);
   }
 }
 

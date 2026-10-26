@@ -4,6 +4,7 @@ import { $, DEMO, EMERGENCY_SQUAWKS, RADIUS, SEV_COLOR, destination, satLibOk } 
 import { LAYERS } from './layers.js';
 import { AIS_STATUS } from './snapshots.js';
 import { satCatalog, satrecFor } from './satellites.js';
+import { istText } from './hazards.js';
 import { demoSatellites } from './demo.js';
 import { data } from './state.js';
 import {
@@ -42,6 +43,13 @@ export function tagText(key, it) {
     case 'live': return clip(`LIVE \u00b7 ${it.channel}`, 26);
     case 'ships': return clip([it.name || `MMSI ${it.id}`, Number.isFinite(it.sog) && it.sog > 0.5 ? `${it.sog.toFixed(0)} kn` : AIS_STATUS[it.status]].filter(Boolean).join(' \u00b7 '), 30);
     case 'alerts': return clip((it.title || '').replace(/^Official: |^Derived: /, ''), 32);
+    case 'cyclones':
+      return it.kind === 'storm'
+        ? clip(`${it.name}${it.maxWindKmh ? ` \u00b7 ${it.maxWindKmh} km/h` : ''}`, 30)
+        : `${istText(it.t).replace(' IST', '')} \u00b7 ${it.cat || '?'}`;
+    case 'sea': return `${clip(it.name.replace(/\s*\(.*\)/, ''), 16)} \u00b7 ${Number.isFinite(it.peakM) ? it.peakM.toFixed(1) : '?'} m`;
+    case 'fires': return Number.isFinite(it.frpMw) ? `Fire \u00b7 ${Math.round(it.frpMw)} MW` : 'Fire';
+    case 'news': return clip(it.title || '', 34);
     default: return '';
   }
 }
@@ -68,6 +76,10 @@ function tagPriority(key, it, zoom) {
     case 'webcams': return zoom < 200 ? 30 : -1;
     case 'live': return zoom < 150 ? 85 : -1;
     case 'ships': return [2, 6, 14].includes(it.status) ? 550 : zoom < 140 ? 35 : -1;
+    case 'cyclones': return it.kind === 'storm' ? 520 : zoom < 200 ? 140 : -1;
+    case 'sea': return it.peakM >= 2.5 ? 260 : zoom < 150 ? 45 : -1;
+    case 'fires': return it.frpMw >= 50 && zoom < 120 ? 25 : -1;
+    case 'news': return it.category === 'security' && zoom < 220 ? 110 : zoom < 160 ? 50 + (it.sources || 1) : -1;
     default: return -1;
   }
 }

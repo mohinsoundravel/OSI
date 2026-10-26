@@ -9,6 +9,7 @@ import {
 } from './layers.js';
 import { parseFlightSnapshot, parseShipSnapshot, projectFlights, projectShips } from './snapshots.js';
 import { loadAllSatellites } from './satellites.js';
+import { fetchCycloneItems, fetchFireItems, fetchNewsItems, fetchSeaItems } from './hazards.js';
 
 export function flightColor(squawk, onGround, verticalRate) {
   if (squawk && EMERGENCY_SQUAWKS.includes(squawk)) return hexToRgb(SEV_COLOR.critical);
@@ -146,6 +147,10 @@ export function init() {
       }
       return [...byId.values()];
     },
-    alerts: fetchBackendAlerts
+    alerts: fetchBackendAlerts,
+    cyclones: fetchCycloneItems,
+    sea: fetchSeaItems,
+    fires: fetchFireItems,
+    news: fetchNewsItems
   };
 }
