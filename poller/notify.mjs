@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { SEVERITY_RANK } from './rules.mjs';
 
 const TELEGRAM_LIMIT = 3900;
@@ -26,28 +27,39 @@ const truncate = (s) => (s.length > TELEGRAM_LIMIT ? `${s.slice(0, TELEGRAM_LIMI
 /**
  * Critical and high alerts go out as individual messages; medium (and low, if
  * enabled) are grouped into a single digest. A hard per-run cap prevents a feed
- * glitch from flooding the chat.
+ * glitch from flooding the chat. Each message carries the alerts it covers, so
+ * feedback buttons can be attached.
  */
-export function buildMessages(alerts, { minSeverity = 'medium' } = {}) {
+export function buildAlertMessages(alerts, { minSeverity = 'medium' } = {}) {
   const floor = SEVERITY_RANK[minSeverity] ?? 1;
   const eligible = alerts.filter((a) => SEVERITY_RANK[a.severity] >= floor)
     .sort((x, y) => SEVERITY_RANK[y.severity] - SEVERITY_RANK[x.severity]);
   const urgent = eligible.filter((a) => SEVERITY_RANK[a.severity] >= SEVERITY_RANK.high);
   const rest = eligible.filter((a) => SEVERITY_RANK[a.severity] < SEVERITY_RANK.high);
 
-  const messages = urgent.slice(0, MAX_MESSAGES_PER_RUN - 1).map((a) => truncate(formatAlert(a)));
+  const messages = urgent.slice(0, MAX_MESSAGES_PER_RUN - 1).map((a) => ({ text: truncate(formatAlert(a)), alerts: [a] }));
   const overflow = urgent.slice(MAX_MESSAGES_PER_RUN - 1);
   const digestItems = [...overflow, ...rest];
   if (digestItems.length) {
     const body = digestItems.map((a) => `- ${ICON[a.severity]} ${a.title} (${a.origin})`).join('\n');
-    messages.push(truncate(`Monitor digest: ${digestItems.length} alert(s)\n${body}`));
+    messages.push({ text: truncate(`Monitor digest: ${digestItems.length} alert(s)\n${body}`), alerts: digestItems });
   }
   return messages;
 }
 
+export const buildMessages = (alerts, options) => buildAlertMessages(alerts, options).map((m) => m.text);
+
+/** Short id for a message's feedback buttons (Telegram allows 64 bytes of callback data). */
+export const feedbackId = (keys) => createHash('sha256').update(keys.join('|')).digest('hex').slice(0, 10);
+
+/** "Useful" / "Noise" buttons under an alert message; taps are read by the next poll. */
+export const feedbackKeyboard = (id) => ({
+  inline_keyboard: [[{ text: 'Useful', callback_data: `fb:u:${id}` }, { text: 'Noise', callback_data: `fb:n:${id}` }]]
+});
+
 export function createNotifier({ token, chatId, dryRun = false, log = () => {} }) {
   const enabled = Boolean(token && chatId);
-  async function send(text) {
+  async function send(text, { keyboard = null } = {}) {
     if (dryRun || !enabled) {
       log(`notify (${enabled ? 'dry-run' : 'disabled'}): ${text.split('\n')[0]}`);
       return true;
@@ -56,7 +68,7 @@ export function createNotifier({ token, chatId, dryRun = false, log = () => {} }
       const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: chatId, text, disable_web_page_preview: true }),
+        body: JSON.stringify({ chat_id: chatId, text, disable_web_page_preview: true, ...(keyboard ? { reply_markup: keyboard } : {}) }),
         signal: AbortSignal.timeout(15000)
       });
       if (!res.ok) {

@@ -277,6 +277,154 @@
   },
   "notify": {
     "minSeverity": "medium",
-    "dedupeDays": 3
+    "dedupeDays": 3,
+    "digestHour": 7,
+    "weeklyDay": "Sunday"
+  },
+  "sea": {
+    "_note": "Offshore points for the wave model, a few km out so they fall on sea grid cells. Thresholds are significant wave height in metres (WMO rough 2.5, very rough 4).",
+    "roughM": 2.5,
+    "veryRoughM": 4,
+    "points": [
+      {
+        "id": "pulicat",
+        "name": "Pulicat",
+        "lat": 13.42,
+        "lng": 80.42
+      },
+      {
+        "id": "chennai",
+        "name": "Chennai",
+        "lat": 13.08,
+        "lng": 80.4
+      },
+      {
+        "id": "mamallapuram",
+        "name": "Mamallapuram",
+        "lat": 12.62,
+        "lng": 80.3
+      },
+      {
+        "id": "puducherry",
+        "name": "Puducherry",
+        "lat": 11.93,
+        "lng": 79.92
+      },
+      {
+        "id": "cuddalore",
+        "name": "Cuddalore",
+        "lat": 11.72,
+        "lng": 79.88
+      },
+      {
+        "id": "nagapattinam",
+        "name": "Nagapattinam",
+        "lat": 10.77,
+        "lng": 79.95
+      },
+      {
+        "id": "point-calimere",
+        "name": "Point Calimere",
+        "lat": 10.22,
+        "lng": 79.95
+      },
+      {
+        "id": "rameswaram",
+        "name": "Rameswaram (Gulf of Mannar)",
+        "lat": 9.15,
+        "lng": 79.35
+      },
+      {
+        "id": "thoothukudi",
+        "name": "Thoothukudi",
+        "lat": 8.75,
+        "lng": 78.3
+      },
+      {
+        "id": "kanyakumari",
+        "name": "Kanyakumari",
+        "lat": 7.98,
+        "lng": 77.55
+      },
+      {
+        "id": "colachel",
+        "name": "Colachel",
+        "lat": 8.1,
+        "lng": 77.2
+      }
+    ]
+  },
+  "cyclones": {
+    "_note": "North Indian Ocean cyclones from GDACS. An alert when the forecast track passes within withinKm of any sea point.",
+    "withinKm": 400
+  },
+  "fires": {
+    "_note": "Watched forest areas for NASA FIRMS hotspots (VIIRS, 24 h). An alert when an area has at least minDetections; three times that is high severity.",
+    "minDetections": 3,
+    "areas": [
+      {
+        "id": "nilgiris",
+        "name": "Nilgiris and Mudumalai",
+        "lat": 11.5,
+        "lng": 76.6,
+        "radiusKm": 30
+      },
+      {
+        "id": "sathyamangalam",
+        "name": "Sathyamangalam",
+        "lat": 11.62,
+        "lng": 77.25,
+        "radiusKm": 35
+      },
+      {
+        "id": "anamalai",
+        "name": "Anamalai",
+        "lat": 10.4,
+        "lng": 77.0,
+        "radiusKm": 30
+      },
+      {
+        "id": "palani-hills",
+        "name": "Palani hills and Kodaikanal",
+        "lat": 10.25,
+        "lng": 77.45,
+        "radiusKm": 30
+      },
+      {
+        "id": "megamalai",
+        "name": "Megamalai and Theni hills",
+        "lat": 9.7,
+        "lng": 77.4,
+        "radiusKm": 30
+      },
+      {
+        "id": "kalakad",
+        "name": "Kalakad-Mundanthurai",
+        "lat": 8.6,
+        "lng": 77.35,
+        "radiusKm": 30
+      },
+      {
+        "id": "shevaroy-kalrayan",
+        "name": "Shevaroy and Kalrayan hills",
+        "lat": 11.8,
+        "lng": 78.5,
+        "radiusKm": 30
+      },
+      {
+        "id": "javadhu",
+        "name": "Javadhu hills",
+        "lat": 12.55,
+        "lng": 78.85,
+        "radiusKm": 25
+      }
+    ]
+  },
+  "news": {
+    "_note": "Indian headlines from GDELT, shown on the dashboard and in digests only (never alerts).",
+    "enabled": true
+  },
+  "ruleOverrides": {
+    "_note": "Per-rule notification limits: {\"<rule>\": {\"minSeverity\": \"high\"}} or {\"enabled\": false}. Alerts are still recorded and shown on the dashboard. Rule ids: sachet_official, river_discharge, rain_imd_category, heat_imd_criteria, reservoir_release, reservoir_full, gdacs_level, usgs_quake, flight_squawk, cyclone_track, sea_state, forest_fire."
   }
 }

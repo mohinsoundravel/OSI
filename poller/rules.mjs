@@ -1,6 +1,9 @@
 import { zonesForArea, zonesForPoint } from './lib/geo.mjs';
 import { assessRiver, assessHeat, assessRain } from './sources/openmeteo.mjs';
 import { assessReservoir } from './sources/reservoirs.mjs';
+import { assessSea } from './sources/marine.mjs';
+import { assessFires } from './sources/fires.mjs';
+import { closestApproach } from './sources/cyclones.mjs';
 
 export const SEVERITY_RANK = { low: 0, medium: 1, high: 2, critical: 3 };
 
@@ -178,6 +181,57 @@ export function evaluate({ config, data, normals }) {
       title: `M${q.mag.toFixed(1)} earthquake: ${q.place}`,
       summary: `Depth ${Number.isFinite(q.depthKm) ? q.depthKm.toFixed(0) : '?'} km.${q.tsunami ? ' USGS tsunami flag set.' : ''}`,
       source: 'USGS', sourceUrl: q.url, lat: q.lat, lng: q.lng, zones: zoneNames(hit)
+    });
+  }
+
+  /* Derived from a forecast track: a North Indian Ocean cyclone forecast to pass near the
+     watched coast (closest approach to any sea-state point), with estimated landfall. */
+  const istText = (iso) => {
+    const d = new Date(Date.parse(iso) + 5.5 * 3600 * 1000);
+    return Number.isFinite(d.getTime()) ? `${d.toISOString().slice(8, 10)}/${d.toISOString().slice(5, 7)} ${d.toISOString().slice(11, 16)} IST` : '?';
+  };
+  const coastPlaces = config.cyclones?.places || config.sea?.points || [];
+  const withinKm = config.cyclones?.withinKm ?? 400;
+  for (const c of data.cyclones || []) {
+    if (!c.track?.length || !coastPlaces.length) continue;
+    const near = closestApproach(c.track, coastPlaces);
+    if (!near || near.km > withinKm) continue;
+    /* Distance decides severity; GDACS level changes are already alerted by the GDACS rule. */
+    const tier = near.km <= 150 ? 150 : near.km <= 300 ? 300 : withinKm;
+    const severity = tier === 150 ? 'high' : 'medium';
+    const landfall = c.landfall ? ` Estimated landfall near ${c.landfall.near} around ${istText(c.landfall.at)}.` : '';
+    out.push({
+      key: `cyclone:${c.eventId}:${tier}`,
+      rule: 'cyclone_track', origin: 'derived', kind: 'cyclone', severity,
+      title: `Cyclone ${c.name}: forecast within ${near.km} km of ${near.place}`,
+      summary: `${c.severityText || 'Tropical cyclone'} (GDACS ${c.alertLevel}). Closest approach about ${istText(near.at)}.${landfall} ${c.source} forecast track via GDACS; follow IMD/RSMC New Delhi bulletins for official warnings.`,
+      source: `GDACS (${c.source} track)`, sourceUrl: c.url || 'https://www.gdacs.org',
+      lat: c.lat, lng: c.lng, zones: zoneNames(zonesForPoint(c.lat, c.lng, zones))
+    });
+  }
+
+  /* Derived: rough or very rough sea forecast along the coast (one alert for the coast). */
+  const sea = assessSea(data.sea || [], config.sea);
+  if (sea) {
+    out.push({
+      key: `sea:coast:${sea.severity}:${sea.date}`,
+      rule: 'sea_state', origin: 'derived', kind: 'sea', severity: sea.severity,
+      title: `${sea.severity === 'high' ? 'Very rough' : 'Rough'} sea forecast: ${sea.worst.name} ${sea.worst.peakM} m`,
+      summary: `Maximum wave height on ${sea.date}: ${sea.points.slice(0, 6).join(', ')}. Wave model forecast (Open-Meteo Marine), not an INCOIS warning.`,
+      source: 'Open-Meteo Marine', sourceUrl: 'https://open-meteo.com/en/docs/marine-weather-api',
+      lat: sea.worst.lat, lng: sea.worst.lng, zones: zoneNames(zonesForPoint(sea.worst.lat, sea.worst.lng, zones))
+    });
+  }
+
+  /* Derived: satellite hotspots clustered in a watched forest area. */
+  for (const f of assessFires(data.fires || [], config.fires?.areas || [], config.fires)) {
+    out.push({
+      key: `fire:${f.area.id}:${f.severity}:${String(f.latest).slice(0, 10)}`,
+      rule: 'forest_fire', origin: 'derived', kind: 'fire', severity: f.severity,
+      title: `Fire hotspots: ${f.area.name} (${f.count} in 24 h)`,
+      summary: `${f.count} VIIRS detections within ${f.area.radiusKm} km, total radiative power ${f.totalFrpMw} MW, latest ${f.latest.slice(0, 16).replace('T', ' ')} UTC. Hotspots can also be crop burning or other heat sources.`,
+      source: 'NASA FIRMS (VIIRS)', sourceUrl: 'https://firms.modaps.eosdis.nasa.gov/map/',
+      lat: f.lat, lng: f.lng, zones: zoneNames(zonesForPoint(f.lat, f.lng, zones))
     });
   }
 

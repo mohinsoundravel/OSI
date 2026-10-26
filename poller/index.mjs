@@ -21,20 +21,26 @@ import { fetchFlights, expandFlights, FLIGHT_FIELDS } from './sources/flights.mj
 import { fetchTle } from './sources/tle.mjs';
 import { fetchReservoirs, reservoirLayer, addToHistory, backfillHistory } from './sources/reservoirs.mjs';
 import { listenShips, mergeShips, SHIP_FIELDS } from './sources/ships.mjs';
+import { fetchCyclones } from './sources/cyclones.mjs';
+import { fetchMarine } from './sources/marine.mjs';
+import { fetchFires, assessFires, FIRE_FIELDS } from './sources/fires.mjs';
+import { fetchNews } from './sources/news.mjs';
 import { evaluate, SEVERITY_RANK } from './rules.mjs';
-import { buildMessages, createNotifier, heartbeat } from './notify.mjs';
+import { buildAlertMessages, createNotifier, feedbackId, feedbackKeyboard, heartbeat } from './notify.mjs';
 import { handleCommands, registerCommands } from './commands.mjs';
+import { filterForNotify, rememberRefs, recordFeedback, pruneFeedback, muteCommand, buildWeeklyReview } from './feedback.mjs';
+import { buildMorningDigest, buildWeeklyBrief, digestDue, weeklyDue, updateDailyLog, isoWeek } from './digest.mjs';
 
 const DAY_MS = 24 * 3600 * 1000;
 const BASE_HOSTS = [
   'sachet.ndma.gov.in', 'flood-api.open-meteo.com', 'api.open-meteo.com',
   'www.gdacs.org', 'earthquake.usgs.gov', 'opensky-network.org', 'celestrak.org', 'www.amsat.org',
-  'tnagriculture.in', 'db.satnogs.org'
+  'tnagriculture.in', 'db.satnogs.org', 'marine-api.open-meteo.com', 'firms.modaps.eosdis.nasa.gov', 'api.gdeltproject.org'
 ];
 const DEGRADED_AFTER_FAILURES = 3;
 /* Auxiliary sources feed the dashboard but are not safety-critical: their failures
    never trigger degraded notices or count toward "every source failed". */
-const AUXILIARY = new Set(['flights', 'satellites', 'ships']);
+const AUXILIARY = new Set(['flights', 'satellites', 'ships', 'news', 'fires']);
 const MAX_EVENTS = 500;
 const MAX_RING_VERTICES = 160;
 /* Bump when the shape of persisted alerts changes. A mismatch re-parses SACHET and
@@ -151,6 +157,21 @@ export async function run(options = {}) {
     ...(config.satellites?.enabled === false ? {} : {
       /* tleCatalog 2 = all active satellites; an older snapshot is replaced immediately. */
       satellites: () => fetchTle({ http, lastFetchedAt: state.tleFetchedAt && state.tleCatalog === 2 ? Date.parse(state.tleFetchedAt) : 0, now, log })
+    }),
+    ...(config.cyclones?.enabled === false ? {} : {
+      cyclones: () => fetchCyclones({ http, cache: state.cycloneCache || {}, now, log })
+    }),
+    ...(config.sea?.enabled === false || !(config.sea?.points || []).length ? {} : {
+      sea: () => fetchMarine({ http, points: config.sea.points, lastFetchedAt: state.seaFetchedAt ? Date.parse(state.seaFetchedAt) : 0, now })
+    }),
+    ...(config.fires?.enabled === false ? {} : {
+      fires: () => fetchFires({ http, lastFetchedAt: state.firesFetchedAt ? Date.parse(state.firesFetchedAt) : 0, now })
+    }),
+    ...(config.news?.enabled === false ? {} : {
+      news: async () => fetchNews({
+        http, previous: (await readJson(path.join(dataDir, 'news.json'), {}).catch(() => ({}))).items || [],
+        lastFetchedAt: state.newsFetchedAt ? Date.parse(state.newsFetchedAt) : 0, now, gapMs: options.fixturesDir ? 0 : undefined
+      })
     })
   };
 
@@ -260,6 +281,38 @@ export async function run(options = {}) {
     await writeJsonAtomic(path.join(dataDir, 'tle.json'), { schema: 1, fetchedAt: state.tleFetchedAt, source: data.satellites[0]?.source || 'CelesTrak', groups: data.satellites });
   }
 
+  /* Cyclones: GDACS list every run; geometry only when an advisory (episode) changes. */
+  if (data.cyclones) {
+    state.cycloneCache = data.cyclones.cache;
+    state.cycloneSnapshot = data.cyclones.storms;
+  }
+  layerData.cyclones = state.cycloneSnapshot || [];
+  /* Sea state: hourly; reused in between. */
+  if (data.sea) {
+    state.seaSnapshot = data.sea;
+    state.seaFetchedAt = new Date(now).toISOString();
+  }
+  layerData.sea = state.seaSnapshot || [];
+  /* Fires: hourly; the published file is the snapshot between fetches. */
+  const firesFile = path.join(dataDir, 'fires.json');
+  if (data.fires) {
+    state.firesFetchedAt = new Date(now).toISOString();
+    await writeJsonAtomic(firesFile, {
+      schema: 1, fetchedAt: state.firesFetchedAt, source: 'NASA FIRMS (VIIRS, South Asia, last 24 h)',
+      satellites: data.fires.satellites, fields: FIRE_FIELDS, rows: data.fires.rows
+    });
+  }
+  const firesSnap = data.fires ? { rows: data.fires.rows, fetchedAt: state.firesFetchedAt } : await readJson(firesFile, { rows: [] }).catch(() => ({ rows: [] }));
+  layerData.fires = firesSnap.rows || [];
+  /* News: hourly; items older than 48 h drop out. */
+  const newsFile = path.join(dataDir, 'news.json');
+  if (data.news) {
+    state.newsFetchedAt = new Date(now).toISOString();
+    await writeJsonAtomic(newsFile, { schema: 1, fetchedAt: state.newsFetchedAt, source: 'GDELT DOC 2.0 (headlines, unverified)', items: data.news.items });
+    log(`news: ${data.news.fetched} articles, ${data.news.items.length} placed${data.news.errors.length ? `; ${data.news.errors.join('; ')}` : ''}`);
+  }
+  const newsItems = data.news ? data.news.items : (await readJson(newsFile, { items: [] }).catch(() => ({ items: [] }))).items || [];
+
   const candidates = evaluate({ config, data: layerData, normals });
 
   /* De-duplicate: each key notifies once per window; escalations carry a new key. */
@@ -278,8 +331,9 @@ export async function run(options = {}) {
   }
   const keptEvents = events.filter((e) => now - Date.parse(e.detectedAt) < 7 * DAY_MS).slice(0, MAX_EVENTS);
 
-  /* Notifications. */
+  /* Notifications. Config overrides and /mute hold some back; they are still recorded. */
   const notifier = createNotifier({ token: options.telegramToken, chatId: options.telegramChatId, dryRun: options.dryRun, log });
+  pruneFeedback(state, now);
   const messages = [];
   if (firstRun) {
     const top = [...candidates].sort((a, b) => SEVERITY_RANK[b.severity] - SEVERITY_RANK[a.severity]).slice(0, 10);
@@ -290,7 +344,13 @@ export async function run(options = {}) {
     ].join('\n'));
     state.initialized = true;
   } else {
-    messages.push(...buildMessages(fresh, config.notify));
+    const { notify, held } = filterForNotify(fresh, { overrides: config.ruleOverrides || {}, mutes: state.mutes || {}, now });
+    if (held.length) log(`held back ${held.length} alert(s): ${[...new Set(held.map((h) => h.heldBy))].join('; ')}`);
+    for (const m of buildAlertMessages(notify, config.notify)) {
+      const id = feedbackId(m.alerts.map((a) => a.key));
+      rememberRefs(state, id, m.alerts, now);
+      messages.push({ text: m.text, keyboard: feedbackKeyboard(id) });
+    }
   }
 
   for (const name of names) {
@@ -306,7 +366,7 @@ export async function run(options = {}) {
   }
 
   let sent = 0;
-  for (const m of messages) if (await notifier.send(m)) sent++;
+  for (const m of messages) if (typeof m === 'string' ? await notifier.send(m) : await notifier.send(m.text, { keyboard: m.keyboard })) sent++;
 
   /* Outputs for the dashboard. */
   const failedSet = new Set(failures);
@@ -337,7 +397,20 @@ export async function run(options = {}) {
       heat: heatLayer,
       heatRaw: layerData.heat,
       reservoirs: layerData.reservoirs,
-      rain: layerData.rain
+      rain: layerData.rain,
+      cyclones: layerData.cyclones,
+      sea: layerData.sea,
+      fires: {
+        fetchedAt: firesSnap.fetchedAt || null, count: layerData.fires.length,
+        areas: assessFires(layerData.fires, config.fires?.areas || [], { minDetections: 1 }).map((a) => ({ id: a.area.id, name: a.area.name, count: a.count }))
+      },
+      news: {
+        fetchedAt: state.newsFetchedAt || null, count: newsItems.length,
+        tnCount: newsItems.filter((n) => n.state === 'Tamil Nadu' || n.state === 'Puducherry').length,
+        byCategory: newsItems.reduce((acc, n) => ({ ...acc, [n.category]: (acc[n.category] || 0) + 1 }), {}),
+        top: [...newsItems].sort((a, b) => (b.sources || 1) - (a.sources || 1) || b.at.localeCompare(a.at)).slice(0, 5)
+          .map(({ title, place, domain, url }) => ({ title, place, domain, url }))
+      }
     },
     active: candidates.map((c) => ({ ...c, polygons: undefined, circles: undefined }))
   };
@@ -351,21 +424,61 @@ export async function run(options = {}) {
   latest.heartbeat = beat;
   latest.notifications = { telegramConfigured: notifier.enabled, attempted: messages.length, sent };
 
-  /* Telegram commands (/status, /alerts, /dams, /rain) from the owner's chat, answered with this run's data. */
+  /* Daily log (input to the weekly brief), updated every run. */
+  const logFile = path.join(dataDir, 'weekly-log.json');
+  const dailyLog = updateDailyLog(await readJson(logFile, null).catch(() => null), { latest: { ...latest, layers: { ...latest.layers, quakes: layerData.quakes, gdacs: layerData.gdacs, news: { items: newsItems } } }, events: keptEvents, now });
+  await writeJsonAtomic(logFile, dailyLog);
+
+  const repo = options.repository || null;
+  const dashboardUrl = repo ? `https://${repo.split('/')[0].toLowerCase()}.github.io/${repo.split('/')[1]}/` : null;
+  const briefUrl = (week) => (repo ? `https://github.com/${repo}/blob/data/briefs/${week}.md` : `briefs/${week}.md`);
+  const digestText = () => buildMorningDigest({ latest, events: keptEvents, state, config, now, dashboardUrl });
+  const reviewText = () => buildWeeklyReview({ events: keptEvents, state, now });
+  const scheduled = { digest: false, weekly: false };
+
+  /* Weekly brief and alert review (default Sunday morning), then the morning digest. */
+  if (weeklyDue(state, now, config.notify)) {
+    const brief = buildWeeklyBrief({ log: dailyLog, now, dashboardUrl });
+    await mkdir(path.join(dataDir, 'briefs'), { recursive: true });
+    await writeFile(path.join(dataDir, 'briefs', `${brief.week}.md`), brief.markdown);
+    const index = await readJson(path.join(dataDir, 'briefs', 'index.json'), { briefs: [] }).catch(() => ({ briefs: [] }));
+    index.briefs = [{ week: brief.week, file: `${brief.week}.md`, at: new Date(now).toISOString() }, ...index.briefs.filter((b) => b.week !== brief.week)].slice(0, 104);
+    await writeJsonAtomic(path.join(dataDir, 'briefs', 'index.json'), index);
+    state.lastBrief = brief.week;
+    if (await notifier.send(`${reviewText()}\n\nWeekly disaster brief: ${briefUrl(brief.week)}`)) sent++;
+    state.weeklyWeek = isoWeek(now);
+    scheduled.weekly = true;
+  }
+  if (digestDue(state, now, config.notify) && !firstRun) {
+    if (await notifier.send(digestText())) sent++;
+    state.digestDate = latest.generatedAt ? new Date(now + 5.5 * 3600 * 1000).toISOString().slice(0, 10) : state.digestDate;
+    state.digestAt = new Date(now).toISOString();
+    scheduled.digest = true;
+  }
+  latest.notifications.scheduled = scheduled;
+  latest.notifications.sent = sent;
+
+  /* Telegram commands and feedback buttons from the owner's chat, answered with this run's data. */
   if (notifier.enabled && !options.dryRun) {
-    if (state.telegramCommandsVersion !== 1 && await registerCommands({ token: options.telegramToken, fetchImpl: options.telegramFetch })) state.telegramCommandsVersion = 1;
+    if (state.telegramCommandsVersion !== 2 && await registerCommands({ token: options.telegramToken, fetchImpl: options.telegramFetch })) state.telegramCommandsVersion = 2;
     const cmd = await handleCommands({
       token: options.telegramToken, chatId: options.telegramChatId, offset: state.telegramOffset || 0,
-      latest, send: notifier.send, fetchImpl: options.telegramFetch, log
+      latest, send: notifier.send, fetchImpl: options.telegramFetch, log,
+      ctx: {
+        digest: digestText, review: reviewText, briefUrl: state.lastBrief ? briefUrl(state.lastBrief) : null,
+        mute: (text) => muteCommand(state, text, now)
+      }
     });
     state.telegramOffset = cmd.offset;
     latest.notifications.commandsAnswered = cmd.handled;
+    latest.notifications.feedbackRecorded = recordFeedback(state, cmd.feedback, now);
   }
+  latest.mutes = Object.fromEntries(Object.entries(state.mutes || {}).filter(([, u]) => Date.parse(u) > now));
 
   await writeJsonAtomic(path.join(dataDir, 'latest.json'), latest);
   await writeJsonAtomic(path.join(dataDir, 'events.json'), keptEvents);
   await writeJsonAtomic(path.join(dataDir, 'state.json'), state);
-  return { allFailed, failures: [...failedSet], candidates, fresh, messages, latest };
+  return { allFailed, failures: [...failedSet], candidates, fresh, messages: messages.map((m) => (typeof m === 'string' ? m : m.text)), latest };
 }
 
 const isMain = process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href;
@@ -389,7 +502,8 @@ if (isMain) {
     telegramToken: process.env.TELEGRAM_BOT_TOKEN,
     telegramChatId: process.env.TELEGRAM_CHAT_ID,
     healthcheckUrl: process.env.HEALTHCHECK_URL,
-    aisKey: process.env.AISSTREAM_API_KEY || null
+    aisKey: process.env.AISSTREAM_API_KEY || null,
+    repository: process.env.GITHUB_REPOSITORY || null
   }).then((r) => {
     process.exitCode = r.allFailed ? 1 : 0;
   }).catch(async (err) => {

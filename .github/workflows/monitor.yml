@@ -125,6 +125,8 @@ jobs:
           rm -rf .git
           git init -q -b "$DATA_BRANCH"
           git add -- *.json
+          # Weekly disaster briefs (Markdown) and their index.
+          if [ -d briefs ]; then git add -- briefs; fi
           git -c user.name='github-actions[bot]' \
               -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
               commit -q -m "data: $(date -u +%Y-%m-%dT%H:%M:%SZ) (run ${GITHUB_RUN_ID})"

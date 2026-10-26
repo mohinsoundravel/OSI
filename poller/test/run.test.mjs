@@ -52,6 +52,28 @@ test('end to end: baseline first, then only new or escalated alerts', async () =
     assert.ok(!keys.some((k) => k.includes('555') || k.includes('chile')), 'out-of-zone events ignored');
     assert.ok(!keys.some((k) => k.startsWith('river:mullaperiyar')), 'flat river does not alert');
     assert.ok(!keys.some((k) => k.startsWith('river:adyar')), 'small stream below floor does not alert');
+    assert.ok(keys.includes('cyclone:1000123:150'), 'cyclone forecast track passes within 150 km of the Chennai sea point');
+    const cyc = r1.candidates.find((c) => c.key === 'cyclone:1000123:150');
+    assert.match(cyc.summary, /landfall near (Pulicat|Chennai)/, 'landfall estimated where the track crosses the coastline');
+    assert.ok(keys.includes('sea:coast:medium:2026-10-24'), 'rough sea (3.1 m) off Chennai, one alert for the coast');
+    assert.ok(keys.some((k) => k.startsWith('fire:megamalai:medium:')), 'three hotspots in Megamalai after dropping low confidence and merging satellites');
+    assert.ok(!keys.some((k) => k.startsWith('fire:nilgiris')), 'a single hotspot does not alert');
+    const latest1 = JSON.parse(await readFile(path.join(env.dataDir, 'latest.json'), 'utf8'));
+    const storm = latest1.layers.cyclones[0];
+    assert.equal(storm.name, 'MONTHA');
+    assert.equal(storm.track.length, 6);
+    assert.equal(storm.track.filter((p) => p.forecast).length, 5, 'points after the advisory time are forecasts');
+    assert.ok(storm.cone.length > 3);
+    assert.equal(latest1.layers.sea.find((p) => p.id === 'chennai').state, 'Rough');
+    const fires = JSON.parse(await readFile(path.join(env.dataDir, 'fires.json'), 'utf8'));
+    assert.equal(fires.rows.length, 6, 'low-confidence, malformed, out-of-area and same-cell rows dropped');
+    const news = JSON.parse(await readFile(path.join(env.dataDir, 'news.json'), 'utf8'));
+    const titles = news.items.map((n) => `${n.place}|${n.category}`).sort();
+    assert.deepEqual(titles, ['Chennai|hazard', 'Erode|accident', 'Jiribam|unrest', 'Kakinada|hazard'],
+      'placed by the most specific place; unplaced, Bay of Bengal, verb "erode", non-https-or-http and non-English dropped');
+    assert.equal(news.items.find((n) => n.place === 'Chennai').sources, 2, 'near-duplicate headline merged');
+    const log = JSON.parse(await readFile(path.join(env.dataDir, 'weekly-log.json'), 'utf8'));
+    assert.equal(log.days.length, 1);
     assert.equal(r1.messages.length, 1);
     assert.match(r1.messages[0], /monitor started/i);
 

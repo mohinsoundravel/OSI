@@ -459,3 +459,153 @@ test('TLE fallback: SatNOGS records convert to three-line text', async () => {
   assert.equal(text, `ISS (ZARYA)\n${l1}\n${l2}`);
   assert.equal(satnogsToTle({ detail: 'error' }), '');
 });
+
+test('notification filter: config overrides and mutes hold alerts back without dropping them', async () => {
+  const { filterForNotify } = await import('../feedback.mjs');
+  const now = Date.parse('2026-10-23T06:00:00Z');
+  const alerts = [
+    { key: 'a', rule: 'rain_imd_category', severity: 'medium' },
+    { key: 'b', rule: 'rain_imd_category', severity: 'high' },
+    { key: 'c', rule: 'reservoir_full', severity: 'medium' },
+    { key: 'd', rule: 'usgs_quake', severity: 'high' },
+    { key: 'e', rule: 'sachet_official', severity: 'high' }
+  ];
+  const { notify, held } = filterForNotify(alerts, {
+    overrides: { rain_imd_category: { minSeverity: 'high' }, reservoir_full: { enabled: false }, _note: 'ignored' },
+    mutes: { quake: '2026-10-25T00:00:00Z', sachet: '2026-10-20T00:00:00Z' },
+    now
+  });
+  assert.deepEqual(notify.map((a) => a.key), ['b', 'e'], 'expired mute no longer applies');
+  assert.deepEqual(held.map((a) => [a.key, a.heldBy]), [['a', 'below high'], ['c', 'disabled in config'], ['d', 'muted until 2026-10-25']]);
+});
+
+test('mute commands: bounded duration, listing and unmute', async () => {
+  const { muteCommand } = await import('../feedback.mjs');
+  const state = {};
+  const now = Date.parse('2026-10-23T06:00:00Z');
+  assert.match(muteCommand(state, '/mute rain 3', now), /Muted for 3 day\(s\): District rain forecasts/);
+  assert.equal(state.mutes.rain, '2026-10-26T06:00:00.000Z');
+  assert.match(muteCommand(state, '/mute@OsiBot quake 400', now), /Muted for 30 day/, 'capped at 30 days');
+  assert.match(muteCommand(state, '/muted', now), /rain until 2026-10-26 06:00 UTC[\s\S]*quake/);
+  assert.match(muteCommand(state, '/unmute rain', now), /Unmuted/);
+  assert.match(muteCommand(state, '/mute everything', now), /Usage: \/mute <group>[\s\S]*Groups: sachet, river, rain/);
+  assert.ok(!state.mutes.everything);
+});
+
+test('feedback buttons: owner taps are recorded and the keyboard is replaced; others ignored', async () => {
+  const { handleCommands } = await import('../commands.mjs');
+  const { recordFeedback, rememberRefs, buildWeeklyReview } = await import('../feedback.mjs');
+  const calls = [];
+  const updates = [
+    { update_id: 5, callback_query: { id: 'q1', data: 'fb:n:0123456789', message: { message_id: 77, chat: { id: 979 } } } },
+    { update_id: 6, callback_query: { id: 'q2', data: 'fb:u:0123456789', message: { message_id: 78, chat: { id: 111 } } } },
+    { update_id: 7, callback_query: { id: 'q3', data: 'fb:n:../../etc', message: { message_id: 79, chat: { id: 979 } } } }
+  ];
+  const fetchImpl = async (url, init) => {
+    if (/getUpdates/.test(url)) {
+      assert.match(url, /allowed_updates=%5B%22message%22%2C%22callback_query%22%5D/);
+      return new Response(JSON.stringify({ ok: true, result: updates }));
+    }
+    calls.push([url.split('/').pop(), JSON.parse(init.body)]);
+    return new Response('{"ok":true}');
+  };
+  const r = await handleCommands({ token: 'T', chatId: '979', offset: 5, latest: {}, send: async () => {}, fetchImpl });
+  assert.equal(r.offset, 8);
+  assert.deepEqual(r.feedback, [{ verdict: 'n', id: '0123456789' }]);
+  assert.deepEqual(calls.map((c) => c[0]), ['editMessageReplyMarkup', 'answerCallbackQuery']);
+  assert.equal(calls[0][1].reply_markup.inline_keyboard[0][0].text, 'Marked as noise');
+
+  const now = Date.parse('2026-10-25T02:00:00Z');
+  const state = {};
+  rememberRefs(state, '0123456789', [{ key: 'rain:nilgiris:medium:2026-10-24', rule: 'rain_imd_category', title: 'Very heavy rain forecast: Nilgiris' }], now);
+  for (const id of ['aaaaaaaaaa', 'bbbbbbbbbb']) rememberRefs(state, id, [{ key: `rain:x${id}`, rule: 'rain_imd_category', title: 'x' }], now);
+  assert.equal(recordFeedback(state, [...r.feedback, { verdict: 'n', id: 'aaaaaaaaaa' }, { verdict: 'u', id: 'bbbbbbbbbb' }, { verdict: 'n', id: 'unknown000' }], now), 3);
+  const events = Array.from({ length: 5 }, (_, i) => ({ id: `rain:nilgiris:medium:2026-10-2${i}`, rule: 'rain_imd_category', detectedAt: '2026-10-24T00:00:00Z', baseline: false }));
+  events.push({ id: 'usgs:1', rule: 'usgs_quake', detectedAt: '2026-10-10T00:00:00Z', baseline: false });
+  const review = buildWeeklyReview({ events, state, now });
+  assert.match(review, /District rain forecasts: 5 \/ 1 \/ 2/);
+  assert.match(review, /2 of 3 rated noise\. Consider setting ruleOverrides\.rain_imd_category\.minSeverity to "high"/);
+  assert.match(review, /most frequent: rain:nilgiris, 5x/);
+  assert.match(review, /\/mute rain 7/);
+  assert.ok(!/Earthquakes/.test(review), 'events older than 7 days are not counted');
+});
+
+test('digest and weekly schedule in IST; digest and brief built from published data', async () => {
+  const { digestDue, weeklyDue, isoWeek, buildMorningDigest, updateDailyLog, buildWeeklyBrief } = await import('../digest.mjs');
+  assert.equal(digestDue({}, Date.parse('2026-10-23T01:00:00Z')), false, '06:30 IST is too early');
+  assert.equal(digestDue({}, Date.parse('2026-10-23T01:31:00Z')), true, '07:01 IST');
+  assert.equal(digestDue({ digestDate: '2026-10-23' }, Date.parse('2026-10-23T05:00:00Z')), false, 'once a day');
+  assert.equal(weeklyDue({}, Date.parse('2026-10-25T02:00:00Z')), true, 'Sunday 07:30 IST');
+  assert.equal(weeklyDue({}, Date.parse('2026-10-24T02:00:00Z')), false, 'Saturday');
+  assert.equal(weeklyDue({ weeklyWeek: '2026-W43' }, Date.parse('2026-10-25T02:00:00Z')), false);
+  assert.equal(isoWeek(Date.parse('2026-10-25T02:00:00Z')), '2026-W43');
+  assert.equal(isoWeek(Date.parse('2026-12-31T20:00:00Z')), '2026-W53', 'IST date is 1 January 2027, still ISO week 53 of 2026');
+
+  const latest = {
+    active: [{ severity: 'high' }, { severity: 'medium' }],
+    health: { sachet: { ok: true }, news: { ok: false } },
+    layers: {
+      cyclones: [{ eventId: '1', name: 'MONTHA', alertLevel: 'Orange', maxWindKmh: 120, lat: 14.5, lng: 86, track: [{ t: '2026-10-23T00:00:00Z', lat: 14.5, lng: 86 }, { t: '2026-10-25T00:00:00Z', lat: 13.2, lng: 79.8 }], landfall: { near: 'Pulicat', at: '2026-10-24T20:00:00Z' } }],
+      reservoirs: { date: '2026-10-23', items: [{ name: 'Mettur', levelFt: 100, fullFt: 120, pctDepth: 83, outflow: 22000 }] },
+      rain: [{ name: 'Chennai', state: 'Tamil Nadu', next72: 180 }, { name: 'Wayanad', state: 'Kerala', next72: 300 }],
+      sea: [{ name: 'Chennai', peakM: 3.1 }],
+      fires: { count: 4200, areas: [{ name: 'Megamalai', count: 3 }] },
+      news: { count: 12, tnCount: 2, top: [{ title: 'Heavy rain floods Chennai', place: 'Chennai', domain: 'example.in' }], items: [] },
+      quakes: [{ id: 'q1', mag: 4.8, place: 'Andaman Islands', url: 'https://earthquake.usgs.gov/q1' }],
+      gdacs: []
+    }
+  };
+  const events = [{ id: 'x', title: 'Large release: Mettur dam', severity: 'high', rule: 'reservoir_release', origin: 'derived', detectedAt: '2026-10-22T22:00:00Z', baseline: false }];
+  const digest = buildMorningDigest({ latest, events, state: {}, config: { sea: { points: [{ name: 'Chennai', lat: 13.08, lng: 80.4 }] } }, now: Date.parse('2026-10-23T01:31:00Z'), dashboardUrl: 'https://example.github.io/OSI/' });
+  assert.match(digest, /OSI morning digest, Friday 2026-10-23/);
+  assert.match(digest, /Alerts: 2 active \(1 high, 1 medium\); 1 new/);
+  assert.match(digest, /MONTHA \(GDACS Orange, 120 km\/h\).*landfall near Pulicat about 25\/10 01:30 IST \(forecast\)/);
+  assert.match(digest, /closest to the Tamil Nadu coast: \d+ km off Chennai/);
+  assert.match(digest, /Largest releases: Mettur 22,000 cusecs/);
+  assert.match(digest, /Rain, next 3 days \(model\): Chennai 180 mm\./, 'only Tamil Nadu and Puducherry districts');
+  assert.match(digest, /highest 3\.1 m off Chennai \(rough\)/);
+  assert.match(digest, /Megamalai 3; 4,200 hotspots/);
+  assert.match(digest, /Sources failing: news/);
+
+  let log = null;
+  const days = ['2026-10-19', '2026-10-21', '2026-10-24'];
+  /* 2026-10-19 is the Monday of ISO week 43. */
+  for (const d of days) {
+    log = updateDailyLog(log, {
+      latest: { layers: { ...latest.layers, news: { items: [{ id: `n${d}`, title: 'Clash in [Jiribam](javascript:alert(1)) | *curfew*', url: 'https://example.in/a', domain: 'example.in', category: 'unrest', place: 'Jiribam', state: 'Manipur', at: `${d}T03:00:00Z` }] } } },
+      events: [{ ...events[0], detectedAt: `${d}T03:00:00Z` }],
+      now: Date.parse(`${d}T04:00:00Z`)
+    });
+  }
+  assert.equal(log.days.length, 3);
+  const { week, markdown } = buildWeeklyBrief({ log, now: Date.parse('2026-10-25T02:00:00Z'), dashboardUrl: 'https://example.github.io/OSI/' });
+  assert.equal(week, '2026-W43');
+  assert.match(markdown, /^# India disaster and security brief, 2026-W43 \(2026-10-19 to 2026-10-25\)/);
+  assert.match(markdown, /\| Dam releases \| 3 \| 3 \|/);
+  assert.match(markdown, /MONTHA/);
+  assert.match(markdown, /M4\.8 Andaman Islands/);
+  assert.match(markdown, /### Public order \(3; most: Manipur 3\)/);
+  assert.ok(markdown.includes('Clash in \\[Jiribam\\](javascript:alert(1)) \\| \\*curfew\\*'), 'headline Markdown is escaped, so it cannot inject links');
+  assert.ok(!/[^\\]\]\(javascript:/.test(markdown), 'no unescaped link to a javascript: URL');
+});
+
+test('cyclone geometry: track points, intensity classes, landfall on the simplified coastline', async () => {
+  const { parseCycloneGeometry, estimateLandfall, closestApproach } = await import('../sources/cyclones.mjs');
+  const ring = (lng, lat) => [[lng + 0.1, lat], [lng, lat + 0.1], [lng - 0.1, lat], [lng, lat - 0.1], [lng + 0.1, lat]];
+  const geo = { features: [
+    { geometry: { type: 'Polygon', coordinates: [ring(84, 15)] }, properties: { Class: 'Point_Polygon_Point_0', key: '10260000' } },
+    { geometry: { type: 'Polygon', coordinates: [ring(81, 16.5)] }, properties: { Class: 'Point_Polygon_Point_1', key: '10270000' } },
+    { geometry: { type: 'LineString', coordinates: [[84, 15], [81, 16.5]] }, properties: { Class: 'Line_Line_0', polygonlabel: 'HU', forecast: true } },
+    { geometry: { type: 'Polygon', coordinates: [[[80, 15], [85, 15], [85, 17], [80, 15]]] }, properties: { Class: 'Poly_Cones' } }
+  ] };
+  const g = parseCycloneGeometry(geo, { issuedAt: '2026-10-26T00:00:00Z' });
+  assert.deepEqual(g.track.map((p) => [p.t, p.lat, p.lng, p.cat, p.forecast]), [
+    ['2026-10-26T00:00:00.000Z', 15, 84, 'HU', false],
+    ['2026-10-27T00:00:00.000Z', 16.5, 81, null, true]
+  ]);
+  const lf = estimateLandfall(g.track);
+  assert.ok(lf && /Machilipatnam|Kakinada/.test(lf.near), `landfall on the Andhra coast, got ${lf && lf.near}`);
+  assert.ok(Date.parse(lf.at) > Date.parse('2026-10-26T00:00:00Z') && Date.parse(lf.at) < Date.parse('2026-10-27T00:00:00Z'));
+  const near = closestApproach(g.track, [{ name: 'Chennai', lat: 13.08, lng: 80.4 }]);
+  assert.ok(near.km > 300 && near.km < 450, `closest approach ${near.km} km`);
+});

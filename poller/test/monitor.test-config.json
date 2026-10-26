@@ -123,5 +123,54 @@
     "minSeverity": "medium",
     "dedupeDays": 3
   },
-  "_note": "Frozen config for tests; production coverage lives in config/monitor.json."
+  "_note": "Frozen config for tests; production coverage lives in config/monitor.json.",
+  "sea": {
+    "roughM": 2.5,
+    "veryRoughM": 4,
+    "points": [
+      {
+        "id": "chennai",
+        "name": "Chennai",
+        "lat": 13.08,
+        "lng": 80.4
+      },
+      {
+        "id": "nagapattinam",
+        "name": "Nagapattinam",
+        "lat": 10.77,
+        "lng": 79.95
+      },
+      {
+        "id": "rameswaram",
+        "name": "Rameswaram",
+        "lat": 9.15,
+        "lng": 79.35
+      }
+    ]
+  },
+  "cyclones": {
+    "withinKm": 400
+  },
+  "fires": {
+    "minDetections": 3,
+    "areas": [
+      {
+        "id": "megamalai",
+        "name": "Megamalai and Theni hills",
+        "lat": 9.7,
+        "lng": 77.4,
+        "radiusKm": 30
+      },
+      {
+        "id": "nilgiris",
+        "name": "Nilgiris and Mudumalai",
+        "lat": 11.5,
+        "lng": 76.6,
+        "radiusKm": 30
+      }
+    ]
+  },
+  "news": {
+    "enabled": true
+  }
 }
