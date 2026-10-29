@@ -1,0 +1,88 @@
+/*
+ * Service worker for the home-screen app.
+ *  - App files: network first (updates arrive immediately when online), cached copy offline.
+ *  - Poller data (raw.githubusercontent.com): network first, last copy offline, so the
+ *    dashboard opens with the last known state and its age instead of a blank globe.
+ *  - Map tiles: cache first, capped, so revisited areas load instantly.
+ * Nothing else is intercepted.
+ */
+const VERSION = 'osi-v5';
+const SHELL = `${VERSION}-shell`;
+const DATA = `${VERSION}-data`;
+const TILES = `${VERSION}-tiles`;
+const MAX_TILES = 600;
+
+/* Every file the page loads from this site; scripts/check-syntax.mjs fails if one is missing. */
+const SHELL_FILES = [
+  './', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'poller/data/districts.json', 'poller/data/india-places.json',
+  'poller/lib/news-core.mjs',
+  'src/styles.css', 'src/main.js', 'src/sat-worker.js',
+  'src/app/app-state.js', 'src/app/boot.js', 'src/app/camera.js', 'src/app/core.js', 'src/app/demo.js',
+  'src/app/fetchers.js', 'src/app/globe.js', 'src/app/hazards.js', 'src/app/icons.js', 'src/app/index.js', 'src/app/layers.js',
+  'src/app/map-controls.js', 'src/app/place-info.js', 'src/app/points.js', 'src/app/rules.js',
+  'src/app/satellites.js', 'src/app/scheduler.js', 'src/app/snapshots.js', 'src/app/spots.js',
+  'src/app/state.js', 'src/app/tags.js', 'src/app/texture-loader.js', 'src/app/tiles.js',
+  'src/app/ui/brief.js', 'src/app/ui/charts.js', 'src/app/ui/detail.js', 'src/app/ui/feed.js',
+  'src/app/ui/panels.js', 'src/app/ui/rules-panel.js', 'src/app/ui/search.js', 'src/app/ui/sources.js',
+  'src/app/ui/views.js', 'src/app/ui/zones-panel.js', 'src/app/weather.js',
+  'src/vendor/three.min.js', 'src/vendor/satellite.min.js', 'src/vendor/topojson-client.min.js', 'src/vendor/countries-110m.json'
+];
+
+self.addEventListener('install', (event) => {
+  event.waitUntil((async () => {
+    const cache = await caches.open(SHELL);
+    await cache.addAll(SHELL_FILES);
+    await self.skipWaiting();
+  })());
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil((async () => {
+    for (const key of await caches.keys()) if (!key.startsWith(VERSION)) await caches.delete(key);
+    await self.clients.claim();
+  })());
+});
+
+async function networkFirst(request, cacheName, timeoutMs) {
+  const cache = await caches.open(cacheName);
+  try {
+    const res = await Promise.race([
+      fetch(request),
+      new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), timeoutMs))
+    ]);
+    if (res.ok) cache.put(request, res.clone());
+    return res;
+  } catch (err) {
+    const hit = await cache.match(request, { ignoreSearch: true });
+    if (hit) return hit;
+    throw err;
+  }
+}
+
+async function cacheFirst(request, cacheName, cap) {
+  const cache = await caches.open(cacheName);
+  const hit = await cache.match(request);
+  if (hit) return hit;
+  const res = await fetch(request);
+  if (res.ok) {
+    await cache.put(request, res.clone());
+    if (cap && Math.random() < 0.05) {
+      const keys = await cache.keys();
+      for (const k of keys.slice(0, Math.max(0, keys.length - cap))) await cache.delete(k);
+    }
+  }
+  return res;
+}
+
+self.addEventListener('fetch', (event) => {
+  const req = event.request;
+  if (req.method !== 'GET') return;
+  const url = new URL(req.url);
+  if (url.origin === self.location.origin) {
+    event.respondWith(networkFirst(req, SHELL, 5000));
+  } else if (url.hostname === 'raw.githubusercontent.com') {
+    event.respondWith(networkFirst(req, DATA, 12000));
+  } else if (url.hostname === 'server.arcgisonline.com' && url.pathname.includes('/tile/')) {
+    event.respondWith(cacheFirst(req, TILES, MAX_TILES));
+  }
+});

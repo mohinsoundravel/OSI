@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Real-time OSINT globe: flights, earthquakes, disaster alerts, satellites and public webcams with a rule-based alert engine.">
+<meta name="theme-color" content="#03050a">
+<!-- Scripts only from this site (libraries are vendored in src/vendor with integrity hashes); no inline script, no plugins, no form posts. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; connect-src 'self' https: http://localhost:* http://127.0.0.1:*; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src https://www.youtube-nocookie.com https://webcams.windy.com; worker-src 'self'; manifest-src 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<!-- Personal monitor: keep it out of search engines. -->
+<meta name="robots" content="noindex, nofollow">
+<title>Global Monitor</title>
+<link rel="stylesheet" href="src/styles.css">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="OSI">
+</head>
+<body>
+
+<canvas id="globe"></canvas>
+<div id="tags" aria-hidden="true"></div>
+
+<div id="topbar">
+  <button class="status-pill" id="statusPill" type="button" aria-label="Open event feed">
+    <span class="led" id="statusLed"></span><span id="statusText">Starting</span>
+  </button>
+  <div class="search">
+    <input id="search" type="search" placeholder="Search place, dam, flight, ship" autocomplete="off" spellcheck="false" aria-label="Search">
+    <div class="results" id="searchResults" hidden></div>
+  </div>
+</div>
+<div id="chips" class="chips" role="toolbar" aria-label="Layers"></div>
+<div id="mapControls" class="map-controls" role="toolbar" aria-label="Map">
+  <button class="mc mc-style" id="mapStyleBtn" type="button">Hybrid</button>
+  <button class="mc mc-style" id="weatherBtn" type="button">Weather</button>
+  <button class="mc mc-style" id="radarPlayBtn" type="button" hidden>Play last hour</button>
+  <button class="mc mc-style" id="legendBtn" type="button" aria-controls="legend">Legend</button>
+  <div class="mc-zoom">
+    <button class="mc" id="zoomInBtn" type="button" aria-label="Zoom in">+</button>
+    <button class="mc" id="zoomOutBtn" type="button" aria-label="Zoom out">&minus;</button>
+  </div>
+</div>
+<div id="legend" class="legend" hidden></div>
+<div id="mapInfo" class="map-info"><span id="mapReadout" class="mono"></span><span id="mapCredit"></span></div>
+
+<button class="btn mobile-toggle" id="toggleLeft">Controls</button>
+<button class="btn mobile-toggle" id="toggleRight">Feed</button>
+
+<aside id="left" class="panel">
+  <button class="grabber" data-close-sheet aria-label="Close panel"></button>
+  <header class="panel-head">
+    <div class="brand">Global Monitor<span class="demo-pill" id="demoPill" hidden>DEMO</span></div>
+    <div class="head-right">
+      <button class="btn" id="modeBtn" title="Toggle demo data">Demo</button>
+      <div class="clock" id="clock"></div>
+    </div>
+  </header>
+  <nav class="tabs" id="tabs">
+    <span class="indicator" id="tabIndicator"></span>
+    <button data-tab="sources" class="active">Sources</button>
+    <button data-tab="rules">Rules</button>
+    <button data-tab="zones">Zones</button>
+  </nav>
+  <div class="tab-host">
+    <section id="tab-sources" class="tab active"><div id="sourcesList"></div><div id="keyBox"></div></section>
+    <section id="tab-rules" class="tab"></section>
+    <section id="tab-zones" class="tab"></section>
+  </div>
+</aside>
+
+<aside id="right" class="panel">
+  <button class="grabber" data-close-sheet aria-label="Close panel"></button>
+  <header class="panel-head">
+    <div class="brand" id="feedTitle">Events<span id="unread" class="badge zero">0</span></div>
+    <div class="actions">
+      <button class="btn" id="btnNotify">Notify off</button>
+      <button class="btn" id="btnExport">Export</button>
+      <button class="btn" id="btnClear">Clear</button>
+    </div>
+  </header>
+  <div id="brief" class="brief" aria-live="polite"></div>
+  <div class="filters">
+    <select id="sevFilter">
+      <option value="low">All</option>
+      <option value="medium">Medium+</option>
+      <option value="high">High+</option>
+      <option value="critical">Critical</option>
+    </select>
+    <label>Hide baseline <input type="checkbox" id="hideBaseline" checked></label>
+  </div>
+  <div class="detail-wrap" id="detailWrap"><div class="detail-inner"><div id="detail"></div></div></div>
+  <div id="feed"></div>
+</aside>
+
+<div id="toasts"></div>
+
+<!-- Exact npm builds, pinned by version and verified by Subresource Integrity:
+     if a CDN file is altered, the browser refuses to run it. -->
+<script src="src/vendor/three.min.js" integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu"></script>
+<script src="src/vendor/satellite.min.js" integrity="sha384-MIBG+Y34qqectgEd35uAWHjNhqFaVGYfrgccleIhIQLWHcihnkwwAeLF7fB0kWWk"></script>
+<script src="src/vendor/topojson-client.min.js" integrity="sha384-Ukv1p/xTma6P4/2bY5KzWBw+ydSpXmhCMtyciIQVDJ1RmOxtCYNMF1uXT9T63H67"></script>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
