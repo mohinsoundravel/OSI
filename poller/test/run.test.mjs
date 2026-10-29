@@ -131,6 +131,22 @@ test('end to end: baseline first, then only new or escalated alerts', async () =
   }
 });
 
+test('an alert that stays active is sent once, not again when the dedupe window passes', async () => {
+  const env = await setup();
+  try {
+    const r1 = await run(base(env));
+    const day = 24 * 3600 * 1000;
+    let last = null;
+    for (let d = 1; d <= 4; d++) last = await run(base(env, { now: new Date(Date.parse(NOW) + d * day).toISOString() }));
+    const firstKeys = new Set(r1.candidates.map((c) => c.key));
+    const repeated = last.fresh.filter((c) => firstKeys.has(c.key)).map((c) => c.key);
+    assert.deepEqual(repeated, [], 'still-active alerts are not re-sent after 3 days');
+    assert.ok(!last.candidates.some((c) => c.rule === 'cyclone_track'), 'no cyclone approach alert once the closest approach is past');
+  } finally {
+    await rm(env.dir, { recursive: true, force: true });
+  }
+});
+
 test('a source failing three runs in a row sends one degraded notice, then one recovery notice', async () => {
   const env = await setup();
   try {

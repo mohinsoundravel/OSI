@@ -313,10 +313,13 @@ export async function run(options = {}) {
   }
   const newsItems = data.news ? data.news.items : (await readJson(newsFile, { items: [] }).catch(() => ({ items: [] }))).items || [];
 
-  const candidates = evaluate({ config, data: layerData, normals });
+  const candidates = evaluate({ config, data: layerData, normals, now });
 
   /* De-duplicate: each key notifies once per window; escalations carry a new key. */
   const dedupeMs = (config.notify?.dedupeDays ?? 3) * DAY_MS;
+  /* An alert that is still active keeps its key alive, so it is sent once per episode rather
+     than again every few days; the window only starts counting once it stops being active. */
+  for (const c of candidates) if (Object.hasOwn(state.notified, c.key)) state.notified[c.key] = now;
   for (const [k, ts] of Object.entries(state.notified)) if (now - ts > dedupeMs) delete state.notified[k];
   const fresh = candidates.filter((c) => !Object.hasOwn(state.notified, c.key));
   const firstRun = !state.initialized;

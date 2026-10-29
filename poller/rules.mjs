@@ -51,7 +51,7 @@ function sachetZones(a, zones) {
  * most once per de-duplication window; escalations get a new key because the
  * severity or level is part of it.
  */
-export function evaluate({ config, data, normals }) {
+export function evaluate({ config, data, normals, now = Date.now() }) {
   const zones = config.zones;
   const out = [];
 
@@ -196,6 +196,8 @@ export function evaluate({ config, data, normals }) {
     if (!c.track?.length || !coastPlaces.length) continue;
     const near = closestApproach(c.track, coastPlaces);
     if (!near || near.km > withinKm) continue;
+    /* Once the closest approach is more than 6 hours past, the storm is no longer approaching. */
+    if (Date.parse(near.at) < now - 6 * 3600 * 1000) continue;
     /* Distance decides severity; GDACS level changes are already alerted by the GDACS rule. */
     const tier = near.km <= 150 ? 150 : near.km <= 300 ? 300 : withinKm;
     const severity = tier === 150 ? 'high' : 'medium';
