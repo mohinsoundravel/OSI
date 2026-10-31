@@ -1,0 +1,3323 @@
+{
+ "schema": 1,
+ "days": [
+  {
+   "date": "2026-10-26",
+   "alerts": {
+    "sachet_official|low": 15,
+    "river_discharge|high": 4,
+    "river_discharge|medium": 4,
+    "cyclone_track|medium": 1,
+    "gdacs_level|critical": 1,
+    "gdacs_level|high": 1
+   },
+   "cyclones": {
+    "1001345": {
+     "name": "ARNAB-26",
+     "alertLevel": "Red",
+     "maxWindKmh": 204,
+     "lat": 15.9,
+     "lng": 87.2,
+     "landfall": {
+      "at": "2026-10-28T04:25:36.585Z",
+      "lat": 16.84,
+      "lng": 82.15,
+      "near": "Kakinada",
+      "cat": "TS"
+     },
+     "url": "https://www.gdacs.org/report.aspx?eventid=1001345&episodeid=3&eventtype=TC"
+    }
+   },
+   "quakes": {
+    "us6000u4y1": {
+     "mag": 5,
+     "place": "45 km NNW of Ende, Indonesia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4y1"
+    },
+    "us6000u4y2": {
+     "mag": 4.8,
+     "place": "182 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4y2"
+    },
+    "us6000u4xx": {
+     "mag": 4.3,
+     "place": "44 km SW of Sipí, Colombia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4xx"
+    },
+    "us6000u4xv": {
+     "mag": 4.2,
+     "place": "37 km E of Hachinohe, Japan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4xv"
+    },
+    "us6000u4xp": {
+     "mag": 4.8,
+     "place": "41 km WNW of Kupang, Indonesia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4xp"
+    },
+    "pr71537678": {
+     "mag": 2.99,
+     "place": "66 km N of San Juan, Puerto Rico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537678"
+    },
+    "us6000u4xa": {
+     "mag": 4.9,
+     "place": "205 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4xa"
+    },
+    "us6000u4x2": {
+     "mag": 4.2,
+     "place": "50 km W of Valparaíso, Chile",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4x2"
+    },
+    "us6000u4wt": {
+     "mag": 4.3,
+     "place": "181 km NNW of Maubara, Timor Leste",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4wt"
+    },
+    "us6000u4wi": {
+     "mag": 4.8,
+     "place": "Bonin Islands, Japan region",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4wi"
+    },
+    "us6000u4we": {
+     "mag": 5.3,
+     "place": "Bonin Islands, Japan region",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4we"
+    },
+    "us6000u4wc": {
+     "mag": 4.7,
+     "place": "170 km ENE of Nagqu, China",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4wc"
+    },
+    "pr71537658": {
+     "mag": 3.25,
+     "place": "69 km NE of Cruz Bay, U.S. Virgin Islands",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537658"
+    },
+    "us6000u4vz": {
+     "mag": 2.8,
+     "place": "18 km SSE of Meeker, Colorado",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4vz"
+    },
+    "us6000u4vy": {
+     "mag": 4.8,
+     "place": "167 km WNW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4vy"
+    },
+    "tx2026vasgst": {
+     "mag": 2.7,
+     "place": "8 km W of Hallettsville, Texas",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/tx2026vasgst"
+    },
+    "us6000u4vp": {
+     "mag": 4.4,
+     "place": "267 km WSW of Tual, Indonesia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4vp"
+    },
+    "us6000u4vb": {
+     "mag": 4.6,
+     "place": "153 km WNW of Adak, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4vb"
+    },
+    "us6000u4va": {
+     "mag": 5.2,
+     "place": "59 km SW of Ashkāsham, Afghanistan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4va"
+    },
+    "us6000u4v1": {
+     "mag": 4.7,
+     "place": "19 km NE of Atico, Peru",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4v1"
+    },
+    "pr71537653": {
+     "mag": 3.06,
+     "place": "39 km ESE of Cruz Bay, U.S. Virgin Islands",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537653"
+    },
+    "us6000u4uj": {
+     "mag": 2.7,
+     "place": "69 km SE of Yakutat, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4uj"
+    },
+    "uw714127632": {
+     "mag": 2.55,
+     "place": "41 km WSW of Winthrop, Washington",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/uw714127632"
+    },
+    "uu80161791": {
+     "mag": 2.46,
+     "place": "16 km NE of Milford, Utah",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/uu80161791"
+    },
+    "us6000u4u9": {
+     "mag": 4,
+     "place": "7 km NNW of Agua Caliente Grande (De Gastélum), Mexico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4u9"
+    },
+    "us6000u4ty": {
+     "mag": 5.9,
+     "place": "218 km ENE of Nagqu, China",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4ty"
+    },
+    "us6000u4tx": {
+     "mag": 5.1,
+     "place": "199 km ENE of Nagqu, China",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4tx"
+    },
+    "pr71537633": {
+     "mag": 3.37,
+     "place": "85 km ENE of Christiansted, U.S. Virgin Islands",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537633"
+    },
+    "us6000u4tr": {
+     "mag": 2.8,
+     "place": "29 km E of Honaunau-Napoopoo, Hawaii",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4tr"
+    },
+    "us6000u4tp": {
+     "mag": 2.9,
+     "place": "297 km WSW of Pelican, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4tp"
+    },
+    "us6000u4tq": {
+     "mag": 5.4,
+     "place": "33 km ESE of Ambunti, Papua New Guinea",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4tq"
+    },
+    "us6000u4tn": {
+     "mag": 4.4,
+     "place": "58 km N of Dompu, Indonesia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4tn"
+    },
+    "aka2026vdjcdz": {
+     "mag": 2.9,
+     "place": "166 km SSE of Old Harbor, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vdjcdz"
+    },
+    "us6000u4tj": {
+     "mag": 2.5,
+     "place": "12 km N of Powell, Wyoming",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4tj"
+    },
+    "us6000u4tf": {
+     "mag": 4.6,
+     "place": "Volcano Islands, Japan region",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4tf"
+    },
+    "us6000u4tc": {
+     "mag": 5.4,
+     "place": "205 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4tc"
+    },
+    "us6000u4yi": {
+     "mag": 4.5,
+     "place": "107 km WNW of Tumxuk, China",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4yi"
+    },
+    "us6000u4u2": {
+     "mag": 4.6,
+     "place": "155 km WSW of Ternate, Indonesia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4u2"
+    },
+    "us6000u4uz": {
+     "mag": 2.7,
+     "place": "188 km SSE of Old Harbor, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4uz"
+    },
+    "us6000u4yj": {
+     "mag": 4.5,
+     "place": "56 km S of Kuril’sk, Russia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4yj"
+    },
+    "us6000u4yp": {
+     "mag": 2.6,
+     "place": "60 km S of Whites City, New Mexico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4yp"
+    },
+    "us6000u4yr": {
+     "mag": 5.5,
+     "place": "283 km E of Levuka, Fiji",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4yr"
+    },
+    "us6000u4yw": {
+     "mag": 4.3,
+     "place": "287 km E of Levuka, Fiji",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4yw"
+    },
+    "us6000u4z6": {
+     "mag": 5,
+     "place": "218 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4z6"
+    },
+    "us6000u4z7": {
+     "mag": 4.6,
+     "place": "81 km SSE of Akutan, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4z7"
+    },
+    "us6000u4zb": {
+     "mag": 5.2,
+     "place": "205 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4zb"
+    },
+    "us6000u4z3": {
+     "mag": 4.8,
+     "place": "South Sandwich Islands region",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4z3"
+    },
+    "nc75455061": {
+     "mag": 2.5,
+     "place": "4 km SE of Aromas, CA",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75455061"
+    },
+    "us6000u4y8": {
+     "mag": 4.3,
+     "place": "26 km SSW of Sann, Pakistan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4y8"
+    },
+    "aka2026vfmqfn": {
+     "mag": 2.8,
+     "place": "88 km ENE of McCarthy, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vfmqfn"
+    },
+    "tx2026vbupcx": {
+     "mag": 2.6,
+     "place": "58 km S of Whites City, New Mexico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/tx2026vbupcx"
+    },
+    "us6000u4uv": {
+     "mag": 4.6,
+     "place": "222 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4uv"
+    },
+    "us6000u4ux": {
+     "mag": 4.5,
+     "place": "203 km ENE of Nagqu, China",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4ux"
+    },
+    "aka2026vfhvld": {
+     "mag": 4.8,
+     "place": "87 km SSE of Akutan, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vfhvld"
+    }
+   },
+   "gdacs": {
+    "TC-1001345": {
+     "name": "Tropical Cyclone ARNAB-26",
+     "type": "Tropical cyclone",
+     "level": "Red",
+     "country": "India",
+     "url": "https://www.gdacs.org/report.aspx?eventid=1001345&episodeid=3&eventtype=TC"
+    },
+    "TC-1001338": {
+     "name": "Tropical Cyclone CHAMPI-26",
+     "type": "Tropical cyclone",
+     "level": "Red",
+     "country": "Philippines, Guam, Northern Mariana Islands, Japan, China, South Korea",
+     "url": "https://www.gdacs.org/report.aspx?eventid=1001338&episodeid=46&eventtype=TC"
+    },
+    "EQ-1573141": {
+     "name": "Earthquake in China",
+     "type": "Earthquake",
+     "level": "Red",
+     "country": "China",
+     "url": "https://www.gdacs.org/report.aspx?eventid=1573141&episodeid=1741837&eventtype=EQ"
+    }
+   },
+   "rainMax": {
+    "name": "Nagapattinam",
+    "state": "Tamil Nadu",
+    "mm": 52.5,
+    "date": "2026-10-26"
+   },
+   "seaMax": {
+    "name": "Pulicat",
+    "m": 2
+   },
+   "fireAreas": {},
+   "firesSouthAsia": 5124,
+   "news": {
+    "a765fd992e81": {
+     "title": "Moyar River floods after heavy rain , leaving Nilgiris village cut off",
+     "url": "https://www.orissapost.com/moyar-river-floods-after-heavy-rain-leaving-nilgiris-village-cut-off/",
+     "domain": "orissapost.com",
+     "category": "hazard",
+     "place": "Nilgiris",
+     "state": "Tamil Nadu",
+     "sources": 1
+    },
+    "f62c8e2f4840": {
+     "title": "Cyclonic Storm Arnab Forms Over Bay of Bengal , Set to Strike Andhra Coast as Very Severe Cyclone",
+     "url": "https://pragativadi.com/cyclonic-storm-arnab-forms-over-bay-of-bengal-set-to-strike-andhra-coast-as-very-severe-cyclone/",
+     "domain": "pragativadi.com",
+     "category": "hazard",
+     "place": "Andhra Pradesh",
+     "state": "Andhra Pradesh",
+     "sources": 1
+    },
+    "81a6fffd5edb": {
+     "title": "Odisha bans fishing , tourist entry to hills , waterfalls in six districts ahead of cyclone",
+     "url": "https://www.orissapost.com/odisha-bans-fishing-tourist-entry-to-hills-waterfalls-in-six-districts-ahead-of-cyclone/",
+     "domain": "orissapost.com",
+     "category": "hazard",
+     "place": "Odisha",
+     "state": "Odisha",
+     "sources": 1
+    },
+    "2930fd1ae2a0": {
+     "title": "Cyclone Arnab : Over 4 , 800 fishing vessels return safely to Kakinada coast",
+     "url": "https://www.thehindu.com/news/national/andhra-pradesh/over-4800-fishing-boats-returned-safely-to-kakinada-shores-as-cyclone-arnab-looms/article71625551.ece",
+     "domain": "thehindu.com",
+     "category": "hazard",
+     "place": "Kakinada",
+     "state": "Andhra Pradesh",
+     "sources": 1
+    }
+   },
+   "dams": {
+    "Mettur (Stanley)": {
+     "levelFt": 54.68,
+     "fullFt": 120,
+     "outflow": 1003
+    },
+    "Krishna Raja Sagar": {
+     "levelFt": 102.18,
+     "fullFt": 124.8,
+     "outflow": 1426
+    },
+    "Kabini": {
+     "levelFt": 50.89,
+     "fullFt": 65,
+     "outflow": 500
+    },
+    "Harangi": {
+     "levelFt": 115.45,
+     "fullFt": 129,
+     "outflow": 200
+    },
+    "Hemavathy": {
+     "levelFt": 89.15,
+     "fullFt": 117,
+     "outflow": 300
+    },
+    "Bhavanisagar": {
+     "levelFt": 70.3,
+     "fullFt": 105,
+     "outflow": 5
+    },
+    "Amaravathi": {
+     "levelFt": 47.15,
+     "fullFt": 90,
+     "outflow": null
+    },
+    "Periyar (Mullaperiyar)": {
+     "levelFt": 121.2,
+     "fullFt": 152,
+     "outflow": 400
+    },
+    "Vaigai": {
+     "levelFt": 50.33,
+     "fullFt": 71,
+     "outflow": 86
+    },
+    "Papanasam": {
+     "levelFt": 60,
+     "fullFt": 143,
+     "outflow": 100
+    },
+    "Manimuthar": {
+     "levelFt": 64.81,
+     "fullFt": 118,
+     "outflow": 25
+    },
+    "Pechiparai": {
+     "levelFt": 25.32,
+     "fullFt": 48,
+     "outflow": 114
+    },
+    "Perunchani": {
+     "levelFt": 51.75,
+     "fullFt": 77,
+     "outflow": 25
+    },
+    "Krishnagiri (KRP)": {
+     "levelFt": 48.2,
+     "fullFt": 52,
+     "outflow": 2382
+    },
+    "Sathanur": {
+     "levelFt": 96.55,
+     "fullFt": 119,
+     "outflow": null
+    },
+    "Sholayar": {
+     "levelFt": 62.94,
+     "fullFt": 160,
+     "outflow": 85
+    },
+    "Parambikulam": {
+     "levelFt": 58.52,
+     "fullFt": 72,
+     "outflow": 850
+    },
+    "Aliyar": {
+     "levelFt": 59.6,
+     "fullFt": 120,
+     "outflow": 50
+    },
+    "Thirumurthy": {
+     "levelFt": 40.31,
+     "fullFt": 60,
+     "outflow": 21
+    }
+   },
+   "alertTitles": [
+    {
+     "title": "River rise forecast: Thenpennai near Cuddalore",
+     "severity": "high",
+     "origin": "derived",
+     "url": "https://open-meteo.com/en/docs/flood-api"
+    },
+    {
+     "title": "River rise forecast: Palar near Vellore",
+     "severity": "high",
+     "origin": "derived",
+     "url": "https://open-meteo.com/en/docs/flood-api"
+    },
+    {
+     "title": "River rise forecast: Thamirabarani at Tirunelveli",
+     "severity": "high",
+     "origin": "derived",
+     "url": "https://open-meteo.com/en/docs/flood-api"
+    },
+    {
+     "title": "River rise forecast: Vaigai below Vaigai Dam",
+     "severity": "high",
+     "origin": "derived",
+     "url": "https://open-meteo.com/en/docs/flood-api"
+    },
+    {
+     "title": "GDACS Red: Tropical cyclone Tropical Cyclone ARNAB-26",
+     "severity": "critical",
+     "origin": "official",
+     "url": "https://www.gdacs.org/report.aspx?eventid=1001345&episodeid=2&eventtype=TC"
+    },
+    {
+     "title": "GDACS Orange: Tropical cyclone Tropical Cyclone TWO-26",
+     "severity": "high",
+     "origin": "official",
+     "url": "https://www.gdacs.org/report.aspx?eventid=1001345&episodeid=1&eventtype=TC"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-27",
+   "alerts": {
+    "sachet_official|critical": 1,
+    "river_discharge|medium": 1
+   },
+   "cyclones": {
+    "1001345": {
+     "name": "ARNAB-26",
+     "alertLevel": "Red",
+     "maxWindKmh": 222,
+     "lat": 16.3,
+     "lng": 82.7,
+     "landfall": {
+      "at": "2026-10-27T23:17:27.272Z",
+      "lat": 16.49,
+      "lng": 81.67,
+      "near": "Machilipatnam",
+      "cat": "HU"
+     },
+     "url": "https://www.gdacs.org/report.aspx?eventid=1001345&episodeid=7&eventtype=TC"
+    }
+   },
+   "quakes": {
+    "us7000ttb5": {
+     "mag": 4.5,
+     "place": "74 km SE of Rasht, Tajikistan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttb5"
+    },
+    "aka2026vfmqfn": {
+     "mag": 2.8,
+     "place": "88 km ENE of McCarthy, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vfmqfn"
+    },
+    "nc75455061": {
+     "mag": 2.5,
+     "place": "4 km SE of Aromas, CA",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75455061"
+    },
+    "us6000u4zb": {
+     "mag": 5.2,
+     "place": "205 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4zb"
+    },
+    "us6000u4z7": {
+     "mag": 4.6,
+     "place": "81 km SSE of Akutan, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4z7"
+    },
+    "us6000u4z6": {
+     "mag": 5,
+     "place": "218 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4z6"
+    },
+    "us6000u4z3": {
+     "mag": 4.8,
+     "place": "South Sandwich Islands region",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4z3"
+    },
+    "us6000u4yw": {
+     "mag": 4.3,
+     "place": "287 km E of Levuka, Fiji",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4yw"
+    },
+    "us6000u4yr": {
+     "mag": 5.5,
+     "place": "283 km E of Levuka, Fiji",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4yr"
+    },
+    "tx2026vbupcx": {
+     "mag": 2.6,
+     "place": "58 km S of Whites City, New Mexico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/tx2026vbupcx"
+    },
+    "us6000u4yj": {
+     "mag": 4.5,
+     "place": "56 km S of Kuril’sk, Russia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4yj"
+    },
+    "us6000u4yi": {
+     "mag": 4.5,
+     "place": "107 km WNW of Tumxuk, China",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4yi"
+    },
+    "us6000u4y8": {
+     "mag": 4.3,
+     "place": "26 km SSW of Sann, Pakistan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4y8"
+    },
+    "us6000u4y1": {
+     "mag": 5,
+     "place": "45 km NNW of Ende, Indonesia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4y1"
+    },
+    "us6000u4y2": {
+     "mag": 4.8,
+     "place": "182 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4y2"
+    },
+    "us6000u4xx": {
+     "mag": 4.3,
+     "place": "44 km SW of Sipí, Colombia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4xx"
+    },
+    "us6000u4xv": {
+     "mag": 4.2,
+     "place": "37 km E of Hachinohe, Japan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4xv"
+    },
+    "us6000u4xp": {
+     "mag": 4.8,
+     "place": "41 km WNW of Kupang, Indonesia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4xp"
+    },
+    "pr71537678": {
+     "mag": 2.99,
+     "place": "66 km N of San Juan, Puerto Rico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537678"
+    },
+    "us6000u4xa": {
+     "mag": 4.9,
+     "place": "205 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4xa"
+    },
+    "us6000u4x2": {
+     "mag": 4.2,
+     "place": "50 km W of Valparaíso, Chile",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4x2"
+    },
+    "us6000u4wt": {
+     "mag": 4.3,
+     "place": "181 km NNW of Maubara, Timor Leste",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4wt"
+    },
+    "us6000u4wi": {
+     "mag": 4.8,
+     "place": "Bonin Islands, Japan region",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4wi"
+    },
+    "us6000u4we": {
+     "mag": 5.3,
+     "place": "Bonin Islands, Japan region",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4we"
+    },
+    "us6000u4wc": {
+     "mag": 4.7,
+     "place": "170 km ENE of Nagqu, China",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4wc"
+    },
+    "pr71537658": {
+     "mag": 3.25,
+     "place": "69 km NE of Cruz Bay, U.S. Virgin Islands",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537658"
+    },
+    "us6000u4vz": {
+     "mag": 2.8,
+     "place": "18 km SSE of Meeker, Colorado",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4vz"
+    },
+    "us6000u4vy": {
+     "mag": 4.8,
+     "place": "167 km WNW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4vy"
+    },
+    "tx2026vasgst": {
+     "mag": 2.7,
+     "place": "8 km W of Hallettsville, Texas",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/tx2026vasgst"
+    },
+    "us6000u4vp": {
+     "mag": 4.4,
+     "place": "267 km WSW of Tual, Indonesia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4vp"
+    },
+    "us6000u4zm": {
+     "mag": 4.4,
+     "place": "18 km E of Kentrí, Greece",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4zm"
+    },
+    "tx2026vcnlki": {
+     "mag": 2.6,
+     "place": "37 km ESE of Malaga, New Mexico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/tx2026vcnlki"
+    },
+    "us7000ttbh": {
+     "mag": 4.9,
+     "place": "100 km E of La Tirana, Chile",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttbh"
+    },
+    "us7000ttbv": {
+     "mag": 3.3,
+     "place": "272 km SE of Chiniak, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttbv"
+    },
+    "us7000ttby": {
+     "mag": 4.6,
+     "place": "154 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttby"
+    },
+    "us7000ttc5": {
+     "mag": 3,
+     "place": "44 km SSW of Terlingua, Texas",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttc5"
+    },
+    "us7000ttci": {
+     "mag": 4.7,
+     "place": "98 km S of Encounter Bay, Australia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttci"
+    },
+    "us7000ttc6": {
+     "mag": 4.5,
+     "place": "89 km SSE of Pondaguitan, Philippines",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttc6"
+    },
+    "us7000ttc8": {
+     "mag": 4.6,
+     "place": "20 km NNW of La Ligua, Chile",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttc8"
+    },
+    "us7000ttd1": {
+     "mag": 4.5,
+     "place": "96 km ENE of Pamandzi, Mayotte",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttd1"
+    },
+    "us7000ttd3": {
+     "mag": 4.5,
+     "place": "98 km NNW of Tobelo, Indonesia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttd3"
+    },
+    "us7000ttdt": {
+     "mag": 4.8,
+     "place": "54 km E of Tomioka, Japan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttdt"
+    },
+    "us7000tte0": {
+     "mag": 4.6,
+     "place": "203 km SSE of Tateyama, Japan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tte0"
+    },
+    "us7000tte4": {
+     "mag": 4.9,
+     "place": "69 km WSW of Kirakira, Solomon Islands",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tte4"
+    },
+    "pr71537718": {
+     "mag": 3.31,
+     "place": "39 km WSW of Stella, Puerto Rico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537718"
+    },
+    "pr71537723": {
+     "mag": 3.04,
+     "place": "49 km N of Suárez, Puerto Rico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537723"
+    },
+    "us7000tteg": {
+     "mag": 4.1,
+     "place": "5 km SW of Azogues, Ecuador",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tteg"
+    },
+    "us6000u4ya": {
+     "mag": 4.3,
+     "place": "16 km SSW of Renwick, New Zealand",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4ya"
+    },
+    "aka2026vgtzgj": {
+     "mag": 2.5,
+     "place": "80 km E of Chignik, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vgtzgj"
+    },
+    "aka2026vgyfgb": {
+     "mag": 3,
+     "place": "241 km ESE of Chiniak, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vgyfgb"
+    },
+    "us7000ttfb": {
+     "mag": 5.8,
+     "place": "196 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttfb"
+    },
+    "us7000ttf9": {
+     "mag": 2.8,
+     "place": "247 km ESE of Chiniak, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttf9"
+    },
+    "us7000ttfc": {
+     "mag": 5,
+     "place": "95 km NNE of Hihifo, Tonga",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttfc"
+    },
+    "us7000ttfe": {
+     "mag": 5,
+     "place": "206 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttfe"
+    },
+    "pr71537733": {
+     "mag": 2.78,
+     "place": "64 km NNE of Cruz Bay, U.S. Virgin Islands",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537733"
+    },
+    "us7000ttfj": {
+     "mag": 5,
+     "place": "184 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttfj"
+    },
+    "us7000ttfk": {
+     "mag": 5.2,
+     "place": "191 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttfk"
+    },
+    "us7000ttfs": {
+     "mag": 4.6,
+     "place": "100 km W of El Aguilar, Argentina",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttfs"
+    },
+    "us7000ttfx": {
+     "mag": 4.6,
+     "place": "5 km ENE of Tierra y Libertad, Mexico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttfx"
+    },
+    "us7000ttft": {
+     "mag": 2.5,
+     "place": "13 km E of Pearsall, Texas",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttft"
+    },
+    "pr71537738": {
+     "mag": 3.05,
+     "place": "30 km N of Charlotte Amalie, U.S. Virgin Islands",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537738"
+    },
+    "us7000ttg9": {
+     "mag": 3.5,
+     "place": "9 km NE of Korumburra, Australia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttg9"
+    },
+    "tx2026vdzxac": {
+     "mag": 2.5,
+     "place": "59 km NW of Toyah, Texas",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/tx2026vdzxac"
+    },
+    "us7000ttgf": {
+     "mag": 5.4,
+     "place": "128 km S of Pundong, Indonesia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttgf"
+    },
+    "us7000ttgh": {
+     "mag": 4.9,
+     "place": "156 km S of Pundong, Indonesia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttgh"
+    },
+    "us7000ttgq": {
+     "mag": 5,
+     "place": "south of the Fiji Islands",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttgq"
+    },
+    "us7000ttgm": {
+     "mag": 5,
+     "place": "27 km W of Río Grande, Panama",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttgm"
+    },
+    "aka2026vhmjgz": {
+     "mag": 2.8,
+     "place": "13 km SW of Tyonek, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vhmjgz"
+    },
+    "aka2026vhcaon": {
+     "mag": 2.7,
+     "place": "126 km SSE of Unalaska, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vhcaon"
+    },
+    "aka2026vhpcrg": {
+     "mag": 3.7,
+     "place": "16 km E of Susitna North, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vhpcrg"
+    },
+    "us7000ttgc": {
+     "mag": 4.6,
+     "place": "41 km S of Farkhār, Afghanistan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttgc"
+    },
+    "us7000ttgu": {
+     "mag": 4.3,
+     "place": "99 km SW of Puerto Madero, Mexico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttgu"
+    },
+    "us7000ttgz": {
+     "mag": 4.4,
+     "place": "32 km SW of Ashkāsham, Afghanistan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttgz"
+    }
+   },
+   "gdacs": {
+    "TC-1001345": {
+     "name": "Tropical Cyclone ARNAB-26",
+     "type": "Tropical cyclone",
+     "level": "Red",
+     "country": "India",
+     "url": "https://www.gdacs.org/report.aspx?eventid=1001345&episodeid=7&eventtype=TC"
+    },
+    "TC-1001338": {
+     "name": "Tropical Cyclone CHAMPI-26",
+     "type": "Tropical cyclone",
+     "level": "Red",
+     "country": "Philippines, Guam, Northern Mariana Islands, Japan, China, South Korea",
+     "url": "https://www.gdacs.org/report.aspx?eventid=1001338&episodeid=46&eventtype=TC"
+    }
+   },
+   "rainMax": {
+    "name": "Nagapattinam",
+    "state": "Tamil Nadu",
+    "mm": 49.5,
+    "date": "2026-10-26"
+   },
+   "seaMax": {
+    "name": "Pulicat",
+    "m": 2.2
+   },
+   "fireAreas": {},
+   "firesSouthAsia": 5379,
+   "news": {
+    "24c092ae0112": {
+     "title": "Very severe cyclone Arnab to hit Andhra coast on Oct 28",
+     "url": "https://www.rediff.com/news/report/very-severe-cyclone-arnab-to-hit-andhra-coast-on-oct-28/20261027.htm",
+     "domain": "rediff.com",
+     "category": "hazard",
+     "place": "Andhra Pradesh",
+     "state": "Andhra Pradesh",
+     "sources": 1
+    },
+    "e22f5a2477bd": {
+     "title": "West Bengal Police Gunfight Kills Rape - Murder Accused During Crime Scene Reconstruction",
+     "url": "https://www.rediff.com/news/report/rape-murder-accused-killed-in-police-encounter-in-bengal/20261027.htm",
+     "domain": "rediff.com",
+     "category": "security",
+     "place": "West Bengal",
+     "state": "West Bengal",
+     "sources": 1
+    }
+   },
+   "dams": {
+    "Mettur (Stanley)": {
+     "levelFt": 54.78,
+     "fullFt": 120,
+     "outflow": 1003
+    },
+    "Krishna Raja Sagar": {
+     "levelFt": 103.96,
+     "fullFt": 124.8,
+     "outflow": 1996
+    },
+    "Kabini": {
+     "levelFt": 53.74,
+     "fullFt": 65,
+     "outflow": 500
+    },
+    "Harangi": {
+     "levelFt": 117.01,
+     "fullFt": 129,
+     "outflow": 200
+    },
+    "Hemavathy": {
+     "levelFt": 90.06,
+     "fullFt": 117,
+     "outflow": 300
+    },
+    "Bhavanisagar": {
+     "levelFt": 71.52,
+     "fullFt": 105,
+     "outflow": 5
+    },
+    "Amaravathi": {
+     "levelFt": 49.97,
+     "fullFt": 90,
+     "outflow": null
+    },
+    "Periyar (Mullaperiyar)": {
+     "levelFt": 121.5,
+     "fullFt": 152,
+     "outflow": 400
+    },
+    "Vaigai": {
+     "levelFt": 50.89,
+     "fullFt": 71,
+     "outflow": 86
+    },
+    "Papanasam": {
+     "levelFt": 62.3,
+     "fullFt": 143,
+     "outflow": 100
+    },
+    "Manimuthar": {
+     "levelFt": 65.36,
+     "fullFt": 118,
+     "outflow": 25
+    },
+    "Pechiparai": {
+     "levelFt": 26.09,
+     "fullFt": 48,
+     "outflow": 116
+    },
+    "Perunchani": {
+     "levelFt": 52.95,
+     "fullFt": 77,
+     "outflow": 25
+    },
+    "Krishnagiri (KRP)": {
+     "levelFt": 48.1,
+     "fullFt": 52,
+     "outflow": 1215
+    },
+    "Sathanur": {
+     "levelFt": 97.8,
+     "fullFt": 119,
+     "outflow": null
+    },
+    "Sholayar": {
+     "levelFt": 64.06,
+     "fullFt": 160,
+     "outflow": 85
+    },
+    "Parambikulam": {
+     "levelFt": 58.32,
+     "fullFt": 72,
+     "outflow": 799
+    },
+    "Aliyar": {
+     "levelFt": 60.1,
+     "fullFt": 120,
+     "outflow": 50
+    },
+    "Thirumurthy": {
+     "levelFt": 42.31,
+     "fullFt": 60,
+     "outflow": 21
+    }
+   },
+   "alertTitles": [
+    {
+     "title": "Cyclone: Thallarevu zone of PUDUCHERRY",
+     "severity": "critical",
+     "origin": "official",
+     "url": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793101376576041"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-28",
+   "alerts": {
+    "river_discharge|medium": 1
+   },
+   "cyclones": {
+    "1001345": {
+     "name": "ARNAB-26",
+     "alertLevel": "Red",
+     "maxWindKmh": 222,
+     "lat": 16.4,
+     "lng": 81.8,
+     "landfall": {
+      "at": "2026-10-28T07:41:05.753Z",
+      "lat": 16.6,
+      "lng": 81.81,
+      "near": "Kakinada",
+      "cat": "TS"
+     },
+     "url": "https://www.gdacs.org/report.aspx?eventid=1001345&episodeid=10&eventtype=TC"
+    }
+   },
+   "quakes": {
+    "aka2026vhpcrg": {
+     "mag": 3.6,
+     "place": "18 km E of Susitna North, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vhpcrg"
+    },
+    "us7000ttgz": {
+     "mag": 4.4,
+     "place": "32 km SW of Ashkāsham, Afghanistan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttgz"
+    },
+    "aka2026vhmjgz": {
+     "mag": 2.8,
+     "place": "13 km SW of Tyonek, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vhmjgz"
+    },
+    "us7000ttgu": {
+     "mag": 4.3,
+     "place": "99 km SW of Puerto Madero, Mexico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttgu"
+    },
+    "us7000ttgq": {
+     "mag": 5,
+     "place": "south of the Fiji Islands",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttgq"
+    },
+    "us7000ttgm": {
+     "mag": 5,
+     "place": "27 km W of Río Grande, Panama",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttgm"
+    },
+    "tx2026vdzxac": {
+     "mag": 2.5,
+     "place": "59 km NW of Toyah, Texas",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/tx2026vdzxac"
+    },
+    "us7000ttgf": {
+     "mag": 5.4,
+     "place": "128 km S of Pundong, Indonesia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttgf"
+    },
+    "us7000ttgh": {
+     "mag": 4.9,
+     "place": "156 km S of Pundong, Indonesia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttgh"
+    },
+    "us7000ttgc": {
+     "mag": 4.6,
+     "place": "41 km S of Farkhār, Afghanistan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttgc"
+    },
+    "us7000ttg9": {
+     "mag": 3.5,
+     "place": "9 km NE of Korumburra, Australia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttg9"
+    },
+    "us7000ttfx": {
+     "mag": 4.6,
+     "place": "5 km ENE of Tierra y Libertad, Mexico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttfx"
+    },
+    "us7000ttft": {
+     "mag": 2.5,
+     "place": "13 km E of Pearsall, Texas",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttft"
+    },
+    "us7000ttfs": {
+     "mag": 4.6,
+     "place": "100 km W of El Aguilar, Argentina",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttfs"
+    },
+    "pr71537738": {
+     "mag": 3.05,
+     "place": "30 km N of Charlotte Amalie, U.S. Virgin Islands",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537738"
+    },
+    "us7000ttfk": {
+     "mag": 5.2,
+     "place": "191 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttfk"
+    },
+    "aka2026vhcaon": {
+     "mag": 2.7,
+     "place": "126 km SSE of Unalaska, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vhcaon"
+    },
+    "us7000ttfj": {
+     "mag": 5,
+     "place": "184 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttfj"
+    },
+    "us7000ttfe": {
+     "mag": 5,
+     "place": "206 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttfe"
+    },
+    "pr71537733": {
+     "mag": 2.78,
+     "place": "64 km NNE of Cruz Bay, U.S. Virgin Islands",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537733"
+    },
+    "us7000ttfc": {
+     "mag": 5,
+     "place": "95 km NNE of Hihifo, Tonga",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttfc"
+    },
+    "us7000ttfb": {
+     "mag": 5.8,
+     "place": "196 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttfb"
+    },
+    "us7000ttf9": {
+     "mag": 2.8,
+     "place": "247 km ESE of Chiniak, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttf9"
+    },
+    "aka2026vgtzgj": {
+     "mag": 2.5,
+     "place": "80 km E of Chignik, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vgtzgj"
+    },
+    "us7000tteg": {
+     "mag": 4.1,
+     "place": "5 km SW of Azogues, Ecuador",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tteg"
+    },
+    "pr71537723": {
+     "mag": 3.04,
+     "place": "49 km N of Suárez, Puerto Rico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537723"
+    },
+    "us7000tte4": {
+     "mag": 4.9,
+     "place": "69 km WSW of Kirakira, Solomon Islands",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tte4"
+    },
+    "pr71537718": {
+     "mag": 3.31,
+     "place": "39 km WSW of Stella, Puerto Rico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537718"
+    },
+    "us7000tte0": {
+     "mag": 4.6,
+     "place": "203 km SSE of Tateyama, Japan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tte0"
+    },
+    "us7000ttdt": {
+     "mag": 4.8,
+     "place": "54 km E of Tomioka, Japan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttdt"
+    },
+    "us7000ttd3": {
+     "mag": 4.5,
+     "place": "98 km NNW of Tobelo, Indonesia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttd3"
+    },
+    "us7000ttd1": {
+     "mag": 4.5,
+     "place": "96 km ENE of Pamandzi, Mayotte",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttd1"
+    },
+    "us7000ttci": {
+     "mag": 4.7,
+     "place": "98 km S of Encounter Bay, Australia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttci"
+    },
+    "us7000ttc8": {
+     "mag": 4.6,
+     "place": "20 km NNW of La Ligua, Chile",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttc8"
+    },
+    "us7000ttc5": {
+     "mag": 3,
+     "place": "44 km SSW of Terlingua, Texas",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttc5"
+    },
+    "us7000ttc6": {
+     "mag": 4.5,
+     "place": "89 km SSE of Pondaguitan, Philippines",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttc6"
+    },
+    "us7000ttbv": {
+     "mag": 3.3,
+     "place": "272 km SE of Chiniak, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttbv"
+    },
+    "tx2026vcnlki": {
+     "mag": 2.6,
+     "place": "37 km ESE of Malaga, New Mexico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/tx2026vcnlki"
+    },
+    "us7000ttbh": {
+     "mag": 4.9,
+     "place": "100 km E of La Tirana, Chile",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttbh"
+    },
+    "us7000tth4": {
+     "mag": 4.9,
+     "place": "70 km WNW of Callaguip, Philippines",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tth4"
+    },
+    "hv75064501": {
+     "mag": 2.54,
+     "place": "4 km WSW of Pāhala, Hawaii",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/hv75064501"
+    },
+    "us7000ttis": {
+     "mag": 5.4,
+     "place": "210 km ENE of Nagqu, China",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttis"
+    },
+    "nc75455701": {
+     "mag": 2.63,
+     "place": "14 km E of Seven Trees, CA",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75455701"
+    },
+    "nn00926320": {
+     "mag": 2.58,
+     "place": "7 km SW of Nelson, Nevada",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nn00926320"
+    },
+    "tx2026vdtnxx": {
+     "mag": 2.6,
+     "place": "16 km ESE of Pearsall, Texas",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/tx2026vdtnxx"
+    },
+    "us7000ttju": {
+     "mag": 4.2,
+     "place": "161 km SSE of Atka, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttju"
+    },
+    "hv75064596": {
+     "mag": 2.63,
+     "place": "24 km WNW of Volcano, Hawaii",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/hv75064596"
+    },
+    "us7000ttke": {
+     "mag": 5.4,
+     "place": "193 km WSW of Merizo Village, Guam",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttke"
+    },
+    "us7000ttkk": {
+     "mag": 5.1,
+     "place": "7 km N of Balangonan, Philippines",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttkk"
+    },
+    "us7000ttkf": {
+     "mag": 4.3,
+     "place": "25 km SSE of Calingasta, Argentina",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttkf"
+    },
+    "aka2026vieele": {
+     "mag": 3.5,
+     "place": "27 km E of Point Possession, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vieele"
+    },
+    "us7000ttki": {
+     "mag": 2.8,
+     "place": "236 km W of Ferndale, California",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttki"
+    },
+    "aka2026vhrydq": {
+     "mag": 3.4,
+     "place": "110 km SSW of Nikolski, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vhrydq"
+    },
+    "us7000ttlc": {
+     "mag": 5.2,
+     "place": "6 km NW of Balangonan, Philippines",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttlc"
+    },
+    "us7000ttl5": {
+     "mag": 4,
+     "place": "78 km SSW of Fīrūzābād, Iran",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttl5"
+    },
+    "us7000ttld": {
+     "mag": 5.5,
+     "place": "221 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttld"
+    },
+    "pr71537763": {
+     "mag": 3.37,
+     "place": "31 km N of Isabela, Puerto Rico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537763"
+    },
+    "us7000ttlm": {
+     "mag": 6,
+     "place": "214 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttlm"
+    },
+    "us7000ttlk": {
+     "mag": 5.2,
+     "place": "220 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttlk"
+    },
+    "ci41567984": {
+     "mag": 2.55,
+     "place": "11 km SE of Ocotillo Wells, CA",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/ci41567984"
+    },
+    "us7000ttli": {
+     "mag": 4.8,
+     "place": "217 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttli"
+    },
+    "us7000ttlt": {
+     "mag": 5.6,
+     "place": "174 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttlt"
+    },
+    "us7000ttlw": {
+     "mag": 4.3,
+     "place": "Banda Sea",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttlw"
+    },
+    "us7000ttm2": {
+     "mag": 5,
+     "place": "200 km W of Sola, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttm2"
+    },
+    "aka2026vipqlb": {
+     "mag": 2.8,
+     "place": "66 km SE of King Salmon, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vipqlb"
+    },
+    "us7000ttmb": {
+     "mag": 5,
+     "place": "205 km SSE of Vilyuchinsk, Russia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttmb"
+    },
+    "us7000ttmh": {
+     "mag": 4.7,
+     "place": "39 km SSW of Serrezuela, Argentina",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttmh"
+    },
+    "us7000ttmz": {
+     "mag": 4.8,
+     "place": "29 km SSW of Sarangani, Philippines",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttmz"
+    },
+    "us7000ttn0": {
+     "mag": 3.8,
+     "place": "21 km SE of Esperanza, Puerto Rico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttn0"
+    },
+    "pr2026301000": {
+     "mag": 4.07,
+     "place": "21 km SE of Esperanza, Puerto Rico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr2026301000"
+    },
+    "aka2026viylbm": {
+     "mag": 3,
+     "place": "25 km ESE of Kasilof, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026viylbm"
+    },
+    "pr2026301001": {
+     "mag": 3.85,
+     "place": "26 km S of Boca de Yuma, Dominican Republic",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr2026301001"
+    },
+    "nc75458907": {
+     "mag": 4.01,
+     "place": "10 km N of Lake Pillsbury, CA",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75458907"
+    },
+    "us7000ttnc": {
+     "mag": 5.5,
+     "place": "Reykjanes Ridge",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttnc"
+    },
+    "us7000ttnk": {
+     "mag": 5,
+     "place": "Reykjanes Ridge",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttnk"
+    },
+    "us7000ttnz": {
+     "mag": 5,
+     "place": "Reykjanes Ridge",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttnz"
+    },
+    "us7000ttnt": {
+     "mag": 4.9,
+     "place": "88 km SE of Hihifo, Tonga",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttnt"
+    },
+    "us7000ttp2": {
+     "mag": 4.6,
+     "place": "south of the Fiji Islands",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttp2"
+    },
+    "us7000ttnq": {
+     "mag": 4.9,
+     "place": "1 km WSW of Butulan, Philippines",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttnq"
+    },
+    "pr71537823": {
+     "mag": 3.28,
+     "place": "56 km N of Cruz Bay, U.S. Virgin Islands",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537823"
+    },
+    "us7000ttp7": {
+     "mag": 4.5,
+     "place": "13 km WSW of Āwash, Ethiopia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttp7"
+    },
+    "tx2026vfjmxf": {
+     "mag": 2.6,
+     "place": "11 km SW of Jal, New Mexico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/tx2026vfjmxf"
+    },
+    "us7000ttpe": {
+     "mag": 5.5,
+     "place": "5 km ESE of Asahi, Japan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttpe"
+    },
+    "pr71537838": {
+     "mag": 2.51,
+     "place": "10 km ESE of Esperanza, Puerto Rico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537838"
+    },
+    "us7000ttpk": {
+     "mag": 4.7,
+     "place": "81 km ENE of Mazha, China",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttpk"
+    }
+   },
+   "gdacs": {
+    "TC-1001345": {
+     "name": "Tropical Cyclone ARNAB-26",
+     "type": "Tropical cyclone",
+     "level": "Red",
+     "country": "India",
+     "url": "https://www.gdacs.org/report.aspx?eventid=1001345&episodeid=10&eventtype=TC"
+    },
+    "TC-1001338": {
+     "name": "Tropical Cyclone CHAMPI-26",
+     "type": "Tropical cyclone",
+     "level": "Red",
+     "country": "Philippines, Guam, Northern Mariana Islands, Japan, China, South Korea",
+     "url": "https://www.gdacs.org/report.aspx?eventid=1001338&episodeid=46&eventtype=TC"
+    }
+   },
+   "rainMax": {
+    "name": "Idukki",
+    "state": "Kerala",
+    "mm": 14,
+    "date": "2026-10-28"
+   },
+   "seaMax": {
+    "name": "Pulicat",
+    "m": 2.1
+   },
+   "fireAreas": {},
+   "firesSouthAsia": 5193,
+   "news": {},
+   "dams": {
+    "Mettur (Stanley)": {
+     "levelFt": 54.98,
+     "fullFt": 120,
+     "outflow": 1002
+    },
+    "Krishna Raja Sagar": {
+     "levelFt": 104.38,
+     "fullFt": 124.8,
+     "outflow": 2518
+    },
+    "Kabini": {
+     "levelFt": 54.17,
+     "fullFt": 65,
+     "outflow": 500
+    },
+    "Harangi": {
+     "levelFt": 117.29,
+     "fullFt": 129,
+     "outflow": 200
+    },
+    "Hemavathy": {
+     "levelFt": 90.52,
+     "fullFt": 117,
+     "outflow": 300
+    },
+    "Bhavanisagar": {
+     "levelFt": 72.03,
+     "fullFt": 105,
+     "outflow": 76
+    },
+    "Amaravathi": {
+     "levelFt": 51.18,
+     "fullFt": 90,
+     "outflow": null
+    },
+    "Periyar (Mullaperiyar)": {
+     "levelFt": 121.75,
+     "fullFt": 152,
+     "outflow": 400
+    },
+    "Vaigai": {
+     "levelFt": 51.15,
+     "fullFt": 71,
+     "outflow": 86
+    },
+    "Papanasam": {
+     "levelFt": 63.55,
+     "fullFt": 143,
+     "outflow": 100
+    },
+    "Manimuthar": {
+     "levelFt": 65.69,
+     "fullFt": 118,
+     "outflow": 25
+    },
+    "Pechiparai": {
+     "levelFt": 26.59,
+     "fullFt": 48,
+     "outflow": 116
+    },
+    "Perunchani": {
+     "levelFt": 53.5,
+     "fullFt": 77,
+     "outflow": 225
+    },
+    "Krishnagiri (KRP)": {
+     "levelFt": 48.25,
+     "fullFt": 52,
+     "outflow": 783
+    },
+    "Sathanur": {
+     "levelFt": 98.65,
+     "fullFt": 119,
+     "outflow": null
+    },
+    "Sholayar": {
+     "levelFt": 64.8,
+     "fullFt": 160,
+     "outflow": 85
+    },
+    "Parambikulam": {
+     "levelFt": 58.07,
+     "fullFt": 72,
+     "outflow": 783
+    },
+    "Aliyar": {
+     "levelFt": 60.3,
+     "fullFt": 120,
+     "outflow": 50
+    },
+    "Thirumurthy": {
+     "levelFt": 44.23,
+     "fullFt": 60,
+     "outflow": 21
+    }
+   },
+   "alertTitles": []
+  },
+  {
+   "date": "2026-10-29",
+   "alerts": {
+    "cyclone_track|medium": 1,
+    "gdacs_level|critical": 1,
+    "river_discharge|medium": 1
+   },
+   "cyclones": {
+    "1001345": {
+     "name": "ARNAB-26",
+     "alertLevel": "Red",
+     "maxWindKmh": 222,
+     "lat": 16.4,
+     "lng": 81.8,
+     "landfall": {
+      "at": "2026-10-28T07:41:05.753Z",
+      "lat": 16.6,
+      "lng": 81.81,
+      "near": "Kakinada",
+      "cat": "TS"
+     },
+     "url": "https://www.gdacs.org/report.aspx?eventid=1001345&episodeid=10&eventtype=TC"
+    }
+   },
+   "quakes": {
+    "us7000ttpk": {
+     "mag": 4.7,
+     "place": "81 km ENE of Mazha, China",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttpk"
+    },
+    "pr71537838": {
+     "mag": 2.51,
+     "place": "10 km ESE of Esperanza, Puerto Rico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537838"
+    },
+    "us7000ttpe": {
+     "mag": 5.5,
+     "place": "5 km ESE of Asahi, Japan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttpe"
+    },
+    "pr71537823": {
+     "mag": 3.28,
+     "place": "56 km N of Cruz Bay, U.S. Virgin Islands",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537823"
+    },
+    "us7000ttp7": {
+     "mag": 4.5,
+     "place": "13 km WSW of Āwash, Ethiopia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttp7"
+    },
+    "us7000ttp2": {
+     "mag": 4.6,
+     "place": "south of the Fiji Islands",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttp2"
+    },
+    "us7000ttnz": {
+     "mag": 5,
+     "place": "Reykjanes Ridge",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttnz"
+    },
+    "us7000ttnt": {
+     "mag": 4.9,
+     "place": "88 km SE of Hihifo, Tonga",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttnt"
+    },
+    "us7000ttnq": {
+     "mag": 4.9,
+     "place": "1 km WSW of Butulan, Philippines",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttnq"
+    },
+    "nc75458907": {
+     "mag": 4.01,
+     "place": "10 km N of Lake Pillsbury, CA",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75458907"
+    },
+    "us7000ttnk": {
+     "mag": 5,
+     "place": "Reykjanes Ridge",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttnk"
+    },
+    "us7000ttnc": {
+     "mag": 5.5,
+     "place": "Reykjanes Ridge",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttnc"
+    },
+    "aka2026viylbm": {
+     "mag": 3,
+     "place": "25 km ESE of Kasilof, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026viylbm"
+    },
+    "pr2026301001": {
+     "mag": 3.85,
+     "place": "26 km S of Boca de Yuma, Dominican Republic",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr2026301001"
+    },
+    "pr2026301000": {
+     "mag": 4.07,
+     "place": "21 km SE of Esperanza, Puerto Rico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr2026301000"
+    },
+    "us7000ttmz": {
+     "mag": 4.8,
+     "place": "29 km SSW of Sarangani, Philippines",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttmz"
+    },
+    "tx2026vfjmxf": {
+     "mag": 2.6,
+     "place": "11 km SW of Jal, New Mexico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/tx2026vfjmxf"
+    },
+    "us7000ttmh": {
+     "mag": 4.7,
+     "place": "39 km SSW of Serrezuela, Argentina",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttmh"
+    },
+    "aka2026vipqlb": {
+     "mag": 2.8,
+     "place": "66 km SE of King Salmon, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vipqlb"
+    },
+    "us7000ttmb": {
+     "mag": 5,
+     "place": "205 km SSE of Vilyuchinsk, Russia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttmb"
+    },
+    "us7000ttm2": {
+     "mag": 5,
+     "place": "200 km W of Sola, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttm2"
+    },
+    "us7000ttlw": {
+     "mag": 4.3,
+     "place": "Banda Sea",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttlw"
+    },
+    "us7000ttlt": {
+     "mag": 5.6,
+     "place": "174 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttlt"
+    },
+    "ci41567984": {
+     "mag": 2.55,
+     "place": "11 km SE of Ocotillo Wells, CA",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/ci41567984"
+    },
+    "us7000ttlm": {
+     "mag": 6,
+     "place": "214 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttlm"
+    },
+    "us7000ttlk": {
+     "mag": 5.2,
+     "place": "220 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttlk"
+    },
+    "us7000ttli": {
+     "mag": 4.8,
+     "place": "217 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttli"
+    },
+    "us7000ttld": {
+     "mag": 5.5,
+     "place": "221 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttld"
+    },
+    "us7000ttlc": {
+     "mag": 5.2,
+     "place": "6 km NW of Balangonan, Philippines",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttlc"
+    },
+    "pr71537763": {
+     "mag": 3.37,
+     "place": "31 km N of Isabela, Puerto Rico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537763"
+    },
+    "us7000ttl5": {
+     "mag": 4,
+     "place": "78 km SSW of Fīrūzābād, Iran",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttl5"
+    },
+    "aka2026vieele": {
+     "mag": 3.5,
+     "place": "27 km E of Point Possession, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vieele"
+    },
+    "us7000ttkk": {
+     "mag": 5.1,
+     "place": "7 km N of Balangonan, Philippines",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttkk"
+    },
+    "us7000ttki": {
+     "mag": 2.8,
+     "place": "236 km W of Ferndale, California",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttki"
+    },
+    "us7000ttkf": {
+     "mag": 4.3,
+     "place": "25 km SSE of Calingasta, Argentina",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttkf"
+    },
+    "hv75064596": {
+     "mag": 2.63,
+     "place": "24 km WNW of Volcano, Hawaii",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/hv75064596"
+    },
+    "us7000ttke": {
+     "mag": 5.4,
+     "place": "193 km WSW of Merizo Village, Guam",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttke"
+    },
+    "us7000ttju": {
+     "mag": 4.2,
+     "place": "161 km SSE of Atka, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttju"
+    },
+    "nc75455701": {
+     "mag": 2.63,
+     "place": "14 km E of Seven Trees, CA",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75455701"
+    },
+    "us7000ttis": {
+     "mag": 5.4,
+     "place": "210 km ENE of Nagqu, China",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttis"
+    },
+    "hv75064501": {
+     "mag": 2.54,
+     "place": "4 km WSW of Pāhala, Hawaii",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/hv75064501"
+    },
+    "aka2026vhrydq": {
+     "mag": 3.4,
+     "place": "110 km SSW of Nikolski, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vhrydq"
+    },
+    "us7000ttth": {
+     "mag": 5.2,
+     "place": "Reykjanes Ridge",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttth"
+    },
+    "us7000tttl": {
+     "mag": 5.3,
+     "place": "159 km WNW of Tobelo, Indonesia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tttl"
+    },
+    "us7000ttsn": {
+     "mag": 4.1,
+     "place": "52 km WSW of Carahue, Chile",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttsn"
+    },
+    "us7000ttsq": {
+     "mag": 4,
+     "place": "249 km NE of Nagqu, China",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttsq"
+    },
+    "aka2026vjejgl": {
+     "mag": 2.9,
+     "place": "157 km S of Unalaska, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vjejgl"
+    },
+    "tx2026vgingz": {
+     "mag": 3.7,
+     "place": "55 km SSE of Whites City, New Mexico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/tx2026vgingz"
+    },
+    "us7000ttt2": {
+     "mag": 4.7,
+     "place": "6 km N of Asahi, Japan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttt2"
+    },
+    "us7000ttua": {
+     "mag": 5.7,
+     "place": "271 km WSW of Tual, Indonesia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttua"
+    },
+    "us7000ttt4": {
+     "mag": 4.7,
+     "place": "Reykjanes Ridge",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttt4"
+    },
+    "us7000ttts": {
+     "mag": 4.3,
+     "place": "10 km SSE of Hasaki, Japan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttts"
+    },
+    "aka2026vjvzqo": {
+     "mag": 3,
+     "place": "66 km W of Happy Valley, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vjvzqo"
+    },
+    "nc75459162": {
+     "mag": 2.62,
+     "place": "12 km SW of Ridgemark, CA",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75459162"
+    },
+    "us7000ttv1": {
+     "mag": 4.6,
+     "place": "17 km N of Kushiro, Japan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttv1"
+    },
+    "nc75459182": {
+     "mag": 2.73,
+     "place": "2 km NE of Pacifica, CA",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75459182"
+    },
+    "us7000ttvf": {
+     "mag": 5.4,
+     "place": "109 km ENE of Luganville, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttvf"
+    },
+    "us7000ttvn": {
+     "mag": 4.9,
+     "place": "117 km E of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttvn"
+    },
+    "us7000ttuq": {
+     "mag": 4.6,
+     "place": "80 km SE of Bole, China",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttuq"
+    },
+    "us7000ttvs": {
+     "mag": 4.8,
+     "place": "western Indian-Antarctic Ridge",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttvs"
+    },
+    "us7000ttvy": {
+     "mag": 4.8,
+     "place": "36 km SSW of Merizo Village, Guam",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttvy"
+    },
+    "us7000ttw3": {
+     "mag": 5.8,
+     "place": "110 km ENE of Barcelona, Philippines",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttw3"
+    },
+    "us7000ttw2": {
+     "mag": 5.4,
+     "place": "113 km ENE of Barcelona, Philippines",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttw2"
+    },
+    "aka2026vkgavi": {
+     "mag": 2.7,
+     "place": "55 km E of Pedro Bay, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vkgavi"
+    },
+    "us7000ttw5": {
+     "mag": 5.7,
+     "place": "82 km NE of Kiunga, Papua New Guinea",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttw5"
+    },
+    "us7000ttx0": {
+     "mag": 5.4,
+     "place": "South Sandwich Islands region",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttx0"
+    },
+    "us7000ttx8": {
+     "mag": 5.1,
+     "place": "Balleny Islands region",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttx8"
+    },
+    "us7000ttx6": {
+     "mag": 4.3,
+     "place": "270 km WSW of Masachapa, Nicaragua",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttx6"
+    },
+    "us7000ttxn": {
+     "mag": 5.4,
+     "place": "114 km ENE of Barcelona, Philippines",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttxn"
+    },
+    "us7000tty0": {
+     "mag": 4.6,
+     "place": "41 km W of Mosteiros, Portugal",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tty0"
+    },
+    "us7000ttxz": {
+     "mag": 6.4,
+     "place": "southeast of Easter Island",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttxz"
+    },
+    "us7000tty7": {
+     "mag": 5.1,
+     "place": "218 km NNW of Bamboo Flat, India",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tty7"
+    },
+    "us7000ttng": {
+     "mag": 3,
+     "place": "126 km SSW of Avalon, California",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttng"
+    },
+    "us7000ttyd": {
+     "mag": 4.9,
+     "place": "111 km SW of Port-Vila, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttyd"
+    },
+    "pr71537903": {
+     "mag": 2.65,
+     "place": "23 km NNW of Saint Croix, U.S. Virgin Islands",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537903"
+    },
+    "us7000ttnr": {
+     "mag": 4.2,
+     "place": "32 km WSW of Ashkāsham, Afghanistan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttnr"
+    },
+    "us7000ttny": {
+     "mag": 4.3,
+     "place": "29 km SSW of Melipilla, Chile",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttny"
+    },
+    "nc75459352": {
+     "mag": 2.6,
+     "place": "5 km WNW of Madera, CA",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75459352"
+    },
+    "nc75459362": {
+     "mag": 2.67,
+     "place": "12 km SW of Ridgemark, CA",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75459362"
+    },
+    "us7000ttyk": {
+     "mag": 4.6,
+     "place": "Pulau Pulau Tanimbar, Indonesia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttyk"
+    },
+    "us7000ttyw": {
+     "mag": 4.7,
+     "place": "6 km SE of Pitaloza Arriba, Panama",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttyw"
+    },
+    "aka2026vlcdmm": {
+     "mag": 2.5,
+     "place": "49 km W of Tatitlek, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vlcdmm"
+    },
+    "hv75065381": {
+     "mag": 2.47,
+     "place": "1 km WSW of Pāhala, Hawaii",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/hv75065381"
+    },
+    "aka2026vledir": {
+     "mag": 2.5,
+     "place": "44 km WNW of Beluga, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vledir"
+    },
+    "hv75065421": {
+     "mag": 2.58,
+     "place": "15 km SW of Leilani Estates, Hawaii",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/hv75065421"
+    },
+    "pr71537918": {
+     "mag": 2.94,
+     "place": "22 km SE of Esperanza, Puerto Rico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537918"
+    },
+    "us7000tu0w": {
+     "mag": 4.2,
+     "place": "2 km WSW of Yacuiba, Bolivia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu0w"
+    },
+    "us7000tu16": {
+     "mag": 3.5,
+     "place": "off the coast of Oregon",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu16"
+    },
+    "us7000ttyy": {
+     "mag": 4.3,
+     "place": "111 km WNW of Panguna, Papua New Guinea",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttyy"
+    }
+   },
+   "gdacs": {
+    "TC-1001345": {
+     "name": "Tropical Cyclone ARNAB-26",
+     "type": "Tropical cyclone",
+     "level": "Red",
+     "country": "India",
+     "url": "https://www.gdacs.org/report.aspx?eventid=1001345&episodeid=10&eventtype=TC"
+    },
+    "TC-1001338": {
+     "name": "Tropical Cyclone CHAMPI-26",
+     "type": "Tropical cyclone",
+     "level": "Red",
+     "country": "Philippines, Guam, Northern Mariana Islands, Japan, China, South Korea",
+     "url": "https://www.gdacs.org/report.aspx?eventid=1001338&episodeid=46&eventtype=TC"
+    }
+   },
+   "rainMax": {
+    "name": "Madurai",
+    "state": "Tamil Nadu",
+    "mm": 13.5,
+    "date": "2026-10-31"
+   },
+   "seaMax": {
+    "name": "Pulicat",
+    "m": 1.9
+   },
+   "fireAreas": {
+    "Sathyamangalam": 2,
+    "Shevaroy and Kalrayan hills": 1,
+    "Anamalai": 1
+   },
+   "firesSouthAsia": 5226,
+   "news": {},
+   "dams": {
+    "Mettur (Stanley)": {
+     "levelFt": 55.21,
+     "fullFt": 120,
+     "outflow": 1003
+    },
+    "Krishna Raja Sagar": {
+     "levelFt": 104.28,
+     "fullFt": 124.8,
+     "outflow": 3339
+    },
+    "Kabini": {
+     "levelFt": 54.42,
+     "fullFt": 65,
+     "outflow": 500
+    },
+    "Harangi": {
+     "levelFt": 117.52,
+     "fullFt": 129,
+     "outflow": 200
+    },
+    "Hemavathy": {
+     "levelFt": 90.95,
+     "fullFt": 117,
+     "outflow": 300
+    },
+    "Bhavanisagar": {
+     "levelFt": 72.43,
+     "fullFt": 105,
+     "outflow": 105
+    },
+    "Amaravathi": {
+     "levelFt": 52.04,
+     "fullFt": 90,
+     "outflow": null
+    },
+    "Periyar (Mullaperiyar)": {
+     "levelFt": 121.8,
+     "fullFt": 152,
+     "outflow": 400
+    },
+    "Vaigai": {
+     "levelFt": 51.21,
+     "fullFt": 71,
+     "outflow": 86
+    },
+    "Papanasam": {
+     "levelFt": 64.85,
+     "fullFt": 143,
+     "outflow": 100
+    },
+    "Manimuthar": {
+     "levelFt": 65.92,
+     "fullFt": 118,
+     "outflow": 25
+    },
+    "Pechiparai": {
+     "levelFt": 26.9,
+     "fullFt": 48,
+     "outflow": 116
+    },
+    "Perunchani": {
+     "levelFt": 53.85,
+     "fullFt": 77,
+     "outflow": 225
+    },
+    "Krishnagiri (KRP)": {
+     "levelFt": 48.3,
+     "fullFt": 52,
+     "outflow": 783
+    },
+    "Sathanur": {
+     "levelFt": 99.1,
+     "fullFt": 119,
+     "outflow": null
+    },
+    "Sholayar": {
+     "levelFt": 65.41,
+     "fullFt": 160,
+     "outflow": 85
+    },
+    "Parambikulam": {
+     "levelFt": 57.78,
+     "fullFt": 72,
+     "outflow": 784
+    },
+    "Aliyar": {
+     "levelFt": 60.5,
+     "fullFt": 120,
+     "outflow": 50
+    },
+    "Thirumurthy": {
+     "levelFt": 46,
+     "fullFt": 60,
+     "outflow": 21
+    }
+   },
+   "alertTitles": [
+    {
+     "title": "GDACS Red: Tropical cyclone Tropical Cyclone ARNAB-26",
+     "severity": "critical",
+     "origin": "official",
+     "url": "https://www.gdacs.org/report.aspx?eventid=1001345&episodeid=10&eventtype=TC"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-30",
+   "alerts": {},
+   "cyclones": {
+    "1001345": {
+     "name": "ARNAB-26",
+     "alertLevel": "Red",
+     "maxWindKmh": 222,
+     "lat": 16.4,
+     "lng": 81.8,
+     "landfall": {
+      "at": "2026-10-28T07:41:05.753Z",
+      "lat": 16.6,
+      "lng": 81.81,
+      "near": "Kakinada",
+      "cat": "TS"
+     },
+     "url": "https://www.gdacs.org/report.aspx?eventid=1001345&episodeid=10&eventtype=TC"
+    }
+   },
+   "quakes": {
+    "us7000tu16": {
+     "mag": 3.5,
+     "place": "off the coast of Oregon",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu16"
+    },
+    "hv75065421": {
+     "mag": 2.58,
+     "place": "15 km SW of Leilani Estates, Hawaii",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/hv75065421"
+    },
+    "pr71537918": {
+     "mag": 2.94,
+     "place": "22 km SE of Esperanza, Puerto Rico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537918"
+    },
+    "us7000tu0w": {
+     "mag": 4.2,
+     "place": "2 km WSW of Yacuiba, Bolivia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu0w"
+    },
+    "aka2026vledir": {
+     "mag": 2.5,
+     "place": "44 km WNW of Beluga, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vledir"
+    },
+    "hv75065381": {
+     "mag": 2.47,
+     "place": "1 km WSW of Pāhala, Hawaii",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/hv75065381"
+    },
+    "aka2026vlcdmm": {
+     "mag": 2.5,
+     "place": "49 km W of Tatitlek, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vlcdmm"
+    },
+    "us7000ttyy": {
+     "mag": 4.3,
+     "place": "111 km WNW of Panguna, Papua New Guinea",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttyy"
+    },
+    "us7000ttyw": {
+     "mag": 4.7,
+     "place": "6 km SE of Pitaloza Arriba, Panama",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttyw"
+    },
+    "nc75459362": {
+     "mag": 2.67,
+     "place": "12 km SW of Ridgemark, CA",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75459362"
+    },
+    "nc75459352": {
+     "mag": 2.6,
+     "place": "5 km WNW of Madera, CA",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75459352"
+    },
+    "us7000ttyk": {
+     "mag": 4.6,
+     "place": "Pulau Pulau Tanimbar, Indonesia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttyk"
+    },
+    "us7000ttyd": {
+     "mag": 4.9,
+     "place": "111 km SW of Port-Vila, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttyd"
+    },
+    "pr71537903": {
+     "mag": 2.65,
+     "place": "23 km NNW of Saint Croix, U.S. Virgin Islands",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537903"
+    },
+    "us7000tty7": {
+     "mag": 5.1,
+     "place": "218 km NNW of Bamboo Flat, India",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tty7"
+    },
+    "us7000tty0": {
+     "mag": 4.6,
+     "place": "41 km W of Mosteiros, Portugal",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tty0"
+    },
+    "us7000ttxz": {
+     "mag": 6.4,
+     "place": "southeast of Easter Island",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttxz"
+    },
+    "us7000ttxn": {
+     "mag": 5.4,
+     "place": "114 km ENE of Barcelona, Philippines",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttxn"
+    },
+    "us7000ttx8": {
+     "mag": 5.1,
+     "place": "Balleny Islands region",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttx8"
+    },
+    "us7000ttx6": {
+     "mag": 4.3,
+     "place": "270 km WSW of Masachapa, Nicaragua",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttx6"
+    },
+    "us7000ttx0": {
+     "mag": 5.4,
+     "place": "South Sandwich Islands region",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttx0"
+    },
+    "aka2026vkgavi": {
+     "mag": 2.7,
+     "place": "55 km E of Pedro Bay, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vkgavi"
+    },
+    "us7000ttw5": {
+     "mag": 5.7,
+     "place": "82 km NE of Kiunga, Papua New Guinea",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttw5"
+    },
+    "us7000ttw3": {
+     "mag": 5.8,
+     "place": "110 km ENE of Barcelona, Philippines",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttw3"
+    },
+    "us7000ttw2": {
+     "mag": 5.4,
+     "place": "113 km ENE of Barcelona, Philippines",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttw2"
+    },
+    "us7000ttvy": {
+     "mag": 4.8,
+     "place": "36 km SSW of Merizo Village, Guam",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttvy"
+    },
+    "us7000ttvs": {
+     "mag": 4.8,
+     "place": "western Indian-Antarctic Ridge",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttvs"
+    },
+    "us7000ttvn": {
+     "mag": 4.9,
+     "place": "117 km E of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttvn"
+    },
+    "nc75459182": {
+     "mag": 2.73,
+     "place": "2 km NE of Pacifica, CA",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75459182"
+    },
+    "us7000ttvf": {
+     "mag": 5.4,
+     "place": "109 km ENE of Luganville, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttvf"
+    },
+    "nc75459162": {
+     "mag": 2.62,
+     "place": "12 km SW of Ridgemark, CA",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75459162"
+    },
+    "us7000ttv1": {
+     "mag": 4.6,
+     "place": "17 km N of Kushiro, Japan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttv1"
+    },
+    "us7000ttuq": {
+     "mag": 4.6,
+     "place": "80 km SE of Bole, China",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttuq"
+    },
+    "aka2026vjvzqo": {
+     "mag": 3,
+     "place": "66 km W of Happy Valley, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vjvzqo"
+    },
+    "us7000ttua": {
+     "mag": 5.7,
+     "place": "271 km WSW of Tual, Indonesia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttua"
+    },
+    "tx2026vgingz": {
+     "mag": 3.7,
+     "place": "55 km SSE of Whites City, New Mexico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/tx2026vgingz"
+    },
+    "us7000ttts": {
+     "mag": 4.3,
+     "place": "10 km SSE of Hasaki, Japan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttts"
+    },
+    "us7000tttl": {
+     "mag": 5.3,
+     "place": "159 km WNW of Tobelo, Indonesia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tttl"
+    },
+    "us7000ttth": {
+     "mag": 5.2,
+     "place": "Reykjanes Ridge",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttth"
+    },
+    "us7000ttt4": {
+     "mag": 4.7,
+     "place": "Reykjanes Ridge",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000ttt4"
+    },
+    "us7000tu2j": {
+     "mag": 4.5,
+     "place": "141 km E of Miyako, Japan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu2j"
+    },
+    "aka2026vlkyrn": {
+     "mag": 2.5,
+     "place": "76 km NW of Arctic Village, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vlkyrn"
+    },
+    "aka2026vlndvd": {
+     "mag": 2.6,
+     "place": "49 km W of Nanwalek, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vlndvd"
+    },
+    "us7000tu3j": {
+     "mag": 5,
+     "place": "143 km S of False Pass, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu3j"
+    },
+    "us7000tu3u": {
+     "mag": 5,
+     "place": "131 km NNW of Tual, Indonesia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu3u"
+    },
+    "us7000tu4f": {
+     "mag": 6.2,
+     "place": "43 km ESE of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu4f"
+    },
+    "us7000tu46": {
+     "mag": 4.7,
+     "place": "1 km SSE of Radwanice, Poland",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu46"
+    },
+    "aka2026vksppo": {
+     "mag": 3.5,
+     "place": "103 km ESE of Akutan, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vksppo"
+    },
+    "us7000tu4a": {
+     "mag": 4.6,
+     "place": "121 km ENE of Shikotan, Russia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu4a"
+    },
+    "aka2026vlubvz": {
+     "mag": 2.8,
+     "place": "27 km ENE of Denali Park, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vlubvz"
+    },
+    "us7000tu4z": {
+     "mag": 4.6,
+     "place": "59 km SW of Port-Vila, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu4z"
+    },
+    "us7000tu4e": {
+     "mag": 4.4,
+     "place": "26 km SW of Tambolaka, Indonesia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu4e"
+    },
+    "aka2026vlwuan": {
+     "mag": 3.5,
+     "place": "12 km ESE of Fox River, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vlwuan"
+    },
+    "us7000tu4p": {
+     "mag": 2.7,
+     "place": "124 km E of McCarthy, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu4p"
+    },
+    "us7000tu5q": {
+     "mag": 5.1,
+     "place": "97 km NNE of Finschhafen, Papua New Guinea",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu5q"
+    },
+    "pr71537938": {
+     "mag": 2.97,
+     "place": "45 km NNW of San Antonio, Puerto Rico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537938"
+    },
+    "hv75066061": {
+     "mag": 2.74,
+     "place": "5 km SSE of Pāhala, Hawaii",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/hv75066061"
+    },
+    "us7000tu6f": {
+     "mag": 4.6,
+     "place": "51 km ENE of Noda, Japan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu6f"
+    },
+    "us7000tty4": {
+     "mag": 4.4,
+     "place": "34 km SSE of San Fernando, Peru",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tty4"
+    },
+    "us7000tu6i": {
+     "mag": 4.8,
+     "place": "Fiji region",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu6i"
+    },
+    "us7000tu4l": {
+     "mag": 3.3,
+     "place": "100 km E of Akutan, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu4l"
+    },
+    "pr71537953": {
+     "mag": 3.16,
+     "place": "36 km N of Charlotte Amalie, U.S. Virgin Islands",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537953"
+    },
+    "uu80162111": {
+     "mag": 3.05,
+     "place": "2 km NNW of Little America, Wyoming",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/uu80162111"
+    },
+    "us7000tu7b": {
+     "mag": 4.6,
+     "place": "64 km SSW of Shikotan, Russia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu7b"
+    },
+    "us7000tu6y": {
+     "mag": 4.3,
+     "place": "20 km NNW of Rioblanco, Colombia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu6y"
+    },
+    "aka2026vmouqg": {
+     "mag": 2.9,
+     "place": "75 km NW of Arctic Village, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vmouqg"
+    },
+    "us7000tu7j": {
+     "mag": 5.1,
+     "place": "Balleny Islands region",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu7j"
+    },
+    "us7000tu7k": {
+     "mag": 4.5,
+     "place": "104 km ENE of Barcelona, Philippines",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu7k"
+    },
+    "us7000tu7p": {
+     "mag": 4.4,
+     "place": "south of the Fiji Islands",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu7p"
+    },
+    "us7000tu7m": {
+     "mag": 4.7,
+     "place": "42 km SE of Sykiá, Greece",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu7m"
+    },
+    "nc75459817": {
+     "mag": 2.7,
+     "place": "22 km SSW of Big Pine, CA",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75459817"
+    },
+    "nc75459827": {
+     "mag": 2.9,
+     "place": "29 km W of Petrolia, CA",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75459827"
+    },
+    "tx2026viuzmv": {
+     "mag": 2.5,
+     "place": "12 km SW of Jal, New Mexico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/tx2026viuzmv"
+    },
+    "nc75459877": {
+     "mag": 2.7,
+     "place": "32 km SE of Bodie, CA",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75459877"
+    },
+    "us7000tu93": {
+     "mag": 4.4,
+     "place": "284 km E of Levuka, Fiji",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu93"
+    },
+    "us7000tu83": {
+     "mag": 4.5,
+     "place": "68 km ENE of Kuji, Japan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu83"
+    },
+    "aka2026vnecvk": {
+     "mag": 2.5,
+     "place": "44 km W of Anchor Point, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vnecvk"
+    }
+   },
+   "gdacs": {
+    "TC-1001345": {
+     "name": "Tropical Cyclone ARNAB-26",
+     "type": "Tropical cyclone",
+     "level": "Red",
+     "country": "India",
+     "url": "https://www.gdacs.org/report.aspx?eventid=1001345&episodeid=10&eventtype=TC"
+    }
+   },
+   "rainMax": {
+    "name": "Tiruvallur",
+    "state": "Tamil Nadu",
+    "mm": 23.3,
+    "date": "2026-11-01"
+   },
+   "seaMax": {
+    "name": "Pulicat",
+    "m": 1.5
+   },
+   "fireAreas": {
+    "Sathyamangalam": 2,
+    "Anamalai": 2,
+    "Shevaroy and Kalrayan hills": 1
+   },
+   "firesSouthAsia": 4799,
+   "news": {},
+   "dams": {
+    "Mettur (Stanley)": {
+     "levelFt": 55.38,
+     "fullFt": 120,
+     "outflow": 1003
+    },
+    "Krishna Raja Sagar": {
+     "levelFt": 103.96,
+     "fullFt": 124.8,
+     "outflow": 3961
+    },
+    "Kabini": {
+     "levelFt": 54.58,
+     "fullFt": 65,
+     "outflow": 500
+    },
+    "Harangi": {
+     "levelFt": 117.72,
+     "fullFt": 129,
+     "outflow": 200
+    },
+    "Hemavathy": {
+     "levelFt": 91.25,
+     "fullFt": 117,
+     "outflow": 300
+    },
+    "Bhavanisagar": {
+     "levelFt": 72.9,
+     "fullFt": 105,
+     "outflow": 105
+    },
+    "Amaravathi": {
+     "levelFt": 52.63,
+     "fullFt": 90,
+     "outflow": null
+    },
+    "Periyar (Mullaperiyar)": {
+     "levelFt": 121.8,
+     "fullFt": 152,
+     "outflow": 400
+    },
+    "Vaigai": {
+     "levelFt": 51.25,
+     "fullFt": 71,
+     "outflow": 86
+    },
+    "Papanasam": {
+     "levelFt": 65.6,
+     "fullFt": 143,
+     "outflow": 100
+    },
+    "Manimuthar": {
+     "levelFt": 66.02,
+     "fullFt": 118,
+     "outflow": 25
+    },
+    "Pechiparai": {
+     "levelFt": 27.19,
+     "fullFt": 48,
+     "outflow": 118
+    },
+    "Perunchani": {
+     "levelFt": 54,
+     "fullFt": 77,
+     "outflow": 225
+    },
+    "Krishnagiri (KRP)": {
+     "levelFt": 48.35,
+     "fullFt": 52,
+     "outflow": 783
+    },
+    "Sathanur": {
+     "levelFt": 99.35,
+     "fullFt": 119,
+     "outflow": null
+    },
+    "Sholayar": {
+     "levelFt": 65.93,
+     "fullFt": 160,
+     "outflow": 85
+    },
+    "Parambikulam": {
+     "levelFt": 57.42,
+     "fullFt": 72,
+     "outflow": 1159
+    },
+    "Aliyar": {
+     "levelFt": 60.8,
+     "fullFt": 120,
+     "outflow": 50
+    },
+    "Thirumurthy": {
+     "levelFt": 47.76,
+     "fullFt": 60,
+     "outflow": 21
+    }
+   },
+   "alertTitles": []
+  },
+  {
+   "date": "2026-10-31",
+   "alerts": {},
+   "cyclones": {
+    "1001345": {
+     "name": "ARNAB-26",
+     "alertLevel": "Red",
+     "maxWindKmh": 222,
+     "lat": 16.4,
+     "lng": 81.8,
+     "landfall": {
+      "at": "2026-10-28T07:41:05.753Z",
+      "lat": 16.6,
+      "lng": 81.81,
+      "near": "Kakinada",
+      "cat": "TS"
+     },
+     "url": "https://www.gdacs.org/report.aspx?eventid=1001345&episodeid=10&eventtype=TC"
+    }
+   },
+   "quakes": {
+    "aka2026vnecvk": {
+     "mag": 2.5,
+     "place": "44 km W of Anchor Point, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vnecvk"
+    },
+    "us7000tu93": {
+     "mag": 4.4,
+     "place": "284 km E of Levuka, Fiji",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu93"
+    },
+    "us7000tu91": {
+     "mag": 4.1,
+     "place": "97 km WSW of Puerto Madero, Mexico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu91"
+    },
+    "nc75459877": {
+     "mag": 2.7,
+     "place": "32 km SE of Bodie, CA",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75459877"
+    },
+    "nc75459827": {
+     "mag": 2.9,
+     "place": "29 km W of Petrolia, CA",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75459827"
+    },
+    "nc75459817": {
+     "mag": 2.7,
+     "place": "22 km SSW of Big Pine, CA",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75459817"
+    },
+    "us7000tu83": {
+     "mag": 4.5,
+     "place": "68 km ENE of Kuji, Japan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu83"
+    },
+    "us7000tu7p": {
+     "mag": 4.4,
+     "place": "south of the Fiji Islands",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu7p"
+    },
+    "us7000tu7m": {
+     "mag": 4.7,
+     "place": "42 km SE of Sykiá, Greece",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu7m"
+    },
+    "us7000tu7k": {
+     "mag": 4.5,
+     "place": "104 km ENE of Barcelona, Philippines",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu7k"
+    },
+    "us7000tu7j": {
+     "mag": 5.1,
+     "place": "Balleny Islands region",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu7j"
+    },
+    "aka2026vmouqg": {
+     "mag": 2.9,
+     "place": "75 km NW of Arctic Village, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vmouqg"
+    },
+    "us7000tu7b": {
+     "mag": 4.6,
+     "place": "64 km SSW of Shikotan, Russia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu7b"
+    },
+    "uu80162111": {
+     "mag": 3.05,
+     "place": "2 km NNW of Little America, Wyoming",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/uu80162111"
+    },
+    "us7000tu6y": {
+     "mag": 4.3,
+     "place": "20 km NNW of Rioblanco, Colombia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu6y"
+    },
+    "pr71537953": {
+     "mag": 3.16,
+     "place": "36 km N of Charlotte Amalie, U.S. Virgin Islands",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537953"
+    },
+    "tx2026viuzmv": {
+     "mag": 2.5,
+     "place": "12 km SW of Jal, New Mexico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/tx2026viuzmv"
+    },
+    "us7000tu6i": {
+     "mag": 4.8,
+     "place": "Fiji region",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu6i"
+    },
+    "us7000tu6f": {
+     "mag": 4.6,
+     "place": "51 km ENE of Noda, Japan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu6f"
+    },
+    "hv75066061": {
+     "mag": 2.74,
+     "place": "5 km SSE of Pāhala, Hawaii",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/hv75066061"
+    },
+    "pr71537938": {
+     "mag": 2.97,
+     "place": "45 km NNW of San Antonio, Puerto Rico",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537938"
+    },
+    "us7000tu5q": {
+     "mag": 5.1,
+     "place": "97 km NNE of Finschhafen, Papua New Guinea",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu5q"
+    },
+    "aka2026vlwuan": {
+     "mag": 3.5,
+     "place": "12 km ESE of Fox River, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vlwuan"
+    },
+    "aka2026vlubvz": {
+     "mag": 2.8,
+     "place": "27 km ENE of Denali Park, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vlubvz"
+    },
+    "us7000tu4z": {
+     "mag": 4.6,
+     "place": "59 km SW of Port-Vila, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu4z"
+    },
+    "us7000tu4p": {
+     "mag": 2.7,
+     "place": "124 km E of McCarthy, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu4p"
+    },
+    "us7000tu4f": {
+     "mag": 6.2,
+     "place": "43 km ESE of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu4f"
+    },
+    "us7000tu4e": {
+     "mag": 4.4,
+     "place": "26 km SW of Tambolaka, Indonesia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu4e"
+    },
+    "us7000tu4a": {
+     "mag": 4.6,
+     "place": "121 km ENE of Shikotan, Russia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu4a"
+    },
+    "us7000tu46": {
+     "mag": 4.7,
+     "place": "1 km SSE of Radwanice, Poland",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu46"
+    },
+    "us7000tu3u": {
+     "mag": 5,
+     "place": "131 km NNW of Tual, Indonesia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu3u"
+    },
+    "us7000tu3j": {
+     "mag": 5,
+     "place": "143 km S of False Pass, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu3j"
+    },
+    "aka2026vlkyrn": {
+     "mag": 2.5,
+     "place": "76 km NW of Arctic Village, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vlkyrn"
+    },
+    "us7000tu97": {
+     "mag": 4.2,
+     "place": "262 km NNE of Lospalos, Timor Leste",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tu97"
+    },
+    "aka2026vngzyw": {
+     "mag": 4.4,
+     "place": "14 km SE of Eureka Roadhouse, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vngzyw"
+    },
+    "aka2026vnhpxc": {
+     "mag": 2.5,
+     "place": "63 km WNW of Happy Valley, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vnhpxc"
+    },
+    "us7000tudk": {
+     "mag": 4.5,
+     "place": "236 km ESE of Zyryanka, Russia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tudk"
+    },
+    "pr71537968": {
+     "mag": 3.39,
+     "place": "120 km N of Cruz Bay, U.S. Virgin Islands",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71537968"
+    },
+    "us7000tub8": {
+     "mag": 4.6,
+     "place": "7 km NE of Tago, Philippines",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tub8"
+    },
+    "aka2026vnjdai": {
+     "mag": 2.8,
+     "place": "56 km NNW of Petersville, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vnjdai"
+    },
+    "us7000tuey": {
+     "mag": 4.4,
+     "place": "36 km E of Koseda, Japan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuey"
+    },
+    "us7000tuep": {
+     "mag": 4.1,
+     "place": "73 km SSW of Calama, Chile",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuep"
+    },
+    "us7000tuej": {
+     "mag": 4.4,
+     "place": "37 km S of Nishinoomote, Japan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuej"
+    },
+    "aka2026vnojyv": {
+     "mag": 3.1,
+     "place": "54 km WNW of Anchor Point, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vnojyv"
+    },
+    "aka2026vnovmh": {
+     "mag": 3,
+     "place": "74 km SSE of McGrath, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vnovmh"
+    },
+    "us7000tufp": {
+     "mag": 4.6,
+     "place": "33 km NE of Mazo Cruz, Peru",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tufp"
+    },
+    "us7000tufc": {
+     "mag": 4.7,
+     "place": "222 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tufc"
+    },
+    "us7000tufe": {
+     "mag": 4.3,
+     "place": "south of the Fiji Islands",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tufe"
+    },
+    "us7000tugd": {
+     "mag": 4.8,
+     "place": "97 km ENE of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tugd"
+    },
+    "us7000tugg": {
+     "mag": 4.2,
+     "place": "35 km SSE of Sykiá, Greece",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tugg"
+    },
+    "hv75066446": {
+     "mag": 2.47,
+     "place": "1 km WSW of Pāhala, Hawaii",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/hv75066446"
+    },
+    "us7000tugl": {
+     "mag": 4.3,
+     "place": "84 km S of Severo-Kuril’sk, Russia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tugl"
+    },
+    "us7000tugf": {
+     "mag": 4.5,
+     "place": "223 km SE of Katsuura, Japan",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tugf"
+    },
+    "us7000tugs": {
+     "mag": 4.5,
+     "place": "central Mid-Atlantic Ridge",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tugs"
+    },
+    "us7000tugv": {
+     "mag": 4.6,
+     "place": "Izu Islands, Japan region",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tugv"
+    },
+    "av94477963": {
+     "mag": 2.61,
+     "place": "5 km W of Dutch Harbor, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/av94477963"
+    },
+    "uu80162166": {
+     "mag": 3.31,
+     "place": "8 km NW of Junction, Utah",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/uu80162166"
+    },
+    "uu80162171": {
+     "mag": 2.98,
+     "place": "9 km NW of Junction, Utah",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/uu80162171"
+    },
+    "us7000tuh8": {
+     "mag": 4.4,
+     "place": "222 km ENE of Nagqu, China",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuh8"
+    },
+    "us7000tuh7": {
+     "mag": 4.4,
+     "place": "35 km SE of Vilyuchinsk, Russia",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuh7"
+    },
+    "aka2026vnquif": {
+     "mag": 2.7,
+     "place": "95 km S of Sand Point, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vnquif"
+    },
+    "aka2026vnswqz": {
+     "mag": 2.6,
+     "place": "290 km W of Adak, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vnswqz"
+    },
+    "us7000tuhe": {
+     "mag": 2.5,
+     "place": "12 km NW of Junction, Utah",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuhe"
+    },
+    "aka2026vobaga": {
+     "mag": 3.3,
+     "place": "44 km SSW of Nikolski, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vobaga"
+    },
+    "us7000tuhs": {
+     "mag": 4.9,
+     "place": "213 km W of Sola, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuhs"
+    },
+    "aka2026vogzdd": {
+     "mag": 3,
+     "place": "89 km SSE of Akutan, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vogzdd"
+    },
+    "us7000tuht": {
+     "mag": 4.9,
+     "place": "236 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuht"
+    },
+    "pr71538018": {
+     "mag": 3.21,
+     "place": "60 km ESE of Boca de Yuma, Dominican Republic",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71538018"
+    },
+    "pr71538038": {
+     "mag": 3.1,
+     "place": "95 km NNW of Sandy Ground Village, Anguilla",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71538038"
+    },
+    "us7000tui9": {
+     "mag": 4.4,
+     "place": "Fiji region",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tui9"
+    },
+    "us7000tuif": {
+     "mag": 5,
+     "place": "196 km NW of Port-Olry, Vanuatu",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuif"
+    },
+    "pr2026304000": {
+     "mag": 3.77,
+     "place": "92 km NE of Cruz Bay, U.S. Virgin Islands",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr2026304000"
+    },
+    "us7000tugx": {
+     "mag": 3,
+     "place": "7 km W of Dutch Harbor, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tugx"
+    },
+    "uu80162191": {
+     "mag": 2.49,
+     "place": "9 km NW of Junction, Utah",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/uu80162191"
+    },
+    "us7000tuiw": {
+     "mag": 4.3,
+     "place": "Banda Sea",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuiw"
+    },
+    "aka2026vovsfh": {
+     "mag": 2.6,
+     "place": "35 km NW of Ninilchik, Alaska",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vovsfh"
+    },
+    "us7000tuj1": {
+     "mag": 4.4,
+     "place": "62 km NNW of Claveria, Philippines",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuj1"
+    },
+    "us7000tujf": {
+     "mag": 5.2,
+     "place": "4 km S of Bajo Corral, Panama",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tujf"
+    },
+    "us7000tuj2": {
+     "mag": 4.3,
+     "place": "190 km NNW of Nagqu, China",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuj2"
+    },
+    "nc75460382": {
+     "mag": 2.92,
+     "place": "27 km WSW of Westley, CA",
+     "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75460382"
+    }
+   },
+   "gdacs": {
+    "TC-1001345": {
+     "name": "Tropical Cyclone ARNAB-26",
+     "type": "Tropical cyclone",
+     "level": "Red",
+     "country": "India",
+     "url": "https://www.gdacs.org/report.aspx?eventid=1001345&episodeid=10&eventtype=TC"
+    }
+   },
+   "rainMax": {
+    "name": "Nellore",
+    "state": "Andhra Pradesh",
+    "mm": 30.7,
+    "date": "2026-11-02"
+   },
+   "seaMax": {
+    "name": "Pulicat",
+    "m": 1.5
+   },
+   "fireAreas": {
+    "Sathyamangalam": 2,
+    "Anamalai": 2,
+    "Shevaroy and Kalrayan hills": 1
+   },
+   "firesSouthAsia": 4482,
+   "news": {},
+   "dams": {
+    "Mettur (Stanley)": {
+     "levelFt": 55.38,
+     "fullFt": 120,
+     "outflow": 1003
+    },
+    "Krishna Raja Sagar": {
+     "levelFt": 103.96,
+     "fullFt": 124.8,
+     "outflow": 3961
+    },
+    "Kabini": {
+     "levelFt": 54.58,
+     "fullFt": 65,
+     "outflow": 500
+    },
+    "Harangi": {
+     "levelFt": 117.72,
+     "fullFt": 129,
+     "outflow": 200
+    },
+    "Hemavathy": {
+     "levelFt": 91.25,
+     "fullFt": 117,
+     "outflow": 300
+    },
+    "Bhavanisagar": {
+     "levelFt": 72.9,
+     "fullFt": 105,
+     "outflow": 105
+    },
+    "Amaravathi": {
+     "levelFt": 52.63,
+     "fullFt": 90,
+     "outflow": null
+    },
+    "Periyar (Mullaperiyar)": {
+     "levelFt": 121.8,
+     "fullFt": 152,
+     "outflow": 400
+    },
+    "Vaigai": {
+     "levelFt": 51.25,
+     "fullFt": 71,
+     "outflow": 86
+    },
+    "Papanasam": {
+     "levelFt": 65.6,
+     "fullFt": 143,
+     "outflow": 100
+    },
+    "Manimuthar": {
+     "levelFt": 66.02,
+     "fullFt": 118,
+     "outflow": 25
+    },
+    "Pechiparai": {
+     "levelFt": 27.19,
+     "fullFt": 48,
+     "outflow": 118
+    },
+    "Perunchani": {
+     "levelFt": 54,
+     "fullFt": 77,
+     "outflow": 225
+    },
+    "Krishnagiri (KRP)": {
+     "levelFt": 48.35,
+     "fullFt": 52,
+     "outflow": 783
+    },
+    "Sathanur": {
+     "levelFt": 99.35,
+     "fullFt": 119,
+     "outflow": null
+    },
+    "Sholayar": {
+     "levelFt": 65.93,
+     "fullFt": 160,
+     "outflow": 85
+    },
+    "Parambikulam": {
+     "levelFt": 57.42,
+     "fullFt": 72,
+     "outflow": 1159
+    },
+    "Aliyar": {
+     "levelFt": 60.8,
+     "fullFt": 120,
+     "outflow": 50
+    },
+    "Thirumurthy": {
+     "levelFt": 47.76,
+     "fullFt": 60,
+     "outflow": 21
+    }
+   },
+   "alertTitles": []
+  }
+ ]
+}

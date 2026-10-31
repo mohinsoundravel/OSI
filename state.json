@@ -1,0 +1,9014 @@
+{
+ "httpCache": {
+  "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson": {
+   "lastModified": "Sat, 31 Oct 2026 17:21:42 GMT",
+   "hash": "1be1424d1048163a27d5e7cb13a3f144e55b22dd4307982cc427f27315c9abc4"
+  },
+  "https://sachet.ndma.gov.in/cap_public_website/rss/rss_india.xml": {
+   "etag": "W/\"79562-1793460166996\"",
+   "lastModified": "Sat, 31 Oct 2026 15:22:46 GMT",
+   "hash": "4e6841930b099b6e22c65075619b9ee7a4b1ad94a409e7cc0529fd427b25b4f4"
+  },
+  "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;DR;WF&alertlevel=Orange;Red&pageSize=100": {
+   "hash": "cf145534d91933249a9f151264b4d801cca962e664e195d59c52a76929682683"
+  }
+ },
+ "health": {
+  "sachet": {
+   "failures": 0,
+   "lastOk": "2026-10-31T17:22:23.390Z",
+   "error": null,
+   "lastError": "2026-10-30T09:52:27.354Z"
+  },
+  "rivers": {
+   "failures": 0,
+   "lastOk": "2026-10-31T17:22:23.390Z",
+   "error": null
+  },
+  "heat": {
+   "failures": 0,
+   "lastOk": "2026-10-31T17:22:23.390Z",
+   "error": null,
+   "lastError": "2026-10-31T05:37:18.966Z"
+  },
+  "gdacs": {
+   "failures": 0,
+   "error": null,
+   "lastError": "2026-10-30T12:07:22.101Z",
+   "lastOk": "2026-10-31T17:22:23.390Z",
+   "degradedNotified": false
+  },
+  "quakes": {
+   "failures": 0,
+   "lastOk": "2026-10-31T17:22:23.390Z",
+   "error": null
+  },
+  "flights": {
+   "failures": 0,
+   "lastOk": "2026-10-31T17:22:23.390Z",
+   "error": null
+  },
+  "satellites": {
+   "failures": 0,
+   "error": null,
+   "lastError": "2026-10-23T16:25:28.034Z",
+   "lastOk": "2026-10-31T17:22:23.390Z"
+  },
+  "reservoirs": {
+   "failures": 0,
+   "lastOk": "2026-10-31T17:22:23.390Z",
+   "error": null,
+   "lastError": "2026-10-27T10:52:26.423Z"
+  },
+  "ships": {
+   "failures": 0,
+   "lastOk": "2026-10-31T17:22:23.390Z",
+   "error": null
+  },
+  "rain": {
+   "failures": 0,
+   "lastOk": "2026-10-31T17:22:23.390Z",
+   "error": null
+  },
+  "cyclones": {
+   "failures": 0,
+   "lastOk": "2026-10-31T17:22:23.390Z",
+   "error": null,
+   "lastError": "2026-10-29T08:22:22.857Z",
+   "degradedNotified": false
+  },
+  "sea": {
+   "failures": 0,
+   "lastOk": "2026-10-31T17:22:23.390Z",
+   "error": null
+  },
+  "fires": {
+   "failures": 0,
+   "lastOk": "2026-10-31T17:22:23.390Z",
+   "error": null,
+   "lastError": "2026-10-31T02:52:22.786Z"
+  },
+  "news": {
+   "failures": 0,
+   "lastOk": "2026-10-31T17:22:23.390Z",
+   "error": null,
+   "lastError": "2026-10-31T07:07:20.398Z"
+  }
+ },
+ "notified": {
+  "river:pennaiyar-cuddalore:medium": 1793298143219,
+  "gdacs:TC-1001345:Red": 1793467343390,
+  "cyclone:1001345:400": 1793263039335
+ },
+ "quakesSnapshot": [
+  {
+   "id": "us7000tujf",
+   "mag": 5.2,
+   "place": "4 km S of Bajo Corral, Panama",
+   "time": 1793461818909,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tujf",
+   "lng": -80.2547,
+   "lat": 7.5692,
+   "depthKm": 10
+  },
+  {
+   "id": "us7000tuj2",
+   "mag": 4.3,
+   "place": "190 km NNW of Nagqu, China",
+   "time": 1793453919154,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuj2",
+   "lng": 91.6138,
+   "lat": 33.1525,
+   "depthKm": 10
+  },
+  {
+   "id": "us7000tuj1",
+   "mag": 4.4,
+   "place": "62 km NNW of Claveria, Philippines",
+   "time": 1793453474759,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuj1",
+   "lng": 120.9249,
+   "lat": 19.1534,
+   "depthKm": 35
+  },
+  {
+   "id": "us7000tuiw",
+   "mag": 4.3,
+   "place": "Banda Sea",
+   "time": 1793452208987,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuiw",
+   "lng": 128.9289,
+   "lat": -6.4305,
+   "depthKm": 254.829
+  },
+  {
+   "id": "us7000tuif",
+   "mag": 5,
+   "place": "196 km NW of Port-Olry, Vanuatu",
+   "time": 1793446272352,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuif",
+   "lng": 165.6759,
+   "lat": -13.9069,
+   "depthKm": 10
+  },
+  {
+   "id": "us7000tui9",
+   "mag": 4.4,
+   "place": "Fiji region",
+   "time": 1793443330031,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tui9",
+   "lng": -177.4956,
+   "lat": -19.2212,
+   "depthKm": 575.79
+  },
+  {
+   "id": "us7000tuht",
+   "mag": 4.9,
+   "place": "236 km NW of Port-Olry, Vanuatu",
+   "time": 1793438312051,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuht",
+   "lng": 165.2951,
+   "lat": -13.7894,
+   "depthKm": 10
+  },
+  {
+   "id": "us7000tuhs",
+   "mag": 4.9,
+   "place": "213 km W of Sola, Vanuatu",
+   "time": 1793438152568,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuhs",
+   "lng": 165.5833,
+   "lat": -13.7683,
+   "depthKm": 10
+  },
+  {
+   "id": "us7000tuh8",
+   "mag": 4.4,
+   "place": "222 km ENE of Nagqu, China",
+   "time": 1793425923468,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuh8",
+   "lng": 94.0675,
+   "lat": 32.5197,
+   "depthKm": 10
+  },
+  {
+   "id": "us7000tuh7",
+   "mag": 4.4,
+   "place": "35 km SE of Vilyuchinsk, Russia",
+   "time": 1793424559961,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuh7",
+   "lng": 158.7423,
+   "lat": 52.6834,
+   "depthKm": 97.05
+  },
+  {
+   "id": "us7000tugv",
+   "mag": 4.6,
+   "place": "Izu Islands, Japan region",
+   "time": 1793416453580,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tugv",
+   "lng": 142.5186,
+   "lat": 30.9098,
+   "depthKm": 10
+  },
+  {
+   "id": "us7000tugs",
+   "mag": 4.5,
+   "place": "central Mid-Atlantic Ridge",
+   "time": 1793414239894,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tugs",
+   "lng": -34.6828,
+   "lat": 7.087,
+   "depthKm": 10
+  },
+  {
+   "id": "us7000tugl",
+   "mag": 4.3,
+   "place": "84 km S of Severo-Kuril’sk, Russia",
+   "time": 1793409696013,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tugl",
+   "lng": 156.0245,
+   "lat": 49.9164,
+   "depthKm": 84.736
+  },
+  {
+   "id": "us7000tugg",
+   "mag": 4.2,
+   "place": "35 km SSE of Sykiá, Greece",
+   "time": 1793408519344,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tugg",
+   "lng": 24.1487,
+   "lat": 39.7672,
+   "depthKm": 10
+  },
+  {
+   "id": "us7000tugf",
+   "mag": 4.5,
+   "place": "223 km SE of Katsuura, Japan",
+   "time": 1793406766687,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tugf",
+   "lng": 141.8118,
+   "lat": 33.5548,
+   "depthKm": 10
+  },
+  {
+   "id": "us7000tugd",
+   "mag": 4.8,
+   "place": "97 km ENE of Port-Olry, Vanuatu",
+   "time": 1793406395699,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tugd",
+   "lng": 167.9478,
+   "lat": -14.8091,
+   "depthKm": 10
+  },
+  {
+   "id": "us7000tufp",
+   "mag": 4.6,
+   "place": "33 km NE of Mazo Cruz, Peru",
+   "time": 1793400417982,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tufp",
+   "lng": -69.4844,
+   "lat": -16.5439,
+   "depthKm": 194.807
+  },
+  {
+   "id": "us7000tufe",
+   "mag": 4.3,
+   "place": "south of the Fiji Islands",
+   "time": 1793399022517,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tufe",
+   "lng": 179.7044,
+   "lat": -24.7289,
+   "depthKm": 521.136
+  },
+  {
+   "id": "us7000tufc",
+   "mag": 4.7,
+   "place": "222 km NW of Port-Olry, Vanuatu",
+   "time": 1793398495008,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tufc",
+   "lng": 165.4282,
+   "lat": -13.8288,
+   "depthKm": 10
+  },
+  {
+   "id": "us7000tuey",
+   "mag": 4.4,
+   "place": "36 km E of Koseda, Japan",
+   "time": 1793394919819,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuey",
+   "lng": 131.0205,
+   "lat": 30.3348,
+   "depthKm": 35
+  },
+  {
+   "id": "us7000tuep",
+   "mag": 4.1,
+   "place": "73 km SSW of Calama, Chile",
+   "time": 1793393656156,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuep",
+   "lng": -69.0806,
+   "lat": -23.1065,
+   "depthKm": 84.622
+  },
+  {
+   "id": "us7000tuej",
+   "mag": 4.4,
+   "place": "37 km S of Nishinoomote, Japan",
+   "time": 1793392006635,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuej",
+   "lng": 131.0637,
+   "lat": 30.3973,
+   "depthKm": 48.533
+  },
+  {
+   "id": "aka2026vngzyw",
+   "mag": 4.4,
+   "place": "14 km SE of Eureka Roadhouse, Alaska",
+   "time": 1793387483943,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vngzyw",
+   "lng": -147.003,
+   "lat": 61.833,
+   "depthKm": 19.1
+  },
+  {
+   "id": "us7000tudk",
+   "mag": 4.5,
+   "place": "236 km ESE of Zyryanka, Russia",
+   "time": 1793383270672,
+   "tsunami": false,
+   "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tudk",
+   "lng": 155.7595,
+   "lat": 65.0985,
+   "depthKm": 10
+  }
+ ],
+ "initialized": true,
+ "schema": 4,
+ "gdacsSnapshot": [
+  {
+   "id": "TC-1001345",
+   "type": "Tropical cyclone",
+   "name": "Tropical Cyclone ARNAB-26",
+   "alertLevel": "Red",
+   "country": "India",
+   "lng": 81.8,
+   "lat": 16.4,
+   "url": "https://www.gdacs.org/report.aspx?eventid=1001345&episodeid=10&eventtype=TC"
+  }
+ ],
+ "sachetActive": {
+  "IN-1793430002314009_9": {
+   "identifier": "IN-1793430002314009_9",
+   "sender": "Uttarakhand-SDMA",
+   "senderName": "",
+   "sent": "2026-10-31T07:02:35.000Z",
+   "status": "Actual",
+   "msgType": "Update",
+   "scope": "Public",
+   "references": "IMD-Dehradun,IN-1793430002314009_65,2026-10-31T12:29:39+05:30",
+   "categories": [
+    "Met"
+   ],
+   "event": "Thunderstorm with Lightning",
+   "urgency": "Expected",
+   "severity": "Moderate",
+   "certainty": "Possible",
+   "headline": "Thunderstorm accompanied with lightning and gusty wind (30-40 kmph) likely to occur is likely to occur at isolated places over Almora, Bageshwar, Chamoli, Champawat, Dehradun, Nainital, Pauri Garhwal, Pithoragarh, Rudraprayag, Tehri Garhwal, Uttarkashi in next 24 hours.",
+   "description": "",
+   "instruction": "Please follow SDMA guidelines.",
+   "effective": "2026-10-31T06:56:00.000Z",
+   "onset": "2026-10-31T07:02:35.000Z",
+   "expires": "2026-11-01T06:56:00.000Z",
+   "web": "",
+   "areaDesc": "11 districts of Uttarakhand",
+   "polygons": [],
+   "circles": [],
+   "places": [],
+   "geocodes": [
+    {
+     "name": "LGD District Code",
+     "value": "49"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "45"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "51"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "54"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "57"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "52"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "48"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "53"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "46"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "47"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "55"
+    }
+   ],
+   "locatedBy": "none",
+   "lat": null,
+   "lng": null,
+   "kinds": [
+    "thunderstorm"
+   ],
+   "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793430002314009"
+  },
+  "IN-1793433312529008_8": {
+   "identifier": "IN-1793433312529008_8",
+   "sender": "Andhra-Pradesh-SDMA",
+   "senderName": "",
+   "sent": "2026-10-31T07:55:12.000Z",
+   "status": "Actual",
+   "msgType": "Alert",
+   "scope": "Public",
+   "references": "",
+   "categories": [
+    "Met"
+   ],
+   "event": "Lightning",
+   "urgency": "Expected",
+   "severity": "Severe",
+   "certainty": "Possible",
+   "headline": "Lightning is Likely to occur over nlr-buchireddipalem Mandal . Please follow SDMA guidelines.",
+   "description": "",
+   "instruction": "Please follow SDMA guidelines.",
+   "effective": "2026-10-31T07:55:00.000Z",
+   "onset": "2026-10-31T07:56:00.000Z",
+   "expires": "2026-11-01T07:55:00.000Z",
+   "web": "",
+   "areaDesc": "nlr-buchireddipalem Mandal",
+   "polygons": [],
+   "circles": [],
+   "places": [],
+   "geocodes": [],
+   "locatedBy": "none",
+   "lat": null,
+   "lng": null,
+   "kinds": [
+    "thunderstorm"
+   ],
+   "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793433312529008"
+  },
+  "IN-1793433201489030_56": {
+   "identifier": "IN-1793433201489030_56",
+   "sender": "IMD-Hyderabad",
+   "senderName": "",
+   "sent": "2026-10-31T07:51:33.000Z",
+   "status": "Actual",
+   "msgType": "Alert",
+   "scope": "Public",
+   "references": "",
+   "categories": [
+    "Met"
+   ],
+   "event": "Thunderstorm, Lightning, and Gusty winds",
+   "urgency": "Expected",
+   "severity": "Moderate",
+   "certainty": "Likely",
+   "headline": "Thunderstorm accompanied with Lightning and Gusty Winds of 30-40 kmph very likely to occur at isolated places in Jayashankar Bhupalapally, Mulugu, Bhadradri Kothagudem, Khammam, Nalgonda, Suryapet, Mahabubabad, Warangal, Hanamkonda, Jangaon, Siddipet, Yadadri Bhuvanagiri, Rangareddy, Hyd, MDCM dist…",
+   "description": "",
+   "instruction": "Please follow SDMA guidelines.",
+   "effective": "2026-10-31T07:46:00.000Z",
+   "onset": "2026-10-31T07:53:22.000Z",
+   "expires": "2026-11-01T03:01:00.000Z",
+   "web": "",
+   "areaDesc": "Bhadradri Kothagudem, Hanumakonda, Hyderabad, Jangoan, Jayashankar Bhupalapally, Khammam, Mahabubabad, Medchal Malkajgiri, Mulugu, Nalgonda, Ranga Reddy, Siddipet, Suryapet, Warangal, Yadadri Bhuvanagiri districts of Telangana",
+   "polygons": [],
+   "circles": [],
+   "places": [],
+   "geocodes": [
+    {
+     "name": "LGD District Code",
+     "value": "689"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "720"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "522"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "700"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "697"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "687"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "507"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "518"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "688"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "514"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "696"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "509"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "692"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "686"
+    },
+    {
+     "name": "LGD District Code",
+     "value": "690"
+    }
+   ],
+   "locatedBy": "none",
+   "lat": null,
+   "lng": null,
+   "kinds": [
+    "thunderstorm"
+   ],
+   "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793433201489030"
+  },
+  "IN-1793436168508008_8": {
+   "identifier": "IN-1793436168508008_8",
+   "sender": "Andhra-Pradesh-SDMA",
+   "senderName": "",
+   "sent": "2026-10-31T08:42:48.000Z",
+   "status": "Actual",
+   "msgType": "Alert",
+   "scope": "Public",
+   "references": "",
+   "categories": [
+    "Met"
+   ],
+   "event": "Lightning",
+   "urgency": "Expected",
+   "severity": "Severe",
+   "certainty": "Possible",
+   "headline": "There is a possibility of lightning in your area. During thunderstorms, avoid trees, towers, poles, fields, and open spaces. Seek shelter in safe buildings - Andhra Pradesh Government.",
+   "description": "",
+   "instruction": "Please follow SDMA guidelines.",
+   "effective": "2026-10-31T08:40:00.000Z",
+   "onset": "2026-10-31T08:43:50.000Z",
+   "expires": "2026-11-01T11:40:00.000Z",
+   "web": "",
+   "areaDesc": "13 Mandals",
+   "polygons": [],
+   "circles": [],
+   "places": [],
+   "geocodes": [],
+   "locatedBy": "none",
+   "lat": null,
+   "lng": null,
+   "kinds": [
+    "thunderstorm"
+   ],
+   "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793436168508008"
+  },
+  "IN-1793460089801008_8": {
+   "identifier": "IN-1793460089801008_8",
+   "sender": "Andhra-Pradesh-SDMA",
+   "senderName": "",
+   "sent": "2026-10-31T15:21:29.000Z",
+   "status": "Actual",
+   "msgType": "Alert",
+   "scope": "Public",
+   "references": "",
+   "categories": [
+    "Met"
+   ],
+   "event": "Lightning",
+   "urgency": "Expected",
+   "severity": "Severe",
+   "certainty": "Possible",
+   "headline": "There is a possibility of lightning in your area. During thunderstorms, avoid trees, towers, poles, fields, and open spaces. Seek shelter in safe buildings - Andhra Pradesh Government.",
+   "description": "",
+   "instruction": "Please follow SDMA guidelines.",
+   "effective": "2026-10-31T15:20:00.000Z",
+   "onset": "2026-10-31T15:22:44.000Z",
+   "expires": "2026-10-31T18:20:00.000Z",
+   "web": "",
+   "areaDesc": "ndl-allagadda Mandal",
+   "polygons": [],
+   "circles": [],
+   "places": [],
+   "geocodes": [],
+   "locatedBy": "none",
+   "lat": null,
+   "lng": null,
+   "kinds": [
+    "thunderstorm"
+   ],
+   "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793460089801008"
+  }
+ },
+ "sachetSeen": {
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792868303431022": 1792868688087,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792868873415022": 1792869741656,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792870286034029": 1792870637859,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792871074288041": 1792871544129,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792871071227007": 1792871544129,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792874226857006": 1792875144196,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792878599065013": 1792878744567,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792883059914007": 1792883237730,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792883063805041": 1792883237730,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792887450005009": 1792887741950,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792891799411041": 1792892241129,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792891794098007": 1792892241129,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792895598707006": 1792895836620,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792898097424041": 1792898541292,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792898095485007": 1792898541292,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792897745415016": 1792898541292,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792902447862041": 1792903943169,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792902447005041": 1792903943169,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792902444989007": 1792903943169,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792902443773007": 1792903943169,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792910673567008": 1792911141548,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792912776702038": 1792912940750,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792912218348008": 1792912940750,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792913521259008": 1792913838738,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792913324323008": 1792913838738,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792912982337038": 1792913838738,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792914126826008": 1792914743562,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792915039196007": 1792915638538,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792914918803008": 1792915638538,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792916848296006": 1792917440846,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792916961451006": 1792917440846,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792916564646006": 1792917440846,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792916682749006": 1792917440846,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792918014799008": 1792918340056,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792918946568008": 1792919239550,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792918626855008": 1792919239550,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792919196941008": 1792920140902,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792920914297008": 1792921039608,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792921543058008": 1792921943105,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792922747317008": 1792922837260,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792922374188006": 1792922837260,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792922354971008": 1792922837260,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792922147965008": 1792922837260,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792923812064041": 1792924639026,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792923808967007": 1792924639026,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792923807811007": 1792924639026,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792923647079008": 1792924639026,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792924892173008": 1792925543146,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792924610283008": 1792925543146,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792925630015008": 1792926441249,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792927134049008": 1792927346610,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792926685896008": 1792927346610,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792928768397008": 1792929143542,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792928311003008": 1792929143542,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792929585525008": 1792930038166,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792929397762008": 1792930038166,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792929117519008": 1792930038166,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792932327759008": 1792932741325,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792932159596008": 1792932741325,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792931795011008": 1792932741325,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792934045471008": 1792934545496,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792935116685008": 1792935437271,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792935704566006": 1792936344037,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792957591411041": 1792957941809,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792957591073041": 1792957941809,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792957588585007": 1792957941809,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792957587899007": 1792957941809,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792961178727008": 1792961544550,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792961563648008": 1792962440191,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792962839485008": 1792963342780,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792988633444041": 1792989439055,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792988631804007": 1792989439055,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792993500931008": 1792993944575,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792998227227038": 1792998440245,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792997961004038": 1792998440245,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793001335057041": 1793002038687,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793001334234007": 1793002038687,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793002134319006": 1793002945430,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793012959058041": 1793013743608,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793012952611007": 1793013743608,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793021725992041": 1793022336840,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793021722618007": 1793022336840,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793023301483008": 1793023642530,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793022762451008": 1793023642530,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793025091019008": 1793025439938,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793024731871008": 1793025439938,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793025646667012": 1793026343936,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793026855602008": 1793027239916,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793032589369041": 1793032641855,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793032587081007": 1793032641855,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793034513959007": 1793035021401,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793062813816012": 1793063240401,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793065350287012": 1793065943951,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793067649379008": 1793067745647,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793075460735012": 1793075839657,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793076694653018": 1793076744329,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793079972306008": 1793080342522,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793082504667017": 1793083040082,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793084942455038": 1793085742185,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793088313007017": 1793088438364,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793090014432008": 1793090241836,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793090248014008": 1793091144766,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793091987015015": 1793092039058,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793091614022017": 1793092039058,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793091895871032": 1793092039058,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793091138892008": 1793092039058,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793092188868017": 1793092943273,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793093629773008": 1793093840219,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793093395888008": 1793093840219,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793093829036018": 1793094744430,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793095511277018": 1793095639730,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793095201424018": 1793095639730,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793097794472015": 1793098346423,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793099594891017": 1793100146184,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793099541852032": 1793100146184,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793099517909017": 1793100146184,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793101014759012": 1793101041102,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793100915185008": 1793101041102,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793100507575012": 1793101041102,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793101376576041": 1793101944583,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793102495619008": 1793102842276,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793102281512008": 1793102842276,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793102041023008": 1793102842276,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793103547672015": 1793103743189,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793104135872008": 1793104642604,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793107159081008": 1793107344647,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793108150712012": 1793108239650,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793107535762017": 1793108239650,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793108805734018": 1793109144438,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793109195097018": 1793110044662,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793111596994012": 1793111842609,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793111354037008": 1793111842609,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793113228691017": 1793113640938,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793114934457008": 1793115441086,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793115850571017": 1793116345043,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793117523592008": 1793118145743,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793117555088012": 1793118145743,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793117190111008": 1793118145743,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793118941012008": 1793119040603,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793118328483008": 1793119040603,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793120286653012": 1793120842144,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793126896031008": 1793127146477,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793129052266017": 1793129839599,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793130208505010": 1793130744487,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793130155981008": 1793130744487,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793131156445012": 1793131641786,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793132566732008": 1793133440696,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793134053001008": 1793134342177,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793137042797008": 1793137942447,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793138904107008": 1793139742363,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793140197781008": 1793140639889,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793152979018012": 1793153238884,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793152677483012": 1793153238884,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793146247943008": 1793153238884,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793153385815018": 1793154144501,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793156029407012": 1793156840165,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793156858797012": 1793157742723,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793157721173012": 1793158640490,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793160582274012": 1793161343605,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793162267618008": 1793163142763,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793165679059008": 1793165840080,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793165132883012": 1793165840080,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793167766505021": 1793168543670,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793167767459021": 1793168543670,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793168888961018": 1793169438568,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793169227152017": 1793169438568,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793169148755018": 1793169438568,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793168769012018": 1793169438568,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793170240454038": 1793170344162,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793170411991038": 1793171241247,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793170423115008": 1793171241247,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793172397012030": 1793172697194,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793173018915017": 1793173039800,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793172762102008": 1793173039800,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793173890239035": 1793173945956,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793173889892035": 1793173945956,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793173085672030": 1793173945956,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793174549418018": 1793174845627,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793174279547012": 1793174845627,
+  "http://localhost:8080/cap_public_website/": 1793175742090,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793175994716008": 1793176640716,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793175064018024": 1793176640716,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793177429608008": 1793177543297,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793183588356008": 1793183840406,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793183396509008": 1793183840406,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793182843131017": 1793183840406,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793181998109008": 1793183840406,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793181654517008": 1793183840406,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793185565271012": 1793185640212,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793184798905029": 1793185640212,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793184915906008": 1793185640212,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793185642556008": 1793186543966,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793187275109010": 1793187440949,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793187145308032": 1793187440949,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793186548917008": 1793187440949,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793191915308018": 1793191944225,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793191516015018": 1793191944225,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793191030069008": 1793191944225,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793191233102018": 1793191944225,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793192148725018": 1793192840324,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793193653809008": 1793193743951,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793194209402012": 1793194640086,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793195876601008": 1793196441657,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793194601869008": 1793196441657,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793197438207017": 1793197537619,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793198751082008": 1793199143276,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793200271923008": 1793200948974,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793198888693008": 1793200948974,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793201425981008": 1793201839776,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793201395055018": 1793201839776,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793201260144018": 1793201839776,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793200949019018": 1793201839776,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793201849115008": 1793202744832,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793202981035008": 1793203641563,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793203735374008": 1793204543054,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793203703703032": 1793204543054,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793205821793008": 1793206344709,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793206999012012": 1793207241685,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793206610297008": 1793207241685,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793207687916017": 1793208144658,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793207479548008": 1793208144658,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793208952048015": 1793209041066,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793208102027008": 1793209041066,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793209817625008": 1793209949575,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793209687987008": 1793209949575,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793209624443008": 1793209949575,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793209403054008": 1793209949575,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793210626058015": 1793210839186,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793211933601008": 1793212640864,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793211791441008": 1793212640864,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793213953042012": 1793214443719,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793215064445021": 1793215345190,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793215214094015": 1793215345190,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793216928189012": 1793217144788,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793220617082008": 1793220750365,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793221937397012": 1793222543980,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793224094119012": 1793224341401,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793224339126009": 1793225240119,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793227321911012": 1793227942633,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793233864241008": 1793234238386,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793235071007017": 1793235142445,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793234734536009": 1793235142445,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793234631122009": 1793235142445,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793236486221008": 1793236942281,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793236080971024": 1793236942281,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793237736098021": 1793237838247,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793237435348012": 1793237838247,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793237096974008": 1793237838247,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793239377211008": 1793239638960,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793238892988009": 1793239638960,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793239195452017": 1793239638960,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793240339994017": 1793240543420,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793240152883018": 1793240543420,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793240046936018": 1793240543420,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793239799541018": 1793240543420,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793241229572008": 1793241441522,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793240739003008": 1793241441522,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793243940901017": 1793244144295,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793243231003008": 1793244144295,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793244805411024": 1793245037901,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793244805913024": 1793245037901,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793244804006036": 1793245037901,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793244803314036": 1793245037901,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793244802344039": 1793245037901,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793246216509009": 1793246840354,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793246332616008": 1793246840354,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793247022274012": 1793247743588,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793247922707021": 1793248639910,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793249636559012": 1793250437746,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793251502839017": 1793252238514,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793254293095008": 1793254943119,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793254411474008": 1793254943119,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793254148321027": 1793254943119,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793254153416017": 1793254943119,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793254348955027": 1793254943119,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793256698868009": 1793256746348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793256317007021": 1793256746348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793258432569009": 1793258543026,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793258015316038": 1793258543026,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793257767079038": 1793258543026,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793258017319021": 1793258543026,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793259098067017": 1793259441015,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793259123192012": 1793259441015,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793260730179012": 1793261239384,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793261569931012": 1793262142857,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793261990003018": 1793262142857,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793261518611012": 1793262142857,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793261518821012": 1793262142857,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793262352086018": 1793263039335,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793262565237018": 1793263039335,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793263488546008": 1793263941889,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793264751998028": 1793264839718,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793264513763028": 1793264839718,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793264186406028": 1793264839718,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793265630631017": 1793265743024,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793267035398009": 1793267301348,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793267439121022": 1793267543053,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793269678367028": 1793270239829,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793269701786021": 1793270239829,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793269704786021": 1793270239829,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793269704779018": 1793270239829,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793269385304009": 1793270239829,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793271096654021": 1793271142575,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793270608838020": 1793271142575,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793270606323017": 1793271142575,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793270682336021": 1793271142575,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793270678728021": 1793271142575,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793270607075023": 1793271142575,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793270848401017": 1793271142575,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793271908638012": 1793272038191,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793271540257009": 1793272038191,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793271161407012": 1793272038191,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793272210677017": 1793272944449,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793273243212012": 1793273838906,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793275077084017": 1793275639619,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793278056897022": 1793278343365,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793279196449009": 1793279240550,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793279478791021": 1793280142662,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793280705452028": 1793281039360,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793280369574028": 1793281039360,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793282588086012": 1793282841212,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793282005957012": 1793282841212,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793282005808012": 1793282841212,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793282005006012": 1793282841212,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793283331016015": 1793283742879,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793283776475017": 1793284639674,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793284923547008": 1793285544427,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793285778368012": 1793286439825,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793289629834015": 1793290043950,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793289673835012": 1793290043950,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793289568347009": 1793290043950,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793289128595018": 1793290043950,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793290445426017": 1793290944422,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793290259493029": 1793290944422,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793291349366028": 1793291839326,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793291229112028": 1793291839326,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793292010908024": 1793292746548,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793294058125010": 1793294546146,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793293767806012": 1793294546146,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793293641955032": 1793294546146,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793294771033015": 1793295438688,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793299653128013": 1793299943723,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793299444944017": 1793299943723,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793299946301028": 1793300840113,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793300134469028": 1793300840113,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793299958331022": 1793300840113,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793301402334009": 1793301745830,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793302594207024": 1793302639925,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793302494375032": 1793302639925,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793302795513017": 1793303547378,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793304704003012": 1793305344750,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793306349243008": 1793307142250,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793310708009028": 1793310744046,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793310575963028": 1793310744046,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793310477185013": 1793310744046,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793309739026022": 1793310744046,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793309964792008": 1793310744046,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793311313221009": 1793311639072,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793313739043028": 1793314343997,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793313639848024": 1793314343997,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793313541536008": 1793314343997,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793318731222017": 1793318841330,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793320035013012": 1793320639524,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793321393912017": 1793321541268,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793320869018022": 1793321541268,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793322290455009": 1793322439567,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793324689441012": 1793325141821,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793324226046028": 1793325141821,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793325297397024": 1793326038313,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793328164048008": 1793328743407,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793329086594022": 1793329639205,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793330899069013": 1793331439481,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793333856167029": 1793334141797,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793334736469028": 1793335038012,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793334382962008": 1793335038012,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793335112872029": 1793335943057,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793335030728017": 1793335943057,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793336326785012": 1793336839918,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793336069446012": 1793336839918,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793337561028037": 1793337741872,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793341651958013": 1793342239436,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793341339753010": 1793342239436,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793342820384038": 1793343141743,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793342702503038": 1793343141743,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793342395866028": 1793343141743,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793343734147024": 1793344039689,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793343733726024": 1793344039689,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793344162465008": 1793344612116,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793344739976030": 1793344941487,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793344678896008": 1793344941487,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793345750223028": 1793345840197,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793346549005008": 1793346743045,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793346257863029": 1793346743045,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793346033265017": 1793346743045,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793347540583008": 1793347640426,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793346994215008": 1793347640426,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793347862411008": 1793348546466,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793348693551037": 1793349443179,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793350107458008": 1793350343068,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793349683966008": 1793350343068,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793350732688009": 1793351242114,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793350732141009": 1793351242114,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793350534688008": 1793351242114,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793352967472008": 1793353038738,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793352706332008": 1793353038738,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793352166974017": 1793353038738,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793354332107008": 1793354841016,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793354268008009": 1793354841016,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793353746968008": 1793354841016,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793353621665008": 1793354841016,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793353171643008": 1793354841016,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793355566258008": 1793355743036,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793355287161008": 1793355743036,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793354892779008": 1793355743036,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793356466777008": 1793356645924,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793356476987017": 1793356645924,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793355875315008": 1793356645924,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793357092961008": 1793357544965,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793356897471023": 1793357544965,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793356898701020": 1793357544965,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793356784494008": 1793357544965,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793356686809028": 1793357544965,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793356685427020": 1793357544965,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793358310722008": 1793358441261,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793358248738008": 1793358441261,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793357908017008": 1793358441261,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793357623891008": 1793358441261,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793358496192008": 1793359344777,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793359919076008": 1793360241726,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793359538847008": 1793360241726,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793360673974008": 1793361143796,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793360281601008": 1793361143796,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793361456201008": 1793362042101,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793361157072008": 1793362042101,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793362799002008": 1793362943917,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793362611098008": 1793362943917,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793363204398009": 1793363840577,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793363358705008": 1793363840577,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793363093639009": 1793363840577,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793363092001009": 1793363840577,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793364517932008": 1793364744000,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793364430866012": 1793364744000,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793364240692008": 1793364744000,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793363868079008": 1793364744000,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793365398615008": 1793365642095,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793365168146017": 1793365642095,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793364770499030": 1793365642095,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793366430097008": 1793366545745,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793365708349008": 1793366545745,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793366574888008": 1793367442378,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793368149612028": 1793368345041,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793367572988008": 1793368345041,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793367388051008": 1793368345041,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793368866263008": 1793369239796,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793368787656012": 1793369239796,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793371254443008": 1793371943939,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793373709267009": 1793373743034,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793373193098008": 1793373743034,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793374455394017": 1793374639861,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793374286859008": 1793374639861,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793373996596017": 1793374639861,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793374599788008": 1793375543719,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793376744682008": 1793377343054,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793376474157010": 1793377343054,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793378221982025": 1793379145397,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793378353889029": 1793379145397,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793382491939008": 1793382817672,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793389076273029": 1793389944567,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793392098609013": 1793392640185,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793399265017029": 1793399839456,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793407846244008": 1793407942148,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793407438607008": 1793407942148,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793407427712012": 1793407942148,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793410381346029": 1793410650139,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793410796652012": 1793411541533,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793417826323029": 1793418743606,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793429454004015": 1793429541774,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793430002314009": 1793430440398,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793430072721015": 1793430440398,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793429667365008": 1793430440398,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793431143976038": 1793431343255,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793430417038008": 1793431343255,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793432094811008": 1793432239240,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793433037189008": 1793433142754,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793432845008008": 1793433142754,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793433836154008": 1793434045628,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793433513486008": 1793434045628,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793433312529008": 1793434045628,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793433201489030": 1793434045628,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793434739342008": 1793434941311,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793434195769015": 1793434941311,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793434092405008": 1793434941311,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793436168508008": 1793436452539,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793436689716010": 1793436742963,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793437464035015": 1793437640500,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793437277607008": 1793437640500,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793437763417027": 1793438541564,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793439125257015": 1793439439732,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793438694743020": 1793439439732,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793439953796008": 1793440346291,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793439608981008": 1793440346291,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793440932498015": 1793441239998,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793441925839018": 1793442142279,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793441454953012": 1793442142279,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793442845683008": 1793443038817,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793442289754008": 1793443038817,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793443753571008": 1793443942668,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793443526687008": 1793443942668,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793443342579008": 1793443942668,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793443052827015": 1793443942668,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793444813141019": 1793444839080,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793444635537008": 1793444839080,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793444317044008": 1793444839080,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793444172646008": 1793444839080,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793445440415008": 1793445742908,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793446054465020": 1793446640246,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793445848015008": 1793446640246,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793447414023010": 1793447545199,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793447079972008": 1793447545199,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793447684061008": 1793448440707,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793448563559008": 1793449347360,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793450789081008": 1793451145165,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793450394754008": 1793451145165,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793451392398008": 1793452043259,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793452472514008": 1793452943552,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793452150002008": 1793452943552,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793453744671008": 1793453838081,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793453149386027": 1793453838081,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793452965182008": 1793453838081,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793454540021008": 1793454743248,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793454299808008": 1793454743248,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793453950842008": 1793454743248,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793455917187017": 1793456543843,
+  "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793460089801008": 1793461040896
+ },
+ "flightsFetchedAt": "2026-10-31T17:22:23.390Z",
+ "squawkSnapshot": [
+  {
+   "icao24": "ad27f3",
+   "callsign": "JBU300",
+   "country": "United States",
+   "lat": 33.779,
+   "lng": -116.759,
+   "baroAltM": 8146,
+   "onGround": 0,
+   "velocity": 268.4,
+   "track": 79,
+   "verticalRate": 4.9,
+   "squawk": "7700",
+   "positionTime": 1793467333
+  }
+ ],
+ "tleFetchedAt": "2026-10-31T11:37:20.246Z",
+ "reservoirs": {
+  "current": {
+   "date": "2026-10-30",
+   "items": [
+    {
+     "id": "mettur",
+     "label": "METTUR",
+     "fullFt": 120,
+     "levelFt": 55.38,
+     "inflow": 2461,
+     "outflow": 1003
+    },
+    {
+     "id": "krs",
+     "label": "Krishna Raja Sagar",
+     "fullFt": 124.8,
+     "levelFt": 103.96,
+     "inflow": 879,
+     "outflow": 3961
+    },
+    {
+     "id": "kabini",
+     "label": "Kabini",
+     "fullFt": 65,
+     "levelFt": 54.58,
+     "inflow": 1571,
+     "outflow": 500
+    },
+    {
+     "id": "harangi",
+     "label": "Harangi",
+     "fullFt": 129,
+     "levelFt": 117.72,
+     "inflow": 751,
+     "outflow": 200
+    },
+    {
+     "id": "hemavathy",
+     "label": "Hemavathy",
+     "fullFt": 117,
+     "levelFt": 91.25,
+     "inflow": 2343,
+     "outflow": 300
+    },
+    {
+     "id": "bhavanisagar",
+     "label": "BHAVANISAGAR",
+     "fullFt": 105,
+     "levelFt": 72.9,
+     "inflow": 2549,
+     "outflow": 105
+    },
+    {
+     "id": "amaravathi",
+     "label": "AMARAVATHI*",
+     "fullFt": 90,
+     "levelFt": 52.63,
+     "inflow": 380,
+     "outflow": null
+    },
+    {
+     "id": "periyar",
+     "label": "Periyar**",
+     "fullFt": 152,
+     "levelFt": 121.8,
+     "inflow": 403,
+     "outflow": 400
+    },
+    {
+     "id": "vaigai",
+     "label": "Vaigai",
+     "fullFt": 71,
+     "levelFt": 51.25,
+     "inflow": 170,
+     "outflow": 86
+    },
+    {
+     "id": "papanasam",
+     "label": "Papanasam (TN EB Dam)",
+     "fullFt": 143,
+     "levelFt": 65.6,
+     "inflow": 473,
+     "outflow": 100
+    },
+    {
+     "id": "manimuthar",
+     "label": "Manimuthar",
+     "fullFt": 118,
+     "levelFt": 66.02,
+     "inflow": 97,
+     "outflow": 25
+    },
+    {
+     "id": "pechiparai",
+     "label": "Pechiparai",
+     "fullFt": 48,
+     "levelFt": 27.19,
+     "inflow": 405,
+     "outflow": 118
+    },
+    {
+     "id": "perunchani",
+     "label": "Perunchani",
+     "fullFt": 77,
+     "levelFt": 54,
+     "inflow": 328,
+     "outflow": 225
+    },
+    {
+     "id": "krishnagiri",
+     "label": "Krishnagiri",
+     "fullFt": 52,
+     "levelFt": 48.35,
+     "inflow": 839,
+     "outflow": 783
+    },
+    {
+     "id": "sathanur",
+     "label": "Sathanur",
+     "fullFt": 119,
+     "levelFt": 99.35,
+     "inflow": 417,
+     "outflow": null
+    },
+    {
+     "id": "sholayar",
+     "label": "Sholayar",
+     "fullFt": 160,
+     "levelFt": 65.93,
+     "inflow": 255,
+     "outflow": 85
+    },
+    {
+     "id": "parambikulam",
+     "label": "Parambikulam",
+     "fullFt": 72,
+     "levelFt": 57.42,
+     "inflow": 281,
+     "outflow": 1159
+    },
+    {
+     "id": "aliyar",
+     "label": "Aliyar",
+     "fullFt": 120,
+     "levelFt": 60.8,
+     "inflow": 174,
+     "outflow": 50
+    },
+    {
+     "id": "thirumurthy",
+     "label": "Thirumurthy",
+     "fullFt": 60,
+     "levelFt": 47.76,
+     "inflow": 795,
+     "outflow": 21
+    }
+   ]
+  },
+  "previous": {
+   "date": "2026-10-29",
+   "items": [
+    {
+     "id": "mettur",
+     "label": "METTUR",
+     "fullFt": 120,
+     "levelFt": 55.21,
+     "inflow": 2959,
+     "outflow": 1003
+    },
+    {
+     "id": "krs",
+     "label": "Krishna Raja Sagar",
+     "fullFt": 124.8,
+     "levelFt": 104.28,
+     "inflow": 2486,
+     "outflow": 3339
+    },
+    {
+     "id": "kabini",
+     "label": "Kabini",
+     "fullFt": 65,
+     "levelFt": 54.42,
+     "inflow": 2128,
+     "outflow": 500
+    },
+    {
+     "id": "harangi",
+     "label": "Harangi",
+     "fullFt": 129,
+     "levelFt": 117.52,
+     "inflow": 828,
+     "outflow": 200
+    },
+    {
+     "id": "hemavathy",
+     "label": "Hemavathy",
+     "fullFt": 117,
+     "levelFt": 90.95,
+     "inflow": 3190,
+     "outflow": 300
+    },
+    {
+     "id": "bhavanisagar",
+     "label": "BHAVANISAGAR",
+     "fullFt": 105,
+     "levelFt": 72.43,
+     "inflow": 2190,
+     "outflow": 105
+    },
+    {
+     "id": "amaravathi",
+     "label": "AMARAVATHI*",
+     "fullFt": 90,
+     "levelFt": 52.04,
+     "inflow": 542,
+     "outflow": null
+    },
+    {
+     "id": "periyar",
+     "label": "Periyar**",
+     "fullFt": 152,
+     "levelFt": 121.8,
+     "inflow": 519,
+     "outflow": 400
+    },
+    {
+     "id": "vaigai",
+     "label": "Vaigai",
+     "fullFt": 71,
+     "levelFt": 51.21,
+     "inflow": 216,
+     "outflow": 86
+    },
+    {
+     "id": "papanasam",
+     "label": "Papanasam (TN EB Dam)",
+     "fullFt": 143,
+     "levelFt": 64.85,
+     "inflow": 690,
+     "outflow": 100
+    },
+    {
+     "id": "manimuthar",
+     "label": "Manimuthar",
+     "fullFt": 118,
+     "levelFt": 65.92,
+     "inflow": 163,
+     "outflow": 25
+    },
+    {
+     "id": "pechiparai",
+     "label": "Pechiparai",
+     "fullFt": 48,
+     "levelFt": 26.9,
+     "inflow": 416,
+     "outflow": 116
+    },
+    {
+     "id": "perunchani",
+     "label": "Perunchani",
+     "fullFt": 77,
+     "levelFt": 53.85,
+     "inflow": 449,
+     "outflow": 225
+    },
+    {
+     "id": "krishnagiri",
+     "label": "Krishnagiri",
+     "fullFt": 52,
+     "levelFt": 48.3,
+     "inflow": 840,
+     "outflow": 783
+    },
+    {
+     "id": "sathanur",
+     "label": "Sathanur",
+     "fullFt": 119,
+     "levelFt": 99.1,
+     "inflow": 741,
+     "outflow": null
+    },
+    {
+     "id": "sholayar",
+     "label": "Sholayar",
+     "fullFt": 160,
+     "levelFt": 65.41,
+     "inflow": 278,
+     "outflow": 85
+    },
+    {
+     "id": "parambikulam",
+     "label": "Parambikulam",
+     "fullFt": 72,
+     "levelFt": 57.78,
+     "inflow": 102,
+     "outflow": 784
+    },
+    {
+     "id": "aliyar",
+     "label": "Aliyar",
+     "fullFt": 120,
+     "levelFt": 60.5,
+     "inflow": 135,
+     "outflow": 50
+    },
+    {
+     "id": "thirumurthy",
+     "label": "Thirumurthy",
+     "fullFt": 60,
+     "levelFt": 46,
+     "inflow": 804,
+     "outflow": 21
+    }
+   ]
+  }
+ },
+ "reservoirsFetchedAt": "2026-10-31T16:37:18.155Z",
+ "ships": {
+  "413996000": {
+   "lat": 13.117128333333334,
+   "lng": 80.31488666666668,
+   "sog": 6.9,
+   "cog": 238.6,
+   "heading": 226,
+   "status": 0,
+   "time": 1793466473204,
+   "name": "REN JIAN 10"
+  },
+  "533130358": {
+   "lat": 6.307698333333334,
+   "lng": 99.80133333333333,
+   "sog": 0.1,
+   "cog": 92.1,
+   "heading": null,
+   "status": 0,
+   "time": 1793457442409,
+   "name": "WAVE WALKER"
+  },
+  "538005967": {
+   "lat": 13.075880000000002,
+   "lng": 80.34134,
+   "sog": 1,
+   "cog": 136.6,
+   "heading": 43,
+   "status": 0,
+   "time": 1793466456220,
+   "name": "ZY GALAXY"
+  },
+  "544184120": {
+   "lat": 6.309055,
+   "lng": 99.83256166666666,
+   "sog": 0,
+   "cog": 234.6,
+   "heading": null,
+   "status": 0,
+   "time": 1793458222594,
+   "name": "ARAGO 1"
+  }
+ },
+ "shipStatic": {
+  "220164000": {
+   "name": "CLEMENTINE MAERSK",
+   "type": 71,
+   "destination": "INENN>>LKCMB",
+   "callsign": "OUQK2",
+   "lengthM": 347,
+   "seen": 1793034440257
+  },
+  "372354000": {
+   "name": "EVER BRAVE",
+   "type": 70,
+   "destination": "INMAA>>INVTZ",
+   "callsign": "3FEB",
+   "lengthM": 211,
+   "seen": 1793065943951
+  },
+  "403526001": {
+   "name": "BAHRI TABUK",
+   "type": 70,
+   "destination": "INENR",
+   "callsign": "HZEX",
+   "lengthM": 225,
+   "seen": 1793141544936
+  },
+  "419001441": {
+   "name": "MT SANMAR SRUTHI",
+   "type": 89,
+   "destination": "IN ENR",
+   "callsign": "VTBP",
+   "lengthM": 222,
+   "seen": 1793062455452
+  },
+  "419683000": {
+   "name": "SAGAR NIDHI",
+   "type": 99,
+   "destination": "CHENNAI",
+   "callsign": "AUCE",
+   "lengthM": 104,
+   "seen": 1793188345326
+  },
+  "431881000": {
+   "name": "RUBY ACE",
+   "type": 70,
+   "destination": "INENR",
+   "callsign": "7KOK",
+   "lengthM": 200,
+   "seen": 1793341342222
+  },
+  "477133700": {
+   "name": "INTERASIAINSPIRATION",
+   "type": 71,
+   "destination": "INMAA",
+   "callsign": "VRMW7",
+   "lengthM": 294,
+   "seen": 1793006543902
+  },
+  "477369900": {
+   "name": "SITC CEBU",
+   "type": 71,
+   "destination": "VTZ IN",
+   "callsign": "VRSV2",
+   "lengthM": 189,
+   "seen": 1793344039689
+  },
+  "477895900": {
+   "name": "SNL HAIKOU",
+   "type": 71,
+   "destination": "INMAA",
+   "callsign": "VRVP9",
+   "lengthM": 189,
+   "seen": 1793275639619
+  },
+  "538013143": {
+   "name": "DORY",
+   "type": 70,
+   "destination": "IN ENR",
+   "callsign": "V7B3794",
+   "lengthM": 200,
+   "seen": 1793333238865
+  },
+  "566282000": {
+   "name": "KOTA SELAMAT",
+   "type": 74,
+   "destination": "INMAA",
+   "callsign": "9V2128",
+   "lengthM": 228,
+   "seen": 1793463744112
+  },
+  "567000890": {
+   "name": "NP SURATTHANI 1",
+   "type": 70,
+   "destination": "BANDON SURATTHANI",
+   "callsign": "HSB3721",
+   "lengthM": 84,
+   "seen": 1793431343255
+  },
+  "636016305": {
+   "name": "MSC ALINA",
+   "type": 71,
+   "destination": "INENR",
+   "callsign": "D5FL8",
+   "lengthM": 300,
+   "seen": 1793180242589
+  }
+ },
+ "reservoirHistoryGaps": [
+  "2026-09-27",
+  "2026-10-04",
+  "2026-10-17"
+ ],
+ "rainSnapshot": [
+  {
+   "id": "ariyalur",
+   "name": "Ariyalur",
+   "state": "Tamil Nadu",
+   "lat": 11.14,
+   "lng": 79.08,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.5
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 0.5
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 5.4
+    }
+   ],
+   "past24": 0,
+   "next72": 6.4,
+   "peakMm": 5.4,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "chengalpattu",
+   "name": "Chengalpattu",
+   "state": "Tamil Nadu",
+   "lat": 12.69,
+   "lng": 79.98,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 1
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 0.5
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 12.1
+    }
+   ],
+   "past24": 0,
+   "next72": 13.6,
+   "peakMm": 12.1,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "chennai",
+   "name": "Chennai",
+   "state": "Tamil Nadu",
+   "lat": 13.08,
+   "lng": 80.27,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0.1
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 1.5
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 0.9
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 13.6
+    }
+   ],
+   "past24": 0.1,
+   "next72": 16,
+   "peakMm": 13.6,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "coimbatore",
+   "name": "Coimbatore",
+   "state": "Tamil Nadu",
+   "lat": 11.02,
+   "lng": 76.96,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 1.1
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 2.8
+    }
+   ],
+   "past24": 0,
+   "next72": 3.9,
+   "peakMm": 2.8,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "cuddalore",
+   "name": "Cuddalore",
+   "state": "Tamil Nadu",
+   "lat": 11.75,
+   "lng": 79.75,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.3
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 1.1
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 7.9
+    }
+   ],
+   "past24": 0,
+   "next72": 9.3,
+   "peakMm": 7.9,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "dharmapuri",
+   "name": "Dharmapuri",
+   "state": "Tamil Nadu",
+   "lat": 12.13,
+   "lng": 78.16,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 0.7
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 18.3
+    }
+   ],
+   "past24": 0,
+   "next72": 19,
+   "peakMm": 18.3,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "dindigul",
+   "name": "Dindigul",
+   "state": "Tamil Nadu",
+   "lat": 10.36,
+   "lng": 77.98,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.1
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 0
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 3.9
+    }
+   ],
+   "past24": 0,
+   "next72": 4,
+   "peakMm": 3.9,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "erode",
+   "name": "Erode",
+   "state": "Tamil Nadu",
+   "lat": 11.34,
+   "lng": 77.72,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 3
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 18.6
+    }
+   ],
+   "past24": 0,
+   "next72": 21.6,
+   "peakMm": 18.6,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "kallakurichi",
+   "name": "Kallakurichi",
+   "state": "Tamil Nadu",
+   "lat": 11.74,
+   "lng": 78.96,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.2
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 0.8
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 5.5
+    }
+   ],
+   "past24": 0,
+   "next72": 6.5,
+   "peakMm": 5.5,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "kancheepuram",
+   "name": "Kancheepuram",
+   "state": "Tamil Nadu",
+   "lat": 12.83,
+   "lng": 79.7,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 4.4
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 0.4
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 14.9
+    }
+   ],
+   "past24": 0,
+   "next72": 19.7,
+   "peakMm": 14.9,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "kanniyakumari",
+   "name": "Kanniyakumari",
+   "state": "Tamil Nadu",
+   "lat": 8.18,
+   "lng": 77.41,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0.8
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 2.8
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 2.7
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 4.5
+    }
+   ],
+   "past24": 0.8,
+   "next72": 10,
+   "peakMm": 4.5,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "karur",
+   "name": "Karur",
+   "state": "Tamil Nadu",
+   "lat": 10.96,
+   "lng": 78.08,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 0
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 6
+    }
+   ],
+   "past24": 0,
+   "next72": 6,
+   "peakMm": 6,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "krishnagiri",
+   "name": "Krishnagiri",
+   "state": "Tamil Nadu",
+   "lat": 12.52,
+   "lng": 78.21,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 2.1
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 10.7
+    }
+   ],
+   "past24": 0,
+   "next72": 12.8,
+   "peakMm": 10.7,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "madurai",
+   "name": "Madurai",
+   "state": "Tamil Nadu",
+   "lat": 9.93,
+   "lng": 78.12,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 0
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 2.6
+    }
+   ],
+   "past24": 0,
+   "next72": 2.6,
+   "peakMm": 2.6,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "mayiladuthurai",
+   "name": "Mayiladuthurai",
+   "state": "Tamil Nadu",
+   "lat": 11.1,
+   "lng": 79.65,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.9
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 0.5
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 2
+    }
+   ],
+   "past24": 0,
+   "next72": 3.4,
+   "peakMm": 2,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "nagapattinam",
+   "name": "Nagapattinam",
+   "state": "Tamil Nadu",
+   "lat": 10.77,
+   "lng": 79.84,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0.1
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.1
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 0.3
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 0.8
+    }
+   ],
+   "past24": 0.1,
+   "next72": 1.2,
+   "peakMm": 0.8,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "namakkal",
+   "name": "Namakkal",
+   "state": "Tamil Nadu",
+   "lat": 11.22,
+   "lng": 78.17,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.3
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 1.4
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 11.6
+    }
+   ],
+   "past24": 0,
+   "next72": 13.3,
+   "peakMm": 11.6,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "nilgiris",
+   "name": "Nilgiris",
+   "state": "Tamil Nadu",
+   "lat": 11.41,
+   "lng": 76.7,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 1.2
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 1.4
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 2.7
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 19
+    }
+   ],
+   "past24": 1.2,
+   "next72": 23.1,
+   "peakMm": 19,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "perambalur",
+   "name": "Perambalur",
+   "state": "Tamil Nadu",
+   "lat": 11.23,
+   "lng": 78.88,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.6
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 0.8
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 5.8
+    }
+   ],
+   "past24": 0,
+   "next72": 7.2,
+   "peakMm": 5.8,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "pudukkottai",
+   "name": "Pudukkottai",
+   "state": "Tamil Nadu",
+   "lat": 10.38,
+   "lng": 78.82,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.5
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 0.2
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 3.4
+    }
+   ],
+   "past24": 0,
+   "next72": 4.1,
+   "peakMm": 3.4,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "ramanathapuram",
+   "name": "Ramanathapuram",
+   "state": "Tamil Nadu",
+   "lat": 9.37,
+   "lng": 78.83,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 0.1
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 0.1
+    }
+   ],
+   "past24": 0,
+   "next72": 0.2,
+   "peakMm": 0.1,
+   "peakDate": "2026-11-01"
+  },
+  {
+   "id": "ranipet",
+   "name": "Ranipet",
+   "state": "Tamil Nadu",
+   "lat": 12.93,
+   "lng": 79.33,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 1.2
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 2.2
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 6.2
+    }
+   ],
+   "past24": 0,
+   "next72": 9.6,
+   "peakMm": 6.2,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "salem",
+   "name": "Salem",
+   "state": "Tamil Nadu",
+   "lat": 11.66,
+   "lng": 78.15,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.1
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 1
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 16.1
+    }
+   ],
+   "past24": 0,
+   "next72": 17.2,
+   "peakMm": 16.1,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "sivaganga",
+   "name": "Sivaganga",
+   "state": "Tamil Nadu",
+   "lat": 9.85,
+   "lng": 78.48,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.6
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 0.1
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 0.9
+    }
+   ],
+   "past24": 0,
+   "next72": 1.6,
+   "peakMm": 0.9,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "tenkasi",
+   "name": "Tenkasi",
+   "state": "Tamil Nadu",
+   "lat": 8.96,
+   "lng": 77.3,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.2
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 6.3
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 0
+    }
+   ],
+   "past24": 0,
+   "next72": 6.5,
+   "peakMm": 6.3,
+   "peakDate": "2026-11-01"
+  },
+  {
+   "id": "thanjavur",
+   "name": "Thanjavur",
+   "state": "Tamil Nadu",
+   "lat": 10.79,
+   "lng": 79.14,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.2
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 0.3
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 8.5
+    }
+   ],
+   "past24": 0,
+   "next72": 9,
+   "peakMm": 8.5,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "theni",
+   "name": "Theni",
+   "state": "Tamil Nadu",
+   "lat": 10.01,
+   "lng": 77.48,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.4
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 3.7
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 0.8
+    }
+   ],
+   "past24": 0,
+   "next72": 4.9,
+   "peakMm": 3.7,
+   "peakDate": "2026-11-01"
+  },
+  {
+   "id": "thoothukudi",
+   "name": "Thoothukudi",
+   "state": "Tamil Nadu",
+   "lat": 8.76,
+   "lng": 78.13,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.1
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 1.1
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 0.2
+    }
+   ],
+   "past24": 0,
+   "next72": 1.4,
+   "peakMm": 1.1,
+   "peakDate": "2026-11-01"
+  },
+  {
+   "id": "tiruchirappalli",
+   "name": "Tiruchirappalli",
+   "state": "Tamil Nadu",
+   "lat": 10.79,
+   "lng": 78.7,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 0.8
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 6.6
+    }
+   ],
+   "past24": 0,
+   "next72": 7.4,
+   "peakMm": 6.6,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "tirunelveli",
+   "name": "Tirunelveli",
+   "state": "Tamil Nadu",
+   "lat": 8.71,
+   "lng": 77.76,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.8
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 4.1
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 1.1
+    }
+   ],
+   "past24": 0,
+   "next72": 6,
+   "peakMm": 4.1,
+   "peakDate": "2026-11-01"
+  },
+  {
+   "id": "tirupathur",
+   "name": "Tirupathur",
+   "state": "Tamil Nadu",
+   "lat": 12.5,
+   "lng": 78.57,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.1
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 3
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 11.8
+    }
+   ],
+   "past24": 0,
+   "next72": 14.9,
+   "peakMm": 11.8,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "tiruppur",
+   "name": "Tiruppur",
+   "state": "Tamil Nadu",
+   "lat": 11.11,
+   "lng": 77.34,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 3.5
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 2.2
+    }
+   ],
+   "past24": 0,
+   "next72": 5.7,
+   "peakMm": 3.5,
+   "peakDate": "2026-11-01"
+  },
+  {
+   "id": "tiruvallur",
+   "name": "Tiruvallur",
+   "state": "Tamil Nadu",
+   "lat": 13.14,
+   "lng": 79.91,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 6.1
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 0.8
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 16.5
+    }
+   ],
+   "past24": 0,
+   "next72": 23.4,
+   "peakMm": 16.5,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "tiruvannamalai",
+   "name": "Tiruvannamalai",
+   "state": "Tamil Nadu",
+   "lat": 12.23,
+   "lng": 79.07,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 1.2
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 2.5
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 20.3
+    }
+   ],
+   "past24": 0,
+   "next72": 24,
+   "peakMm": 20.3,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "tiruvarur",
+   "name": "Tiruvarur",
+   "state": "Tamil Nadu",
+   "lat": 10.77,
+   "lng": 79.64,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.2
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 0.5
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 0.7
+    }
+   ],
+   "past24": 0,
+   "next72": 1.4,
+   "peakMm": 0.7,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "vellore",
+   "name": "Vellore",
+   "state": "Tamil Nadu",
+   "lat": 12.92,
+   "lng": 79.13,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.4
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 1.9
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 8.5
+    }
+   ],
+   "past24": 0,
+   "next72": 10.8,
+   "peakMm": 8.5,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "viluppuram",
+   "name": "Viluppuram",
+   "state": "Tamil Nadu",
+   "lat": 11.94,
+   "lng": 79.49,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.5
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 3
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 5.2
+    }
+   ],
+   "past24": 0,
+   "next72": 8.7,
+   "peakMm": 5.2,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "virudhunagar",
+   "name": "Virudhunagar",
+   "state": "Tamil Nadu",
+   "lat": 9.58,
+   "lng": 77.96,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 1.2
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 0
+    }
+   ],
+   "past24": 0,
+   "next72": 1.2,
+   "peakMm": 1.2,
+   "peakDate": "2026-11-01"
+  },
+  {
+   "id": "puducherry",
+   "name": "Puducherry",
+   "state": "Puducherry",
+   "lat": 11.94,
+   "lng": 79.81,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.4
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 4.3
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 16.4
+    }
+   ],
+   "past24": 0,
+   "next72": 21.1,
+   "peakMm": 16.4,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "karaikal",
+   "name": "Karaikal",
+   "state": "Puducherry",
+   "lat": 10.93,
+   "lng": 79.84,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.2
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 0.3
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 5
+    }
+   ],
+   "past24": 0,
+   "next72": 5.5,
+   "peakMm": 5,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "idukki",
+   "name": "Idukki",
+   "state": "Kerala",
+   "lat": 9.85,
+   "lng": 76.97,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.7
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 17.5
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 5.8
+    }
+   ],
+   "past24": 0,
+   "next72": 24,
+   "peakMm": 17.5,
+   "peakDate": "2026-11-01"
+  },
+  {
+   "id": "palakkad",
+   "name": "Palakkad",
+   "state": "Kerala",
+   "lat": 10.78,
+   "lng": 76.65,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 1.1
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 2.4
+    }
+   ],
+   "past24": 0,
+   "next72": 3.5,
+   "peakMm": 2.4,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "thiruvananthapuram",
+   "name": "Thiruvananthapuram",
+   "state": "Kerala",
+   "lat": 8.52,
+   "lng": 76.94,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0.1
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.7
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 3.4
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 12.1
+    }
+   ],
+   "past24": 0.1,
+   "next72": 16.2,
+   "peakMm": 12.1,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "kollam",
+   "name": "Kollam",
+   "state": "Kerala",
+   "lat": 8.89,
+   "lng": 76.61,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0.1
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 1.7
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 1.7
+    }
+   ],
+   "past24": 0.1,
+   "next72": 3.4,
+   "peakMm": 1.7,
+   "peakDate": "2026-11-01"
+  },
+  {
+   "id": "pathanamthitta",
+   "name": "Pathanamthitta",
+   "state": "Kerala",
+   "lat": 9.26,
+   "lng": 76.79,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.3
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 7.6
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 3.8
+    }
+   ],
+   "past24": 0,
+   "next72": 11.7,
+   "peakMm": 7.6,
+   "peakDate": "2026-11-01"
+  },
+  {
+   "id": "kottayam",
+   "name": "Kottayam",
+   "state": "Kerala",
+   "lat": 9.59,
+   "lng": 76.52,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.2
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 13.2
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 1.5
+    }
+   ],
+   "past24": 0,
+   "next72": 14.9,
+   "peakMm": 13.2,
+   "peakDate": "2026-11-01"
+  },
+  {
+   "id": "ernakulam",
+   "name": "Ernakulam",
+   "state": "Kerala",
+   "lat": 9.98,
+   "lng": 76.28,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 4.8
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 0.7
+    }
+   ],
+   "past24": 0,
+   "next72": 5.5,
+   "peakMm": 4.8,
+   "peakDate": "2026-11-01"
+  },
+  {
+   "id": "thrissur",
+   "name": "Thrissur",
+   "state": "Kerala",
+   "lat": 10.53,
+   "lng": 76.21,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 3.1
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 0.3
+    }
+   ],
+   "past24": 0,
+   "next72": 3.4,
+   "peakMm": 3.1,
+   "peakDate": "2026-11-01"
+  },
+  {
+   "id": "wayanad",
+   "name": "Wayanad",
+   "state": "Kerala",
+   "lat": 11.69,
+   "lng": 76.13,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 1.5
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 4.5
+    }
+   ],
+   "past24": 0,
+   "next72": 6,
+   "peakMm": 4.5,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "chamarajanagar",
+   "name": "Chamarajanagar",
+   "state": "Karnataka",
+   "lat": 11.92,
+   "lng": 76.94,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.2
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 1.5
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 12
+    }
+   ],
+   "past24": 0,
+   "next72": 13.7,
+   "peakMm": 12,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "mysuru",
+   "name": "Mysuru",
+   "state": "Karnataka",
+   "lat": 12.3,
+   "lng": 76.64,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 1.3
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 28.2
+    }
+   ],
+   "past24": 0,
+   "next72": 29.5,
+   "peakMm": 28.2,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "bengaluru-urban",
+   "name": "Bengaluru Urban",
+   "state": "Karnataka",
+   "lat": 12.97,
+   "lng": 77.59,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 0.4
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 8.7
+    }
+   ],
+   "past24": 0,
+   "next72": 9.1,
+   "peakMm": 8.7,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "kolar",
+   "name": "Kolar",
+   "state": "Karnataka",
+   "lat": 13.14,
+   "lng": 78.13,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 0.5
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 5.4
+    }
+   ],
+   "past24": 0,
+   "next72": 5.9,
+   "peakMm": 5.4,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "chittoor",
+   "name": "Chittoor",
+   "state": "Andhra Pradesh",
+   "lat": 13.22,
+   "lng": 79.1,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 0.3
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 2.2
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 4.5
+    }
+   ],
+   "past24": 0,
+   "next72": 7,
+   "peakMm": 4.5,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "tirupati",
+   "name": "Tirupati",
+   "state": "Andhra Pradesh",
+   "lat": 13.63,
+   "lng": 79.42,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 1.1
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 3.5
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 10.5
+    }
+   ],
+   "past24": 0,
+   "next72": 15.1,
+   "peakMm": 10.5,
+   "peakDate": "2026-11-02"
+  },
+  {
+   "id": "nellore",
+   "name": "Nellore",
+   "state": "Andhra Pradesh",
+   "lat": 14.44,
+   "lng": 79.99,
+   "days": [
+    {
+     "date": "2026-10-30",
+     "mm": 0.1
+    },
+    {
+     "date": "2026-10-31",
+     "mm": 2.9
+    },
+    {
+     "date": "2026-11-01",
+     "mm": 2.2
+    },
+    {
+     "date": "2026-11-02",
+     "mm": 14
+    }
+   ],
+   "past24": 0.1,
+   "next72": 19.1,
+   "peakMm": 14,
+   "peakDate": "2026-11-02"
+  }
+ ],
+ "rainFetchedAt": "2026-10-31T16:37:18.155Z",
+ "telegramCommandsVersion": 2,
+ "telegramOffset": 360264234,
+ "tleCatalog": 2,
+ "cycloneCache": {
+  "1001345": {
+   "episode": "10",
+   "geom": {
+    "track": [
+     {
+      "t": "2026-10-26T00:00:00.000Z",
+      "lng": 89.1,
+      "lat": 16,
+      "cat": "HU",
+      "forecast": false
+     },
+     {
+      "t": "2026-10-26T06:00:00.000Z",
+      "lng": 88.4,
+      "lat": 15.3,
+      "cat": "HU",
+      "forecast": false
+     },
+     {
+      "t": "2026-10-26T12:00:00.000Z",
+      "lng": 87.2,
+      "lat": 15.9,
+      "cat": "HU",
+      "forecast": false
+     },
+     {
+      "t": "2026-10-26T18:00:00.000Z",
+      "lng": 85.8,
+      "lat": 16,
+      "cat": "HU",
+      "forecast": false
+     },
+     {
+      "t": "2026-10-27T00:00:00.000Z",
+      "lng": 84.8,
+      "lat": 16,
+      "cat": "HU",
+      "forecast": false
+     },
+     {
+      "t": "2026-10-27T06:00:00.000Z",
+      "lng": 83.8,
+      "lat": 16.2,
+      "cat": "HU",
+      "forecast": false
+     },
+     {
+      "t": "2026-10-27T12:00:00.000Z",
+      "lng": 82.7,
+      "lat": 16.3,
+      "cat": "HU",
+      "forecast": false
+     },
+     {
+      "t": "2026-10-27T18:00:00.000Z",
+      "lng": 81.6,
+      "lat": 16.4,
+      "cat": "TS",
+      "forecast": false
+     },
+     {
+      "t": "2026-10-28T00:00:00.000Z",
+      "lng": 81.6,
+      "lat": 16.2,
+      "cat": "TS",
+      "forecast": false
+     },
+     {
+      "t": "2026-10-28T06:00:00.000Z",
+      "lng": 81.8,
+      "lat": 16.4,
+      "cat": "TS",
+      "forecast": false
+     },
+     {
+      "t": "2026-10-28T18:00:00.000Z",
+      "lng": 81.9,
+      "lat": 17.8,
+      "cat": "TS",
+      "forecast": true
+     },
+     {
+      "t": "2026-10-29T06:00:00.000Z",
+      "lng": 81.7,
+      "lat": 19.9,
+      "cat": "TD",
+      "forecast": true
+     },
+     {
+      "t": "2026-10-29T18:00:00.000Z",
+      "lng": 81.6,
+      "lat": 21.9,
+      "cat": null,
+      "forecast": true
+     }
+    ],
+    "cone": [
+     [
+      81.8,
+      16.15
+     ],
+     [
+      81.81,
+      16.15
+     ],
+     [
+      81.82,
+      16.15
+     ],
+     [
+      81.83,
+      16.15
+     ],
+     [
+      81.84,
+      16.15
+     ],
+     [
+      81.85,
+      16.15
+     ],
+     [
+      81.85,
+      16.16
+     ],
+     [
+      81.86,
+      16.16
+     ],
+     [
+      81.87,
+      16.16
+     ],
+     [
+      81.88,
+      16.16
+     ],
+     [
+      81.89,
+      16.17
+     ],
+     [
+      81.9,
+      16.17
+     ],
+     [
+      81.91,
+      16.17
+     ],
+     [
+      81.91,
+      16.18
+     ],
+     [
+      81.92,
+      16.18
+     ],
+     [
+      81.93,
+      16.18
+     ],
+     [
+      81.94,
+      16.19
+     ],
+     [
+      81.95,
+      16.19
+     ],
+     [
+      81.95,
+      16.2
+     ],
+     [
+      81.96,
+      16.2
+     ],
+     [
+      81.97,
+      16.21
+     ],
+     [
+      81.97,
+      16.21
+     ],
+     [
+      81.98,
+      16.22
+     ],
+     [
+      81.99,
+      16.23
+     ],
+     [
+      81.99,
+      16.23
+     ],
+     [
+      82,
+      16.24
+     ],
+     [
+      82.01,
+      16.25
+     ],
+     [
+      82.01,
+      16.25
+     ],
+     [
+      82.02,
+      16.26
+     ],
+     [
+      82.02,
+      16.27
+     ],
+     [
+      82.03,
+      16.27
+     ],
+     [
+      82.03,
+      16.28
+     ],
+     [
+      82.03,
+      16.29
+     ],
+     [
+      82.04,
+      16.3
+     ],
+     [
+      82.04,
+      16.31
+     ],
+     [
+      82.04,
+      16.31
+     ],
+     [
+      82.05,
+      16.32
+     ],
+     [
+      82.05,
+      16.33
+     ],
+     [
+      82.05,
+      16.34
+     ],
+     [
+      82.05,
+      16.35
+     ],
+     [
+      82.06,
+      16.36
+     ],
+     [
+      82.33,
+      17.73
+     ],
+     [
+      82.33,
+      17.74
+     ],
+     [
+      82.34,
+      17.76
+     ],
+     [
+      82.34,
+      17.77
+     ],
+     [
+      82.34,
+      17.79
+     ],
+     [
+      82.34,
+      17.8
+     ],
+     [
+      82.37,
+      19.88
+     ],
+     [
+      82.46,
+      21.87
+     ],
+     [
+      82.46,
+      21.9
+     ],
+     [
+      82.46,
+      21.93
+     ],
+     [
+      82.46,
+      21.96
+     ],
+     [
+      82.46,
+      21.98
+     ],
+     [
+      82.45,
+      22.01
+     ],
+     [
+      82.45,
+      22.04
+     ],
+     [
+      82.44,
+      22.07
+     ],
+     [
+      82.44,
+      22.09
+     ],
+     [
+      82.43,
+      22.12
+     ],
+     [
+      82.42,
+      22.15
+     ],
+     [
+      82.41,
+      22.17
+     ],
+     [
+      82.4,
+      22.2
+     ],
+     [
+      82.39,
+      22.23
+     ],
+     [
+      82.38,
+      22.25
+     ],
+     [
+      82.36,
+      22.28
+     ],
+     [
+      82.35,
+      22.3
+     ],
+     [
+      82.33,
+      22.32
+     ],
+     [
+      82.31,
+      22.35
+     ],
+     [
+      82.3,
+      22.37
+     ],
+     [
+      82.28,
+      22.39
+     ],
+     [
+      82.26,
+      22.41
+     ],
+     [
+      82.24,
+      22.44
+     ],
+     [
+      82.22,
+      22.46
+     ],
+     [
+      82.2,
+      22.48
+     ],
+     [
+      82.18,
+      22.49
+     ],
+     [
+      82.15,
+      22.51
+     ],
+     [
+      82.13,
+      22.53
+     ],
+     [
+      82.11,
+      22.55
+     ],
+     [
+      82.08,
+      22.56
+     ],
+     [
+      82.06,
+      22.58
+     ],
+     [
+      82.03,
+      22.59
+     ],
+     [
+      82,
+      22.61
+     ],
+     [
+      81.98,
+      22.62
+     ],
+     [
+      81.95,
+      22.63
+     ],
+     [
+      81.92,
+      22.64
+     ],
+     [
+      81.89,
+      22.65
+     ],
+     [
+      81.87,
+      22.66
+     ],
+     [
+      81.84,
+      22.67
+     ],
+     [
+      81.81,
+      22.68
+     ],
+     [
+      81.78,
+      22.68
+     ],
+     [
+      81.75,
+      22.69
+     ],
+     [
+      81.72,
+      22.69
+     ],
+     [
+      81.69,
+      22.7
+     ],
+     [
+      81.66,
+      22.7
+     ],
+     [
+      81.63,
+      22.7
+     ],
+     [
+      81.6,
+      22.7
+     ],
+     [
+      81.57,
+      22.7
+     ],
+     [
+      81.54,
+      22.7
+     ],
+     [
+      81.51,
+      22.7
+     ],
+     [
+      81.48,
+      22.69
+     ],
+     [
+      81.45,
+      22.69
+     ],
+     [
+      81.42,
+      22.68
+     ],
+     [
+      81.39,
+      22.68
+     ],
+     [
+      81.36,
+      22.67
+     ],
+     [
+      81.33,
+      22.66
+     ],
+     [
+      81.31,
+      22.65
+     ],
+     [
+      81.28,
+      22.64
+     ],
+     [
+      81.25,
+      22.63
+     ],
+     [
+      81.22,
+      22.62
+     ],
+     [
+      81.2,
+      22.61
+     ],
+     [
+      81.17,
+      22.59
+     ],
+     [
+      81.14,
+      22.58
+     ],
+     [
+      81.12,
+      22.56
+     ],
+     [
+      81.09,
+      22.55
+     ],
+     [
+      81.07,
+      22.53
+     ],
+     [
+      81.05,
+      22.51
+     ],
+     [
+      81.02,
+      22.49
+     ],
+     [
+      81,
+      22.48
+     ],
+     [
+      80.98,
+      22.46
+     ],
+     [
+      80.96,
+      22.44
+     ],
+     [
+      80.94,
+      22.41
+     ],
+     [
+      80.92,
+      22.39
+     ],
+     [
+      80.9,
+      22.37
+     ],
+     [
+      80.89,
+      22.35
+     ],
+     [
+      80.87,
+      22.32
+     ],
+     [
+      80.85,
+      22.3
+     ],
+     [
+      80.84,
+      22.28
+     ],
+     [
+      80.83,
+      22.25
+     ],
+     [
+      80.81,
+      22.23
+     ],
+     [
+      80.8,
+      22.2
+     ],
+     [
+      80.79,
+      22.17
+     ],
+     [
+      80.78,
+      22.15
+     ],
+     [
+      80.77,
+      22.12
+     ],
+     [
+      80.76,
+      22.09
+     ],
+     [
+      80.76,
+      22.07
+     ],
+     [
+      80.75,
+      22.04
+     ],
+     [
+      80.75,
+      22.01
+     ],
+     [
+      80.74,
+      21.98
+     ],
+     [
+      80.74,
+      21.96
+     ],
+     [
+      80.74,
+      21.93
+     ],
+     [
+      80.74,
+      21.9
+     ],
+     [
+      80.74,
+      21.87
+     ],
+     [
+      80.74,
+      21.84
+     ],
+     [
+      80.74,
+      21.82
+     ],
+     [
+      80.75,
+      21.79
+     ],
+     [
+      81.03,
+      19.81
+     ],
+     [
+      81.04,
+      19.79
+     ],
+     [
+      81.04,
+      19.77
+     ],
+     [
+      81.46,
+      17.75
+     ],
+     [
+      81.54,
+      16.38
+     ],
+     [
+      81.54,
+      16.37
+     ],
+     [
+      81.54,
+      16.37
+     ],
+     [
+      81.54,
+      16.36
+     ],
+     [
+      81.55,
+      16.35
+     ],
+     [
+      81.55,
+      16.34
+     ],
+     [
+      81.55,
+      16.33
+     ],
+     [
+      81.55,
+      16.32
+     ],
+     [
+      81.56,
+      16.31
+     ],
+     [
+      81.56,
+      16.31
+     ],
+     [
+      81.56,
+      16.3
+     ],
+     [
+      81.57,
+      16.29
+     ],
+     [
+      81.57,
+      16.28
+     ],
+     [
+      81.57,
+      16.27
+     ],
+     [
+      81.58,
+      16.27
+     ],
+     [
+      81.58,
+      16.26
+     ],
+     [
+      81.59,
+      16.25
+     ],
+     [
+      81.59,
+      16.25
+     ],
+     [
+      81.6,
+      16.24
+     ],
+     [
+      81.61,
+      16.23
+     ],
+     [
+      81.61,
+      16.23
+     ],
+     [
+      81.62,
+      16.22
+     ],
+     [
+      81.63,
+      16.21
+     ],
+     [
+      81.63,
+      16.21
+     ],
+     [
+      81.64,
+      16.2
+     ],
+     [
+      81.65,
+      16.2
+     ],
+     [
+      81.65,
+      16.19
+     ],
+     [
+      81.66,
+      16.19
+     ],
+     [
+      81.67,
+      16.18
+     ],
+     [
+      81.68,
+      16.18
+     ],
+     [
+      81.69,
+      16.18
+     ],
+     [
+      81.69,
+      16.17
+     ],
+     [
+      81.7,
+      16.17
+     ],
+     [
+      81.71,
+      16.17
+     ],
+     [
+      81.72,
+      16.16
+     ],
+     [
+      81.73,
+      16.16
+     ],
+     [
+      81.74,
+      16.16
+     ],
+     [
+      81.75,
+      16.16
+     ],
+     [
+      81.75,
+      16.15
+     ],
+     [
+      81.76,
+      16.15
+     ],
+     [
+      81.77,
+      16.15
+     ],
+     [
+      81.78,
+      16.15
+     ],
+     [
+      81.79,
+      16.15
+     ],
+     [
+      81.8,
+      16.15
+     ],
+     [
+      81.8,
+      16.15
+     ]
+    ],
+    "swaths": {
+     "kmh60": [
+      [
+       88.4,
+       14.3
+      ],
+      [
+       88.47,
+       14.3
+      ],
+      [
+       88.54,
+       14.31
+      ],
+      [
+       88.62,
+       14.32
+      ],
+      [
+       88.69,
+       14.34
+      ],
+      [
+       88.75,
+       14.36
+      ],
+      [
+       88.82,
+       14.39
+      ],
+      [
+       88.89,
+       14.42
+      ],
+      [
+       88.95,
+       14.45
+      ],
+      [
+       89.01,
+       14.49
+      ],
+      [
+       89.07,
+       14.53
+      ],
+      [
+       89.12,
+       14.58
+      ],
+      [
+       89.17,
+       14.63
+      ],
+      [
+       89.83,
+       15.41
+      ],
+      [
+       89.87,
+       15.46
+      ],
+      [
+       89.91,
+       15.51
+      ],
+      [
+       89.94,
+       15.57
+      ],
+      [
+       89.97,
+       15.63
+      ],
+      [
+       90,
+       15.69
+      ],
+      [
+       90.02,
+       15.75
+      ],
+      [
+       90.03,
+       15.81
+      ],
+      [
+       90.04,
+       15.87
+      ],
+      [
+       90.05,
+       15.94
+      ],
+      [
+       90.05,
+       16
+      ],
+      [
+       90.05,
+       16.06
+      ],
+      [
+       90.04,
+       16.13
+      ],
+      [
+       90.03,
+       16.19
+      ],
+      [
+       90.02,
+       16.25
+      ],
+      [
+       90,
+       16.31
+      ],
+      [
+       89.97,
+       16.37
+      ],
+      [
+       89.94,
+       16.43
+      ],
+      [
+       89.91,
+       16.49
+      ],
+      [
+       89.87,
+       16.54
+      ],
+      [
+       89.83,
+       16.59
+      ],
+      [
+       89.79,
+       16.64
+      ],
+      [
+       89.74,
+       16.68
+      ],
+      [
+       89.69,
+       16.72
+      ],
+      [
+       89.63,
+       16.76
+      ],
+      [
+       89.58,
+       16.79
+      ],
+      [
+       89.52,
+       16.82
+      ],
+      [
+       89.46,
+       16.85
+      ],
+      [
+       89.39,
+       16.87
+      ],
+      [
+       89.33,
+       16.89
+      ],
+      [
+       89.27,
+       16.9
+      ],
+      [
+       89.2,
+       16.91
+      ],
+      [
+       89.13,
+       16.92
+      ],
+      [
+       89.07,
+       16.92
+      ],
+      [
+       89,
+       16.91
+      ],
+      [
+       88.93,
+       16.9
+      ],
+      [
+       88.87,
+       16.89
+      ],
+      [
+       88.81,
+       16.87
+      ],
+      [
+       88.74,
+       16.85
+      ],
+      [
+       88.68,
+       16.82
+      ],
+      [
+       88.62,
+       16.79
+      ],
+      [
+       88.57,
+       16.76
+      ],
+      [
+       88.51,
+       16.72
+      ],
+      [
+       88.46,
+       16.68
+      ],
+      [
+       87.69,
+       16.78
+      ],
+      [
+       87.62,
+       16.81
+      ],
+      [
+       87.56,
+       16.84
+      ],
+      [
+       87.49,
+       16.86
+      ],
+      [
+       87.42,
+       16.88
+      ],
+      [
+       86.01,
+       17.15
+      ],
+      [
+       85.93,
+       17.16
+      ],
+      [
+       85.84,
+       17.17
+      ],
+      [
+       85.27,
+       17.17
+      ],
+      [
+       84.92,
+       17.48
+      ],
+      [
+       84.82,
+       17.55
+      ],
+      [
+       84.72,
+       17.61
+      ],
+      [
+       84.62,
+       17.67
+      ],
+      [
+       84.51,
+       17.72
+      ],
+      [
+       84.39,
+       17.77
+      ],
+      [
+       84.28,
+       17.8
+      ],
+      [
+       84.16,
+       17.83
+      ],
+      [
+       84.04,
+       17.85
+      ],
+      [
+       82.88,
+       17.96
+      ],
+      [
+       82.45,
+       20.02
+      ],
+      [
+       82.14,
+       21.99
+      ],
+      [
+       82.13,
+       22.02
+      ],
+      [
+       82.12,
+       22.06
+      ],
+      [
+       82.11,
+       22.09
+      ],
+      [
+       82.09,
+       22.12
+      ],
+      [
+       82.08,
+       22.15
+      ],
+      [
+       82.05,
+       22.18
+      ],
+      [
+       82.03,
+       22.21
+      ],
+      [
+       82.01,
+       22.24
+      ],
+      [
+       81.98,
+       22.27
+      ],
+      [
+       81.95,
+       22.29
+      ],
+      [
+       81.92,
+       22.31
+      ],
+      [
+       81.89,
+       22.33
+      ],
+      [
+       81.86,
+       22.35
+      ],
+      [
+       81.82,
+       22.37
+      ],
+      [
+       81.79,
+       22.38
+      ],
+      [
+       81.75,
+       22.39
+      ],
+      [
+       81.71,
+       22.4
+      ],
+      [
+       81.68,
+       22.4
+      ],
+      [
+       81.64,
+       22.41
+      ],
+      [
+       81.6,
+       22.41
+      ],
+      [
+       81.56,
+       22.41
+      ],
+      [
+       81.52,
+       22.4
+      ],
+      [
+       81.49,
+       22.4
+      ],
+      [
+       81.45,
+       22.39
+      ],
+      [
+       81.41,
+       22.38
+      ],
+      [
+       81.38,
+       22.37
+      ],
+      [
+       81.34,
+       22.35
+      ],
+      [
+       81.31,
+       22.33
+      ],
+      [
+       81.28,
+       22.31
+      ],
+      [
+       81.25,
+       22.29
+      ],
+      [
+       81.22,
+       22.27
+      ],
+      [
+       81.19,
+       22.24
+      ],
+      [
+       81.17,
+       22.21
+      ],
+      [
+       81.15,
+       22.18
+      ],
+      [
+       81.12,
+       22.15
+      ],
+      [
+       81.11,
+       22.12
+      ],
+      [
+       81.09,
+       22.09
+      ],
+      [
+       81.08,
+       22.06
+      ],
+      [
+       81.07,
+       22.02
+      ],
+      [
+       81.06,
+       21.99
+      ],
+      [
+       81.05,
+       21.95
+      ],
+      [
+       81.05,
+       21.92
+      ],
+      [
+       80.94,
+       19.9
+      ],
+      [
+       80.83,
+       17.51
+      ],
+      [
+       80.78,
+       17.48
+      ],
+      [
+       80.71,
+       17.42
+      ],
+      [
+       80.63,
+       17.36
+      ],
+      [
+       80.57,
+       17.29
+      ],
+      [
+       80.5,
+       17.22
+      ],
+      [
+       80.45,
+       17.15
+      ],
+      [
+       80.4,
+       17.07
+      ],
+      [
+       80.35,
+       16.98
+      ],
+      [
+       80.31,
+       16.9
+      ],
+      [
+       80.28,
+       16.81
+      ],
+      [
+       80.25,
+       16.72
+      ],
+      [
+       80.23,
+       16.63
+      ],
+      [
+       80.22,
+       16.54
+      ],
+      [
+       80.21,
+       16.45
+      ],
+      [
+       80.21,
+       16.35
+      ],
+      [
+       80.22,
+       16.26
+      ],
+      [
+       80.23,
+       16.17
+      ],
+      [
+       80.25,
+       16.08
+      ],
+      [
+       80.28,
+       15.99
+      ],
+      [
+       80.31,
+       15.9
+      ],
+      [
+       80.35,
+       15.82
+      ],
+      [
+       80.4,
+       15.73
+      ],
+      [
+       80.45,
+       15.65
+      ],
+      [
+       80.5,
+       15.58
+      ],
+      [
+       80.57,
+       15.51
+      ],
+      [
+       80.63,
+       15.44
+      ],
+      [
+       80.71,
+       15.38
+      ],
+      [
+       80.78,
+       15.32
+      ],
+      [
+       80.86,
+       15.27
+      ],
+      [
+       80.95,
+       15.22
+      ],
+      [
+       81.03,
+       15.18
+      ],
+      [
+       82.05,
+       14.75
+      ],
+      [
+       82.16,
+       14.71
+      ],
+      [
+       82.28,
+       14.68
+      ],
+      [
+       82.4,
+       14.66
+      ],
+      [
+       82.52,
+       14.64
+      ],
+      [
+       83.68,
+       14.54
+      ],
+      [
+       83.8,
+       14.53
+      ],
+      [
+       83.92,
+       14.54
+      ],
+      [
+       84.04,
+       14.55
+      ],
+      [
+       84.16,
+       14.57
+      ],
+      [
+       84.28,
+       14.6
+      ],
+      [
+       85,
+       14.83
+      ],
+      [
+       85.84,
+       14.83
+      ],
+      [
+       87.91,
+       14.42
+      ],
+      [
+       87.98,
+       14.39
+      ],
+      [
+       88.05,
+       14.36
+      ],
+      [
+       88.11,
+       14.34
+      ],
+      [
+       88.18,
+       14.32
+      ],
+      [
+       88.26,
+       14.31
+      ],
+      [
+       88.33,
+       14.3
+      ],
+      [
+       88.4,
+       14.3
+      ],
+      [
+       88.4,
+       14.3
+      ]
+     ],
+     "kmh90": [
+      [
+       88.4,
+       14.88
+      ],
+      [
+       88.43,
+       14.88
+      ],
+      [
+       88.46,
+       14.89
+      ],
+      [
+       88.49,
+       14.89
+      ],
+      [
+       88.52,
+       14.9
+      ],
+      [
+       88.55,
+       14.91
+      ],
+      [
+       88.58,
+       14.92
+      ],
+      [
+       88.6,
+       14.93
+      ],
+      [
+       88.63,
+       14.95
+      ],
+      [
+       88.65,
+       14.96
+      ],
+      [
+       88.68,
+       14.98
+      ],
+      [
+       88.7,
+       15
+      ],
+      [
+       88.72,
+       15.02
+      ],
+      [
+       88.74,
+       15.04
+      ],
+      [
+       88.76,
+       15.07
+      ],
+      [
+       88.77,
+       15.09
+      ],
+      [
+       88.79,
+       15.12
+      ],
+      [
+       88.8,
+       15.14
+      ],
+      [
+       88.81,
+       15.17
+      ],
+      [
+       88.82,
+       15.2
+      ],
+      [
+       88.83,
+       15.23
+      ],
+      [
+       88.83,
+       15.26
+      ],
+      [
+       88.83,
+       15.29
+      ],
+      [
+       88.83,
+       15.31
+      ],
+      [
+       88.83,
+       15.34
+      ],
+      [
+       88.83,
+       15.37
+      ],
+      [
+       88.82,
+       15.4
+      ],
+      [
+       88.81,
+       15.43
+      ],
+      [
+       88.8,
+       15.46
+      ],
+      [
+       88.79,
+       15.48
+      ],
+      [
+       88.77,
+       15.51
+      ],
+      [
+       88.76,
+       15.53
+      ],
+      [
+       88.74,
+       15.56
+      ],
+      [
+       88.72,
+       15.58
+      ],
+      [
+       88.7,
+       15.6
+      ],
+      [
+       88.68,
+       15.62
+      ],
+      [
+       88.65,
+       15.64
+      ],
+      [
+       88.63,
+       15.65
+      ],
+      [
+       88.6,
+       15.67
+      ],
+      [
+       87.39,
+       16.27
+      ],
+      [
+       87.36,
+       16.29
+      ],
+      [
+       87.33,
+       16.3
+      ],
+      [
+       87.3,
+       16.3
+      ],
+      [
+       85.93,
+       16.57
+      ],
+      [
+       85.88,
+       16.58
+      ],
+      [
+       85.84,
+       16.58
+      ],
+      [
+       85.8,
+       16.58
+      ],
+      [
+       83.99,
+       16.84
+      ],
+      [
+       83.94,
+       16.85
+      ],
+      [
+       83.9,
+       16.86
+      ],
+      [
+       82.77,
+       16.96
+      ],
+      [
+       82.47,
+       17.8
+      ],
+      [
+       82.47,
+       17.84
+      ],
+      [
+       82.47,
+       17.88
+      ],
+      [
+       82.46,
+       17.91
+      ],
+      [
+       82.45,
+       17.95
+      ],
+      [
+       82.44,
+       17.99
+      ],
+      [
+       82.42,
+       18.02
+      ],
+      [
+       82.41,
+       18.06
+      ],
+      [
+       82.39,
+       18.09
+      ],
+      [
+       82.36,
+       18.12
+      ],
+      [
+       82.34,
+       18.15
+      ],
+      [
+       82.31,
+       18.18
+      ],
+      [
+       82.28,
+       18.2
+      ],
+      [
+       82.25,
+       18.23
+      ],
+      [
+       82.22,
+       18.25
+      ],
+      [
+       82.19,
+       18.27
+      ],
+      [
+       82.15,
+       18.29
+      ],
+      [
+       82.11,
+       18.31
+      ],
+      [
+       82.08,
+       18.32
+      ],
+      [
+       82.04,
+       18.33
+      ],
+      [
+       82,
+       18.34
+      ],
+      [
+       81.96,
+       18.34
+      ],
+      [
+       81.92,
+       18.34
+      ],
+      [
+       81.88,
+       18.34
+      ],
+      [
+       81.84,
+       18.34
+      ],
+      [
+       81.8,
+       18.34
+      ],
+      [
+       81.76,
+       18.33
+      ],
+      [
+       81.72,
+       18.32
+      ],
+      [
+       81.69,
+       18.31
+      ],
+      [
+       81.65,
+       18.29
+      ],
+      [
+       81.61,
+       18.27
+      ],
+      [
+       81.58,
+       18.25
+      ],
+      [
+       81.55,
+       18.23
+      ],
+      [
+       81.52,
+       18.2
+      ],
+      [
+       81.49,
+       18.18
+      ],
+      [
+       81.46,
+       18.15
+      ],
+      [
+       81.44,
+       18.12
+      ],
+      [
+       81.41,
+       18.09
+      ],
+      [
+       81.39,
+       18.06
+      ],
+      [
+       81.38,
+       18.02
+      ],
+      [
+       81.36,
+       17.99
+      ],
+      [
+       81.35,
+       17.95
+      ],
+      [
+       81.34,
+       17.91
+      ],
+      [
+       81.33,
+       17.88
+      ],
+      [
+       81.17,
+       16.93
+      ],
+      [
+       81.13,
+       16.9
+      ],
+      [
+       81.1,
+       16.86
+      ],
+      [
+       81.07,
+       16.83
+      ],
+      [
+       81.04,
+       16.79
+      ],
+      [
+       81.01,
+       16.75
+      ],
+      [
+       80.99,
+       16.71
+      ],
+      [
+       80.96,
+       16.67
+      ],
+      [
+       80.95,
+       16.63
+      ],
+      [
+       80.93,
+       16.58
+      ],
+      [
+       80.92,
+       16.54
+      ],
+      [
+       80.91,
+       16.49
+      ],
+      [
+       80.91,
+       16.45
+      ],
+      [
+       80.9,
+       16.4
+      ],
+      [
+       80.91,
+       16.35
+      ],
+      [
+       80.91,
+       16.31
+      ],
+      [
+       80.92,
+       16.26
+      ],
+      [
+       80.93,
+       16.22
+      ],
+      [
+       80.95,
+       16.17
+      ],
+      [
+       80.96,
+       16.13
+      ],
+      [
+       80.99,
+       16.09
+      ],
+      [
+       81.01,
+       16.05
+      ],
+      [
+       81.04,
+       16.01
+      ],
+      [
+       81.07,
+       15.97
+      ],
+      [
+       81.1,
+       15.94
+      ],
+      [
+       81.13,
+       15.9
+      ],
+      [
+       81.17,
+       15.87
+      ],
+      [
+       81.21,
+       15.85
+      ],
+      [
+       81.25,
+       15.82
+      ],
+      [
+       81.3,
+       15.8
+      ],
+      [
+       81.34,
+       15.78
+      ],
+      [
+       81.39,
+       15.77
+      ],
+      [
+       81.43,
+       15.75
+      ],
+      [
+       81.48,
+       15.74
+      ],
+      [
+       81.53,
+       15.74
+      ],
+      [
+       83.73,
+       15.54
+      ],
+      [
+       84.76,
+       15.42
+      ],
+      [
+       84.8,
+       15.42
+      ],
+      [
+       85.82,
+       15.42
+      ],
+      [
+       88.2,
+       14.93
+      ],
+      [
+       88.22,
+       14.92
+      ],
+      [
+       88.25,
+       14.91
+      ],
+      [
+       88.28,
+       14.9
+      ],
+      [
+       88.31,
+       14.89
+      ],
+      [
+       88.34,
+       14.89
+      ],
+      [
+       88.37,
+       14.88
+      ],
+      [
+       88.4,
+       14.88
+      ],
+      [
+       88.4,
+       14.88
+      ]
+     ],
+     "kmh120": [
+      [
+       88.4,
+       15.05
+      ],
+      [
+       88.42,
+       15.05
+      ],
+      [
+       88.44,
+       15.05
+      ],
+      [
+       88.45,
+       15.06
+      ],
+      [
+       88.47,
+       15.06
+      ],
+      [
+       88.49,
+       15.07
+      ],
+      [
+       88.51,
+       15.07
+      ],
+      [
+       88.52,
+       15.08
+      ],
+      [
+       88.54,
+       15.09
+      ],
+      [
+       88.55,
+       15.1
+      ],
+      [
+       88.57,
+       15.11
+      ],
+      [
+       88.58,
+       15.12
+      ],
+      [
+       88.59,
+       15.13
+      ],
+      [
+       88.6,
+       15.15
+      ],
+      [
+       88.61,
+       15.16
+      ],
+      [
+       88.62,
+       15.18
+      ],
+      [
+       88.63,
+       15.19
+      ],
+      [
+       88.64,
+       15.21
+      ],
+      [
+       88.65,
+       15.22
+      ],
+      [
+       88.65,
+       15.24
+      ],
+      [
+       88.66,
+       15.26
+      ],
+      [
+       88.66,
+       15.27
+      ],
+      [
+       88.66,
+       15.29
+      ],
+      [
+       88.66,
+       15.31
+      ],
+      [
+       88.66,
+       15.33
+      ],
+      [
+       88.66,
+       15.34
+      ],
+      [
+       88.65,
+       15.36
+      ],
+      [
+       88.65,
+       15.38
+      ],
+      [
+       88.64,
+       15.39
+      ],
+      [
+       88.63,
+       15.41
+      ],
+      [
+       88.62,
+       15.43
+      ],
+      [
+       88.61,
+       15.44
+      ],
+      [
+       88.6,
+       15.45
+      ],
+      [
+       88.59,
+       15.47
+      ],
+      [
+       88.58,
+       15.48
+      ],
+      [
+       88.57,
+       15.49
+      ],
+      [
+       88.55,
+       15.5
+      ],
+      [
+       88.54,
+       15.51
+      ],
+      [
+       88.52,
+       15.52
+      ],
+      [
+       87.31,
+       16.12
+      ],
+      [
+       87.3,
+       16.13
+      ],
+      [
+       87.28,
+       16.14
+      ],
+      [
+       87.26,
+       16.14
+      ],
+      [
+       85.89,
+       16.41
+      ],
+      [
+       85.86,
+       16.41
+      ],
+      [
+       85.83,
+       16.42
+      ],
+      [
+       85.8,
+       16.42
+      ],
+      [
+       83.94,
+       16.68
+      ],
+      [
+       83.91,
+       16.69
+      ],
+      [
+       83.87,
+       16.7
+      ],
+      [
+       82.75,
+       16.8
+      ],
+      [
+       82.72,
+       16.8
+      ],
+      [
+       81.6,
+       16.82
+      ],
+      [
+       81.57,
+       16.82
+      ],
+      [
+       81.54,
+       16.81
+      ],
+      [
+       81.51,
+       16.81
+      ],
+      [
+       81.48,
+       16.8
+      ],
+      [
+       81.45,
+       16.79
+      ],
+      [
+       81.42,
+       16.78
+      ],
+      [
+       81.4,
+       16.77
+      ],
+      [
+       81.37,
+       16.75
+      ],
+      [
+       81.34,
+       16.74
+      ],
+      [
+       81.32,
+       16.72
+      ],
+      [
+       81.3,
+       16.7
+      ],
+      [
+       81.28,
+       16.68
+      ],
+      [
+       81.26,
+       16.66
+      ],
+      [
+       81.24,
+       16.63
+      ],
+      [
+       81.22,
+       16.61
+      ],
+      [
+       81.21,
+       16.58
+      ],
+      [
+       81.2,
+       16.56
+      ],
+      [
+       81.19,
+       16.53
+      ],
+      [
+       81.18,
+       16.5
+      ],
+      [
+       81.17,
+       16.47
+      ],
+      [
+       81.17,
+       16.44
+      ],
+      [
+       81.17,
+       16.41
+      ],
+      [
+       81.17,
+       16.39
+      ],
+      [
+       81.17,
+       16.36
+      ],
+      [
+       81.17,
+       16.33
+      ],
+      [
+       81.18,
+       16.3
+      ],
+      [
+       81.19,
+       16.27
+      ],
+      [
+       81.2,
+       16.24
+      ],
+      [
+       81.21,
+       16.22
+      ],
+      [
+       81.22,
+       16.19
+      ],
+      [
+       81.24,
+       16.17
+      ],
+      [
+       81.26,
+       16.14
+      ],
+      [
+       81.28,
+       16.12
+      ],
+      [
+       81.3,
+       16.1
+      ],
+      [
+       81.32,
+       16.08
+      ],
+      [
+       81.34,
+       16.06
+      ],
+      [
+       81.37,
+       16.05
+      ],
+      [
+       81.4,
+       16.03
+      ],
+      [
+       81.42,
+       16.02
+      ],
+      [
+       81.45,
+       16.01
+      ],
+      [
+       81.48,
+       16
+      ],
+      [
+       81.51,
+       15.99
+      ],
+      [
+       82.61,
+       15.81
+      ],
+      [
+       82.65,
+       15.8
+      ],
+      [
+       84.75,
+       15.59
+      ],
+      [
+       84.78,
+       15.58
+      ],
+      [
+       85.8,
+       15.58
+      ],
+      [
+       87.14,
+       15.65
+      ],
+      [
+       88.29,
+       15.08
+      ],
+      [
+       88.3,
+       15.07
+      ],
+      [
+       88.32,
+       15.06
+      ],
+      [
+       88.34,
+       15.06
+      ],
+      [
+       88.36,
+       15.05
+      ],
+      [
+       88.37,
+       15.05
+      ],
+      [
+       88.39,
+       15.05
+      ],
+      [
+       88.4,
+       15.05
+      ]
+     ]
+    }
+   }
+  }
+ },
+ "cycloneSnapshot": [
+  {
+   "id": "TC-1001345",
+   "eventId": "1001345",
+   "episode": "10",
+   "name": "ARNAB-26",
+   "alertLevel": "Red",
+   "lat": 16.4,
+   "lng": 81.8,
+   "maxWindKmh": 222,
+   "severityText": "Tropical Storm (maximum wind speed of 222 km/h)",
+   "source": "JTWC",
+   "updatedAt": "2026-10-29T08:02:06Z",
+   "url": "https://www.gdacs.org/report.aspx?eventid=1001345&episodeid=10&eventtype=TC",
+   "track": [
+    {
+     "t": "2026-10-26T00:00:00.000Z",
+     "lng": 89.1,
+     "lat": 16,
+     "cat": "HU",
+     "forecast": false
+    },
+    {
+     "t": "2026-10-26T06:00:00.000Z",
+     "lng": 88.4,
+     "lat": 15.3,
+     "cat": "HU",
+     "forecast": false
+    },
+    {
+     "t": "2026-10-26T12:00:00.000Z",
+     "lng": 87.2,
+     "lat": 15.9,
+     "cat": "HU",
+     "forecast": false
+    },
+    {
+     "t": "2026-10-26T18:00:00.000Z",
+     "lng": 85.8,
+     "lat": 16,
+     "cat": "HU",
+     "forecast": false
+    },
+    {
+     "t": "2026-10-27T00:00:00.000Z",
+     "lng": 84.8,
+     "lat": 16,
+     "cat": "HU",
+     "forecast": false
+    },
+    {
+     "t": "2026-10-27T06:00:00.000Z",
+     "lng": 83.8,
+     "lat": 16.2,
+     "cat": "HU",
+     "forecast": false
+    },
+    {
+     "t": "2026-10-27T12:00:00.000Z",
+     "lng": 82.7,
+     "lat": 16.3,
+     "cat": "HU",
+     "forecast": false
+    },
+    {
+     "t": "2026-10-27T18:00:00.000Z",
+     "lng": 81.6,
+     "lat": 16.4,
+     "cat": "TS",
+     "forecast": false
+    },
+    {
+     "t": "2026-10-28T00:00:00.000Z",
+     "lng": 81.6,
+     "lat": 16.2,
+     "cat": "TS",
+     "forecast": false
+    },
+    {
+     "t": "2026-10-28T06:00:00.000Z",
+     "lng": 81.8,
+     "lat": 16.4,
+     "cat": "TS",
+     "forecast": false
+    },
+    {
+     "t": "2026-10-28T18:00:00.000Z",
+     "lng": 81.9,
+     "lat": 17.8,
+     "cat": "TS",
+     "forecast": true
+    },
+    {
+     "t": "2026-10-29T06:00:00.000Z",
+     "lng": 81.7,
+     "lat": 19.9,
+     "cat": "TD",
+     "forecast": true
+    },
+    {
+     "t": "2026-10-29T18:00:00.000Z",
+     "lng": 81.6,
+     "lat": 21.9,
+     "cat": null,
+     "forecast": true
+    }
+   ],
+   "cone": [
+    [
+     81.8,
+     16.15
+    ],
+    [
+     81.81,
+     16.15
+    ],
+    [
+     81.82,
+     16.15
+    ],
+    [
+     81.83,
+     16.15
+    ],
+    [
+     81.84,
+     16.15
+    ],
+    [
+     81.85,
+     16.15
+    ],
+    [
+     81.85,
+     16.16
+    ],
+    [
+     81.86,
+     16.16
+    ],
+    [
+     81.87,
+     16.16
+    ],
+    [
+     81.88,
+     16.16
+    ],
+    [
+     81.89,
+     16.17
+    ],
+    [
+     81.9,
+     16.17
+    ],
+    [
+     81.91,
+     16.17
+    ],
+    [
+     81.91,
+     16.18
+    ],
+    [
+     81.92,
+     16.18
+    ],
+    [
+     81.93,
+     16.18
+    ],
+    [
+     81.94,
+     16.19
+    ],
+    [
+     81.95,
+     16.19
+    ],
+    [
+     81.95,
+     16.2
+    ],
+    [
+     81.96,
+     16.2
+    ],
+    [
+     81.97,
+     16.21
+    ],
+    [
+     81.97,
+     16.21
+    ],
+    [
+     81.98,
+     16.22
+    ],
+    [
+     81.99,
+     16.23
+    ],
+    [
+     81.99,
+     16.23
+    ],
+    [
+     82,
+     16.24
+    ],
+    [
+     82.01,
+     16.25
+    ],
+    [
+     82.01,
+     16.25
+    ],
+    [
+     82.02,
+     16.26
+    ],
+    [
+     82.02,
+     16.27
+    ],
+    [
+     82.03,
+     16.27
+    ],
+    [
+     82.03,
+     16.28
+    ],
+    [
+     82.03,
+     16.29
+    ],
+    [
+     82.04,
+     16.3
+    ],
+    [
+     82.04,
+     16.31
+    ],
+    [
+     82.04,
+     16.31
+    ],
+    [
+     82.05,
+     16.32
+    ],
+    [
+     82.05,
+     16.33
+    ],
+    [
+     82.05,
+     16.34
+    ],
+    [
+     82.05,
+     16.35
+    ],
+    [
+     82.06,
+     16.36
+    ],
+    [
+     82.33,
+     17.73
+    ],
+    [
+     82.33,
+     17.74
+    ],
+    [
+     82.34,
+     17.76
+    ],
+    [
+     82.34,
+     17.77
+    ],
+    [
+     82.34,
+     17.79
+    ],
+    [
+     82.34,
+     17.8
+    ],
+    [
+     82.37,
+     19.88
+    ],
+    [
+     82.46,
+     21.87
+    ],
+    [
+     82.46,
+     21.9
+    ],
+    [
+     82.46,
+     21.93
+    ],
+    [
+     82.46,
+     21.96
+    ],
+    [
+     82.46,
+     21.98
+    ],
+    [
+     82.45,
+     22.01
+    ],
+    [
+     82.45,
+     22.04
+    ],
+    [
+     82.44,
+     22.07
+    ],
+    [
+     82.44,
+     22.09
+    ],
+    [
+     82.43,
+     22.12
+    ],
+    [
+     82.42,
+     22.15
+    ],
+    [
+     82.41,
+     22.17
+    ],
+    [
+     82.4,
+     22.2
+    ],
+    [
+     82.39,
+     22.23
+    ],
+    [
+     82.38,
+     22.25
+    ],
+    [
+     82.36,
+     22.28
+    ],
+    [
+     82.35,
+     22.3
+    ],
+    [
+     82.33,
+     22.32
+    ],
+    [
+     82.31,
+     22.35
+    ],
+    [
+     82.3,
+     22.37
+    ],
+    [
+     82.28,
+     22.39
+    ],
+    [
+     82.26,
+     22.41
+    ],
+    [
+     82.24,
+     22.44
+    ],
+    [
+     82.22,
+     22.46
+    ],
+    [
+     82.2,
+     22.48
+    ],
+    [
+     82.18,
+     22.49
+    ],
+    [
+     82.15,
+     22.51
+    ],
+    [
+     82.13,
+     22.53
+    ],
+    [
+     82.11,
+     22.55
+    ],
+    [
+     82.08,
+     22.56
+    ],
+    [
+     82.06,
+     22.58
+    ],
+    [
+     82.03,
+     22.59
+    ],
+    [
+     82,
+     22.61
+    ],
+    [
+     81.98,
+     22.62
+    ],
+    [
+     81.95,
+     22.63
+    ],
+    [
+     81.92,
+     22.64
+    ],
+    [
+     81.89,
+     22.65
+    ],
+    [
+     81.87,
+     22.66
+    ],
+    [
+     81.84,
+     22.67
+    ],
+    [
+     81.81,
+     22.68
+    ],
+    [
+     81.78,
+     22.68
+    ],
+    [
+     81.75,
+     22.69
+    ],
+    [
+     81.72,
+     22.69
+    ],
+    [
+     81.69,
+     22.7
+    ],
+    [
+     81.66,
+     22.7
+    ],
+    [
+     81.63,
+     22.7
+    ],
+    [
+     81.6,
+     22.7
+    ],
+    [
+     81.57,
+     22.7
+    ],
+    [
+     81.54,
+     22.7
+    ],
+    [
+     81.51,
+     22.7
+    ],
+    [
+     81.48,
+     22.69
+    ],
+    [
+     81.45,
+     22.69
+    ],
+    [
+     81.42,
+     22.68
+    ],
+    [
+     81.39,
+     22.68
+    ],
+    [
+     81.36,
+     22.67
+    ],
+    [
+     81.33,
+     22.66
+    ],
+    [
+     81.31,
+     22.65
+    ],
+    [
+     81.28,
+     22.64
+    ],
+    [
+     81.25,
+     22.63
+    ],
+    [
+     81.22,
+     22.62
+    ],
+    [
+     81.2,
+     22.61
+    ],
+    [
+     81.17,
+     22.59
+    ],
+    [
+     81.14,
+     22.58
+    ],
+    [
+     81.12,
+     22.56
+    ],
+    [
+     81.09,
+     22.55
+    ],
+    [
+     81.07,
+     22.53
+    ],
+    [
+     81.05,
+     22.51
+    ],
+    [
+     81.02,
+     22.49
+    ],
+    [
+     81,
+     22.48
+    ],
+    [
+     80.98,
+     22.46
+    ],
+    [
+     80.96,
+     22.44
+    ],
+    [
+     80.94,
+     22.41
+    ],
+    [
+     80.92,
+     22.39
+    ],
+    [
+     80.9,
+     22.37
+    ],
+    [
+     80.89,
+     22.35
+    ],
+    [
+     80.87,
+     22.32
+    ],
+    [
+     80.85,
+     22.3
+    ],
+    [
+     80.84,
+     22.28
+    ],
+    [
+     80.83,
+     22.25
+    ],
+    [
+     80.81,
+     22.23
+    ],
+    [
+     80.8,
+     22.2
+    ],
+    [
+     80.79,
+     22.17
+    ],
+    [
+     80.78,
+     22.15
+    ],
+    [
+     80.77,
+     22.12
+    ],
+    [
+     80.76,
+     22.09
+    ],
+    [
+     80.76,
+     22.07
+    ],
+    [
+     80.75,
+     22.04
+    ],
+    [
+     80.75,
+     22.01
+    ],
+    [
+     80.74,
+     21.98
+    ],
+    [
+     80.74,
+     21.96
+    ],
+    [
+     80.74,
+     21.93
+    ],
+    [
+     80.74,
+     21.9
+    ],
+    [
+     80.74,
+     21.87
+    ],
+    [
+     80.74,
+     21.84
+    ],
+    [
+     80.74,
+     21.82
+    ],
+    [
+     80.75,
+     21.79
+    ],
+    [
+     81.03,
+     19.81
+    ],
+    [
+     81.04,
+     19.79
+    ],
+    [
+     81.04,
+     19.77
+    ],
+    [
+     81.46,
+     17.75
+    ],
+    [
+     81.54,
+     16.38
+    ],
+    [
+     81.54,
+     16.37
+    ],
+    [
+     81.54,
+     16.37
+    ],
+    [
+     81.54,
+     16.36
+    ],
+    [
+     81.55,
+     16.35
+    ],
+    [
+     81.55,
+     16.34
+    ],
+    [
+     81.55,
+     16.33
+    ],
+    [
+     81.55,
+     16.32
+    ],
+    [
+     81.56,
+     16.31
+    ],
+    [
+     81.56,
+     16.31
+    ],
+    [
+     81.56,
+     16.3
+    ],
+    [
+     81.57,
+     16.29
+    ],
+    [
+     81.57,
+     16.28
+    ],
+    [
+     81.57,
+     16.27
+    ],
+    [
+     81.58,
+     16.27
+    ],
+    [
+     81.58,
+     16.26
+    ],
+    [
+     81.59,
+     16.25
+    ],
+    [
+     81.59,
+     16.25
+    ],
+    [
+     81.6,
+     16.24
+    ],
+    [
+     81.61,
+     16.23
+    ],
+    [
+     81.61,
+     16.23
+    ],
+    [
+     81.62,
+     16.22
+    ],
+    [
+     81.63,
+     16.21
+    ],
+    [
+     81.63,
+     16.21
+    ],
+    [
+     81.64,
+     16.2
+    ],
+    [
+     81.65,
+     16.2
+    ],
+    [
+     81.65,
+     16.19
+    ],
+    [
+     81.66,
+     16.19
+    ],
+    [
+     81.67,
+     16.18
+    ],
+    [
+     81.68,
+     16.18
+    ],
+    [
+     81.69,
+     16.18
+    ],
+    [
+     81.69,
+     16.17
+    ],
+    [
+     81.7,
+     16.17
+    ],
+    [
+     81.71,
+     16.17
+    ],
+    [
+     81.72,
+     16.16
+    ],
+    [
+     81.73,
+     16.16
+    ],
+    [
+     81.74,
+     16.16
+    ],
+    [
+     81.75,
+     16.16
+    ],
+    [
+     81.75,
+     16.15
+    ],
+    [
+     81.76,
+     16.15
+    ],
+    [
+     81.77,
+     16.15
+    ],
+    [
+     81.78,
+     16.15
+    ],
+    [
+     81.79,
+     16.15
+    ],
+    [
+     81.8,
+     16.15
+    ],
+    [
+     81.8,
+     16.15
+    ]
+   ],
+   "swaths": {
+    "kmh60": [
+     [
+      88.4,
+      14.3
+     ],
+     [
+      88.47,
+      14.3
+     ],
+     [
+      88.54,
+      14.31
+     ],
+     [
+      88.62,
+      14.32
+     ],
+     [
+      88.69,
+      14.34
+     ],
+     [
+      88.75,
+      14.36
+     ],
+     [
+      88.82,
+      14.39
+     ],
+     [
+      88.89,
+      14.42
+     ],
+     [
+      88.95,
+      14.45
+     ],
+     [
+      89.01,
+      14.49
+     ],
+     [
+      89.07,
+      14.53
+     ],
+     [
+      89.12,
+      14.58
+     ],
+     [
+      89.17,
+      14.63
+     ],
+     [
+      89.83,
+      15.41
+     ],
+     [
+      89.87,
+      15.46
+     ],
+     [
+      89.91,
+      15.51
+     ],
+     [
+      89.94,
+      15.57
+     ],
+     [
+      89.97,
+      15.63
+     ],
+     [
+      90,
+      15.69
+     ],
+     [
+      90.02,
+      15.75
+     ],
+     [
+      90.03,
+      15.81
+     ],
+     [
+      90.04,
+      15.87
+     ],
+     [
+      90.05,
+      15.94
+     ],
+     [
+      90.05,
+      16
+     ],
+     [
+      90.05,
+      16.06
+     ],
+     [
+      90.04,
+      16.13
+     ],
+     [
+      90.03,
+      16.19
+     ],
+     [
+      90.02,
+      16.25
+     ],
+     [
+      90,
+      16.31
+     ],
+     [
+      89.97,
+      16.37
+     ],
+     [
+      89.94,
+      16.43
+     ],
+     [
+      89.91,
+      16.49
+     ],
+     [
+      89.87,
+      16.54
+     ],
+     [
+      89.83,
+      16.59
+     ],
+     [
+      89.79,
+      16.64
+     ],
+     [
+      89.74,
+      16.68
+     ],
+     [
+      89.69,
+      16.72
+     ],
+     [
+      89.63,
+      16.76
+     ],
+     [
+      89.58,
+      16.79
+     ],
+     [
+      89.52,
+      16.82
+     ],
+     [
+      89.46,
+      16.85
+     ],
+     [
+      89.39,
+      16.87
+     ],
+     [
+      89.33,
+      16.89
+     ],
+     [
+      89.27,
+      16.9
+     ],
+     [
+      89.2,
+      16.91
+     ],
+     [
+      89.13,
+      16.92
+     ],
+     [
+      89.07,
+      16.92
+     ],
+     [
+      89,
+      16.91
+     ],
+     [
+      88.93,
+      16.9
+     ],
+     [
+      88.87,
+      16.89
+     ],
+     [
+      88.81,
+      16.87
+     ],
+     [
+      88.74,
+      16.85
+     ],
+     [
+      88.68,
+      16.82
+     ],
+     [
+      88.62,
+      16.79
+     ],
+     [
+      88.57,
+      16.76
+     ],
+     [
+      88.51,
+      16.72
+     ],
+     [
+      88.46,
+      16.68
+     ],
+     [
+      87.69,
+      16.78
+     ],
+     [
+      87.62,
+      16.81
+     ],
+     [
+      87.56,
+      16.84
+     ],
+     [
+      87.49,
+      16.86
+     ],
+     [
+      87.42,
+      16.88
+     ],
+     [
+      86.01,
+      17.15
+     ],
+     [
+      85.93,
+      17.16
+     ],
+     [
+      85.84,
+      17.17
+     ],
+     [
+      85.27,
+      17.17
+     ],
+     [
+      84.92,
+      17.48
+     ],
+     [
+      84.82,
+      17.55
+     ],
+     [
+      84.72,
+      17.61
+     ],
+     [
+      84.62,
+      17.67
+     ],
+     [
+      84.51,
+      17.72
+     ],
+     [
+      84.39,
+      17.77
+     ],
+     [
+      84.28,
+      17.8
+     ],
+     [
+      84.16,
+      17.83
+     ],
+     [
+      84.04,
+      17.85
+     ],
+     [
+      82.88,
+      17.96
+     ],
+     [
+      82.45,
+      20.02
+     ],
+     [
+      82.14,
+      21.99
+     ],
+     [
+      82.13,
+      22.02
+     ],
+     [
+      82.12,
+      22.06
+     ],
+     [
+      82.11,
+      22.09
+     ],
+     [
+      82.09,
+      22.12
+     ],
+     [
+      82.08,
+      22.15
+     ],
+     [
+      82.05,
+      22.18
+     ],
+     [
+      82.03,
+      22.21
+     ],
+     [
+      82.01,
+      22.24
+     ],
+     [
+      81.98,
+      22.27
+     ],
+     [
+      81.95,
+      22.29
+     ],
+     [
+      81.92,
+      22.31
+     ],
+     [
+      81.89,
+      22.33
+     ],
+     [
+      81.86,
+      22.35
+     ],
+     [
+      81.82,
+      22.37
+     ],
+     [
+      81.79,
+      22.38
+     ],
+     [
+      81.75,
+      22.39
+     ],
+     [
+      81.71,
+      22.4
+     ],
+     [
+      81.68,
+      22.4
+     ],
+     [
+      81.64,
+      22.41
+     ],
+     [
+      81.6,
+      22.41
+     ],
+     [
+      81.56,
+      22.41
+     ],
+     [
+      81.52,
+      22.4
+     ],
+     [
+      81.49,
+      22.4
+     ],
+     [
+      81.45,
+      22.39
+     ],
+     [
+      81.41,
+      22.38
+     ],
+     [
+      81.38,
+      22.37
+     ],
+     [
+      81.34,
+      22.35
+     ],
+     [
+      81.31,
+      22.33
+     ],
+     [
+      81.28,
+      22.31
+     ],
+     [
+      81.25,
+      22.29
+     ],
+     [
+      81.22,
+      22.27
+     ],
+     [
+      81.19,
+      22.24
+     ],
+     [
+      81.17,
+      22.21
+     ],
+     [
+      81.15,
+      22.18
+     ],
+     [
+      81.12,
+      22.15
+     ],
+     [
+      81.11,
+      22.12
+     ],
+     [
+      81.09,
+      22.09
+     ],
+     [
+      81.08,
+      22.06
+     ],
+     [
+      81.07,
+      22.02
+     ],
+     [
+      81.06,
+      21.99
+     ],
+     [
+      81.05,
+      21.95
+     ],
+     [
+      81.05,
+      21.92
+     ],
+     [
+      80.94,
+      19.9
+     ],
+     [
+      80.83,
+      17.51
+     ],
+     [
+      80.78,
+      17.48
+     ],
+     [
+      80.71,
+      17.42
+     ],
+     [
+      80.63,
+      17.36
+     ],
+     [
+      80.57,
+      17.29
+     ],
+     [
+      80.5,
+      17.22
+     ],
+     [
+      80.45,
+      17.15
+     ],
+     [
+      80.4,
+      17.07
+     ],
+     [
+      80.35,
+      16.98
+     ],
+     [
+      80.31,
+      16.9
+     ],
+     [
+      80.28,
+      16.81
+     ],
+     [
+      80.25,
+      16.72
+     ],
+     [
+      80.23,
+      16.63
+     ],
+     [
+      80.22,
+      16.54
+     ],
+     [
+      80.21,
+      16.45
+     ],
+     [
+      80.21,
+      16.35
+     ],
+     [
+      80.22,
+      16.26
+     ],
+     [
+      80.23,
+      16.17
+     ],
+     [
+      80.25,
+      16.08
+     ],
+     [
+      80.28,
+      15.99
+     ],
+     [
+      80.31,
+      15.9
+     ],
+     [
+      80.35,
+      15.82
+     ],
+     [
+      80.4,
+      15.73
+     ],
+     [
+      80.45,
+      15.65
+     ],
+     [
+      80.5,
+      15.58
+     ],
+     [
+      80.57,
+      15.51
+     ],
+     [
+      80.63,
+      15.44
+     ],
+     [
+      80.71,
+      15.38
+     ],
+     [
+      80.78,
+      15.32
+     ],
+     [
+      80.86,
+      15.27
+     ],
+     [
+      80.95,
+      15.22
+     ],
+     [
+      81.03,
+      15.18
+     ],
+     [
+      82.05,
+      14.75
+     ],
+     [
+      82.16,
+      14.71
+     ],
+     [
+      82.28,
+      14.68
+     ],
+     [
+      82.4,
+      14.66
+     ],
+     [
+      82.52,
+      14.64
+     ],
+     [
+      83.68,
+      14.54
+     ],
+     [
+      83.8,
+      14.53
+     ],
+     [
+      83.92,
+      14.54
+     ],
+     [
+      84.04,
+      14.55
+     ],
+     [
+      84.16,
+      14.57
+     ],
+     [
+      84.28,
+      14.6
+     ],
+     [
+      85,
+      14.83
+     ],
+     [
+      85.84,
+      14.83
+     ],
+     [
+      87.91,
+      14.42
+     ],
+     [
+      87.98,
+      14.39
+     ],
+     [
+      88.05,
+      14.36
+     ],
+     [
+      88.11,
+      14.34
+     ],
+     [
+      88.18,
+      14.32
+     ],
+     [
+      88.26,
+      14.31
+     ],
+     [
+      88.33,
+      14.3
+     ],
+     [
+      88.4,
+      14.3
+     ],
+     [
+      88.4,
+      14.3
+     ]
+    ],
+    "kmh90": [
+     [
+      88.4,
+      14.88
+     ],
+     [
+      88.43,
+      14.88
+     ],
+     [
+      88.46,
+      14.89
+     ],
+     [
+      88.49,
+      14.89
+     ],
+     [
+      88.52,
+      14.9
+     ],
+     [
+      88.55,
+      14.91
+     ],
+     [
+      88.58,
+      14.92
+     ],
+     [
+      88.6,
+      14.93
+     ],
+     [
+      88.63,
+      14.95
+     ],
+     [
+      88.65,
+      14.96
+     ],
+     [
+      88.68,
+      14.98
+     ],
+     [
+      88.7,
+      15
+     ],
+     [
+      88.72,
+      15.02
+     ],
+     [
+      88.74,
+      15.04
+     ],
+     [
+      88.76,
+      15.07
+     ],
+     [
+      88.77,
+      15.09
+     ],
+     [
+      88.79,
+      15.12
+     ],
+     [
+      88.8,
+      15.14
+     ],
+     [
+      88.81,
+      15.17
+     ],
+     [
+      88.82,
+      15.2
+     ],
+     [
+      88.83,
+      15.23
+     ],
+     [
+      88.83,
+      15.26
+     ],
+     [
+      88.83,
+      15.29
+     ],
+     [
+      88.83,
+      15.31
+     ],
+     [
+      88.83,
+      15.34
+     ],
+     [
+      88.83,
+      15.37
+     ],
+     [
+      88.82,
+      15.4
+     ],
+     [
+      88.81,
+      15.43
+     ],
+     [
+      88.8,
+      15.46
+     ],
+     [
+      88.79,
+      15.48
+     ],
+     [
+      88.77,
+      15.51
+     ],
+     [
+      88.76,
+      15.53
+     ],
+     [
+      88.74,
+      15.56
+     ],
+     [
+      88.72,
+      15.58
+     ],
+     [
+      88.7,
+      15.6
+     ],
+     [
+      88.68,
+      15.62
+     ],
+     [
+      88.65,
+      15.64
+     ],
+     [
+      88.63,
+      15.65
+     ],
+     [
+      88.6,
+      15.67
+     ],
+     [
+      87.39,
+      16.27
+     ],
+     [
+      87.36,
+      16.29
+     ],
+     [
+      87.33,
+      16.3
+     ],
+     [
+      87.3,
+      16.3
+     ],
+     [
+      85.93,
+      16.57
+     ],
+     [
+      85.88,
+      16.58
+     ],
+     [
+      85.84,
+      16.58
+     ],
+     [
+      85.8,
+      16.58
+     ],
+     [
+      83.99,
+      16.84
+     ],
+     [
+      83.94,
+      16.85
+     ],
+     [
+      83.9,
+      16.86
+     ],
+     [
+      82.77,
+      16.96
+     ],
+     [
+      82.47,
+      17.8
+     ],
+     [
+      82.47,
+      17.84
+     ],
+     [
+      82.47,
+      17.88
+     ],
+     [
+      82.46,
+      17.91
+     ],
+     [
+      82.45,
+      17.95
+     ],
+     [
+      82.44,
+      17.99
+     ],
+     [
+      82.42,
+      18.02
+     ],
+     [
+      82.41,
+      18.06
+     ],
+     [
+      82.39,
+      18.09
+     ],
+     [
+      82.36,
+      18.12
+     ],
+     [
+      82.34,
+      18.15
+     ],
+     [
+      82.31,
+      18.18
+     ],
+     [
+      82.28,
+      18.2
+     ],
+     [
+      82.25,
+      18.23
+     ],
+     [
+      82.22,
+      18.25
+     ],
+     [
+      82.19,
+      18.27
+     ],
+     [
+      82.15,
+      18.29
+     ],
+     [
+      82.11,
+      18.31
+     ],
+     [
+      82.08,
+      18.32
+     ],
+     [
+      82.04,
+      18.33
+     ],
+     [
+      82,
+      18.34
+     ],
+     [
+      81.96,
+      18.34
+     ],
+     [
+      81.92,
+      18.34
+     ],
+     [
+      81.88,
+      18.34
+     ],
+     [
+      81.84,
+      18.34
+     ],
+     [
+      81.8,
+      18.34
+     ],
+     [
+      81.76,
+      18.33
+     ],
+     [
+      81.72,
+      18.32
+     ],
+     [
+      81.69,
+      18.31
+     ],
+     [
+      81.65,
+      18.29
+     ],
+     [
+      81.61,
+      18.27
+     ],
+     [
+      81.58,
+      18.25
+     ],
+     [
+      81.55,
+      18.23
+     ],
+     [
+      81.52,
+      18.2
+     ],
+     [
+      81.49,
+      18.18
+     ],
+     [
+      81.46,
+      18.15
+     ],
+     [
+      81.44,
+      18.12
+     ],
+     [
+      81.41,
+      18.09
+     ],
+     [
+      81.39,
+      18.06
+     ],
+     [
+      81.38,
+      18.02
+     ],
+     [
+      81.36,
+      17.99
+     ],
+     [
+      81.35,
+      17.95
+     ],
+     [
+      81.34,
+      17.91
+     ],
+     [
+      81.33,
+      17.88
+     ],
+     [
+      81.17,
+      16.93
+     ],
+     [
+      81.13,
+      16.9
+     ],
+     [
+      81.1,
+      16.86
+     ],
+     [
+      81.07,
+      16.83
+     ],
+     [
+      81.04,
+      16.79
+     ],
+     [
+      81.01,
+      16.75
+     ],
+     [
+      80.99,
+      16.71
+     ],
+     [
+      80.96,
+      16.67
+     ],
+     [
+      80.95,
+      16.63
+     ],
+     [
+      80.93,
+      16.58
+     ],
+     [
+      80.92,
+      16.54
+     ],
+     [
+      80.91,
+      16.49
+     ],
+     [
+      80.91,
+      16.45
+     ],
+     [
+      80.9,
+      16.4
+     ],
+     [
+      80.91,
+      16.35
+     ],
+     [
+      80.91,
+      16.31
+     ],
+     [
+      80.92,
+      16.26
+     ],
+     [
+      80.93,
+      16.22
+     ],
+     [
+      80.95,
+      16.17
+     ],
+     [
+      80.96,
+      16.13
+     ],
+     [
+      80.99,
+      16.09
+     ],
+     [
+      81.01,
+      16.05
+     ],
+     [
+      81.04,
+      16.01
+     ],
+     [
+      81.07,
+      15.97
+     ],
+     [
+      81.1,
+      15.94
+     ],
+     [
+      81.13,
+      15.9
+     ],
+     [
+      81.17,
+      15.87
+     ],
+     [
+      81.21,
+      15.85
+     ],
+     [
+      81.25,
+      15.82
+     ],
+     [
+      81.3,
+      15.8
+     ],
+     [
+      81.34,
+      15.78
+     ],
+     [
+      81.39,
+      15.77
+     ],
+     [
+      81.43,
+      15.75
+     ],
+     [
+      81.48,
+      15.74
+     ],
+     [
+      81.53,
+      15.74
+     ],
+     [
+      83.73,
+      15.54
+     ],
+     [
+      84.76,
+      15.42
+     ],
+     [
+      84.8,
+      15.42
+     ],
+     [
+      85.82,
+      15.42
+     ],
+     [
+      88.2,
+      14.93
+     ],
+     [
+      88.22,
+      14.92
+     ],
+     [
+      88.25,
+      14.91
+     ],
+     [
+      88.28,
+      14.9
+     ],
+     [
+      88.31,
+      14.89
+     ],
+     [
+      88.34,
+      14.89
+     ],
+     [
+      88.37,
+      14.88
+     ],
+     [
+      88.4,
+      14.88
+     ],
+     [
+      88.4,
+      14.88
+     ]
+    ],
+    "kmh120": [
+     [
+      88.4,
+      15.05
+     ],
+     [
+      88.42,
+      15.05
+     ],
+     [
+      88.44,
+      15.05
+     ],
+     [
+      88.45,
+      15.06
+     ],
+     [
+      88.47,
+      15.06
+     ],
+     [
+      88.49,
+      15.07
+     ],
+     [
+      88.51,
+      15.07
+     ],
+     [
+      88.52,
+      15.08
+     ],
+     [
+      88.54,
+      15.09
+     ],
+     [
+      88.55,
+      15.1
+     ],
+     [
+      88.57,
+      15.11
+     ],
+     [
+      88.58,
+      15.12
+     ],
+     [
+      88.59,
+      15.13
+     ],
+     [
+      88.6,
+      15.15
+     ],
+     [
+      88.61,
+      15.16
+     ],
+     [
+      88.62,
+      15.18
+     ],
+     [
+      88.63,
+      15.19
+     ],
+     [
+      88.64,
+      15.21
+     ],
+     [
+      88.65,
+      15.22
+     ],
+     [
+      88.65,
+      15.24
+     ],
+     [
+      88.66,
+      15.26
+     ],
+     [
+      88.66,
+      15.27
+     ],
+     [
+      88.66,
+      15.29
+     ],
+     [
+      88.66,
+      15.31
+     ],
+     [
+      88.66,
+      15.33
+     ],
+     [
+      88.66,
+      15.34
+     ],
+     [
+      88.65,
+      15.36
+     ],
+     [
+      88.65,
+      15.38
+     ],
+     [
+      88.64,
+      15.39
+     ],
+     [
+      88.63,
+      15.41
+     ],
+     [
+      88.62,
+      15.43
+     ],
+     [
+      88.61,
+      15.44
+     ],
+     [
+      88.6,
+      15.45
+     ],
+     [
+      88.59,
+      15.47
+     ],
+     [
+      88.58,
+      15.48
+     ],
+     [
+      88.57,
+      15.49
+     ],
+     [
+      88.55,
+      15.5
+     ],
+     [
+      88.54,
+      15.51
+     ],
+     [
+      88.52,
+      15.52
+     ],
+     [
+      87.31,
+      16.12
+     ],
+     [
+      87.3,
+      16.13
+     ],
+     [
+      87.28,
+      16.14
+     ],
+     [
+      87.26,
+      16.14
+     ],
+     [
+      85.89,
+      16.41
+     ],
+     [
+      85.86,
+      16.41
+     ],
+     [
+      85.83,
+      16.42
+     ],
+     [
+      85.8,
+      16.42
+     ],
+     [
+      83.94,
+      16.68
+     ],
+     [
+      83.91,
+      16.69
+     ],
+     [
+      83.87,
+      16.7
+     ],
+     [
+      82.75,
+      16.8
+     ],
+     [
+      82.72,
+      16.8
+     ],
+     [
+      81.6,
+      16.82
+     ],
+     [
+      81.57,
+      16.82
+     ],
+     [
+      81.54,
+      16.81
+     ],
+     [
+      81.51,
+      16.81
+     ],
+     [
+      81.48,
+      16.8
+     ],
+     [
+      81.45,
+      16.79
+     ],
+     [
+      81.42,
+      16.78
+     ],
+     [
+      81.4,
+      16.77
+     ],
+     [
+      81.37,
+      16.75
+     ],
+     [
+      81.34,
+      16.74
+     ],
+     [
+      81.32,
+      16.72
+     ],
+     [
+      81.3,
+      16.7
+     ],
+     [
+      81.28,
+      16.68
+     ],
+     [
+      81.26,
+      16.66
+     ],
+     [
+      81.24,
+      16.63
+     ],
+     [
+      81.22,
+      16.61
+     ],
+     [
+      81.21,
+      16.58
+     ],
+     [
+      81.2,
+      16.56
+     ],
+     [
+      81.19,
+      16.53
+     ],
+     [
+      81.18,
+      16.5
+     ],
+     [
+      81.17,
+      16.47
+     ],
+     [
+      81.17,
+      16.44
+     ],
+     [
+      81.17,
+      16.41
+     ],
+     [
+      81.17,
+      16.39
+     ],
+     [
+      81.17,
+      16.36
+     ],
+     [
+      81.17,
+      16.33
+     ],
+     [
+      81.18,
+      16.3
+     ],
+     [
+      81.19,
+      16.27
+     ],
+     [
+      81.2,
+      16.24
+     ],
+     [
+      81.21,
+      16.22
+     ],
+     [
+      81.22,
+      16.19
+     ],
+     [
+      81.24,
+      16.17
+     ],
+     [
+      81.26,
+      16.14
+     ],
+     [
+      81.28,
+      16.12
+     ],
+     [
+      81.3,
+      16.1
+     ],
+     [
+      81.32,
+      16.08
+     ],
+     [
+      81.34,
+      16.06
+     ],
+     [
+      81.37,
+      16.05
+     ],
+     [
+      81.4,
+      16.03
+     ],
+     [
+      81.42,
+      16.02
+     ],
+     [
+      81.45,
+      16.01
+     ],
+     [
+      81.48,
+      16
+     ],
+     [
+      81.51,
+      15.99
+     ],
+     [
+      82.61,
+      15.81
+     ],
+     [
+      82.65,
+      15.8
+     ],
+     [
+      84.75,
+      15.59
+     ],
+     [
+      84.78,
+      15.58
+     ],
+     [
+      85.8,
+      15.58
+     ],
+     [
+      87.14,
+      15.65
+     ],
+     [
+      88.29,
+      15.08
+     ],
+     [
+      88.3,
+      15.07
+     ],
+     [
+      88.32,
+      15.06
+     ],
+     [
+      88.34,
+      15.06
+     ],
+     [
+      88.36,
+      15.05
+     ],
+     [
+      88.37,
+      15.05
+     ],
+     [
+      88.39,
+      15.05
+     ],
+     [
+      88.4,
+      15.05
+     ]
+    ]
+   },
+   "landfall": {
+    "at": "2026-10-28T07:41:05.753Z",
+    "lat": 16.6,
+    "lng": 81.81,
+    "near": "Kakinada",
+    "cat": "TS"
+   }
+  }
+ ],
+ "seaSnapshot": [
+  {
+   "id": "pulicat",
+   "name": "Pulicat",
+   "lat": 13.42,
+   "lng": 80.42,
+   "nowM": 0.9,
+   "swellNowM": 0.9,
+   "directionDeg": 133,
+   "periodS": 8.8,
+   "days": [
+    {
+     "date": "2026-10-31",
+     "maxM": 1.1,
+     "swellM": 1.1,
+     "periodS": 8.8
+    },
+    {
+     "date": "2026-11-01",
+     "maxM": 0.9,
+     "swellM": 0.8,
+     "periodS": 9
+    },
+    {
+     "date": "2026-11-02",
+     "maxM": 1.7,
+     "swellM": 1.7,
+     "periodS": 8.8
+    }
+   ],
+   "peakM": 1.1,
+   "peakDate": "2026-10-31",
+   "state": "Slight"
+  },
+  {
+   "id": "chennai",
+   "name": "Chennai",
+   "lat": 13.08,
+   "lng": 80.4,
+   "nowM": 0.7,
+   "swellNowM": 0.7,
+   "directionDeg": 132,
+   "periodS": 9.1,
+   "days": [
+    {
+     "date": "2026-10-31",
+     "maxM": 0.9,
+     "swellM": 0.9,
+     "periodS": 9.5
+    },
+    {
+     "date": "2026-11-01",
+     "maxM": 0.8,
+     "swellM": 0.7,
+     "periodS": 9.1
+    },
+    {
+     "date": "2026-11-02",
+     "maxM": 1.4,
+     "swellM": 1.4,
+     "periodS": 8.6
+    }
+   ],
+   "peakM": 0.9,
+   "peakDate": "2026-10-31",
+   "state": "Slight"
+  },
+  {
+   "id": "mamallapuram",
+   "name": "Mamallapuram",
+   "lat": 12.62,
+   "lng": 80.3,
+   "nowM": 0.6,
+   "swellNowM": 0.6,
+   "directionDeg": 136,
+   "periodS": 9.5,
+   "days": [
+    {
+     "date": "2026-10-31",
+     "maxM": 0.8,
+     "swellM": 0.7,
+     "periodS": 9.9
+    },
+    {
+     "date": "2026-11-01",
+     "maxM": 0.6,
+     "swellM": 0.5,
+     "periodS": 9.5
+    },
+    {
+     "date": "2026-11-02",
+     "maxM": 0.9,
+     "swellM": 0.9,
+     "periodS": 8.6
+    }
+   ],
+   "peakM": 0.8,
+   "peakDate": "2026-10-31",
+   "state": "Slight"
+  },
+  {
+   "id": "puducherry",
+   "name": "Puducherry",
+   "lat": 11.93,
+   "lng": 79.92,
+   "nowM": 0.6,
+   "swellNowM": 0.6,
+   "directionDeg": 130,
+   "periodS": 9.5,
+   "days": [
+    {
+     "date": "2026-10-31",
+     "maxM": 0.9,
+     "swellM": 0.8,
+     "periodS": 10.2
+    },
+    {
+     "date": "2026-11-01",
+     "maxM": 0.6,
+     "swellM": 0.6,
+     "periodS": 9.5
+    },
+    {
+     "date": "2026-11-02",
+     "maxM": 1.1,
+     "swellM": 1,
+     "periodS": 8.9
+    }
+   ],
+   "peakM": 0.9,
+   "peakDate": "2026-10-31",
+   "state": "Slight"
+  },
+  {
+   "id": "cuddalore",
+   "name": "Cuddalore",
+   "lat": 11.72,
+   "lng": 79.88,
+   "nowM": 0.4,
+   "swellNowM": 0.4,
+   "directionDeg": 121,
+   "periodS": 8.7,
+   "days": [
+    {
+     "date": "2026-10-31",
+     "maxM": 0.6,
+     "swellM": 0.5,
+     "periodS": 9.5
+    },
+    {
+     "date": "2026-11-01",
+     "maxM": 0.4,
+     "swellM": 0.4,
+     "periodS": 9
+    },
+    {
+     "date": "2026-11-02",
+     "maxM": 0.8,
+     "swellM": 0.8,
+     "periodS": 8.7
+    }
+   ],
+   "peakM": 0.6,
+   "peakDate": "2026-10-31",
+   "state": "Slight"
+  },
+  {
+   "id": "nagapattinam",
+   "name": "Nagapattinam",
+   "lat": 10.77,
+   "lng": 79.95,
+   "nowM": 0.4,
+   "swellNowM": 0.2,
+   "directionDeg": 99,
+   "periodS": 5.9,
+   "days": [
+    {
+     "date": "2026-10-31",
+     "maxM": 0.4,
+     "swellM": 0.3,
+     "periodS": 9
+    },
+    {
+     "date": "2026-11-01",
+     "maxM": 0.4,
+     "swellM": 0.2,
+     "periodS": 8.4
+    },
+    {
+     "date": "2026-11-02",
+     "maxM": 0.5,
+     "swellM": 0.4,
+     "periodS": 8.6
+    }
+   ],
+   "peakM": 0.4,
+   "peakDate": "2026-10-31",
+   "state": "Calm"
+  },
+  {
+   "id": "point-calimere",
+   "name": "Point Calimere",
+   "lat": 10.22,
+   "lng": 79.95,
+   "nowM": 0.3,
+   "swellNowM": 0.1,
+   "directionDeg": 80,
+   "periodS": 2.9,
+   "days": [
+    {
+     "date": "2026-10-31",
+     "maxM": 0.3,
+     "swellM": 0.2,
+     "periodS": 6.7
+    },
+    {
+     "date": "2026-11-01",
+     "maxM": 0.3,
+     "swellM": 0.3,
+     "periodS": 7.4
+    },
+    {
+     "date": "2026-11-02",
+     "maxM": 0.4,
+     "swellM": 0.3,
+     "periodS": 8.1
+    }
+   ],
+   "peakM": 0.3,
+   "peakDate": "2026-10-31",
+   "state": "Calm"
+  },
+  {
+   "id": "rameswaram",
+   "name": "Rameswaram (Gulf of Mannar)",
+   "lat": 9.15,
+   "lng": 79.35,
+   "nowM": 0.6,
+   "swellNowM": 0.5,
+   "directionDeg": 186,
+   "periodS": 11,
+   "days": [
+    {
+     "date": "2026-10-31",
+     "maxM": 0.7,
+     "swellM": 0.5,
+     "periodS": 11.7
+    },
+    {
+     "date": "2026-11-01",
+     "maxM": 0.6,
+     "swellM": 0.5,
+     "periodS": 11.3
+    },
+    {
+     "date": "2026-11-02",
+     "maxM": 0.6,
+     "swellM": 0.5,
+     "periodS": 11
+    }
+   ],
+   "peakM": 0.7,
+   "peakDate": "2026-10-31",
+   "state": "Slight"
+  },
+  {
+   "id": "thoothukudi",
+   "name": "Thoothukudi",
+   "lat": 8.75,
+   "lng": 78.3,
+   "nowM": 0.6,
+   "swellNowM": 0.6,
+   "directionDeg": 161,
+   "periodS": 10.1,
+   "days": [
+    {
+     "date": "2026-10-31",
+     "maxM": 0.8,
+     "swellM": 0.6,
+     "periodS": 10.2
+    },
+    {
+     "date": "2026-11-01",
+     "maxM": 0.6,
+     "swellM": 0.5,
+     "periodS": 10
+    },
+    {
+     "date": "2026-11-02",
+     "maxM": 0.7,
+     "swellM": 0.6,
+     "periodS": 9.6
+    }
+   ],
+   "peakM": 0.8,
+   "peakDate": "2026-10-31",
+   "state": "Slight"
+  },
+  {
+   "id": "kanyakumari",
+   "name": "Kanyakumari",
+   "lat": 7.98,
+   "lng": 77.55,
+   "nowM": 1,
+   "swellNowM": 0.9,
+   "directionDeg": 161,
+   "periodS": 10.3,
+   "days": [
+    {
+     "date": "2026-10-31",
+     "maxM": 1.2,
+     "swellM": 1,
+     "periodS": 10.5
+    },
+    {
+     "date": "2026-11-01",
+     "maxM": 1,
+     "swellM": 0.9,
+     "periodS": 10.2
+    },
+    {
+     "date": "2026-11-02",
+     "maxM": 1,
+     "swellM": 0.9,
+     "periodS": 9.8
+    }
+   ],
+   "peakM": 1.2,
+   "peakDate": "2026-10-31",
+   "state": "Slight"
+  },
+  {
+   "id": "colachel",
+   "name": "Colachel",
+   "lat": 8.1,
+   "lng": 77.2,
+   "nowM": 1.1,
+   "swellNowM": 0.9,
+   "directionDeg": 163,
+   "periodS": 10.2,
+   "days": [
+    {
+     "date": "2026-10-31",
+     "maxM": 1.2,
+     "swellM": 1.1,
+     "periodS": 10.6
+    },
+    {
+     "date": "2026-11-01",
+     "maxM": 1.1,
+     "swellM": 0.9,
+     "periodS": 10.1
+    },
+    {
+     "date": "2026-11-02",
+     "maxM": 0.9,
+     "swellM": 0.9,
+     "periodS": 10
+    }
+   ],
+   "peakM": 1.2,
+   "peakDate": "2026-10-31",
+   "state": "Slight"
+  }
+ ],
+ "seaFetchedAt": "2026-10-31T16:37:18.155Z",
+ "firesFetchedAt": "2026-10-31T16:37:18.155Z",
+ "newsFetchedAt": "2026-10-31T16:37:18.155Z",
+ "digestDate": "2026-10-31",
+ "digestAt": "2026-10-31T01:37:30.139Z",
+ "feedback": {},
+ "feedbackRefs": {
+  "bfe0a47735": {
+   "at": "2026-10-29T08:37:19.335Z",
+   "items": [
+    {
+     "key": "gdacs:TC-1001345:Red",
+     "rule": "gdacs_level",
+     "title": "GDACS Red: Tropical cyclone Tropical Cyclone ARNAB-26"
+    }
+   ]
+  },
+  "ae72802788": {
+   "at": "2026-10-29T08:37:19.335Z",
+   "items": [
+    {
+     "key": "cyclone:1001345:400",
+     "rule": "cyclone_track",
+     "title": "Cyclone ARNAB-26: forecast within 334 km of Pulicat"
+    }
+   ]
+  },
+  "7422479c85": {
+   "at": "2026-10-26T14:52:23.936Z",
+   "items": [
+    {
+     "key": "river:vaigai-dam:high",
+     "rule": "river_discharge",
+     "title": "River rise forecast: Vaigai below Vaigai Dam"
+    }
+   ]
+  },
+  "48f4324298": {
+   "at": "2026-10-26T14:52:23.936Z",
+   "items": [
+    {
+     "key": "river:thamirabarani:high",
+     "rule": "river_discharge",
+     "title": "River rise forecast: Thamirabarani at Tirunelveli"
+    }
+   ]
+  },
+  "5bd14f1b66": {
+   "at": "2026-10-26T15:37:19.413Z",
+   "items": [
+    {
+     "key": "river:palar-vellore:high",
+     "rule": "river_discharge",
+     "title": "River rise forecast: Palar near Vellore"
+    }
+   ]
+  },
+  "fe7e26e06b": {
+   "at": "2026-10-26T15:37:19.413Z",
+   "items": [
+    {
+     "key": "river:pennaiyar-cuddalore:high",
+     "rule": "river_discharge",
+     "title": "River rise forecast: Thenpennai near Cuddalore"
+    }
+   ]
+  },
+  "7737ddb5ed": {
+   "at": "2026-10-26T15:37:19.413Z",
+   "items": [
+    {
+     "key": "river:amaravathi-karur:medium",
+     "rule": "river_discharge",
+     "title": "River rise forecast: Amaravathi at Karur"
+    },
+    {
+     "key": "river:periyar-mullaperiyar:medium",
+     "rule": "river_discharge",
+     "title": "River rise forecast: Periyar at Mullaperiyar"
+    },
+    {
+     "key": "river:pennaiyar-krishnagiri:medium",
+     "rule": "river_discharge",
+     "title": "River rise forecast: Thenpennai near Krishnagiri"
+    }
+   ]
+  },
+  "66b1dc93c3": {
+   "at": "2026-10-26T18:37:22.097Z",
+   "items": [
+    {
+     "key": "river:vaigai-dam:medium",
+     "rule": "river_discharge",
+     "title": "River rise forecast: Vaigai below Vaigai Dam"
+    }
+   ]
+  },
+  "be5a332b01": {
+   "at": "2026-10-27T11:52:24.583Z",
+   "items": [
+    {
+     "key": "sachet:IN-1793101376576041_41",
+     "rule": "sachet_official",
+     "title": "Cyclone: Thallarevu zone of PUDUCHERRY"
+    }
+   ]
+  },
+  "0a673d8f7d": {
+   "at": "2026-10-27T18:37:21.725Z",
+   "items": [
+    {
+     "key": "river:palar-vellore:medium",
+     "rule": "river_discharge",
+     "title": "River rise forecast: Palar near Vellore"
+    }
+   ]
+  },
+  "553b48d36c": {
+   "at": "2026-10-28T18:37:20.864Z",
+   "items": [
+    {
+     "key": "river:pennaiyar-cuddalore:medium",
+     "rule": "river_discharge",
+     "title": "River rise forecast: Thenpennai near Cuddalore"
+    }
+   ]
+  }
+ }
+}

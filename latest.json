@@ -1,0 +1,7102 @@
+{
+ "schema": 1,
+ "generatedAt": "2026-10-31T17:22:23.390Z",
+ "durationMs": 48428,
+ "health": {
+  "sachet": {
+   "ok": true,
+   "lastOk": "2026-10-31T17:22:23.390Z",
+   "failures": 0,
+   "error": null
+  },
+  "rivers": {
+   "ok": true,
+   "lastOk": "2026-10-31T17:22:23.390Z",
+   "failures": 0,
+   "error": null
+  },
+  "heat": {
+   "ok": true,
+   "lastOk": "2026-10-31T17:22:23.390Z",
+   "failures": 0,
+   "error": null
+  },
+  "rain": {
+   "ok": true,
+   "lastOk": "2026-10-31T17:22:23.390Z",
+   "failures": 0,
+   "error": null
+  },
+  "gdacs": {
+   "ok": true,
+   "lastOk": "2026-10-31T17:22:23.390Z",
+   "failures": 0,
+   "error": null
+  },
+  "quakes": {
+   "ok": true,
+   "lastOk": "2026-10-31T17:22:23.390Z",
+   "failures": 0,
+   "error": null
+  },
+  "reservoirs": {
+   "ok": true,
+   "lastOk": "2026-10-31T17:22:23.390Z",
+   "failures": 0,
+   "error": null
+  },
+  "flights": {
+   "ok": true,
+   "lastOk": "2026-10-31T17:22:23.390Z",
+   "failures": 0,
+   "error": null
+  },
+  "ships": {
+   "ok": true,
+   "lastOk": "2026-10-31T17:22:23.390Z",
+   "failures": 0,
+   "error": null
+  },
+  "satellites": {
+   "ok": true,
+   "lastOk": "2026-10-31T17:22:23.390Z",
+   "failures": 0,
+   "error": null
+  },
+  "cyclones": {
+   "ok": true,
+   "lastOk": "2026-10-31T17:22:23.390Z",
+   "failures": 0,
+   "error": null
+  },
+  "sea": {
+   "ok": true,
+   "lastOk": "2026-10-31T17:22:23.390Z",
+   "failures": 0,
+   "error": null
+  },
+  "fires": {
+   "ok": true,
+   "lastOk": "2026-10-31T17:22:23.390Z",
+   "failures": 0,
+   "error": null
+  },
+  "news": {
+   "ok": true,
+   "lastOk": "2026-10-31T17:22:23.390Z",
+   "failures": 0,
+   "error": null
+  }
+ },
+ "layers": {
+  "sachet": [
+   {
+    "id": "IN-1793430002314009_9",
+    "event": "Thunderstorm with Lightning",
+    "headline": "Thunderstorm accompanied with lightning and gusty wind (30-40 kmph) likely to occur is likely to occur at isolated places over Almora, Bageshwar, Chamoli, Champawat, Dehradun, Nainital, Pauri Garhwal, Pithoragarh, Rudraprayag, Tehri Garhwal, Uttarkashi in next 24 hours.",
+    "kinds": [
+     "thunderstorm"
+    ],
+    "severity": "Moderate",
+    "urgency": "Expected",
+    "certainty": "Possible",
+    "senderName": "",
+    "areaDesc": "11 districts of Uttarakhand",
+    "effective": "2026-10-31T06:56:00.000Z",
+    "expires": "2026-11-01T06:56:00.000Z",
+    "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793430002314009",
+    "lat": null,
+    "lng": null,
+    "locatedBy": "none",
+    "places": [],
+    "polygons": []
+   },
+   {
+    "id": "IN-1793433312529008_8",
+    "event": "Lightning",
+    "headline": "Lightning is Likely to occur over nlr-buchireddipalem Mandal . Please follow SDMA guidelines.",
+    "kinds": [
+     "thunderstorm"
+    ],
+    "severity": "Severe",
+    "urgency": "Expected",
+    "certainty": "Possible",
+    "senderName": "",
+    "areaDesc": "nlr-buchireddipalem Mandal",
+    "effective": "2026-10-31T07:55:00.000Z",
+    "expires": "2026-11-01T07:55:00.000Z",
+    "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793433312529008",
+    "lat": null,
+    "lng": null,
+    "locatedBy": "none",
+    "places": [],
+    "polygons": []
+   },
+   {
+    "id": "IN-1793433201489030_56",
+    "event": "Thunderstorm, Lightning, and Gusty winds",
+    "headline": "Thunderstorm accompanied with Lightning and Gusty Winds of 30-40 kmph very likely to occur at isolated places in Jayashankar Bhupalapally, Mulugu, Bhadradri Kothagudem, Khammam, Nalgonda, Suryapet, Mahabubabad, Warangal, Hanamkonda, Jangaon, Siddipet, Yadadri Bhuvanagiri, Rangareddy, Hyd, MDCM dist…",
+    "kinds": [
+     "thunderstorm"
+    ],
+    "severity": "Moderate",
+    "urgency": "Expected",
+    "certainty": "Likely",
+    "senderName": "",
+    "areaDesc": "Bhadradri Kothagudem, Hanumakonda, Hyderabad, Jangoan, Jayashankar Bhupalapally, Khammam, Mahabubabad, Medchal Malkajgiri, Mulugu, Nalgonda, Ranga Reddy, Siddipet, Suryapet, Warangal, Yadadri Bhuvanagiri districts of Telangana",
+    "effective": "2026-10-31T07:46:00.000Z",
+    "expires": "2026-11-01T03:01:00.000Z",
+    "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793433201489030",
+    "lat": null,
+    "lng": null,
+    "locatedBy": "none",
+    "places": [],
+    "polygons": []
+   },
+   {
+    "id": "IN-1793436168508008_8",
+    "event": "Lightning",
+    "headline": "There is a possibility of lightning in your area. During thunderstorms, avoid trees, towers, poles, fields, and open spaces. Seek shelter in safe buildings - Andhra Pradesh Government.",
+    "kinds": [
+     "thunderstorm"
+    ],
+    "severity": "Severe",
+    "urgency": "Expected",
+    "certainty": "Possible",
+    "senderName": "",
+    "areaDesc": "13 Mandals",
+    "effective": "2026-10-31T08:40:00.000Z",
+    "expires": "2026-11-01T11:40:00.000Z",
+    "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793436168508008",
+    "lat": null,
+    "lng": null,
+    "locatedBy": "none",
+    "places": [],
+    "polygons": []
+   },
+   {
+    "id": "IN-1793460089801008_8",
+    "event": "Lightning",
+    "headline": "There is a possibility of lightning in your area. During thunderstorms, avoid trees, towers, poles, fields, and open spaces. Seek shelter in safe buildings - Andhra Pradesh Government.",
+    "kinds": [
+     "thunderstorm"
+    ],
+    "severity": "Severe",
+    "urgency": "Expected",
+    "certainty": "Possible",
+    "senderName": "",
+    "areaDesc": "ndl-allagadda Mandal",
+    "effective": "2026-10-31T15:20:00.000Z",
+    "expires": "2026-10-31T18:20:00.000Z",
+    "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793460089801008",
+    "lat": null,
+    "lng": null,
+    "locatedBy": "none",
+    "places": [],
+    "polygons": []
+   }
+  ],
+  "rivers": [
+   {
+    "id": "cauvery-mettur",
+    "name": "Cauvery near Mettur reservoir",
+    "lat": 11.94,
+    "lng": 77.65,
+    "baseline": 237.9,
+    "peak": 224.4,
+    "peakDate": "2026-10-31",
+    "ensembleMax": 332.4,
+    "ratio": 0.94,
+    "warningLevel": null,
+    "dangerLevel": null,
+    "minDischarge": 125,
+    "series": [
+     {
+      "date": "2026-10-31",
+      "q": 224.4
+     },
+     {
+      "date": "2026-11-01",
+      "q": 201.8
+     },
+     {
+      "date": "2026-11-02",
+      "q": 185.6
+     },
+     {
+      "date": "2026-11-03",
+      "q": 173.6
+     },
+     {
+      "date": "2026-11-04",
+      "q": 165.3
+     },
+     {
+      "date": "2026-11-05",
+      "q": 164.6
+     },
+     {
+      "date": "2026-11-06",
+      "q": 168.4
+     }
+    ]
+   },
+   {
+    "id": "cauvery-trichy",
+    "name": "Cauvery at Tiruchirappalli",
+    "lat": 10.91,
+    "lng": 78.45,
+    "baseline": 603.5,
+    "peak": 476.5,
+    "peakDate": "2026-10-31",
+    "ensembleMax": 492.2,
+    "ratio": 0.79,
+    "warningLevel": null,
+    "dangerLevel": null,
+    "minDischarge": 140,
+    "series": [
+     {
+      "date": "2026-10-31",
+      "q": 476.5
+     },
+     {
+      "date": "2026-11-01",
+      "q": 450.9
+     },
+     {
+      "date": "2026-11-02",
+      "q": 434.5
+     },
+     {
+      "date": "2026-11-03",
+      "q": 422.6
+     },
+     {
+      "date": "2026-11-04",
+      "q": 416.8
+     },
+     {
+      "date": "2026-11-05",
+      "q": 415.9
+     },
+     {
+      "date": "2026-11-06",
+      "q": 412.1
+     }
+    ]
+   },
+   {
+    "id": "bhavani",
+    "name": "Bhavani at Bhavanisagar",
+    "lat": 11.47,
+    "lng": 77.13,
+    "baseline": 86.3,
+    "peak": 80.3,
+    "peakDate": "2026-10-31",
+    "ensembleMax": 96.7,
+    "ratio": 0.93,
+    "warningLevel": null,
+    "dangerLevel": null,
+    "minDischarge": 22,
+    "series": [
+     {
+      "date": "2026-10-31",
+      "q": 80.3
+     },
+     {
+      "date": "2026-11-01",
+      "q": 76.8
+     },
+     {
+      "date": "2026-11-02",
+      "q": 74.5
+     },
+     {
+      "date": "2026-11-03",
+      "q": 73.1
+     },
+     {
+      "date": "2026-11-04",
+      "q": 72.5
+     },
+     {
+      "date": "2026-11-05",
+      "q": 73.1
+     },
+     {
+      "date": "2026-11-06",
+      "q": 73.5
+     }
+    ]
+   },
+   {
+    "id": "amaravathi-karur",
+    "name": "Amaravathi at Karur",
+    "lat": 10.96,
+    "lng": 78.08,
+    "baseline": 137,
+    "peak": 118.4,
+    "peakDate": "2026-10-31",
+    "ensembleMax": 118.4,
+    "ratio": 0.86,
+    "warningLevel": null,
+    "dangerLevel": null,
+    "minDischarge": 19,
+    "series": [
+     {
+      "date": "2026-10-31",
+      "q": 118.4
+     },
+     {
+      "date": "2026-11-01",
+      "q": 110.7
+     },
+     {
+      "date": "2026-11-02",
+      "q": 105.2
+     },
+     {
+      "date": "2026-11-03",
+      "q": 100.6
+     },
+     {
+      "date": "2026-11-04",
+      "q": 98.1
+     },
+     {
+      "date": "2026-11-05",
+      "q": 95.8
+     },
+     {
+      "date": "2026-11-06",
+      "q": 94.1
+     }
+    ]
+   },
+   {
+    "id": "vaigai-dam",
+    "name": "Vaigai below Vaigai Dam",
+    "lat": 10.05,
+    "lng": 77.63,
+    "baseline": 162.7,
+    "peak": 38.1,
+    "peakDate": "2026-10-31",
+    "ensembleMax": 57.9,
+    "ratio": 0.23,
+    "warningLevel": null,
+    "dangerLevel": null,
+    "minDischarge": 10,
+    "series": [
+     {
+      "date": "2026-10-31",
+      "q": 38.1
+     },
+     {
+      "date": "2026-11-01",
+      "q": 18.5
+     },
+     {
+      "date": "2026-11-02",
+      "q": 12.7
+     },
+     {
+      "date": "2026-11-03",
+      "q": 12.7
+     },
+     {
+      "date": "2026-11-04",
+      "q": 17.2
+     },
+     {
+      "date": "2026-11-05",
+      "q": 20.1
+     },
+     {
+      "date": "2026-11-06",
+      "q": 16.7
+     }
+    ]
+   },
+   {
+    "id": "vaigai-madurai",
+    "name": "Vaigai at Madurai",
+    "lat": 9.88,
+    "lng": 78.12,
+    "baseline": 296.2,
+    "peak": 72.6,
+    "peakDate": "2026-10-31",
+    "ensembleMax": 77.2,
+    "ratio": 0.25,
+    "warningLevel": null,
+    "dangerLevel": null,
+    "minDischarge": 16,
+    "series": [
+     {
+      "date": "2026-10-31",
+      "q": 72.6
+     },
+     {
+      "date": "2026-11-01",
+      "q": 36.2
+     },
+     {
+      "date": "2026-11-02",
+      "q": 22.8
+     },
+     {
+      "date": "2026-11-03",
+      "q": 19.2
+     },
+     {
+      "date": "2026-11-04",
+      "q": 22.5
+     },
+     {
+      "date": "2026-11-05",
+      "q": 30.1
+     },
+     {
+      "date": "2026-11-06",
+      "q": 31.2
+     }
+    ]
+   },
+   {
+    "id": "thamirabarani",
+    "name": "Thamirabarani at Tirunelveli",
+    "lat": 8.68,
+    "lng": 77.8,
+    "baseline": 399.1,
+    "peak": 73.3,
+    "peakDate": "2026-10-31",
+    "ensembleMax": 87.1,
+    "ratio": 0.18,
+    "warningLevel": null,
+    "dangerLevel": null,
+    "minDischarge": 10,
+    "series": [
+     {
+      "date": "2026-10-31",
+      "q": 73.3
+     },
+     {
+      "date": "2026-11-01",
+      "q": 43.6
+     },
+     {
+      "date": "2026-11-02",
+      "q": 31.4
+     },
+     {
+      "date": "2026-11-03",
+      "q": 32
+     },
+     {
+      "date": "2026-11-04",
+      "q": 31.5
+     },
+     {
+      "date": "2026-11-05",
+      "q": 24.8
+     },
+     {
+      "date": "2026-11-06",
+      "q": 22
+     }
+    ]
+   },
+   {
+    "id": "periyar-mullaperiyar",
+    "name": "Periyar at Mullaperiyar",
+    "lat": 9.53,
+    "lng": 77.14,
+    "baseline": 43.4,
+    "peak": 43.8,
+    "peakDate": "2026-10-31",
+    "ensembleMax": 43.9,
+    "ratio": 1.01,
+    "warningLevel": null,
+    "dangerLevel": null,
+    "minDischarge": 10,
+    "series": [
+     {
+      "date": "2026-10-31",
+      "q": 43.8
+     },
+     {
+      "date": "2026-11-01",
+      "q": 40
+     },
+     {
+      "date": "2026-11-02",
+      "q": 37
+     },
+     {
+      "date": "2026-11-03",
+      "q": 34.7
+     },
+     {
+      "date": "2026-11-04",
+      "q": 33.6
+     },
+     {
+      "date": "2026-11-05",
+      "q": 32.3
+     },
+     {
+      "date": "2026-11-06",
+      "q": 30.6
+     }
+    ]
+   },
+   {
+    "id": "palar-vellore",
+    "name": "Palar near Vellore",
+    "lat": 12.92,
+    "lng": 79.28,
+    "baseline": 76,
+    "peak": 22.6,
+    "peakDate": "2026-10-31",
+    "ensembleMax": 532.3,
+    "ratio": 0.3,
+    "warningLevel": null,
+    "dangerLevel": null,
+    "minDischarge": 10,
+    "series": [
+     {
+      "date": "2026-10-31",
+      "q": 22.6
+     },
+     {
+      "date": "2026-11-01",
+      "q": 17.8
+     },
+     {
+      "date": "2026-11-02",
+      "q": 15.6
+     },
+     {
+      "date": "2026-11-03",
+      "q": 13.8
+     },
+     {
+      "date": "2026-11-04",
+      "q": 14.2
+     },
+     {
+      "date": "2026-11-05",
+      "q": 15.9
+     },
+     {
+      "date": "2026-11-06",
+      "q": 17.3
+     }
+    ]
+   },
+   {
+    "id": "pennaiyar-krishnagiri",
+    "name": "Thenpennai near Krishnagiri",
+    "lat": 12.37,
+    "lng": 78.23,
+    "baseline": 54.4,
+    "peak": 19.3,
+    "peakDate": "2026-11-06",
+    "ensembleMax": 143.2,
+    "ratio": 0.36,
+    "warningLevel": null,
+    "dangerLevel": null,
+    "minDischarge": 10,
+    "series": [
+     {
+      "date": "2026-10-31",
+      "q": 19.1
+     },
+     {
+      "date": "2026-11-01",
+      "q": 15.1
+     },
+     {
+      "date": "2026-11-02",
+      "q": 12.8
+     },
+     {
+      "date": "2026-11-03",
+      "q": 11.4
+     },
+     {
+      "date": "2026-11-04",
+      "q": 10.9
+     },
+     {
+      "date": "2026-11-05",
+      "q": 12.4
+     },
+     {
+      "date": "2026-11-06",
+      "q": 19.3
+     }
+    ]
+   },
+   {
+    "id": "pennaiyar-cuddalore",
+    "name": "Thenpennai near Cuddalore",
+    "lat": 11.76,
+    "lng": 79.7,
+    "baseline": 404.3,
+    "peak": 223.4,
+    "peakDate": "2026-10-31",
+    "ensembleMax": 1108.2,
+    "ratio": 0.55,
+    "warningLevel": null,
+    "dangerLevel": null,
+    "minDischarge": 13,
+    "series": [
+     {
+      "date": "2026-10-31",
+      "q": 223.4
+     },
+     {
+      "date": "2026-11-01",
+      "q": 126.4
+     },
+     {
+      "date": "2026-11-02",
+      "q": 83.3
+     },
+     {
+      "date": "2026-11-03",
+      "q": 62.4
+     },
+     {
+      "date": "2026-11-04",
+      "q": 50.8
+     },
+     {
+      "date": "2026-11-05",
+      "q": 46
+     },
+     {
+      "date": "2026-11-06",
+      "q": 51.4
+     }
+    ]
+   },
+   {
+    "id": "adyar-chennai",
+    "name": "Adyar, Chennai",
+    "lat": 13.01,
+    "lng": 80.24,
+    "baseline": 29.7,
+    "peak": 19.8,
+    "peakDate": "2026-11-04",
+    "ensembleMax": 284.8,
+    "ratio": 0.67,
+    "warningLevel": null,
+    "dangerLevel": null,
+    "minDischarge": 10,
+    "series": [
+     {
+      "date": "2026-10-31",
+      "q": 6.9
+     },
+     {
+      "date": "2026-11-01",
+      "q": 5.4
+     },
+     {
+      "date": "2026-11-02",
+      "q": 6.2
+     },
+     {
+      "date": "2026-11-03",
+      "q": 10
+     },
+     {
+      "date": "2026-11-04",
+      "q": 19.8
+     },
+     {
+      "date": "2026-11-05",
+      "q": 16.4
+     },
+     {
+      "date": "2026-11-06",
+      "q": 12.8
+     }
+    ]
+   }
+  ],
+  "heat": [
+   {
+    "id": "chennai",
+    "name": "Chennai",
+    "lat": 13.08,
+    "lng": 80.27,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 33.3,
+      "normal": 30.6,
+      "level": null
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 30.6,
+      "normal": 30.6,
+      "level": null
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 29.5,
+      "normal": 28.5,
+      "level": null
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 28.4,
+      "normal": 28.5,
+      "level": null
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 30.5,
+      "normal": 28.5,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "vellore",
+    "name": "Vellore",
+    "lat": 12.92,
+    "lng": 79.13,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 32.9,
+      "normal": 30.7,
+      "level": null
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 31.5,
+      "normal": 30.7,
+      "level": null
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 29.6,
+      "normal": 28.4,
+      "level": null
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 30.2,
+      "normal": 28.4,
+      "level": null
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 30.7,
+      "normal": 28.4,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "tiruvannamalai",
+    "name": "Tiruvannamalai",
+    "lat": 12.23,
+    "lng": 79.07,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 32.4,
+      "normal": 31,
+      "level": null
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 31.4,
+      "normal": 31,
+      "level": null
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 30.4,
+      "normal": 28.7,
+      "level": null
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 29.8,
+      "normal": 28.7,
+      "level": null
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 30.8,
+      "normal": 28.7,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "cuddalore",
+    "name": "Cuddalore",
+    "lat": 11.75,
+    "lng": 79.75,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 32.7,
+      "normal": 29.9,
+      "level": null
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 31.1,
+      "normal": 29.9,
+      "level": null
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 29.7,
+      "normal": 27.9,
+      "level": null
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 29.9,
+      "normal": 27.9,
+      "level": null
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 30.6,
+      "normal": 27.9,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "puducherry",
+    "name": "Puducherry",
+    "lat": 11.94,
+    "lng": 79.81,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 31.9,
+      "normal": 29.9,
+      "level": null
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 30.8,
+      "normal": 29.9,
+      "level": null
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 29.2,
+      "normal": 27.9,
+      "level": null
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 29.4,
+      "normal": 27.9,
+      "level": null
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 29.9,
+      "normal": 27.9,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "salem",
+    "name": "Salem",
+    "lat": 11.66,
+    "lng": 78.15,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 32,
+      "normal": 30.7,
+      "level": null
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 32,
+      "normal": 30.7,
+      "level": null
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 31.3,
+      "normal": 29.3,
+      "level": null
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 29.1,
+      "normal": 29.3,
+      "level": null
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 30.4,
+      "normal": 29.3,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "dharmapuri",
+    "name": "Dharmapuri",
+    "lat": 12.13,
+    "lng": 78.16,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 31.4,
+      "normal": 29.7,
+      "level": null
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 30.4,
+      "normal": 29.7,
+      "level": null
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 29.6,
+      "normal": 28.1,
+      "level": null
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 29.9,
+      "normal": 28.1,
+      "level": null
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 29.6,
+      "normal": 28.1,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "erode",
+    "name": "Erode",
+    "lat": 11.34,
+    "lng": 77.72,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 32.5,
+      "normal": 31.6,
+      "level": null
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 32,
+      "normal": 31.6,
+      "level": null
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 31.5,
+      "normal": 29.7,
+      "level": null
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 30.6,
+      "normal": 29.7,
+      "level": null
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 30.9,
+      "normal": 29.7,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "coimbatore",
+    "name": "Coimbatore",
+    "lat": 11.02,
+    "lng": 76.96,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 29.9,
+      "normal": 28.9,
+      "level": null
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 31.7,
+      "normal": 28.9,
+      "level": null
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 30.7,
+      "normal": 27.7,
+      "level": null
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 29.3,
+      "normal": 27.7,
+      "level": null
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 30.3,
+      "normal": 27.7,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "tiruchirappalli",
+    "name": "Tiruchirappalli",
+    "lat": 10.79,
+    "lng": 78.7,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 33.3,
+      "normal": 32.4,
+      "level": null
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 32.9,
+      "normal": 32.4,
+      "level": null
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 31.6,
+      "normal": 29.7,
+      "level": null
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 31.6,
+      "normal": 29.7,
+      "level": null
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 31.8,
+      "normal": 29.7,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "karur",
+    "name": "Karur",
+    "lat": 10.96,
+    "lng": 78.08,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 33.3,
+      "normal": 32.3,
+      "level": null
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 32.2,
+      "normal": 32.3,
+      "level": null
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 31.7,
+      "normal": 29.9,
+      "level": null
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 31.4,
+      "normal": 29.9,
+      "level": null
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 31.7,
+      "normal": 29.9,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "thanjavur",
+    "name": "Thanjavur",
+    "lat": 10.79,
+    "lng": 79.14,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 33.1,
+      "normal": 32,
+      "level": null
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 32.1,
+      "normal": 32,
+      "level": null
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 30.7,
+      "normal": 29.2,
+      "level": null
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 31,
+      "normal": 29.2,
+      "level": null
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 31.8,
+      "normal": 29.2,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "nagapattinam",
+    "name": "Nagapattinam",
+    "lat": 10.77,
+    "lng": 79.84,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 33,
+      "normal": 30.1,
+      "level": null
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 31.3,
+      "normal": 30.1,
+      "level": null
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 30,
+      "normal": 27.9,
+      "level": null
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 30.8,
+      "normal": 27.9,
+      "level": null
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 31.2,
+      "normal": 27.9,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "madurai",
+    "name": "Madurai",
+    "lat": 9.93,
+    "lng": 78.12,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 33.4,
+      "normal": 32.3,
+      "level": null
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 32.7,
+      "normal": 32.3,
+      "level": null
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 32,
+      "normal": 29.5,
+      "level": null
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 32.3,
+      "normal": 29.5,
+      "level": null
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 32.3,
+      "normal": 29.5,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "ramanathapuram",
+    "name": "Ramanathapuram",
+    "lat": 9.37,
+    "lng": 78.83,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 33,
+      "normal": 31.1,
+      "level": null
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 32.7,
+      "normal": 31.1,
+      "level": null
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 31,
+      "normal": 28.7,
+      "level": null
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 32,
+      "normal": 28.7,
+      "level": null
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 31.1,
+      "normal": 28.7,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "thoothukudi",
+    "name": "Thoothukudi",
+    "lat": 8.76,
+    "lng": 78.13,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 32.2,
+      "normal": 30.8,
+      "level": null
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 31.6,
+      "normal": 30.8,
+      "level": null
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 30.1,
+      "normal": 28.7,
+      "level": null
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 31,
+      "normal": 28.7,
+      "level": null
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 31.3,
+      "normal": 28.7,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "tirunelveli",
+    "name": "Tirunelveli",
+    "lat": 8.71,
+    "lng": 77.76,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 34.7,
+      "normal": 32.5,
+      "level": null
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 33.3,
+      "normal": 32.5,
+      "level": null
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 31.6,
+      "normal": 29.4,
+      "level": null
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 32.7,
+      "normal": 29.4,
+      "level": null
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 33.1,
+      "normal": 29.4,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "kanniyakumari",
+    "name": "Kanniyakumari",
+    "lat": 8.18,
+    "lng": 77.41,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 31.9,
+      "normal": 29.2,
+      "level": null
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 33.2,
+      "normal": 29.2,
+      "level": null
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 31.8,
+      "normal": 28.8,
+      "level": null
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 30.8,
+      "normal": 28.8,
+      "level": null
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 31.8,
+      "normal": 28.8,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "nilgiris",
+    "name": "Nilgiris",
+    "lat": 11.41,
+    "lng": 76.7,
+    "region": "hilly",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 20.3,
+      "normal": 19.4,
+      "level": null
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 20.3,
+      "normal": 19.4,
+      "level": null
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 18.7,
+      "normal": 18.9,
+      "level": null
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 17.4,
+      "normal": 18.9,
+      "level": null
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 18.2,
+      "normal": 18.9,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "kodaikanal",
+    "name": "Kodaikanal",
+    "lat": 10.23,
+    "lng": 77.49,
+    "region": "hilly",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 19.8,
+      "normal": 19.2,
+      "level": null
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 19.1,
+      "normal": 19.2,
+      "level": null
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 18.2,
+      "normal": 18,
+      "level": null
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 17.3,
+      "normal": 18,
+      "level": null
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 19.9,
+      "normal": 18,
+      "level": null
+     }
+    ],
+    "alert": null
+   }
+  ],
+  "heatRaw": [
+   {
+    "id": "chennai",
+    "name": "Chennai",
+    "lat": 13.08,
+    "lng": 80.27,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 33.3
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 30.6
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 29.5
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 28.4
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 30.5
+     }
+    ]
+   },
+   {
+    "id": "vellore",
+    "name": "Vellore",
+    "lat": 12.92,
+    "lng": 79.13,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 32.9
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 31.5
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 29.6
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 30.2
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 30.7
+     }
+    ]
+   },
+   {
+    "id": "tiruvannamalai",
+    "name": "Tiruvannamalai",
+    "lat": 12.23,
+    "lng": 79.07,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 32.4
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 31.4
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 30.4
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 29.8
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 30.8
+     }
+    ]
+   },
+   {
+    "id": "cuddalore",
+    "name": "Cuddalore",
+    "lat": 11.75,
+    "lng": 79.75,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 32.7
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 31.1
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 29.7
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 29.9
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 30.6
+     }
+    ]
+   },
+   {
+    "id": "puducherry",
+    "name": "Puducherry",
+    "lat": 11.94,
+    "lng": 79.81,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 31.9
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 30.8
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 29.2
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 29.4
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 29.9
+     }
+    ]
+   },
+   {
+    "id": "salem",
+    "name": "Salem",
+    "lat": 11.66,
+    "lng": 78.15,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 32
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 32
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 31.3
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 29.1
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 30.4
+     }
+    ]
+   },
+   {
+    "id": "dharmapuri",
+    "name": "Dharmapuri",
+    "lat": 12.13,
+    "lng": 78.16,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 31.4
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 30.4
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 29.6
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 29.9
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 29.6
+     }
+    ]
+   },
+   {
+    "id": "erode",
+    "name": "Erode",
+    "lat": 11.34,
+    "lng": 77.72,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 32.5
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 32
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 31.5
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 30.6
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 30.9
+     }
+    ]
+   },
+   {
+    "id": "coimbatore",
+    "name": "Coimbatore",
+    "lat": 11.02,
+    "lng": 76.96,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 29.9
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 31.7
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 30.7
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 29.3
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 30.3
+     }
+    ]
+   },
+   {
+    "id": "tiruchirappalli",
+    "name": "Tiruchirappalli",
+    "lat": 10.79,
+    "lng": 78.7,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 33.3
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 32.9
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 31.6
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 31.6
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 31.8
+     }
+    ]
+   },
+   {
+    "id": "karur",
+    "name": "Karur",
+    "lat": 10.96,
+    "lng": 78.08,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 33.3
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 32.2
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 31.7
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 31.4
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 31.7
+     }
+    ]
+   },
+   {
+    "id": "thanjavur",
+    "name": "Thanjavur",
+    "lat": 10.79,
+    "lng": 79.14,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 33.1
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 32.1
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 30.7
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 31
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 31.8
+     }
+    ]
+   },
+   {
+    "id": "nagapattinam",
+    "name": "Nagapattinam",
+    "lat": 10.77,
+    "lng": 79.84,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 33
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 31.3
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 30
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 30.8
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 31.2
+     }
+    ]
+   },
+   {
+    "id": "madurai",
+    "name": "Madurai",
+    "lat": 9.93,
+    "lng": 78.12,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 33.4
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 32.7
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 32
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 32.3
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 32.3
+     }
+    ]
+   },
+   {
+    "id": "ramanathapuram",
+    "name": "Ramanathapuram",
+    "lat": 9.37,
+    "lng": 78.83,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 33
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 32.7
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 31
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 32
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 31.1
+     }
+    ]
+   },
+   {
+    "id": "thoothukudi",
+    "name": "Thoothukudi",
+    "lat": 8.76,
+    "lng": 78.13,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 32.2
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 31.6
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 30.1
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 31
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 31.3
+     }
+    ]
+   },
+   {
+    "id": "tirunelveli",
+    "name": "Tirunelveli",
+    "lat": 8.71,
+    "lng": 77.76,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 34.7
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 33.3
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 31.6
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 32.7
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 33.1
+     }
+    ]
+   },
+   {
+    "id": "kanniyakumari",
+    "name": "Kanniyakumari",
+    "lat": 8.18,
+    "lng": 77.41,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 31.9
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 33.2
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 31.8
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 30.8
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 31.8
+     }
+    ]
+   },
+   {
+    "id": "nilgiris",
+    "name": "Nilgiris",
+    "lat": 11.41,
+    "lng": 76.7,
+    "region": "hilly",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 20.3
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 20.3
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 18.7
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 17.4
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 18.2
+     }
+    ]
+   },
+   {
+    "id": "kodaikanal",
+    "name": "Kodaikanal",
+    "lat": 10.23,
+    "lng": 77.49,
+    "region": "hilly",
+    "days": [
+     {
+      "date": "2026-10-30",
+      "tmax": 19.8
+     },
+     {
+      "date": "2026-10-31",
+      "tmax": 19.1
+     },
+     {
+      "date": "2026-11-01",
+      "tmax": 18.2
+     },
+     {
+      "date": "2026-11-02",
+      "tmax": 17.3
+     },
+     {
+      "date": "2026-11-03",
+      "tmax": 19.9
+     }
+    ]
+   }
+  ],
+  "reservoirs": {
+   "date": "2026-10-30",
+   "prevDate": "2026-10-29",
+   "source": "https://tnagriculture.in/people_app/more/reservoir/en/",
+   "items": [
+    {
+     "id": "mettur",
+     "name": "Mettur (Stanley)",
+     "river": "Cauvery",
+     "state": "Tamil Nadu",
+     "lat": 11.8,
+     "lng": 77.81,
+     "fullFt": 120,
+     "levelFt": 55.38,
+     "pctDepth": 46.2,
+     "inflow": 2461,
+     "outflow": 1003,
+     "levelChangeFt": 0.17,
+     "outflowChange": 0,
+     "prevOutflow": 1003,
+     "releaseHigh": 30000
+    },
+    {
+     "id": "krs",
+     "name": "Krishna Raja Sagar",
+     "river": "Cauvery",
+     "state": "Karnataka",
+     "lat": 12.42,
+     "lng": 76.57,
+     "fullFt": 124.8,
+     "levelFt": 103.96,
+     "pctDepth": 83.3,
+     "inflow": 879,
+     "outflow": 3961,
+     "levelChangeFt": -0.32,
+     "outflowChange": 622,
+     "prevOutflow": 3339,
+     "releaseHigh": 30000
+    },
+    {
+     "id": "kabini",
+     "name": "Kabini",
+     "river": "Kabini",
+     "state": "Karnataka",
+     "lat": 11.97,
+     "lng": 76.35,
+     "fullFt": 65,
+     "levelFt": 54.58,
+     "pctDepth": 84,
+     "inflow": 1571,
+     "outflow": 500,
+     "levelChangeFt": 0.16,
+     "outflowChange": 0,
+     "prevOutflow": 500,
+     "releaseHigh": 30000
+    },
+    {
+     "id": "harangi",
+     "name": "Harangi",
+     "river": "Harangi",
+     "state": "Karnataka",
+     "lat": 12.49,
+     "lng": 75.91,
+     "fullFt": 129,
+     "levelFt": 117.72,
+     "pctDepth": 91.3,
+     "inflow": 751,
+     "outflow": 200,
+     "levelChangeFt": 0.2,
+     "outflowChange": 0,
+     "prevOutflow": 200,
+     "releaseHigh": 15000
+    },
+    {
+     "id": "hemavathy",
+     "name": "Hemavathy",
+     "river": "Hemavathi",
+     "state": "Karnataka",
+     "lat": 12.82,
+     "lng": 76.06,
+     "fullFt": 117,
+     "levelFt": 91.25,
+     "pctDepth": 78,
+     "inflow": 2343,
+     "outflow": 300,
+     "levelChangeFt": 0.3,
+     "outflowChange": 0,
+     "prevOutflow": 300,
+     "releaseHigh": 20000
+    },
+    {
+     "id": "bhavanisagar",
+     "name": "Bhavanisagar",
+     "river": "Bhavani",
+     "state": "Tamil Nadu",
+     "lat": 11.47,
+     "lng": 77.11,
+     "fullFt": 105,
+     "levelFt": 72.9,
+     "pctDepth": 69.4,
+     "inflow": 2549,
+     "outflow": 105,
+     "levelChangeFt": 0.47,
+     "outflowChange": 0,
+     "prevOutflow": 105,
+     "releaseHigh": 15000
+    },
+    {
+     "id": "amaravathi",
+     "name": "Amaravathi",
+     "river": "Amaravathi",
+     "state": "Tamil Nadu",
+     "lat": 10.41,
+     "lng": 77.26,
+     "fullFt": 90,
+     "levelFt": 52.63,
+     "pctDepth": 58.5,
+     "inflow": 380,
+     "outflow": null,
+     "levelChangeFt": 0.59,
+     "outflowChange": null,
+     "prevOutflow": null,
+     "releaseHigh": 10000
+    },
+    {
+     "id": "periyar",
+     "name": "Periyar (Mullaperiyar)",
+     "river": "Periyar",
+     "state": "Kerala (TN-operated)",
+     "lat": 9.53,
+     "lng": 77.14,
+     "fullFt": 152,
+     "levelFt": 121.8,
+     "pctDepth": 80.1,
+     "inflow": 403,
+     "outflow": 400,
+     "levelChangeFt": 0,
+     "outflowChange": 0,
+     "prevOutflow": 400,
+     "releaseHigh": 10000
+    },
+    {
+     "id": "vaigai",
+     "name": "Vaigai",
+     "river": "Vaigai",
+     "state": "Tamil Nadu",
+     "lat": 10.05,
+     "lng": 77.59,
+     "fullFt": 71,
+     "levelFt": 51.25,
+     "pctDepth": 72.2,
+     "inflow": 170,
+     "outflow": 86,
+     "levelChangeFt": 0.04,
+     "outflowChange": 0,
+     "prevOutflow": 86,
+     "releaseHigh": 7000
+    },
+    {
+     "id": "papanasam",
+     "name": "Papanasam",
+     "river": "Thamirabarani",
+     "state": "Tamil Nadu",
+     "lat": 8.71,
+     "lng": 77.37,
+     "fullFt": 143,
+     "levelFt": 65.6,
+     "pctDepth": 45.9,
+     "inflow": 473,
+     "outflow": 100,
+     "levelChangeFt": 0.75,
+     "outflowChange": 0,
+     "prevOutflow": 100,
+     "releaseHigh": 10000
+    },
+    {
+     "id": "manimuthar",
+     "name": "Manimuthar",
+     "river": "Manimuthar",
+     "state": "Tamil Nadu",
+     "lat": 8.65,
+     "lng": 77.43,
+     "fullFt": 118,
+     "levelFt": 66.02,
+     "pctDepth": 55.9,
+     "inflow": 97,
+     "outflow": 25,
+     "levelChangeFt": 0.1,
+     "outflowChange": 0,
+     "prevOutflow": 25,
+     "releaseHigh": 8000
+    },
+    {
+     "id": "pechiparai",
+     "name": "Pechiparai",
+     "river": "Kodayar",
+     "state": "Tamil Nadu",
+     "lat": 8.43,
+     "lng": 77.3,
+     "fullFt": 48,
+     "levelFt": 27.19,
+     "pctDepth": 56.6,
+     "inflow": 405,
+     "outflow": 118,
+     "levelChangeFt": 0.29,
+     "outflowChange": 2,
+     "prevOutflow": 116,
+     "releaseHigh": 8000
+    },
+    {
+     "id": "perunchani",
+     "name": "Perunchani",
+     "river": "Paralayar",
+     "state": "Tamil Nadu",
+     "lat": 8.39,
+     "lng": 77.35,
+     "fullFt": 77,
+     "levelFt": 54,
+     "pctDepth": 70.1,
+     "inflow": 328,
+     "outflow": 225,
+     "levelChangeFt": 0.15,
+     "outflowChange": 0,
+     "prevOutflow": 225,
+     "releaseHigh": 8000
+    },
+    {
+     "id": "krishnagiri",
+     "name": "Krishnagiri (KRP)",
+     "river": "Thenpennai",
+     "state": "Tamil Nadu",
+     "lat": 12.47,
+     "lng": 78.18,
+     "fullFt": 52,
+     "levelFt": 48.35,
+     "pctDepth": 93,
+     "inflow": 839,
+     "outflow": 783,
+     "levelChangeFt": 0.05,
+     "outflowChange": 0,
+     "prevOutflow": 783,
+     "releaseHigh": 5000
+    },
+    {
+     "id": "sathanur",
+     "name": "Sathanur",
+     "river": "Thenpennai",
+     "state": "Tamil Nadu",
+     "lat": 12.18,
+     "lng": 78.86,
+     "fullFt": 119,
+     "levelFt": 99.35,
+     "pctDepth": 83.5,
+     "inflow": 417,
+     "outflow": null,
+     "levelChangeFt": 0.25,
+     "outflowChange": null,
+     "prevOutflow": null,
+     "releaseHigh": 10000
+    },
+    {
+     "id": "sholayar",
+     "name": "Sholayar",
+     "river": "Chalakudy",
+     "state": "Tamil Nadu",
+     "lat": 10.3,
+     "lng": 76.73,
+     "fullFt": 160,
+     "levelFt": 65.93,
+     "pctDepth": 41.2,
+     "inflow": 255,
+     "outflow": 85,
+     "levelChangeFt": 0.52,
+     "outflowChange": 0,
+     "prevOutflow": 85,
+     "releaseHigh": 8000
+    },
+    {
+     "id": "parambikulam",
+     "name": "Parambikulam",
+     "river": "Parambikulam",
+     "state": "Kerala (TN-operated)",
+     "lat": 10.39,
+     "lng": 76.78,
+     "fullFt": 72,
+     "levelFt": 57.42,
+     "pctDepth": 79.8,
+     "inflow": 281,
+     "outflow": 1159,
+     "levelChangeFt": -0.36,
+     "outflowChange": 375,
+     "prevOutflow": 784,
+     "releaseHigh": 8000
+    },
+    {
+     "id": "aliyar",
+     "name": "Aliyar",
+     "river": "Aliyar",
+     "state": "Tamil Nadu",
+     "lat": 10.48,
+     "lng": 76.97,
+     "fullFt": 120,
+     "levelFt": 60.8,
+     "pctDepth": 50.7,
+     "inflow": 174,
+     "outflow": 50,
+     "levelChangeFt": 0.3,
+     "outflowChange": 0,
+     "prevOutflow": 50,
+     "releaseHigh": 8000
+    },
+    {
+     "id": "thirumurthy",
+     "name": "Thirumurthy",
+     "river": "Palar (Udumalai)",
+     "state": "Tamil Nadu",
+     "lat": 10.46,
+     "lng": 77.18,
+     "fullFt": 60,
+     "levelFt": 47.76,
+     "pctDepth": 79.6,
+     "inflow": 795,
+     "outflow": 21,
+     "levelChangeFt": 1.76,
+     "outflowChange": 0,
+     "prevOutflow": 21,
+     "releaseHigh": 8000
+    }
+   ]
+  },
+  "rain": [
+   {
+    "id": "ariyalur",
+    "name": "Ariyalur",
+    "state": "Tamil Nadu",
+    "lat": 11.14,
+    "lng": 79.08,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.5
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 0.5
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 5.4
+     }
+    ],
+    "past24": 0,
+    "next72": 6.4,
+    "peakMm": 5.4,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "chengalpattu",
+    "name": "Chengalpattu",
+    "state": "Tamil Nadu",
+    "lat": 12.69,
+    "lng": 79.98,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 1
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 0.5
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 12.1
+     }
+    ],
+    "past24": 0,
+    "next72": 13.6,
+    "peakMm": 12.1,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "chennai",
+    "name": "Chennai",
+    "state": "Tamil Nadu",
+    "lat": 13.08,
+    "lng": 80.27,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0.1
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 1.5
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 0.9
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 13.6
+     }
+    ],
+    "past24": 0.1,
+    "next72": 16,
+    "peakMm": 13.6,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "coimbatore",
+    "name": "Coimbatore",
+    "state": "Tamil Nadu",
+    "lat": 11.02,
+    "lng": 76.96,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 1.1
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 2.8
+     }
+    ],
+    "past24": 0,
+    "next72": 3.9,
+    "peakMm": 2.8,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "cuddalore",
+    "name": "Cuddalore",
+    "state": "Tamil Nadu",
+    "lat": 11.75,
+    "lng": 79.75,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.3
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 1.1
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 7.9
+     }
+    ],
+    "past24": 0,
+    "next72": 9.3,
+    "peakMm": 7.9,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "dharmapuri",
+    "name": "Dharmapuri",
+    "state": "Tamil Nadu",
+    "lat": 12.13,
+    "lng": 78.16,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 0.7
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 18.3
+     }
+    ],
+    "past24": 0,
+    "next72": 19,
+    "peakMm": 18.3,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "dindigul",
+    "name": "Dindigul",
+    "state": "Tamil Nadu",
+    "lat": 10.36,
+    "lng": 77.98,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.1
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 3.9
+     }
+    ],
+    "past24": 0,
+    "next72": 4,
+    "peakMm": 3.9,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "erode",
+    "name": "Erode",
+    "state": "Tamil Nadu",
+    "lat": 11.34,
+    "lng": 77.72,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 3
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 18.6
+     }
+    ],
+    "past24": 0,
+    "next72": 21.6,
+    "peakMm": 18.6,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "kallakurichi",
+    "name": "Kallakurichi",
+    "state": "Tamil Nadu",
+    "lat": 11.74,
+    "lng": 78.96,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.2
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 0.8
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 5.5
+     }
+    ],
+    "past24": 0,
+    "next72": 6.5,
+    "peakMm": 5.5,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "kancheepuram",
+    "name": "Kancheepuram",
+    "state": "Tamil Nadu",
+    "lat": 12.83,
+    "lng": 79.7,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 4.4
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 0.4
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 14.9
+     }
+    ],
+    "past24": 0,
+    "next72": 19.7,
+    "peakMm": 14.9,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "kanniyakumari",
+    "name": "Kanniyakumari",
+    "state": "Tamil Nadu",
+    "lat": 8.18,
+    "lng": 77.41,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0.8
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 2.8
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 2.7
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 4.5
+     }
+    ],
+    "past24": 0.8,
+    "next72": 10,
+    "peakMm": 4.5,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "karur",
+    "name": "Karur",
+    "state": "Tamil Nadu",
+    "lat": 10.96,
+    "lng": 78.08,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 6
+     }
+    ],
+    "past24": 0,
+    "next72": 6,
+    "peakMm": 6,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "krishnagiri",
+    "name": "Krishnagiri",
+    "state": "Tamil Nadu",
+    "lat": 12.52,
+    "lng": 78.21,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 2.1
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 10.7
+     }
+    ],
+    "past24": 0,
+    "next72": 12.8,
+    "peakMm": 10.7,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "madurai",
+    "name": "Madurai",
+    "state": "Tamil Nadu",
+    "lat": 9.93,
+    "lng": 78.12,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 2.6
+     }
+    ],
+    "past24": 0,
+    "next72": 2.6,
+    "peakMm": 2.6,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "mayiladuthurai",
+    "name": "Mayiladuthurai",
+    "state": "Tamil Nadu",
+    "lat": 11.1,
+    "lng": 79.65,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.9
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 0.5
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 2
+     }
+    ],
+    "past24": 0,
+    "next72": 3.4,
+    "peakMm": 2,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "nagapattinam",
+    "name": "Nagapattinam",
+    "state": "Tamil Nadu",
+    "lat": 10.77,
+    "lng": 79.84,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0.1
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.1
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 0.3
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 0.8
+     }
+    ],
+    "past24": 0.1,
+    "next72": 1.2,
+    "peakMm": 0.8,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "namakkal",
+    "name": "Namakkal",
+    "state": "Tamil Nadu",
+    "lat": 11.22,
+    "lng": 78.17,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.3
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 1.4
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 11.6
+     }
+    ],
+    "past24": 0,
+    "next72": 13.3,
+    "peakMm": 11.6,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "nilgiris",
+    "name": "Nilgiris",
+    "state": "Tamil Nadu",
+    "lat": 11.41,
+    "lng": 76.7,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 1.2
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 1.4
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 2.7
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 19
+     }
+    ],
+    "past24": 1.2,
+    "next72": 23.1,
+    "peakMm": 19,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "perambalur",
+    "name": "Perambalur",
+    "state": "Tamil Nadu",
+    "lat": 11.23,
+    "lng": 78.88,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.6
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 0.8
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 5.8
+     }
+    ],
+    "past24": 0,
+    "next72": 7.2,
+    "peakMm": 5.8,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "pudukkottai",
+    "name": "Pudukkottai",
+    "state": "Tamil Nadu",
+    "lat": 10.38,
+    "lng": 78.82,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.5
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 0.2
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 3.4
+     }
+    ],
+    "past24": 0,
+    "next72": 4.1,
+    "peakMm": 3.4,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "ramanathapuram",
+    "name": "Ramanathapuram",
+    "state": "Tamil Nadu",
+    "lat": 9.37,
+    "lng": 78.83,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 0.1
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 0.1
+     }
+    ],
+    "past24": 0,
+    "next72": 0.2,
+    "peakMm": 0.1,
+    "peakDate": "2026-11-01"
+   },
+   {
+    "id": "ranipet",
+    "name": "Ranipet",
+    "state": "Tamil Nadu",
+    "lat": 12.93,
+    "lng": 79.33,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 1.2
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 2.2
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 6.2
+     }
+    ],
+    "past24": 0,
+    "next72": 9.6,
+    "peakMm": 6.2,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "salem",
+    "name": "Salem",
+    "state": "Tamil Nadu",
+    "lat": 11.66,
+    "lng": 78.15,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.1
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 1
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 16.1
+     }
+    ],
+    "past24": 0,
+    "next72": 17.2,
+    "peakMm": 16.1,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "sivaganga",
+    "name": "Sivaganga",
+    "state": "Tamil Nadu",
+    "lat": 9.85,
+    "lng": 78.48,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.6
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 0.1
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 0.9
+     }
+    ],
+    "past24": 0,
+    "next72": 1.6,
+    "peakMm": 0.9,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "tenkasi",
+    "name": "Tenkasi",
+    "state": "Tamil Nadu",
+    "lat": 8.96,
+    "lng": 77.3,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.2
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 6.3
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 0
+     }
+    ],
+    "past24": 0,
+    "next72": 6.5,
+    "peakMm": 6.3,
+    "peakDate": "2026-11-01"
+   },
+   {
+    "id": "thanjavur",
+    "name": "Thanjavur",
+    "state": "Tamil Nadu",
+    "lat": 10.79,
+    "lng": 79.14,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.2
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 0.3
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 8.5
+     }
+    ],
+    "past24": 0,
+    "next72": 9,
+    "peakMm": 8.5,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "theni",
+    "name": "Theni",
+    "state": "Tamil Nadu",
+    "lat": 10.01,
+    "lng": 77.48,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.4
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 3.7
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 0.8
+     }
+    ],
+    "past24": 0,
+    "next72": 4.9,
+    "peakMm": 3.7,
+    "peakDate": "2026-11-01"
+   },
+   {
+    "id": "thoothukudi",
+    "name": "Thoothukudi",
+    "state": "Tamil Nadu",
+    "lat": 8.76,
+    "lng": 78.13,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.1
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 1.1
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 0.2
+     }
+    ],
+    "past24": 0,
+    "next72": 1.4,
+    "peakMm": 1.1,
+    "peakDate": "2026-11-01"
+   },
+   {
+    "id": "tiruchirappalli",
+    "name": "Tiruchirappalli",
+    "state": "Tamil Nadu",
+    "lat": 10.79,
+    "lng": 78.7,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 0.8
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 6.6
+     }
+    ],
+    "past24": 0,
+    "next72": 7.4,
+    "peakMm": 6.6,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "tirunelveli",
+    "name": "Tirunelveli",
+    "state": "Tamil Nadu",
+    "lat": 8.71,
+    "lng": 77.76,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.8
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 4.1
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 1.1
+     }
+    ],
+    "past24": 0,
+    "next72": 6,
+    "peakMm": 4.1,
+    "peakDate": "2026-11-01"
+   },
+   {
+    "id": "tirupathur",
+    "name": "Tirupathur",
+    "state": "Tamil Nadu",
+    "lat": 12.5,
+    "lng": 78.57,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.1
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 3
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 11.8
+     }
+    ],
+    "past24": 0,
+    "next72": 14.9,
+    "peakMm": 11.8,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "tiruppur",
+    "name": "Tiruppur",
+    "state": "Tamil Nadu",
+    "lat": 11.11,
+    "lng": 77.34,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 3.5
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 2.2
+     }
+    ],
+    "past24": 0,
+    "next72": 5.7,
+    "peakMm": 3.5,
+    "peakDate": "2026-11-01"
+   },
+   {
+    "id": "tiruvallur",
+    "name": "Tiruvallur",
+    "state": "Tamil Nadu",
+    "lat": 13.14,
+    "lng": 79.91,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 6.1
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 0.8
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 16.5
+     }
+    ],
+    "past24": 0,
+    "next72": 23.4,
+    "peakMm": 16.5,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "tiruvannamalai",
+    "name": "Tiruvannamalai",
+    "state": "Tamil Nadu",
+    "lat": 12.23,
+    "lng": 79.07,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 1.2
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 2.5
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 20.3
+     }
+    ],
+    "past24": 0,
+    "next72": 24,
+    "peakMm": 20.3,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "tiruvarur",
+    "name": "Tiruvarur",
+    "state": "Tamil Nadu",
+    "lat": 10.77,
+    "lng": 79.64,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.2
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 0.5
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 0.7
+     }
+    ],
+    "past24": 0,
+    "next72": 1.4,
+    "peakMm": 0.7,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "vellore",
+    "name": "Vellore",
+    "state": "Tamil Nadu",
+    "lat": 12.92,
+    "lng": 79.13,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.4
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 1.9
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 8.5
+     }
+    ],
+    "past24": 0,
+    "next72": 10.8,
+    "peakMm": 8.5,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "viluppuram",
+    "name": "Viluppuram",
+    "state": "Tamil Nadu",
+    "lat": 11.94,
+    "lng": 79.49,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.5
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 3
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 5.2
+     }
+    ],
+    "past24": 0,
+    "next72": 8.7,
+    "peakMm": 5.2,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "virudhunagar",
+    "name": "Virudhunagar",
+    "state": "Tamil Nadu",
+    "lat": 9.58,
+    "lng": 77.96,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 1.2
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 0
+     }
+    ],
+    "past24": 0,
+    "next72": 1.2,
+    "peakMm": 1.2,
+    "peakDate": "2026-11-01"
+   },
+   {
+    "id": "puducherry",
+    "name": "Puducherry",
+    "state": "Puducherry",
+    "lat": 11.94,
+    "lng": 79.81,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.4
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 4.3
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 16.4
+     }
+    ],
+    "past24": 0,
+    "next72": 21.1,
+    "peakMm": 16.4,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "karaikal",
+    "name": "Karaikal",
+    "state": "Puducherry",
+    "lat": 10.93,
+    "lng": 79.84,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.2
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 0.3
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 5
+     }
+    ],
+    "past24": 0,
+    "next72": 5.5,
+    "peakMm": 5,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "idukki",
+    "name": "Idukki",
+    "state": "Kerala",
+    "lat": 9.85,
+    "lng": 76.97,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.7
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 17.5
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 5.8
+     }
+    ],
+    "past24": 0,
+    "next72": 24,
+    "peakMm": 17.5,
+    "peakDate": "2026-11-01"
+   },
+   {
+    "id": "palakkad",
+    "name": "Palakkad",
+    "state": "Kerala",
+    "lat": 10.78,
+    "lng": 76.65,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 1.1
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 2.4
+     }
+    ],
+    "past24": 0,
+    "next72": 3.5,
+    "peakMm": 2.4,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "thiruvananthapuram",
+    "name": "Thiruvananthapuram",
+    "state": "Kerala",
+    "lat": 8.52,
+    "lng": 76.94,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0.1
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.7
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 3.4
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 12.1
+     }
+    ],
+    "past24": 0.1,
+    "next72": 16.2,
+    "peakMm": 12.1,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "kollam",
+    "name": "Kollam",
+    "state": "Kerala",
+    "lat": 8.89,
+    "lng": 76.61,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0.1
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 1.7
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 1.7
+     }
+    ],
+    "past24": 0.1,
+    "next72": 3.4,
+    "peakMm": 1.7,
+    "peakDate": "2026-11-01"
+   },
+   {
+    "id": "pathanamthitta",
+    "name": "Pathanamthitta",
+    "state": "Kerala",
+    "lat": 9.26,
+    "lng": 76.79,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.3
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 7.6
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 3.8
+     }
+    ],
+    "past24": 0,
+    "next72": 11.7,
+    "peakMm": 7.6,
+    "peakDate": "2026-11-01"
+   },
+   {
+    "id": "kottayam",
+    "name": "Kottayam",
+    "state": "Kerala",
+    "lat": 9.59,
+    "lng": 76.52,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.2
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 13.2
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 1.5
+     }
+    ],
+    "past24": 0,
+    "next72": 14.9,
+    "peakMm": 13.2,
+    "peakDate": "2026-11-01"
+   },
+   {
+    "id": "ernakulam",
+    "name": "Ernakulam",
+    "state": "Kerala",
+    "lat": 9.98,
+    "lng": 76.28,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 4.8
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 0.7
+     }
+    ],
+    "past24": 0,
+    "next72": 5.5,
+    "peakMm": 4.8,
+    "peakDate": "2026-11-01"
+   },
+   {
+    "id": "thrissur",
+    "name": "Thrissur",
+    "state": "Kerala",
+    "lat": 10.53,
+    "lng": 76.21,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 3.1
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 0.3
+     }
+    ],
+    "past24": 0,
+    "next72": 3.4,
+    "peakMm": 3.1,
+    "peakDate": "2026-11-01"
+   },
+   {
+    "id": "wayanad",
+    "name": "Wayanad",
+    "state": "Kerala",
+    "lat": 11.69,
+    "lng": 76.13,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 1.5
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 4.5
+     }
+    ],
+    "past24": 0,
+    "next72": 6,
+    "peakMm": 4.5,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "chamarajanagar",
+    "name": "Chamarajanagar",
+    "state": "Karnataka",
+    "lat": 11.92,
+    "lng": 76.94,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.2
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 1.5
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 12
+     }
+    ],
+    "past24": 0,
+    "next72": 13.7,
+    "peakMm": 12,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "mysuru",
+    "name": "Mysuru",
+    "state": "Karnataka",
+    "lat": 12.3,
+    "lng": 76.64,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 1.3
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 28.2
+     }
+    ],
+    "past24": 0,
+    "next72": 29.5,
+    "peakMm": 28.2,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "bengaluru-urban",
+    "name": "Bengaluru Urban",
+    "state": "Karnataka",
+    "lat": 12.97,
+    "lng": 77.59,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 0.4
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 8.7
+     }
+    ],
+    "past24": 0,
+    "next72": 9.1,
+    "peakMm": 8.7,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "kolar",
+    "name": "Kolar",
+    "state": "Karnataka",
+    "lat": 13.14,
+    "lng": 78.13,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 0.5
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 5.4
+     }
+    ],
+    "past24": 0,
+    "next72": 5.9,
+    "peakMm": 5.4,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "chittoor",
+    "name": "Chittoor",
+    "state": "Andhra Pradesh",
+    "lat": 13.22,
+    "lng": 79.1,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 0.3
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 2.2
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 4.5
+     }
+    ],
+    "past24": 0,
+    "next72": 7,
+    "peakMm": 4.5,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "tirupati",
+    "name": "Tirupati",
+    "state": "Andhra Pradesh",
+    "lat": 13.63,
+    "lng": 79.42,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 1.1
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 3.5
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 10.5
+     }
+    ],
+    "past24": 0,
+    "next72": 15.1,
+    "peakMm": 10.5,
+    "peakDate": "2026-11-02"
+   },
+   {
+    "id": "nellore",
+    "name": "Nellore",
+    "state": "Andhra Pradesh",
+    "lat": 14.44,
+    "lng": 79.99,
+    "days": [
+     {
+      "date": "2026-10-30",
+      "mm": 0.1
+     },
+     {
+      "date": "2026-10-31",
+      "mm": 2.9
+     },
+     {
+      "date": "2026-11-01",
+      "mm": 2.2
+     },
+     {
+      "date": "2026-11-02",
+      "mm": 14
+     }
+    ],
+    "past24": 0.1,
+    "next72": 19.1,
+    "peakMm": 14,
+    "peakDate": "2026-11-02"
+   }
+  ],
+  "cyclones": [
+   {
+    "id": "TC-1001345",
+    "eventId": "1001345",
+    "episode": "10",
+    "name": "ARNAB-26",
+    "alertLevel": "Red",
+    "lat": 16.4,
+    "lng": 81.8,
+    "maxWindKmh": 222,
+    "severityText": "Tropical Storm (maximum wind speed of 222 km/h)",
+    "source": "JTWC",
+    "updatedAt": "2026-10-29T08:02:06Z",
+    "url": "https://www.gdacs.org/report.aspx?eventid=1001345&episodeid=10&eventtype=TC",
+    "track": [
+     {
+      "t": "2026-10-26T00:00:00.000Z",
+      "lng": 89.1,
+      "lat": 16,
+      "cat": "HU",
+      "forecast": false
+     },
+     {
+      "t": "2026-10-26T06:00:00.000Z",
+      "lng": 88.4,
+      "lat": 15.3,
+      "cat": "HU",
+      "forecast": false
+     },
+     {
+      "t": "2026-10-26T12:00:00.000Z",
+      "lng": 87.2,
+      "lat": 15.9,
+      "cat": "HU",
+      "forecast": false
+     },
+     {
+      "t": "2026-10-26T18:00:00.000Z",
+      "lng": 85.8,
+      "lat": 16,
+      "cat": "HU",
+      "forecast": false
+     },
+     {
+      "t": "2026-10-27T00:00:00.000Z",
+      "lng": 84.8,
+      "lat": 16,
+      "cat": "HU",
+      "forecast": false
+     },
+     {
+      "t": "2026-10-27T06:00:00.000Z",
+      "lng": 83.8,
+      "lat": 16.2,
+      "cat": "HU",
+      "forecast": false
+     },
+     {
+      "t": "2026-10-27T12:00:00.000Z",
+      "lng": 82.7,
+      "lat": 16.3,
+      "cat": "HU",
+      "forecast": false
+     },
+     {
+      "t": "2026-10-27T18:00:00.000Z",
+      "lng": 81.6,
+      "lat": 16.4,
+      "cat": "TS",
+      "forecast": false
+     },
+     {
+      "t": "2026-10-28T00:00:00.000Z",
+      "lng": 81.6,
+      "lat": 16.2,
+      "cat": "TS",
+      "forecast": false
+     },
+     {
+      "t": "2026-10-28T06:00:00.000Z",
+      "lng": 81.8,
+      "lat": 16.4,
+      "cat": "TS",
+      "forecast": false
+     },
+     {
+      "t": "2026-10-28T18:00:00.000Z",
+      "lng": 81.9,
+      "lat": 17.8,
+      "cat": "TS",
+      "forecast": true
+     },
+     {
+      "t": "2026-10-29T06:00:00.000Z",
+      "lng": 81.7,
+      "lat": 19.9,
+      "cat": "TD",
+      "forecast": true
+     },
+     {
+      "t": "2026-10-29T18:00:00.000Z",
+      "lng": 81.6,
+      "lat": 21.9,
+      "cat": null,
+      "forecast": true
+     }
+    ],
+    "cone": [
+     [
+      81.8,
+      16.15
+     ],
+     [
+      81.81,
+      16.15
+     ],
+     [
+      81.82,
+      16.15
+     ],
+     [
+      81.83,
+      16.15
+     ],
+     [
+      81.84,
+      16.15
+     ],
+     [
+      81.85,
+      16.15
+     ],
+     [
+      81.85,
+      16.16
+     ],
+     [
+      81.86,
+      16.16
+     ],
+     [
+      81.87,
+      16.16
+     ],
+     [
+      81.88,
+      16.16
+     ],
+     [
+      81.89,
+      16.17
+     ],
+     [
+      81.9,
+      16.17
+     ],
+     [
+      81.91,
+      16.17
+     ],
+     [
+      81.91,
+      16.18
+     ],
+     [
+      81.92,
+      16.18
+     ],
+     [
+      81.93,
+      16.18
+     ],
+     [
+      81.94,
+      16.19
+     ],
+     [
+      81.95,
+      16.19
+     ],
+     [
+      81.95,
+      16.2
+     ],
+     [
+      81.96,
+      16.2
+     ],
+     [
+      81.97,
+      16.21
+     ],
+     [
+      81.97,
+      16.21
+     ],
+     [
+      81.98,
+      16.22
+     ],
+     [
+      81.99,
+      16.23
+     ],
+     [
+      81.99,
+      16.23
+     ],
+     [
+      82,
+      16.24
+     ],
+     [
+      82.01,
+      16.25
+     ],
+     [
+      82.01,
+      16.25
+     ],
+     [
+      82.02,
+      16.26
+     ],
+     [
+      82.02,
+      16.27
+     ],
+     [
+      82.03,
+      16.27
+     ],
+     [
+      82.03,
+      16.28
+     ],
+     [
+      82.03,
+      16.29
+     ],
+     [
+      82.04,
+      16.3
+     ],
+     [
+      82.04,
+      16.31
+     ],
+     [
+      82.04,
+      16.31
+     ],
+     [
+      82.05,
+      16.32
+     ],
+     [
+      82.05,
+      16.33
+     ],
+     [
+      82.05,
+      16.34
+     ],
+     [
+      82.05,
+      16.35
+     ],
+     [
+      82.06,
+      16.36
+     ],
+     [
+      82.33,
+      17.73
+     ],
+     [
+      82.33,
+      17.74
+     ],
+     [
+      82.34,
+      17.76
+     ],
+     [
+      82.34,
+      17.77
+     ],
+     [
+      82.34,
+      17.79
+     ],
+     [
+      82.34,
+      17.8
+     ],
+     [
+      82.37,
+      19.88
+     ],
+     [
+      82.46,
+      21.87
+     ],
+     [
+      82.46,
+      21.9
+     ],
+     [
+      82.46,
+      21.93
+     ],
+     [
+      82.46,
+      21.96
+     ],
+     [
+      82.46,
+      21.98
+     ],
+     [
+      82.45,
+      22.01
+     ],
+     [
+      82.45,
+      22.04
+     ],
+     [
+      82.44,
+      22.07
+     ],
+     [
+      82.44,
+      22.09
+     ],
+     [
+      82.43,
+      22.12
+     ],
+     [
+      82.42,
+      22.15
+     ],
+     [
+      82.41,
+      22.17
+     ],
+     [
+      82.4,
+      22.2
+     ],
+     [
+      82.39,
+      22.23
+     ],
+     [
+      82.38,
+      22.25
+     ],
+     [
+      82.36,
+      22.28
+     ],
+     [
+      82.35,
+      22.3
+     ],
+     [
+      82.33,
+      22.32
+     ],
+     [
+      82.31,
+      22.35
+     ],
+     [
+      82.3,
+      22.37
+     ],
+     [
+      82.28,
+      22.39
+     ],
+     [
+      82.26,
+      22.41
+     ],
+     [
+      82.24,
+      22.44
+     ],
+     [
+      82.22,
+      22.46
+     ],
+     [
+      82.2,
+      22.48
+     ],
+     [
+      82.18,
+      22.49
+     ],
+     [
+      82.15,
+      22.51
+     ],
+     [
+      82.13,
+      22.53
+     ],
+     [
+      82.11,
+      22.55
+     ],
+     [
+      82.08,
+      22.56
+     ],
+     [
+      82.06,
+      22.58
+     ],
+     [
+      82.03,
+      22.59
+     ],
+     [
+      82,
+      22.61
+     ],
+     [
+      81.98,
+      22.62
+     ],
+     [
+      81.95,
+      22.63
+     ],
+     [
+      81.92,
+      22.64
+     ],
+     [
+      81.89,
+      22.65
+     ],
+     [
+      81.87,
+      22.66
+     ],
+     [
+      81.84,
+      22.67
+     ],
+     [
+      81.81,
+      22.68
+     ],
+     [
+      81.78,
+      22.68
+     ],
+     [
+      81.75,
+      22.69
+     ],
+     [
+      81.72,
+      22.69
+     ],
+     [
+      81.69,
+      22.7
+     ],
+     [
+      81.66,
+      22.7
+     ],
+     [
+      81.63,
+      22.7
+     ],
+     [
+      81.6,
+      22.7
+     ],
+     [
+      81.57,
+      22.7
+     ],
+     [
+      81.54,
+      22.7
+     ],
+     [
+      81.51,
+      22.7
+     ],
+     [
+      81.48,
+      22.69
+     ],
+     [
+      81.45,
+      22.69
+     ],
+     [
+      81.42,
+      22.68
+     ],
+     [
+      81.39,
+      22.68
+     ],
+     [
+      81.36,
+      22.67
+     ],
+     [
+      81.33,
+      22.66
+     ],
+     [
+      81.31,
+      22.65
+     ],
+     [
+      81.28,
+      22.64
+     ],
+     [
+      81.25,
+      22.63
+     ],
+     [
+      81.22,
+      22.62
+     ],
+     [
+      81.2,
+      22.61
+     ],
+     [
+      81.17,
+      22.59
+     ],
+     [
+      81.14,
+      22.58
+     ],
+     [
+      81.12,
+      22.56
+     ],
+     [
+      81.09,
+      22.55
+     ],
+     [
+      81.07,
+      22.53
+     ],
+     [
+      81.05,
+      22.51
+     ],
+     [
+      81.02,
+      22.49
+     ],
+     [
+      81,
+      22.48
+     ],
+     [
+      80.98,
+      22.46
+     ],
+     [
+      80.96,
+      22.44
+     ],
+     [
+      80.94,
+      22.41
+     ],
+     [
+      80.92,
+      22.39
+     ],
+     [
+      80.9,
+      22.37
+     ],
+     [
+      80.89,
+      22.35
+     ],
+     [
+      80.87,
+      22.32
+     ],
+     [
+      80.85,
+      22.3
+     ],
+     [
+      80.84,
+      22.28
+     ],
+     [
+      80.83,
+      22.25
+     ],
+     [
+      80.81,
+      22.23
+     ],
+     [
+      80.8,
+      22.2
+     ],
+     [
+      80.79,
+      22.17
+     ],
+     [
+      80.78,
+      22.15
+     ],
+     [
+      80.77,
+      22.12
+     ],
+     [
+      80.76,
+      22.09
+     ],
+     [
+      80.76,
+      22.07
+     ],
+     [
+      80.75,
+      22.04
+     ],
+     [
+      80.75,
+      22.01
+     ],
+     [
+      80.74,
+      21.98
+     ],
+     [
+      80.74,
+      21.96
+     ],
+     [
+      80.74,
+      21.93
+     ],
+     [
+      80.74,
+      21.9
+     ],
+     [
+      80.74,
+      21.87
+     ],
+     [
+      80.74,
+      21.84
+     ],
+     [
+      80.74,
+      21.82
+     ],
+     [
+      80.75,
+      21.79
+     ],
+     [
+      81.03,
+      19.81
+     ],
+     [
+      81.04,
+      19.79
+     ],
+     [
+      81.04,
+      19.77
+     ],
+     [
+      81.46,
+      17.75
+     ],
+     [
+      81.54,
+      16.38
+     ],
+     [
+      81.54,
+      16.37
+     ],
+     [
+      81.54,
+      16.37
+     ],
+     [
+      81.54,
+      16.36
+     ],
+     [
+      81.55,
+      16.35
+     ],
+     [
+      81.55,
+      16.34
+     ],
+     [
+      81.55,
+      16.33
+     ],
+     [
+      81.55,
+      16.32
+     ],
+     [
+      81.56,
+      16.31
+     ],
+     [
+      81.56,
+      16.31
+     ],
+     [
+      81.56,
+      16.3
+     ],
+     [
+      81.57,
+      16.29
+     ],
+     [
+      81.57,
+      16.28
+     ],
+     [
+      81.57,
+      16.27
+     ],
+     [
+      81.58,
+      16.27
+     ],
+     [
+      81.58,
+      16.26
+     ],
+     [
+      81.59,
+      16.25
+     ],
+     [
+      81.59,
+      16.25
+     ],
+     [
+      81.6,
+      16.24
+     ],
+     [
+      81.61,
+      16.23
+     ],
+     [
+      81.61,
+      16.23
+     ],
+     [
+      81.62,
+      16.22
+     ],
+     [
+      81.63,
+      16.21
+     ],
+     [
+      81.63,
+      16.21
+     ],
+     [
+      81.64,
+      16.2
+     ],
+     [
+      81.65,
+      16.2
+     ],
+     [
+      81.65,
+      16.19
+     ],
+     [
+      81.66,
+      16.19
+     ],
+     [
+      81.67,
+      16.18
+     ],
+     [
+      81.68,
+      16.18
+     ],
+     [
+      81.69,
+      16.18
+     ],
+     [
+      81.69,
+      16.17
+     ],
+     [
+      81.7,
+      16.17
+     ],
+     [
+      81.71,
+      16.17
+     ],
+     [
+      81.72,
+      16.16
+     ],
+     [
+      81.73,
+      16.16
+     ],
+     [
+      81.74,
+      16.16
+     ],
+     [
+      81.75,
+      16.16
+     ],
+     [
+      81.75,
+      16.15
+     ],
+     [
+      81.76,
+      16.15
+     ],
+     [
+      81.77,
+      16.15
+     ],
+     [
+      81.78,
+      16.15
+     ],
+     [
+      81.79,
+      16.15
+     ],
+     [
+      81.8,
+      16.15
+     ],
+     [
+      81.8,
+      16.15
+     ]
+    ],
+    "swaths": {
+     "kmh60": [
+      [
+       88.4,
+       14.3
+      ],
+      [
+       88.47,
+       14.3
+      ],
+      [
+       88.54,
+       14.31
+      ],
+      [
+       88.62,
+       14.32
+      ],
+      [
+       88.69,
+       14.34
+      ],
+      [
+       88.75,
+       14.36
+      ],
+      [
+       88.82,
+       14.39
+      ],
+      [
+       88.89,
+       14.42
+      ],
+      [
+       88.95,
+       14.45
+      ],
+      [
+       89.01,
+       14.49
+      ],
+      [
+       89.07,
+       14.53
+      ],
+      [
+       89.12,
+       14.58
+      ],
+      [
+       89.17,
+       14.63
+      ],
+      [
+       89.83,
+       15.41
+      ],
+      [
+       89.87,
+       15.46
+      ],
+      [
+       89.91,
+       15.51
+      ],
+      [
+       89.94,
+       15.57
+      ],
+      [
+       89.97,
+       15.63
+      ],
+      [
+       90,
+       15.69
+      ],
+      [
+       90.02,
+       15.75
+      ],
+      [
+       90.03,
+       15.81
+      ],
+      [
+       90.04,
+       15.87
+      ],
+      [
+       90.05,
+       15.94
+      ],
+      [
+       90.05,
+       16
+      ],
+      [
+       90.05,
+       16.06
+      ],
+      [
+       90.04,
+       16.13
+      ],
+      [
+       90.03,
+       16.19
+      ],
+      [
+       90.02,
+       16.25
+      ],
+      [
+       90,
+       16.31
+      ],
+      [
+       89.97,
+       16.37
+      ],
+      [
+       89.94,
+       16.43
+      ],
+      [
+       89.91,
+       16.49
+      ],
+      [
+       89.87,
+       16.54
+      ],
+      [
+       89.83,
+       16.59
+      ],
+      [
+       89.79,
+       16.64
+      ],
+      [
+       89.74,
+       16.68
+      ],
+      [
+       89.69,
+       16.72
+      ],
+      [
+       89.63,
+       16.76
+      ],
+      [
+       89.58,
+       16.79
+      ],
+      [
+       89.52,
+       16.82
+      ],
+      [
+       89.46,
+       16.85
+      ],
+      [
+       89.39,
+       16.87
+      ],
+      [
+       89.33,
+       16.89
+      ],
+      [
+       89.27,
+       16.9
+      ],
+      [
+       89.2,
+       16.91
+      ],
+      [
+       89.13,
+       16.92
+      ],
+      [
+       89.07,
+       16.92
+      ],
+      [
+       89,
+       16.91
+      ],
+      [
+       88.93,
+       16.9
+      ],
+      [
+       88.87,
+       16.89
+      ],
+      [
+       88.81,
+       16.87
+      ],
+      [
+       88.74,
+       16.85
+      ],
+      [
+       88.68,
+       16.82
+      ],
+      [
+       88.62,
+       16.79
+      ],
+      [
+       88.57,
+       16.76
+      ],
+      [
+       88.51,
+       16.72
+      ],
+      [
+       88.46,
+       16.68
+      ],
+      [
+       87.69,
+       16.78
+      ],
+      [
+       87.62,
+       16.81
+      ],
+      [
+       87.56,
+       16.84
+      ],
+      [
+       87.49,
+       16.86
+      ],
+      [
+       87.42,
+       16.88
+      ],
+      [
+       86.01,
+       17.15
+      ],
+      [
+       85.93,
+       17.16
+      ],
+      [
+       85.84,
+       17.17
+      ],
+      [
+       85.27,
+       17.17
+      ],
+      [
+       84.92,
+       17.48
+      ],
+      [
+       84.82,
+       17.55
+      ],
+      [
+       84.72,
+       17.61
+      ],
+      [
+       84.62,
+       17.67
+      ],
+      [
+       84.51,
+       17.72
+      ],
+      [
+       84.39,
+       17.77
+      ],
+      [
+       84.28,
+       17.8
+      ],
+      [
+       84.16,
+       17.83
+      ],
+      [
+       84.04,
+       17.85
+      ],
+      [
+       82.88,
+       17.96
+      ],
+      [
+       82.45,
+       20.02
+      ],
+      [
+       82.14,
+       21.99
+      ],
+      [
+       82.13,
+       22.02
+      ],
+      [
+       82.12,
+       22.06
+      ],
+      [
+       82.11,
+       22.09
+      ],
+      [
+       82.09,
+       22.12
+      ],
+      [
+       82.08,
+       22.15
+      ],
+      [
+       82.05,
+       22.18
+      ],
+      [
+       82.03,
+       22.21
+      ],
+      [
+       82.01,
+       22.24
+      ],
+      [
+       81.98,
+       22.27
+      ],
+      [
+       81.95,
+       22.29
+      ],
+      [
+       81.92,
+       22.31
+      ],
+      [
+       81.89,
+       22.33
+      ],
+      [
+       81.86,
+       22.35
+      ],
+      [
+       81.82,
+       22.37
+      ],
+      [
+       81.79,
+       22.38
+      ],
+      [
+       81.75,
+       22.39
+      ],
+      [
+       81.71,
+       22.4
+      ],
+      [
+       81.68,
+       22.4
+      ],
+      [
+       81.64,
+       22.41
+      ],
+      [
+       81.6,
+       22.41
+      ],
+      [
+       81.56,
+       22.41
+      ],
+      [
+       81.52,
+       22.4
+      ],
+      [
+       81.49,
+       22.4
+      ],
+      [
+       81.45,
+       22.39
+      ],
+      [
+       81.41,
+       22.38
+      ],
+      [
+       81.38,
+       22.37
+      ],
+      [
+       81.34,
+       22.35
+      ],
+      [
+       81.31,
+       22.33
+      ],
+      [
+       81.28,
+       22.31
+      ],
+      [
+       81.25,
+       22.29
+      ],
+      [
+       81.22,
+       22.27
+      ],
+      [
+       81.19,
+       22.24
+      ],
+      [
+       81.17,
+       22.21
+      ],
+      [
+       81.15,
+       22.18
+      ],
+      [
+       81.12,
+       22.15
+      ],
+      [
+       81.11,
+       22.12
+      ],
+      [
+       81.09,
+       22.09
+      ],
+      [
+       81.08,
+       22.06
+      ],
+      [
+       81.07,
+       22.02
+      ],
+      [
+       81.06,
+       21.99
+      ],
+      [
+       81.05,
+       21.95
+      ],
+      [
+       81.05,
+       21.92
+      ],
+      [
+       80.94,
+       19.9
+      ],
+      [
+       80.83,
+       17.51
+      ],
+      [
+       80.78,
+       17.48
+      ],
+      [
+       80.71,
+       17.42
+      ],
+      [
+       80.63,
+       17.36
+      ],
+      [
+       80.57,
+       17.29
+      ],
+      [
+       80.5,
+       17.22
+      ],
+      [
+       80.45,
+       17.15
+      ],
+      [
+       80.4,
+       17.07
+      ],
+      [
+       80.35,
+       16.98
+      ],
+      [
+       80.31,
+       16.9
+      ],
+      [
+       80.28,
+       16.81
+      ],
+      [
+       80.25,
+       16.72
+      ],
+      [
+       80.23,
+       16.63
+      ],
+      [
+       80.22,
+       16.54
+      ],
+      [
+       80.21,
+       16.45
+      ],
+      [
+       80.21,
+       16.35
+      ],
+      [
+       80.22,
+       16.26
+      ],
+      [
+       80.23,
+       16.17
+      ],
+      [
+       80.25,
+       16.08
+      ],
+      [
+       80.28,
+       15.99
+      ],
+      [
+       80.31,
+       15.9
+      ],
+      [
+       80.35,
+       15.82
+      ],
+      [
+       80.4,
+       15.73
+      ],
+      [
+       80.45,
+       15.65
+      ],
+      [
+       80.5,
+       15.58
+      ],
+      [
+       80.57,
+       15.51
+      ],
+      [
+       80.63,
+       15.44
+      ],
+      [
+       80.71,
+       15.38
+      ],
+      [
+       80.78,
+       15.32
+      ],
+      [
+       80.86,
+       15.27
+      ],
+      [
+       80.95,
+       15.22
+      ],
+      [
+       81.03,
+       15.18
+      ],
+      [
+       82.05,
+       14.75
+      ],
+      [
+       82.16,
+       14.71
+      ],
+      [
+       82.28,
+       14.68
+      ],
+      [
+       82.4,
+       14.66
+      ],
+      [
+       82.52,
+       14.64
+      ],
+      [
+       83.68,
+       14.54
+      ],
+      [
+       83.8,
+       14.53
+      ],
+      [
+       83.92,
+       14.54
+      ],
+      [
+       84.04,
+       14.55
+      ],
+      [
+       84.16,
+       14.57
+      ],
+      [
+       84.28,
+       14.6
+      ],
+      [
+       85,
+       14.83
+      ],
+      [
+       85.84,
+       14.83
+      ],
+      [
+       87.91,
+       14.42
+      ],
+      [
+       87.98,
+       14.39
+      ],
+      [
+       88.05,
+       14.36
+      ],
+      [
+       88.11,
+       14.34
+      ],
+      [
+       88.18,
+       14.32
+      ],
+      [
+       88.26,
+       14.31
+      ],
+      [
+       88.33,
+       14.3
+      ],
+      [
+       88.4,
+       14.3
+      ],
+      [
+       88.4,
+       14.3
+      ]
+     ],
+     "kmh90": [
+      [
+       88.4,
+       14.88
+      ],
+      [
+       88.43,
+       14.88
+      ],
+      [
+       88.46,
+       14.89
+      ],
+      [
+       88.49,
+       14.89
+      ],
+      [
+       88.52,
+       14.9
+      ],
+      [
+       88.55,
+       14.91
+      ],
+      [
+       88.58,
+       14.92
+      ],
+      [
+       88.6,
+       14.93
+      ],
+      [
+       88.63,
+       14.95
+      ],
+      [
+       88.65,
+       14.96
+      ],
+      [
+       88.68,
+       14.98
+      ],
+      [
+       88.7,
+       15
+      ],
+      [
+       88.72,
+       15.02
+      ],
+      [
+       88.74,
+       15.04
+      ],
+      [
+       88.76,
+       15.07
+      ],
+      [
+       88.77,
+       15.09
+      ],
+      [
+       88.79,
+       15.12
+      ],
+      [
+       88.8,
+       15.14
+      ],
+      [
+       88.81,
+       15.17
+      ],
+      [
+       88.82,
+       15.2
+      ],
+      [
+       88.83,
+       15.23
+      ],
+      [
+       88.83,
+       15.26
+      ],
+      [
+       88.83,
+       15.29
+      ],
+      [
+       88.83,
+       15.31
+      ],
+      [
+       88.83,
+       15.34
+      ],
+      [
+       88.83,
+       15.37
+      ],
+      [
+       88.82,
+       15.4
+      ],
+      [
+       88.81,
+       15.43
+      ],
+      [
+       88.8,
+       15.46
+      ],
+      [
+       88.79,
+       15.48
+      ],
+      [
+       88.77,
+       15.51
+      ],
+      [
+       88.76,
+       15.53
+      ],
+      [
+       88.74,
+       15.56
+      ],
+      [
+       88.72,
+       15.58
+      ],
+      [
+       88.7,
+       15.6
+      ],
+      [
+       88.68,
+       15.62
+      ],
+      [
+       88.65,
+       15.64
+      ],
+      [
+       88.63,
+       15.65
+      ],
+      [
+       88.6,
+       15.67
+      ],
+      [
+       87.39,
+       16.27
+      ],
+      [
+       87.36,
+       16.29
+      ],
+      [
+       87.33,
+       16.3
+      ],
+      [
+       87.3,
+       16.3
+      ],
+      [
+       85.93,
+       16.57
+      ],
+      [
+       85.88,
+       16.58
+      ],
+      [
+       85.84,
+       16.58
+      ],
+      [
+       85.8,
+       16.58
+      ],
+      [
+       83.99,
+       16.84
+      ],
+      [
+       83.94,
+       16.85
+      ],
+      [
+       83.9,
+       16.86
+      ],
+      [
+       82.77,
+       16.96
+      ],
+      [
+       82.47,
+       17.8
+      ],
+      [
+       82.47,
+       17.84
+      ],
+      [
+       82.47,
+       17.88
+      ],
+      [
+       82.46,
+       17.91
+      ],
+      [
+       82.45,
+       17.95
+      ],
+      [
+       82.44,
+       17.99
+      ],
+      [
+       82.42,
+       18.02
+      ],
+      [
+       82.41,
+       18.06
+      ],
+      [
+       82.39,
+       18.09
+      ],
+      [
+       82.36,
+       18.12
+      ],
+      [
+       82.34,
+       18.15
+      ],
+      [
+       82.31,
+       18.18
+      ],
+      [
+       82.28,
+       18.2
+      ],
+      [
+       82.25,
+       18.23
+      ],
+      [
+       82.22,
+       18.25
+      ],
+      [
+       82.19,
+       18.27
+      ],
+      [
+       82.15,
+       18.29
+      ],
+      [
+       82.11,
+       18.31
+      ],
+      [
+       82.08,
+       18.32
+      ],
+      [
+       82.04,
+       18.33
+      ],
+      [
+       82,
+       18.34
+      ],
+      [
+       81.96,
+       18.34
+      ],
+      [
+       81.92,
+       18.34
+      ],
+      [
+       81.88,
+       18.34
+      ],
+      [
+       81.84,
+       18.34
+      ],
+      [
+       81.8,
+       18.34
+      ],
+      [
+       81.76,
+       18.33
+      ],
+      [
+       81.72,
+       18.32
+      ],
+      [
+       81.69,
+       18.31
+      ],
+      [
+       81.65,
+       18.29
+      ],
+      [
+       81.61,
+       18.27
+      ],
+      [
+       81.58,
+       18.25
+      ],
+      [
+       81.55,
+       18.23
+      ],
+      [
+       81.52,
+       18.2
+      ],
+      [
+       81.49,
+       18.18
+      ],
+      [
+       81.46,
+       18.15
+      ],
+      [
+       81.44,
+       18.12
+      ],
+      [
+       81.41,
+       18.09
+      ],
+      [
+       81.39,
+       18.06
+      ],
+      [
+       81.38,
+       18.02
+      ],
+      [
+       81.36,
+       17.99
+      ],
+      [
+       81.35,
+       17.95
+      ],
+      [
+       81.34,
+       17.91
+      ],
+      [
+       81.33,
+       17.88
+      ],
+      [
+       81.17,
+       16.93
+      ],
+      [
+       81.13,
+       16.9
+      ],
+      [
+       81.1,
+       16.86
+      ],
+      [
+       81.07,
+       16.83
+      ],
+      [
+       81.04,
+       16.79
+      ],
+      [
+       81.01,
+       16.75
+      ],
+      [
+       80.99,
+       16.71
+      ],
+      [
+       80.96,
+       16.67
+      ],
+      [
+       80.95,
+       16.63
+      ],
+      [
+       80.93,
+       16.58
+      ],
+      [
+       80.92,
+       16.54
+      ],
+      [
+       80.91,
+       16.49
+      ],
+      [
+       80.91,
+       16.45
+      ],
+      [
+       80.9,
+       16.4
+      ],
+      [
+       80.91,
+       16.35
+      ],
+      [
+       80.91,
+       16.31
+      ],
+      [
+       80.92,
+       16.26
+      ],
+      [
+       80.93,
+       16.22
+      ],
+      [
+       80.95,
+       16.17
+      ],
+      [
+       80.96,
+       16.13
+      ],
+      [
+       80.99,
+       16.09
+      ],
+      [
+       81.01,
+       16.05
+      ],
+      [
+       81.04,
+       16.01
+      ],
+      [
+       81.07,
+       15.97
+      ],
+      [
+       81.1,
+       15.94
+      ],
+      [
+       81.13,
+       15.9
+      ],
+      [
+       81.17,
+       15.87
+      ],
+      [
+       81.21,
+       15.85
+      ],
+      [
+       81.25,
+       15.82
+      ],
+      [
+       81.3,
+       15.8
+      ],
+      [
+       81.34,
+       15.78
+      ],
+      [
+       81.39,
+       15.77
+      ],
+      [
+       81.43,
+       15.75
+      ],
+      [
+       81.48,
+       15.74
+      ],
+      [
+       81.53,
+       15.74
+      ],
+      [
+       83.73,
+       15.54
+      ],
+      [
+       84.76,
+       15.42
+      ],
+      [
+       84.8,
+       15.42
+      ],
+      [
+       85.82,
+       15.42
+      ],
+      [
+       88.2,
+       14.93
+      ],
+      [
+       88.22,
+       14.92
+      ],
+      [
+       88.25,
+       14.91
+      ],
+      [
+       88.28,
+       14.9
+      ],
+      [
+       88.31,
+       14.89
+      ],
+      [
+       88.34,
+       14.89
+      ],
+      [
+       88.37,
+       14.88
+      ],
+      [
+       88.4,
+       14.88
+      ],
+      [
+       88.4,
+       14.88
+      ]
+     ],
+     "kmh120": [
+      [
+       88.4,
+       15.05
+      ],
+      [
+       88.42,
+       15.05
+      ],
+      [
+       88.44,
+       15.05
+      ],
+      [
+       88.45,
+       15.06
+      ],
+      [
+       88.47,
+       15.06
+      ],
+      [
+       88.49,
+       15.07
+      ],
+      [
+       88.51,
+       15.07
+      ],
+      [
+       88.52,
+       15.08
+      ],
+      [
+       88.54,
+       15.09
+      ],
+      [
+       88.55,
+       15.1
+      ],
+      [
+       88.57,
+       15.11
+      ],
+      [
+       88.58,
+       15.12
+      ],
+      [
+       88.59,
+       15.13
+      ],
+      [
+       88.6,
+       15.15
+      ],
+      [
+       88.61,
+       15.16
+      ],
+      [
+       88.62,
+       15.18
+      ],
+      [
+       88.63,
+       15.19
+      ],
+      [
+       88.64,
+       15.21
+      ],
+      [
+       88.65,
+       15.22
+      ],
+      [
+       88.65,
+       15.24
+      ],
+      [
+       88.66,
+       15.26
+      ],
+      [
+       88.66,
+       15.27
+      ],
+      [
+       88.66,
+       15.29
+      ],
+      [
+       88.66,
+       15.31
+      ],
+      [
+       88.66,
+       15.33
+      ],
+      [
+       88.66,
+       15.34
+      ],
+      [
+       88.65,
+       15.36
+      ],
+      [
+       88.65,
+       15.38
+      ],
+      [
+       88.64,
+       15.39
+      ],
+      [
+       88.63,
+       15.41
+      ],
+      [
+       88.62,
+       15.43
+      ],
+      [
+       88.61,
+       15.44
+      ],
+      [
+       88.6,
+       15.45
+      ],
+      [
+       88.59,
+       15.47
+      ],
+      [
+       88.58,
+       15.48
+      ],
+      [
+       88.57,
+       15.49
+      ],
+      [
+       88.55,
+       15.5
+      ],
+      [
+       88.54,
+       15.51
+      ],
+      [
+       88.52,
+       15.52
+      ],
+      [
+       87.31,
+       16.12
+      ],
+      [
+       87.3,
+       16.13
+      ],
+      [
+       87.28,
+       16.14
+      ],
+      [
+       87.26,
+       16.14
+      ],
+      [
+       85.89,
+       16.41
+      ],
+      [
+       85.86,
+       16.41
+      ],
+      [
+       85.83,
+       16.42
+      ],
+      [
+       85.8,
+       16.42
+      ],
+      [
+       83.94,
+       16.68
+      ],
+      [
+       83.91,
+       16.69
+      ],
+      [
+       83.87,
+       16.7
+      ],
+      [
+       82.75,
+       16.8
+      ],
+      [
+       82.72,
+       16.8
+      ],
+      [
+       81.6,
+       16.82
+      ],
+      [
+       81.57,
+       16.82
+      ],
+      [
+       81.54,
+       16.81
+      ],
+      [
+       81.51,
+       16.81
+      ],
+      [
+       81.48,
+       16.8
+      ],
+      [
+       81.45,
+       16.79
+      ],
+      [
+       81.42,
+       16.78
+      ],
+      [
+       81.4,
+       16.77
+      ],
+      [
+       81.37,
+       16.75
+      ],
+      [
+       81.34,
+       16.74
+      ],
+      [
+       81.32,
+       16.72
+      ],
+      [
+       81.3,
+       16.7
+      ],
+      [
+       81.28,
+       16.68
+      ],
+      [
+       81.26,
+       16.66
+      ],
+      [
+       81.24,
+       16.63
+      ],
+      [
+       81.22,
+       16.61
+      ],
+      [
+       81.21,
+       16.58
+      ],
+      [
+       81.2,
+       16.56
+      ],
+      [
+       81.19,
+       16.53
+      ],
+      [
+       81.18,
+       16.5
+      ],
+      [
+       81.17,
+       16.47
+      ],
+      [
+       81.17,
+       16.44
+      ],
+      [
+       81.17,
+       16.41
+      ],
+      [
+       81.17,
+       16.39
+      ],
+      [
+       81.17,
+       16.36
+      ],
+      [
+       81.17,
+       16.33
+      ],
+      [
+       81.18,
+       16.3
+      ],
+      [
+       81.19,
+       16.27
+      ],
+      [
+       81.2,
+       16.24
+      ],
+      [
+       81.21,
+       16.22
+      ],
+      [
+       81.22,
+       16.19
+      ],
+      [
+       81.24,
+       16.17
+      ],
+      [
+       81.26,
+       16.14
+      ],
+      [
+       81.28,
+       16.12
+      ],
+      [
+       81.3,
+       16.1
+      ],
+      [
+       81.32,
+       16.08
+      ],
+      [
+       81.34,
+       16.06
+      ],
+      [
+       81.37,
+       16.05
+      ],
+      [
+       81.4,
+       16.03
+      ],
+      [
+       81.42,
+       16.02
+      ],
+      [
+       81.45,
+       16.01
+      ],
+      [
+       81.48,
+       16
+      ],
+      [
+       81.51,
+       15.99
+      ],
+      [
+       82.61,
+       15.81
+      ],
+      [
+       82.65,
+       15.8
+      ],
+      [
+       84.75,
+       15.59
+      ],
+      [
+       84.78,
+       15.58
+      ],
+      [
+       85.8,
+       15.58
+      ],
+      [
+       87.14,
+       15.65
+      ],
+      [
+       88.29,
+       15.08
+      ],
+      [
+       88.3,
+       15.07
+      ],
+      [
+       88.32,
+       15.06
+      ],
+      [
+       88.34,
+       15.06
+      ],
+      [
+       88.36,
+       15.05
+      ],
+      [
+       88.37,
+       15.05
+      ],
+      [
+       88.39,
+       15.05
+      ],
+      [
+       88.4,
+       15.05
+      ]
+     ]
+    },
+    "landfall": {
+     "at": "2026-10-28T07:41:05.753Z",
+     "lat": 16.6,
+     "lng": 81.81,
+     "near": "Kakinada",
+     "cat": "TS"
+    }
+   }
+  ],
+  "sea": [
+   {
+    "id": "pulicat",
+    "name": "Pulicat",
+    "lat": 13.42,
+    "lng": 80.42,
+    "nowM": 0.9,
+    "swellNowM": 0.9,
+    "directionDeg": 133,
+    "periodS": 8.8,
+    "days": [
+     {
+      "date": "2026-10-31",
+      "maxM": 1.1,
+      "swellM": 1.1,
+      "periodS": 8.8
+     },
+     {
+      "date": "2026-11-01",
+      "maxM": 0.9,
+      "swellM": 0.8,
+      "periodS": 9
+     },
+     {
+      "date": "2026-11-02",
+      "maxM": 1.7,
+      "swellM": 1.7,
+      "periodS": 8.8
+     }
+    ],
+    "peakM": 1.1,
+    "peakDate": "2026-10-31",
+    "state": "Slight"
+   },
+   {
+    "id": "chennai",
+    "name": "Chennai",
+    "lat": 13.08,
+    "lng": 80.4,
+    "nowM": 0.7,
+    "swellNowM": 0.7,
+    "directionDeg": 132,
+    "periodS": 9.1,
+    "days": [
+     {
+      "date": "2026-10-31",
+      "maxM": 0.9,
+      "swellM": 0.9,
+      "periodS": 9.5
+     },
+     {
+      "date": "2026-11-01",
+      "maxM": 0.8,
+      "swellM": 0.7,
+      "periodS": 9.1
+     },
+     {
+      "date": "2026-11-02",
+      "maxM": 1.4,
+      "swellM": 1.4,
+      "periodS": 8.6
+     }
+    ],
+    "peakM": 0.9,
+    "peakDate": "2026-10-31",
+    "state": "Slight"
+   },
+   {
+    "id": "mamallapuram",
+    "name": "Mamallapuram",
+    "lat": 12.62,
+    "lng": 80.3,
+    "nowM": 0.6,
+    "swellNowM": 0.6,
+    "directionDeg": 136,
+    "periodS": 9.5,
+    "days": [
+     {
+      "date": "2026-10-31",
+      "maxM": 0.8,
+      "swellM": 0.7,
+      "periodS": 9.9
+     },
+     {
+      "date": "2026-11-01",
+      "maxM": 0.6,
+      "swellM": 0.5,
+      "periodS": 9.5
+     },
+     {
+      "date": "2026-11-02",
+      "maxM": 0.9,
+      "swellM": 0.9,
+      "periodS": 8.6
+     }
+    ],
+    "peakM": 0.8,
+    "peakDate": "2026-10-31",
+    "state": "Slight"
+   },
+   {
+    "id": "puducherry",
+    "name": "Puducherry",
+    "lat": 11.93,
+    "lng": 79.92,
+    "nowM": 0.6,
+    "swellNowM": 0.6,
+    "directionDeg": 130,
+    "periodS": 9.5,
+    "days": [
+     {
+      "date": "2026-10-31",
+      "maxM": 0.9,
+      "swellM": 0.8,
+      "periodS": 10.2
+     },
+     {
+      "date": "2026-11-01",
+      "maxM": 0.6,
+      "swellM": 0.6,
+      "periodS": 9.5
+     },
+     {
+      "date": "2026-11-02",
+      "maxM": 1.1,
+      "swellM": 1,
+      "periodS": 8.9
+     }
+    ],
+    "peakM": 0.9,
+    "peakDate": "2026-10-31",
+    "state": "Slight"
+   },
+   {
+    "id": "cuddalore",
+    "name": "Cuddalore",
+    "lat": 11.72,
+    "lng": 79.88,
+    "nowM": 0.4,
+    "swellNowM": 0.4,
+    "directionDeg": 121,
+    "periodS": 8.7,
+    "days": [
+     {
+      "date": "2026-10-31",
+      "maxM": 0.6,
+      "swellM": 0.5,
+      "periodS": 9.5
+     },
+     {
+      "date": "2026-11-01",
+      "maxM": 0.4,
+      "swellM": 0.4,
+      "periodS": 9
+     },
+     {
+      "date": "2026-11-02",
+      "maxM": 0.8,
+      "swellM": 0.8,
+      "periodS": 8.7
+     }
+    ],
+    "peakM": 0.6,
+    "peakDate": "2026-10-31",
+    "state": "Slight"
+   },
+   {
+    "id": "nagapattinam",
+    "name": "Nagapattinam",
+    "lat": 10.77,
+    "lng": 79.95,
+    "nowM": 0.4,
+    "swellNowM": 0.2,
+    "directionDeg": 99,
+    "periodS": 5.9,
+    "days": [
+     {
+      "date": "2026-10-31",
+      "maxM": 0.4,
+      "swellM": 0.3,
+      "periodS": 9
+     },
+     {
+      "date": "2026-11-01",
+      "maxM": 0.4,
+      "swellM": 0.2,
+      "periodS": 8.4
+     },
+     {
+      "date": "2026-11-02",
+      "maxM": 0.5,
+      "swellM": 0.4,
+      "periodS": 8.6
+     }
+    ],
+    "peakM": 0.4,
+    "peakDate": "2026-10-31",
+    "state": "Calm"
+   },
+   {
+    "id": "point-calimere",
+    "name": "Point Calimere",
+    "lat": 10.22,
+    "lng": 79.95,
+    "nowM": 0.3,
+    "swellNowM": 0.1,
+    "directionDeg": 80,
+    "periodS": 2.9,
+    "days": [
+     {
+      "date": "2026-10-31",
+      "maxM": 0.3,
+      "swellM": 0.2,
+      "periodS": 6.7
+     },
+     {
+      "date": "2026-11-01",
+      "maxM": 0.3,
+      "swellM": 0.3,
+      "periodS": 7.4
+     },
+     {
+      "date": "2026-11-02",
+      "maxM": 0.4,
+      "swellM": 0.3,
+      "periodS": 8.1
+     }
+    ],
+    "peakM": 0.3,
+    "peakDate": "2026-10-31",
+    "state": "Calm"
+   },
+   {
+    "id": "rameswaram",
+    "name": "Rameswaram (Gulf of Mannar)",
+    "lat": 9.15,
+    "lng": 79.35,
+    "nowM": 0.6,
+    "swellNowM": 0.5,
+    "directionDeg": 186,
+    "periodS": 11,
+    "days": [
+     {
+      "date": "2026-10-31",
+      "maxM": 0.7,
+      "swellM": 0.5,
+      "periodS": 11.7
+     },
+     {
+      "date": "2026-11-01",
+      "maxM": 0.6,
+      "swellM": 0.5,
+      "periodS": 11.3
+     },
+     {
+      "date": "2026-11-02",
+      "maxM": 0.6,
+      "swellM": 0.5,
+      "periodS": 11
+     }
+    ],
+    "peakM": 0.7,
+    "peakDate": "2026-10-31",
+    "state": "Slight"
+   },
+   {
+    "id": "thoothukudi",
+    "name": "Thoothukudi",
+    "lat": 8.75,
+    "lng": 78.3,
+    "nowM": 0.6,
+    "swellNowM": 0.6,
+    "directionDeg": 161,
+    "periodS": 10.1,
+    "days": [
+     {
+      "date": "2026-10-31",
+      "maxM": 0.8,
+      "swellM": 0.6,
+      "periodS": 10.2
+     },
+     {
+      "date": "2026-11-01",
+      "maxM": 0.6,
+      "swellM": 0.5,
+      "periodS": 10
+     },
+     {
+      "date": "2026-11-02",
+      "maxM": 0.7,
+      "swellM": 0.6,
+      "periodS": 9.6
+     }
+    ],
+    "peakM": 0.8,
+    "peakDate": "2026-10-31",
+    "state": "Slight"
+   },
+   {
+    "id": "kanyakumari",
+    "name": "Kanyakumari",
+    "lat": 7.98,
+    "lng": 77.55,
+    "nowM": 1,
+    "swellNowM": 0.9,
+    "directionDeg": 161,
+    "periodS": 10.3,
+    "days": [
+     {
+      "date": "2026-10-31",
+      "maxM": 1.2,
+      "swellM": 1,
+      "periodS": 10.5
+     },
+     {
+      "date": "2026-11-01",
+      "maxM": 1,
+      "swellM": 0.9,
+      "periodS": 10.2
+     },
+     {
+      "date": "2026-11-02",
+      "maxM": 1,
+      "swellM": 0.9,
+      "periodS": 9.8
+     }
+    ],
+    "peakM": 1.2,
+    "peakDate": "2026-10-31",
+    "state": "Slight"
+   },
+   {
+    "id": "colachel",
+    "name": "Colachel",
+    "lat": 8.1,
+    "lng": 77.2,
+    "nowM": 1.1,
+    "swellNowM": 0.9,
+    "directionDeg": 163,
+    "periodS": 10.2,
+    "days": [
+     {
+      "date": "2026-10-31",
+      "maxM": 1.2,
+      "swellM": 1.1,
+      "periodS": 10.6
+     },
+     {
+      "date": "2026-11-01",
+      "maxM": 1.1,
+      "swellM": 0.9,
+      "periodS": 10.1
+     },
+     {
+      "date": "2026-11-02",
+      "maxM": 0.9,
+      "swellM": 0.9,
+      "periodS": 10
+     }
+    ],
+    "peakM": 1.2,
+    "peakDate": "2026-10-31",
+    "state": "Slight"
+   }
+  ],
+  "fires": {
+   "fetchedAt": "2026-10-31T16:37:18.155Z",
+   "count": 3940,
+   "areas": [
+    {
+     "id": "sathyamangalam",
+     "name": "Sathyamangalam",
+     "count": 1
+    },
+    {
+     "id": "anamalai",
+     "name": "Anamalai",
+     "count": 1
+    }
+   ]
+  },
+  "news": {
+   "fetchedAt": "2026-10-31T16:37:18.155Z",
+   "count": 0,
+   "tnCount": 0,
+   "byCategory": {},
+   "top": []
+  }
+ },
+ "active": [
+  {
+   "key": "gdacs:TC-1001345:Red",
+   "rule": "gdacs_level",
+   "origin": "official",
+   "kind": "cyclone",
+   "severity": "critical",
+   "title": "GDACS Red: Tropical cyclone Tropical Cyclone ARNAB-26",
+   "summary": "Tropical cyclone alert for India.",
+   "source": "GDACS",
+   "sourceUrl": "https://www.gdacs.org/report.aspx?eventid=1001345&episodeid=10&eventtype=TC",
+   "lat": 16.4,
+   "lng": 81.8,
+   "zones": [
+    "Indian subcontinent"
+   ]
+  }
+ ],
+ "heartbeat": {
+  "configured": true,
+  "ok": true,
+  "at": "2026-10-31T17:23:11.827Z",
+  "status": 200,
+  "signal": "success",
+  "host": "hc-ping.com"
+ },
+ "notifications": {
+  "telegramConfigured": true,
+  "attempted": 0,
+  "sent": 0,
+  "scheduled": {
+   "digest": false,
+   "weekly": false
+  },
+  "commandsAnswered": 0,
+  "feedbackRecorded": 0
+ },
+ "mutes": {}
+}

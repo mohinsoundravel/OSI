@@ -1,0 +1,3114 @@
+[
+ {
+  "id": "cyclone:1001345:400",
+  "detectedAt": "2026-10-29T08:37:19.335Z",
+  "baseline": false,
+  "rule": "cyclone_track",
+  "origin": "derived",
+  "kind": "cyclone",
+  "severity": "medium",
+  "title": "Cyclone ARNAB-26: forecast within 334 km of Pulicat",
+  "summary": "Tropical Storm (maximum wind speed of 222 km/h) (GDACS Red). Closest approach about 28/10 05:30 IST. Estimated landfall near Kakinada around 28/10 13:11 IST. JTWC forecast track via GDACS; follow IMD/RSMC New Delhi bulletins for official warnings.",
+  "source": "GDACS (JTWC track)",
+  "sourceUrl": "https://www.gdacs.org/report.aspx?eventid=1001345&episodeid=10&eventtype=TC",
+  "lat": 16.4,
+  "lng": 81.8,
+  "zones": [
+   "Indian subcontinent"
+  ]
+ },
+ {
+  "id": "gdacs:TC-1001345:Red",
+  "detectedAt": "2026-10-29T08:37:19.335Z",
+  "baseline": false,
+  "rule": "gdacs_level",
+  "origin": "official",
+  "kind": "cyclone",
+  "severity": "critical",
+  "title": "GDACS Red: Tropical cyclone Tropical Cyclone ARNAB-26",
+  "summary": "Tropical cyclone alert for India.",
+  "source": "GDACS",
+  "sourceUrl": "https://www.gdacs.org/report.aspx?eventid=1001345&episodeid=10&eventtype=TC",
+  "lat": 16.4,
+  "lng": 81.8,
+  "zones": [
+   "Indian subcontinent"
+  ]
+ },
+ {
+  "id": "river:pennaiyar-cuddalore:medium",
+  "detectedAt": "2026-10-28T18:37:20.864Z",
+  "baseline": false,
+  "rule": "river_discharge",
+  "origin": "derived",
+  "kind": "flood",
+  "severity": "medium",
+  "title": "River rise forecast: Thenpennai near Cuddalore",
+  "summary": "forecast peak 3.21x the 7-day mean (250.2 -> 802.5 m3/s); peak expected 2026-10-29. Model forecast, not an official warning.",
+  "source": "GloFAS via Open-Meteo",
+  "sourceUrl": "https://open-meteo.com/en/docs/flood-api",
+  "lat": 11.76,
+  "lng": 79.7,
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ]
+ },
+ {
+  "id": "river:palar-vellore:medium",
+  "detectedAt": "2026-10-27T18:37:21.725Z",
+  "baseline": false,
+  "rule": "river_discharge",
+  "origin": "derived",
+  "kind": "flood",
+  "severity": "medium",
+  "title": "River rise forecast: Palar near Vellore",
+  "summary": "forecast peak 3.01x the 7-day mean (51.3 -> 154.2 m3/s); peak expected 2026-10-28. Model forecast, not an official warning.",
+  "source": "GloFAS via Open-Meteo",
+  "sourceUrl": "https://open-meteo.com/en/docs/flood-api",
+  "lat": 12.92,
+  "lng": 79.28,
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ]
+ },
+ {
+  "id": "sachet:IN-1793101376576041_41",
+  "detectedAt": "2026-10-27T11:52:24.583Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "cyclone",
+  "severity": "critical",
+  "title": "Cyclone: Thallarevu zone of PUDUCHERRY",
+  "summary": "Storm Surge Warning No. 9 issued on 27 Oct 2026 at 16:43 IST for Yanam. Surge of 1.0 - 2.3 m above astronomical tide is forecast. Follow official advisories; avoid low-lying coastal areas and beaches.",
+  "instruction": null,
+  "source": "Puducherry-SDMA",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793101376576041",
+  "lat": 11.94,
+  "lng": 79.81,
+  "places": [
+   {
+    "name": "Puducherry",
+    "state": "Puducherry",
+    "lat": 11.94,
+    "lng": 79.81
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-27T11:37:00.000Z",
+  "expires": "2026-10-28T06:30:00.000Z",
+  "capSeverity": "Extreme",
+  "urgency": "Immediate",
+  "certainty": "Likely"
+ },
+ {
+  "id": "river:vaigai-dam:medium",
+  "detectedAt": "2026-10-26T18:37:22.097Z",
+  "baseline": false,
+  "rule": "river_discharge",
+  "origin": "derived",
+  "kind": "flood",
+  "severity": "medium",
+  "title": "River rise forecast: Vaigai below Vaigai Dam",
+  "summary": "forecast peak 2.45x the 7-day mean (94.4 -> 230.7 m3/s); peak expected 2026-10-27. Model forecast, not an official warning.",
+  "source": "GloFAS via Open-Meteo",
+  "sourceUrl": "https://open-meteo.com/en/docs/flood-api",
+  "lat": 10.05,
+  "lng": 77.63,
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ]
+ },
+ {
+  "id": "sachet:IN-1793034513959007_43",
+  "detectedAt": "2026-10-26T17:17:01.401Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "thunderstorm",
+  "severity": "low",
+  "title": "Thunderstorm: Tenkasi, Virudhunagar districts of Tamil Nadu",
+  "summary": "Moderate Rain with thunderstorm is very likely to occur at a few places over Tenkasi, Virudhunagar in next 3 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "IMD-Chennai",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793034513959007",
+  "lat": 9.27,
+  "lng": 77.63,
+  "places": [
+   {
+    "name": "Tenkasi",
+    "state": "Tamil Nadu",
+    "lat": 8.96,
+    "lng": 77.3
+   },
+   {
+    "name": "Virudhunagar",
+    "state": "Tamil Nadu",
+    "lat": 9.58,
+    "lng": 77.96
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-26T17:05:00.000Z",
+  "expires": "2026-10-26T19:30:00.000Z",
+  "capSeverity": "Moderate",
+  "urgency": "Expected",
+  "certainty": "Likely"
+ },
+ {
+  "id": "sachet:IN-1793032587081007_43",
+  "detectedAt": "2026-10-26T16:37:21.855Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "thunderstorm",
+  "severity": "low",
+  "title": "Thunderstorm: Ariyalur, Cuddalore, Kanniyakumari, Mayiladuthurai, Nagapattinam, Ramanathapuram, Thanjavur, Thiruvarur, Thoothukkudi, Tirunelveli districts of Tamil Nadu",
+  "summary": "Light to Moderate Rain with thunderstorm and lightning is very likely to occur at isolated places over Ariyalur, Cuddalore, Kanniyakumari, Mayiladuthurai, Nagapattinam, Ramanathapuram, Thanjavur, Thiruvarur, Thoothukkudi, Tirunelveli, Karaikal, Pondicherry in next 3 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "IMD-Chennai",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793032587081007",
+  "lat": 10.133999999999999,
+  "lng": 78.923,
+  "places": [
+   {
+    "name": "Ariyalur",
+    "state": "Tamil Nadu",
+    "lat": 11.14,
+    "lng": 79.08
+   },
+   {
+    "name": "Cuddalore",
+    "state": "Tamil Nadu",
+    "lat": 11.75,
+    "lng": 79.75
+   },
+   {
+    "name": "Kanniyakumari",
+    "state": "Tamil Nadu",
+    "lat": 8.18,
+    "lng": 77.41
+   },
+   {
+    "name": "Mayiladuthurai",
+    "state": "Tamil Nadu",
+    "lat": 11.1,
+    "lng": 79.65
+   },
+   {
+    "name": "Nagapattinam",
+    "state": "Tamil Nadu",
+    "lat": 10.77,
+    "lng": 79.84
+   },
+   {
+    "name": "Ramanathapuram",
+    "state": "Tamil Nadu",
+    "lat": 9.37,
+    "lng": 78.83
+   },
+   {
+    "name": "Thanjavur",
+    "state": "Tamil Nadu",
+    "lat": 10.79,
+    "lng": 79.14
+   },
+   {
+    "name": "Thoothukudi",
+    "state": "Tamil Nadu",
+    "lat": 8.76,
+    "lng": 78.13
+   },
+   {
+    "name": "Tirunelveli",
+    "state": "Tamil Nadu",
+    "lat": 8.71,
+    "lng": 77.76
+   },
+   {
+    "name": "Tiruvarur",
+    "state": "Tamil Nadu",
+    "lat": 10.77,
+    "lng": 79.64
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-26T16:35:00.000Z",
+  "expires": "2026-10-26T19:34:00.000Z",
+  "capSeverity": "Moderate",
+  "urgency": "Expected",
+  "certainty": "Likely"
+ },
+ {
+  "id": "sachet:IN-1793032589369041_43",
+  "detectedAt": "2026-10-26T16:37:21.855Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "thunderstorm",
+  "severity": "low",
+  "title": "Thunderstorm: Karaikal, Pondicherry districts of Puducherry",
+  "summary": "Light to Moderate Rain with thunderstorm and lightning is very likely to occur at isolated places over Ariyalur, Cuddalore, Kanniyakumari, Mayiladuthurai, Nagapattinam, Ramanathapuram, Thanjavur, Thiruvarur, Thoothukkudi, Tirunelveli, Karaikal, Pondicherry in next 3 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "IMD-Chennai",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793032589369041",
+  "lat": 11.434999999999999,
+  "lng": 79.825,
+  "places": [
+   {
+    "name": "Puducherry",
+    "state": "Puducherry",
+    "lat": 11.94,
+    "lng": 79.81
+   },
+   {
+    "name": "Karaikal",
+    "state": "Puducherry",
+    "lat": 10.93,
+    "lng": 79.84
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-26T16:35:00.000Z",
+  "expires": "2026-10-26T19:34:00.000Z",
+  "capSeverity": "Moderate",
+  "urgency": "Expected",
+  "certainty": "Likely"
+ },
+ {
+  "id": "river:pennaiyar-cuddalore:high",
+  "detectedAt": "2026-10-26T15:37:19.413Z",
+  "baseline": false,
+  "rule": "river_discharge",
+  "origin": "derived",
+  "kind": "flood",
+  "severity": "high",
+  "title": "River rise forecast: Thenpennai near Cuddalore",
+  "summary": "forecast peak 6.71x the 7-day mean (103.5 -> 694 m3/s); peak expected 2026-10-28. Model forecast, not an official warning.",
+  "source": "GloFAS via Open-Meteo",
+  "sourceUrl": "https://open-meteo.com/en/docs/flood-api",
+  "lat": 11.76,
+  "lng": 79.7,
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ]
+ },
+ {
+  "id": "river:pennaiyar-krishnagiri:medium",
+  "detectedAt": "2026-10-26T15:37:19.413Z",
+  "baseline": false,
+  "rule": "river_discharge",
+  "origin": "derived",
+  "kind": "flood",
+  "severity": "medium",
+  "title": "River rise forecast: Thenpennai near Krishnagiri",
+  "summary": "forecast peak 2.17x the 7-day mean (46.2 -> 100.4 m3/s); peak expected 2026-10-27. Model forecast, not an official warning.",
+  "source": "GloFAS via Open-Meteo",
+  "sourceUrl": "https://open-meteo.com/en/docs/flood-api",
+  "lat": 12.37,
+  "lng": 78.23,
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ]
+ },
+ {
+  "id": "river:palar-vellore:high",
+  "detectedAt": "2026-10-26T15:37:19.413Z",
+  "baseline": false,
+  "rule": "river_discharge",
+  "origin": "derived",
+  "kind": "flood",
+  "severity": "high",
+  "title": "River rise forecast: Palar near Vellore",
+  "summary": "forecast peak 4.06x the 7-day mean (38 -> 154.2 m3/s); peak expected 2026-10-28. Model forecast, not an official warning.",
+  "source": "GloFAS via Open-Meteo",
+  "sourceUrl": "https://open-meteo.com/en/docs/flood-api",
+  "lat": 12.92,
+  "lng": 79.28,
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ]
+ },
+ {
+  "id": "river:periyar-mullaperiyar:medium",
+  "detectedAt": "2026-10-26T15:37:19.413Z",
+  "baseline": false,
+  "rule": "river_discharge",
+  "origin": "derived",
+  "kind": "flood",
+  "severity": "medium",
+  "title": "River rise forecast: Periyar at Mullaperiyar",
+  "summary": "forecast peak 3.16x the 7-day mean (18.2 -> 57.6 m3/s); peak expected 2026-10-26. Model forecast, not an official warning.",
+  "source": "GloFAS via Open-Meteo",
+  "sourceUrl": "https://open-meteo.com/en/docs/flood-api",
+  "lat": 9.53,
+  "lng": 77.14,
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ]
+ },
+ {
+  "id": "river:amaravathi-karur:medium",
+  "detectedAt": "2026-10-26T15:37:19.413Z",
+  "baseline": false,
+  "rule": "river_discharge",
+  "origin": "derived",
+  "kind": "flood",
+  "severity": "medium",
+  "title": "River rise forecast: Amaravathi at Karur",
+  "summary": "forecast peak 2.26x the 7-day mean (81.6 -> 184.4 m3/s); peak expected 2026-10-28. Model forecast, not an official warning.",
+  "source": "GloFAS via Open-Meteo",
+  "sourceUrl": "https://open-meteo.com/en/docs/flood-api",
+  "lat": 10.96,
+  "lng": 78.08,
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ]
+ },
+ {
+  "id": "river:thamirabarani:high",
+  "detectedAt": "2026-10-26T14:52:23.936Z",
+  "baseline": false,
+  "rule": "river_discharge",
+  "origin": "derived",
+  "kind": "flood",
+  "severity": "high",
+  "title": "River rise forecast: Thamirabarani at Tirunelveli",
+  "summary": "forecast peak 4.78x the 7-day mean (164.1 -> 784.2 m3/s); peak expected 2026-10-26. Model forecast, not an official warning.",
+  "source": "GloFAS via Open-Meteo",
+  "sourceUrl": "https://open-meteo.com/en/docs/flood-api",
+  "lat": 8.68,
+  "lng": 77.8,
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ]
+ },
+ {
+  "id": "river:vaigai-dam:high",
+  "detectedAt": "2026-10-26T14:52:23.936Z",
+  "baseline": false,
+  "rule": "river_discharge",
+  "origin": "derived",
+  "kind": "flood",
+  "severity": "high",
+  "title": "River rise forecast: Vaigai below Vaigai Dam",
+  "summary": "forecast peak 5.04x the 7-day mean (62.7 -> 316 m3/s); peak expected 2026-10-26. Model forecast, not an official warning.",
+  "source": "GloFAS via Open-Meteo",
+  "sourceUrl": "https://open-meteo.com/en/docs/flood-api",
+  "lat": 10.05,
+  "lng": 77.63,
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ]
+ },
+ {
+  "id": "sachet:IN-1793021722618007_43",
+  "detectedAt": "2026-10-26T13:45:36.840Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "thunderstorm",
+  "severity": "low",
+  "title": "Thunderstorm: Cuddalore, Mayiladuthurai, Nagapattinam, Ramanathapuram, Theni, Thiruvarur, Viluppuram, Virudhunagar districts of Tamil Nadu",
+  "summary": "Light to Moderate Rain with light Thunderstorm and lightning is likely to occur at isolated places over Cuddalore, Mayiladuthurai, Nagapattinam, Ramanathapuram, Theni, Thiruvarur, Viluppuram, Virudhunagar, Karaikal, Pondicherry in next 3 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "IMD-Chennai",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793021722618007",
+  "lat": 10.661249999999999,
+  "lng": 79.08,
+  "places": [
+   {
+    "name": "Cuddalore",
+    "state": "Tamil Nadu",
+    "lat": 11.75,
+    "lng": 79.75
+   },
+   {
+    "name": "Mayiladuthurai",
+    "state": "Tamil Nadu",
+    "lat": 11.1,
+    "lng": 79.65
+   },
+   {
+    "name": "Nagapattinam",
+    "state": "Tamil Nadu",
+    "lat": 10.77,
+    "lng": 79.84
+   },
+   {
+    "name": "Ramanathapuram",
+    "state": "Tamil Nadu",
+    "lat": 9.37,
+    "lng": 78.83
+   },
+   {
+    "name": "Theni",
+    "state": "Tamil Nadu",
+    "lat": 10.01,
+    "lng": 77.48
+   },
+   {
+    "name": "Tiruvarur",
+    "state": "Tamil Nadu",
+    "lat": 10.77,
+    "lng": 79.64
+   },
+   {
+    "name": "Viluppuram",
+    "state": "Tamil Nadu",
+    "lat": 11.94,
+    "lng": 79.49
+   },
+   {
+    "name": "Virudhunagar",
+    "state": "Tamil Nadu",
+    "lat": 9.58,
+    "lng": 77.96
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-26T13:33:00.000Z",
+  "expires": "2026-10-26T16:30:00.000Z",
+  "capSeverity": "Moderate",
+  "urgency": "Expected",
+  "certainty": "Possible"
+ },
+ {
+  "id": "sachet:IN-1793021725992041_41",
+  "detectedAt": "2026-10-26T13:45:36.840Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "thunderstorm",
+  "severity": "low",
+  "title": "Thunderstorm: Karaikal,Pondicherry districts of Puducherry",
+  "summary": "Light to Moderate Rain with light Thunderstorm and lightning is likely to occur at isolated places over Cuddalore, Mayiladuthurai, Nagapattinam, Ramanathapuram, Theni, Thiruvarur, Viluppuram, Virudhunagar, Karaikal, Pondicherry in next 3 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "Puducherry-SDMA",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793021725992041",
+  "lat": 11.434999999999999,
+  "lng": 79.825,
+  "places": [
+   {
+    "name": "Puducherry",
+    "state": "Puducherry",
+    "lat": 11.94,
+    "lng": 79.81
+   },
+   {
+    "name": "Karaikal",
+    "state": "Puducherry",
+    "lat": 10.93,
+    "lng": 79.84
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-26T13:33:00.000Z",
+  "expires": "2026-10-26T16:30:00.000Z",
+  "capSeverity": "Moderate",
+  "urgency": "Expected",
+  "certainty": "Possible"
+ },
+ {
+  "id": "sachet:IN-1793012952611007_43",
+  "detectedAt": "2026-10-26T11:22:23.608Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "thunderstorm",
+  "severity": "low",
+  "title": "Thunderstorm: Chengalpattu, Cuddalore, Dindigul, Kancheepuram, Madurai, Mayiladuthurai, Nagapattinam, Ramanathapuram, Sivaganga, Theni, Thiruvarur, Virudhunagar districts of Tamil Nadu",
+  "summary": "Light to Moderate Rain with light Thunderstorm and lightning is likely to occur at isolated places over Chengalpattu, Cuddalore, Dindigul, Kancheepuram, Madurai, Mayiladuthurai, Nagapattinam, Ramanathapuram, Sivaganga, Theni, Thiruvarur, Virudhunagar, Karaikal, Pondicherry in next 3 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "IMD-Chennai",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793012952611007",
+  "lat": 10.750833333333333,
+  "lng": 78.95083333333335,
+  "places": [
+   {
+    "name": "Chengalpattu",
+    "state": "Tamil Nadu",
+    "lat": 12.69,
+    "lng": 79.98
+   },
+   {
+    "name": "Cuddalore",
+    "state": "Tamil Nadu",
+    "lat": 11.75,
+    "lng": 79.75
+   },
+   {
+    "name": "Dindigul",
+    "state": "Tamil Nadu",
+    "lat": 10.36,
+    "lng": 77.98
+   },
+   {
+    "name": "Kancheepuram",
+    "state": "Tamil Nadu",
+    "lat": 12.83,
+    "lng": 79.7
+   },
+   {
+    "name": "Madurai",
+    "state": "Tamil Nadu",
+    "lat": 9.93,
+    "lng": 78.12
+   },
+   {
+    "name": "Mayiladuthurai",
+    "state": "Tamil Nadu",
+    "lat": 11.1,
+    "lng": 79.65
+   },
+   {
+    "name": "Nagapattinam",
+    "state": "Tamil Nadu",
+    "lat": 10.77,
+    "lng": 79.84
+   },
+   {
+    "name": "Ramanathapuram",
+    "state": "Tamil Nadu",
+    "lat": 9.37,
+    "lng": 78.83
+   },
+   {
+    "name": "Sivaganga",
+    "state": "Tamil Nadu",
+    "lat": 9.85,
+    "lng": 78.48
+   },
+   {
+    "name": "Theni",
+    "state": "Tamil Nadu",
+    "lat": 10.01,
+    "lng": 77.48
+   },
+   {
+    "name": "Tiruvarur",
+    "state": "Tamil Nadu",
+    "lat": 10.77,
+    "lng": 79.64
+   },
+   {
+    "name": "Virudhunagar",
+    "state": "Tamil Nadu",
+    "lat": 9.58,
+    "lng": 77.96
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-26T11:06:00.000Z",
+  "expires": "2026-10-26T13:30:00.000Z",
+  "capSeverity": "Moderate",
+  "urgency": "Expected",
+  "certainty": "Possible"
+ },
+ {
+  "id": "sachet:IN-1793012959058041_41",
+  "detectedAt": "2026-10-26T11:22:23.608Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "thunderstorm",
+  "severity": "low",
+  "title": "Thunderstorm: Karaikal,Pondicherry districts of Puducherry",
+  "summary": "Light to Moderate Rain with light Thunderstorm and lightning is likely to occur at isolated places over Chengalpattu, Cuddalore, Dindigul, Kancheepuram, Madurai, Mayiladuthurai, Nagapattinam, Ramanathapuram, Sivaganga, Theni, Thiruvarur, Virudhunagar, Karaikal, Pondicherry in next 3 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "Puducherry-SDMA",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793012959058041",
+  "lat": 11.434999999999999,
+  "lng": 79.825,
+  "places": [
+   {
+    "name": "Puducherry",
+    "state": "Puducherry",
+    "lat": 11.94,
+    "lng": 79.81
+   },
+   {
+    "name": "Karaikal",
+    "state": "Puducherry",
+    "lat": 10.93,
+    "lng": 79.84
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-26T11:06:00.000Z",
+  "expires": "2026-10-26T13:30:00.000Z",
+  "capSeverity": "Moderate",
+  "urgency": "Expected",
+  "certainty": "Possible"
+ },
+ {
+  "id": "cyclone:1001345:400",
+  "detectedAt": "2026-10-26T08:22:25.430Z",
+  "baseline": false,
+  "rule": "cyclone_track",
+  "origin": "derived",
+  "kind": "cyclone",
+  "severity": "medium",
+  "title": "Cyclone ARNAB-26: forecast within 345 km of Pulicat",
+  "summary": "Hurricane/Typhoon > 74 mph (maximum wind speed of 204 km/h) (GDACS Red). Closest approach about 27/10 23:30 IST. Estimated landfall near Kakinada around 28/10 14:53 IST. JTWC forecast track via GDACS; follow IMD/RSMC New Delhi bulletins for official warnings.",
+  "source": "GDACS (JTWC track)",
+  "sourceUrl": "https://www.gdacs.org/report.aspx?eventid=1001345&episodeid=2&eventtype=TC",
+  "lat": 15.3,
+  "lng": 88.4,
+  "zones": [
+   "Indian subcontinent"
+  ]
+ },
+ {
+  "id": "gdacs:TC-1001345:Red",
+  "detectedAt": "2026-10-26T08:22:25.430Z",
+  "baseline": false,
+  "rule": "gdacs_level",
+  "origin": "official",
+  "kind": "cyclone",
+  "severity": "critical",
+  "title": "GDACS Red: Tropical cyclone Tropical Cyclone ARNAB-26",
+  "summary": "Tropical cyclone alert for India.",
+  "source": "GDACS",
+  "sourceUrl": "https://www.gdacs.org/report.aspx?eventid=1001345&episodeid=2&eventtype=TC",
+  "lat": 15.3,
+  "lng": 88.4,
+  "zones": [
+   "Indian subcontinent"
+  ]
+ },
+ {
+  "id": "sachet:IN-1793001334234007_43",
+  "detectedAt": "2026-10-26T08:07:18.687Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "thunderstorm",
+  "severity": "low",
+  "title": "Thunderstorm: Cuddalore, Kanniyakumari, Mayiladuthurai, Nagapattinam, Ramanathapuram, Thiruvarur districts of Tamil Nadu",
+  "summary": "Light to Moderate Rain with light Thunderstorm and lightning is likely to occur at isolated places over Cuddalore, Kanniyakumari, Mayiladuthurai, Nagapattinam, Ramanathapuram, Thiruvarur, Karaikal, Pondicherry in next 3 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "IMD-Chennai",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793001334234007",
+  "lat": 10.323333333333332,
+  "lng": 79.18666666666665,
+  "places": [
+   {
+    "name": "Cuddalore",
+    "state": "Tamil Nadu",
+    "lat": 11.75,
+    "lng": 79.75
+   },
+   {
+    "name": "Kanniyakumari",
+    "state": "Tamil Nadu",
+    "lat": 8.18,
+    "lng": 77.41
+   },
+   {
+    "name": "Mayiladuthurai",
+    "state": "Tamil Nadu",
+    "lat": 11.1,
+    "lng": 79.65
+   },
+   {
+    "name": "Nagapattinam",
+    "state": "Tamil Nadu",
+    "lat": 10.77,
+    "lng": 79.84
+   },
+   {
+    "name": "Ramanathapuram",
+    "state": "Tamil Nadu",
+    "lat": 9.37,
+    "lng": 78.83
+   },
+   {
+    "name": "Tiruvarur",
+    "state": "Tamil Nadu",
+    "lat": 10.77,
+    "lng": 79.64
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-26T07:53:00.000Z",
+  "expires": "2026-10-26T10:30:00.000Z",
+  "capSeverity": "Moderate",
+  "urgency": "Expected",
+  "certainty": "Possible"
+ },
+ {
+  "id": "sachet:IN-1793001335057041_41",
+  "detectedAt": "2026-10-26T08:07:18.687Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "thunderstorm",
+  "severity": "low",
+  "title": "Thunderstorm: Karaikal,Pondicherry districts of Puducherry",
+  "summary": "Light to Moderate Rain with light Thunderstorm and lightning is likely to occur at isolated places over Cuddalore, Kanniyakumari, Mayiladuthurai, Nagapattinam, Ramanathapuram, Thiruvarur, Karaikal, Pondicherry in next 3 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "Puducherry-SDMA",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793001335057041",
+  "lat": 11.434999999999999,
+  "lng": 79.825,
+  "places": [
+   {
+    "name": "Puducherry",
+    "state": "Puducherry",
+    "lat": 11.94,
+    "lng": 79.81
+   },
+   {
+    "name": "Karaikal",
+    "state": "Puducherry",
+    "lat": 10.93,
+    "lng": 79.84
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-26T07:53:00.000Z",
+  "expires": "2026-10-26T10:30:00.000Z",
+  "capSeverity": "Moderate",
+  "urgency": "Expected",
+  "certainty": "Possible"
+ },
+ {
+  "id": "sachet:IN-1792988631804007_43",
+  "detectedAt": "2026-10-26T04:37:19.055Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "thunderstorm",
+  "severity": "low",
+  "title": "Thunderstorm: Cuddalore, Mayiladuthurai, Nagapattinam, Ramanathapuram, Thiruvarur districts of Tamil Nadu",
+  "summary": "Light to Moderate Rain with Thunderstorm and Lightningh is very likely to occur at isolated places over Cuddalore, Mayiladuthurai, Nagapattinam, Ramanathapuram, Thiruvarur, Karaikal, Pondicherry in next 3 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "IMD-Chennai",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792988631804007",
+  "lat": 10.752,
+  "lng": 79.542,
+  "places": [
+   {
+    "name": "Cuddalore",
+    "state": "Tamil Nadu",
+    "lat": 11.75,
+    "lng": 79.75
+   },
+   {
+    "name": "Mayiladuthurai",
+    "state": "Tamil Nadu",
+    "lat": 11.1,
+    "lng": 79.65
+   },
+   {
+    "name": "Nagapattinam",
+    "state": "Tamil Nadu",
+    "lat": 10.77,
+    "lng": 79.84
+   },
+   {
+    "name": "Ramanathapuram",
+    "state": "Tamil Nadu",
+    "lat": 9.37,
+    "lng": 78.83
+   },
+   {
+    "name": "Tiruvarur",
+    "state": "Tamil Nadu",
+    "lat": 10.77,
+    "lng": 79.64
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-26T04:30:00.000Z",
+  "expires": "2026-10-26T07:30:00.000Z",
+  "capSeverity": "Moderate",
+  "urgency": "Expected",
+  "certainty": "Likely"
+ },
+ {
+  "id": "sachet:IN-1792988633444041_41",
+  "detectedAt": "2026-10-26T04:37:19.055Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "thunderstorm",
+  "severity": "low",
+  "title": "Thunderstorm: Karaikal,Pondicherry districts of Puducherry",
+  "summary": "Light to Moderate Rain with Thunderstorm and Lightningh is very likely to occur at isolated places over Cuddalore, Mayiladuthurai, Nagapattinam, Ramanathapuram, Thiruvarur, Karaikal, Pondicherry in next 3 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "Puducherry-SDMA",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792988633444041",
+  "lat": 11.434999999999999,
+  "lng": 79.825,
+  "places": [
+   {
+    "name": "Puducherry",
+    "state": "Puducherry",
+    "lat": 11.94,
+    "lng": 79.81
+   },
+   {
+    "name": "Karaikal",
+    "state": "Puducherry",
+    "lat": 10.93,
+    "lng": 79.84
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-26T04:30:00.000Z",
+  "expires": "2026-10-26T07:30:00.000Z",
+  "capSeverity": "Moderate",
+  "urgency": "Expected",
+  "certainty": "Likely"
+ },
+ {
+  "id": "gdacs:TC-1001345:Orange",
+  "detectedAt": "2026-10-26T01:52:23.973Z",
+  "baseline": false,
+  "rule": "gdacs_level",
+  "origin": "official",
+  "kind": "cyclone",
+  "severity": "high",
+  "title": "GDACS Orange: Tropical cyclone Tropical Cyclone TWO-26",
+  "summary": "Tropical cyclone alert for India.",
+  "source": "GDACS",
+  "sourceUrl": "https://www.gdacs.org/report.aspx?eventid=1001345&episodeid=1&eventtype=TC",
+  "lat": 16,
+  "lng": 89.1,
+  "zones": [
+   "Indian subcontinent"
+  ]
+ },
+ {
+  "id": "sachet:IN-1792957587899007_43",
+  "detectedAt": "2026-10-25T19:52:21.809Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "thunderstorm",
+  "severity": "low",
+  "title": "Thunderstorm: Mayiladuthurai, Nagapattinam, Pudukkottai, Ramanathapuram, Sivaganga districts of Tamil Nadu",
+  "summary": "Moderate Rain with thunderstorm and lightning is likely to occur at isolated places over Mayiladuthurai, Nagapattinam, Pudukkottai, Ramanathapuram, Sivaganga and Karaikal in next 3 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "IMD-Chennai",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792957587899007",
+  "lat": 10.294,
+  "lng": 79.124,
+  "places": [
+   {
+    "name": "Mayiladuthurai",
+    "state": "Tamil Nadu",
+    "lat": 11.1,
+    "lng": 79.65
+   },
+   {
+    "name": "Nagapattinam",
+    "state": "Tamil Nadu",
+    "lat": 10.77,
+    "lng": 79.84
+   },
+   {
+    "name": "Pudukkottai",
+    "state": "Tamil Nadu",
+    "lat": 10.38,
+    "lng": 78.82
+   },
+   {
+    "name": "Ramanathapuram",
+    "state": "Tamil Nadu",
+    "lat": 9.37,
+    "lng": 78.83
+   },
+   {
+    "name": "Sivaganga",
+    "state": "Tamil Nadu",
+    "lat": 9.85,
+    "lng": 78.48
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-25T19:33:00.000Z",
+  "expires": "2026-10-25T22:33:00.000Z",
+  "capSeverity": "Severe",
+  "urgency": "Expected",
+  "certainty": "Possible"
+ },
+ {
+  "id": "sachet:IN-1792957588585007_43",
+  "detectedAt": "2026-10-25T19:52:21.809Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "other",
+  "severity": "low",
+  "title": "Alert: Ariyalur, Chengalpattu, Chennai, Coimbatore, Cuddalore, Dindigul, Kancheepuram, Kanniyakumari, Karur, Madurai, Namakkal, Perambalur, Tenkasi, Thanjavur, Theni, The Nilgiris, Thiruvallur, Thiruvarur, Thoothukkudi, Tiruchirappalli, Tirunelveli, Tiruppur, Virudhunagar districts of Tamil Nadu",
+  "summary": "Light/ModerateRain withTS likely at IsolatedPlacesover Ariyalur,Chengalpattu,Chennai,Coimbatore,Cuddalore,Dindigul,Kancheepuram,Kanniyakumari,Karur,Madurai,Namakkal,Perambalur,Tenkasi,Thanjavur,Theni,Nilgiris,Thiruvallur,Thiruvarur,Thoothukkudi,Tiruchirappalli,Tirunelveli,Tiruppur,Virudhunagar,Pond…",
+  "instruction": null,
+  "source": "IMD-Chennai",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792957588585007",
+  "lat": 10.80086956521739,
+  "lng": 78.45391304347827,
+  "places": [
+   {
+    "name": "Ariyalur",
+    "state": "Tamil Nadu",
+    "lat": 11.14,
+    "lng": 79.08
+   },
+   {
+    "name": "Chengalpattu",
+    "state": "Tamil Nadu",
+    "lat": 12.69,
+    "lng": 79.98
+   },
+   {
+    "name": "Chennai",
+    "state": "Tamil Nadu",
+    "lat": 13.08,
+    "lng": 80.27
+   },
+   {
+    "name": "Coimbatore",
+    "state": "Tamil Nadu",
+    "lat": 11.02,
+    "lng": 76.96
+   },
+   {
+    "name": "Cuddalore",
+    "state": "Tamil Nadu",
+    "lat": 11.75,
+    "lng": 79.75
+   },
+   {
+    "name": "Dindigul",
+    "state": "Tamil Nadu",
+    "lat": 10.36,
+    "lng": 77.98
+   },
+   {
+    "name": "Kancheepuram",
+    "state": "Tamil Nadu",
+    "lat": 12.83,
+    "lng": 79.7
+   },
+   {
+    "name": "Kanniyakumari",
+    "state": "Tamil Nadu",
+    "lat": 8.18,
+    "lng": 77.41
+   },
+   {
+    "name": "Karur",
+    "state": "Tamil Nadu",
+    "lat": 10.96,
+    "lng": 78.08
+   },
+   {
+    "name": "Madurai",
+    "state": "Tamil Nadu",
+    "lat": 9.93,
+    "lng": 78.12
+   },
+   {
+    "name": "Namakkal",
+    "state": "Tamil Nadu",
+    "lat": 11.22,
+    "lng": 78.17
+   },
+   {
+    "name": "Nilgiris",
+    "state": "Tamil Nadu",
+    "lat": 11.41,
+    "lng": 76.7
+   },
+   {
+    "name": "Perambalur",
+    "state": "Tamil Nadu",
+    "lat": 11.23,
+    "lng": 78.88
+   },
+   {
+    "name": "Tenkasi",
+    "state": "Tamil Nadu",
+    "lat": 8.96,
+    "lng": 77.3
+   },
+   {
+    "name": "Thanjavur",
+    "state": "Tamil Nadu",
+    "lat": 10.79,
+    "lng": 79.14
+   },
+   {
+    "name": "Theni",
+    "state": "Tamil Nadu",
+    "lat": 10.01,
+    "lng": 77.48
+   },
+   {
+    "name": "Thoothukudi",
+    "state": "Tamil Nadu",
+    "lat": 8.76,
+    "lng": 78.13
+   },
+   {
+    "name": "Tiruchirappalli",
+    "state": "Tamil Nadu",
+    "lat": 10.79,
+    "lng": 78.7
+   },
+   {
+    "name": "Tirunelveli",
+    "state": "Tamil Nadu",
+    "lat": 8.71,
+    "lng": 77.76
+   },
+   {
+    "name": "Tiruppur",
+    "state": "Tamil Nadu",
+    "lat": 11.11,
+    "lng": 77.34
+   },
+   {
+    "name": "Tiruvallur",
+    "state": "Tamil Nadu",
+    "lat": 13.14,
+    "lng": 79.91
+   },
+   {
+    "name": "Tiruvarur",
+    "state": "Tamil Nadu",
+    "lat": 10.77,
+    "lng": 79.64
+   },
+   {
+    "name": "Virudhunagar",
+    "state": "Tamil Nadu",
+    "lat": 9.58,
+    "lng": 77.96
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-25T19:39:00.000Z",
+  "expires": "2026-10-25T22:39:00.000Z",
+  "capSeverity": "Moderate",
+  "urgency": "Expected",
+  "certainty": "Possible"
+ },
+ {
+  "id": "sachet:IN-1792957591073041_41",
+  "detectedAt": "2026-10-25T19:52:21.809Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "other",
+  "severity": "low",
+  "title": "Alert: Pondicherry district of Puducherry",
+  "summary": "Light/ModerateRain withTS likely at IsolatedPlacesover Ariyalur,Chengalpattu,Chennai,Coimbatore,Cuddalore,Dindigul,Kancheepuram,Kanniyakumari,Karur,Madurai,Namakkal,Perambalur,Tenkasi,Thanjavur,Theni,Nilgiris,Thiruvallur,Thiruvarur,Thoothukkudi,Tiruchirappalli,Tirunelveli,Tiruppur,Virudhunagar,Pond…",
+  "instruction": null,
+  "source": "Puducherry-SDMA",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792957591073041",
+  "lat": 11.94,
+  "lng": 79.81,
+  "places": [
+   {
+    "name": "Puducherry",
+    "state": "Puducherry",
+    "lat": 11.94,
+    "lng": 79.81
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-25T19:39:00.000Z",
+  "expires": "2026-10-25T22:39:00.000Z",
+  "capSeverity": "Moderate",
+  "urgency": "Expected",
+  "certainty": "Possible"
+ },
+ {
+  "id": "sachet:IN-1792957591411041_41",
+  "detectedAt": "2026-10-25T19:52:21.809Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "thunderstorm",
+  "severity": "low",
+  "title": "Thunderstorm: Karaikal district of Puducherry",
+  "summary": "Moderate Rain with thunderstorm and lightning is likely to occur at isolated places over Mayiladuthurai, Nagapattinam, Pudukkottai, Ramanathapuram, Sivaganga and Karaikal in next 3 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "Puducherry-SDMA",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792957591411041",
+  "lat": 11.434999999999999,
+  "lng": 79.825,
+  "places": [
+   {
+    "name": "Puducherry",
+    "state": "Puducherry",
+    "lat": 11.94,
+    "lng": 79.81
+   },
+   {
+    "name": "Karaikal",
+    "state": "Puducherry",
+    "lat": 10.93,
+    "lng": 79.84
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-25T19:33:00.000Z",
+  "expires": "2026-10-25T22:33:00.000Z",
+  "capSeverity": "Severe",
+  "urgency": "Expected",
+  "certainty": "Possible"
+ },
+ {
+  "id": "river:vaigai-madurai:medium",
+  "detectedAt": "2026-10-25T19:07:17.498Z",
+  "baseline": false,
+  "rule": "river_discharge",
+  "origin": "derived",
+  "kind": "flood",
+  "severity": "medium",
+  "title": "River rise forecast: Vaigai at Madurai",
+  "summary": "forecast peak 3.96x the 7-day mean (130.2 -> 515.4 m3/s); peak expected 2026-10-26. Model forecast, not an official warning.",
+  "source": "GloFAS via Open-Meteo",
+  "sourceUrl": "https://open-meteo.com/en/docs/flood-api",
+  "lat": 9.88,
+  "lng": 78.12,
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ]
+ },
+ {
+  "id": "sachet:IN-1792935704566006_6",
+  "detectedAt": "2026-10-25T13:52:24.037Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "rain",
+  "severity": "low",
+  "title": "Heavy rain: Kollam,Thiruvananthapuram districts of Kerala",
+  "summary": "Moderate Thunderstorm with Moderate rainfall (5-15mm/ hour) and wind speed likely to be 50 Kmph (in Gusts) at isolated places over Thiruvananthapuram, Kollam districts in next 3 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "Kerala-SDMA",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792935704566006",
+  "lat": 8.705,
+  "lng": 76.775,
+  "places": [
+   {
+    "name": "Thiruvananthapuram",
+    "state": "Kerala",
+    "lat": 8.52,
+    "lng": 76.94
+   },
+   {
+    "name": "Kollam",
+    "state": "Kerala",
+    "lat": 8.89,
+    "lng": 76.61
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-25T13:39:00.000Z",
+  "expires": "2026-10-25T16:39:00.000Z",
+  "capSeverity": "Severe",
+  "urgency": "Expected",
+  "certainty": "Likely"
+ },
+ {
+  "id": "sachet:IN-1792923807811007_43",
+  "detectedAt": "2026-10-25T10:37:19.026Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "thunderstorm",
+  "severity": "low",
+  "title": "Thunderstorm: Coimbatore, Pudukkottai, Ramanathapuram, Sivaganga, Tiruppur districts of Tamil Nadu",
+  "summary": "Moderate Rain with Thunderstorm and Lightning is very likely to occur at isolated places over Coimbatore, Pudukkottai, Ramanathapuram, Sivaganga, Tiruppur in next 3 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "IMD-Chennai",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792923807811007",
+  "lat": 10.346,
+  "lng": 78.08599999999998,
+  "places": [
+   {
+    "name": "Coimbatore",
+    "state": "Tamil Nadu",
+    "lat": 11.02,
+    "lng": 76.96
+   },
+   {
+    "name": "Pudukkottai",
+    "state": "Tamil Nadu",
+    "lat": 10.38,
+    "lng": 78.82
+   },
+   {
+    "name": "Ramanathapuram",
+    "state": "Tamil Nadu",
+    "lat": 9.37,
+    "lng": 78.83
+   },
+   {
+    "name": "Sivaganga",
+    "state": "Tamil Nadu",
+    "lat": 9.85,
+    "lng": 78.48
+   },
+   {
+    "name": "Tiruppur",
+    "state": "Tamil Nadu",
+    "lat": 11.11,
+    "lng": 77.34
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-25T10:30:00.000Z",
+  "expires": "2026-10-25T13:30:00.000Z",
+  "capSeverity": "Severe",
+  "urgency": "Expected",
+  "certainty": "Likely"
+ },
+ {
+  "id": "sachet:IN-1792923808967007_43",
+  "detectedAt": "2026-10-25T10:37:19.026Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "thunderstorm",
+  "severity": "low",
+  "title": "Thunderstorm: Ariyalur, Chengalpattu, Chennai, Cuddalore, Dindigul, Erode, Kancheepuram, Kanniyakumari, Karur, Madurai, Mayiladuthurai, Nagapattinam, Namakkal, Perambalur, Ranipet, Salem, Tenkasi, Thanjavur, Theni, The Nilgiris, Thiruvallur, Thiruvarur, Thoothukkudi, Tiruchirappalli, Tirunelveli, Virudhunagar di…",
+  "summary": "Light to Moderate Rain with Thunderstorm and Lightning is very likely to occur at isolated places over Ariyalur, Cgl, Chn, Cdl, Dgl, Erd, Knch, Kkr, Karur, Mdr, Myld, Ngpt, Nmkl, Prm, Rp, Salem, Tenkasi, Tnj, Thn,Nlg, Trl, Thiruvarur, Tkudi, Tiruchir, Tirunelveli, Virudhunagar, Karaikal in next 3 h…",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "IMD-Chennai",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792923808967007",
+  "lat": 10.92653846153846,
+  "lng": 78.6473076923077,
+  "places": [
+   {
+    "name": "Ariyalur",
+    "state": "Tamil Nadu",
+    "lat": 11.14,
+    "lng": 79.08
+   },
+   {
+    "name": "Chengalpattu",
+    "state": "Tamil Nadu",
+    "lat": 12.69,
+    "lng": 79.98
+   },
+   {
+    "name": "Chennai",
+    "state": "Tamil Nadu",
+    "lat": 13.08,
+    "lng": 80.27
+   },
+   {
+    "name": "Cuddalore",
+    "state": "Tamil Nadu",
+    "lat": 11.75,
+    "lng": 79.75
+   },
+   {
+    "name": "Dindigul",
+    "state": "Tamil Nadu",
+    "lat": 10.36,
+    "lng": 77.98
+   },
+   {
+    "name": "Erode",
+    "state": "Tamil Nadu",
+    "lat": 11.34,
+    "lng": 77.72
+   },
+   {
+    "name": "Kancheepuram",
+    "state": "Tamil Nadu",
+    "lat": 12.83,
+    "lng": 79.7
+   },
+   {
+    "name": "Kanniyakumari",
+    "state": "Tamil Nadu",
+    "lat": 8.18,
+    "lng": 77.41
+   },
+   {
+    "name": "Karur",
+    "state": "Tamil Nadu",
+    "lat": 10.96,
+    "lng": 78.08
+   },
+   {
+    "name": "Madurai",
+    "state": "Tamil Nadu",
+    "lat": 9.93,
+    "lng": 78.12
+   },
+   {
+    "name": "Mayiladuthurai",
+    "state": "Tamil Nadu",
+    "lat": 11.1,
+    "lng": 79.65
+   },
+   {
+    "name": "Nagapattinam",
+    "state": "Tamil Nadu",
+    "lat": 10.77,
+    "lng": 79.84
+   },
+   {
+    "name": "Namakkal",
+    "state": "Tamil Nadu",
+    "lat": 11.22,
+    "lng": 78.17
+   },
+   {
+    "name": "Nilgiris",
+    "state": "Tamil Nadu",
+    "lat": 11.41,
+    "lng": 76.7
+   },
+   {
+    "name": "Perambalur",
+    "state": "Tamil Nadu",
+    "lat": 11.23,
+    "lng": 78.88
+   },
+   {
+    "name": "Ranipet",
+    "state": "Tamil Nadu",
+    "lat": 12.93,
+    "lng": 79.33
+   },
+   {
+    "name": "Salem",
+    "state": "Tamil Nadu",
+    "lat": 11.66,
+    "lng": 78.15
+   },
+   {
+    "name": "Tenkasi",
+    "state": "Tamil Nadu",
+    "lat": 8.96,
+    "lng": 77.3
+   },
+   {
+    "name": "Thanjavur",
+    "state": "Tamil Nadu",
+    "lat": 10.79,
+    "lng": 79.14
+   },
+   {
+    "name": "Theni",
+    "state": "Tamil Nadu",
+    "lat": 10.01,
+    "lng": 77.48
+   },
+   {
+    "name": "Thoothukudi",
+    "state": "Tamil Nadu",
+    "lat": 8.76,
+    "lng": 78.13
+   },
+   {
+    "name": "Tiruchirappalli",
+    "state": "Tamil Nadu",
+    "lat": 10.79,
+    "lng": 78.7
+   },
+   {
+    "name": "Tirunelveli",
+    "state": "Tamil Nadu",
+    "lat": 8.71,
+    "lng": 77.76
+   },
+   {
+    "name": "Tiruvallur",
+    "state": "Tamil Nadu",
+    "lat": 13.14,
+    "lng": 79.91
+   },
+   {
+    "name": "Tiruvarur",
+    "state": "Tamil Nadu",
+    "lat": 10.77,
+    "lng": 79.64
+   },
+   {
+    "name": "Virudhunagar",
+    "state": "Tamil Nadu",
+    "lat": 9.58,
+    "lng": 77.96
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-25T10:30:00.000Z",
+  "expires": "2026-10-25T13:30:00.000Z",
+  "capSeverity": "Moderate",
+  "urgency": "Expected",
+  "certainty": "Likely"
+ },
+ {
+  "id": "sachet:IN-1792923812064041_41",
+  "detectedAt": "2026-10-25T10:37:19.026Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "thunderstorm",
+  "severity": "low",
+  "title": "Thunderstorm: Karaikal district of Puducherry",
+  "summary": "Light to Moderate Rain with Thunderstorm and Lightning is very likely to occur at isolated places over Ariyalur, Cgl, Chn, Cdl, Dgl, Erd, Knch, Kkr, Karur, Mdr, Myld, Ngpt, Nmkl, Prm, Rp, Salem, Tenkasi, Tnj, Thn,Nlg, Trl, Thiruvarur, Tkudi, Tiruchir, Tirunelveli, Virudhunagar, Karaikal in next 3 h…",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "Puducherry-SDMA",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792923812064041",
+  "lat": 11.434999999999999,
+  "lng": 79.825,
+  "places": [
+   {
+    "name": "Puducherry",
+    "state": "Puducherry",
+    "lat": 11.94,
+    "lng": 79.81
+   },
+   {
+    "name": "Karaikal",
+    "state": "Puducherry",
+    "lat": 10.93,
+    "lng": 79.84
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-25T10:30:00.000Z",
+  "expires": "2026-10-25T13:30:00.000Z",
+  "capSeverity": "Moderate",
+  "urgency": "Expected",
+  "certainty": "Likely"
+ },
+ {
+  "id": "sachet:IN-1792922374188006_6",
+  "detectedAt": "2026-10-25T10:07:17.260Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "rain",
+  "severity": "low",
+  "title": "Heavy rain: Malappuram,Palakkad districts of Kerala",
+  "summary": "Moderate Thunderstorm with Moderate rainfall (5-15mm/ hour) and wind speed likely to be 40-50 Kmph (in Gusts) at isolated places over Palakkad Malappuram districts in next 3 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "Kerala-SDMA",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792922374188006",
+  "lat": 10.78,
+  "lng": 76.65,
+  "places": [
+   {
+    "name": "Palakkad",
+    "state": "Kerala",
+    "lat": 10.78,
+    "lng": 76.65
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-25T09:58:00.000Z",
+  "expires": "2026-10-25T12:58:00.000Z",
+  "capSeverity": "Severe",
+  "urgency": "Expected",
+  "certainty": "Likely"
+ },
+ {
+  "id": "sachet:IN-1792916682749006_64",
+  "detectedAt": "2026-10-25T08:37:20.846Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "rain",
+  "severity": "high",
+  "title": "Heavy rain: Kozhikode, Malappuram, Wayanad districts of Kerala",
+  "summary": "Extremely Heavy Rain is very likely to occur at isolated places over Kozhikode, Malappuram, Wayanad in next 24 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "IMD-Thiruvananthapuram",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792916682749006",
+  "lat": 11.69,
+  "lng": 76.13,
+  "places": [
+   {
+    "name": "Wayanad",
+    "state": "Kerala",
+    "lat": 11.69,
+    "lng": 76.13
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-25T08:23:00.000Z",
+  "expires": "2026-10-26T08:23:00.000Z",
+  "capSeverity": "Extreme",
+  "urgency": "Immediate",
+  "certainty": "Likely"
+ },
+ {
+  "id": "sachet:IN-1792916564646006_6",
+  "detectedAt": "2026-10-25T08:37:20.846Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "rain",
+  "severity": "low",
+  "title": "Heavy rain: 7 districts of Kerala",
+  "summary": "Moderate Thunderstorm with Moderate rainfall (5-15mm/ hour) and wind speed likely to be 40-50 Kmph (in Gusts) at isolated places over Thiruvananthapuram, Kollam, Pathanamthitta, Alappuzha, Kottayam, Ernakulam and Thrissur districts in next 3 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "Kerala-SDMA",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792916564646006",
+  "lat": 9.461666666666668,
+  "lng": 76.55833333333332,
+  "places": [
+   {
+    "name": "Thiruvananthapuram",
+    "state": "Kerala",
+    "lat": 8.52,
+    "lng": 76.94
+   },
+   {
+    "name": "Kollam",
+    "state": "Kerala",
+    "lat": 8.89,
+    "lng": 76.61
+   },
+   {
+    "name": "Pathanamthitta",
+    "state": "Kerala",
+    "lat": 9.26,
+    "lng": 76.79
+   },
+   {
+    "name": "Kottayam",
+    "state": "Kerala",
+    "lat": 9.59,
+    "lng": 76.52
+   },
+   {
+    "name": "Ernakulam",
+    "state": "Kerala",
+    "lat": 9.98,
+    "lng": 76.28
+   },
+   {
+    "name": "Thrissur",
+    "state": "Kerala",
+    "lat": 10.53,
+    "lng": 76.21
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-25T08:21:00.000Z",
+  "expires": "2026-10-25T11:21:00.000Z",
+  "capSeverity": "Severe",
+  "urgency": "Expected",
+  "certainty": "Likely"
+ },
+ {
+  "id": "sachet:IN-1792916848296006_6",
+  "detectedAt": "2026-10-25T08:37:20.846Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "rain",
+  "severity": "medium",
+  "title": "Heavy rain: 10 districts of Kerala",
+  "summary": "Very Heavy Rain is very likely to occur at isolated places over Alappuzha, Ernakulam, Idukki, Kannur, Kollam, Kottayam, Palakkad, Pathanamthitta, Thiruvananthapuram, Thrissur in next 24 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "Kerala-SDMA",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792916848296006",
+  "lat": 9.675,
+  "lng": 76.62125,
+  "places": [
+   {
+    "name": "Idukki",
+    "state": "Kerala",
+    "lat": 9.85,
+    "lng": 76.97
+   },
+   {
+    "name": "Palakkad",
+    "state": "Kerala",
+    "lat": 10.78,
+    "lng": 76.65
+   },
+   {
+    "name": "Thiruvananthapuram",
+    "state": "Kerala",
+    "lat": 8.52,
+    "lng": 76.94
+   },
+   {
+    "name": "Kollam",
+    "state": "Kerala",
+    "lat": 8.89,
+    "lng": 76.61
+   },
+   {
+    "name": "Pathanamthitta",
+    "state": "Kerala",
+    "lat": 9.26,
+    "lng": 76.79
+   },
+   {
+    "name": "Kottayam",
+    "state": "Kerala",
+    "lat": 9.59,
+    "lng": 76.52
+   },
+   {
+    "name": "Ernakulam",
+    "state": "Kerala",
+    "lat": 9.98,
+    "lng": 76.28
+   },
+   {
+    "name": "Thrissur",
+    "state": "Kerala",
+    "lat": 10.53,
+    "lng": 76.21
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-25T08:25:00.000Z",
+  "expires": "2026-10-26T08:25:00.000Z",
+  "capSeverity": "Severe",
+  "urgency": "Expected",
+  "certainty": "Likely"
+ },
+ {
+  "id": "sachet:IN-1792915039196007_43",
+  "detectedAt": "2026-10-25T08:07:18.538Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "thunderstorm",
+  "severity": "low",
+  "title": "Thunderstorm: Chengalpattu, Chennai, Coimbatore, Dindigul, Erode, Kancheepuram, Kanniyakumari, Karur, Madurai, Namakkal, Pudukkottai, Ranipet, Salem, Sivaganga, Tenkasi, Theni, The Nilgiris, Thiruvallur, Tiruchirappalli, Tirunelveli, Tiruppur, Viluppuram, Virudhunagar districts of Tamil Nadu",
+  "summary": "Light to Moderate Rain with Thunderstorm and Lightning is very likely to occur at isolated places over Chgl, Chn, Cmb, Ddgl, Erd, Knch, Kkr, Karur, Madurai, Namakkal, Pkottai, Ranipet, Salem, Sganga, Tenkasi, Theni, Nilgiris, Trll, Trchi, Tlveli, Tiruppur, Vpuram, Vnagar in next 3 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "IMD-Chennai",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792915039196007",
+  "lat": 10.96,
+  "lng": 78.33956521739131,
+  "places": [
+   {
+    "name": "Chengalpattu",
+    "state": "Tamil Nadu",
+    "lat": 12.69,
+    "lng": 79.98
+   },
+   {
+    "name": "Chennai",
+    "state": "Tamil Nadu",
+    "lat": 13.08,
+    "lng": 80.27
+   },
+   {
+    "name": "Coimbatore",
+    "state": "Tamil Nadu",
+    "lat": 11.02,
+    "lng": 76.96
+   },
+   {
+    "name": "Dindigul",
+    "state": "Tamil Nadu",
+    "lat": 10.36,
+    "lng": 77.98
+   },
+   {
+    "name": "Erode",
+    "state": "Tamil Nadu",
+    "lat": 11.34,
+    "lng": 77.72
+   },
+   {
+    "name": "Kancheepuram",
+    "state": "Tamil Nadu",
+    "lat": 12.83,
+    "lng": 79.7
+   },
+   {
+    "name": "Kanniyakumari",
+    "state": "Tamil Nadu",
+    "lat": 8.18,
+    "lng": 77.41
+   },
+   {
+    "name": "Karur",
+    "state": "Tamil Nadu",
+    "lat": 10.96,
+    "lng": 78.08
+   },
+   {
+    "name": "Madurai",
+    "state": "Tamil Nadu",
+    "lat": 9.93,
+    "lng": 78.12
+   },
+   {
+    "name": "Namakkal",
+    "state": "Tamil Nadu",
+    "lat": 11.22,
+    "lng": 78.17
+   },
+   {
+    "name": "Nilgiris",
+    "state": "Tamil Nadu",
+    "lat": 11.41,
+    "lng": 76.7
+   },
+   {
+    "name": "Pudukkottai",
+    "state": "Tamil Nadu",
+    "lat": 10.38,
+    "lng": 78.82
+   },
+   {
+    "name": "Ranipet",
+    "state": "Tamil Nadu",
+    "lat": 12.93,
+    "lng": 79.33
+   },
+   {
+    "name": "Salem",
+    "state": "Tamil Nadu",
+    "lat": 11.66,
+    "lng": 78.15
+   },
+   {
+    "name": "Sivaganga",
+    "state": "Tamil Nadu",
+    "lat": 9.85,
+    "lng": 78.48
+   },
+   {
+    "name": "Tenkasi",
+    "state": "Tamil Nadu",
+    "lat": 8.96,
+    "lng": 77.3
+   },
+   {
+    "name": "Theni",
+    "state": "Tamil Nadu",
+    "lat": 10.01,
+    "lng": 77.48
+   },
+   {
+    "name": "Tiruchirappalli",
+    "state": "Tamil Nadu",
+    "lat": 10.79,
+    "lng": 78.7
+   },
+   {
+    "name": "Tirunelveli",
+    "state": "Tamil Nadu",
+    "lat": 8.71,
+    "lng": 77.76
+   },
+   {
+    "name": "Tiruppur",
+    "state": "Tamil Nadu",
+    "lat": 11.11,
+    "lng": 77.34
+   },
+   {
+    "name": "Tiruvallur",
+    "state": "Tamil Nadu",
+    "lat": 13.14,
+    "lng": 79.91
+   },
+   {
+    "name": "Viluppuram",
+    "state": "Tamil Nadu",
+    "lat": 11.94,
+    "lng": 79.49
+   },
+   {
+    "name": "Virudhunagar",
+    "state": "Tamil Nadu",
+    "lat": 9.58,
+    "lng": 77.96
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-25T07:48:00.000Z",
+  "expires": "2026-10-25T10:30:00.000Z",
+  "capSeverity": "Moderate",
+  "urgency": "Expected",
+  "certainty": "Likely"
+ },
+ {
+  "id": "sachet:IN-1792902443773007_43",
+  "detectedAt": "2026-10-25T04:52:23.169Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "thunderstorm",
+  "severity": "low",
+  "title": "Thunderstorm: Cuddalore, Dindigul, Kanniyakumari, Madurai, Tenkasi, Theni, Thoothukkudi, Tirunelveli, Tiruppur, Viluppuram, Virudhunagar districts of Tamil Nadu",
+  "summary": "Moderate Rain with Thunderatorm and lightning possiblity of heavy spells is very likely to occur at a few places over Cuddalore, Dindigul, Kanniyakumari, Madurai, Tenkasi, Theni, Thoothukkudi, Tirunelveli, Tiruppur, Viluppuram, Virudhunagar, Pondicherry in next 3 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "IMD-Chennai",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792902443773007",
+  "lat": 9.935454545454546,
+  "lng": 78.06545454545456,
+  "places": [
+   {
+    "name": "Cuddalore",
+    "state": "Tamil Nadu",
+    "lat": 11.75,
+    "lng": 79.75
+   },
+   {
+    "name": "Dindigul",
+    "state": "Tamil Nadu",
+    "lat": 10.36,
+    "lng": 77.98
+   },
+   {
+    "name": "Kanniyakumari",
+    "state": "Tamil Nadu",
+    "lat": 8.18,
+    "lng": 77.41
+   },
+   {
+    "name": "Madurai",
+    "state": "Tamil Nadu",
+    "lat": 9.93,
+    "lng": 78.12
+   },
+   {
+    "name": "Tenkasi",
+    "state": "Tamil Nadu",
+    "lat": 8.96,
+    "lng": 77.3
+   },
+   {
+    "name": "Theni",
+    "state": "Tamil Nadu",
+    "lat": 10.01,
+    "lng": 77.48
+   },
+   {
+    "name": "Thoothukudi",
+    "state": "Tamil Nadu",
+    "lat": 8.76,
+    "lng": 78.13
+   },
+   {
+    "name": "Tirunelveli",
+    "state": "Tamil Nadu",
+    "lat": 8.71,
+    "lng": 77.76
+   },
+   {
+    "name": "Tiruppur",
+    "state": "Tamil Nadu",
+    "lat": 11.11,
+    "lng": 77.34
+   },
+   {
+    "name": "Viluppuram",
+    "state": "Tamil Nadu",
+    "lat": 11.94,
+    "lng": 79.49
+   },
+   {
+    "name": "Virudhunagar",
+    "state": "Tamil Nadu",
+    "lat": 9.58,
+    "lng": 77.96
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-25T04:20:00.000Z",
+  "expires": "2026-10-25T07:30:00.000Z",
+  "capSeverity": "Severe",
+  "urgency": "Expected",
+  "certainty": "Likely"
+ },
+ {
+  "id": "sachet:IN-1792902444989007_43",
+  "detectedAt": "2026-10-25T04:52:23.169Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "other",
+  "severity": "low",
+  "title": "Alert: Ariyalur, Chengalpattu, Chennai, Coimbatore, Kallakurichi, Kancheepuram, Mayiladuthurai, Nagapattinam, Perambalur, Pudukkottai, Ramanathapuram, Ranipet, Sivaganga, Thanjavur, The Nilgiris, Thiruvallur, Thiruvarur, Tiruchirappalli, Tiruvannamalai, Vellore districts of Tamil Nadu",
+  "summary": "Light to moderate Rain with TS is very likely to occur at a few places over Ariyalur, Clpattu, Chennai, Coimbatore, Kallai, Kanche, Mayiladuthurai, Naga, Perambalur, Pudukkottai, Ramanpuram, Rpet, Sivaganga, Thanjavur, Nilgiris, Tvallur, Th-varur, Trichy, Tiruvannamalai, Vellore, Karaikal in next 3…",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "IMD-Chennai",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792902444989007",
+  "lat": 11.508999999999999,
+  "lng": 79.05350000000001,
+  "places": [
+   {
+    "name": "Ariyalur",
+    "state": "Tamil Nadu",
+    "lat": 11.14,
+    "lng": 79.08
+   },
+   {
+    "name": "Chengalpattu",
+    "state": "Tamil Nadu",
+    "lat": 12.69,
+    "lng": 79.98
+   },
+   {
+    "name": "Chennai",
+    "state": "Tamil Nadu",
+    "lat": 13.08,
+    "lng": 80.27
+   },
+   {
+    "name": "Coimbatore",
+    "state": "Tamil Nadu",
+    "lat": 11.02,
+    "lng": 76.96
+   },
+   {
+    "name": "Kallakurichi",
+    "state": "Tamil Nadu",
+    "lat": 11.74,
+    "lng": 78.96
+   },
+   {
+    "name": "Kancheepuram",
+    "state": "Tamil Nadu",
+    "lat": 12.83,
+    "lng": 79.7
+   },
+   {
+    "name": "Mayiladuthurai",
+    "state": "Tamil Nadu",
+    "lat": 11.1,
+    "lng": 79.65
+   },
+   {
+    "name": "Nagapattinam",
+    "state": "Tamil Nadu",
+    "lat": 10.77,
+    "lng": 79.84
+   },
+   {
+    "name": "Nilgiris",
+    "state": "Tamil Nadu",
+    "lat": 11.41,
+    "lng": 76.7
+   },
+   {
+    "name": "Perambalur",
+    "state": "Tamil Nadu",
+    "lat": 11.23,
+    "lng": 78.88
+   },
+   {
+    "name": "Pudukkottai",
+    "state": "Tamil Nadu",
+    "lat": 10.38,
+    "lng": 78.82
+   },
+   {
+    "name": "Ramanathapuram",
+    "state": "Tamil Nadu",
+    "lat": 9.37,
+    "lng": 78.83
+   },
+   {
+    "name": "Ranipet",
+    "state": "Tamil Nadu",
+    "lat": 12.93,
+    "lng": 79.33
+   },
+   {
+    "name": "Sivaganga",
+    "state": "Tamil Nadu",
+    "lat": 9.85,
+    "lng": 78.48
+   },
+   {
+    "name": "Thanjavur",
+    "state": "Tamil Nadu",
+    "lat": 10.79,
+    "lng": 79.14
+   },
+   {
+    "name": "Tiruchirappalli",
+    "state": "Tamil Nadu",
+    "lat": 10.79,
+    "lng": 78.7
+   },
+   {
+    "name": "Tiruvallur",
+    "state": "Tamil Nadu",
+    "lat": 13.14,
+    "lng": 79.91
+   },
+   {
+    "name": "Tiruvannamalai",
+    "state": "Tamil Nadu",
+    "lat": 12.23,
+    "lng": 79.07
+   },
+   {
+    "name": "Tiruvarur",
+    "state": "Tamil Nadu",
+    "lat": 10.77,
+    "lng": 79.64
+   },
+   {
+    "name": "Vellore",
+    "state": "Tamil Nadu",
+    "lat": 12.92,
+    "lng": 79.13
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-25T04:22:00.000Z",
+  "expires": "2026-10-25T07:30:00.000Z",
+  "capSeverity": "Moderate",
+  "urgency": "Expected",
+  "certainty": "Likely"
+ },
+ {
+  "id": "sachet:IN-1792902447005041_41",
+  "detectedAt": "2026-10-25T04:52:23.169Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "thunderstorm",
+  "severity": "low",
+  "title": "Thunderstorm: Pondicherry district of Puducherry",
+  "summary": "Moderate Rain with Thunderatorm and lightning possiblity of heavy spells is very likely to occur at a few places over Cuddalore, Dindigul, Kanniyakumari, Madurai, Tenkasi, Theni, Thoothukkudi, Tirunelveli, Tiruppur, Viluppuram, Virudhunagar, Pondicherry in next 3 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "Puducherry-SDMA",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792902447005041",
+  "lat": 11.94,
+  "lng": 79.81,
+  "places": [
+   {
+    "name": "Puducherry",
+    "state": "Puducherry",
+    "lat": 11.94,
+    "lng": 79.81
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-25T04:20:00.000Z",
+  "expires": "2026-10-25T07:30:00.000Z",
+  "capSeverity": "Severe",
+  "urgency": "Expected",
+  "certainty": "Likely"
+ },
+ {
+  "id": "sachet:IN-1792902447862041_41",
+  "detectedAt": "2026-10-25T04:52:23.169Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "other",
+  "severity": "low",
+  "title": "Alert: Karaikal district of Puducherry",
+  "summary": "Light to moderate Rain with TS is very likely to occur at a few places over Ariyalur, Clpattu, Chennai, Coimbatore, Kallai, Kanche, Mayiladuthurai, Naga, Perambalur, Pudukkottai, Ramanpuram, Rpet, Sivaganga, Thanjavur, Nilgiris, Tvallur, Th-varur, Trichy, Tiruvannamalai, Vellore, Karaikal in next 3…",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "Puducherry-SDMA",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792902447862041",
+  "lat": 11.434999999999999,
+  "lng": 79.825,
+  "places": [
+   {
+    "name": "Puducherry",
+    "state": "Puducherry",
+    "lat": 11.94,
+    "lng": 79.81
+   },
+   {
+    "name": "Karaikal",
+    "state": "Puducherry",
+    "lat": 10.93,
+    "lng": 79.84
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-25T04:22:00.000Z",
+  "expires": "2026-10-25T07:30:00.000Z",
+  "capSeverity": "Moderate",
+  "urgency": "Expected",
+  "certainty": "Likely"
+ },
+ {
+  "id": "sachet:IN-1792898095485007_43",
+  "detectedAt": "2026-10-25T03:22:21.292Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "thunderstorm",
+  "severity": "low",
+  "title": "Thunderstorm: Ariyalur, Cuddalore, Mayiladuthurai, Nagapattinam, Thanjavur, Thiruvallur, Thiruvarur, Viluppuram districts of Tamil Nadu",
+  "summary": "Moderate Rain with Heavy spells thunderstorm is very likely to occur at a few places over Ariyalur, Cuddalore, Mayiladuthurai, Nagapattinam, Thanjavur, Thiruvallur, Thiruvarur, Viluppuram, Karaikal, Pondicherry in next 3 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "IMD-Chennai",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792898095485007",
+  "lat": 11.424999999999999,
+  "lng": 79.5625,
+  "places": [
+   {
+    "name": "Ariyalur",
+    "state": "Tamil Nadu",
+    "lat": 11.14,
+    "lng": 79.08
+   },
+   {
+    "name": "Cuddalore",
+    "state": "Tamil Nadu",
+    "lat": 11.75,
+    "lng": 79.75
+   },
+   {
+    "name": "Mayiladuthurai",
+    "state": "Tamil Nadu",
+    "lat": 11.1,
+    "lng": 79.65
+   },
+   {
+    "name": "Nagapattinam",
+    "state": "Tamil Nadu",
+    "lat": 10.77,
+    "lng": 79.84
+   },
+   {
+    "name": "Thanjavur",
+    "state": "Tamil Nadu",
+    "lat": 10.79,
+    "lng": 79.14
+   },
+   {
+    "name": "Tiruvallur",
+    "state": "Tamil Nadu",
+    "lat": 13.14,
+    "lng": 79.91
+   },
+   {
+    "name": "Tiruvarur",
+    "state": "Tamil Nadu",
+    "lat": 10.77,
+    "lng": 79.64
+   },
+   {
+    "name": "Viluppuram",
+    "state": "Tamil Nadu",
+    "lat": 11.94,
+    "lng": 79.49
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-25T03:05:00.000Z",
+  "expires": "2026-10-25T04:30:00.000Z",
+  "capSeverity": "Severe",
+  "urgency": "Expected",
+  "certainty": "Likely"
+ },
+ {
+  "id": "sachet:IN-1792898097424041_41",
+  "detectedAt": "2026-10-25T03:22:21.292Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "thunderstorm",
+  "severity": "low",
+  "title": "Thunderstorm: Karaikal,Pondicherry districts of Puducherry",
+  "summary": "Moderate Rain with Heavy spells thunderstorm is very likely to occur at a few places over Ariyalur, Cuddalore, Mayiladuthurai, Nagapattinam, Thanjavur, Thiruvallur, Thiruvarur, Viluppuram, Karaikal, Pondicherry in next 3 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "Puducherry-SDMA",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792898097424041",
+  "lat": 11.434999999999999,
+  "lng": 79.825,
+  "places": [
+   {
+    "name": "Puducherry",
+    "state": "Puducherry",
+    "lat": 11.94,
+    "lng": 79.81
+   },
+   {
+    "name": "Karaikal",
+    "state": "Puducherry",
+    "lat": 10.93,
+    "lng": 79.84
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-25T03:05:00.000Z",
+  "expires": "2026-10-25T04:30:00.000Z",
+  "capSeverity": "Severe",
+  "urgency": "Expected",
+  "certainty": "Likely"
+ },
+ {
+  "id": "sachet:IN-1792895598707006_64",
+  "detectedAt": "2026-10-25T02:37:16.620Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "rain",
+  "severity": "low",
+  "title": "Heavy rain: Alappuzha, Kollam, Kottayam, Pathanamthitta, Thiruvananthapuram districts of Kerala",
+  "summary": "Moderate Thunderstorm with Moderate rainfall (5-15mm/ hour) and wind speed likely to be 40-50 Kmph (in Gusts) at isolated places over Thiruvananthapuram,Kollam,Pathanamthitta,Alappuzha and Kottayam districts in next 3 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "IMD-Thiruvananthapuram",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792895598707006",
+  "lat": 9.065000000000001,
+  "lng": 76.715,
+  "places": [
+   {
+    "name": "Thiruvananthapuram",
+    "state": "Kerala",
+    "lat": 8.52,
+    "lng": 76.94
+   },
+   {
+    "name": "Kollam",
+    "state": "Kerala",
+    "lat": 8.89,
+    "lng": 76.61
+   },
+   {
+    "name": "Pathanamthitta",
+    "state": "Kerala",
+    "lat": 9.26,
+    "lng": 76.79
+   },
+   {
+    "name": "Kottayam",
+    "state": "Kerala",
+    "lat": 9.59,
+    "lng": 76.52
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-25T02:32:00.000Z",
+  "expires": "2026-10-25T05:32:00.000Z",
+  "capSeverity": "Severe",
+  "urgency": "Expected",
+  "certainty": "Likely"
+ },
+ {
+  "id": "sachet:IN-1792891794098007_43",
+  "detectedAt": "2026-10-25T01:37:21.129Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "other",
+  "severity": "low",
+  "title": "Alert: Ariyalur, Chengalpattu, Chennai, Cuddalore, Dharmapuri, Dindigul, Erode, Kallakurichi, Kancheepuram, Kanniyakumari, Karur, Krishnagiri, Madurai, Mayiladuthurai, Nagapattinam, Namakkal, Perambalur, Pudukkottai, Ramanathapuram, Ranipet, Salem, Sivaganga, Tenkasi, Thanjavur, Theni, Thiruvallur, Thiruv…",
+  "summary": "Lt to Mod Ra with LT TSL is likely at Isol places of CHN, VLR, RPT, TVLAI, TPT, TVL, KANCH, CGL, SLM, KRS, DRM, TRP, PDC, CDL, KKL, NPY, MDR, KAR, DND, RMD, KYK, TRN, THN, TENKSI, PDKT, TNJ, TIRV, ARY, ERD, KALL, SVG, PER and NMKL districts for next 03 Hrs.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "IMD-Chennai",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792891794098007",
+  "lat": 11.156153846153845,
+  "lng": 78.74615384615385,
+  "places": [
+   {
+    "name": "Ariyalur",
+    "state": "Tamil Nadu",
+    "lat": 11.14,
+    "lng": 79.08
+   },
+   {
+    "name": "Chengalpattu",
+    "state": "Tamil Nadu",
+    "lat": 12.69,
+    "lng": 79.98
+   },
+   {
+    "name": "Chennai",
+    "state": "Tamil Nadu",
+    "lat": 13.08,
+    "lng": 80.27
+   },
+   {
+    "name": "Cuddalore",
+    "state": "Tamil Nadu",
+    "lat": 11.75,
+    "lng": 79.75
+   },
+   {
+    "name": "Dharmapuri",
+    "state": "Tamil Nadu",
+    "lat": 12.13,
+    "lng": 78.16
+   },
+   {
+    "name": "Dindigul",
+    "state": "Tamil Nadu",
+    "lat": 10.36,
+    "lng": 77.98
+   },
+   {
+    "name": "Erode",
+    "state": "Tamil Nadu",
+    "lat": 11.34,
+    "lng": 77.72
+   },
+   {
+    "name": "Kallakurichi",
+    "state": "Tamil Nadu",
+    "lat": 11.74,
+    "lng": 78.96
+   },
+   {
+    "name": "Kancheepuram",
+    "state": "Tamil Nadu",
+    "lat": 12.83,
+    "lng": 79.7
+   },
+   {
+    "name": "Kanniyakumari",
+    "state": "Tamil Nadu",
+    "lat": 8.18,
+    "lng": 77.41
+   },
+   {
+    "name": "Karur",
+    "state": "Tamil Nadu",
+    "lat": 10.96,
+    "lng": 78.08
+   },
+   {
+    "name": "Krishnagiri",
+    "state": "Tamil Nadu",
+    "lat": 12.52,
+    "lng": 78.21
+   },
+   {
+    "name": "Madurai",
+    "state": "Tamil Nadu",
+    "lat": 9.93,
+    "lng": 78.12
+   },
+   {
+    "name": "Mayiladuthurai",
+    "state": "Tamil Nadu",
+    "lat": 11.1,
+    "lng": 79.65
+   },
+   {
+    "name": "Nagapattinam",
+    "state": "Tamil Nadu",
+    "lat": 10.77,
+    "lng": 79.84
+   },
+   {
+    "name": "Namakkal",
+    "state": "Tamil Nadu",
+    "lat": 11.22,
+    "lng": 78.17
+   },
+   {
+    "name": "Perambalur",
+    "state": "Tamil Nadu",
+    "lat": 11.23,
+    "lng": 78.88
+   },
+   {
+    "name": "Pudukkottai",
+    "state": "Tamil Nadu",
+    "lat": 10.38,
+    "lng": 78.82
+   },
+   {
+    "name": "Ramanathapuram",
+    "state": "Tamil Nadu",
+    "lat": 9.37,
+    "lng": 78.83
+   },
+   {
+    "name": "Ranipet",
+    "state": "Tamil Nadu",
+    "lat": 12.93,
+    "lng": 79.33
+   },
+   {
+    "name": "Salem",
+    "state": "Tamil Nadu",
+    "lat": 11.66,
+    "lng": 78.15
+   },
+   {
+    "name": "Sivaganga",
+    "state": "Tamil Nadu",
+    "lat": 9.85,
+    "lng": 78.48
+   },
+   {
+    "name": "Tenkasi",
+    "state": "Tamil Nadu",
+    "lat": 8.96,
+    "lng": 77.3
+   },
+   {
+    "name": "Thanjavur",
+    "state": "Tamil Nadu",
+    "lat": 10.79,
+    "lng": 79.14
+   },
+   {
+    "name": "Theni",
+    "state": "Tamil Nadu",
+    "lat": 10.01,
+    "lng": 77.48
+   },
+   {
+    "name": "Tiruvallur",
+    "state": "Tamil Nadu",
+    "lat": 13.14,
+    "lng": 79.91
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-25T01:13:00.000Z",
+  "expires": "2026-10-25T04:30:00.000Z",
+  "capSeverity": "Moderate",
+  "urgency": "Expected",
+  "certainty": "Possible"
+ },
+ {
+  "id": "sachet:IN-1792891799411041_41",
+  "detectedAt": "2026-10-25T01:37:21.129Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "other",
+  "severity": "low",
+  "title": "Alert: Pondicherry district of Puducherry",
+  "summary": "Lt to Mod Ra with LT TSL is likely at Isol places of CHN, VLR, RPT, TVLAI, TPT, TVL, KANCH, CGL, SLM, KRS, DRM, TRP, PDC, CDL, KKL, NPY, MDR, KAR, DND, RMD, KYK, TRN, THN, TENKSI, PDKT, TNJ, TIRV, ARY, ERD, KALL, SVG, PER and NMKL districts for next 03 Hrs.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "Puducherry-SDMA",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792891799411041",
+  "lat": 11.94,
+  "lng": 79.81,
+  "places": [
+   {
+    "name": "Puducherry",
+    "state": "Puducherry",
+    "lat": 11.94,
+    "lng": 79.81
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-25T01:13:00.000Z",
+  "expires": "2026-10-25T04:30:00.000Z",
+  "capSeverity": "Moderate",
+  "urgency": "Expected",
+  "certainty": "Possible"
+ },
+ {
+  "id": "rain:dharmapuri:medium:2026-10-25",
+  "detectedAt": "2026-10-25T00:37:18.118Z",
+  "baseline": false,
+  "rule": "rain_imd_category",
+  "origin": "derived",
+  "kind": "rain",
+  "severity": "medium",
+  "title": "Very heavy rain forecast: Dharmapuri",
+  "summary": "131.4 mm forecast on 2026-10-25 (3-day total 131.6 mm). IMD 24-hour category applied to a model forecast; not an IMD warning.",
+  "source": "Open-Meteo forecast, IMD categories",
+  "sourceUrl": "https://open-meteo.com/en/docs",
+  "lat": 12.13,
+  "lng": 78.16,
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ]
+ },
+ {
+  "id": "sachet:IN-1792883063805041_43",
+  "detectedAt": "2026-10-24T23:07:17.730Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "other",
+  "severity": "low",
+  "title": "Alert: Pondicherry district of Puducherry",
+  "summary": "Lt to Mod Ra with Lt TSL is likely to occur at isol places over ARY, CGP, Chennai, CDL, DRM, DND, KLCHI, KNCHP, KYK, Karur, KRSH, MYLD, NMKL, Perambalur, PDKT, Ranipet, SLM, Tenkasi, TNJ, Theni, TRVL, TRP, TRM, TRN, TRV, TRM, VLR, VLP, VRD, PDC in next 3 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "IMD-Chennai",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792883063805041",
+  "lat": 11.94,
+  "lng": 79.81,
+  "places": [
+   {
+    "name": "Puducherry",
+    "state": "Puducherry",
+    "lat": 11.94,
+    "lng": 79.81
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-24T22:48:00.000Z",
+  "expires": "2026-10-25T01:30:00.000Z",
+  "capSeverity": "Moderate",
+  "urgency": "Expected",
+  "certainty": "Possible"
+ },
+ {
+  "id": "sachet:IN-1792883059914007_43",
+  "detectedAt": "2026-10-24T23:07:17.730Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "other",
+  "severity": "low",
+  "title": "Alert: Ariyalur, Chengalpattu, Chennai, Cuddalore, Dharmapuri, Dindigul, Kallakurichi, Kancheepuram, Kanniyakumari, Karur, Krishnagiri, Mayiladuthurai, Namakkal, Perambalur, Pudukkottai, Ranipet, Salem, Tenkasi, Thanjavur, Theni, Thiruvallur, Thiruvarur, Tiruchirappalli, Tirunelveli, Tirupathur, Tiruvanna…",
+  "summary": "Lt to Mod Ra with Lt TSL is likely to occur at isol places over ARY, CGP, Chennai, CDL, DRM, DND, KLCHI, KNCHP, KYK, Karur, KRSH, MYLD, NMKL, Perambalur, PDKT, Ranipet, SLM, Tenkasi, TNJ, Theni, TRVL, TRP, TRM, TRN, TRV, TRM, VLR, VLP, VRD, PDC in next 3 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "IMD-Chennai",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792883059914007",
+  "lat": 11.262799999999997,
+  "lng": 78.76320000000001,
+  "places": [
+   {
+    "name": "Ariyalur",
+    "state": "Tamil Nadu",
+    "lat": 11.14,
+    "lng": 79.08
+   },
+   {
+    "name": "Chengalpattu",
+    "state": "Tamil Nadu",
+    "lat": 12.69,
+    "lng": 79.98
+   },
+   {
+    "name": "Chennai",
+    "state": "Tamil Nadu",
+    "lat": 13.08,
+    "lng": 80.27
+   },
+   {
+    "name": "Cuddalore",
+    "state": "Tamil Nadu",
+    "lat": 11.75,
+    "lng": 79.75
+   },
+   {
+    "name": "Dharmapuri",
+    "state": "Tamil Nadu",
+    "lat": 12.13,
+    "lng": 78.16
+   },
+   {
+    "name": "Dindigul",
+    "state": "Tamil Nadu",
+    "lat": 10.36,
+    "lng": 77.98
+   },
+   {
+    "name": "Kallakurichi",
+    "state": "Tamil Nadu",
+    "lat": 11.74,
+    "lng": 78.96
+   },
+   {
+    "name": "Kancheepuram",
+    "state": "Tamil Nadu",
+    "lat": 12.83,
+    "lng": 79.7
+   },
+   {
+    "name": "Kanniyakumari",
+    "state": "Tamil Nadu",
+    "lat": 8.18,
+    "lng": 77.41
+   },
+   {
+    "name": "Karur",
+    "state": "Tamil Nadu",
+    "lat": 10.96,
+    "lng": 78.08
+   },
+   {
+    "name": "Krishnagiri",
+    "state": "Tamil Nadu",
+    "lat": 12.52,
+    "lng": 78.21
+   },
+   {
+    "name": "Mayiladuthurai",
+    "state": "Tamil Nadu",
+    "lat": 11.1,
+    "lng": 79.65
+   },
+   {
+    "name": "Namakkal",
+    "state": "Tamil Nadu",
+    "lat": 11.22,
+    "lng": 78.17
+   },
+   {
+    "name": "Perambalur",
+    "state": "Tamil Nadu",
+    "lat": 11.23,
+    "lng": 78.88
+   },
+   {
+    "name": "Pudukkottai",
+    "state": "Tamil Nadu",
+    "lat": 10.38,
+    "lng": 78.82
+   },
+   {
+    "name": "Ranipet",
+    "state": "Tamil Nadu",
+    "lat": 12.93,
+    "lng": 79.33
+   },
+   {
+    "name": "Salem",
+    "state": "Tamil Nadu",
+    "lat": 11.66,
+    "lng": 78.15
+   },
+   {
+    "name": "Tenkasi",
+    "state": "Tamil Nadu",
+    "lat": 8.96,
+    "lng": 77.3
+   },
+   {
+    "name": "Thanjavur",
+    "state": "Tamil Nadu",
+    "lat": 10.79,
+    "lng": 79.14
+   },
+   {
+    "name": "Theni",
+    "state": "Tamil Nadu",
+    "lat": 10.01,
+    "lng": 77.48
+   },
+   {
+    "name": "Tiruchirappalli",
+    "state": "Tamil Nadu",
+    "lat": 10.79,
+    "lng": 78.7
+   },
+   {
+    "name": "Tirunelveli",
+    "state": "Tamil Nadu",
+    "lat": 8.71,
+    "lng": 77.76
+   },
+   {
+    "name": "Tirupathur",
+    "state": "Tamil Nadu",
+    "lat": 12.5,
+    "lng": 78.57
+   },
+   {
+    "name": "Tiruvallur",
+    "state": "Tamil Nadu",
+    "lat": 13.14,
+    "lng": 79.91
+   },
+   {
+    "name": "Tiruvarur",
+    "state": "Tamil Nadu",
+    "lat": 10.77,
+    "lng": 79.64
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-24T22:48:00.000Z",
+  "expires": "2026-10-25T01:30:00.000Z",
+  "capSeverity": "Moderate",
+  "urgency": "Expected",
+  "certainty": "Possible"
+ },
+ {
+  "id": "sachet:IN-1792874226857006_6",
+  "detectedAt": "2026-10-24T20:52:24.196Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "rain",
+  "severity": "low",
+  "title": "Heavy rain: 5 districts of Kerala",
+  "summary": "Moderate Thunderstorm with Moderate rainfall (5-15mm/ hour) and wind speed likely to be 40-50 Kmph (in Gusts) at isolated places over Thiruvananthapuram,Kollam,Pathanamthitta,Alappuzha and Kottayam districts in next 3 hours..",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "Kerala-SDMA",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792874226857006",
+  "lat": 9.065000000000001,
+  "lng": 76.715,
+  "places": [
+   {
+    "name": "Thiruvananthapuram",
+    "state": "Kerala",
+    "lat": 8.52,
+    "lng": 76.94
+   },
+   {
+    "name": "Kollam",
+    "state": "Kerala",
+    "lat": 8.89,
+    "lng": 76.61
+   },
+   {
+    "name": "Pathanamthitta",
+    "state": "Kerala",
+    "lat": 9.26,
+    "lng": 76.79
+   },
+   {
+    "name": "Kottayam",
+    "state": "Kerala",
+    "lat": 9.59,
+    "lng": 76.52
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-24T20:30:00.000Z",
+  "expires": "2026-10-24T23:30:00.000Z",
+  "capSeverity": "Severe",
+  "urgency": "Expected",
+  "certainty": "Likely"
+ },
+ {
+  "id": "sachet:IN-1792871071227007_43",
+  "detectedAt": "2026-10-24T19:52:24.129Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "other",
+  "severity": "low",
+  "title": "Alert: Ariyalur, Chengalpattu, Chennai, Coimbatore, Cuddalore, Dharmapuri, Dindigul, Kancheepuram, Kanniyakumari, Karur, Krishnagiri, Nagapattinam, Namakkal, Pudukkottai, Salem, Thanjavur, Theni, The Nilgiris, Thiruvarur, Vellore, Viluppuram districts of Tamil Nadu",
+  "summary": "Moderate Rain is likely to occur at a few places over Ariyalur, Chengalpattu, Chennai, Coimbatore, Cuddalore, Dharmapuri, Dindigul, Kancheepuram, Kanniyakumari, Karur, Krishnagiri, Nagapattinam, Namakkal, Pudukkottai, Salem, Thanjavur, Theni, The Nilgiris, Karaikal, Pondicherry in next 3 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "IMD-Chennai",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792871071227007",
+  "lat": 11.358571428571427,
+  "lng": 78.67333333333333,
+  "places": [
+   {
+    "name": "Ariyalur",
+    "state": "Tamil Nadu",
+    "lat": 11.14,
+    "lng": 79.08
+   },
+   {
+    "name": "Chengalpattu",
+    "state": "Tamil Nadu",
+    "lat": 12.69,
+    "lng": 79.98
+   },
+   {
+    "name": "Chennai",
+    "state": "Tamil Nadu",
+    "lat": 13.08,
+    "lng": 80.27
+   },
+   {
+    "name": "Coimbatore",
+    "state": "Tamil Nadu",
+    "lat": 11.02,
+    "lng": 76.96
+   },
+   {
+    "name": "Cuddalore",
+    "state": "Tamil Nadu",
+    "lat": 11.75,
+    "lng": 79.75
+   },
+   {
+    "name": "Dharmapuri",
+    "state": "Tamil Nadu",
+    "lat": 12.13,
+    "lng": 78.16
+   },
+   {
+    "name": "Dindigul",
+    "state": "Tamil Nadu",
+    "lat": 10.36,
+    "lng": 77.98
+   },
+   {
+    "name": "Kancheepuram",
+    "state": "Tamil Nadu",
+    "lat": 12.83,
+    "lng": 79.7
+   },
+   {
+    "name": "Kanniyakumari",
+    "state": "Tamil Nadu",
+    "lat": 8.18,
+    "lng": 77.41
+   },
+   {
+    "name": "Karur",
+    "state": "Tamil Nadu",
+    "lat": 10.96,
+    "lng": 78.08
+   },
+   {
+    "name": "Krishnagiri",
+    "state": "Tamil Nadu",
+    "lat": 12.52,
+    "lng": 78.21
+   },
+   {
+    "name": "Nagapattinam",
+    "state": "Tamil Nadu",
+    "lat": 10.77,
+    "lng": 79.84
+   },
+   {
+    "name": "Namakkal",
+    "state": "Tamil Nadu",
+    "lat": 11.22,
+    "lng": 78.17
+   },
+   {
+    "name": "Nilgiris",
+    "state": "Tamil Nadu",
+    "lat": 11.41,
+    "lng": 76.7
+   },
+   {
+    "name": "Pudukkottai",
+    "state": "Tamil Nadu",
+    "lat": 10.38,
+    "lng": 78.82
+   },
+   {
+    "name": "Salem",
+    "state": "Tamil Nadu",
+    "lat": 11.66,
+    "lng": 78.15
+   },
+   {
+    "name": "Thanjavur",
+    "state": "Tamil Nadu",
+    "lat": 10.79,
+    "lng": 79.14
+   },
+   {
+    "name": "Theni",
+    "state": "Tamil Nadu",
+    "lat": 10.01,
+    "lng": 77.48
+   },
+   {
+    "name": "Tiruvarur",
+    "state": "Tamil Nadu",
+    "lat": 10.77,
+    "lng": 79.64
+   },
+   {
+    "name": "Vellore",
+    "state": "Tamil Nadu",
+    "lat": 12.92,
+    "lng": 79.13
+   },
+   {
+    "name": "Viluppuram",
+    "state": "Tamil Nadu",
+    "lat": 11.94,
+    "lng": 79.49
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-24T19:43:00.000Z",
+  "expires": "2026-10-24T22:43:00.000Z",
+  "capSeverity": "Moderate",
+  "urgency": "Expected",
+  "certainty": "Possible"
+ },
+ {
+  "id": "sachet:IN-1792871074288041_41",
+  "detectedAt": "2026-10-24T19:52:24.129Z",
+  "baseline": false,
+  "rule": "sachet_official",
+  "origin": "official",
+  "kind": "other",
+  "severity": "low",
+  "title": "Alert: Karaikal,Pondicherry districts of Puducherry",
+  "summary": "Moderate Rain is likely to occur at a few places over Ariyalur, Chengalpattu, Chennai, Coimbatore, Cuddalore, Dharmapuri, Dindigul, Kancheepuram, Kanniyakumari, Karur, Krishnagiri, Nagapattinam, Namakkal, Pudukkottai, Salem, Thanjavur, Theni, The Nilgiris, Karaikal, Pondicherry in next 3 hours.",
+  "instruction": "Please follow SDMA guidelines.",
+  "source": "Puducherry-SDMA",
+  "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1792871074288041",
+  "lat": 11.434999999999999,
+  "lng": 79.825,
+  "places": [
+   {
+    "name": "Puducherry",
+    "state": "Puducherry",
+    "lat": 11.94,
+    "lng": 79.81
+   },
+   {
+    "name": "Karaikal",
+    "state": "Puducherry",
+    "lat": 10.93,
+    "lng": 79.84
+   }
+  ],
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ],
+  "effective": "2026-10-24T19:43:00.000Z",
+  "expires": "2026-10-24T22:43:00.000Z",
+  "capSeverity": "Moderate",
+  "urgency": "Expected",
+  "certainty": "Possible"
+ },
+ {
+  "id": "river:palar-vellore:medium",
+  "detectedAt": "2026-10-24T18:37:19.004Z",
+  "baseline": false,
+  "rule": "river_discharge",
+  "origin": "derived",
+  "kind": "flood",
+  "severity": "medium",
+  "title": "River rise forecast: Palar near Vellore",
+  "summary": "forecast peak 3.91x the 7-day mean (35 -> 136.7 m3/s); peak expected 2026-10-28. Model forecast, not an official warning.",
+  "source": "GloFAS via Open-Meteo",
+  "sourceUrl": "https://open-meteo.com/en/docs/flood-api",
+  "lat": 12.92,
+  "lng": 79.28,
+  "zones": [
+   "Tamil Nadu & coast",
+   "Indian subcontinent"
+  ]
+ }
+]
