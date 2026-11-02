@@ -45,6 +45,22 @@ async function probe(label, url) {
   }
 }
 
+/* Live aircraft near a point, readable from a browser? (access-control-allow-origin is printed.) Theni area. */
+for (const [label, url] of [
+  ['adsb.lol point', 'https://api.adsb.lol/v2/point/10.01/77.48/40'],
+  ['airplanes.live point', 'https://api.airplanes.live/v2/point/10.01/77.48/40'],
+  ['adsb.fi opendata', 'https://opendata.adsb.fi/api/v2/lat/10.01/lon/77.48/dist/40'],
+  ['adsb.lol point Chennai', 'https://api.adsb.lol/v2/point/13.0/80.2/40']
+]) {
+  const t = await sample(label, url);
+  try {
+    const j = JSON.parse(t);
+    const ac = j.ac || j.aircraft || [];
+    console.log(`AIRCRAFT ${label}: ${ac.length} aircraft; keys ${Object.keys(j).join(',')}; first ${JSON.stringify(ac[0] || null).slice(0, 400)}`);
+  } catch { /* printed above */ }
+}
+await sample('CelesTrak visual group', 'https://celestrak.org/NORAD/elements/gp.php?GROUP=visual&FORMAT=tle');
+
 /* News pipeline end to end with the real API: raw counts, errors, and why headlines were dropped. */
 {
   const http = createHttpClient({ allowedHosts: ['api.gdeltproject.org'], userAgent: ua });
