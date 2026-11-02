@@ -1,0 +1,966 @@
+
+===== adsb.lol point
+GET https://api.adsb.lol/v2/point/10.01/77.48/40
+HTTP 200 | content-type: application/json | etag: null | last-modified: null | access-control-allow-origin: null
+length 101
+----- body (first 4000 chars) -----
+{"ac":[
+]
+,"msg": "No error"
+,"now": 1793631463001
+,"total": 0
+,"ctime": 1793631463001
+,"ptime": 0
+}
+
+----- end -----
+AIRCRAFT adsb.lol point: 0 aircraft; keys ac,msg,now,total,ctime,ptime; first null
+
+===== airplanes.live point
+GET https://api.airplanes.live/v2/point/10.01/77.48/40
+HTTP 403 | content-type: application/json | etag: null | last-modified: null | access-control-allow-origin: null
+length 164
+----- body (first 4000 chars) -----
+{"error": "Please contact us at contact@airplanes.live. Your email MUST include any links, a description of the project, and any information you deem appropriate."}
+----- end -----
+AIRCRAFT airplanes.live point: 0 aircraft; keys error; first null
+
+===== adsb.fi opendata
+GET https://opendata.adsb.fi/api/v2/lat/10.01/lon/77.48/dist/40
+HTTP 200 | content-type: application/json | etag: null | last-modified: null | access-control-allow-origin: null
+length 75
+----- body (first 4000 chars) -----
+{"now": 1793631462.001
+,"aircraft":[
+]
+,"resultCount": 0
+,"ptime": 0.005
+}
+
+----- end -----
+AIRCRAFT adsb.fi opendata: 0 aircraft; keys now,aircraft,resultCount,ptime; first null
+
+===== adsb.lol point Chennai
+GET https://api.adsb.lol/v2/point/13.0/80.2/40
+HTTP 200 | content-type: application/json | etag: null | last-modified: null | access-control-allow-origin: null
+length 4114
+----- body (first 4000 chars) -----
+{"ac":[
+{"hex":"801404","type":"adsb_icao","flight":"IGO6215 ","r":"VT-ILB","t":"A21N","alt_baro":21475,"alt_geom":22550,"gs":338.0,"ias":240,"tas":342,"mach":0.540,"wd":261,"ws":20,"oat":-9,"tat":6,"track":341.73,"track_rate":0.00,"roll":-0.18,"mag_heading":339.43,"true_heading":338.42,"baro_rate":1792,"geom_rate":1792,"squawk":"1000","category":"A3","nav_qnh":1012.8,"nav_altitude_mcp":30016,"lat":13.543762,"lon":79.904133,"nic":8,"rc":186,"seen_pos":0.248,"version":2,"nic_baro":1,"nac_p":10,"nac_v":4,"sil":3,"sil_type":"perhour","gva":2,"sda":3,"alert":0,"spi":0,"mlat":[],"tisb":[],"messages":5995,"seen":0.0,"rssi":-18.1,"dst":36.957,"dir":332.1},
+{"hex":"8015cb","type":"adsb_icao","flight":"IGO2593 ","r":"VT-IBQ","t":"A21N","alt_baro":3750,"alt_geom":3625,"gs":209.9,"ias":214,"tas":230,"mach":0.344,"wd":254,"ws":19,"track":249.06,"track_rate":-0.06,"roll":-0.88,"mag_heading":250.66,"true_heading":249.58,"baro_rate":4544,"geom_rate":4480,"squawk":"0234","emergency":"none","category":"A3","nav_qnh":1011.2,"nav_altitude_mcp":14016,"lat":12.960795,"lon":80.090236,"nic":8,"rc":186,"seen_pos":0.235,"version":2,"nic_baro":1,"nac_p":10,"nac_v":2,"sil":3,"sil_type":"perhour","gva":2,"sda":3,"alert":0,"spi":0,"mlat":[],"tisb":[],"messages":1079,"seen":0.0,"rssi":-8.2,"dst":6.827,"dir":249.9},
+{"hex":"896214","type":"adsb_icao","flight":"UAE546  ","r":"A6-EGS","t":"B77W","alt_baro":"ground","gs":6.8,"true_heading":73.12,"squawk":"6233","emergency":"none","category":"A5","lat":12.983963,"lon":80.162335,"nic":8,"rc":186,"seen_pos":0.685,"version":2,"nac_p":9,"nac_v":1,"sil":3,"sil_type":"perhour","sda":2,"mlat":[],"tisb":[],"messages":33339,"seen":0.7,"rssi":-19.4,"dst":2.401,"dir":246.4},
+{"hex":"8016cb","type":"adsb_icao","flight":"AXB6CL  ","r":"VT-BWN","t":"B38M","alt_baro":"ground","gs":12.2,"true_heading":70.31,"category":"A3","lat":12.984478,"lon":80.163634,"nic":8,"rc":186,"seen_pos":33.885,"version":2,"nac_p":10,"nac_v":2,"sil":3,"sil_type":"perhour","sda":2,"mlat":[],"tisb":[],"messages":138,"seen":33.9,"rssi":-21.3,"dst":2.319,"dir":246.3},
+{"hex":"80156a","type":"adsb_icao","flight":"IGO569J ","r":"VT-IBJ","t":"A21N","alt_baro":75,"alt_geom":-225,"gs":139.9,"ias":137,"tas":140,"mach":0.208,"wd":179,"ws":3,"track":249.49,"track_rate":0.12,"roll":-0.35,"mag_heading":249.26,"true_heading":248.18,"baro_rate":-704,"geom_rate":-672,"squawk":"1000","category":"A3","nav_qnh":1011.2,"nav_altitude_mcp":2304,"lat":12.994675,"lon":80.181017,"nic":8,"rc":186,"seen_pos":6.530,"version":2,"nic_baro":1,"nac_p":10,"nac_v":4,"sil":3,"sil_type":"perhour","gva":2,"sda":3,"alert":0,"spi":0,"mlat":[],"tisb":[],"messages":32009,"seen":0.0,"rssi":-21.2,"dst":1.153,"dir":253.9},
+{"hex":"8015e3","type":"adsb_icao","flight":"IGO6011 ","r":"VT-IQC","t":"A20N","alt_baro":9225,"alt_geom":9450,"gs":225.5,"ias":179,"tas":212,"mach":0.320,"wd":271,"ws":16,"track":61.96,"track_rate":0.00,"roll":0.00,"mag_heading":61.17,"true_heading":60.08,"baro_rate":-1536,"geom_rate":-1440,"squawk":"2764","emergency":"none","category":"A3","nav_qnh":1012.8,"nav_altitude_mcp":4000,"lat":12.901999,"lon":80.278882,"nic":8,"rc":186,"seen_pos":0.388,"version":2,"nic_baro":1,"nac_p":10,"nac_v":2,"sil":3,"sil_type":"perhour","gva":2,"sda":3,"alert":0,"spi":0,"mlat":[],"tisb":[],"messages":22707,"seen":0.3,"rssi":-19.6,"dst":7.477,"dir":141.9},
+{"hex":"801729","type":"adsb_icao","flight":"IGO597  ","r":"VT-IXM","t":"A20N","alt_baro":4800,"alt_geom":4750,"gs":191.6,"ias":181,"tas":198,"mach":0.296,"wd":257,"ws":16,"track":184.49,"track_rate":0.06,"roll":0.88,"mag_heading":190.02,"true_heading":188.96,"baro_rate":-1088,"geom_rate":-1056,"squawk":"0465","emergency":"none","category":"A3","nav_qnh":1011.2,"nav_altitude_mcp":2304,"nav_heading":189.84,"lat":13.152969,"lon":80.387389,"nic":8,"rc":186,"seen_pos":0.101,"version":2,"nic_baro":1,"nac_p":10,"nac_v":2,"sil":3,"sil_type":"perhour","gva":2,"sda":3,"alert":0,"spi":0,"mlat":[],"tisb":[],"messages":19673,"seen":0.1,"rssi":-2.6,"dst
+----- end -----
+AIRCRAFT adsb.lol point Chennai: 7 aircraft; keys ac,msg,now,total,ctime,ptime; first {"hex":"801404","type":"adsb_icao","flight":"IGO6215 ","r":"VT-ILB","t":"A21N","alt_baro":21475,"alt_geom":22550,"gs":338,"ias":240,"tas":342,"mach":0.54,"wd":261,"ws":20,"oat":-9,"tat":6,"track":341.73,"track_rate":0,"roll":-0.18,"mag_heading":339.43,"true_heading":338.42,"baro_rate":1792,"geom_rate":1792,"squawk":"1000","category":"A3","nav_qnh":1012.8,"nav_altitude_mcp":30016,"lat":13.543762,"l
+
+===== CelesTrak visual group
+GET https://celestrak.org/NORAD/elements/gp.php?GROUP=visual&FORMAT=tle
+HTTP 200 | content-type: text/plain; charset=UTF-8 | etag: null | last-modified: null | access-control-allow-origin: *
+length 26208
+----- body (first 4000 chars) -----
+ATLAS CENTAUR 2         
+1 00694U 63047A   26306.14992237  .00001604  00000+0  18439-3 0  9991
+2 00694  30.3544 307.6744 0544362  14.5079 347.0497 14.12897418165226
+THOR AGENA D R/B        
+1 00733U 64002A   26306.02256058  .00000089  00000+0  48985-4 0  9994
+2 00733  99.1075 332.1479 0031847 287.8432  71.9278 14.34108457272318
+SL-3 R/B                
+1 00877U 64053B   26306.07970661  .00000064  00000+0  36640-4 0  9995
+2 00877  65.0781 355.1848 0072941 216.7667 142.8419 14.61486442301488
+SL-8 R/B                
+1 02802U 67045B   26305.85924944  .00000110  00000+0  38214-4 0  9998
+2 02802  74.0099 265.1034 0064970 216.2811 143.3934 14.45734051123299
+SL-8 R/B                
+1 03230U 68040B   26306.13013977  .00001447  00000+0  10608-3 0  9997
+2 03230  74.0295 188.0422 0025009 301.6918  58.1833 15.04413606125709
+OAO 2                   
+1 03597U 68110A   26305.88539642  .00000133  00000+0  40985-4 0  9997
+2 03597  34.9947  20.7921 0006097 298.1665  61.8410 14.47394975 53485
+ISIS 1                  
+1 03669U 69009A   26305.90728919  .00000048  00000+0  32692-4 0  9996
+2 03669  88.4299 129.2448 1706413 330.2395  21.1308 11.30456580375332
+SERT 2                  
+1 04327U 70009A   26306.09058750  .00000022  00000+0  86335-4 0  9995
+2 04327  99.2945 236.4398 0004058 284.1066  85.9376 13.58749756812133
+SL-3 R/B                
+1 05118U 71028B   26306.13655703  .00118818  39744-5  41891-3 0  9995
+2 05118  81.2207 113.6192 0006104 138.5947 221.5785 15.88975441 25995
+ASTEX 1                 
+1 05560U 71089A   26306.07624438  .00000287  00000+0  72798-4 0  9995
+2 05560  92.7183 228.3760 0015905  11.0947 349.0606 14.50942196896729
+SL-8 R/B                
+1 05730U 71119B   26306.11182538  .00004493  00000+0  22949-3 0  9998
+2 05730  73.8840  90.6875 0537120   8.1262 352.8163 14.40954994689650
+OAO 3 (COPERNICUS)      
+1 06153U 72065A   26305.97844645  .00000180  00000+0  41087-4 0  9990
+2 06153  35.0070  25.2321 0007203 300.3781 226.1981 14.60123963880898
+ATLAS CENTAUR R/B       
+1 06155U 72065B   26306.14972955  .00000741  00000+0  10307-3 0  9991
+2 06155  35.0027 353.6048 0033583 210.6041 149.2700 14.78120362876414
+SL-8 R/B                
+1 08459U 75112B   26305.97030539  .00000055  00000+0  26748-4 0  9994
+2 08459  74.0594 302.3839 0016296 329.4821  30.5383 14.38292202665987
+SL-3 R/B                
+1 10114U 77057B   26306.12244499  .00010713  00000+0  18907-3 0  9994
+2 10114  97.5866 129.6837 0007431 137.1663 223.0168 15.50547393705060
+SEASAT 1                
+1 10967U 78064A   26306.15760587  .00000167  00000+0  84958-4 0  9995
+2 10967 108.0143 263.8796 0002653 276.9403  83.1441 14.46319203540845
+SL-14 R/B               
+1 11267U 79011B   26306.05688701  .00000361  00000+0  32932-4 0  9999
+2 11267  82.5252 231.3042 0015656 350.2353   9.8559 14.92114445564176
+SL-8 R/B                
+1 11574U 79089B   26306.15330271  .00000120  00000+0  44252-4 0  9993
+2 11574  74.0709  11.4476 0014598 125.1136 235.1391 14.42453461470342
+SL-14 R/B               
+1 11672U 80005B   26306.09230766  .00000382  00000+0  35814-4 0  9997
+2 11672  82.5129  82.0115 0017211  91.5499 268.7692 14.91128543511861
+SL-8 R/B                
+1 12139U 81003B   26306.05164403  .00014646  00000+0  32679-3 0  9998
+2 12139  82.9348  69.2037 0235724  67.8321 294.7746 15.19100899350616
+SL-3 R/B                
+1 12465U 81046B   26306.15803669  .00009300  00000+0  18377-3 0  9992
+2 12465  81.2314   3.5067 0015643 267.5935  92.3519 15.46840483475082
+SL-3 R/B                
+1 12904U 81103B   26306.11283354  .00003638  00000+0  15252-3 0  9990
+2 12904  81.1562 294.4644 0012149 198.3333 161.7463 15.23191018  9368
+SL-3 R/B                
+1 13068U 82013B   26306.11135291  .00003648  00000+0  15038-3 0  9992
+2 13068  81.1735 242.0627 0023107  96.7625 263.6238 15.23563633440483
+SL-3 R/B                
+1 13154U 82039B   26306.12213387  .00001578  00000+0  91852-4 0  9999
+2 13154  81.1504 301.7013 0030770 254.0
+----- end -----
+NEWS fetched 0, placed 0, retries ["query 1: HTTP 429","query 1: HTTP 429","query 2: HTTP 429","query 2: HTTP 429","query 3: HTTP 429"]
+  raw response: {}
+
+===== GDACS TC events (30 days)
+GET https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=TC&fromdate=2026-10-03&todate=2026-11-02&alertlevel=green;orange;red
+HTTP 200 | content-type: application/json; charset=utf-8 | etag: null | last-modified: null | access-control-allow-origin: *
+length 24249
+----- body (first 4000 chars) -----
+{"type":"FeatureCollection","features":[{"type":"Feature","bbox":[140.2,23.0,140.2,23.0],"geometry":{"type":"Point","coordinates":[140.2,23.0]},"properties":{"eventtype":"TC","eventid":1001343,"episodeid":41,"eventname":"IN-FA-26","glide":"","name":"Tropical Cyclone IN-FA-26","description":"Tropical Cyclone IN-FA-26","htmldescription":"Green Tropical Cyclone IN-FA-26 in Japan, Marshall Islands from: 25 Oct 2026  to: 02 Nov 2026 .","icon":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconoverall":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","url":{"geometry":"https://www.gdacs.org/gdacsapi/api/polygons/getgeometry?eventtype=TC&eventid=1001343&episodeid=41","report":"https://www.gdacs.org/report.aspx?eventid=1001343&episodeid=41&eventtype=TC","details":"https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=TC&eventid=1001343"},"alertlevel":"Green","alertscore":1,"episodealertlevel":"Green","episodealertscore":1.0,"istemporary":"false","iscurrent":"true","country":"Japan, Marshall Islands","fromdate":"2026-10-25T06:00:00","todate":"2026-11-02T12:00:00","datemodified":"2026-11-02T14:07:58","iso3":"MHL","source":"JTWC","sourceid":"","polygonlabel":"Centroid","Class":"Point_Centroid","countryonland":"","affectedcountries":[{"iso2":"JP","iso3":"JPN","countryname":"Japan"}],"severitydata":{"severity":240.7392,"severitytext":"Hurricane/Typhoon > 74 mph (maximum wind speed of 241 km/h)","severityunit":"km/h"}}},{"type":"Feature","bbox":[80.7,14.7,80.7,14.7],"geometry":{"type":"Point","coordinates":[80.7,14.7]},"properties":{"eventtype":"TC","eventid":1001346,"episodeid":7,"eventname":"MURASU-26","glide":"TC-2026-000199-IND","name":"Tropical Cyclone MURASU-26","description":"Tropical Cyclone MURASU-26","htmldescription":"Red Tropical Cyclone MURASU-26 in India from: 01 Nov 2026  to: 02 Nov 2026 .","icon":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconoverall":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","url":{"geometry":"https://www.gdacs.org/gdacsapi/api/polygons/getgeometry?eventtype=TC&eventid=1001346&episodeid=7","report":"https://www.gdacs.org/report.aspx?eventid=1001346&episodeid=7&eventtype=TC","details":"https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=TC&eventid=1001346"},"alertlevel":"Red","alertscore":3,"episodealertlevel":"Red","episodealertscore":3.0,"istemporary":"false","iscurrent":"true","country":"India","fromdate":"2026-11-01T00:00:00","todate":"2026-11-02T12:00:00","datemodified":"2026-11-02T14:03:01","iso3":"IND","source":"JTWC","sourceid":"","polygonlabel":"Centroid","Class":"Point_Centroid","countryonland":"","affectedcountries":[{"iso2":"IN","iso3":"IND","countryname":"India"}],"severitydata":{"severity":120.3696,"severitytext":"Hurricane/Typhoon > 74 mph (maximum wind speed of 120 km/h)","severityunit":"km/h"}}},{"type":"Feature","bbox":[-107.7,20.7,-107.7,20.7],"geometry":{"type":"Point","coordinates":[-107.7,20.7]},"properties":{"eventtype":"TC","eventid":1001341,"episodeid":35,"eventname":"VANCE-26","glide":"","name":"Tropical Cyclone VANCE-26","description":"Tropical Cyclone VANCE-26","htmldescription":"Green Tropical Cyclone VANCE-26 in México from: 21 Oct 2026  to: 30 Oct 2026 .","icon":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconoverall":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","url":{"geometry":"https://www.gdacs.org/gdacsapi/api/polygons/getgeometry?eventtype=TC&eventid=1001341&episodeid=35","report":"https://www.gdacs.org/report.aspx?eventid=1001341&episodeid=35&eventtype=TC","details":"https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=TC&eventid=1001341"},"alertlevel":"Green","alertscore":1,"episodealertlevel":"Green","episodealertscore":1.0,"istemporary":"false","iscurrent":"true","country":"México","fromdate":"2026-10-21T15:00:00","todate":"2026-10-30T03:00:00","datemodified":"2026-10-31T00:07:32","iso3":"","source":"NOAA","sourceid":"","polygonlabel":"Cen
+----- end -----
+TC 1001346/7 Tropical Cyclone MURASU-26 Red at 80.7,14.7 2026-11-01T00:00:00..2026-11-02T12:00:00 severity={"severity":120.3696,"severitytext":"Hurricane/Typhoon > 74 mph (maximum wind speed of 120 km/h)","severityunit":"km/h"}
+PROBE geometry 1001346: HTTP 200 160992 bytes
+  Point Point_Centroid | {} | coords 11b [80.7,14.7]
+  Polygon Poly_Green | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"60 km/h","Class":"Poly_Green","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 5122b [[[86.6,11.1],[86.6178,11.1003],[86.6356,11.1012],[86.6534,11.1027],[86.671,11.1049],[86.6886,11.1076],[86.7061,11.1109]
+  Polygon Poly_Orange | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"90 km/h","Class":"Poly_Orange","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 4521b [[[83.8,12.383],[83.8149,12.3833],[83.8298,12.384],[83.8447,12.3853],[83.8595,12.3871],[83.8743,12.3893],[83.8889,12.392
+  Polygon Poly_Red | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"120 km/h","Class":"Poly_Red","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 3259b [[[80.9,13.883],[80.915,13.8833],[80.93,13.884],[80.945,13.8853],[80.9599,13.8871],[80.9747,13.8893],[80.9895,13.8921],[
+  Polygon Poly_Green | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"02/11 12:00","featuretype":"WindRadii","visible":"true","key":"11021200","Class":"Poly_Green","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 6458b [[[80.7,16.0324],[80.7,15.5328],[80.685,15.5326],[80.67,15.5323],[80.6549,15.5316],[80.6399,15.5307],[80.625,15.5296],[8
+  Polygon Poly_Orange | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"02/11 12:00","featuretype":"WindRadii","visible":"true","key":"11021200","Class":"Poly_Orange","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 5935b [[[80.7,15.5328],[80.7,15.0331],[80.694,15.0331],[80.688,15.0329],[80.682,15.0327],[80.676,15.0323],[80.67,15.0318],[80.
+  Polygon Poly_Red | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"02/11 12:00","featuretype":"WindRadii","visible":"true","key":"11021200","Class":"Poly_Red","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 5422b [[[80.7,15.1164],[80.7,14.7],[80.7,14.7],[80.7,14.7],[80.7,14.7],[80.7,14.7],[80.7,14.7],[80.7,14.7],[80.7,14.7],[80.7,1
+  Polygon Poly_Green | {"polygondate":"2026-11-03T00:00:00","polygonlabel":"03/11 00:00","featuretype":"WindRadii","visible":"true","key":"11030000","Class":"Poly_Green","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 6473b [[[80.3,16.5993],[80.3,16.2662],[80.2879,16.2661],[80.2759,16.2658],[80.2638,16.2653],[80.2517,16.2646],[80.2397,16.2637
+  Polygon Poly_Orange | {"polygondate":"2026-11-03T00:00:00","polygonlabel":"03/11 00:00","featuretype":"WindRadii","visible":"true","key":"11030000","Class":"Poly_Orange","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 5951b [[[80.3,16.2662],[80.3,15.9331],[80.294,15.9331],[80.2879,15.9329],[80.2819,15.9327],[80.2759,15.9323],[80.2699,15.9318]
+  Polygon Poly_Red | {"polygondate":"2026-11-03T00:00:00","polygonlabel":"03/11 00:00","featuretype":"WindRadii","visible":"true","key":"11030000","Class":"Poly_Red","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 4383b [[[80.3,15.6],[80.3,15.6],[80.3,15.6],[80.3,15.6],[80.3,15.6],[80.3,15.6],[80.3,15.6],[80.3,15.6],[80.3,15.6],[80.3,15.6
+  Polygon Poly_Green | {"polygondate":"2026-11-03T12:00:00","polygonlabel":"03/11 12:00","featuretype":"WindRadii","visible":"true","key":"11031200","Class":"Poly_Green","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 6476b [[[80.2,16.7662],[80.2,16.5997],[80.1909,16.5996],[80.1819,16.5994],[80.1728,16.599],[80.1637,16.5984],[80.1547,16.5978]
+  Polygon Poly_Orange | {"polygondate":"2026-11-03T12:00:00","polygonlabel":"03/11 12:00","featuretype":"WindRadii","visible":"true","key":"11031200","Class":"Poly_Orange","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 4383b [[[80.2,16.1],[80.2,16.1],[80.2,16.1],[80.2,16.1],[80.2,16.1],[80.2,16.1],[80.2,16.1],[80.2,16.1],[80.2,16.1],[80.2,16.1
+  Polygon Poly_Red | {"polygondate":"2026-11-03T12:00:00","polygonlabel":"03/11 12:00","featuretype":"WindRadii","visible":"true","key":"11031200","Class":"Poly_Red","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 4383b [[[80.2,16.1],[80.2,16.1],[80.2,16.1],[80.2,16.1],[80.2,16.1],[80.2,16.1],[80.2,16.1],[80.2,16.1],[80.2,16.1],[80.2,16.1
+  Polygon Poly_Green | {"polygondate":"2026-11-04T00:00:00","polygonlabel":"04/11 00:00","featuretype":"WindRadii","visible":"true","key":"11040000","Class":"Poly_Green","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 4383b [[[79.9,16.4],[79.9,16.4],[79.9,16.4],[79.9,16.4],[79.9,16.4],[79.9,16.4],[79.9,16.4],[79.9,16.4],[79.9,16.4],[79.9,16.4
+  Polygon Poly_Orange | {"polygondate":"2026-11-04T00:00:00","polygonlabel":"04/11 00:00","featuretype":"WindRadii","visible":"true","key":"11040000","Class":"Poly_Orange","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 4383b [[[79.9,16.4],[79.9,16.4],[79.9,16.4],[79.9,16.4],[79.9,16.4],[79.9,16.4],[79.9,16.4],[79.9,16.4],[79.9,16.4],[79.9,16.4
+  Polygon Poly_Red | {"polygondate":"2026-11-04T00:00:00","polygonlabel":"04/11 00:00","featuretype":"WindRadii","visible":"true","key":"11040000","Class":"Poly_Red","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 4383b [[[79.9,16.4],[79.9,16.4],[79.9,16.4],[79.9,16.4],[79.9,16.4],[79.9,16.4],[79.9,16.4],[79.9,16.4],[79.9,16.4],[79.9,16.4
+  LineString Line_Line_0 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_0","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 25b [[80.9,14.3],[80.7,14.7]]
+  LineString Line_Line_1 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_1","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 25b [[81.8,13.5],[80.9,14.3]]
+  LineString Line_Line_2 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"TD","forecast":true,"Class":"Line_Line_2","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 25b [[80.2,16.1],[79.9,16.4]]
+  LineString Line_Line_3 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"TS","forecast":true,"Class":"Line_Line_3","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 25b [[80.3,15.6],[80.2,16.1]]
+  LineString Line_Line_4 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"TS","forecast":true,"Class":"Line_Line_4","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 25b [[80.7,14.7],[80.3,15.6]]
+  LineString Line_Line_5 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"TS","forecast":false,"Class":"Line_Line_5","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 25b [[82.6,13.6],[81.8,13.5]]
+  LineString Line_Line_6 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"TS","forecast":false,"Class":"Line_Line_6","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 25b [[83.8,12.8],[82.6,13.6]]
+  LineString Line_Line_7 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"TS","forecast":false,"Class":"Line_Line_7","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 25b [[84.8,12.2],[83.8,12.8]]
+  LineString Line_Line_8 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"TS","forecast":false,"Class":"Line_Line_8","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 25b [[86.6,11.6],[84.8,12.2]]
+  Polygon Point_Polygon_Point_0 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"01/11 00:00 UTC","featuretype":"PointRadii","key":"11010000","Class":"Point_Polygon_Point_0","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 2276b [[[86.6,11.57],[86.6015,11.57],[86.6029,11.5701],[86.6044,11.5703],[86.6059,11.5706],[86.6073,11.5709],[86.6087,11.5713]
+  Polygon Point_Polygon_Point_1 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"01/11 06:00 UTC","featuretype":"PointRadii","key":"11010600","Class":"Point_Polygon_Point_1","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 2276b [[[84.8,12.17],[84.8015,12.17],[84.8029,12.1701],[84.8044,12.1703],[84.8059,12.1706],[84.8073,12.1709],[84.8087,12.1713]
+  Polygon Point_Polygon_Point_2 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"01/11 12:00 UTC","featuretype":"PointRadii","key":"11011200","Class":"Point_Polygon_Point_2","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 2276b [[[83.8,12.77],[83.8015,12.77],[83.8029,12.7701],[83.8044,12.7703],[83.8059,12.7706],[83.8073,12.7709],[83.8087,12.7713]
+  Polygon Point_Polygon_Point_3 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"01/11 18:00 UTC","featuretype":"PointRadii","key":"11011800","Class":"Point_Polygon_Point_3","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 2276b [[[82.6,13.57],[82.6015,13.57],[82.6029,13.5701],[82.6044,13.5703],[82.6059,13.5706],[82.6073,13.5709],[82.6087,13.5713]
+  Polygon Point_Polygon_Point_4 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"02/11 00:00 UTC","featuretype":"PointRadii","key":"11020000","Class":"Point_Polygon_Point_4","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 2276b [[[81.8,13.47],[81.8015,13.47],[81.8029,13.4701],[81.8044,13.4703],[81.8059,13.4706],[81.8073,13.4709],[81.8087,13.4713]
+  Polygon Point_Polygon_Point_5 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"02/11 06:00 UTC","featuretype":"PointRadii","key":"11020600","Class":"Point_Polygon_Point_5","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 2276b [[[80.9,14.27],[80.9015,14.27],[80.9029,14.2701],[80.9044,14.2703],[80.9059,14.2706],[80.9073,14.2709],[80.9087,14.2713]
+  Polygon Point_Polygon_Point_6 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"02/11 12:00 UTC","featuretype":"PointRadii","key":"11021200","Class":"Point_Polygon_Point_6","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 2276b [[[80.7,14.67],[80.7015,14.67],[80.7029,14.6701],[80.7044,14.6703],[80.7059,14.6706],[80.7073,14.6709],[80.7087,14.6713]
+  Polygon Point_Polygon_Point_7 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"03/11 00:00 UTC","featuretype":"PointRadii","key":"11030000","Class":"Point_Polygon_Point_7","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 2276b [[[80.3,15.57],[80.3015,15.57],[80.3029,15.5701],[80.3044,15.5703],[80.3059,15.5706],[80.3073,15.5709],[80.3087,15.5713]
+  Polygon Point_Polygon_Point_8 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"03/11 12:00 UTC","featuretype":"PointRadii","key":"11031200","Class":"Point_Polygon_Point_8","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 2276b [[[80.2,16.07],[80.2015,16.07],[80.2029,16.0701],[80.2044,16.0703],[80.2059,16.0706],[80.2073,16.0709],[80.2087,16.0713]
+  Polygon Point_Polygon_Point_9 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"04/11 00:00 UTC","featuretype":"PointRadii","key":"11040000","Class":"Point_Polygon_Point_9","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 2276b [[[79.9,16.37],[79.9015,16.37],[79.9029,16.3701],[79.9044,16.3703],[79.9059,16.3706],[79.9073,16.3709],[79.9087,16.3713]
+  Polygon Poly_Cones | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"Uncertainty Cones","Class":"Poly_Cones","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png"} | coords 3855b [[[80.7,14.45],[80.709,14.4502],[80.718,14.4506],[80.727,14.4514],[80.736,14.4524],[80.7449,14.4538],[80.7537,14.4555],[
+
+===== GDACS event data 1001346
+GET https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=TC&eventid=1001346
+HTTP 200 | content-type: application/json; charset=utf-8 | etag: null | last-modified: null | access-control-allow-origin: *
+length 14936
+----- body (first 4000 chars) -----
+{"type":"Feature","bbox":[80.7,14.7,80.7,14.7],"geometry":{"type":"Point","coordinates":[80.7,14.7]},"properties":{"eventtype":"TC","eventid":1001346,"episodeid":7,"eventname":"MURASU-26","glide":"TC-2026-000199-IND","name":"Tropical Cyclone MURASU-26","description":"Tropical Cyclone MURASU-26","htmldescription":"Red Tropical Cyclone MURASU-26 in India from: 01 Nov 2026  to: 02 Nov 2026 .","icon":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconoverall":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","url":{"geometry":"https://www.gdacs.org/gdacsapi/api/polygons/getgeometry?eventtype=TC&eventid=1001346&episodeid=7","report":"https://www.gdacs.org/report.aspx?eventid=1001346&episodeid=7&eventtype=TC","media":"https://www.gdacs.org/gdacsapi/api/emm/getemmnewsbykey?eventtype=TC&eventid=1001346","eventnews":"https://www.gdacs.org/gdacsapi/api/news/getnewsbygdacskey?eventtype=TC&eventid=1001346"},"alertlevel":"Red","alertscore":3,"episodealertlevel":"Red","episodealertscore":3.0,"istemporary":"false","iscurrent":"true","country":"India","fromdate":"2026-11-01T00:00:00","todate":"2026-11-02T12:00:00","datemodified":"2026-11-02T14:03:01","iso3":"IND","source":"JTWC","sourceid":"","polygonlabel":"Centroid","Class":"Point_Centroid","countryonland":"","affectedcountries":[{"iso2":"IN","iso3":"IND","countryname":"India"}],"severitydata":{"severity":120.3696,"severitytext":"Hurricane/Typhoon > 74 mph (maximum wind speed of 120 km/h)","severityunit":"km/h"},"episodes":[{"details":"https://www.gdacs.org/gdacsapi/api/events/getepisodedata?eventtype=TC&eventid=1001346&episodeid=1"},{"details":"https://www.gdacs.org/gdacsapi/api/events/getepisodedata?eventtype=TC&eventid=1001346&episodeid=2"},{"details":"https://www.gdacs.org/gdacsapi/api/events/getepisodedata?eventtype=TC&eventid=1001346&episodeid=3"},{"details":"https://www.gdacs.org/gdacsapi/api/events/getepisodedata?eventtype=TC&eventid=1001346&episodeid=4"},{"details":"https://www.gdacs.org/gdacsapi/api/events/getepisodedata?eventtype=TC&eventid=1001346&episodeid=5"},{"details":"https://www.gdacs.org/gdacsapi/api/events/getepisodedata?eventtype=TC&eventid=1001346&episodeid=6"},{"details":"https://www.gdacs.org/gdacsapi/api/events/getepisodedata?eventtype=TC&eventid=1001346&episodeid=7"}],"impacts":[{"source":"JTWC","resource":{"timeline":"https://www.gdacs.org/gdacsapi/api/export/gettimeline?id=818220","buffer74":"https://www.gdacs.org/gdacsapi/api/export/getimpact?id=818221","buffer39":"https://www.gdacs.org/gdacsapi/api/export/getimpact?id=818222"}}],"images":{"rainmap":"https://www.gdacs.org/contentdata/resources/TC/1001346/JTWC/7/rain_1001346_7.png","overviewmap":"https://www.gdacs.org/contentdata/resources/TC/1001346/JTWC/7/clouds_1001346_7.png","rainaccumulationmap":"https://www.gdacs.org/contentdata/resources/TC/1001346/JTWC/7/current_rain_1001346_7.png","thumbnailmap_cached":"https://www.gdacs.org/contentdata/resources/TC/1001346/JTWC/7/1001346_7_tn.png","storm_surge_animation_ECMWF":"https://www.gdacs.org/contentdata/resources/TC/1001346/ECMWF/1/final/outres1.gif","storm_surge_maxheight_ECMWF":"https://www.gdacs.org/contentdata/resources/TC/1001346/ECMWF/1/final/P1_MAP_END.jpg","inundationHeight_ECMWF":"https://www.gdacs.org/contentdata/resources/TC/1001346/ECMWF/1/final/run2/inundationHeight.tif.png","stormsurge_background_ECMWF":"https://www.gdacs.org/contentdata/resources/TC/1001346/ECMWF/1/final/run2/shoreline.map.png","storm_surge_animation_HWRF":"https://www.gdacs.org/contentdata/resources/TC/1001346/HWRF/1/final/outres1.gif","storm_surge_maxheight_HWRF":"https://www.gdacs.org/contentdata/resources/TC/1001346/HWRF/1/final/P1_MAP_END.jpg","inundationHeight_HWRF":"https://www.gdacs.org/contentdata/resources/TC/1001346/HWRF/1/final/run2/inundationHeight.tif.png","stormsurge_background_HWRF":"https://www.gdacs.org/contentdata/resources/TC/1001346/HWRF/1/final/run2/shoreline.map.png","storm_surge_maxwind_ECMWF":"https://www.gdacs.org/contentdata/resourc
+----- end -----
+TC 1001343/41 Tropical Cyclone IN-FA-26 Green at 140.2,23 2026-10-25T06:00:00..2026-11-02T12:00:00 severity={"severity":240.7392,"severitytext":"Hurricane/Typhoon > 74 mph (maximum wind speed of 241 km/h)","severityunit":"km/h"}
+PROBE geometry 1001343: HTTP 200 475316 bytes
+  Point Point_Centroid | {} | coords 10b [140.2,23]
+  Polygon Poly_Green | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"60 km/h","Class":"Poly_Green","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 10232b [[[165,10.999],[165.0357,10.9996],[165.0714,11.0014],[165.107,11.0045],[165.1424,11.0087],[165.1777,11.0142],[165.2128,1
+  Polygon Poly_Orange | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"90 km/h","Class":"Poly_Orange","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 11184b [[[165,11.667],[165.0119,11.6672],[165.0237,11.6678],[165.0356,11.6688],[165.0474,11.6702],[165.0591,11.6721],[165.0708,
+  Polygon Poly_Red | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"120 km/h","Class":"Poly_Red","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 11416b [[[164.5,12.55],[164.5089,12.5502],[164.5179,12.5506],[164.5268,12.5514],[164.5357,12.5524],[164.5445,12.5538],[164.5533
+  Polygon Poly_Green | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"02/11 12:00","featuretype":"WindRadii","visible":"true","key":"11021200","Class":"Poly_Green","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 6829b [[[140.2,24.9987],[140.2,25.1652],[140.1589,25.1649],[140.1179,25.1639],[140.0769,25.1622],[140.0359,25.1599],[139.995,2
+  Polygon Poly_Orange | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"02/11 12:00","featuretype":"WindRadii","visible":"true","key":"11021200","Class":"Poly_Orange","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 6827b [[[140.2,24.2492],[140.2,24.3324],[140.1747,24.3322],[140.1495,24.3316],[140.1242,24.3306],[140.099,24.3292],[140.0738,2
+  Polygon Poly_Red | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"02/11 12:00","featuretype":"WindRadii","visible":"true","key":"11021200","Class":"Poly_Red","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 5413b [[[140.2,23.916],[140.2,24.0826],[140.1795,24.0824],[140.159,24.0819],[140.1384,24.0811],[140.118,24.08],[140.0975,24.07
+  Polygon Poly_Green | {"polygondate":"2026-11-03T00:00:00","polygonlabel":"03/11 00:00","featuretype":"WindRadii","visible":"true","key":"11030000","Class":"Poly_Green","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 6842b [[[139.4,25.1655],[139.4,25.3321],[139.3651,25.3318],[139.3303,25.331],[139.2954,25.3296],[139.2606,25.3276],[139.2259,2
+  Polygon Poly_Orange | {"polygondate":"2026-11-03T00:00:00","polygonlabel":"03/11 00:00","featuretype":"WindRadii","visible":"true","key":"11030000","Class":"Poly_Orange","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 6858b [[[139.4,24.4993],[139.4,24.3328],[139.3842,24.3326],[139.3683,24.3323],[139.3525,24.3316],[139.3367,24.3307],[139.3209,
+  Polygon Poly_Red | {"polygondate":"2026-11-03T00:00:00","polygonlabel":"03/11 00:00","featuretype":"WindRadii","visible":"true","key":"11030000","Class":"Poly_Red","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 6321b [[[139.4,24.1662],[139.4,24.1662],[139.3873,24.1661],[139.3746,24.1658],[139.362,24.1653],[139.3493,24.1646],[139.3367,2
+  Polygon Poly_Green | {"polygondate":"2026-11-03T12:00:00","polygonlabel":"03/11 12:00","featuretype":"WindRadii","visible":"true","key":"11031200","Class":"Poly_Green","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 6824b [[[138.7,25.6655],[138.7,25.6655],[138.6682,25.6653],[138.6364,25.6645],[138.6046,25.6633],[138.5728,25.6615],[138.5411,
+  Polygon Poly_Orange | {"polygondate":"2026-11-03T12:00:00","polygonlabel":"03/11 12:00","featuretype":"WindRadii","visible":"true","key":"11031200","Class":"Poly_Orange","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 6829b [[[138.7,24.9993],[138.7,24.8328],[138.6841,24.8326],[138.6682,24.8323],[138.6523,24.8316],[138.6364,24.8307],[138.6206,
+  Polygon Poly_Red | {"polygondate":"2026-11-03T12:00:00","polygonlabel":"03/11 12:00","featuretype":"WindRadii","visible":"true","key":"11031200","Class":"Poly_Red","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 6130b [[[138.7,24.4997],[138.7,24.4997],[138.6905,24.4996],[138.6809,24.4994],[138.6714,24.499],[138.6618,24.4984],[138.6523,2
+  Polygon Poly_Green | {"polygondate":"2026-11-04T00:00:00","polygonlabel":"04/11 00:00","featuretype":"WindRadii","visible":"true","key":"11040000","Class":"Poly_Green","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 6822b [[[138.4,26.4655],[138.4,26.4655],[138.368,26.4653],[138.336,26.4645],[138.304,26.4633],[138.272,26.4615],[138.2401,26.4
+  Polygon Poly_Orange | {"polygondate":"2026-11-04T00:00:00","polygonlabel":"04/11 00:00","featuretype":"WindRadii","visible":"true","key":"11040000","Class":"Poly_Orange","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 6846b [[[138.4,25.7993],[138.4,25.6328],[138.384,25.6326],[138.368,25.6323],[138.352,25.6316],[138.336,25.6307],[138.32,25.629
+  Polygon Poly_Red | {"polygondate":"2026-11-04T00:00:00","polygonlabel":"04/11 00:00","featuretype":"WindRadii","visible":"true","key":"11040000","Class":"Poly_Red","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 6343b [[[138.4,25.2997],[138.4,25.2997],[138.3904,25.2996],[138.3808,25.2994],[138.3712,25.299],[138.3616,25.2984],[138.352,25
+  Polygon Poly_Green | {"polygondate":"2026-11-04T12:00:00","polygonlabel":"04/11 12:00","featuretype":"WindRadii","visible":"true","key":"11041200","Class":"Poly_Green","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 6823b [[[138.5,27.6655],[138.5,27.499],[138.4709,27.4988],[138.4418,27.4981],[138.4127,27.4969],[138.3837,27.4953],[138.3546,2
+  Polygon Poly_Orange | {"polygondate":"2026-11-04T12:00:00","polygonlabel":"04/11 12:00","featuretype":"WindRadii","visible":"true","key":"11041200","Class":"Poly_Orange","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 6820b [[[138.5,26.8328],[138.5,26.8328],[138.4838,26.8326],[138.4677,26.8323],[138.4515,26.8316],[138.4354,26.8307],[138.4192,
+  Polygon Poly_Red | {"polygondate":"2026-11-04T12:00:00","polygonlabel":"04/11 12:00","featuretype":"WindRadii","visible":"true","key":"11041200","Class":"Poly_Red","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 6835b [[[138.5,26.6662],[138.5,26.4997],[138.4903,26.4996],[138.4806,26.4994],[138.4709,26.499],[138.4612,26.4984],[138.4515,2
+  Polygon Poly_Green | {"polygondate":"2026-11-05T00:00:00","polygonlabel":"05/11 00:00","featuretype":"WindRadii","visible":"true","key":"11050000","Class":"Poly_Green","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 6843b [[[139.7,29.7655],[139.7,29.2659],[139.6769,29.2657],[139.6539,29.2652],[139.6308,29.2643],[139.6078,29.263],[139.5848,2
+  Polygon Poly_Orange | {"polygondate":"2026-11-05T00:00:00","polygonlabel":"05/11 00:00","featuretype":"WindRadii","visible":"true","key":"11050000","Class":"Poly_Orange","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 6841b [[[139.7,28.7662],[139.7,28.5997],[139.6901,28.5996],[139.6802,28.5994],[139.6704,28.599],[139.6605,28.5984],[139.6506,2
+  Polygon Poly_Red | {"polygondate":"2026-11-05T00:00:00","polygonlabel":"05/11 00:00","featuretype":"WindRadii","visible":"true","key":"11050000","Class":"Poly_Red","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 5270b [[[139.7,28.1],[139.7,28.1],[139.7,28.1],[139.7,28.1],[139.7,28.1],[139.7,28.1],[139.7,28.1],[139.7,28.1],[139.7,28.1],[
+  Polygon Poly_Green | {"polygondate":"2026-11-05T12:00:00","polygonlabel":"05/11 12:00","featuretype":"WindRadii","visible":"true","key":"11051200","Class":"Poly_Green","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 6831b [[[143.4,33.5321],[143.4,32.3662],[143.3863,32.3661],[143.3727,32.3658],[143.359,32.3653],[143.3454,32.3646],[143.3318,3
+  Polygon Poly_Orange | {"polygondate":"2026-11-05T12:00:00","polygonlabel":"05/11 12:00","featuretype":"WindRadii","visible":"true","key":"11051200","Class":"Poly_Orange","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 6843b [[[143.4,32.1997],[143.4,32.0331],[143.3932,32.0331],[143.3863,32.0329],[143.3795,32.0327],[143.3727,32.0323],[143.3659,
+  Polygon Poly_Red | {"polygondate":"2026-11-05T12:00:00","polygonlabel":"05/11 12:00","featuretype":"WindRadii","visible":"true","key":"11051200","Class":"Poly_Red","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 5782b [[[143.4,31.7],[143.4,31.7],[143.4,31.7],[143.4,31.7],[143.4,31.7],[143.4,31.7],[143.4,31.7],[143.4,31.7],[143.4,31.7],[
+  Polygon Poly_Green | {"polygondate":"2026-11-06T12:00:00","polygonlabel":"06/11 12:00","featuretype":"WindRadii","visible":"true","key":"11061200","Class":"Poly_Green","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 6843b [[[156.3,44.897],[156.3,42.0655],[156.2618,42.0653],[156.2237,42.0645],[156.1855,42.0633],[156.1474,42.0615],[156.1094,4
+  Polygon Poly_Orange | {"polygondate":"2026-11-06T12:00:00","polygonlabel":"06/11 12:00","featuretype":"WindRadii","visible":"true","key":"11061200","Class":"Poly_Orange","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 6841b [[[156.3,41.0662],[156.3,40.8997],[156.2885,40.8996],[156.2771,40.8994],[156.2657,40.899],[156.2542,40.8984],[156.2428,4
+  Polygon Poly_Red | {"polygondate":"2026-11-06T12:00:00","polygonlabel":"06/11 12:00","featuretype":"WindRadii","visible":"true","key":"11061200","Class":"Poly_Red","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 4748b [[[156.3,40.4],[156.3,40.4],[156.3,40.4],[156.3,40.4],[156.3,40.4],[156.3,40.4],[156.3,40.4],[156.3,40.4],[156.3,40.4],[
+  LineString Line_Line_0 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":true,"Class":"Line_Line_0","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 25b [[138.4,24.8],[138.5,26]]
+  LineString Line_Line_1 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":true,"Class":"Line_Line_1","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 25b [[138.5,26],[139.7,28.1]]
+  LineString Line_Line_2 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":true,"Class":"Line_Line_2","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 25b [[138.7,24],[138.4,24.8]]
+  LineString Line_Line_3 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":true,"Class":"Line_Line_3","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 25b [[139.4,23.5],[138.7,24]]
+  LineString Line_Line_4 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":true,"Class":"Line_Line_4","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 27b [[139.7,28.1],[143.4,31.7]]
+  LineString Line_Line_5 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":true,"Class":"Line_Line_5","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 25b [[140.2,23],[139.4,23.5]]
+  LineString Line_Line_6 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_6","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 25b [[140.9,22.6],[140.2,23]]
+  LineString Line_Line_7 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_7","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 27b [[141.7,22.3],[140.9,22.6]]
+  LineString Line_Line_8 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_8","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 27b [[142.8,21.5],[142.9,22.2]]
+  LineString Line_Line_9 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_9","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 27b [[142.9,22.2],[143.5,22.8]]
+  LineString Line_Line_10 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_10","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 23b [[143,22],[141.7,22.3]]
+  LineString Line_Line_11 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_11","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 27b [[143.4,20.5],[142.8,21.5]]
+  LineString Line_Line_12 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_12","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 25b [[143.5,22.8],[144,22.9]]
+  LineString Line_Line_13 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_13","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 23b [[143.6,22.1],[143,22]]
+  LineString Line_Line_14 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_14","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 25b [[144,22.9],[144.3,22.8]]
+  LineString Line_Line_15 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_15","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 27b [[144.1,22.3],[143.6,22.1]]
+  LineString Line_Line_16 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_16","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 27b [[144.3,22.8],[144.1,22.3]]
+  LineString Line_Line_17 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_17","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 27b [[144.5,19.7],[143.4,20.5]]
+  LineString Line_Line_18 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_18","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 27b [[146.2,18.7],[144.5,19.7]]
+  LineString Line_Line_19 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_19","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 27b [[147.8,17.8],[146.2,18.7]]
+  LineString Line_Line_20 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_20","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 27b [[149.7,17.1],[147.8,17.8]]
+  LineString Line_Line_21 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_21","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 27b [[151.3,16.6],[149.7,17.1]]
+  LineString Line_Line_22 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_22","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 27b [[152.9,16.3],[151.3,16.6]]
+  LineString Line_Line_23 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_23","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 27b [[154.6,15.9],[152.9,16.3]]
+  LineString Line_Line_24 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_24","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 27b [[156.3,15.6],[154.6,15.9]]
+  LineString Line_Line_25 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_25","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 27b [[157.6,15.4],[156.3,15.6]]
+  LineString Line_Line_26 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_26","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 27b [[158.9,15.1],[157.6,15.4]]
+  LineString Line_Line_27 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_27","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 27b [[159.9,14.9],[158.9,15.1]]
+  LineString Line_Line_28 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_28","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 27b [[160.8,14.7],[159.9,14.9]]
+  LineString Line_Line_29 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_29","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 27b [[161.6,14.5],[160.8,14.7]]
+  LineString Line_Line_30 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_30","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 27b [[162.1,14.5],[161.6,14.5]]
+  LineString Line_Line_31 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_31","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 27b [[162.4,14.3],[162.1,14.5]]
+  LineString Line_Line_32 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_32","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 27b [[162.6,14.1],[162.4,14.3]]
+  LineString Line_Line_33 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_33","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 27b [[162.7,14.1],[162.6,14.1]]
+  LineString Line_Line_34 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_34","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 23b [[163,14],[162.7,14.1]]
+  LineString Line_Line_35 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_35","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 23b [[163.2,13.8],[163,14]]
+  LineString Line_Line_36 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_36","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 27b [[163.9,13.4],[163.2,13.8]]
+  LineString Line_Line_37 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_37","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 27b [[164.5,12.8],[163.9,13.4]]
+  LineString Line_Line_38 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"HU","forecast":false,"Class":"Line_Line_38","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 23b [[165,12],[164.5,12.8]]
+  LineString Line_Line_39 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"TS","forecast":true,"Class":"Line_Line_39","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 27b [[143.4,31.7],[156.3,40.4]]
+  Polygon Point_Polygon_Point_0 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"25/10 06:00 UTC","featuretype":"PointRadii","key":"10250600","Class":"Point_Polygon_Point_0","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2395b [[[165,11.97],[165.0015,11.97],[165.0029,11.9701],[165.0044,11.9703],[165.0059,11.9706],[165.0073,11.9709],[165.0087,11.
+  Polygon Point_Polygon_Point_1 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"25/10 12:00 UTC","featuretype":"PointRadii","key":"10251200","Class":"Point_Polygon_Point_1","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[164.5,12.77],[164.5015,12.77],[164.5029,12.7701],[164.5044,12.7703],[164.5059,12.7706],[164.5073,12.7709],[164.5087,1
+  Polygon Point_Polygon_Point_2 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"25/10 18:00 UTC","featuretype":"PointRadii","key":"10251800","Class":"Point_Polygon_Point_2","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[163.9,13.37],[163.9015,13.37],[163.9029,13.3701],[163.9044,13.3703],[163.9059,13.3706],[163.9073,13.3709],[163.9087,1
+  Polygon Point_Polygon_Point_3 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"26/10 00:00 UTC","featuretype":"PointRadii","key":"10260000","Class":"Point_Polygon_Point_3","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[163.2,13.77],[163.2015,13.77],[163.2029,13.7701],[163.2044,13.7703],[163.2059,13.7706],[163.2073,13.7709],[163.2087,1
+  Polygon Point_Polygon_Point_4 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"26/10 06:00 UTC","featuretype":"PointRadii","key":"10260600","Class":"Point_Polygon_Point_4","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2395b [[[163,13.97],[163.0015,13.97],[163.0029,13.9701],[163.0044,13.9703],[163.0059,13.9706],[163.0073,13.9709],[163.0087,13.
+  Polygon Point_Polygon_Point_5 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"26/10 12:00 UTC","featuretype":"PointRadii","key":"10261200","Class":"Point_Polygon_Point_5","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[162.7,14.07],[162.7015,14.07],[162.7029,14.0701],[162.7044,14.0703],[162.7059,14.0706],[162.7073,14.0709],[162.7087,1
+  Polygon Point_Polygon_Point_6 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"26/10 18:00 UTC","featuretype":"PointRadii","key":"10261800","Class":"Point_Polygon_Point_6","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[162.6,14.07],[162.6015,14.07],[162.6029,14.0701],[162.6044,14.0703],[162.6059,14.0706],[162.6073,14.0709],[162.6087,1
+  Polygon Point_Polygon_Point_7 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"27/10 00:00 UTC","featuretype":"PointRadii","key":"10270000","Class":"Point_Polygon_Point_7","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[162.4,14.27],[162.4015,14.27],[162.4029,14.2701],[162.4044,14.2703],[162.4059,14.2706],[162.4073,14.2709],[162.4087,1
+  Polygon Point_Polygon_Point_8 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"27/10 06:00 UTC","featuretype":"PointRadii","key":"10270600","Class":"Point_Polygon_Point_8","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[162.1,14.47],[162.1015,14.47],[162.1029,14.4701],[162.1044,14.4703],[162.1059,14.4706],[162.1073,14.4709],[162.1087,1
+  Polygon Point_Polygon_Point_9 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"27/10 12:00 UTC","featuretype":"PointRadii","key":"10271200","Class":"Point_Polygon_Point_9","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[161.6,14.47],[161.6015,14.47],[161.6029,14.4701],[161.6044,14.4703],[161.6059,14.4706],[161.6073,14.4709],[161.6087,1
+  Polygon Point_Polygon_Point_10 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"27/10 18:00 UTC","featuretype":"PointRadii","key":"10271800","Class":"Point_Polygon_Point_10","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[160.8,14.67],[160.8015,14.67],[160.8029,14.6701],[160.8044,14.6703],[160.8059,14.6706],[160.8073,14.6709],[160.8087,1
+  Polygon Point_Polygon_Point_11 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"28/10 00:00 UTC","featuretype":"PointRadii","key":"10280000","Class":"Point_Polygon_Point_11","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[159.9,14.87],[159.9015,14.87],[159.9029,14.8701],[159.9044,14.8703],[159.9059,14.8706],[159.9073,14.8709],[159.9087,1
+  Polygon Point_Polygon_Point_12 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"28/10 06:00 UTC","featuretype":"PointRadii","key":"10280600","Class":"Point_Polygon_Point_12","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[158.9,15.07],[158.9015,15.07],[158.9029,15.0701],[158.9044,15.0703],[158.9059,15.0706],[158.9073,15.0709],[158.9087,1
+  Polygon Point_Polygon_Point_13 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"28/10 12:00 UTC","featuretype":"PointRadii","key":"10281200","Class":"Point_Polygon_Point_13","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[157.6,15.37],[157.6015,15.37],[157.6029,15.3701],[157.6044,15.3703],[157.6059,15.3706],[157.6073,15.3709],[157.6087,1
+  Polygon Point_Polygon_Point_14 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"28/10 18:00 UTC","featuretype":"PointRadii","key":"10281800","Class":"Point_Polygon_Point_14","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[156.3,15.57],[156.3015,15.57],[156.3029,15.5701],[156.3044,15.5703],[156.3059,15.5706],[156.3073,15.5709],[156.3087,1
+  Polygon Point_Polygon_Point_15 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"29/10 00:00 UTC","featuretype":"PointRadii","key":"10290000","Class":"Point_Polygon_Point_15","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[154.6,15.87],[154.6015,15.87],[154.6029,15.8701],[154.6044,15.8703],[154.6059,15.8706],[154.6073,15.8709],[154.6087,1
+  Polygon Point_Polygon_Point_16 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"29/10 06:00 UTC","featuretype":"PointRadii","key":"10290600","Class":"Point_Polygon_Point_16","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[152.9,16.27],[152.9015,16.27],[152.9029,16.2701],[152.9044,16.2703],[152.9059,16.2706],[152.9073,16.2709],[152.9087,1
+  Polygon Point_Polygon_Point_17 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"29/10 12:00 UTC","featuretype":"PointRadii","key":"10291200","Class":"Point_Polygon_Point_17","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[151.3,16.57],[151.3015,16.57],[151.3029,16.5701],[151.3044,16.5703],[151.3059,16.5706],[151.3073,16.5709],[151.3087,1
+  Polygon Point_Polygon_Point_18 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"29/10 18:00 UTC","featuretype":"PointRadii","key":"10291800","Class":"Point_Polygon_Point_18","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[149.7,17.07],[149.7015,17.07],[149.7029,17.0701],[149.7044,17.0703],[149.7059,17.0706],[149.7073,17.0709],[149.7087,1
+  Polygon Point_Polygon_Point_19 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"30/10 00:00 UTC","featuretype":"PointRadii","key":"10300000","Class":"Point_Polygon_Point_19","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[147.8,17.77],[147.8015,17.77],[147.8029,17.7701],[147.8044,17.7703],[147.8059,17.7706],[147.8073,17.7709],[147.8087,1
+  Polygon Point_Polygon_Point_20 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"30/10 06:00 UTC","featuretype":"PointRadii","key":"10300600","Class":"Point_Polygon_Point_20","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[146.2,18.67],[146.2015,18.67],[146.2029,18.6701],[146.2044,18.6703],[146.2059,18.6706],[146.2073,18.6709],[146.2087,1
+  Polygon Point_Polygon_Point_21 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"30/10 12:00 UTC","featuretype":"PointRadii","key":"10301200","Class":"Point_Polygon_Point_21","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[144.5,19.67],[144.5015,19.67],[144.5029,19.6701],[144.5044,19.6703],[144.5059,19.6706],[144.5073,19.6709],[144.5087,1
+  Polygon Point_Polygon_Point_22 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"30/10 18:00 UTC","featuretype":"PointRadii","key":"10301800","Class":"Point_Polygon_Point_22","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[143.4,20.47],[143.4015,20.47],[143.4029,20.4701],[143.4044,20.4703],[143.4059,20.4706],[143.4073,20.4709],[143.4087,2
+  Polygon Point_Polygon_Point_23 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"31/10 00:00 UTC","featuretype":"PointRadii","key":"10310000","Class":"Point_Polygon_Point_23","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[142.8,21.47],[142.8015,21.47],[142.8029,21.4701],[142.8044,21.4703],[142.8059,21.4706],[142.8073,21.4709],[142.8087,2
+  Polygon Point_Polygon_Point_24 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"31/10 06:00 UTC","featuretype":"PointRadii","key":"10310600","Class":"Point_Polygon_Point_24","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[142.9,22.17],[142.9015,22.17],[142.9029,22.1701],[142.9044,22.1703],[142.9059,22.1706],[142.9073,22.1709],[142.9087,2
+  Polygon Point_Polygon_Point_25 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"31/10 12:00 UTC","featuretype":"PointRadii","key":"10311200","Class":"Point_Polygon_Point_25","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[143.5,22.77],[143.5015,22.77],[143.5029,22.7701],[143.5044,22.7703],[143.5059,22.7706],[143.5073,22.7709],[143.5087,2
+  Polygon Point_Polygon_Point_26 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"31/10 18:00 UTC","featuretype":"PointRadii","key":"10311800","Class":"Point_Polygon_Point_26","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2399b [[[144,22.87],[144.0015,22.87],[144.0029,22.8701],[144.0044,22.8703],[144.0059,22.8706],[144.0073,22.8709],[144.0087,22.
+  Polygon Point_Polygon_Point_27 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"01/11 00:00 UTC","featuretype":"PointRadii","key":"11010000","Class":"Point_Polygon_Point_27","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[144.3,22.77],[144.3015,22.77],[144.3029,22.7701],[144.3044,22.7703],[144.3059,22.7706],[144.3073,22.7709],[144.3087,2
+  Polygon Point_Polygon_Point_28 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"01/11 06:00 UTC","featuretype":"PointRadii","key":"11010600","Class":"Point_Polygon_Point_28","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[144.1,22.27],[144.1015,22.27],[144.1029,22.2701],[144.1044,22.2703],[144.1059,22.2706],[144.1073,22.2709],[144.1087,2
+  Polygon Point_Polygon_Point_29 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"01/11 12:00 UTC","featuretype":"PointRadii","key":"11011200","Class":"Point_Polygon_Point_29","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[143.6,22.07],[143.6015,22.07],[143.6029,22.0701],[143.6044,22.0703],[143.6059,22.0706],[143.6073,22.0709],[143.6087,2
+  Polygon Point_Polygon_Point_30 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"01/11 18:00 UTC","featuretype":"PointRadii","key":"11011800","Class":"Point_Polygon_Point_30","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2395b [[[143,21.97],[143.0015,21.97],[143.0029,21.9701],[143.0044,21.9703],[143.0059,21.9706],[143.0073,21.9709],[143.0087,21.
+  Polygon Point_Polygon_Point_31 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"02/11 00:00 UTC","featuretype":"PointRadii","key":"11020000","Class":"Point_Polygon_Point_31","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[141.7,22.27],[141.7015,22.27],[141.7029,22.2701],[141.7044,22.2703],[141.7059,22.2706],[141.7073,22.2709],[141.7087,2
+  Polygon Point_Polygon_Point_32 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"02/11 06:00 UTC","featuretype":"PointRadii","key":"11020600","Class":"Point_Polygon_Point_32","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[140.9,22.57],[140.9015,22.57],[140.9029,22.5701],[140.9044,22.5703],[140.9059,22.5706],[140.9073,22.5709],[140.9087,2
+  Polygon Point_Polygon_Point_33 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"02/11 12:00 UTC","featuretype":"PointRadii","key":"11021200","Class":"Point_Polygon_Point_33","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2401b [[[140.2,22.97],[140.2015,22.97],[140.2029,22.9701],[140.2044,22.9703],[140.2059,22.9706],[140.2073,22.9709],[140.2087,2
+  Polygon Point_Polygon_Point_34 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"03/11 00:00 UTC","featuretype":"PointRadii","key":"11030000","Class":"Point_Polygon_Point_34","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[139.4,23.47],[139.4015,23.47],[139.4029,23.4701],[139.4044,23.4703],[139.4059,23.4706],[139.4073,23.4709],[139.4087,2
+  Polygon Point_Polygon_Point_35 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"03/11 12:00 UTC","featuretype":"PointRadii","key":"11031200","Class":"Point_Polygon_Point_35","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2401b [[[138.7,23.97],[138.7015,23.97],[138.7029,23.9701],[138.7044,23.9703],[138.7059,23.9706],[138.7073,23.9709],[138.7087,2
+  Polygon Point_Polygon_Point_36 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"04/11 00:00 UTC","featuretype":"PointRadii","key":"11040000","Class":"Point_Polygon_Point_36","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[138.4,24.77],[138.4015,24.77],[138.4029,24.7701],[138.4044,24.7703],[138.4059,24.7706],[138.4073,24.7709],[138.4087,2
+  Polygon Point_Polygon_Point_37 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"04/11 12:00 UTC","featuretype":"PointRadii","key":"11041200","Class":"Point_Polygon_Point_37","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2401b [[[138.5,25.97],[138.5015,25.97],[138.5029,25.9701],[138.5044,25.9703],[138.5059,25.9706],[138.5073,25.9709],[138.5087,2
+  Polygon Point_Polygon_Point_38 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"05/11 00:00 UTC","featuretype":"PointRadii","key":"11050000","Class":"Point_Polygon_Point_38","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[139.7,28.07],[139.7015,28.07],[139.7029,28.0701],[139.7044,28.0703],[139.7059,28.0706],[139.7073,28.0709],[139.7087,2
+  Polygon Point_Polygon_Point_39 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"05/11 12:00 UTC","featuretype":"PointRadii","key":"11051200","Class":"Point_Polygon_Point_39","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[143.4,31.67],[143.4015,31.67],[143.4029,31.6701],[143.4044,31.6703],[143.4059,31.6706],[143.4073,31.6709],[143.4087,3
+  Polygon Point_Polygon_Point_40 | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"06/11 12:00 UTC","featuretype":"PointRadii","key":"11061200","Class":"Point_Polygon_Point_40","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 2405b [[[156.3,40.37],[156.3015,40.37],[156.3029,40.3701],[156.3044,40.3703],[156.3059,40.3706],[156.3073,40.3709],[156.3087,4
+  Polygon Poly_Cones | {"polygondate":"2026-11-02T12:00:00","polygonlabel":"Uncertainty Cones","Class":"Poly_Cones","iconeventlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png","iconitemlink":"https://www.gdacs.org/images/gdacs_icons/maps/Green/TC.png"} | coords 4572b [[[140.2,22.75],[140.2095,22.7502],[140.2189,22.7506],[140.2284,22.7514],[140.2378,22.7524],[140.2472,22.7538],[140.2565
+
+===== GDACS event data 1001343
+GET https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=TC&eventid=1001343
+ERROR TimeoutError: The operation was aborted due to timeout
+
+===== Open-Meteo marine (Chennai, Rameswaram)
+GET https://marine-api.open-meteo.com/v1/marine?latitude=13.08,9.28&longitude=80.35,79.35&daily=wave_height_max,swell_wave_height_max,wave_period_max&hourly=wave_height&forecast_days=3&timezone=Asia%2FKolkata
+HTTP 200 | content-type: application/json; charset=utf-8 | etag: null | last-modified: null | access-control-allow-origin: *
+length 4574
+----- body (first 4000 chars) -----
+[{"latitude":13.041664,"longitude":80.375015,"generationtime_ms":0.10132789611816406,"utc_offset_seconds":19800,"timezone":"Asia/Kolkata","timezone_abbreviation":"GMT+5:30","elevation":0.0,"hourly_units":{"time":"iso8601","wave_height":"m"},"hourly":{"time":["2026-11-02T00:00","2026-11-02T01:00","2026-11-02T02:00","2026-11-02T03:00","2026-11-02T04:00","2026-11-02T05:00","2026-11-02T06:00","2026-11-02T07:00","2026-11-02T08:00","2026-11-02T09:00","2026-11-02T10:00","2026-11-02T11:00","2026-11-02T12:00","2026-11-02T13:00","2026-11-02T14:00","2026-11-02T15:00","2026-11-02T16:00","2026-11-02T17:00","2026-11-02T18:00","2026-11-02T19:00","2026-11-02T20:00","2026-11-02T21:00","2026-11-02T22:00","2026-11-02T23:00","2026-11-03T00:00","2026-11-03T01:00","2026-11-03T02:00","2026-11-03T03:00","2026-11-03T04:00","2026-11-03T05:00","2026-11-03T06:00","2026-11-03T07:00","2026-11-03T08:00","2026-11-03T09:00","2026-11-03T10:00","2026-11-03T11:00","2026-11-03T12:00","2026-11-03T13:00","2026-11-03T14:00","2026-11-03T15:00","2026-11-03T16:00","2026-11-03T17:00","2026-11-03T18:00","2026-11-03T19:00","2026-11-03T20:00","2026-11-03T21:00","2026-11-03T22:00","2026-11-03T23:00","2026-11-04T00:00","2026-11-04T01:00","2026-11-04T02:00","2026-11-04T03:00","2026-11-04T04:00","2026-11-04T05:00","2026-11-04T06:00","2026-11-04T07:00","2026-11-04T08:00","2026-11-04T09:00","2026-11-04T10:00","2026-11-04T11:00","2026-11-04T12:00","2026-11-04T13:00","2026-11-04T14:00","2026-11-04T15:00","2026-11-04T16:00","2026-11-04T17:00","2026-11-04T18:00","2026-11-04T19:00","2026-11-04T20:00","2026-11-04T21:00","2026-11-04T22:00","2026-11-04T23:00"],"wave_height":[0.94,1.04,1.12,1.28,1.44,1.60,1.64,1.70,1.74,1.70,1.68,1.64,1.54,1.44,1.34,1.24,1.14,1.04,0.98,0.92,0.86,0.84,0.82,0.80,0.80,0.78,0.78,0.76,0.74,0.72,0.72,0.72,0.72,0.72,0.72,0.72,0.74,0.74,0.76,0.76,0.78,0.78,0.78,0.76,0.76,0.76,0.76,0.76,0.76,0.76,0.76,0.76,0.76,0.76,0.76,0.74,0.74,0.74,0.72,0.72,0.72,0.72,0.72,0.72,0.70,0.70,0.68,0.68,0.66,0.66,0.66,0.66]},"daily_units":{"time":"iso8601","wave_height_max":"m","swell_wave_height_max":"m","wave_period_max":"s"},"daily":{"time":["2026-11-02","2026-11-03","2026-11-04"],"wave_height_max":[1.74,0.80,0.76],"swell_wave_height_max":[1.66,0.58,0.72],"wave_period_max":[8.15,7.40,8.80]}},{"latitude":9.291664,"longitude":79.375015,"generationtime_ms":0.05543231964111328,"utc_offset_seconds":19800,"timezone":"Asia/Kolkata","timezone_abbreviation":"GMT+5:30","elevation":0.0,"location_id":1,"hourly_units":{"time":"iso8601","wave_height":"m"},"hourly":{"time":["2026-11-02T00:00","2026-11-02T01:00","2026-11-02T02:00","2026-11-02T03:00","2026-11-02T04:00","2026-11-02T05:00","2026-11-02T06:00","2026-11-02T07:00","2026-11-02T08:00","2026-11-02T09:00","2026-11-02T10:00","2026-11-02T11:00","2026-11-02T12:00","2026-11-02T13:00","2026-11-02T14:00","2026-11-02T15:00","2026-11-02T16:00","2026-11-02T17:00","2026-11-02T18:00","2026-11-02T19:00","2026-11-02T20:00","2026-11-02T21:00","2026-11-02T22:00","2026-11-02T23:00","2026-11-03T00:00","2026-11-03T01:00","2026-11-03T02:00","2026-11-03T03:00","2026-11-03T04:00","2026-11-03T05:00","2026-11-03T06:00","2026-11-03T07:00","2026-11-03T08:00","2026-11-03T09:00","2026-11-03T10:00","2026-11-03T11:00","2026-11-03T12:00","2026-11-03T13:00","2026-11-03T14:00","2026-11-03T15:00","2026-11-03T16:00","2026-11-03T17:00","2026-11-03T18:00","2026-11-03T19:00","2026-11-03T20:00","2026-11-03T21:00","2026-11-03T22:00","2026-11-03T23:00","2026-11-04T00:00","2026-11-04T01:00","2026-11-04T02:00","2026-11-04T03:00","2026-11-04T04:00","2026-11-04T05:00","2026-11-04T06:00","2026-11-04T07:00","2026-11-04T08:00","2026-11-04T09:00","2026-11-04T10:00","2026-11-04T11:00","2026-11-04T12:00","2026-11-04T13:00","2026-11-04T14:00","2026-11-04T15:00","2026-11-04T16:00","2026-11-04T17:00","2026-11-04T18:00","2026-11-04T19:00","2026-11-04T20:00","2026-11-04T21:00","2026-11-04T22:00","2026-11-04T23:00"],"wave_height":[0.28,0.26,0.26,0.26,0.26,0.26,0.26,0.26,0.26,0.26,0.26,0.26,0.2
+----- end -----
+
+===== GDELT DOC (India unrest, 6 h, English)
+GET https://api.gdeltproject.org/api/v2/doc/doc?query=(riot%20OR%20clash%20OR%20curfew%20OR%20explosion%20OR%20stampede)%20sourcecountry:IN%20sourcelang:english&mode=artlist&format=json&maxrecords=10&timespan=6h&sort=datedesc
+ERROR TypeError: fetch failed | cause: UND_ERR_CONNECT_TIMEOUT Connect Timeout Error (attempted address: api.gdeltproject.org:443, timeout: 10000ms)
+
+===== FIRMS NOAA-21 VIIRS South Asia 24h
+GET https://firms.modaps.eosdis.nasa.gov/data/active_fire/noaa-21-viirs-c2/csv/J2_VIIRS_C2_South_Asia_24h.csv
+HTTP 200 | content-type: text/csv | etag: "b64a3b7e853f439e43b7483ebb6e466b" | last-modified: Mon, 02 Nov 2026 14:44:58 GMT | access-control-allow-origin: null
+length 334347
+----- body (first 4000 chars) -----
+latitude,longitude,bright_ti4,scan,track,acq_date,acq_time,satellite,confidence,version,bright_ti5,frp,daynight
+15.1564,101.27244,335.73,0.38,0.36,2026-11-01,0629,N21,nominal,2.0NRT,300.47,4.34,D
+15.05564,100.53271,336.52,0.39,0.36,2026-11-01,0629,N21,nominal,2.0NRT,298.86,3.39,D
+14.99996,100.06943,330.63,0.4,0.37,2026-11-01,0629,N21,nominal,2.0NRT,296.27,1.56,D
+15.28354,101.19289,330.09,0.38,0.36,2026-11-01,0629,N21,nominal,2.0NRT,298.69,3.57,D
+15.32638,101.42957,333.37,0.38,0.36,2026-11-01,0629,N21,nominal,2.0NRT,297.91,2.84,D
+15.31034,100.18163,332.94,0.39,0.36,2026-11-01,0629,N21,nominal,2.0NRT,298.89,4.53,D
+15.68707,99.80885,349.06,0.4,0.37,2026-11-01,0629,N21,nominal,2.0NRT,298.56,5.51,D
+37.32347,97.21819,330.54,0.4,0.37,2026-11-01,0635,N21,nominal,2.0NRT,289.72,4.17,D
+16.17735,99.72527,330.51,0.4,0.37,2026-11-01,0629,N21,nominal,2.0NRT,300,6.16,D
+16.33959,100.16696,333.6,0.39,0.36,2026-11-01,0629,N21,nominal,2.0NRT,296.81,2.58,D
+16.43727,100.26878,337.77,0.39,0.36,2026-11-01,0629,N21,nominal,2.0NRT,297.81,5.22,D
+16.5192,100.1618,339.69,0.39,0.36,2026-11-01,0629,N21,nominal,2.0NRT,299.09,4,D
+16.81907,99.94617,332.63,0.39,0.36,2026-11-01,0629,N21,nominal,2.0NRT,296.56,4.81,D
+16.64855,98.51995,330.66,0.43,0.38,2026-11-01,0629,N21,nominal,2.0NRT,297.96,3.36,D
+17.04436,100.10169,330.97,0.39,0.36,2026-11-01,0629,N21,nominal,2.0NRT,297.9,2.62,D
+17.04387,99.88155,330.81,0.39,0.36,2026-11-01,0629,N21,nominal,2.0NRT,297.06,2.41,D
+16.54411,96.46684,334.12,0.54,0.42,2026-11-01,0629,N21,nominal,2.0NRT,297.06,4.51,D
+17.15072,100.04236,333.58,0.39,0.36,2026-11-01,0629,N21,nominal,2.0NRT,297.86,2.91,D
+17.07474,99.53997,334.6,0.4,0.37,2026-11-01,0629,N21,nominal,2.0NRT,297.91,4.9,D
+17.2369,100.11333,334.78,0.39,0.36,2026-11-01,0629,N21,nominal,2.0NRT,290.8,5.83,D
+17.23349,100.09161,336.77,0.39,0.36,2026-11-01,0629,N21,nominal,2.0NRT,294,4.55,D
+16.99414,98.58656,337.58,0.42,0.38,2026-11-01,0629,N21,nominal,2.0NRT,299.39,9.31,D
+16.624,96.41331,334.42,0.54,0.42,2026-11-01,0629,N21,nominal,2.0NRT,296.56,8.03,D
+17.19356,99.7091,332.49,0.39,0.36,2026-11-01,0629,N21,nominal,2.0NRT,292.31,3.32,D
+17.01797,98.53756,332.85,0.43,0.38,2026-11-01,0629,N21,nominal,2.0NRT,298.69,6.33,D
+17.01731,98.5336,339.78,0.43,0.38,2026-11-01,0629,N21,nominal,2.0NRT,298.68,6.11,D
+16.73613,96.60214,336.88,0.53,0.42,2026-11-01,0629,N21,nominal,2.0NRT,294.54,6.88,D
+39.84394,98.27661,330.02,0.45,0.39,2026-11-01,0635,N21,nominal,2.0NRT,290.93,3.86,D
+16.73564,96.60413,336.57,0.53,0.42,2026-11-01,0629,N21,nominal,2.0NRT,291.84,4.51,D
+17.16633,99.07725,333.54,0.41,0.37,2026-11-01,0629,N21,nominal,2.0NRT,296.35,2.87,D
+17.18176,99.12921,347.35,0.41,0.37,2026-11-01,0629,N21,nominal,2.0NRT,296.56,7.13,D
+17.18052,99.1216,350.26,0.41,0.37,2026-11-01,0629,N21,nominal,2.0NRT,296.39,7.58,D
+16.84073,96.68983,332.59,0.52,0.42,2026-11-01,0629,N21,nominal,2.0NRT,298.34,5.51,D
+16.74909,96.02844,333.78,0.57,0.43,2026-11-01,0629,N21,nominal,2.0NRT,295.96,7.58,D
+16.75228,95.97878,334.08,0.57,0.43,2026-11-01,0629,N21,nominal,2.0NRT,293.29,5.47,D
+17.2105,98.25244,335.93,0.43,0.38,2026-11-01,0629,N21,nominal,2.0NRT,296.34,5.3,D
+17.02843,96.51389,331.67,0.53,0.42,2026-11-01,0629,N21,nominal,2.0NRT,295.81,7.21,D
+17.04823,96.49681,334.8,0.53,0.42,2026-11-01,0629,N21,nominal,2.0NRT,293.71,3.27,D
+17.09705,96.68289,330.42,0.52,0.41,2026-11-01,0629,N21,nominal,2.0NRT,297.63,2.67,D
+17.08291,96.40372,333.27,0.54,0.42,2026-11-01,0629,N21,nominal,2.0NRT,296.95,3.81,D
+17.28776,96.83961,342.03,0.5,0.41,2026-11-01,0629,N21,nominal,2.0NRT,296.77,7.75,D
+17.2671,96.5184,332.33,0.52,0.42,2026-11-01,0629,N21,nominal,2.0NRT,298.18,6.34,D
+17.2663,96.51599,333.45,0.52,0.42,2026-11-01,0629,N21,nominal,2.0NRT,298.56,6.47,D
+17.27301,96.50972,331.01,0.52,0.42,2026-11-01,0629,N21,nominal,2.0NRT,297.72,3.58,D
+17.37027,96.59643,333.04,0.52,0.41,2026-11-01,0629,N21,nominal,2.0NRT,293.75,4.29,D
+17.39453,96.60181,335.82,0.52,0.41,2026-11-01,0629,N21,nominal,2.0NRT,297.92,5.09,D
+18.05405,100.05085,330.42,0.39,0.36,2026-11-01
+----- end -----
+PROBE FIRMS NOAA-20 VIIRS South Asia 24h: HTTP 200 | text/csv | 188428 bytes | acao: null
+FIRMS FIRMS NOAA-20 VIIRS South Asia 24h: 2271 rows
+  latitude,longitude,bright_ti4,scan,track,acq_date,acq_time,satellite,confidence,version,bright_ti5,frp,daynight
+  17.0745,99.52908,336.72,0.74,0.76,2026-11-01,0546,N20,nominal,2.0NRT,287.07,9.82,D
+  21.44003,101.99353,341.34,0.42,0.61,2026-11-01,0548,N20,nominal,2.0NRT,289.9,4.59,D
+PROBE FIRMS S-NPP VIIRS South Asia 24h: HTTP 200 | text/csv | 255636 bytes | acao: null
+FIRMS FIRMS S-NPP VIIRS South Asia 24h: 3155 rows
+  latitude,longitude,bright_ti4,scan,track,acq_date,acq_time,satellite,confidence,version,bright_ti5,frp,daynight
+  18.0139,54.57642,341.66,0.43,0.62,2026-11-01,1030,N,nominal,2.0NRT,303.07,11.49,D
+  18.01346,54.57228,357.13,0.43,0.62,2026-11-01,1030,N,low,2.0NRT,309.35,11.49,D
+PROBE FIRMS MODIS South Asia 24h: HTTP 200 | text/csv | 36412 bytes | acao: null
+FIRMS FIRMS MODIS South Asia 24h: 473 rows
+  latitude,longitude,brightness,scan,track,acq_date,acq_time,satellite,confidence,version,bright_t31,frp,daynight
+  18.02022,54.57081,308.83,1.37,1.16,2026-11-01,0005,A,76,6.1NRT,290.38,14.13,N
+  18.0186,54.58332,300.49,1.37,1.16,2026-11-01,0005,A,23,6.1NRT,289.32,6.02,N
+PROBE AISStream websocket: connected; messages []; close socket closed
+PROBE TN reservoir page: HTTP 200 | text/html; charset=UTF-8 | 19405 bytes | acao: null
+PROBE RainViewer weather-maps.json: HTTP 200 | application/json | 818 bytes | acao: *
+RainViewer host=https://tilecache.rainviewer.com generated=1793631622 keys=version,generated,host,radar,satellite radarKeys=past,nowcast frames=13
+RainViewer last frame time=1793631600 path=/v2/radar/10fbb711a693
+PROBE RainViewer tile z4 India 256: HTTP 200 | image/png | 4885 bytes | acao: *
+PROBE RainViewer tile z7 Chennai 256: HTTP 200 | image/png | 334 bytes | acao: *
+PROBE RainViewer tile z8 (expect refusal): HTTP 200 | image/png | 1370 bytes | acao: *
+RainViewer nowcast=0 satellite={"infrared":[]}
+PROBE rv z4: HTTP 200 | image/png | 4885 bytes | acao: *
+RainViewer z4: png 256x256 colorType 6 sha 44adc371d2
+PROBE rv z7: HTTP 200 | image/png | 334 bytes | acao: *
+RainViewer z7: png 256x256 colorType 6 sha dd6cb45962
+PROBE rv z8: HTTP 200 | image/png | 1370 bytes | acao: *
+RainViewer z8: png 256x256 colorType 3 +tRNS sha bcffdb4111
+PROBE him: HTTP 200 | image/png | 96345 bytes | acao: *
+Himawari IR 2026-11-02T14:20:00Z z5/22/15: png 256x256 colorType 6 sha 682caf5bee
+PROBE him: HTTP 200 | image/png | 40341 bytes | acao: *
+Himawari IR 2026-11-02T14:20:00Z z6/45/30: png 256x256 colorType 6 sha b17cae50e2
+PROBE him: HTTP 404 | text/html; charset=iso-8859-1 | 196 bytes | acao: *
+Himawari IR 2026-11-02T14:20:00Z z6/47/29: not png
+PROBE him: HTTP 200 | image/png | 93331 bytes | acao: *
+Himawari IR 2026-11-02T13:30:00Z z5/22/15: png 256x256 colorType 6 sha e1f05789c2
+PROBE him: HTTP 200 | image/png | 39493 bytes | acao: *
+Himawari IR 2026-11-02T13:30:00Z z6/45/30: png 256x256 colorType 6 sha 9d2278f2e3
+PROBE him: HTTP 200 | image/png | 48712 bytes | acao: *
+Himawari IR 2026-11-02T13:30:00Z z6/47/29: png 256x256 colorType 6 sha e8854a3f75
+PROBE imerg: HTTP 404 | text/html; charset=iso-8859-1 | 196 bytes | acao: *
+IMERG 2026-11-02T09:30:00Z z2/2/1: not png
+PROBE imerg: HTTP 404 | text/html; charset=iso-8859-1 | 196 bytes | acao: *
+IMERG 2026-11-02T09:30:00Z z5/22/15: not png
+PROBE imerg: HTTP 200 | image/png | 6562 bytes | acao: *
+IMERG 2026-11-02T08:30:00Z z2/2/1: png 256x256 colorType 3 +tRNS sha 414d45f6e2
+PROBE imerg: HTTP 200 | image/png | 3575 bytes | acao: *
+IMERG 2026-11-02T08:30:00Z z5/22/15: png 256x256 colorType 3 +tRNS sha b389fe39b6
+PROBE GIBS VIIRS SNPP true colour 2026-11-01 z0: HTTP 200 | image/jpeg | 16236 bytes | acao: *
+PROBE GIBS VIIRS SNPP true colour 2026-11-01 z9: HTTP 200 | image/jpeg | 10380 bytes | acao: *
+PROBE GIBS capabilities: HTTP 200 | text/xml; charset=UTF-8 | 5847810 bytes | acao: *
+LAYER Himawari_AHI_Air_Mass | format image/png | matrix GoogleMapsCompatible_Level6 | time default 2026-11-02T13:50:00Z | time values 2026-10-10T14:50:00Z/2026-10-11T02:30:00Z/PT10M | url 
+LAYER GOES-East_ABI_Band13_Clean_Infrared | format image/png | matrix GoogleMapsCompatible_Level6 | time default 2026-11-02T14:00:00Z | time values 2026-08-12T20:00:00Z/2026-08-16T19:30:00Z/PT10M | url 
+LAYER GOES-West_ABI_Band13_Clean_Infrared | format image/png | matrix GoogleMapsCompatible_Level6 | time default 2026-11-02T14:00:00Z | time values 2026-08-11T19:40:00Z/2026-08-12T19:40:00Z/PT10M | url 
+LAYER Himawari_AHI_Band13_Clean_Infrared | format image/png | matrix GoogleMapsCompatible_Level6 | time default 2026-11-02T14:00:00Z | time values 2026-09-21T14:50:00Z/2026-09-22T02:30:00Z/PT10M | url 
+PROBE Himawari_AHI_Band13_Clean_Infrared time=default: HTTP 200 | image/png | 36060 bytes | acao: *
+  Himawari_AHI_Band13_Clean_Infrared time=default: sha e914d11d7105 | last-modified null | cache-control max-age=0, no-store, no-cache, must-revalidate | access-control-expose-headers=layer-identifier-request, layer-identifier-actual, layer-time-request, layer-time-actual ; layer-identifier-actual=Himawari_AHI_Band13_Clean_Infrared_v0_NRT ; layer-identifier-request=Himawari_AHI_Band13_Clean_Infrared ; layer-time-actual=2026-11-02T14:30:00Z ; layer-time-request=default
+PROBE Himawari_AHI_Band13_Clean_Infrared time=2026-11-02T14:00:00Z: HTTP 200 | image/png | 36268 bytes | acao: *
+  Himawari_AHI_Band13_Clean_Infrared time=2026-11-02T14:00:00Z: sha eb028074d5a1 | last-modified null | cache-control max-age=0, no-store, no-cache, must-revalidate | access-control-expose-headers=layer-identifier-request, layer-identifier-actual, layer-time-request, layer-time-actual ; layer-identifier-actual=Himawari_AHI_Band13_Clean_Infrared_v0_NRT ; layer-identifier-request=Himawari_AHI_Band13_Clean_Infrared ; layer-time-actual=2026-11-02T14:00:00Z ; layer-time-request=2026-11-02T14:00:00Z
+  colormap hrefs: 
+LAYER VIIRS_NOAA20_CorrectedReflectance_TrueColor_Granule | format image/png | matrix GoogleMapsCompatible_Level9 | time default 2026-11-02T10:48:00Z | time values 2026-08-04T10:48:00Z/2026-11-02T10:48:00Z/PT6M | url 
+LAYER VIIRS_SNPP_CorrectedReflectance_TrueColor_Granule | format image/png | matrix GoogleMapsCompatible_Level9 | time default 2026-11-02T11:54:00Z | time values 2026-08-04T11:54:00Z/2026-11-02T11:54:00Z/PT6M | url 
+LAYER VIIRS_NOAA20_CorrectedReflectance_TrueColor | format image/jpeg | matrix GoogleMapsCompatible_Level9 | time default 2026-11-02 | time values 2018-01-05/2018-02-21/P1D | url 
+LAYER VIIRS_SNPP_CorrectedReflectance_TrueColor | format image/jpeg | matrix GoogleMapsCompatible_Level9 | time default 2026-11-02 | time values 2015-11-24/2022-07-27/P1D | url 
+LAYER IMERG_Precipitation_Rate | format image/png | matrix GoogleMapsCompatible_Level6 | time default 2026-11-01 | time values 2000-06-01/2025-10-22/P1D | url 
+LAYER IMERG_Precipitation_Rate_30min | format image/png | matrix GoogleMapsCompatible_Level6 | time default 2026-11-02T08:30:00Z | time values 2026-01-19T20:30:00Z/2026-01-19T21:30:00Z/PT30M | url 
+PROBE IMERG_Precipitation_Rate_30min time=default: HTTP 200 | image/png | 6562 bytes | acao: *
+  IMERG_Precipitation_Rate_30min time=default: sha 414d45f6e2a4 | last-modified null | cache-control max-age=0, no-store, no-cache, must-revalidate | access-control-expose-headers=layer-identifier-request, layer-identifier-actual, layer-time-request, layer-time-actual ; layer-identifier-actual=IMERG_Precipitation_Rate_30min_v7_NRT ; layer-identifier-request=IMERG_Precipitation_Rate_30min ; layer-time-actual=2026-11-02T08:30:00Z ; layer-time-request=default
+PROBE IMERG_Precipitation_Rate_30min time=2026-11-02T08:30:00Z: HTTP 200 | image/png | 6562 bytes | acao: *
+  IMERG_Precipitation_Rate_30min time=2026-11-02T08:30:00Z: sha 414d45f6e2a4 | last-modified null | cache-control max-age=0, no-store, no-cache, must-revalidate | access-control-expose-headers=layer-identifier-request, layer-identifier-actual, layer-time-request, layer-time-actual ; layer-identifier-actual=IMERG_Precipitation_Rate_30min_v7_NRT ; layer-identifier-request=IMERG_Precipitation_Rate_30min ; layer-time-actual=2026-11-02T08:30:00Z ; layer-time-request=2026-11-02T08:30:00Z
+  colormap hrefs: 
+LAYER Himawari_AHI_Band3_Red_Visible_1km | format image/png | matrix GoogleMapsCompatible_Level7 | time default 2026-11-02T13:50:00Z | time values 2026-09-22T02:50:00Z/2026-09-22T14:30:00Z/PT10M | url 
+PROBE CelesTrak active: HTTP 200 | text/plain; charset=UTF-8 | 2670864 bytes | acao: *
+CATALOG CelesTrak active: 15898 records, 2670864 bytes, first: CALSPHERE 1 1 00900U 64063C 26306.14075247 .00000498 00000+0 
+PROBE CelesTrak active (.com): ERROR TypeError: fetch failed
+PROBE CelesTrak starlink: HTTP 200 | text/plain; charset=UTF-8 | 1785672 bytes | acao: *
+CATALOG CelesTrak starlink: 10629 records, 1785672 bytes, first: STARLINK-1008 1 44714U 19074B 26305.87082580 .00166294 00000+0 
+PROBE SatNOGS all TLE: HTTP 200 | application/json | 537573 bytes | acao: null
+CATALOG SatNOGS all TLE: 1736 records, 537573 bytes, first: [{"tle0":"0 ISS (ZARYA)","tle1":"1 25544U 98067A 26305.78918649 .00005925 00
+
+===== CelesTrak .org
+GET https://celestrak.org/NORAD/elements/gp.php?GROUP=stations&FORMAT=tle
+HTTP 200 | content-type: text/plain; charset=UTF-8 | etag: null | last-modified: null | access-control-allow-origin: *
+length 2688
+----- body (first 4000 chars) -----
+ISS (ZARYA)             
+1 25544U 98067A   26305.78918649  .00005925  00000+0  11503-3 0  9991
+2 25544  51.6332 339.1679 0007095 336.8847  23.1822 15.49143202593084
+POISK                   
+1 36086U 09060A   26305.78918649  .00005925  00000+0  11503-3 0  9999
+2 36086  51.6332 339.1679 0007095 336.8847  23.1822 15.49143202586595
+CSS (TIANHE)            
+1 48274U 21035A   26306.15696214  .00010669  00000+0  12576-3 0  9992
+2 48274  41.4677 203.7404 0004165 246.4549 113.5852 15.61293776314714
+ISS (NAUKA)             
+1 49044U 21066A   26305.78918649  .00005925  00000+0  11503-3 0  9997
+2 49044  51.6332 339.1679 0007095 336.8847  23.1822 15.49143202586638
+FREGAT DEB              
+1 49271U 11037PF  26305.69951980  .00008393  00000+0  11958-1 0  9995
+2 49271  51.6556 307.0927 0933413 232.5596 118.6747 12.45607109242160
+CSS (WENTIAN)           
+1 53239U 22085A   26306.09299630  .00010407  00000+0  12279-3 0  9999
+2 53239  41.4677 204.1301 0004131 246.0082 114.0324 15.61292276288234
+CSS (MENGTIAN)          
+1 54216U 22143A   26306.15696214  .00010669  00000+0  12576-3 0  9996
+2 54216  41.4677 203.7404 0004165 246.4549 113.5852 15.61293776308541
+SZ-21 MODULE            
+1 66515U 25246C   26305.89228101  .00106024  11540-4  28461-3 0  9991
+2 66515  41.4672 160.5956 0013917 293.7903  66.1488 15.93669975 55570
+DUPLEX                  
+1 66906U 98067XT  26305.57845541  .00072836  00000+0  47506-3 0  9992
+2 66906  51.6237 309.8919 0005465  24.9209 335.2054 15.75192031 52214
+KNACKSAT-2              
+1 67683U 98067YA  26305.59236765  .00104975  00000+0  64115-3 0  9994
+2 67683  51.6239 316.0163 0010026  22.7171 337.4271 15.76495325 41826
+GXIBA-1                 
+1 67685U 98067YC  26305.72579667  .00192009  00000+0  80487-3 0  9997
+2 67685  51.6171 310.8221 0010887  29.3332 330.8281 15.84400842 41903
+LEOPARD                 
+1 67687U 98067YE  26305.19495038  .02323650  72943-2  17770-2 0  9991
+2 67687  51.6095 310.9854 0006916  55.5049 304.6620 16.16109122 41771
+HMU-SAT2                
+1 67688U 98067YF  26305.27818580  .00684379  22924-3  11598-2 0  9995
+2 67688  51.6172 307.0209 0008340  43.0726 317.0936 16.02003822 41836
+PROGRESS-MS 34          
+1 68837U 26093A   26305.78918650  .00005925  00000+0  11503-3 0  9995
+2 68837  51.6332 339.1679 0007094 336.8847  23.1822 15.49143202587561
+TIANZHOU-10             
+1 69049U 26102A   26305.38936680  .00008747  00000+0  10390-3 0  9999
+2 69049  41.4675 208.4160 0004086 243.9286 116.1132 15.61278896311430
+SHENZHOU-23 (SZ-23)     
+1 69180U 26113A   26305.38936680  .00008747  00000+0  10390-3 0  9997
+2 69180  41.4675 208.4160 0004086 243.9286 116.1132 15.61278896308218
+
+----- end -----
+
+===== CelesTrak .com
+GET https://celestrak.com/NORAD/elements/gp.php?GROUP=stations&FORMAT=tle
+ERROR TypeError: fetch failed | cause: CERT_HAS_EXPIRED certificate has expired
+
+===== AMSAT nasabare
+GET https://www.amsat.org/tle/current/nasabare.txt
+HTTP 200 | content-type: text/plain | etag: "3862-65f4a232e0318-gzip" | last-modified: Mon, 02 Nov 2026 12:18:02 GMT | access-control-allow-origin: null
+length 14434
+----- body (first 4000 chars) -----
+AO-07
+1 07530U 74089B   26306.02526823 -.00000047  00000-0 -48934-5 0  9994
+2 07530 101.9886 320.7003 0012046 227.4770 157.3374 12.53700302377793
+UO-11
+1 14781U 84021B   26306.13860413  .00000942  00000-0  10070-3 0  9995
+2 14781  97.8264 270.3454 0009116  88.0343 272.1919 14.91101645277680
+LO-19
+1 20442U 90005G   26306.04326801  .00000059  00000-0  37702-4 0  9994
+2 20442  98.8762 331.5943 0011988 157.0763 203.0958 14.34154672922151
+AO-27
+1 22825U 93061C   26306.16798784  .00000043  00000-0  33450-4 0  9991
+2 22825  98.6731  13.4210 0009291  59.9655 300.2448 14.30971089726734
+FO-29
+1 24278U 96046B   26305.82849202 -.00000004  00000-0  28534-4 0  9990
+2 24278  98.5115 135.8077 0350849  99.1813 264.9185 13.53279996491783
+GO-32
+1 25397U 98043D   26305.95028706  .00000021  00000-0  29187-4 0  9997
+2 25397  99.0178 302.2627 0001628 141.8164 218.3130 14.24450100470949
+ISS
+1 25544U 98067A   26305.78918649  .00005925  00000-0  11503-3 0  9992
+2 25544  51.6332 339.1679 0007095 336.8847  23.1822 15.49143202593084
+NO-44
+1 26931U 01043C   26306.10189341  .00000069  00000-0  56529-4 0  9999
+2 26931  67.0505 247.5455 0006218 276.7626  83.2768 14.31998505310194
+SO-50
+1 27607U 02058C   26306.04269144  .00000918  00000-0  12570-3 0  9990
+2 27607  64.5529  62.3817 0068880 236.9678 122.4799 14.83299361284906
+CO-55
+1 27844U 03031E   26306.00074095  .00000176  00000-0  94949-4 0  9997
+2 27844  98.6759 312.8516 0010215 140.5409 219.6515 14.24404373211295
+RS-22
+1 27939U 03042A   26306.20533152  .00000690  00000-0  11402-3 0  9993
+2 27939  98.3448 134.5148 0010866 184.7781 312.3844 14.73665333235872
+CO-65
+1 32785U 08021C   26306.21515244  .00003380  00000-0  20901-3 0  9996
+2 32785  97.8441 290.7424 0006757 282.1439  77.9033 15.10547810  6032
+CO-66
+1 32791U 08021J   26306.08043916  .00015910  00000-0  43944-3 0  9994
+2 32791  97.7568 311.0753 0003236 136.5373 223.6126 15.37148320  8439
+RS-30
+1 32953U 08025A   26306.19871266 -.00000037  00000-0 -33526-3 0  9998
+2 32953  82.5005 269.5837 0020050  13.9263 346.2366 12.43183969836840
+SRMSAT
+1 37841U 11058D   26306.21115595  .00000369  00000-0  56366-4 0  9992
+2 37841  19.9726 304.0168 0011507 282.9392 165.2333 14.11602450777345
+ZACUBE-1
+1 39417U 13066B   26305.87653494  .00002003  00000-0  15476-3 0  9993
+2 39417  97.8197 269.0494 0039706 148.4980 211.8634 15.02102224701394
+Delfi-N3xt
+1 39428U 13066N   26306.04686105  .00004758  00000-0  40146-3 0  9991
+2 39428  97.8324 226.3448 0073617 106.9375 253.9933 14.96518335695239
+GOMX-1
+1 39430U 13066Q   26306.19444138  .00000811  00000-0  12757-3 0  9991
+2 39430  97.6385 137.9502 0127987 354.5636   5.4173 14.69807528690186
+LO-74
+1 39440U 13066AA  26306.15085370  .00003506  00000-0  32021-3 0  9997
+2 39440  97.9080 255.9012 0054896 290.4654  69.0677 14.94592429697591
+AO-73
+1 39444U 13066AE  26306.19325126  .00005572  00000-0  33125-3 0  9992
+2 39444  97.8463 280.8280 0037001  93.2107 267.3357 15.11120013700492
+DTUSAT-2
+1 40030U 14033W   26305.74411161  .00004828  00000-0  25139-3 0  9994
+2 40030  98.0920 312.4204 0009056 119.4743 240.7393 15.16516155673529
+LILACSAT-2
+1 40908U 15049K   26306.16750093  .00017731  00000-0  25659-3 0  9997
+2 40908  97.4482 348.5634 0007921 104.0178 256.1957 15.55931469617175
+Lapan A3
+1 41603U 16040E   26306.20168884  .00002484  00000-0  78114-4 0  9992
+2 41603  97.1604 297.9747 0008307 233.5941 126.4537 15.33856884575964
+CAS-2T
+1 41847U 16066G   26306.19288882  .00000574  00000-0  88199-4 0  9991
+2 41847  98.3703  20.2999 0341949  70.7760 293.0096 14.44941379524729
+TechnoSat
+1 42829U 17042E   26305.65053210  .00002296  00000-0  16281-3 0  9997
+2 42829  97.4450  98.3077 0017087 348.8633  11.2214 15.05631669507384
+AO-91
+1 43017U 17073E   26306.11027436  .00007922  00000-0  33318-3 0  9995
+2 43017  97.4465 170.5068 0144377 211.0419 148.2224 15.14596039486254
+S-Net D
+1 43186U 18014G   26306.16890675  .00004040  00000-0  20336-3 0  9990
+2 43186  97.5240 210.0897 0006090 258.3880 101.6670 15.17768402479683
+S-Net B
+1 43187U 18014H   26306.
+----- end -----
+
+===== SatNOGS TLE API (ISS)
+GET https://db.satnogs.org/api/tle/?format=json&norad_cat_id=25544
+HTTP 200 | content-type: application/json | etag: null | last-modified: null | access-control-allow-origin: null
+length 312
+----- body (first 4000 chars) -----
+[{"tle0":"0 ISS (ZARYA)","tle1":"1 25544U 98067A   26305.78918649  .00005925  00000-0  11503-3 0  9992","tle2":"2 25544  51.6332 339.1679 0007095 336.8847  23.1822 15.49143202593084","tle_source":"Space-Track.org","sat_id":"XSKZ-5603-1870-9019-3066","norad_cat_id":25544,"updated":"2026-11-02T09:26:50.232941Z"}]
+----- end -----
+
+===== TLE API (ISS)
+GET https://tle.ivanstanojevic.me/api/tle/25544
+HTTP 200 | content-type: application/json | etag: null | last-modified: null | access-control-allow-origin: *
+length 369
+----- body (first 4000 chars) -----
+{"@context":"https:\/\/www.w3.org\/ns\/hydra\/context.jsonld","@id":"https:\/\/tle.ivanstanojevic.me\/api\/tle\/25544","@type":"Tle","satelliteId":25544,"name":"ISS (ZARYA)","date":"2026-11-01T18:56:25+00:00","line1":"1 25544U 98067A   26305.78918649  .00005925  00000+0  11503-3 0  9991","line2":"2 25544  51.6332 339.1679 0007095 336.8847  23.1822 15.49143202593084"}
+----- end -----
+
+===== SACHET RSS
+GET https://sachet.ndma.gov.in/cap_public_website/rss/rss_india.xml
+HTTP 200 | content-type: application/xml | etag: W/"77061-1793630553814" | last-modified: Mon, 02 Nov 2026 14:42:33 GMT | access-control-allow-origin: null
+length 56601
+----- body (first 4000 chars) -----
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet title="XSL_formatting" type="text/xsl" href="feed.xsl"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>All India: CAP Disaster Alert Feeds</title>
+    <description>CAP Integrated Alert System Warning Updates</description>
+    <language>en</language>
+    <link>https://sachet.ndma.gov.in/cap_public_website/rss/rss_india.xml</link>
+    <atom:link href="https://sachet.ndma.gov.in/cap_public_website/rss/rss_india.xml" rel="self" type="application/rss+xml"/>
+    <copyright>public domain</copyright>
+    <pubDate>Fri, 16 Oct 2026 09:04:39 GMT</pubDate>
+    <item>
+      <title>మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షితమైన భవనాల్లో ఆశ్రయం పొందండి-ఆంధ్రప్రదేశ్ ప్రభుత్వం.</title>
+      <description/>
+      <category>Met</category>
+      <link>https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793630313333008</link>
+      <author>controlroom@ndma.gov.in (Andhra Pradesh SDMA)</author>
+      <guid isPermaLink="false">1793630313333008</guid>
+      <pubDate>Mon, 02 Nov 2026 14:42:33 GMT</pubDate>
+    </item>
+    <item>
+      <title>IMD Guwahati has issued forecast for Thunderstorm with Lightning and light to moderate rain which is very likely to occur at many places over Dima Hasao, Karbi Anglong in next 3 hours. Issued in Public Interest by ASDMA.</title>
+      <description/>
+      <category>Met</category>
+      <link>https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793629689746010</link>
+      <author>controlroom@ndma.gov.in (IMD Guwahati)</author>
+      <guid isPermaLink="false">1793629689746010</guid>
+      <pubDate>Mon, 02 Nov 2026 14:30:35 GMT</pubDate>
+    </item>
+    <item>
+      <title>ಮುಂದಿನ 3 ಗಂಟೆಗಳಲ್ಲಿ ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ, ಬೆಂಗಳೂರು ನಗರ, ಚಿಕ್ಕಬಳ್ಳಾಪುರ, ದಕ್ಷಿಣ ಕನ್ನಡ, ಕೋಲಾರ, ಉಡುಪಿ ಮತ್ತು ಉತ್ತರ ಕನ್ನಡ ಜಿಲ್ಲೆಗಳ ಒಂದೆರಡು ಕಡೆಗಳಲ್ಲಿ ಗುಡುಗು ಸಹಿತ ಮಳೆಯಾಗುವ ಸಾಧ್ಯತೆಯಿದೆ.</title>
+      <description/>
+      <category>Met</category>
+      <link>https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793627825261019</link>
+      <author>controlroom@ndma.gov.in (IMD Bengaluru)</author>
+      <guid isPermaLink="false">1793627825261019</guid>
+      <pubDate>Mon, 02 Nov 2026 14:00:01 GMT</pubDate>
+    </item>
+    <item>
+      <title>Moderate Rain,thunder with lightning and squally wind 30-40 gusting 50 kmph  is very likely to occur at isolated places over Bargarh, Ganjam, Nabarangpur, Nuapada in next 3 hours.</title>
+      <description/>
+      <category>Met</category>
+      <link>https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793627739411012</link>
+      <author>controlroom@ndma.gov.in (IMD Bhubaneswar)</author>
+      <guid isPermaLink="false">1793627739411012</guid>
+      <pubDate>Mon, 02 Nov 2026 13:55:41 GMT</pubDate>
+    </item>
+    <item>
+      <title>पुढील ३ तासांत छत्रपती संभाजीनगर, धाराशिव, जळगाव आणि सोलापूर जिल्ह्यांतील काही ठिकाणी हलक्या स्वरूपाचा पाऊस पडण्याची, तसेच मेघगर्जनेसह विजा चमकण्याची शक्यता आहे. हेल्पलाईन क्रमांक: १०७०, १०७७</title>
+      <description/>
+      <category>Met</category>
+      <link>https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793626004531029</link>
+      <author>controlroom@ndma.gov.in (IMD Mumbai)</author>
+      <guid isPermaLink="false">1793626004531029</guid>
+      <pubDate>Mon, 02 Nov 2026 13:38:45 GMT</pubDate>
+    </item>
+    <item>
+      <title>पुढील ३ तासांत आपल्या जिल्ह्यांतील काही ठिकाणी विजांच्या कडकडाटासह हलका ते मध्यम पाऊस पडण्याची शक्यता आहे. यासोबतच ३० ते ४० किमी प्रति तास वेगान वारे वाहू शकतात. मदत क्रमांक: १०७०, १०७७</title>
+      <description/>
+      <category>Met</category>
+      <link>https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793626003496029</link>
+      <author>controlroom@ndma.gov.in (IMD Mumbai)</author>
+      <guid isPermaLink="false">1793626003496029</guid>
+  
+----- end -----
+parsed 100 RSS items
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793630313333008
+  item: IMD Guwahati has issued forecast for Thunderstorm with Lightning and light to moderate rain which is very likely to occur at many places ove | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793629689746010
+  item: ಮುಂದಿನ 3 ಗಂಟೆಗಳಲ್ಲಿ ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ, ಬೆಂಗಳೂರು ನಗರ, ಚಿಕ್ಕಬಳ್ಳಾಪುರ, ದಕ್ಷಿಣ ಕನ್ನಡ, ಕೋಲಾರ, ಉಡುಪಿ ಮತ್ತು ಉತ್ತರ ಕನ್ನಡ ಜಿಲ್ಲೆಗಳ ಒಂದೆರಡು ಕಡೆಗಳಲ್ಲಿ | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793627825261019
+  item: Moderate Rain,thunder with lightning and squally wind 30-40 gusting 50 kmph is very likely to occur at isolated places over Bargarh, Ganjam, | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793627739411012
+  item: पुढील ३ तासांत छत्रपती संभाजीनगर, धाराशिव, जळगाव आणि सोलापूर जिल्ह्यांतील काही ठिकाणी हलक्या स्वरूपाचा पाऊस पडण्याची, तसेच मेघगर्जनेसह विजा  | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793626004531029
+  item: पुढील ३ तासांत आपल्या जिल्ह्यांतील काही ठिकाणी विजांच्या कडकडाटासह हलका ते मध्यम पाऊस पडण्याची शक्यता आहे. यासोबतच ३० ते ४० किमी प्रति तास व | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793626003496029
+  item: [2026/11/02 18:50] उक्त जनपदों में कहीं-कहीं गर्जन के साथ आकाशीय बिजली चमकने / झोंकेदार हवाएं (30-40 कि.मी प्रति घंटा)/ बहुत हल्की से हल्की  | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793625908006009
+  item: Light to Moderate Rain with Thunderstorm and Lightning is very likely to occur at isolated places over Ranipet, Tirupathur, Tiruvannamalai,  | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793625715125007
+  item: Moderate Rain with Thunderstorm and Lightning is very likely to occur at isolated places over Chengalpattu, Chennai, Kancheepuram, Thiruvall | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793625714353007
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793624177828008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793621071787008
+  item: Light to Moderate Rainfall with short intense spells accompanied with thundershowers is likely to occur at isolated places of Sattari and Ti | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793620278951033
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793620608622008
+  item: మురసు తుపాన్ హెచ్చరిక బంగాళాఖాతంలోని తీవ్ర తుపాన్ ప్రభావంతో మీ ప్రాంతంలో రేేపు ఉదయం వరకు భారీ నుండి అతిభారీ వర్షాలు కురిసే అవకాశం ఉంది. గంటక | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793613445585008
+  item: Light Rain is very likely to occur at isolated places over Diu, Amreli, Gir Somnath in next 3 hours. | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793616269114020
+  item: బంగాళాఖాతంలోని మురసు తుపాన్ ప్రభావంతో ఈ రోజు మీప్రాంతంలో ఈదురుగాలులతో కూడిన భారీవర్షాలు కురిసే అవకాశం ఉంది.ప్రజలు అప్రమత్తంగా ఉండి తగిన జాగ్ | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793618082354008
+  item: బంగాళాఖాతంలోని మురసు తుపాన్ ప్రభావంతో ఈ రోజు మీప్రాంతంలో ఈదురుగాలులతో కూడిన అతిభారీవర్షాలు కురిసే అవకాశం ఉంది.ప్రజలు అప్రమత్తంగా ఉండి తగిన జ | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793617542435008
+  item: ಮುಂದಿನ 3 ಗಂಟೆಗಳಲ್ಲಿ ಬಳ್ಳಾರಿ, ಬೆಳಗಾವಿ, ಚಿಕ್ಕಮಗಳೂರು, ದಕ್ಷಿಣ ಕನ್ನಡ, ಧಾರವಾಡ, ಗದಗ, ಕೊಡಗು, ಮೈಸೂರು, ರಾಯಚೂರು, ಉಡುಪಿ, ಉತ್ತರ ಕನ್ನಡ, ವಿಜಯಪುರ, ಯಾದಗಿರಿಯಲ | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793617141377019
+  item: Light rain is very likely to occur at isolated places over Diu district in next 3 hours. | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793616267071023
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793616311729008
+  item: Moderate Rain with one or two spells of Heavy rain with Thunderstorm and Lightning is very likely to occur at a isolated places over Chengal | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793615830004007
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793616158368008
+  item: पुढील ३ तासात अहिल्यानगर, छत्रपती संभाजीनगर, जळगाव, जालना आणि पुणे जिल्ह्यात काही ठिकाणी हलक्या स्वरूपाचा पाऊस पडण्याची, तसेच मेघगर्जनेसह वि | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793615405797029
+  item: 16:06 अगले 3 घंटों में अल्मोडा, बागेश्वर, चमोली, पौडी गढ़वाल, पिथोरागढ़, रुद्रप्रयाग, टेहरी गढ़वाल, उत्तरकाशी में अलग-अलग स्थानों पर बिजली च | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793615893053009
+  item: पुढील ३ तासात आपल्या जिल्ह्यात विजांच्या कडकडाटासह हलका ते मध्यम पाऊस पडण्याची शक्यता आहे; तसेच ३० ते ४० किमी प्रतितास वेगाने वारे वाहू शकता | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793615403156029
+  item: Light to Moderate Rain with Thunderstorm and Lightning is very likely to occur at isolated places over Coimbatore, Cuddalore, Krishnagiri, R | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793615200305007
+  item: Moderate Rain with one or two spells of Heavy rain with Thunderstorm and Lightning is very likely to occur at a few places over Chengalpattu | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793615199562007
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793615127711008
+  item: Light to Moderate Rainfall accompanied with thundershowers is likely to occur at isolated places of Sattari taluka of North Goa district and | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793614430966033
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793614182129008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793613665651008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793613149649008
+  item: మురసు తుఫాను ప్రభావంతో గుంటూరు, ప్రకాశం, నెల్లూరు తీరాల్లో 0.5–1 మీటర్ల ఎత్తులో అలలు ఎగిసిపడే అవకాశం ఉంది. ప్రజలు, మత్స్యకారులు బీచ్ లకు వెళ | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793611251003008
+  item: ০২-১১-২০২৬ দুপুর ২:৪৫ থেকে আগামী ২-৩ ঘণ্টায় হুগলি, হাওড়া, উত্তর ২৪ পরগনা ও কলকাতার কিছু অংশে বজ্রবিদ্যুৎসহ হালকা থেকে মাঝারি বৃষ্টির সম্ভাব | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793611265086017
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793609855474008
+  item: నవంబర్2 మ.1:30 నుంచి నవంబర్3 మధ్యాహ్నం 12 గంటల వరకు సముద్రంలో 3–6.2 మీటర్ల ఎత్తులో భారీఅలలు వచ్చే అవకాశం ఉంది. ప్రజలు, మత్స్యకారులు, అప్రమత్ | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793606917614008
+  item: अगले 24 घंटो में अल्मोड़ा, बागेश्वर, चमोली,चम्पावत,नैनीताल,पिथौरागढ़,रुद्रप्रयाग,उत्तरकाशी में कहीं-कहीं गर्जन के साथ आकाशीय बिजली चमकने एवं झ | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793608219989009
+  item: দুপুর ১:৪০ থেকে পরবর্তী ২-৩ ঘণ্টায় পূর্ব মেদিনীপুর ও দক্ষিণ ২৪ পরগনার কিছু অংশে বজ্রবিদ্যুৎসহ হালকা থেকে মাঝারি বৃষ্টি এবং ঘণ্টায় ৩০-৪০ কিমি | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793607294631017
+  item: Thunderstorm accompanied with Lightning and Gusty Winds of 40-50 kmph gusting to 60 kmph very likely to occur at isolated places in MLG, BDD | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793605354056030
+  item: Heavy Rain is very likely to occur at isolated places over Bhadradri Kothagudem, Hanumakonda, Jangoan, Khammam, Mahabubabad, Mahabubnagar, M | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793605695607030
+  item: Heavy Rain is likely to occur at isolated places over Bijapur, Narayanpur, Sukma in next 24 hours. | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793605776879018
+  item: Heavy to Very Heavy Rainfall very likely to occur at isolated places in Nalgonda, Suryapet, Nagarkurnool districts of Telangana - By Telanga | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793605698579030
+  item: पुढील ३ तासात आपल्या जिल्ह्यात काही ठिकाणी हलक्या पावसासह मेघगर्जना आणि विजांच्या कडकडाटाची शक्यता आहे. नागरिकांनी सतर्क राहवे. मंत्रालय, मु | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793605638613029
+  item: पुढील ३ तासात अहिल्यानगर आणि पुणे जिल्ह्यात काही ठिकाणी हलक्या ते मध्यम स्वरूपाच्या पावसाची, तसेच मेघगर्जनेसह विजा चमकण्याची शक्यता आहे. नाग | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793605638239029
+  item: अगले तीन घंटो में आपके जनपद में कही-कही गर्जन /आकाशीय बिजली चमकने / झोंकेदार हवाएं (30-40 कि.मी.) चलने / हल्की वर्षा / बर्फ़बारी (3200 मी. व  | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793605790688009
+  item: ಮುಂದಿನ 3 ಗಂಟೆಗಳಲ್ಲಿ ದಕ್ಷಿಣ ಕನ್ನಡದ ಅಲ್ಲಲ್ಲಿ ಗುಡುಗು ಸಹಿತ ಮಿಂಚು ಉಂಟಾಗುವ ಸಾಧ್ಯತೆಯಿದೆ ಮೂಲ: ಐಎಂಡಿ (IMD) ಬೆಂಗಳೂರು | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793604306279019
+  item: ২-১১-২০২৬ তারিখ ১৩:০৯ থেকে আগামী ২-৩ ঘণ্টার মধ্যে পুরুলিয়া, বাঁকুড়া ও ঝাড়গ্রাম জেলার কিছু অংশে হালকা থেকে মাঝারি বৃষ্টি ও ৩০-৪০ কিমি/ঘণ্ট | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793605563063017
+  item: ০২-১১-২০২৬ তারিখে ১৩:০৫ থেকে পরবর্তী ২-৩ ঘণ্টায় পূর্ব মেদিনীপুর জেলার কিছু অংশে ৩০-৪০ কিমি/ঘণ্টা বেগে দমকা হাওয়া ও হালকা থেকে মাঝারি বৃষ্টিস | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793605314235017
+  item: IMD Guwahati has issued forecast for Thunderstorm with Lightning and light to moderate rain which is very likely to occur at a few places ov | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793604545245010
+  item: మురసు తీవ్రతుఫాన్ నవంబర్ 2 అర్ధరాత్రి నుంచి 3న తెల్లవారుజాము సమయంలో నెల్లూరు-నర్సాపురం మధ్యలో గం.110కి.మీ గాలుల వేగంతో తీరం దాటే అవకాశం ఉంది | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793603632216008
+  item: Light to moderate Rain with thunderstorm and lightning is very likely to occur at isolated places over Coimbatore, Perambalur, Ranipet, Sale | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793602920977041
+  item: Moderate Rain with thunderstorm and lightning is very likely to occur at a few places over Chengalpattu, Chennai, Kancheepuram, Thiruvallur  | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793602919596007
+  item: Light to moderate Rain with thunderstorm and lightning is very likely to occur at isolated places over Coimbatore, Perambalur, Ranipet, Sale | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793602918244007
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793602047368008
+  item: पुढील ३ तासांत सोलापूरमधील काही विखुरलेल्या ठिकाणी हलक्या पावसासह मेघगर्जना आणि विजांच्या कडकडाटाची शक्यता आहे. नागरिकांनी सतर्क राहावे. मंत | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793598370031029
+  item: ଭାରତ ପାଣିପାଗ ବିଭାଗର ତଥ୍ୟ ଅନୁଯାୟୀ, ଆଗାମୀ ତିନି ଘଣ୍ଟା ମଧ୍ୟରେ ଆପଣଙ୍କ ଅଞ୍ଚଳରେ ମଧ୍ୟମ ଧରଣର ଘଡ଼ଘଡ଼ି, ବିଜୁଳି ଏବଂ ପୃଷ୍ଠ ପବନ ସହିତ ବର୍ଷା ହେବାର ସମ୍ଭାବନା  | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793595152128012
+  item: మురసు తీవ్రతుఫాన్ నవంబర్ 2 అర్ధరాత్రి నుంచి 3న తెల్లవారుజాము సమయంలో నెల్లూరు-నర్సాపురం మధ్యలో గం.100కి.మీ గాలుల వేగంతో తీరం దాటే అవకాశం ఉంది | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793594783144008
+  item: पुढील ३ तासांत आपल्या जिल्ह्यांतील काही ठिकाणी हलक्या स्वरूपाचा पाऊस पडण्याची, तसेच मेघगर्जनेसह विजा चमकण्याची शक्यता आहे. नागरिकांनी सतर्क  | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793594603936029
+  item: पुढील ३ तासांत जिल्ह्यांतील काही ठिकाणी विजांच्या कडकडाटासह वादळ, हलका ते मध्यम पाऊस आणि ताशी ३०-४० किमी वेगाने सोसाट्याचे वारे येण्याची शक् | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793594603541029
+  item: पुढील ३ तासांत आपल्या जिल्ह्यांतील काही ठिकाणी मेघगर्जनेसह हलक्या ते मध्यम स्वरूपाच्या पावसाची शक्यता आहे. नागरिकांनी सतर्क राहावे. मंत्रालय | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793583833119029
+  item: पुढील ३ तासांत आपल्या जिल्ह्यांतील काही विखुरलेल्या ठिकाणी हलका पाऊस पडण्याची दाट शक्यता आहे. नागरिकांनी सतर्क राहावे. मंत्रालय, मुंबई. | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793583830681029
+  item: బంగాళాఖాతంలోని మురసు తీవ్ర తుపాన్ ప్రభావంతో ఈ రోజు మీప్రాంతంలో ఈదురుగాలులతో కూడిన భారీవర్షాలు కురిసే అవకాశం ఉంది.ప్రజలు అప్రమత్తంగా ఉండి తగి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793584481607008
+  item: బంగాళాఖాతంలోని మురసు తుపాన్ ప్రభావంతో ఈ రోజు మీప్రాంతంలో ఈదురుగాలులతో కూడిన అతి భారీవర్షాలు కురిసే అవకాశం ఉంది.ప్రజలు అప్రమత్తంగా ఉండి తగిన  | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793584173758008
+  item: IMD Guwahati has issued forecast for Thunderstorm with Lightning along with light to moderate rain which is very likely to occur at a few pl | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793583835391010
+  item: బంగాళాఖాతంలోని మురసు తుపాన్ ప్రభావంతో ఈ రోజు మీప్రాంతంలో ఈదురుగాలులతో కూడిన అత్యంత భారీవర్షాలు కురిసే అవకాశం ఉంది.ప్రజలు అప్రమత్తంగా ఉండి తగ | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793583900991008
+  item: బంగాళాఖాతంలోని మురసు తుపాన్ ప్రభావంతో రేపు మీప్రాంతంలో ఈదురుగాలులతో కూడిన అత్యంత భారీవర్షాలు కురిసే అవకాశం ఉంది.ప్రజలు అప్రమత్తంగా ఉండి తగిన | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793583609639008
+  item: మురసు తీవ్రతుఫాన్ నవంబర్ 2 అర్ధరాత్రి నుంచి 3న తెల్లవారుజాము సమయంలో నెల్లూరు-నర్సాపురం గం.100కి.మీ గాలుల వేగంతో తీరం దాటే అవకాశం ఉంది. ప్రజల | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793579706597008
+  item: कहीं-कहीं हल्की से मध्यम वर्षा के साथ गर्जन /आकाशीय बिजली चमकने / झोंकेदार हवाएं (30-40 kmph) चलने की संभावना है। | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793579795469009
+  item: पुढील ३ तासांत आपल्या जिल्ह्यात काही ठिकाणी विजांच्या कडकडाटासह वादळ, हलका ते मध्यम पाऊस आणि ३०-४० किमी प्रति तास वेगाने वारे वाहण्याची शक्य | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793574753009029
+  item: पुढील ३ तासांतआपल्या जिल्ह्यात काही विखुरलेल्या ठिकाणी हलका पाऊस पडण्याची दाट शक्यता आहे. नागरिकांनी सतर्क रहावे, मंत्रालय. मुंबई | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793574927665029
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793569779392008
+  item: कहीं-कहीं हल्की से मध्यम वर्षा के साथ गर्जन /आकाशीय बिजली चमकने / झोंकेदार हवाएं (30-40 kmph) चलने की संभावना है। | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793569136501009
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793569108286008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793568056858008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793566702694008
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793563376338008
+  item: Light to Moderate Rain with thundestorm and lightning is likely to occur at isolated places over Cuddalore, Ranipet, Tiruvannamalai, Vellore | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793562169691041
+  item: Moderate Rain with thunderstorm and lightning is likely to occur at isolated places over Chengalpattu, Chennai, Kancheepuram, Thiruvallur in | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793561780006007
+  item: Light to Moderate Rain with thundestorm and lightning is likely to occur at isolated places over Cuddalore, Ranipet, Tiruvannamalai, Vellore | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793562168182007
+  item: पुढील ३ तासांत आपल्या जिल्ह्यात काही ठिकाणी हलक्या ते मध्यम स्वरूपाचा पाऊस पडण्याची शक्यता असून, यादरम्यान विजांच्या कडकडाटासह वादळी पावसाची | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793561562585029
+  item: Moderate Rain with thunderstorm and lightning is likely to occur at isolated places over Chengalpattu, Chennai, Kancheepuram, Thiruvallur in | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793562019731007
+  item: Moderate Rain is likely to occur at isolated places over Chengalpattu, Chennai, Kancheepuram, Thiruvallur in next 3 hours. | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793561623151007
+  item: कहीं-कहीं हल्की से मध्यम वर्षा के साथ गर्जन /आकाशीय बिजली चमकने / झोंकेदार हवाएं (30-40 kmph) चलने की संभावना है। | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793557846541009
+  item: पुढील ३ तासांत आपल्या जिल्ह्यात काही विखुरलेल्या ठिकाणी हलका पाऊस पडण्याची दाट शक्यता आहे. नागरिकांनी सतर्क रहावे, मंत्रालय. मुंबई | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793555127025029
+  item: पुढील ३ तासांत आपल्या जिल्ह्यात काही ठिकाणी हलक्या ते मध्यम स्वरूपाचा पाऊस पडण्याची, तसेच मेघगर्जनेसह विजा चमकण्याची शक्यता आहे. नागरिकांनी  | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793555130199029
+  item: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షి | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793554989368008
+  item: మురసు తీవ్రతుఫాన్ నవంబర్ 3న తెల్లవారుజాము సమయంలో నెల్లూరు-నర్సాపురం గం.100-110కి.మీ గాలుల వేగంతో తీరం దాటే అవకాశం ఉంది.ప్రజలు అప్రమత్తంగా ఉం | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793550325143008
+  item: IMD Guwahati has issued forecast for Thunderstorm with Lightning and Light to Moderate rain which is very likely to occur at many places ove | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793551592268010
+  item: कहीं-कहीं हल्की से मध्यम वर्षा के साथ गर्जन /आकाशीय बिजली चमकने / झोंकेदार हवाएं (30-40 kmph) चलने की संभावना है। | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793546659345009
+  item: পরবর্তী ২-৩ ঘণ্টায় পশ্চিম মেদিনীপুর ও ঝাড়গ্রামের কিছু অংশে বজ্রবিদ্যুৎ সহ হালকা থেকে মাঝারি বৃষ্টি এবং ৩০-৪০ কিমি বেগে দমকা হাওয়া বইতে পার | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793545535572017
+  item: पुढील ३ तासात रायगड आणि रत्नागिरी जिल्ह्यात काही ठिकाणी विजांच्या कडकडाटासह वादळ, हलका ते मध्यम पाऊस आणि ३० ते ४० किमी प्रतितास वेगाने वारे  | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793543591627029
+  item: Light Thunderstorm with surface wind is likely to occur at isolated places over Dakshina Kannada, Udupi districts in next 3 hours. Source :- | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793541328954019
+  item: पुढील ३ तासात बीड, लातूर, नाशिक, पालघर, सिंधुदुर्ग आणि सोलापूर जिल्ह्यात काही ठिकाणी हलका पाऊस पडण्याची दाट शक्यता आहे. नागरिकांनी सतर्क राह | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793540252066029
+  item: पुढील ३ तासात अहिल्यानगर, कोल्हापूर, पुणे आणि सातारा जिल्ह्यात हलक्या ते मध्यम स्वरूपाचा पाऊस पडण्याची, तसेच मेघगर्जनेसह विजा चमकण्याची शक्य | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793540250006029
+  item: Light mod Rain TSL is very likely to occur at isolated places over Chengalpattu, Chennai, Coimbatore, Cuddalore, Dharmapuri, Kancheepuram, K | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793539259152041
+  item: Light mod Rain TSL is very likely to occur at isolated places over Chengalpattu, Chennai, Coimbatore, Cuddalore, Dharmapuri, Kancheepuram, K | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793539256359007
+  item: अगले ३ घंटों के दौरान उक्त जनपदों में कहीं-कहीं गर्जन के साथ आकाशीय बिजली चमकने/हल्की से मध्यम वर्षा होने की संभावना है | | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793537062249009
+  item: బంగాళాఖాతంలోని మురసు తుపాన్ ప్రభావంతో రేపు మీప్రాంతంలో ఈదురుగాలులతో కూడిన భారీవర్షాలు కురిసే అవకాశం ఉంది.ప్రజలు అప్రమత్తంగా ఉండి తగిన జాగ్రత | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793536542443008
+  item: బంగాళాఖాతంలోని మురసు తుపాన్ ప్రభావంతో రేపు మీప్రాంతంలో ఈదురుగాలులతో కూడిన అతిభారీవర్షాలు కురిసే అవకాశం ఉంది.ప్రజలు అప్రమత్తంగా ఉండి తగిన జాగ | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793536166048008
+  item: Moderate Rain with thunderstorm and lightning is very likely to occur at isolated places over Dharmapuri, Erode, Krishnagiri, Salem in next  | https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793532621886007
+
+===== SACHET CAP: మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షితమైన భవనాల్లో ఆశ్రయం పొందండి-ఆంధ్రప్రదేశ్ ప్రభుత్వం.
+GET https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793630313333008
+HTTP 200 | content-type: text/xml;charset=UTF-8 | etag: "ICHzvetMhAz0eaS5BPCsNGLZZTWbQSMLq0VYz3CdjCg=" | last-modified: null | access-control-allow-origin: null
+length 2518
+----- body (first 4000 chars) -----
+<cap:alert xmlns:cap="urn:oasis:names:tc:emergency:cap:1.2">
+<cap:identifier>IN-1793630313333008_8</cap:identifier>
+<cap:sender>Andhra-Pradesh-SDMA</cap:sender>
+<cap:sent>2026-11-02T20:08:33+05:30</cap:sent>
+<cap:status>Actual</cap:status>
+<cap:msgType>Alert</cap:msgType>
+<cap:scope>Public</cap:scope>
+<cap:restriction/>
+<cap:addresses/>
+<cap:note/>
+<cap:incidents/>
+<cap:info>
+<cap:language>en-IN</cap:language>
+<cap:category>Met</cap:category>
+<cap:event>Lightning</cap:event>
+<cap:urgency>Expected</cap:urgency>
+<cap:severity>Severe</cap:severity>
+<cap:certainty>Possible</cap:certainty>
+<cap:audience>1</cap:audience>
+<cap:effective>2026-11-02T20:10:00+05:30</cap:effective>
+<cap:onset>2026-11-02T20:12:31+05:30</cap:onset>
+<cap:expires>2026-11-02T21:10:00+05:30</cap:expires>
+<cap:headline>Lightning is Likely to occur over atp-kalyandurg, atp-kambadur, sss-madakasira mandals . Please follow SDMA guidelines.</cap:headline>
+<cap:description/>
+<cap:instruction>Please follow SDMA guidelines.</cap:instruction>
+<cap:contact/>
+<cap:parameter>
+<cap:valueName>Polygon URL</cap:valueName>
+<cap:value>https://sachet.ndma.gov.in/cap_public_website/FetchPolygonXMLFile?identifier=1793630313333008</cap:value>
+</cap:parameter>
+<cap:area>
+<cap:areaDesc>atp-kalyandurg, atp-kambadur, sss-madakasira mandals </cap:areaDesc>
+<cap:altitude>0</cap:altitude>
+<cap:ceiling>0</cap:ceiling>
+</cap:area>
+</cap:info>
+<cap:info>
+<cap:language>TL</cap:language>
+<cap:category>Met</cap:category>
+<cap:event>Lightning</cap:event>
+<cap:urgency>Expected</cap:urgency>
+<cap:severity>Severe</cap:severity>
+<cap:certainty>Possible</cap:certainty>
+<cap:audience>1</cap:audience>
+<cap:effective>2026-11-02T20:10:00+05:30</cap:effective>
+<cap:onset>2026-11-02T20:12:31+05:30</cap:onset>
+<cap:expires>2026-11-02T21:10:00+05:30</cap:expires>
+<cap:headline>మీ ప్రాంతంలో పిడుగులు పడే అవకాశం ఉంది.ఉరుములు మెరుపులతో కూడిన వర్షం పడేప్పుడు చెట్లు,టవర్స్,పోల్స్,పొలాలు,బహిరంగ ప్రదేశాల్లో ఉండరాదు.సురక్షితమైన భవనాల్లో ఆశ్రయం పొందండి-ఆంధ్రప్రదేశ్ ప్రభుత్వం.</cap:headline>
+<cap:description/>
+<cap:instruction>Please follow SDMA guidelines.</cap:instruction>
+<cap:contact/>
+<cap:parameter>
+<cap:valueName>Polygon URL</cap:valueName>
+<cap:value>https://sachet.ndma.gov.in/cap_public_website/FetchPolygonXMLFile?identifier=1793630313333008</cap:value>
+</cap:parameter>
+<cap:area>
+<cap:areaDesc>atp-kalyandurg, atp-kambadur, sss-madakasira mandals </cap:areaDesc>
+<cap:altitude>0</cap:altitude>
+<cap:ceiling>0</cap:ceiling>
+</cap:area>
+</cap:info>
+</cap:alert>
+----- end -----
+
+===== SACHET polygon document
+GET https://sachet.ndma.gov.in/cap_public_website/FetchPolygonXMLFile?identifier=1793630313333008
+HTTP 403 | content-type: text/html | etag: null | last-modified: null | access-control-allow-origin: null
+length 63
+----- body (first 4000 chars) -----
+Error Code: 403
+Reference Id: 7a3b69e9539e3236db4de7a74fcec45e
+
+----- end -----
+
+===== SACHET CAP (Tamil Nadu candidate): Moderate Rain with Thunderstorm and Lightning is very likely to occur at isolated places over Chengalpattu, Chennai, Kancheepuram, Thiruvallur in next 3 hours.
+GET https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1793625714353007
+HTTP 200 | content-type: text/xml;charset=UTF-8 | etag: "P3Xzuld5kV4n8dBDJDpvH9Jf6ZGM4A63NpGvo/Ix28E=" | last-modified: null | access-control-allow-origin: null
+length 1889
+----- body (first 4000 chars) -----
+<cap:alert xmlns:cap="urn:oasis:names:tc:emergency:cap:1.2">
+<cap:identifier>IN-1793625714353007_43</cap:identifier>
+<cap:sender>IMD-Chennai</cap:sender>
+<cap:sent>2026-11-02T18:51:27+05:30</cap:sent>
+<cap:status>Actual</cap:status>
+<cap:msgType>Alert</cap:msgType>
+<cap:scope>Public</cap:scope>
+<cap:restriction/>
+<cap:addresses/>
+<cap:note/>
+<cap:incidents/>
+<cap:info>
+<cap:language>en-IN</cap:language>
+<cap:category>Met</cap:category>
+<cap:event>Moderate Rain</cap:event>
+<cap:urgency>Expected</cap:urgency>
+<cap:severity>Severe</cap:severity>
+<cap:certainty>Likely</cap:certainty>
+<cap:audience>1</cap:audience>
+<cap:effective>2026-11-02T19:00:00+05:30</cap:effective>
+<cap:onset>2026-11-02T18:51:54+05:30</cap:onset>
+<cap:expires>2026-11-02T22:00:00+05:30</cap:expires>
+<cap:headline>Moderate Rain with Thunderstorm and Lightning  is very likely to occur at isolated places over Chengalpattu, Chennai, Kancheepuram, Thiruvallur in next 3 hours.</cap:headline>
+<cap:description/>
+<cap:instruction>Please follow SDMA guidelines.</cap:instruction>
+<cap:contact/>
+<cap:parameter>
+<cap:valueName>Polygon URL</cap:valueName>
+<cap:value>https://sachet.ndma.gov.in/cap_public_website/FetchPolygonXMLFile?identifier=1793625714353007</cap:value>
+</cap:parameter>
+<cap:area>
+<cap:areaDesc>Chengalpattu, Chennai, Kancheepuram, Thiruvallur districts of Tamil Nadu</cap:areaDesc>
+<cap:geocode>
+<cap:valueName>LGD District Code</cap:valueName>
+<cap:value>574</cap:value>
+</cap:geocode>
+<cap:geocode>
+<cap:valueName>LGD District Code</cap:valueName>
+<cap:value>730</cap:value>
+</cap:geocode>
+<cap:geocode>
+<cap:valueName>LGD District Code</cap:valueName>
+<cap:value>568</cap:value>
+</cap:geocode>
+<cap:geocode>
+<cap:valueName>LGD District Code</cap:valueName>
+<cap:value>589</cap:value>
+</cap:geocode>
+<cap:altitude>0</cap:altitude>
+<cap:ceiling>0</cap:ceiling>
+</cap:area>
+</cap:info>
+</cap:alert>
+----- end -----
+
+===== OpenSky (India bounding box)
+GET https://opensky-network.org/api/states/all?lamin=5&lomin=65&lamax=37&lomax=98
+HTTP 200 | content-type: application/json | etag: null | last-modified: null | access-control-allow-origin: https://opensky-network.org
+length 30809
+----- body (first 4000 chars) -----
+{"time":1793631654,"states":[["80162c","AXB1064 ","India",1793631646,1793631646,83.5213,23.4879,11887.2,false,231.01,161.97,0,null,12573,"0541",false,0],["801642","AXB1065 ","India",1793631654,1793631654,79.4926,27.7905,11582.4,false,195.62,303.52,0,null,12115.8,null,false,0],["80162f","AIC5FN  ","India",1793631650,1793631650,76.5929,10.2733,1417.32,false,98.59,201.75,-5.2,null,1402.08,"6352",false,0],["801657","AIC4WS  ","India",1793631649,1793631652,78.1808,27.7057,8938.26,false,251.92,112.32,4.88,null,9349.74,null,false,0],["801619","IGO349C ","India",1793631654,1793631654,71.4817,22.5687,4991.1,false,188,64.56,13.33,null,5234.94,null,false,0],["801621","IGO1152 ","India",1793631654,1793631654,78.9231,28.1189,9578.34,false,196.48,296.1,-5.2,null,10005.06,null,false,0],["80160e","IGO6717 ","India",1793631654,1793631654,86.7457,20.7332,8145.78,false,201.99,223.25,-7.8,null,8648.7,"1412",false,0],["80160f","IGO543  ","India",1793631654,1793631654,76.5974,28.0293,7932.42,false,194.43,209.48,12.35,null,8275.32,null,false,0],["801625","AIC2335 ","India",1793631654,1793631654,87.9498,21.8865,11582.4,false,221.59,308.31,0,null,12275.82,"6131",false,0],["801633","AKJ1142 ","India",1793631654,1793631654,84.7618,22.9589,11582.4,false,208.19,247.17,0,null,12268.2,"0470",false,0],["80161d","AKJ1376 ","India",1793631468,1793631468,77.6644,13.2073,998.22,false,72.02,90.41,-3.58,null,1013.46,"0575",false,0],["801681","AXB5CK  ","India",1793631653,1793631653,84.8309,18.8769,11582.4,false,225.3,214.02,-0.33,null,12291.06,"2633",false,0],["80167b","AIC9ZP  ","India",1793631466,1793631467,75.3499,26.8489,11117.58,false,267.5,24.54,-5.53,null,11666.22,null,false,0],["801697","AXB2971 ","India",1793631654,1793631654,78.4273,13.0621,6187.44,false,185.78,108.23,10.08,null,6499.86,"1000",false,0],["80164b","IGO6179 ","India",1793631653,1793631653,79.5701,27.3421,11277.6,false,259.06,116.16,0,null,11811,null,false,0],["80164e","AIC7NG  ","India",1793631626,1793631626,72.9105,19.0893,198.12,false,72.03,269.18,-3.58,null,160.02,null,false,0],["801659","AIC92N  ","India",1793631654,1793631654,76.4547,27.5883,6819.9,false,213.38,208.36,9.1,null,7124.7,null,false,0],["801662","IGO955  ","India",1793631654,1793631654,76.3958,27.2702,10096.5,false,204.08,205.85,5.85,null,10584.18,null,false,0],["801673","AXB6QE  ","India",1793631645,1793631646,78.5677,28.2727,6697.98,false,188.89,296.01,-12.03,null,7018.02,null,false,0],["80168c","IGO1425 ","India",1793631653,1793631653,76.3506,9.0047,5608.32,false,199.35,304.59,8.13,null,5875.02,null,false,0],["8014a4","IGO903  ","India",1793631653,1793631653,77.9269,13.561,5181.6,false,190.4,1.39,13,null,5425.44,"2713",false,0],["8014b2","IGO58P  ","India",1793631654,1793631654,71.3571,23.4778,10972.8,false,198.53,248.89,0,null,11559.54,null,false,0],["8014ad","IGO746  ","India",1793631653,1793631653,84.3406,22.809,9761.22,false,218.93,246.75,0,null,10355.58,"2612",false,0],["8014ae","AXB38L  ","India",1793631654,1793631654,87.7228,22.3507,6751.32,false,191.74,241.65,10.73,null,7124.7,"2634",false,0],["88522f","THA349  ","Thailand",1793631650,1793631651,84.4107,24.4098,12184.38,false,230.47,306.74,-0.33,null,12862.56,"0724",false,0],["88522d","THA317  ","Thailand",1793631466,1793631466,82.6165,17.9068,12192,false,252.16,288.07,-0.33,null,12915.9,null,false,0],["8014f8","AKJ1104 ","India",1793631654,1793631654,72.2598,21.4821,9448.8,false,213.86,166.36,0,null,9982.2,null,false,0],["8014f2","AKJ1543 ","India",1793631511,1793631512,76.9009,12.2838,7315.2,false,192.75,219.04,0,null,7719.06,"2711",false,0],["8014bb","IGO429  ","India",1793631652,1793631653,76.5304,26.4097,10668,false,210.38,193.29,0,null,11201.4,null,false,0],["8014fe","AKJ1564 ","India",1793631647,1793631654,88.4418,22.6465,-7.62,true,5.92,5.62,null,null,null,"2665",false,0],["8014fd","AKJ220Q ","India",1793631653,1793631654,77.3423,28.5647,1059.18,false,98.31,271.8,-3.58,null,1097.28,null,false,0],["80174a","IGO5086 ","India",1793631652,1793631653,88.4523,2
+----- end -----
+
+===== OpenSky (global)
+GET https://opensky-network.org/api/states/all
+HTTP 200 | content-type: application/json | etag: null | last-modified: null | access-control-allow-origin: https://opensky-network.org
+length 1429170
+----- body (first 4000 chars) -----
+{"time":1793631654,"states":[["39de4f","TVF45MV ","France",1793631654,1793631654,-4.2567,37.0324,11894.82,false,216.78,202.61,0,null,12291.06,"7634",false,0],["39de4e","TVF33CH ","France",1793631654,1793631654,19.0692,44.5556,11887.2,false,228.9,119.04,-0.33,null,11932.92,"0665",false,0],["80162c","AXB1064 ","India",1793631646,1793631646,83.5213,23.4879,11887.2,false,231.01,161.97,0,null,12573,"0541",false,0],["a1abf7","N2069Y  ","United States",1793631649,1793631649,-99.3262,31.725,3352.8,false,117.35,69.74,0,null,null,null,false,0],["39de4a","TVF27JY ","France",1793631654,1793631654,-3.3388,42.2878,11582.4,false,246.41,63.86,0,null,11902.44,"2255",false,0],["39de4d","TVF21YB ","France",1793631654,1793631654,-3.8427,42.1218,11590.02,false,248.76,64.65,0,null,11917.68,"4465",false,0],["aa9321","UAL71   ","United States",1793631654,1793631654,-72.1224,45.8723,11582.4,false,236.92,202.33,0,null,11696.7,null,false,0],["39de4c","TVF8964 ","France",1793631653,1793631653,4.3322,42.9533,11887.2,false,245.99,154.61,0,null,12054.84,"7656",false,0],["39de57","TVF21SR ","France",1793631654,1793631654,-2.7556,40.4965,11879.58,false,222.35,193.65,0,null,12222.48,"7645",false,0],["801642","AXB1065 ","India",1793631654,1793631654,79.4926,27.7905,11582.4,false,195.62,303.52,0,null,12115.8,null,false,0],["39de58","TVF19KX ","France",1793631654,1793631654,2.3685,48.7264,null,true,0.77,250.31,null,null,null,null,false,0],["ab6fdd","AAL2479 ","United States",1793631654,1793631654,-82.5969,31.0611,11277.6,false,208.29,7.95,0,null,11811,"6654",false,0],["a5953a","TRF559  ","United States",1793631594,1793631594,-96.8317,32.9643,null,true,5.14,351.56,null,null,null,"4636",false,0],["a0f57e","N161B   ","United States",1793631654,1793631654,53.5265,24.6209,5486.4,false,211.16,285.26,0,null,5768.34,"1712",false,0],["c07d20","JZA7956 ","Canada",1793631653,1793631654,-78.2482,44.0218,6271.26,false,162.46,66.68,5.85,null,6461.76,"2263",false,0],["8a02ff","CTV915  ","Indonesia",1793631638,1793631642,100.3013,1.9367,10066.02,false,229.02,132.54,3.25,null,10767.06,null,false,0],["39de51","TVF76MK ","France",1793631654,1793631654,1.2138,45.9733,10759.44,false,206.32,355.85,-4.88,null,10873.74,"1000",false,0],["80162f","AIC5FN  ","India",1793631650,1793631650,76.5929,10.2733,1417.32,false,98.59,201.75,-5.2,null,1402.08,"6352",false,0],["39de53","TVF28MF ","France",1793631654,1793631654,3.0434,47.6634,10187.94,false,233.72,156.93,5.2,null,10271.76,"7667",false,0],["a39be7","JBU2063 ","United States",1793631652,1793631654,-78.2507,32.6558,10972.8,false,203.09,195.73,0,null,11430,"1337",true,0],["39de55","TVF43AG ","France",1793631653,1793631654,-2.4163,46.6441,11597.64,false,222.76,52.6,0,null,11757.66,"1000",false,0],["a34230","EJA309  ","United States",1793631654,1793631654,-78.9647,38.5347,6271.26,false,220.55,66.78,-11.7,null,6515.1,"1670",false,0],["a4d86a","LXJ411  ","United States",1793631654,1793631654,-77.8927,36.856,13716,false,214.51,11.9,0,null,14036.04,"7265",true,0],["a2cbbd","N28BB   ","United States",1793631653,1793631654,-73.1145,40.6982,160.02,false,86.78,54.9,0,null,281.94,"1200",false,0],["c07d11","CGVJK   ","Canada",1793631450,1793631465,-114.3791,52.963,1630.68,false,53.98,202.41,-0.33,null,1645.92,null,false,0],["801657","AIC4WS  ","India",1793631649,1793631652,78.1808,27.7057,8938.26,false,251.92,112.32,4.88,null,9349.74,null,false,0],["a3b88e","AAL563  ","United States",1793631654,1793631654,-78.9998,28.6194,10363.2,false,228.97,185.54,0,null,10896.6,null,false,0],["a58224","N454N   ","United States",1793631646,1793631646,-80.7453,26.6873,2316.48,false,132.25,121.15,-7.48,null,3314.7,"2222",false,0],["acdfa3","ASA459  ","United States",1793631653,1793631653,-93.3212,46.7065,9753.6,false,230.62,302.52,0,null,10066.02,"7360",false,0],["c034ab","MCB01   ","Canada",1793631653,1793631653,-96.0607,52.0246,4907.28,false,110.53,204.18,0.33,null,4922.52,null,false,0],["adffb2","PASEO04 ","United States",1793631654,1793631654,-98.9692,29.4976,3025.
+----- end -----
+OpenSky global states: 10894, bytes: 1429170
+
+===== GDACS SEARCH
+GET https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;DR;WF&pageSize=100
+HTTP 200 | content-type: application/json; charset=utf-8 | etag: null | last-modified: null | access-control-allow-origin: *
+length 121606
+----- body (first 4000 chars) -----
+{"type":"FeatureCollection","features":[{"type":"Feature","bbox":[80.7,14.7,80.7,14.7],"geometry":{"type":"Point","coordinates":[80.7,14.7]},"properties":{"eventtype":"TC","eventid":1001346,"episodeid":7,"eventname":"MURASU-26","glide":"TC-2026-000199-IND","name":"Tropical Cyclone MURASU-26","description":"Tropical Cyclone MURASU-26","htmldescription":"Red Tropical Cyclone MURASU-26 in India from: 01 Nov 2026  to: 02 Nov 2026 .","icon":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","iconoverall":"https://www.gdacs.org/images/gdacs_icons/maps/Red/TC.png","url":{"geometry":"https://www.gdacs.org/gdacsapi/api/polygons/getgeometry?eventtype=TC&eventid=1001346&episodeid=7","report":"https://www.gdacs.org/report.aspx?eventid=1001346&episodeid=7&eventtype=TC","details":"https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=TC&eventid=1001346"},"alertlevel":"Red","alertscore":3,"episodealertlevel":"Red","episodealertscore":3.0,"istemporary":"false","iscurrent":"true","country":"India","fromdate":"2026-11-01T00:00:00","todate":"2026-11-02T12:00:00","datemodified":"2026-11-02T14:03:01","iso3":"IND","source":"JTWC","sourceid":"","polygonlabel":"Centroid","Class":"Point_Centroid","countryonland":"","affectedcountries":[{"iso2":"IN","iso3":"IND","countryname":"India"}],"severitydata":{"severity":120.3696,"severitytext":"Hurricane/Typhoon > 74 mph (maximum wind speed of 120 km/h)","severityunit":"km/h"}}},{"type":"Feature","bbox":[12.876,48.127,12.876,48.127],"geometry":{"type":"Point","coordinates":[12.876,48.127]},"properties":{"eventtype":"DR","eventid":1018332,"episodeid":26,"eventname":"Europe-2026","glide":"DR-2025-000239-ALB","name":"Drought in Andorra, Albania, Austria, Bosnia  and  Herzegovina, Belgium, Bulgaria, Belarus, Switzerland, Czech Republic, Germany, Denmark, Spain, France, Croatia, Hungary, Ireland, Italy, Liechtenstein, Luxembourg, Moldova, Montenegro, Netherlands, Poland, Romania, Serbia, Sweden, Slovenia, Slovakia, Ukraine, ","description":"Drought in Andorra, Albania, Austria, Bosnia  and  Herzegovina, Belgium, Bulgaria, Belarus, Switzerland, Czech Republic, Germany, Denmark, Spain, France, Croatia, Hungary, Ireland, Italy, Liechtenstein, Luxembourg, Moldova, Montenegro, Netherlands, Poland, Romania, Serbia, Sweden, Slovenia, Slovakia, Ukraine, ","htmldescription":"Orange Drought in Andorra, Albania, Austria, Bosnia  and  Herzegovina, Belgium, Bulgaria, Belarus, Switzerland, Czech Republic, Germany, Denmark, Spain, France, Croatia, Hungary, Ireland, Italy, Liechtenstein, Luxembourg, Moldova, Montenegro, Netherlands, Poland, Romania, Serbia, Sweden, Slovenia, Slovakia, Ukraine, from: 21 Dec 2025  to: 31 Oct 2026 .","icon":"https://www.gdacs.org/images/gdacs_icons/maps/Orange/DR.png","iconoverall":"https://www.gdacs.org/images/gdacs_icons/maps/Orange/DR.png","url":{"geometry":"https://www.gdacs.org/gdacsapi/api/polygons/getgeometry?eventtype=DR&eventid=1018332&episodeid=26","report":"https://www.gdacs.org/report.aspx?eventid=1018332&episodeid=26&eventtype=DR","details":"https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=DR&eventid=1018332"},"alertlevel":"Orange","alertscore":2,"episodealertlevel":"Orange","episodealertscore":1.25,"istemporary":"false","iscurrent":"false","country":"Andorra, Albania, Austria, Bosnia & Herzegovina, Belgium, Bulgaria, Belarus, Switzerland, Czech Republic, Germany, Denmark, Spain, France, Croatia, Hungary, Ireland, Italy, Liechtenstein, Luxembourg, Moldova, Montenegro, Netherlands, Poland, Romania, Serbia, Sweden, Slovenia, Slovakia, Ukraine, ","fromdate":"2025-12-21T00:00:00","todate":"2026-10-31T00:00:00","datemodified":"2026-11-02T05:57:03","iso3":"AND","source":"GDO","sourceid":"","polygonlabel":"Centroid","Class":"Point_Centroid","affectedcountries":[{"iso2":"AD","iso3":"AND","countryname":"Andorra"},{"iso2":"AL","iso3":"ALB","countryname":"Albania"},{"iso2":"AT","iso3":"AUT","countryname":"Austria"},{"iso2":"BA","iso3":"BIH","countryname":"Bosnia &
+----- end -----
+
+===== Open-Meteo flood (first point)
+GET https://flood-api.open-meteo.com/v1/flood?latitude=11.94&longitude=77.65&daily=river_discharge&past_days=7&forecast_days=7
+HTTP 200 | content-type: application/json; charset=utf-8 | etag: null | last-modified: null | access-control-allow-origin: *
+length 546
+----- body (first 4000 chars) -----
+{"latitude":11.925003,"longitude":77.625,"generationtime_ms":0.08726119995117188,"utc_offset_seconds":0,"timezone":"GMT","timezone_abbreviation":"GMT","elevation":365.0,"daily_units":{"time":"iso8601","river_discharge":"m³/s"},"daily":{"time":["2026-10-26","2026-10-27","2026-10-28","2026-10-29","2026-10-30","2026-10-31","2026-11-01","2026-11-02","2026-11-03","2026-11-04","2026-11-05","2026-11-06","2026-11-07","2026-11-08"],"river_discharge":[287.40,304.49,283.45,252.51,224.42,201.77,185.64,173.58,165.34,166.49,183.50,189.11,185.21,180.97]}}
+----- end -----
