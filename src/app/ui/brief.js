@@ -11,6 +11,8 @@ import { SEV_RANK_N } from '../tags.js';
 import { showItemDetail } from './detail.js';
 import { shortDate } from './charts.js';
 import { istText } from '../hazards.js';
+import { passPath, skyObserver, upcomingPasses } from '../sky.js';
+import { openPanel, showTab } from './panels.js';
 
 /* ----- Situation brief: what matters in Tamil Nadu right now, in a few tappable lines ----- */
 export const BRIEF_SOURCES = new Set(['alerts', 'gdacs', 'quakes', 'ships', 'cyclones', 'sea', 'fires', 'news']);
@@ -103,6 +105,17 @@ function briefRows() {
   }
   const distress = (data.ships || []).filter((sh) => [2, 6, 14].includes(sh.status) && haversineKm(TN.lat, TN.lng, sh.lat, sh.lng) < 800);
   for (const sh of distress.slice(0, 2)) add(SEV_COLOR.high, `${sh.name || `MMSI ${sh.id}`}: ${AIS_STATUS[sh.status]}`, { key: 'ships', id: sh.id }, 'AIS');
+
+  /* Your sky: the next naked-eye satellite pass over this browser's location. */
+  if (!DEMO) {
+    const next = skyObserver() ? upcomingPasses().find((p) => p.start < Date.now() + 24 * 3600 * 1000) : null;
+    if (next) {
+      const t = new Date(next.start).toLocaleString([], { weekday: 'short', hour: '2-digit', minute: '2-digit' });
+      add('#ffd60a', `${next.name.replace(/\s*\(.*\)/, '')} visible ${t}: ${passPath(next)}`, { action: 'sky' }, 'Your sky \u00b7 naked eye');
+    } else if (!skyObserver()) {
+      add('#8b93a1', 'See satellites passing over you: use your location', { action: 'sky' }, 'Sky tab \u00b7 stays in this browser');
+    }
+  }
   return rows;
 }
 
@@ -136,6 +149,11 @@ export function init() {
     if (!row) return;
     const t = briefTargets[Number(row.dataset.brief)];
     if (!t) return;
+    if (t.action === 'sky') {
+      showTab('sky');
+      openPanel('left');
+      return;
+    }
     const it = t.key ? (data[t.key] || []).find((x) => x.id === t.id || (typeof x.id === 'string' && x.id.startsWith(`${t.id}:`))) : null;
     if (it) {
       flyTo(it.lat, it.lng, RADIUS + 6);

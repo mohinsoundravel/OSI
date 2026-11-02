@@ -8,6 +8,8 @@ import { latLngToVector3 } from './globe.js';
 import { displayRadius, layerObjects } from './icons.js';
 
 export let satCatalog = [];
+/* NORAD ids of naked-eye satellites (CelesTrak "visual" group), published by the poller. */
+export const visualIds = new Set();
 
 /** TLE texts: the poller's republished copy first (fast, cached), then CelesTrak directly. */
 async function fetchTleTexts() {
@@ -15,6 +17,10 @@ async function fetchTleTexts() {
   if (base) {
     try {
       const snap = await getJson(`${base.replace(/\/+$/, '')}/tle.json`);
+      if (Array.isArray(snap.visualIds)) {
+        visualIds.clear();
+        for (const id of snap.visualIds.slice(0, 2000)) if (/^\d{5}$/.test(String(id))) visualIds.add(String(id));
+      }
       if (Array.isArray(snap.groups) && snap.groups.length) {
         return snap.groups.slice(0, 10).map((g) => ({ status: 'fulfilled', value: { text: String(g.tle || '').slice(0, 6000000), tag: str(g.tag, 40) } }));
       }
@@ -60,6 +66,9 @@ async function loadSatCatalog() {
   const results = await fetchTleTexts();
   const catalog = [];
   const ids = new Set();
+  /* Station modules (ISS Unity, Zvezda, Nauka...) carry copies of the main object's elements:
+     keep only the first, so one station is one point and one alert. */
+  const elementSets = new Set();
   const errors = [];
   for (const r of results) {
     if (r.status !== 'fulfilled') { errors.push(r.reason.message); continue; }
@@ -68,8 +77,10 @@ async function loadSatCatalog() {
       const [name, l1, l2] = [lines[i], lines[i + 1], lines[i + 2]];
       if (l1[0] !== '1' || l2[0] !== '2') continue;
       const noradId = l1.substring(2, 7).trim();
-      if (ids.has(noradId)) continue;
+      const elements = l1.slice(18, 32) + l2.slice(8, 63);
+      if (ids.has(noradId) || elementSets.has(elements)) continue;
       ids.add(noradId);
+      elementSets.add(elements);
       catalog.push({ name: name.slice(0, 40), group: r.value.tag, noradId, l1, l2, cat: satCategory(name), satrec: null });
     }
   }

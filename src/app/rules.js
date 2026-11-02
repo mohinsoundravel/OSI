@@ -1,5 +1,6 @@
 /** Alert rules evaluated in the browser, toasts and browser notifications. */
 import { appState } from './app-state.js';
+import { skyObserver } from './sky.js';
 import {
   $, EMERGENCY_SQUAWKS, GDACS_LEVEL, GDACS_TYPES, MAX_EVENTS, SEVERITY, SEV_COLOR, esc, haversineKm, num,
   store
@@ -91,6 +92,9 @@ export const RULE_DEFS = [
 export const ruleCfg = store.get('rules', {});
 
 export function observerZone() {
+  /* This browser's location, when shared in the Sky tab, is the observer for every satellite. */
+  const me = skyObserver();
+  if (me) return { id: 'me', name: 'Your location', lat: me.lat, lng: me.lng };
   const id = ruleCfg.sat_pass.params.observerZone;
   return appState.zones.find((z) => z.id === id) || appState.zones[0] || null;
 }

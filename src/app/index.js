@@ -30,6 +30,7 @@ import { init as initUiBrief } from './ui/brief.js';
 import { init as initUiViews } from './ui/views.js';
 import { init as initUiSearch } from './ui/search.js';
 import { init as initScheduler } from './scheduler.js';
+import { init as initSky } from './sky.js';
 import { init as initBoot } from './boot.js';
 
 initSnapshots();
@@ -57,4 +58,5 @@ initUiBrief();
 initUiViews();
 initUiSearch();
 initScheduler();
+initSky();
 initBoot();

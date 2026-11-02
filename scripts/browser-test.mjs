@@ -300,6 +300,20 @@ async function main() {
       return null;
     });
 
+    await check('sky tab: location, visible passes and aircraft near you', async () => {
+      await browser.send('Browser.grantPermissions', { origin, permissions: ['geolocation'] });
+      await page.send('Emulation.setGeolocationOverride', { latitude: 10.0123, longitude: 77.4789, accuracy: 800 });
+      await page.evaluate(click('[data-tab=sky]'));
+      await page.waitFor(`!!document.querySelector('[data-sky=locate]')`, 5000, 'Use my location button');
+      await page.evaluate(click('[data-sky=locate]'));
+      await page.waitFor(`/Your location 10\\.01, 77\\.48/.test(${text('#tab-sky')})`, 10000, 'location shown, rounded to 0.01 deg');
+      const status = await page.waitFor(`(() => { const t = ${text('#tab-sky')}; const m = t.match(/(\\d+ visible pass(?:es)? in the next 36 h)/); return m ? m[1] : null; })()`, 30000, 'pass prediction finished');
+      const stored = await page.evaluate(`localStorage.getItem('gm.observer')`);
+      if (!/"lat":10.01,"lng":77.48/.test(stored || '')) throw new Error(`stored location not rounded: ${stored}`);
+      await page.shot('sky');
+      return status;
+    });
+
     await check('legend opens', async () => {
       await page.evaluate(click('#legendBtn'));
       await page.waitFor(`!document.getElementById('legend').hidden && ${text('#legend')}.length > 10`, 5000, 'legend visible');

@@ -43,8 +43,8 @@ body:not(.booted) .panel { opacity: 0; transform: translateY(14px) scale(0.985);
 .demo-pill { font-size: 10px; font-weight: 600; letter-spacing: 0.04em; color: #1a1300; background: var(--medium); padding: 2px 7px; border-radius: 999px; }
 
 /* ---------- Segmented control ---------- */
-.tabs { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); margin: 0 14px 10px; padding: 2px; background: var(--fill); border-radius: 10px; }
-.tabs .indicator { position: absolute; top: 2px; bottom: 2px; left: 2px; width: calc((100% - 4px) / 3); border-radius: 8px; background: rgba(255, 255, 255, 0.14); box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25); transition: transform 0.45s var(--ease); }
+.tabs { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); margin: 0 14px 10px; padding: 2px; background: var(--fill); border-radius: 10px; }
+.tabs .indicator { position: absolute; top: 2px; bottom: 2px; left: 2px; width: calc((100% - 4px) / 4); border-radius: 8px; background: rgba(255, 255, 255, 0.14); box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25); transition: transform 0.45s var(--ease); }
 .tabs button { position: relative; z-index: 1; background: none; border: none; color: var(--muted); padding: 6px 0; font: inherit; font-size: 12px; font-weight: 550; cursor: pointer; transition: color 0.3s var(--ease); }
 .tabs button.active { color: var(--text); }
 .tab-host { position: relative; flex: 1; min-height: 0; }
@@ -364,3 +364,33 @@ input[type=checkbox]:disabled { opacity: 0.4; cursor: default; }
 @media (max-width: 900px) and (pointer: coarse) {
   .mc-zoom { display: none; }
 }
+
+/* ----- Sky tab: passes and aircraft above the viewer ----- */
+.sky-card { background: var(--fill); border-radius: 12px; padding: 10px 12px; margin: 0 0 10px; display: flex; flex-direction: column; gap: 8px; }
+.sky-card .btn { align-self: flex-start; }
+.sky-title { font-size: 12px; font-weight: 650; margin: 12px 2px 6px; }
+.sky-card .sky-title { margin: 0; }
+.sky-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 12px; flex-wrap: wrap; }
+.sky-toggle { display: flex; gap: 8px; align-items: center; font-size: 12px; color: var(--muted); cursor: pointer; }
+.sky-toggle input { accent-color: var(--accent); }
+.sky-err { color: #ff8a4c; font-size: 11px; min-height: 1em; }
+.sky-chart { display: block; width: 100%; max-width: 260px; margin: 4px auto 0; }
+.sky-ring { fill: none; stroke: var(--stroke); stroke-width: 0.8; }
+.sky-label { fill: var(--muted); font-size: 9px; text-anchor: middle; dominant-baseline: middle; }
+.sky-pass { fill: none; stroke: #ffd60a; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.sky-start { fill: #ffd60a; }
+.sky-sat circle { fill: #5b6372; }
+.sky-sat.lit circle { fill: #ffffff; }
+.sky-sat text, .sky-air text { fill: var(--text); font-size: 7px; }
+.sky-air rect { fill: #7fd8c0; }
+.sky-legend { text-align: center; margin-top: 4px; }
+.sky-pass-row { display: flex; gap: 10px; width: 100%; text-align: left; background: none; border: 1px solid transparent; border-radius: 10px; padding: 7px 8px; color: var(--text); font: inherit; font-size: 12px; cursor: pointer; }
+.sky-pass-row:hover { background: var(--fill); }
+.sky-pass-row.on { background: rgba(255, 214, 10, 0.1); border-color: rgba(255, 214, 10, 0.35); }
+.sky-pass-row small, .sky-air-row small { display: block; color: var(--muted); font-size: 11px; font-weight: 400; }
+.sky-when { flex: 0 0 82px; font-weight: 600; }
+.sky-what { flex: 1; font-weight: 600; }
+.sky-what small { display: inline; margin-left: 4px; }
+.sky-what small:last-child { display: block; margin-left: 0; }
+.sky-air-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 8px; font-size: 12px; padding: 6px 8px; border-bottom: 1px solid var(--stroke); }
+.sky-air-row small { flex-basis: 100%; }

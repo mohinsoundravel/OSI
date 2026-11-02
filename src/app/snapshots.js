@@ -24,7 +24,8 @@ export function parseFlightSnapshot(snap) {
       lat0: lat, lng0: lng, baroAltM: fin(row[col.baroAltM]), onGround: row[col.onGround] === 1 || row[col.onGround] === true,
       velocity: fin(row[col.velocity]), track: fin(row[col.track]), verticalRate: fin(row[col.verticalRate]),
       squawk: typeof row[col.squawk] === 'string' ? row[col.squawk].slice(0, 4) : null,
-      t0: fin(row[col.positionTime]) || fin(snap.time) || Date.parse(snap.fetchedAt) / 1000
+      t0: fin(row[col.positionTime]) || fin(snap.time) || Date.parse(snap.fetchedAt) / 1000,
+      regional: 'regional' in col && row[col.regional] === 1
     });
   }
   return { fetchedAt: Date.parse(snap.fetchedAt) || Date.now(), rows };
@@ -40,7 +41,7 @@ export function projectFlights() {
     return {
       id: f.id, callsign: f.callsign, country: f.country, lat: p.lat, lng: p.lng,
       baroAltM: f.baroAltM, onGround: f.onGround, velocity: f.velocity, track: f.track, verticalRate: f.verticalRate,
-      squawk: f.squawk, altKm: f.baroAltM !== null ? f.baroAltM / 1000 : 0.3, reportedAt: f.t0 * 1000, projected: moving && dt > 30,
+      squawk: f.squawk, altKm: f.baroAltM !== null ? f.baroAltM / 1000 : 0.3, reportedAt: f.t0 * 1000, projected: moving && dt > 30, regional: f.regional,
       color: flightColor(f.squawk, f.onGround, f.verticalRate)
     };
   });

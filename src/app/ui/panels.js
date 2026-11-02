@@ -7,8 +7,9 @@ import { renderLegend } from '../map-controls.js';
 import { ATLAS, LAYER_ICON, setLayerVisible } from '../icons.js';
 import { renderSources } from './sources.js';
 import { VIEWS, applyView, leaveView } from './views.js';
+import { renderSky } from '../sky.js';
 
-const TAB_ORDER = ['sources', 'rules', 'zones'];
+const TAB_ORDER = ['sources', 'rules', 'zones', 'sky'];
 export let activeTab = 'sources';
 
 export const isCompact = () => window.matchMedia('(max-width: 900px)').matches;
@@ -56,6 +57,27 @@ export function syncChips() {
   }
 }
 
+/** Switches the left panel to a tab, sliding in the direction of travel. */
+export function showTab(tab) {
+  if (!tab || tab === activeTab || !TAB_ORDER.includes(tab)) return;
+  const forward = TAB_ORDER.indexOf(tab) > TAB_ORDER.indexOf(activeTab);
+  const prev = $(`tab-${activeTab}`);
+  prev.classList.toggle('leaving-left', forward);
+  prev.classList.remove('active');
+  const next = $(`tab-${tab}`);
+  next.style.transition = 'none';
+  next.classList.toggle('leaving-left', !forward);
+  void next.offsetWidth;
+  next.style.transition = '';
+  next.classList.remove('leaving-left');
+  next.classList.add('active');
+  activeTab = tab;
+  document.querySelectorAll('#tabs button').forEach((b) => b.classList.toggle('active', b.dataset.tab === tab));
+  $('tabIndicator').style.transform = `translateX(${TAB_ORDER.indexOf(tab) * 100}%)`;
+  if (tab === 'sources') renderSources();
+  if (tab === 'sky') renderSky();
+}
+
 /** Runs this module's start-up code; index.js calls every module's init in order. */
 export function init() {
   /* A mouse wheel scrolls the single row of chips sideways. */
@@ -65,25 +87,7 @@ export function init() {
     el.scrollLeft += e.deltaY;
     e.preventDefault();
   }, { passive: false });
-  $('tabs').addEventListener('click', (e) => {
-    const tab = e.target.dataset.tab;
-    if (!tab || tab === activeTab) return;
-    const forward = TAB_ORDER.indexOf(tab) > TAB_ORDER.indexOf(activeTab);
-    const prev = $(`tab-${activeTab}`);
-    prev.classList.toggle('leaving-left', forward);
-    prev.classList.remove('active');
-    const next = $(`tab-${tab}`);
-    next.style.transition = 'none';
-    next.classList.toggle('leaving-left', !forward);
-    void next.offsetWidth;
-    next.style.transition = '';
-    next.classList.remove('leaving-left');
-    next.classList.add('active');
-    activeTab = tab;
-    document.querySelectorAll('#tabs button').forEach((b) => b.classList.toggle('active', b.dataset.tab === tab));
-    $('tabIndicator').style.transform = `translateX(${TAB_ORDER.indexOf(tab) * 100}%)`;
-    if (tab === 'sources') renderSources();
-  });
+  $('tabs').addEventListener('click', (e) => showTab(e.target.dataset.tab));
   $('toggleLeft').addEventListener('click', () => openPanel('left'));
   $('toggleRight').addEventListener('click', () => openPanel('right'));
 

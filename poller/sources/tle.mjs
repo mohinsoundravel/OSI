@@ -42,6 +42,15 @@ export function satnogsToTle(json) {
     .map((r) => `${String(r.tle0 || '').replace(/^0 /, '') || r.tle1.slice(2, 7)}\n${r.tle1}\n${r.tle2}`).join('\n');
 }
 
+/**
+ * NORAD ids of CelesTrak's "visual" group: about 150 objects bright enough to see with the
+ * naked eye. The dashboard predicts visible passes only for these.
+ */
+export async function fetchVisualIds(http) {
+  const { text } = await http.getText('https://celestrak.org/NORAD/elements/gp.php?GROUP=visual&FORMAT=tle', { timeoutMs: 30000 });
+  return [...new Set((cleanTle(text).match(/^1 (\d{5})/gm) || []).map((l) => l.slice(2, 7)))].slice(0, 1000);
+}
+
 /** Returns null when the previous snapshot is fresh enough; otherwise the groups. */
 export async function fetchTle({ http, lastFetchedAt = 0, now = Date.now(), minIntervalMs = TLE_MIN_INTERVAL_MS, log = () => {} }) {
   if (now - lastFetchedAt < minIntervalMs) return null;
@@ -77,7 +86,16 @@ export async function fetchTle({ http, lastFetchedAt = 0, now = Date.now(), minI
       errors.push(`AMSAT: ${err.message}`);
     }
   }
+  if (!groups.length) {
+    if (errors.length) log(`tle: ${errors.join('; ')}`);
+    throw new Error(errors.join('; ').slice(0, 280));
+  }
+  let visualIds = [];
+  try {
+    visualIds = await fetchVisualIds(http);
+  } catch (err) {
+    errors.push(`CelesTrak visual: ${err.message}`);
+  }
   if (errors.length) log(`tle: ${errors.join('; ')}`);
-  if (!groups.length) throw new Error(errors.join('; ').slice(0, 280));
-  return groups;
+  return { groups, visualIds };
 }

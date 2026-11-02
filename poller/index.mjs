@@ -18,6 +18,7 @@ import { fetchRiverDischarge, fetchTemperatures, assessHeat, fetchDistrictRain }
 import { loadGazetteer } from './lib/places.mjs';
 import { fetchGdacs, fetchUsgs } from './sources/hazards.mjs';
 import { fetchFlights, expandFlights, FLIGHT_FIELDS } from './sources/flights.mjs';
+import { fetchRegionalAircraft, mergeAircraft } from './sources/adsb.mjs';
 import { fetchTle } from './sources/tle.mjs';
 import { fetchReservoirs, reservoirLayer, addToHistory, backfillHistory } from './sources/reservoirs.mjs';
 import { listenShips, mergeShips, SHIP_FIELDS } from './sources/ships.mjs';
@@ -35,12 +36,12 @@ const DAY_MS = 24 * 3600 * 1000;
 const BASE_HOSTS = [
   'sachet.ndma.gov.in', 'flood-api.open-meteo.com', 'api.open-meteo.com',
   'www.gdacs.org', 'earthquake.usgs.gov', 'opensky-network.org', 'celestrak.org', 'www.amsat.org',
-  'tnagriculture.in', 'db.satnogs.org', 'marine-api.open-meteo.com', 'firms.modaps.eosdis.nasa.gov', 'api.gdeltproject.org'
+  'tnagriculture.in', 'db.satnogs.org', 'marine-api.open-meteo.com', 'firms.modaps.eosdis.nasa.gov', 'api.gdeltproject.org', 'api.adsb.lol'
 ];
 const DEGRADED_AFTER_FAILURES = 3;
 /* Auxiliary sources feed the dashboard but are not safety-critical: their failures
    never trigger degraded notices or count toward "every source failed". */
-const AUXILIARY = new Set(['flights', 'satellites', 'ships', 'news', 'fires']);
+const AUXILIARY = new Set(['flights', 'aircraft', 'satellites', 'ships', 'news', 'fires']);
 const MAX_EVENTS = 500;
 const MAX_RING_VERTICES = 160;
 /* Bump when the shape of persisted alerts changes. A mismatch re-parses SACHET and
@@ -150,13 +151,20 @@ export async function run(options = {}) {
     ...(config.flights?.enabled === false ? {} : {
       flights: () => fetchFlights({ http, lastFetchedAt: state.flightsFetchedAt ? Date.parse(state.flightsFetchedAt) : 0, now })
     }),
+    /* Aircraft over Tamil Nadu and neighbours every poll (adsb.lol), fresher than the global snapshot. */
+    ...(config.flights?.enabled === false || config.flights?.regional === false ? {} : {
+      aircraft: () => fetchRegionalAircraft({
+        http, center: config.flights?.regional?.center || { lat: 10.8, lng: 78.3 },
+        radiusNm: config.flights?.regional?.radiusNm ?? 250, now
+      })
+    }),
     /* Ships need an AISStream key (GitHub secret); without one the source is simply absent. */
     ...(config.ships?.enabled === false || !options.aisKey ? {} : {
       ships: () => listenShips({ apiKey: options.aisKey, listenMs: options.shipsListenMs ?? config.ships?.listenMs ?? 45000, connect: options.shipsConnect, userAgent: config.userAgent })
     }),
     ...(config.satellites?.enabled === false ? {} : {
-      /* tleCatalog 2 = all active satellites; an older snapshot is replaced immediately. */
-      satellites: () => fetchTle({ http, lastFetchedAt: state.tleFetchedAt && state.tleCatalog === 2 ? Date.parse(state.tleFetchedAt) : 0, now, log })
+      /* tleCatalog 3 = all active satellites plus the naked-eye ids; an older snapshot is replaced immediately. */
+      satellites: () => fetchTle({ http, lastFetchedAt: state.tleFetchedAt && state.tleCatalog === 3 ? Date.parse(state.tleFetchedAt) : 0, now, log })
     }),
     ...(config.cyclones?.enabled === false ? {} : {
       cyclones: () => fetchCyclones({ http, cache: state.cycloneCache || {}, now, log })
@@ -253,14 +261,25 @@ export async function run(options = {}) {
   if (data.gdacs) state.gdacsSnapshot = data.gdacs.filter((e) => e.alertLevel !== 'Green');
   if (data.quakes) state.quakesSnapshot = data.quakes.filter((q) => q.mag >= 4);
 
-  /* Flights: publish a compact snapshot for the dashboard; keep emergency squawks for rules. */
+  /* Flights: the global OpenSky snapshot is kept as is (flights-opensky.json); the published
+     flights.json is that snapshot with this poll's regional aircraft merged in. */
+  const openskyFile = path.join(dataDir, 'flights-opensky.json');
   if (data.flights) {
     state.flightsFetchedAt = new Date(now).toISOString();
+    await writeJsonAtomic(openskyFile, { schema: 1, fetchedAt: state.flightsFetchedAt, time: data.flights.time, states: data.flights.states });
+  }
+  if (data.flights || data.aircraft) {
+    const global = data.flights || await readJson(openskyFile, null).catch(() => null)
+      || { time: null, states: (await readJson(path.join(dataDir, 'flights.json'), { states: [] }).catch(() => ({ states: [] }))).states.filter((row) => !row[12]) };
+    const regional = data.aircraft ? data.aircraft.rows.map((row) => [...row, 1]) : [];
+    const merged = mergeAircraft(global.states || [], regional);
     await writeJsonAtomic(path.join(dataDir, 'flights.json'), {
-      schema: 1, fetchedAt: state.flightsFetchedAt, time: data.flights.time,
-      fields: FLIGHT_FIELDS, states: data.flights.states
+      schema: 1, fetchedAt: new Date(now).toISOString(), time: data.aircraft?.time ?? global.time,
+      globalFetchedAt: state.flightsFetchedAt || null,
+      regional: data.aircraft ? { source: 'adsb.lol', center: data.aircraft.center, radiusNm: data.aircraft.radiusNm, aircraft: regional.length } : null,
+      fields: [...FLIGHT_FIELDS, 'regional'], states: merged
     });
-    state.squawkSnapshot = expandFlights(data.flights).filter((f) => f.squawk && ['7500', '7600', '7700'].includes(f.squawk));
+    state.squawkSnapshot = expandFlights({ states: merged }).filter((f) => f.squawk && ['7500', '7600', '7700'].includes(f.squawk));
   }
   layerData.squawks = state.squawkSnapshot || [];
 
@@ -277,8 +296,11 @@ export async function run(options = {}) {
   /* Satellites: republish CelesTrak TLEs for the dashboard (propagated in the browser). */
   if (data.satellites) {
     state.tleFetchedAt = new Date(now).toISOString();
-    state.tleCatalog = 2;
-    await writeJsonAtomic(path.join(dataDir, 'tle.json'), { schema: 1, fetchedAt: state.tleFetchedAt, source: data.satellites[0]?.source || 'CelesTrak', groups: data.satellites });
+    state.tleCatalog = 3;
+    await writeJsonAtomic(path.join(dataDir, 'tle.json'), {
+      schema: 1, fetchedAt: state.tleFetchedAt, source: data.satellites.groups[0]?.source || 'CelesTrak',
+      groups: data.satellites.groups, visualIds: data.satellites.visualIds
+    });
   }
 
   /* Cyclones: GDACS list every run; geometry only when an advisory (episode) changes. */

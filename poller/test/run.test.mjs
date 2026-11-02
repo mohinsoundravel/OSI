@@ -91,13 +91,22 @@ test('end to end: baseline first, then only new or escalated alerts', async () =
     assert.equal(byKey('squawk:800abc:7700').severity, 'high', 'emergency squawk over Chennai alerts');
     assert.ok(!keys.some((k) => k.startsWith('squawk:a1b2c3')), 'squawk outside zones ignored');
     const flights = JSON.parse(await readFile(path.join(env.dataDir, 'flights.json'), 'utf8'));
-    assert.equal(flights.states.length, 4, 'aircraft without a position are dropped');
+    assert.equal(flights.states.length, 7, 'four global aircraft (those without a position dropped) plus regional ones, merged by ICAO address');
     assert.deepEqual(flights.fields.slice(0, 5), ['icao24', 'callsign', 'country', 'lat', 'lng']);
     assert.equal(flights.states[0][1], 'AIC302', 'callsign trimmed');
+    assert.equal(flights.regional.aircraft, 4, 'regional aircraft from adsb.lol: bad hex and position dropped, ~ prefix removed');
+    const col = Object.fromEntries(flights.fields.map((f, i) => [f, i]));
+    const aic = flights.states.find((row) => row[col.icao24] === '800aaa');
+    assert.equal(aic[col.baroAltM], 10668, '35,000 ft in metres');
+    assert.equal(aic[col.regional], 1);
+    assert.equal(flights.states.find((row) => row[col.icao24] === '800def')[col.onGround], 1, 'alt_baro "ground"; the newer regional row replaces the global one');
+    const opensky = JSON.parse(await readFile(path.join(env.dataDir, 'flights-opensky.json'), 'utf8'));
+    assert.equal(opensky.states.length, 4, 'global snapshot kept separately, without regional rows');
     const tle = JSON.parse(await readFile(path.join(env.dataDir, 'tle.json'), 'utf8'));
     assert.deepEqual(tle.groups.map((g) => g.tag), ['Active satellites'], 'one group: every active satellite');
     assert.equal(tle.groups[0].tle.split('\n').length, 6, 'two valid satellites kept, malformed lines dropped');
     assert.ok(tle.groups[0].tle.startsWith('ISS (ZARYA)\n1 25544U'));
+    assert.ok(tle.visualIds.includes('25544'), 'naked-eye ids from the visual group published with the TLEs');
     const riverAlert = r1.candidates.find((c) => c.key === 'river:vaigai-dam:high');
     assert.equal(riverAlert.origin, 'derived');
 
