@@ -625,3 +625,12 @@ test('cyclones: a storm GDACS still marks current but with no advisory for 30 ho
   const { storms } = await fetchCyclones({ http, now });
   assert.deepEqual(storms.map((s) => s.name), ['S2']);
 });
+
+test('GDACS: a cyclone with no update for 30 hours is over; other event types are kept', async () => {
+  const { gdacsLive } = await import('../sources/hazards.mjs');
+  const now = Date.parse('2026-11-06T10:00:00Z');
+  assert.equal(gdacsLive({ type: 'Tropical cyclone', modifiedAt: '2026-11-04T06:01:20Z' }, now), false);
+  assert.equal(gdacsLive({ type: 'Tropical cyclone', modifiedAt: '2026-11-06T01:00:00Z' }, now), true);
+  assert.equal(gdacsLive({ type: 'Tropical cyclone', modifiedAt: null }, now), true, 'unknown age is kept');
+  assert.equal(gdacsLive({ type: 'Drought', modifiedAt: '2026-09-01T00:00:00Z' }, now), true, 'long-running events are not aged out');
+});

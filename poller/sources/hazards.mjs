@@ -19,6 +19,14 @@ async function getGdacs(http) {
   }
 }
 
+/*
+ * GDACS can keep a tropical cyclone "current" for days after its last advisory (MURASU-26
+ * stayed Red two days after dissipating inland). A cyclone with no update for 30 hours is
+ * treated as over; other event types are left as GDACS reports them.
+ */
+export const GDACS_TC_STALE_MS = 30 * 3600 * 1000;
+export const gdacsLive = (e, now) => e.type !== 'Tropical cyclone' || !e.modifiedAt || !(now - Date.parse(e.modifiedAt) > GDACS_TC_STALE_MS);
+
 export async function fetchGdacs({ http }) {
   const { json, notModified } = await getGdacs(http);
   if (notModified) return null;
@@ -35,7 +43,8 @@ export async function fetchGdacs({ http }) {
         country: String(p.country || '').slice(0, 120),
         lng: Number(f.geometry.coordinates[0]),
         lat: Number(f.geometry.coordinates[1]),
-        url: typeof p.url?.report === 'string' ? p.url.report : null
+        url: typeof p.url?.report === 'string' ? p.url.report : null,
+        modifiedAt: p.datemodified ? `${String(p.datemodified).slice(0, 19)}Z` : null
       };
     })
     .filter((e) => Number.isFinite(e.lat) && Number.isFinite(e.lng));

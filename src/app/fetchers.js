@@ -69,6 +69,9 @@ export function init() {
       const data = await getJson('https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=EQ;TC;FL;VO;DR;WF&pageSize=100');
       return (data.features || [])
         .filter((f) => String(f.properties && f.properties.iscurrent) === 'true')
+        /* A cyclone GDACS still lists as current but has not updated for 30 hours is over. */
+        .filter((f) => f.properties.eventtype !== 'TC' || !f.properties.datemodified
+          || !(Date.now() - Date.parse(`${String(f.properties.datemodified).slice(0, 19)}Z`) > 30 * 3600 * 1000))
         .filter((f) => f.geometry && f.geometry.type === 'Point')
         .map((f) => {
           const p = f.properties || {};

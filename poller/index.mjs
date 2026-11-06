@@ -16,7 +16,7 @@ import { createHttpClient } from './lib/http.mjs';
 import { fetchSachet } from './sources/sachet.mjs';
 import { fetchRiverDischarge, fetchTemperatures, assessHeat, fetchDistrictRain } from './sources/openmeteo.mjs';
 import { loadGazetteer } from './lib/places.mjs';
-import { fetchGdacs, fetchUsgs } from './sources/hazards.mjs';
+import { fetchGdacs, fetchUsgs, gdacsLive } from './sources/hazards.mjs';
 import { fetchFlights, expandFlights, FLIGHT_FIELDS } from './sources/flights.mjs';
 import { fetchRegionalAircraft, mergeAircraft } from './sources/adsb.mjs';
 import { fetchTle } from './sources/tle.mjs';
@@ -228,7 +228,7 @@ export async function run(options = {}) {
     sachet: state.sachetActive || {},
     rivers: data.rivers ?? prevLatest.layers?.rivers ?? [],
     heat: data.heat ?? prevLatest.layers?.heatRaw ?? [],
-    gdacs: data.gdacs ?? state.gdacsSnapshot ?? [],
+    gdacs: (data.gdacs ?? state.gdacsSnapshot ?? []).filter((e) => gdacsLive(e, now)),
     quakes: data.quakes ?? state.quakesSnapshot ?? []
   };
   /* Reservoirs: daily figures, fetched at most hourly; the last snapshot is reused in between. */
