@@ -13,6 +13,9 @@ const GEOMETRY_URL = 'https://www.gdacs.org/gdacsapi/api/polygons/getgeometry';
 /* North Indian Ocean (Bay of Bengal and Arabian Sea) plus a margin. */
 export const NIO = { minLat: -5, maxLat: 32, minLng: 45, maxLng: 100 };
 const MAX_RING_VERTICES = 200;
+/* GDACS can keep a storm "current" for days after its last advisory (MURASU-26 stayed Red
+   two days after dissipating inland); a storm with no advisory for this long is dropped. */
+export const STALE_ADVISORY_MS = 30 * 3600 * 1000;
 
 /* Simplified Indian coastline, Sundarbans to Kutch (lng, lat), with names for landfall. */
 export const COAST = [
@@ -162,7 +165,9 @@ export async function fetchCyclones({ http, cache = {}, now = Date.now(), log = 
   const { json } = await http.getJson(`${LIST_URL}?eventlist=TC&fromdate=${from}&todate=${to}&alertlevel=Green;Orange;Red&pageSize=50`, { timeoutMs: 45000 });
   const storms = (json?.features || []).filter((f) => {
     const [lng, lat] = f.geometry?.coordinates || [];
-    return f.properties?.eventtype === 'TC' && String(f.properties?.iscurrent) === 'true' && inNio(Number(lat), Number(lng));
+    const modified = Date.parse(`${f.properties?.datemodified || f.properties?.todate || ''}Z`);
+    const fresh = !Number.isFinite(modified) || now - modified < STALE_ADVISORY_MS;
+    return f.properties?.eventtype === 'TC' && String(f.properties?.iscurrent) === 'true' && fresh && inNio(Number(lat), Number(lng));
   });
   const nextCache = {};
   const out = [];

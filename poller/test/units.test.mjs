@@ -609,3 +609,19 @@ test('cyclone geometry: track points, intensity classes, landfall on the simplif
   const near = closestApproach(g.track, [{ name: 'Chennai', lat: 13.08, lng: 80.4 }]);
   assert.ok(near.km > 300 && near.km < 450, `closest approach ${near.km} km`);
 });
+
+test('cyclones: a storm GDACS still marks current but with no advisory for 30 hours is dropped', async () => {
+  const { fetchCyclones } = await import('../sources/cyclones.mjs');
+  const now = Date.parse('2026-11-06T10:00:00Z');
+  const storm = (id, modified) => ({
+    geometry: { coordinates: [80.2, 15.8] },
+    properties: { eventtype: 'TC', eventid: id, episodeid: 1, iscurrent: 'true', alertlevel: 'Red', eventname: `S${id}`, datemodified: modified }
+  });
+  const http = {
+    getJson: async (url) => (url.includes('geteventlist')
+      ? { json: { features: [storm(1, '2026-11-04T06:01:20'), storm(2, '2026-11-06T04:00:00')] } }
+      : { json: { features: [] } })
+  };
+  const { storms } = await fetchCyclones({ http, now });
+  assert.deepEqual(storms.map((s) => s.name), ['S2']);
+});
