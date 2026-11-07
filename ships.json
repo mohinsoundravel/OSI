@@ -1,0 +1,23 @@
+{
+ "schema": 1,
+ "fetchedAt": "2026-11-07T18:07:23.259Z",
+ "source": "AISStream.io",
+ "heardThisRun": 0,
+ "messages": 1,
+ "fields": [
+  "mmsi",
+  "name",
+  "lat",
+  "lng",
+  "sog",
+  "cog",
+  "heading",
+  "type",
+  "status",
+  "time",
+  "destination",
+  "callsign",
+  "lengthM"
+ ],
+ "ships": []
+}
