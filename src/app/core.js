@@ -91,6 +91,35 @@ export const store = {
   }
 };
 
+/**
+ * A system notification. Android Chrome and installed iPhone web apps only allow them
+ * through the service worker (the page's Notification constructor throws there), so that
+ * is tried first, with the page API as the fallback for desktop browsers.
+ */
+export async function systemNotify(title, body, tag) {
+  if (typeof Notification === 'undefined' || Notification.permission !== 'granted') return false;
+  const options = { body, tag, icon: 'icons/icon-192.png', badge: 'icons/icon-192.png', data: { url: location.href.split('#')[0] } };
+  try {
+    const reg = 'serviceWorker' in navigator ? await navigator.serviceWorker.getRegistration() : null;
+    if (reg) {
+      await reg.showNotification(title, options);
+      return true;
+    }
+  } catch {
+    /* fall through to the page API */
+  }
+  try {
+    new Notification(title, options);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/** iPhone and iPad allow web notifications only for a site added to the Home Screen. */
+export const needsHomeScreen = () => /iPhone|iPad|iPod/.test(navigator.userAgent)
+  && !(window.navigator.standalone || matchMedia('(display-mode: standalone)').matches);
+
 export const SEVERITY = { low: 0, medium: 1, high: 2, critical: 3 };
 export const SEV_COLOR = { low: '#5a6472', medium: '#f0c75e', high: '#ff8a4c', critical: '#ff4d5e' };
 export const GDACS_TYPES = { EQ: 'Earthquake', TC: 'Tropical cyclone', FL: 'Flood', VO: 'Volcano', DR: 'Drought', WF: 'Wildfire' };

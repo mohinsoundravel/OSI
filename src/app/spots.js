@@ -1,6 +1,6 @@
 /** Private watch spots, stored only in this browser. */
 import { appState } from './app-state.js';
-import { RADIUS, SEV_COLOR, destination, haversineKm, store } from './core.js';
+import { destination, haversineKm, RADIUS, SEV_COLOR, store, systemNotify } from './core.js';
 import { str } from './layers.js';
 import { data } from './state.js';
 import { toast } from './rules.js';
@@ -62,9 +62,7 @@ export function checkSpotAlerts() {
       seen.add(k);
       changed = true;
       toast({ severity: a.alertSeverity, title: `Near ${sp.name}: ${a.title}` });
-      if (appState.notifyEnabled && 'Notification' in window && Notification.permission === 'granted') {
-        try { new Notification(`Near ${sp.name}`, { body: a.title, tag: k }); } catch { /* unsupported */ }
-      }
+      if (appState.notifyEnabled) systemNotify(`Near ${sp.name}`, a.title, k);
     }
   }
   if (changed) store.set('spotSeen', [...seen].slice(-400));

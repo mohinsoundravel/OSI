@@ -34,6 +34,7 @@ export function init() {
 
   appState.events = store.get('events', []);
   appState.unread = 0;
-  appState.notifyEnabled = false;
+  /* Remembered across visits (phones reload pages often), while permission is still granted. */
+  appState.notifyEnabled = store.get('notify', false) === true && typeof Notification !== 'undefined' && Notification.permission === 'granted';
   appState.pickMode = false;
 }

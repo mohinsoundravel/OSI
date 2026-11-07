@@ -6,7 +6,7 @@
  *  - Map tiles: cache first, capped, so revisited areas load instantly.
  * Nothing else is intercepted.
  */
-const VERSION = 'osi-v6';
+const VERSION = 'osi-v7';
 const SHELL = `${VERSION}-shell`;
 const DATA = `${VERSION}-data`;
 const TILES = `${VERSION}-tiles`;
@@ -85,4 +85,16 @@ self.addEventListener('fetch', (event) => {
   } else if (url.hostname === 'server.arcgisonline.com' && url.pathname.includes('/tile/')) {
     event.respondWith(cacheFirst(req, TILES, MAX_TILES));
   }
+});
+
+/* Tapping a notification brings an open dashboard to the front, or opens it. */
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  const target = (event.notification.data && event.notification.data.url) || self.registration.scope;
+  event.waitUntil((async () => {
+    const windows = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+    const open = windows.find((w) => w.url.startsWith(self.registration.scope));
+    if (open) return open.focus();
+    return self.clients.openWindow(target);
+  })());
 });

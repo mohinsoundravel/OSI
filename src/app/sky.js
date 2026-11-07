@@ -4,7 +4,7 @@
  * passes are computed here, in a worker, so nothing about where you are is sent anywhere.
  */
 import { appState } from './app-state.js';
-import { $, DEG, DEMO, esc, haversineKm, num, store } from './core.js';
+import { $, DEG, DEMO, esc, haversineKm, num, store, systemNotify } from './core.js';
 import { satCatalog, satrecFor, visualIds } from './satellites.js';
 import { data } from './state.js';
 import { toast } from './rules.js';
@@ -202,9 +202,7 @@ const alerted = new Map();
 
 function skyNotify(title, body) {
   toast({ severity: 'medium', title: `${title}: ${body}` });
-  if (appState.notifyEnabled && 'Notification' in window && Notification.permission === 'granted') {
-    try { new Notification(title, { body, tag: `sky-${title}` }); } catch { /* unsupported here */ }
-  }
+  if (appState.notifyEnabled) systemNotify(title, body, `sky-${title}`);
 }
 
 function checkAlerts() {

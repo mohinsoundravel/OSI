@@ -2,8 +2,7 @@
 import { appState } from './app-state.js';
 import { skyObserver } from './sky.js';
 import {
-  $, EMERGENCY_SQUAWKS, GDACS_LEVEL, GDACS_TYPES, MAX_EVENTS, SEVERITY, SEV_COLOR, esc, haversineKm, num,
-  store
+  $, EMERGENCY_SQUAWKS, esc, GDACS_LEVEL, GDACS_TYPES, haversineKm, MAX_EVENTS, num, SEV_COLOR, SEVERITY, store, systemNotify
 } from './core.js';
 import { LAYERS } from './layers.js';
 import { data, persistSeen, ruleInit, seen, transitionState } from './state.js';
@@ -175,10 +174,8 @@ function createEvent(def, it, cfg, zone, baseline) {
 
 function notify(ev) {
   if (SEVERITY[ev.severity] >= SEVERITY.medium) toast(ev);
-  if (appState.notifyEnabled && SEVERITY[ev.severity] >= SEVERITY.high && 'Notification' in window && Notification.permission === 'granted') {
-    try {
-      new Notification(`[${ev.severity.toUpperCase()}] ${ev.ruleName}`, { body: ev.title, tag: ev.id });
-    } catch { /* notifications unsupported in this context */ }
+  if (appState.notifyEnabled && SEVERITY[ev.severity] >= SEVERITY.high) {
+    systemNotify(`[${ev.severity.toUpperCase()}] ${ev.ruleName}`, ev.title, ev.id);
   }
 }
 

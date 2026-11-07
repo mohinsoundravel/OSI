@@ -1,6 +1,6 @@
 /** Event feed and notifications toggle. */
 import { appState } from '../app-state.js';
-import { $, SEVERITY, SEV_COLOR, esc, fmtTime, store } from '../core.js';
+import { $, esc, fmtTime, needsHomeScreen, SEV_COLOR, SEVERITY, store, systemNotify } from '../core.js';
 import { toast } from '../rules.js';
 import { updateAlertLayer } from '../icons.js';
 import { closeDetail, selectedEventId, showEventDetail } from './detail.js';
@@ -79,23 +79,32 @@ export function init() {
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   });
 
+  const showNotifyState = () => {
+    $('btnNotify').textContent = appState.notifyEnabled ? 'Notify on' : 'Notify off';
+    $('btnNotify').classList.toggle('on', appState.notifyEnabled);
+  };
+  showNotifyState();
   $('btnNotify').addEventListener('click', async () => {
-    const btn = $('btnNotify');
     if (appState.notifyEnabled) {
       appState.notifyEnabled = false;
-    } else if (!('Notification' in window)) {
-      toast({ severity: 'medium', title: 'Browser notifications are not supported here.' });
+    } else if (needsHomeScreen()) {
+      toast({ severity: 'medium', title: 'On iPhone: Share, then Add to Home Screen; open OSI from the Home Screen and tap Notify there.' });
+      return;
+    } else if (typeof Notification === 'undefined') {
+      toast({ severity: 'medium', title: 'This browser does not support notifications.' });
       return;
     } else {
       try {
         const perm = await Notification.requestPermission();
         appState.notifyEnabled = perm === 'granted';
-        if (!appState.notifyEnabled) toast({ severity: 'medium', title: 'Notification permission was not granted.' });
+        if (perm === 'denied') toast({ severity: 'medium', title: 'Notifications are blocked for this site: allow them in the browser\'s site settings, then tap Notify again.' });
+        else if (!appState.notifyEnabled) toast({ severity: 'medium', title: 'Notification permission was not granted.' });
+        else systemNotify('OSI notifications on', 'Alerts will appear here while the dashboard is open.', 'osi-test');
       } catch {
         toast({ severity: 'medium', title: 'Notifications are blocked in this context.' });
       }
     }
-    btn.textContent = appState.notifyEnabled ? 'Notify on' : 'Notify off';
-    btn.classList.toggle('on', appState.notifyEnabled);
+    store.set('notify', appState.notifyEnabled);
+    showNotifyState();
   });
 }

@@ -382,6 +382,20 @@ async function main() {
       return `${result.files} files in ${result.cache}`;
     });
 
+    await check('notifications go through the service worker (needed on Android) and Notify is remembered', async () => {
+      const local = origin.replace('127.0.0.1', 'localhost');
+      await browser.send('Browser.grantPermissions', { origin: local, permissions: ['notifications'] });
+      await page.evaluate(`localStorage.removeItem('gm.notify')`);
+      await page.evaluate(click('#btnNotify'));
+      await page.waitFor(`document.getElementById('btnNotify').textContent === 'Notify on'`, 5000, 'Notify on');
+      const shown = await page.waitFor(`navigator.serviceWorker.getRegistration().then((r) => r.getNotifications()).then((n) => n.map((x) => x.title).join('|') || null)`, 5000, 'notification shown by the service worker');
+      await page.navigate(`${local}/index.html?again=1`);
+      await page.waitFor(`location.search === '?again=1' && document.body.classList.contains('booted')`, 20000, 'reloaded');
+      const kept = await page.evaluate(`document.getElementById('btnNotify').textContent`);
+      if (kept !== 'Notify on') throw new Error(`after reload the button says ${kept}`);
+      return shown;
+    });
+
     if (page.problems.length) {
       results.push({ name: 'no page errors', ok: false, detail: page.problems.slice(0, 20).join('\n  ') });
       console.log(`FAIL no page errors:\n  ${page.problems.slice(0, 20).join('\n  ')}`);
