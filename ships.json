@@ -1,0 +1,39 @@
+{
+ "schema": 1,
+ "fetchedAt": "2026-11-14T14:07:19.811Z",
+ "source": "AISStream.io",
+ "heardThisRun": 1,
+ "messages": 2,
+ "fields": [
+  "mmsi",
+  "name",
+  "lat",
+  "lng",
+  "sog",
+  "cog",
+  "heading",
+  "type",
+  "status",
+  "time",
+  "destination",
+  "callsign",
+  "lengthM"
+ ],
+ "ships": [
+  [
+   419001342,
+   "OCEAN BLISS",
+   13.092548333333333,
+   80.30041166666666,
+   0.1,
+   137,
+   null,
+   null,
+   0,
+   1794665280,
+   "",
+   "",
+   null
+  ]
+ ]
+}
