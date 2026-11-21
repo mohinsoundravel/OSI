@@ -1,0 +1,54 @@
+{
+ "schema": 1,
+ "fetchedAt": "2026-11-21T11:37:19.877Z",
+ "source": "AISStream.io",
+ "heardThisRun": 0,
+ "messages": 2,
+ "fields": [
+  "mmsi",
+  "name",
+  "lat",
+  "lng",
+  "sog",
+  "cog",
+  "heading",
+  "type",
+  "status",
+  "time",
+  "destination",
+  "callsign",
+  "lengthM"
+ ],
+ "ships": [
+  [
+   312856000,
+   "HTP LUCKY",
+   13.092071666666667,
+   80.29680666666667,
+   0,
+   16.7,
+   287,
+   null,
+   1,
+   1795260196,
+   "",
+   "",
+   null
+  ],
+  [
+   414736000,
+   "XIN WEN ZHOU",
+   13.1158,
+   80.33366833333334,
+   6.3,
+   315.5,
+   318,
+   70,
+   0,
+   1795257473,
+   "INMAA",
+   "BPKJ",
+   255
+  ]
+ ]
+}
