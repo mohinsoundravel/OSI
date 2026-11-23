@@ -1,0 +1,21 @@
+live forecast API with models=ecmwf_ifs: 40 points {"time":["2026-11-22","2026-11-23","2026-11-24","2026-11-25"],"precipitation_sum":[0,6.8,14.1,19.7]}
+
+### Routine monsoon weeks, noise check (1-20 Nov 2024)
+retry after fetch failed: https://single-runs-api.open-meteo.com/v1/forecast?latitude=11.14,11.39,10.89,11.14,11.14,
+retry after fetch failed: https://single-runs-api.open-meteo.com/v1/forecast?latitude=11.14,11.39,10.89,11.14,11.14,
+retry after fetch failed: https://single-runs-api.open-meteo.com/v1/forecast?latitude=11.14,11.39,10.89,11.14,11.14,
+retry after fetch failed: https://single-runs-api.open-meteo.com/v1/forecast?latitude=11.14,11.39,10.89,11.14,11.14,
+retry after fetch failed: https://single-runs-api.open-meteo.com/v1/forecast?latitude=11.14,11.39,10.89,11.14,11.14,
+retry after fetch failed: https://single-runs-api.open-meteo.com/v1/forecast?latitude=11.14,11.39,10.89,11.14,11.14,
+retry after fetch failed: https://single-runs-api.open-meteo.com/v1/forecast?latitude=11.14,11.39,10.89,11.14,11.14,
+retry after fetch failed: https://single-runs-api.open-meteo.com/v1/forecast?latitude=11.14,11.39,10.89,11.14,11.14,
+retry after fetch failed: https://single-runs-api.open-meteo.com/v1/forecast?latitude=11.14,11.39,10.89,11.14,11.14,
+retry after fetch failed: https://single-runs-api.open-meteo.com/v1/forecast?latitude=11.14,11.39,10.89,11.14,11.14,
+retry after fetch failed: https://single-runs-api.open-meteo.com/v1/forecast?latitude=11.14,11.39,10.89,11.14,11.14,
+retry after fetch failed: https://single-runs-api.open-meteo.com/v1/forecast?latitude=11.14,11.39,10.89,11.14,11.14,
+rain default/centre {"very heavy trigger, >=1 day ahead (current rule)":{"observedVeryHeavy":0,"warned":0,"alerts":0,"falseAlarms":0,"heavyNotVeryHeavy":0},"very heavy trigger, same day":{"observedVeryHeavy":0,"warned":0,"alerts":0,"falseAlarms":0,"heavyNotVeryHeavy":0},"heavy trigger, >=1 day ahead":{"observedVeryHeavy":0,"warned":0,"alerts":0,"falseAlarms":0,"heavyNotVeryHeavy":0}}
+rain default/max5 {"very heavy trigger, >=1 day ahead (current rule)":{"observedVeryHeavy":0,"warned":0,"alerts":0,"falseAlarms":0,"heavyNotVeryHeavy":0},"very heavy trigger, same day":{"observedVeryHeavy":0,"warned":0,"alerts":0,"falseAlarms":0,"heavyNotVeryHeavy":0},"heavy trigger, >=1 day ahead":{"observedVeryHeavy":0,"warned":0,"alerts":5,"falseAlarms":5,"heavyNotVeryHeavy":0}}
+rain ecmwf/centre {"very heavy trigger, >=1 day ahead (current rule)":{"observedVeryHeavy":0,"warned":0,"alerts":0,"falseAlarms":0,"heavyNotVeryHeavy":0},"very heavy trigger, same day":{"observedVeryHeavy":0,"warned":0,"alerts":0,"falseAlarms":0,"heavyNotVeryHeavy":0},"heavy trigger, >=1 day ahead":{"observedVeryHeavy":0,"warned":0,"alerts":0,"falseAlarms":0,"heavyNotVeryHeavy":0}}
+rain ecmwf/max5 {"very heavy trigger, >=1 day ahead (current rule)":{"observedVeryHeavy":0,"warned":0,"alerts":0,"falseAlarms":0,"heavyNotVeryHeavy":0},"very heavy trigger, same day":{"observedVeryHeavy":0,"warned":0,"alerts":0,"falseAlarms":0,"heavyNotVeryHeavy":0},"heavy trigger, >=1 day ahead":{"observedVeryHeavy":0,"warned":0,"alerts":0,"falseAlarms":0,"heavyNotVeryHeavy":0}}
+
+wrote results.json
