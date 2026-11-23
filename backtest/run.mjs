@@ -58,32 +58,36 @@ const coords = (pts) => `latitude=${pts.map((p) => p.lat).join(',')}&longitude=$
 
 /* ---------- Rain ---------- */
 
-/** fc[district][date][lead] = mm forecast for that IST day, issued `lead` days earlier. */
+/* Each district is sampled at its reference point and four points 0.25 deg (~28 km) away,
+   so the run can compare the poller's single point with the wettest of five. */
+const OFFSETS = [[0, 0], [0.25, 0], [-0.25, 0], [0, 0.25], [0, -0.25]];
+const SAMPLES = DISTRICTS.flatMap((d) => OFFSETS.map(([dy, dx], k) => ({ district: d.name, centre: k === 0, lat: Math.round((d.lat + dy) * 100) / 100, lng: Math.round((d.lng + dx) * 100) / 100 })));
+
+/** Per sample point: { date: [mm by lead 0..MAX_LEAD] } from forecasts issued `lead` days earlier. */
 async function previousRunsRain(from, to) {
   const vars = ['precipitation', ...Array.from({ length: MAX_LEAD }, (_, i) => `precipitation_previous_day${i + 1}`)];
-  const json = asArray(await getJson(`https://previous-runs-api.open-meteo.com/v1/forecast?${coords(DISTRICTS)}&hourly=${vars.join(',')}&start_date=${from}&end_date=${to}&timezone=Asia%2FKolkata`));
-  const out = {};
-  DISTRICTS.forEach((d, i) => {
+  const json = asArray(await getJson(`https://previous-runs-api.open-meteo.com/v1/forecast?${coords(SAMPLES)}&hourly=${vars.join(',')}&start_date=${from}&end_date=${to}&timezone=Asia%2FKolkata`));
+  return SAMPLES.map((_, i) => {
     const h = json[i].hourly;
-    const byDay = (out[d.name] = {});
+    const byDay = {};
     h.time.forEach((t, k) => {
       const day = t.slice(0, 10);
       byDay[day] ||= Array(MAX_LEAD + 1).fill(0);
       vars.forEach((v, lead) => { const x = h[v]?.[k]; byDay[day][lead] = Number.isFinite(x) && Number.isFinite(byDay[day][lead]) ? byDay[day][lead] + x : null; });
     });
+    return byDay;
   });
-  return out;
 }
 
 /** Same shape from ECMWF IFS 9 km 00 UTC runs (lead 0 misses 00:00-05:30 IST of that day). */
 async function ecmwfRain(from, to) {
-  const out = Object.fromEntries(DISTRICTS.map((d) => [d.name, {}]));
+  const out = SAMPLES.map(() => ({}));
   for (const issue of daysBetween(addDays(from, -MAX_LEAD), to)) {
     let json;
     try {
-      json = asArray(await getJson(`https://single-runs-api.open-meteo.com/v1/forecast?${coords(DISTRICTS)}&hourly=precipitation&models=ecmwf_ifs&run=${issue}T00:00&forecast_days=8`));
+      json = asArray(await getJson(`https://single-runs-api.open-meteo.com/v1/forecast?${coords(SAMPLES)}&hourly=precipitation&models=ecmwf_ifs&run=${issue}T00:00&forecast_days=8`));
     } catch (err) { console.log(`ecmwf run ${issue}: ${err.message}`); continue; }
-    DISTRICTS.forEach((d, i) => {
+    SAMPLES.forEach((_, i) => {
       const h = json[i]?.hourly;
       if (!h) return;
       const sums = {};
@@ -91,7 +95,7 @@ async function ecmwfRain(from, to) {
       for (const [day, mm] of Object.entries(sums)) {
         const lead = Math.round((Date.parse(day) - Date.parse(issue)) / DAY);
         if (day < from || day > to || lead < 0 || lead > MAX_LEAD) continue;
-        (out[d.name][day] ||= Array(MAX_LEAD + 1).fill(null))[lead] = mm;
+        (out[i][day] ||= Array(MAX_LEAD + 1).fill(null))[lead] = mm;
       }
     });
     await sleep(300);
@@ -100,8 +104,22 @@ async function ecmwfRain(from, to) {
 }
 
 async function era5Rain(from, to) {
-  const json = asArray(await getJson(`https://archive-api.open-meteo.com/v1/archive?${coords(DISTRICTS)}&daily=precipitation_sum&start_date=${from}&end_date=${to}&timezone=Asia%2FKolkata`));
-  return Object.fromEntries(DISTRICTS.map((d, i) => [d.name, Object.fromEntries(json[i].daily.time.map((t, k) => [t, json[i].daily.precipitation_sum[k]]))]));
+  const json = asArray(await getJson(`https://archive-api.open-meteo.com/v1/archive?${coords(SAMPLES)}&daily=precipitation_sum&start_date=${from}&end_date=${to}&timezone=Asia%2FKolkata`));
+  return SAMPLES.map((_, i) => Object.fromEntries(json[i].daily.time.map((t, k) => [t, json[i].daily.precipitation_sum[k]])));
+}
+
+/** Per district: the reference point only ("centre") or the wettest of the five ("max5"). */
+function byDistrict(perSample, mode) {
+  const out = {};
+  const maxOf = (a, b) => (Number.isFinite(a) ? (Number.isFinite(b) ? Math.max(a, b) : a) : b);
+  SAMPLES.forEach((s, i) => {
+    if (mode === 'centre' && !s.centre) return;
+    const dst = (out[s.district] ||= {});
+    for (const [day, v] of Object.entries(perSample[i] || {})) {
+      dst[day] = Array.isArray(v) ? v.map((x, k) => maxOf(dst[day]?.[k] ?? null, x)) : maxOf(dst[day] ?? null, v);
+    }
+  });
+  return out;
 }
 
 /**
@@ -201,8 +219,12 @@ async function cycloneReplay(from, to) {
       try {
         const epData = await getJson(`https://www.gdacs.org/gdacsapi/api/events/getepisodedata?eventtype=TC&eventid=${eventid}&episodeid=${ep}`);
         const p = epData?.properties || {};
-        const issuedAt = `${p.todate || p.polygondate || p.fromdate}Z`;
         const geo = await getJson(`https://www.gdacs.org/gdacsapi/api/polygons/getgeometry?eventtype=TC&eventid=${eventid}&episodeid=${ep}`);
+        /* The advisory time: the storm's current position (Point_Centroid) in this episode. */
+        const centroid = (geo?.features || []).find((x) => x.properties?.Class === 'Point_Centroid')?.properties || {};
+        const sixHourly = new Date(Date.parse(`${f.properties.fromdate}Z`) + (ep - 1) * 6 * 3600000).toISOString();
+        const issuedAt = centroid.polygondate ? `${centroid.polygondate}Z` : sixHourly;
+        console.log(`episode ${ep}: centroid ${centroid.polygondate} key ${centroid.key} label ${centroid.polygonlabel}; 6-hourly guess ${sixHourly}`);
         const { track } = parseCycloneGeometry(geo, { issuedAt });
         const near = closestApproach(track, COAST_PLACES);
         const landfall = estimateLandfall(track);
@@ -221,18 +243,25 @@ async function cycloneReplay(from, to) {
 /* ---------- Run ---------- */
 
 const results = {};
+try {
+  const probe = asArray(await getJson(`https://api.open-meteo.com/v1/forecast?${coords(DISTRICTS)}&daily=precipitation_sum&past_days=1&forecast_days=3&timezone=Asia%2FKolkata&models=ecmwf_ifs`));
+  results.liveEcmwfCheck = { points: probe.length, firstDistrict: probe[0]?.daily };
+  console.log('live forecast API with models=ecmwf_ifs:', probe.length, 'points', JSON.stringify(probe[0]?.daily));
+} catch (err) { results.liveEcmwfCheck = { error: err.message }; console.log('live ecmwf check failed', err.message); }
 for (const ev of EVENTS) {
   console.log(`\n### ${ev.name}`);
   const days = daysBetween(ev.from, ev.to);
   const res = (results[ev.id] = { name: ev.name, from: ev.from, to: ev.to });
   try {
     const obs = await era5Rain(ev.from, ev.to);
-    const prev = await previousRunsRain(ev.from, ev.to);
-    res.rainDefault = scoreRain(days, prev, obs);
-    console.log('rain (default model)', JSON.stringify(res.rainDefault.scores));
-    const ecm = await ecmwfRain(ev.from, ev.to);
-    res.rainEcmwf = scoreRain(days, ecm, obs);
-    console.log('rain (ECMWF 9 km)', JSON.stringify(res.rainEcmwf.scores));
+    const models = { default: await previousRunsRain(ev.from, ev.to), ecmwf: await ecmwfRain(ev.from, ev.to) };
+    res.rain = {};
+    for (const [model, fc] of Object.entries(models)) {
+      for (const mode of ['centre', 'max5']) {
+        res.rain[`${model}/${mode}`] = scoreRain(days, byDistrict(fc, mode), byDistrict(obs, mode));
+        console.log(`rain ${model}/${mode}`, JSON.stringify(res.rain[`${model}/${mode}`].scores));
+      }
+    }
   } catch (err) { res.rainError = err.message; console.log('rain error', err.message); }
   try { res.rivers = await riverReplay(ev.from, ev.to); } catch (err) { res.riverError = err.message; console.log('river error', err.message); }
   try { res.cyclones = await cycloneReplay(ev.from, ev.to); } catch (err) { res.cycloneError = err.message; console.log('cyclone error', err.message); }
