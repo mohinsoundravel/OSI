@@ -417,6 +417,16 @@ test('rain: IMD 24-hour categories on the forecast peak day', async () => {
   assert.equal(assessRain({ peakMm: null }), null);
 });
 
+test('rain: district forecasts come from ECMWF IFS (chosen by backtest), in Indian time', async () => {
+  const { fetchDistrictRain } = await import('../sources/openmeteo.mjs');
+  let url = null;
+  const http = { getJson: async (u) => { url = new URL(u); return { json: [{ daily: { time: ['2026-11-22', '2026-11-23'], precipitation_sum: [1, 130] } }] }; } };
+  const [r] = await fetchDistrictRain({ http, districts: [{ name: 'Viluppuram', state: 'Tamil Nadu', lat: 11.94, lng: 79.49 }] });
+  assert.equal(url.searchParams.get('models'), 'ecmwf_ifs');
+  assert.equal(url.searchParams.get('timezone'), 'Asia/Kolkata');
+  assert.equal(r.peakMm, 130);
+});
+
 test('telegram commands: only the owner chat is answered, offset advances, replies are bounded', async () => {
   const { handleCommands, answerCommand } = await import('../commands.mjs');
   const latest = {

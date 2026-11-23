@@ -145,7 +145,10 @@ export function assessHeat(point, normalsByMonth) {
   return { days: levels, alert: best, usedNormals: Boolean(normalsByMonth) };
 }
 
-/* ----- District rainfall: 24 h past and 3-day forecast for every gazetteer district ----- */
+/* ----- District rainfall: 24 h past and 3-day forecast for every gazetteer district -----
+   ECMWF IFS (9 km) rather than Open-Meteo's default blend: replaying Cyclone Fengal and two
+   other 2024 Tamil Nadu events, it warned 1-2 days ahead of 12 of 27 very heavy district-days
+   with 1 false alarm, against 4 of 27 with 5 false alarms for the default (DESIGN.md). */
 
 export const RAIN_MIN_INTERVAL_MS = 60 * 60 * 1000;
 /** IMD 24-hour categories (mm): heavy 64.5-115.5, very heavy 115.6-204.4, extremely heavy >= 204.5. */
@@ -158,7 +161,8 @@ export async function fetchDistrictRain({ http, districts, lastFetchedAt = 0, no
   const { json } = await http.getJson(batchUrl(FORECAST_URL, points, {
     daily: 'precipitation_sum',
     past_days: '1',
-    forecast_days: '3'
+    forecast_days: '3',
+    models: 'ecmwf_ifs'
   }));
   const results = asArray(json);
   if (results.length !== points.length) throw new Error(`rain forecast returned ${results.length} results for ${points.length} districts`);

@@ -117,8 +117,8 @@ export function evaluate({ config, data, normals, now = Date.now() }) {
       key: `rain:${r.id}:${v.severity}:${r.peakDate}`,
       rule: 'rain_imd_category', origin: 'derived', kind: 'rain', severity: v.severity,
       title: `${v.label} forecast: ${r.name}`,
-      summary: `${r.peakMm} mm forecast on ${r.peakDate} (3-day total ${r.next72} mm). IMD 24-hour category applied to a model forecast; not an IMD warning.`,
-      source: 'Open-Meteo forecast, IMD categories', sourceUrl: 'https://open-meteo.com/en/docs',
+      summary: `${r.peakMm} mm forecast on ${r.peakDate} (3-day total ${r.next72} mm). IMD 24-hour category applied to the ECMWF model forecast; not an IMD warning.`,
+      source: 'ECMWF IFS via Open-Meteo, IMD categories', sourceUrl: 'https://open-meteo.com/en/docs/ecmwf-api',
       lat: r.lat, lng: r.lng, zones: zoneNames(hit)
     });
   }
