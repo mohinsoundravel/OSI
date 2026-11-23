@@ -38,8 +38,15 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function getJson(url) {
   for (let attempt = 0; attempt < 4; attempt++) {
-    const res = await fetch(url, { headers: { 'User-Agent': 'OSI-Monitor/1.0 (backtest)' }, signal: AbortSignal.timeout(90000) });
-    if (res.status === 429 || res.status >= 500) { await sleep(5000 * (attempt + 1)); continue; }
+    let res;
+    try {
+      res = await fetch(url, { headers: { 'User-Agent': 'OSI-Monitor/1.0 (backtest)' }, signal: AbortSignal.timeout(90000) });
+    } catch (err) {
+      console.log(`retry after ${err.message}: ${url.slice(0, 90)}`);
+      await sleep(8000 * (attempt + 1));
+      continue;
+    }
+    if (res.status === 429 || res.status >= 500) { await sleep(8000 * (attempt + 1)); continue; }
     const text = await res.text();
     if (!res.ok) throw new Error(`HTTP ${res.status} ${text.slice(0, 200)} for ${url.slice(0, 160)}`);
     return JSON.parse(text);
