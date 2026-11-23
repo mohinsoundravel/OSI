@@ -12,7 +12,7 @@
  */
 
 const STATES_URL = 'https://opensky-network.org/api/states/all';
-export const FLIGHTS_MIN_INTERVAL_MS = 25 * 60 * 1000;
+const FLIGHTS_MIN_INTERVAL_MS = 25 * 60 * 1000;
 
 /* Columns of the published snapshot (one array per aircraft, to keep the file small). */
 export const FLIGHT_FIELDS = ['icao24', 'callsign', 'country', 'lat', 'lng', 'baroAltM', 'onGround', 'velocity', 'track', 'verticalRate', 'squawk', 'positionTime'];

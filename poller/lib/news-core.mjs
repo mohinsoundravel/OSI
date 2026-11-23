@@ -5,9 +5,9 @@
  * sources, fixed keywords, a known place in the headline, near-duplicates merged.
  */
 
-export const GDELT_DOC_URL = 'https://api.gdeltproject.org/api/v2/doc/doc';
-export const NEWS_KEEP_MS = 48 * 3600 * 1000;
-export const NEWS_MAX_ITEMS = 300;
+const GDELT_DOC_URL = 'https://api.gdeltproject.org/api/v2/doc/doc';
+const NEWS_KEEP_MS = 48 * 3600 * 1000;
+const NEWS_MAX_ITEMS = 300;
 
 /**
  * Query URLs for the last `hours` of Indian English headlines. GDELT rejects long queries
@@ -26,7 +26,7 @@ export function newsQueryUrls(hours = 12) {
 export const NEWS_REQUEST_GAP_MS = 6000;
 
 /** 48-bit FNV-1a style hash as 12 hex characters: a stable id for a URL. */
-export function urlKey(text) {
+function urlKey(text) {
   let h1 = 0x811c9dc5;
   let h2 = 0x01000193;
   for (let i = 0; i < text.length; i++) {
@@ -38,7 +38,7 @@ export function urlKey(text) {
 }
 
 /* Terms must be at least four characters or quoted phrases; categories are assigned locally. */
-export const NEWS_QUERIES = [
+const NEWS_QUERIES = [
   ['flood', 'floods', 'cyclone', 'landslide', '"heavy rain"', 'earthquake', 'cloudburst', '"dam gates"'],
   ['explosion', '"building collapse"', 'derailment', 'derailed', 'stampede', '"gas leak"', 'capsized', '"major fire"'],
   ['riot', 'clashes', 'curfew', '"internet shutdown"', '"prohibitory orders"', 'encounter', 'militants', 'maoists', '"ied blast"', '"communal violence"']
@@ -73,12 +73,12 @@ export function buildGazetteer({ districts }, india) {
   ];
 }
 
-export function placeHeadline(title, gazetteer) {
+function placeHeadline(title, gazetteer) {
   for (const p of gazetteer) if (p.pattern.test(title)) return p;
   return null;
 }
 
-export function categorize(title) {
+function categorize(title) {
   for (const [cat, re] of CATEGORY_WORDS) if (re.test(title)) return cat;
   return null;
 }
@@ -86,13 +86,13 @@ export function categorize(title) {
 const normTitle = (t) => t.toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 70);
 
 /** GDELT seendate "20261025T191500Z" to ISO. */
-export function seenIso(s) {
+function seenIso(s) {
   const m = /^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})Z$/.exec(String(s || ''));
   return m ? `${m[1]}-${m[2]}-${m[3]}T${m[4]}:${m[5]}:${m[6]}Z` : null;
 }
 
 /** Turns DOC API articles into placed, categorised, de-duplicated items. */
-export function normalizeArticles(articles, gazetteer, seed = []) {
+function normalizeArticles(articles, gazetteer, seed = []) {
   const byTitle = new Map(seed.map((i) => [normTitle(i.title), i]));
   /* Every URL already counted (including merged duplicates), so reruns do not inflate counts. */
   const byUrl = new Set(seed.flatMap((i) => [i.id, ...(i.seen || [])]));

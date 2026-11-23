@@ -7,12 +7,10 @@
 import { readFileSync } from 'node:fs';
 import { NEWS_REQUEST_GAP_MS, buildGazetteer, mergeNews, newsQueryUrls } from '../lib/news-core.mjs';
 
-export { categorize, placeHeadline, normalizeArticles } from '../lib/news-core.mjs';
-
-export const NEWS_MIN_INTERVAL_MS = 60 * 60 * 1000;
+const NEWS_MIN_INTERVAL_MS = 60 * 60 * 1000;
 const RETRY_WAIT_MS = 10000;
 
-export function loadNewsGazetteer() {
+function loadNewsGazetteer() {
   const india = JSON.parse(readFileSync(new URL('../data/india-places.json', import.meta.url), 'utf8'));
   const districts = JSON.parse(readFileSync(new URL('../data/districts.json', import.meta.url), 'utf8'));
   return buildGazetteer(districts, india);

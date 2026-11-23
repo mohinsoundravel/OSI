@@ -20,7 +20,7 @@ const AIRCRAFT_MAX_AGE_MS = 20 * 60 * 1000;
 const ALWAYS_BRIGHT = new Set(['25544', '48274', '20580']);
 const COMPASS = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
 
-export const compass = (az) => COMPASS[Math.round((((az % 360) + 360) % 360) / 22.5) % 16];
+const compass = (az) => COMPASS[Math.round((((az % 360) + 360) % 360) / 22.5) % 16];
 const when = (t) => new Date(t).toLocaleString([], { weekday: 'short', hour: '2-digit', minute: '2-digit' });
 const clock = (t) => new Date(t).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
@@ -37,7 +37,7 @@ function saveObserver() {
   store.set('observer', observer);
 }
 
-export function locateMe() {
+function locateMe() {
   return new Promise((resolve, reject) => {
     if (!('geolocation' in navigator)) {
       reject(new Error('This browser cannot share its location.'));
@@ -63,7 +63,7 @@ export function locateMe() {
   });
 }
 
-export function forgetLocation() {
+function forgetLocation() {
   observer = null;
   passes = [];
   store.set('observer', null);
@@ -85,7 +85,7 @@ function brightSatellites() {
     .slice(0, 400).map((s) => ({ id: s.noradId, name: s.name, l1: s.l1, l2: s.l2 }));
 }
 
-export function requestPasses(force = false) {
+function requestPasses(force = false) {
   if (!observer || DEMO || !satCatalog.length || typeof Worker === 'undefined') return;
   if (computing || (!force && Date.now() - passesAt < RECOMPUTE_MS && catalogSize === satCatalog.length)) return;
   if (!passWorker) {
@@ -130,7 +130,7 @@ function aircraftLook(it) {
   return { d, el, az };
 }
 
-export function aircraftNearMe() {
+function aircraftNearMe() {
   if (!observer) return [];
   return (data.flights || [])
     .filter((it) => !it.onGround && Number.isFinite(it.baroAltM) && it.baroAltM > 300 && Math.abs(it.lat - observer.lat) < 1 && Math.abs(it.lng - observer.lng) < 1)

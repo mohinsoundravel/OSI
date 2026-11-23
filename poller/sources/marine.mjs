@@ -8,10 +8,10 @@
  * high-wave alerts come from INCOIS through SACHET.
  */
 
-export const MARINE_MIN_INTERVAL_MS = 60 * 60 * 1000;
+const MARINE_MIN_INTERVAL_MS = 60 * 60 * 1000;
 const MARINE_URL = 'https://marine-api.open-meteo.com/v1/marine';
 
-export const SEA_STATES = [
+const SEA_STATES = [
   [9, 'Very high'], [6, 'High'], [4, 'Very rough'], [2.5, 'Rough'], [1.25, 'Moderate'], [0.5, 'Slight'], [0, 'Calm']
 ];
 export const seaState = (m) => (Number.isFinite(m) ? (SEA_STATES.find(([min]) => m >= min) || SEA_STATES.at(-1))[1] : 'Unknown');

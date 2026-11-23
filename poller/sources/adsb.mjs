@@ -15,7 +15,7 @@ const FPM_TO_MS = 0.00508;
 const r = (v, d) => (Number.isFinite(v) ? Math.round(v * 10 ** d) / 10 ** d : null);
 
 /** adsb.lol aircraft -> rows in the order of FLIGHT_FIELDS (positionTime in Unix seconds). */
-export function adsbRows(json, nowS) {
+function adsbRows(json, nowS) {
   const list = Array.isArray(json?.ac) ? json.ac : [];
   const out = [];
   for (const a of list.slice(0, 5000)) {

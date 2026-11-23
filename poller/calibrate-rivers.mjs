@@ -2,30 +2,18 @@
 /**
  * Snaps river monitoring points onto the GloFAS grid cell that actually carries
  * the river. GloFAS (via Open-Meteo) is a ~5 km grid; a coordinate a few km off
- * the channel can report near-zero discharge (seen at Mettur). For each
- * candidate, this scans a 7x7 grid of nearby cells (0.05 deg steps, one batched
- * request) and reports the cell with the highest mean discharge over the past
- * ~3 months. Read-only: prints a report and a ready-to-paste config block.
+ * the channel can report near-zero discharge (seen at Mettur). For each point in
+ * flood.points, this scans a 7x7 grid of nearby cells (0.05 deg steps, one
+ * batched request) and reports the cell with the highest mean discharge over the
+ * past ~3 months. Read-only: prints a report and a ready-to-paste config block.
  */
+import { readFile } from 'node:fs/promises';
+import { parseArgs } from 'node:util';
 import { createHttpClient } from './lib/http.mjs';
 
-const CANDIDATES = [
-  { id: 'cauvery-mettur', name: 'Cauvery below Mettur Dam', lat: 11.79, lng: 77.80 },
-  { id: 'cauvery-trichy', name: 'Cauvery at Tiruchirappalli', lat: 10.86, lng: 78.60 },
-  { id: 'cauvery-grand-anicut', name: 'Cauvery at Grand Anicut', lat: 10.83, lng: 78.82 },
-  { id: 'bhavani', name: 'Bhavani at Bhavanisagar', lat: 11.47, lng: 77.13 },
-  { id: 'amaravathi-karur', name: 'Amaravathi at Karur', lat: 10.96, lng: 78.08 },
-  { id: 'vaigai-dam', name: 'Vaigai below Vaigai Dam', lat: 10.05, lng: 77.58 },
-  { id: 'vaigai-madurai', name: 'Vaigai at Madurai', lat: 9.93, lng: 78.12 },
-  { id: 'thamirabarani', name: 'Thamirabarani at Tirunelveli', lat: 8.73, lng: 77.70 },
-  { id: 'periyar-mullaperiyar', name: 'Periyar at Mullaperiyar', lat: 9.53, lng: 77.14 },
-  { id: 'palar-vellore', name: 'Palar at Vellore', lat: 12.92, lng: 79.13 },
-  { id: 'pennaiyar-krishnagiri', name: 'Thenpennai at Krishnagiri', lat: 12.47, lng: 78.18 },
-  { id: 'pennaiyar-cuddalore', name: 'Thenpennai near Cuddalore', lat: 11.76, lng: 79.70 },
-  { id: 'adyar-chennai', name: 'Adyar, Chennai', lat: 13.01, lng: 80.24 },
-  { id: 'cooum-chennai', name: 'Cooum, Chennai', lat: 13.07, lng: 80.27 },
-  { id: 'kosasthalaiyar', name: 'Kosasthalaiyar near Ennore', lat: 13.23, lng: 80.30 }
-];
+const { values } = parseArgs({ options: { config: { type: 'string', default: 'config/monitor.json' } } });
+const config = process.env.MONITOR_CONFIG_JSON ? JSON.parse(process.env.MONITOR_CONFIG_JSON) : JSON.parse(await readFile(values.config, 'utf8'));
+const CANDIDATES = config.flood?.points || [];
 
 const STEP = 0.05;
 const RADIUS_STEPS = 3;

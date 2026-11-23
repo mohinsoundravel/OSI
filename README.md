@@ -2,7 +2,7 @@
 
 A real-time open-source-intelligence (OSINT) globe plus a scheduled alert poller for Indian disaster warnings. It surfaces **what changed that matters**, from official warnings and model forecasts, and tells you when it stops working.
 
-![Desktop view](docs/screenshots/desktop.png)
+![Dashboard in demo mode](docs/screenshot.jpg)
 
 It has two parts:
 

@@ -5,7 +5,7 @@
  * source, so alerts are limited to configured forest areas and labelled derived.
  */
 
-export const FIRES_MIN_INTERVAL_MS = 60 * 60 * 1000;
+const FIRES_MIN_INTERVAL_MS = 60 * 60 * 1000;
 export const FIRE_FILES = [
   ['NOAA-20', 'https://firms.modaps.eosdis.nasa.gov/data/active_fire/noaa-20-viirs-c2/csv/J1_VIIRS_C2_South_Asia_24h.csv'],
   ['NOAA-21', 'https://firms.modaps.eosdis.nasa.gov/data/active_fire/noaa-21-viirs-c2/csv/J2_VIIRS_C2_South_Asia_24h.csv'],
@@ -17,7 +17,7 @@ const MAX_ROWS = 8000;
 const BOUNDS = { minLat: 0, maxLat: 40, minLng: 60, maxLng: 100 };
 
 /** Parses a FIRMS VIIRS CSV; rows with low confidence or bad numbers are dropped. */
-export function parseFirmsCsv(text, satellite) {
+function parseFirmsCsv(text, satellite) {
   const lines = String(text).split(/\r?\n/).filter(Boolean);
   if (!lines.length) return [];
   const head = lines[0].split(',').map((h) => h.trim());
@@ -53,7 +53,7 @@ export function parseFirmsCsv(text, satellite) {
 }
 
 /** Merges satellites; the same spot seen twice (about 1 km grid) keeps the stronger detection. */
-export function mergeFires(lists) {
+function mergeFires(lists) {
   const byCell = new Map();
   for (const row of lists.flat()) {
     const cell = `${Math.round(row[0] * 100)}:${Math.round(row[1] * 100)}`;
