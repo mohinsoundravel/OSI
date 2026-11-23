@@ -103,6 +103,8 @@ export function buildMorningDigest({ latest, events = [], state = {}, config = {
   }
 
   const failing = Object.entries(latest.health || {}).filter(([, h]) => !h.ok).map(([k]) => k);
+  const fc = latest.forecastCheck;
+  if (fc && fc.checked) lines.push('', `River forecasts checked (${fc.days} days): ${fc.happened} of ${fc.checked} rises happened, ${fc.partly} partly. /review for details.`);
   lines.push('', failing.length ? `Sources failing: ${failing.join(', ')}.` : 'All sources responding.');
   const muted = Object.entries(state.mutes || {}).filter(([, u]) => Date.parse(u) > now).map(([g]) => g);
   if (muted.length) lines.push(`Muted: ${muted.join(', ')} (/muted).`);

@@ -4,6 +4,7 @@ import { assessReservoir } from './sources/reservoirs.mjs';
 import { assessSea } from './sources/marine.mjs';
 import { assessFires } from './sources/fires.mjs';
 import { closestApproach } from './sources/cyclones.mjs';
+import { pointTrackRecord } from './verify.mjs';
 
 export const SEVERITY_RANK = { low: 0, medium: 1, high: 2, critical: 3 };
 
@@ -85,7 +86,7 @@ export function evaluate({ config, data, normals, now = Date.now() }) {
       key: `river:${r.id}:${verdict.severity}`,
       rule: 'river_discharge', origin: 'derived', kind: 'flood', severity: verdict.severity,
       title: `River rise forecast: ${r.name}`,
-      summary: `${verdict.reason}; peak expected ${r.peakDate}. Model forecast, not an official warning.`,
+      summary: `${verdict.reason}; peak expected ${r.peakDate}. Model forecast, not an official warning.${pointTrackRecord(data.forecastSkill, r.id)}`,
       source: 'GloFAS via Open-Meteo', sourceUrl: 'https://open-meteo.com/en/docs/flood-api',
       lat: r.lat, lng: r.lng, zones: zoneNames(zonesForPoint(r.lat, r.lng, zones))
     });

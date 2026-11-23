@@ -107,7 +107,7 @@ export function muteCommand(state, text, now) {
  * Weekly review: per rule group, alerts fired in the last 7 days (excluding the start-up
  * baseline), how they were rated, and a suggestion where the ratings support one.
  */
-export function buildWeeklyReview({ events = [], state = {}, now }) {
+export function buildWeeklyReview({ events = [], state = {}, now, extraLines = [] }) {
   const since = now - 7 * DAY_MS;
   const fired = events.filter((e) => !e.baseline && Date.parse(e.detectedAt) >= since);
   const groups = new Map();
@@ -151,6 +151,7 @@ export function buildWeeklyReview({ events = [], state = {}, now }) {
   }
   const muted = Object.entries(state.mutes || {}).filter(([, u]) => Date.parse(u) > now);
   if (muted.length) lines.push('', `Muted now: ${muted.map(([g, u]) => `${g} (until ${u.slice(0, 10)})`).join(', ')}`);
+  if (extraLines.length) lines.push('', ...extraLines);
   lines.push('', 'Commands: /mute <group> [days], /unmute <group>, /muted');
   return lines.join('\n');
 }

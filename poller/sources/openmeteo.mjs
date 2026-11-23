@@ -55,7 +55,9 @@ export async function fetchRiverDischarge({ http, points, today }) {
       warningLevel: p.warningDischarge ?? null,
       dangerLevel: p.dangerDischarge ?? null,
       minDischarge: p.minDischarge ?? 50,
-      series: future.map((r) => ({ date: r.date, q: round(r.q) }))
+      series: future.map((r) => ({ date: r.date, q: round(r.q) })),
+      /* The model's estimate for the past 7 days: used to check earlier forecasts. */
+      past: past.map((r) => ({ date: r.date, q: round(r.q) }))
     };
   });
 }

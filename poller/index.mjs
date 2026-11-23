@@ -31,6 +31,7 @@ import { buildAlertMessages, createNotifier, feedbackId, feedbackKeyboard, heart
 import { handleCommands, registerCommands } from './commands.mjs';
 import { filterForNotify, rememberRefs, recordFeedback, pruneFeedback, muteCommand, buildWeeklyReview } from './feedback.mjs';
 import { buildMorningDigest, buildWeeklyBrief, digestDue, weeklyDue, updateDailyLog, isoWeek } from './digest.mjs';
+import { recordForecast, seedFromEvents, verifyForecasts, forecastSkill, forecastReviewLines } from './verify.mjs';
 
 const DAY_MS = 24 * 3600 * 1000;
 const BASE_HOSTS = [
@@ -335,6 +336,17 @@ export async function run(options = {}) {
   }
   const newsItems = data.news ? data.news.items : (await readJson(newsFile, { items: [] }).catch(() => ({ items: [] }))).items || [];
 
+  /* River forecast check: settle past forecasts from this run's past values (no extra requests). */
+  if (state.forecastSeeded !== 1) {
+    const seeded = seedFromEvents(state, events, layerData.rivers);
+    if (seeded) log(`forecast check: seeded ${seeded} earlier river alert(s)`);
+    state.forecastSeeded = 1;
+  }
+  const checksSettled = verifyForecasts(state, layerData.rivers, { now, ratioMedium: config.flood?.ratioMedium ?? 2 });
+  if (checksSettled) log(`forecast check: settled ${checksSettled} river forecast(s)`);
+  const skill = forecastSkill(state, { now });
+  layerData.forecastSkill = skill;
+
   const candidates = evaluate({ config, data: layerData, normals, now });
 
   /* De-duplicate: each key notifies once per window; escalations carry a new key. */
@@ -355,6 +367,18 @@ export async function run(options = {}) {
     });
   }
   const keptEvents = events.filter((e) => now - Date.parse(e.detectedAt) < 7 * DAY_MS).slice(0, MAX_EVENTS);
+  if (!firstRun) {
+    for (const c of fresh.filter((x) => x.rule === 'river_discharge')) {
+      const pointId = /^river:([^:]+):/.exec(c.key)?.[1];
+      const r = layerData.rivers.find((x) => x.id === pointId);
+      if (r) {
+        recordForecast(state, {
+          pointId, name: r.name, severity: c.severity, issuedAt: new Date(now).toISOString(),
+          peakDate: r.peakDate, peak: r.peak, baseline: r.baseline, warningLevel: r.warningLevel
+        });
+      }
+    }
+  }
 
   /* Notifications. Config overrides and /mute hold some back; they are still recorded. */
   const notifier = createNotifier({ token: options.telegramToken, chatId: options.telegramChatId, dryRun: options.dryRun, log });
@@ -403,6 +427,7 @@ export async function run(options = {}) {
     schema: 1,
     generatedAt: detectedAt,
     durationMs: Date.now() - started,
+    forecastCheck: skill,
     health: Object.fromEntries(names.map((n) => [n, {
       ok: !failedSet.has(n),
       lastOk: state.health[n]?.lastOk || null,
@@ -458,7 +483,7 @@ export async function run(options = {}) {
   const dashboardUrl = repo ? `https://${repo.split('/')[0].toLowerCase()}.github.io/${repo.split('/')[1]}/` : null;
   const briefUrl = (week) => (repo ? `https://github.com/${repo}/blob/data/briefs/${week}.md` : `briefs/${week}.md`);
   const digestText = () => buildMorningDigest({ latest, events: keptEvents, state, config, now, dashboardUrl });
-  const reviewText = () => buildWeeklyReview({ events: keptEvents, state, now });
+  const reviewText = () => buildWeeklyReview({ events: keptEvents, state, now, extraLines: forecastReviewLines(forecastSkill(state, { now })) });
   const scheduled = { digest: false, weekly: false };
 
   /* Weekly brief and alert review (default Sunday morning), then the morning digest. */

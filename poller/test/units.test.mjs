@@ -634,3 +634,54 @@ test('GDACS: a cyclone with no update for 30 hours is over; other event types ar
   assert.equal(gdacsLive({ type: 'Tropical cyclone', modifiedAt: null }, now), true, 'unknown age is kept');
   assert.equal(gdacsLive({ type: 'Drought', modifiedAt: '2026-09-01T00:00:00Z' }, now), true, 'long-running events are not aged out');
 });
+
+test('river forecast check: records, settles against later values, and reports skill', async () => {
+  const { recordForecast, seedFromEvents, verifyForecasts, forecastSkill, forecastReviewLines, pointTrackRecord } = await import('../verify.mjs');
+  const state = {};
+  const issued = '2026-11-14T13:00:00Z';
+  /* Vaigai: forecast 4x rise for 18 Nov; Adyar: rise for 19 Nov; Palar: 20 Nov; Thamirabarani: 25 Nov (not yet). */
+  recordForecast(state, { pointId: 'vaigai', name: 'Vaigai', severity: 'medium', issuedAt: issued, peakDate: '2026-11-18', peak: 60, baseline: 15 });
+  recordForecast(state, { pointId: 'vaigai', name: 'Vaigai', severity: 'high', issuedAt: '2026-11-15T13:00:00Z', peakDate: '2026-11-18', peak: 80, baseline: 15 });
+  recordForecast(state, { pointId: 'adyar', name: 'Adyar', severity: 'medium', issuedAt: issued, peakDate: '2026-11-19', peak: 50, baseline: 10 });
+  recordForecast(state, { pointId: 'palar', name: 'Palar', severity: 'high', issuedAt: issued, peakDate: '2026-11-20', peak: 90, baseline: 20 });
+  recordForecast(state, { pointId: 'tamira', name: 'Thamirabarani', severity: 'medium', issuedAt: issued, peakDate: '2026-11-25', peak: 90, baseline: 20 });
+  assert.equal(Object.keys(state.forecastChecks).length, 4, 'one record per point and peak date');
+  assert.equal(state.forecastChecks['vaigai:2026-11-18'].severity, 'high', 'raised to the higher severity');
+  assert.equal(state.forecastChecks['vaigai:2026-11-18'].leadDays, 4, 'lead time from the first alert');
+
+  const past = (rows) => rows.map(([date, q]) => ({ date, q }));
+  const rivers = [
+    { id: 'vaigai', past: past([['2026-11-17', 20], ['2026-11-18', 34], ['2026-11-19', 25]]) },
+    { id: 'adyar', past: past([['2026-11-18', 11], ['2026-11-19', 14], ['2026-11-20', 12]]) },
+    { id: 'palar', past: past([['2026-11-19', 21], ['2026-11-20', 22], ['2026-11-21', 20]]) },
+    { id: 'tamira', past: past([['2026-11-21', 20]]) }
+  ];
+  const now = Date.parse('2026-11-22T06:00:00Z');
+  assert.equal(verifyForecasts(state, rivers, { now, ratioMedium: 2 }), 3);
+  const c = state.forecastChecks;
+  assert.equal(c['vaigai:2026-11-18'].status, 'happened', '34 >= 2 x 15');
+  assert.equal(c['adyar:2026-11-19'].status, 'partly', '14 is 40% above 10 but below 20');
+  assert.equal(c['palar:2026-11-20'].status, 'missed');
+  assert.equal(c['tamira:2026-11-25'].status, 'pending', 'peak date not passed');
+
+  const skill = forecastSkill(state, { now });
+  assert.deepEqual([skill.checked, skill.happened, skill.partly, skill.missed, skill.pending], [3, 1, 1, 1, 1]);
+  const lines = forecastReviewLines(skill).join('\n');
+  assert.match(lines, /3 checked: 1 happened, 1 partly, 1 did not \(33% hit rate\); 1 pending/);
+  assert.equal(pointTrackRecord(skill, 'vaigai'), '', 'needs two settled forecasts at a point');
+
+  /* Old alerts are seeded from the event text the poller already wrote. */
+  const seeded = {};
+  const n = seedFromEvents(seeded, [
+    { id: 'river:vaigai-madurai:medium', rule: 'river_discharge', detectedAt: '2026-11-21T14:22:00Z', title: 'River rise forecast: Vaigai at Madurai', severity: 'medium',
+      summary: 'forecast peak 3.7x the 7-day mean (15.7 -> 58 m3/s); peak expected 2026-11-27. Model forecast, not an official warning.' },
+    { id: 'usgs:1', rule: 'usgs_quake', detectedAt: '2026-11-21T14:22:00Z', summary: '' }
+  ]);
+  assert.equal(n, 1);
+  assert.deepEqual(seeded.forecastChecks['vaigai-madurai:2026-11-27'].baseline, 15.7);
+
+  /* A peak date older than the 7 days each run downloads cannot be checked any more. */
+  recordForecast(state, { pointId: 'gone', name: 'Gone', severity: 'medium', issuedAt: issued, peakDate: '2026-11-14', peak: 50, baseline: 10 });
+  verifyForecasts(state, rivers, { now, ratioMedium: 2 });
+  assert.equal(state.forecastChecks['gone:2026-11-14'].status, 'unverifiable');
+});
