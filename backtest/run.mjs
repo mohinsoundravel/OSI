@@ -21,14 +21,15 @@ const FLOOD_POINTS = config.flood?.points || [];
 const COAST_PLACES = config.cyclones?.places || config.sea?.points || [];
 const WITHIN_KM = config.cyclones?.withinKm ?? 400;
 const MAX_LEAD = 6;
-const ALERT_LEAD = 2;
+const ALERT_LEAD = 2; /* The poller looks at today and the next two days. */
 const ECMWF_LEAD = Number(process.env.ECMWF_LEAD || MAX_LEAD);
-const ECMWF_GAP_MS = Number(process.env.ECMWF_GAP_MS || 300); /* The poller looks at today and the next two days. */
+const ECMWF_GAP_MS = Number(process.env.ECMWF_GAP_MS || 300);
 
 const EVENTS = [
   { id: 'fengal', name: 'Cyclone Fengal (Nov-Dec 2024)', from: '2024-11-26', to: '2024-12-03' },
   { id: 'south-tn', name: 'South Tamil Nadu extreme rain (Dec 2024)', from: '2024-12-10', to: '2024-12-15' },
-  { id: 'chennai-oct', name: 'Chennai red alert (Oct 2024)', from: '2024-10-13', to: '2024-10-18' }
+  { id: 'chennai-oct', name: 'Chennai red alert (Oct 2024)', from: '2024-10-13', to: '2024-10-18' },
+  { id: 'routine', name: 'Routine monsoon weeks, noise check (1-20 Nov 2024)', from: '2024-11-01', to: '2024-11-20' }
 ];
 
 const DAY = 86400000;
