@@ -7,13 +7,15 @@ permissions:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 45
     steps:
       - name: Check out
         run: git clone -q --depth 1 --branch backtest "https://github.com/${GITHUB_REPOSITORY}.git" .
       - name: Run
         env:
           MONITOR_CONFIG_JSON: ${{ secrets.MONITOR_CONFIG_JSON }}
+          ECMWF_LEAD: '3'
+          ECMWF_GAP_MS: '15000'
         run: |
           set -o pipefail
           mkdir -p "$RUNNER_TEMP/out"

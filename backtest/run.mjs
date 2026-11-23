@@ -21,7 +21,9 @@ const FLOOD_POINTS = config.flood?.points || [];
 const COAST_PLACES = config.cyclones?.places || config.sea?.points || [];
 const WITHIN_KM = config.cyclones?.withinKm ?? 400;
 const MAX_LEAD = 6;
-const ALERT_LEAD = 2; /* The poller looks at today and the next two days. */
+const ALERT_LEAD = 2;
+const ECMWF_LEAD = Number(process.env.ECMWF_LEAD || MAX_LEAD);
+const ECMWF_GAP_MS = Number(process.env.ECMWF_GAP_MS || 300); /* The poller looks at today and the next two days. */
 
 const EVENTS = [
   { id: 'fengal', name: 'Cyclone Fengal (Nov-Dec 2024)', from: '2024-11-26', to: '2024-12-03' },
@@ -46,7 +48,7 @@ async function getJson(url) {
       await sleep(8000 * (attempt + 1));
       continue;
     }
-    if (res.status === 429 || res.status >= 500) { await sleep(8000 * (attempt + 1)); continue; }
+    if (res.status === 429 || res.status >= 500) { console.log(`retry after HTTP ${res.status}: ${url.slice(0, 90)}`); await sleep((res.status === 429 ? 60000 : 8000) * (attempt + 1)); continue; }
     const text = await res.text();
     if (!res.ok) throw new Error(`HTTP ${res.status} ${text.slice(0, 200)} for ${url.slice(0, 160)}`);
     return JSON.parse(text);
@@ -82,7 +84,7 @@ async function previousRunsRain(from, to) {
 /** Same shape from ECMWF IFS 9 km 00 UTC runs (lead 0 misses 00:00-05:30 IST of that day). */
 async function ecmwfRain(from, to) {
   const out = SAMPLES.map(() => ({}));
-  for (const issue of daysBetween(addDays(from, -MAX_LEAD), to)) {
+  for (const issue of daysBetween(addDays(from, -ECMWF_LEAD), to)) {
     let json;
     try {
       json = asArray(await getJson(`https://single-runs-api.open-meteo.com/v1/forecast?${coords(SAMPLES)}&hourly=precipitation&models=ecmwf_ifs&run=${issue}T00:00&forecast_days=8`));
@@ -98,7 +100,7 @@ async function ecmwfRain(from, to) {
         (out[i][day] ||= Array(MAX_LEAD + 1).fill(null))[lead] = mm;
       }
     });
-    await sleep(300);
+    await sleep(ECMWF_GAP_MS);
   }
   return out;
 }
@@ -243,16 +245,19 @@ async function cycloneReplay(from, to) {
 /* ---------- Run ---------- */
 
 const results = {};
+/* Optional subset for re-runs: backtest/ONLY = {"events": [...], "parts": ["rain", "rivers", "cyclones"]} */
+const ONLY = await readFile('backtest/ONLY', 'utf8').then(JSON.parse).catch(() => null);
+const want = (part) => !ONLY?.parts || ONLY.parts.includes(part);
 try {
   const probe = asArray(await getJson(`https://api.open-meteo.com/v1/forecast?${coords(DISTRICTS)}&daily=precipitation_sum&past_days=1&forecast_days=3&timezone=Asia%2FKolkata&models=ecmwf_ifs`));
   results.liveEcmwfCheck = { points: probe.length, firstDistrict: probe[0]?.daily };
   console.log('live forecast API with models=ecmwf_ifs:', probe.length, 'points', JSON.stringify(probe[0]?.daily));
 } catch (err) { results.liveEcmwfCheck = { error: err.message }; console.log('live ecmwf check failed', err.message); }
-for (const ev of EVENTS) {
+for (const ev of EVENTS.filter((e) => !ONLY?.events || ONLY.events.includes(e.id))) {
   console.log(`\n### ${ev.name}`);
   const days = daysBetween(ev.from, ev.to);
   const res = (results[ev.id] = { name: ev.name, from: ev.from, to: ev.to });
-  try {
+  if (want('rain')) try {
     const obs = await era5Rain(ev.from, ev.to);
     const models = { default: await previousRunsRain(ev.from, ev.to), ecmwf: await ecmwfRain(ev.from, ev.to) };
     res.rain = {};
@@ -263,8 +268,8 @@ for (const ev of EVENTS) {
       }
     }
   } catch (err) { res.rainError = err.message; console.log('rain error', err.message); }
-  try { res.rivers = await riverReplay(ev.from, ev.to); } catch (err) { res.riverError = err.message; console.log('river error', err.message); }
-  try { res.cyclones = await cycloneReplay(ev.from, ev.to); } catch (err) { res.cycloneError = err.message; console.log('cyclone error', err.message); }
+  if (want('rivers')) try { res.rivers = await riverReplay(ev.from, ev.to); } catch (err) { res.riverError = err.message; console.log('river error', err.message); }
+  if (want('cyclones')) try { res.cyclones = await cycloneReplay(ev.from, ev.to); } catch (err) { res.cycloneError = err.message; console.log('cyclone error', err.message); }
 }
 await writeFile(path.join(OUT, 'results.json'), JSON.stringify(results, null, 1));
 console.log('\nwrote results.json');
