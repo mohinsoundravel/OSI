@@ -1,0 +1,5259 @@
+{
+ "schema": 1,
+ "generatedAt": "2026-11-28T21:37:21.095Z",
+ "durationMs": 58806,
+ "forecastCheck": {
+  "days": 30,
+  "checked": 8,
+  "happened": 8,
+  "partly": 0,
+  "missed": 0,
+  "pending": 4,
+  "byLead": {
+   "0-3 days": {
+    "checked": 1,
+    "happened": 1,
+    "partly": 0,
+    "missed": 0
+   },
+   "4-7 days": {
+    "checked": 7,
+    "happened": 7,
+    "partly": 0,
+    "missed": 0
+   }
+  },
+  "byPoint": {
+   "pennaiyar-krishnagiri": {
+    "name": "Thenpennai near Krishnagiri",
+    "checked": 1,
+    "happened": 1,
+    "partly": 0,
+    "missed": 0
+   },
+   "vaigai-madurai": {
+    "name": "Vaigai at Madurai",
+    "checked": 1,
+    "happened": 1,
+    "partly": 0,
+    "missed": 0
+   },
+   "vaigai-dam": {
+    "name": "Vaigai below Vaigai Dam",
+    "checked": 1,
+    "happened": 1,
+    "partly": 0,
+    "missed": 0
+   },
+   "pennaiyar-cuddalore": {
+    "name": "Thenpennai near Cuddalore",
+    "checked": 1,
+    "happened": 1,
+    "partly": 0,
+    "missed": 0
+   },
+   "palar-vellore": {
+    "name": "Palar near Vellore",
+    "checked": 2,
+    "happened": 2,
+    "partly": 0,
+    "missed": 0
+   },
+   "thamirabarani": {
+    "name": "Thamirabarani at Tirunelveli",
+    "checked": 1,
+    "happened": 1,
+    "partly": 0,
+    "missed": 0
+   },
+   "adyar-chennai": {
+    "name": "Adyar, Chennai",
+    "checked": 1,
+    "happened": 1,
+    "partly": 0,
+    "missed": 0
+   }
+  }
+ },
+ "health": {
+  "sachet": {
+   "ok": true,
+   "lastOk": "2026-11-28T21:37:21.095Z",
+   "failures": 0,
+   "error": null
+  },
+  "rivers": {
+   "ok": true,
+   "lastOk": "2026-11-28T21:37:21.095Z",
+   "failures": 0,
+   "error": null
+  },
+  "heat": {
+   "ok": true,
+   "lastOk": "2026-11-28T21:37:21.095Z",
+   "failures": 0,
+   "error": null
+  },
+  "rain": {
+   "ok": true,
+   "lastOk": "2026-11-28T21:37:21.095Z",
+   "failures": 0,
+   "error": null
+  },
+  "gdacs": {
+   "ok": true,
+   "lastOk": "2026-11-28T21:37:21.095Z",
+   "failures": 0,
+   "error": null
+  },
+  "quakes": {
+   "ok": true,
+   "lastOk": "2026-11-28T21:37:21.095Z",
+   "failures": 0,
+   "error": null
+  },
+  "reservoirs": {
+   "ok": true,
+   "lastOk": "2026-11-28T21:37:21.095Z",
+   "failures": 0,
+   "error": null
+  },
+  "flights": {
+   "ok": true,
+   "lastOk": "2026-11-28T21:37:21.095Z",
+   "failures": 0,
+   "error": null
+  },
+  "aircraft": {
+   "ok": true,
+   "lastOk": "2026-11-28T21:37:21.095Z",
+   "failures": 0,
+   "error": null
+  },
+  "ships": {
+   "ok": true,
+   "lastOk": "2026-11-28T21:37:21.095Z",
+   "failures": 0,
+   "error": null
+  },
+  "satellites": {
+   "ok": true,
+   "lastOk": "2026-11-28T21:37:21.095Z",
+   "failures": 0,
+   "error": null
+  },
+  "cyclones": {
+   "ok": true,
+   "lastOk": "2026-11-28T21:37:21.095Z",
+   "failures": 0,
+   "error": null
+  },
+  "sea": {
+   "ok": true,
+   "lastOk": "2026-11-28T21:37:21.095Z",
+   "failures": 0,
+   "error": null
+  },
+  "fires": {
+   "ok": true,
+   "lastOk": "2026-11-28T21:37:21.095Z",
+   "failures": 0,
+   "error": null
+  },
+  "news": {
+   "ok": true,
+   "lastOk": "2026-11-28T21:37:21.095Z",
+   "failures": 0,
+   "error": null
+  }
+ },
+ "layers": {
+  "sachet": [
+   {
+    "id": "IN-1795682989722014_103",
+    "event": "Pre Fire Alert",
+    "headline": "Very High Forest Fire Risk is likely to occur over forest area near you, in next 7 days.",
+    "kinds": [
+     "other"
+    ],
+    "severity": "Severe",
+    "urgency": "Expected",
+    "certainty": "Possible",
+    "senderName": "",
+    "areaDesc": "Himachal Pradesh",
+    "effective": "2026-11-26T08:44:00.000Z",
+    "expires": "2026-12-03T08:44:00.000Z",
+    "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1795682989722014",
+    "lat": null,
+    "lng": null,
+    "locatedBy": "none",
+    "places": [],
+    "polygons": []
+   },
+   {
+    "id": "IN-1795682989806021_103",
+    "event": "Pre Fire Alert",
+    "headline": "Very High Forest Fire Risk is likely to occur over forest area near you, in next 7 days.",
+    "kinds": [
+     "other"
+    ],
+    "severity": "Severe",
+    "urgency": "Expected",
+    "certainty": "Possible",
+    "senderName": "",
+    "areaDesc": "Madhya Pradesh",
+    "effective": "2026-11-26T08:44:00.000Z",
+    "expires": "2026-12-03T08:44:00.000Z",
+    "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1795682989806021",
+    "lat": null,
+    "lng": null,
+    "locatedBy": "none",
+    "places": [],
+    "polygons": []
+   },
+   {
+    "id": "IN-1795682989634011_103",
+    "event": "Pre Fire Alert",
+    "headline": "Very High Forest Fire Risk is likely to occur over forest area near you, in next 7 days.",
+    "kinds": [
+     "other"
+    ],
+    "severity": "Severe",
+    "urgency": "Expected",
+    "certainty": "Possible",
+    "senderName": "",
+    "areaDesc": "Jammu and Kashmir",
+    "effective": "2026-11-26T08:44:00.000Z",
+    "expires": "2026-12-03T08:44:00.000Z",
+    "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1795682989634011",
+    "lat": null,
+    "lng": null,
+    "locatedBy": "none",
+    "places": [],
+    "polygons": []
+   },
+   {
+    "id": "IN-1795682989542020_103",
+    "event": "Pre Fire Alert",
+    "headline": "Very High Forest Fire Risk is likely to occur over forest area near you, in next 7 days.",
+    "kinds": [
+     "other"
+    ],
+    "severity": "Severe",
+    "urgency": "Expected",
+    "certainty": "Possible",
+    "senderName": "",
+    "areaDesc": "Gujarat",
+    "effective": "2026-11-26T08:44:00.000Z",
+    "expires": "2026-12-03T08:44:00.000Z",
+    "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1795682989542020",
+    "lat": null,
+    "lng": null,
+    "locatedBy": "none",
+    "places": [],
+    "polygons": []
+   },
+   {
+    "id": "IN-1795891294039006_6",
+    "event": "Moderate Thunderstorms",
+    "headline": "Moderate Thunderstorm with Moderate rainfall (5-15mm/ hour) and wind speed likely to be 50 Kmph (in Gusts) at one or two places over Thrissur and Ernakulam districts.",
+    "kinds": [
+     "rain",
+     "thunderstorm"
+    ],
+    "severity": "Severe",
+    "urgency": "Expected",
+    "certainty": "Likely",
+    "senderName": "",
+    "areaDesc": "Ernakulam,Thrissur districts of Kerala",
+    "effective": "2026-11-28T18:40:00.000Z",
+    "expires": "2026-11-28T21:40:00.000Z",
+    "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1795891294039006",
+    "lat": 10.254999999999999,
+    "lng": 76.245,
+    "locatedBy": "district-names",
+    "places": [
+     {
+      "name": "Ernakulam",
+      "state": "Kerala",
+      "lat": 9.98,
+      "lng": 76.28
+     },
+     {
+      "name": "Thrissur",
+      "state": "Kerala",
+      "lat": 10.53,
+      "lng": 76.21
+     }
+    ],
+    "polygons": []
+   },
+   {
+    "id": "IN-1795893713075007_43",
+    "event": "Moderate Rain",
+    "headline": "Light to Moderate Rain with light thunderstorm is likely to occur at isolated places over Coimbatore, Dindigul, Kallakurichi, Namakkal, Salem, Tenkasi, Theni, The Nilgiris, Tirunelveli, Tiruppur in next 3 hours.",
+    "kinds": [
+     "thunderstorm"
+    ],
+    "severity": "Moderate",
+    "urgency": "Expected",
+    "certainty": "Possible",
+    "senderName": "",
+    "areaDesc": "Coimbatore, Dindigul, Kallakurichi, Namakkal, Salem, Tenkasi, Theni, The Nilgiris, Tirunelveli, Tiruppur districts of Tamil Nadu",
+    "effective": "2026-11-28T19:19:00.000Z",
+    "expires": "2026-11-28T22:19:00.000Z",
+    "link": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1795893713075007",
+    "lat": 10.620000000000001,
+    "lng": 77.67999999999999,
+    "locatedBy": "district-names",
+    "places": [
+     {
+      "name": "Coimbatore",
+      "state": "Tamil Nadu",
+      "lat": 11.02,
+      "lng": 76.96
+     },
+     {
+      "name": "Dindigul",
+      "state": "Tamil Nadu",
+      "lat": 10.36,
+      "lng": 77.98
+     },
+     {
+      "name": "Kallakurichi",
+      "state": "Tamil Nadu",
+      "lat": 11.74,
+      "lng": 78.96
+     },
+     {
+      "name": "Namakkal",
+      "state": "Tamil Nadu",
+      "lat": 11.22,
+      "lng": 78.17
+     },
+     {
+      "name": "Nilgiris",
+      "state": "Tamil Nadu",
+      "lat": 11.41,
+      "lng": 76.7
+     },
+     {
+      "name": "Salem",
+      "state": "Tamil Nadu",
+      "lat": 11.66,
+      "lng": 78.15
+     },
+     {
+      "name": "Tenkasi",
+      "state": "Tamil Nadu",
+      "lat": 8.96,
+      "lng": 77.3
+     },
+     {
+      "name": "Theni",
+      "state": "Tamil Nadu",
+      "lat": 10.01,
+      "lng": 77.48
+     },
+     {
+      "name": "Tirunelveli",
+      "state": "Tamil Nadu",
+      "lat": 8.71,
+      "lng": 77.76
+     },
+     {
+      "name": "Tiruppur",
+      "state": "Tamil Nadu",
+      "lat": 11.11,
+      "lng": 77.34
+     }
+    ],
+    "polygons": []
+   }
+  ],
+  "rivers": [
+   {
+    "id": "cauvery-mettur",
+    "name": "Cauvery near Mettur reservoir",
+    "lat": 11.94,
+    "lng": 77.65,
+    "baseline": 107.3,
+    "peak": 109.9,
+    "peakDate": "2026-11-29",
+    "ensembleMax": 111.7,
+    "ratio": 1.02,
+    "warningLevel": null,
+    "dangerLevel": null,
+    "minDischarge": 125,
+    "series": [
+     {
+      "date": "2026-11-29",
+      "q": 109.9
+     },
+     {
+      "date": "2026-11-30",
+      "q": 107.1
+     },
+     {
+      "date": "2026-12-01",
+      "q": 105.2
+     },
+     {
+      "date": "2026-12-02",
+      "q": 101.8
+     },
+     {
+      "date": "2026-12-03",
+      "q": 98.3
+     },
+     {
+      "date": "2026-12-04",
+      "q": 95.6
+     },
+     {
+      "date": "2026-12-05",
+      "q": 94.1
+     }
+    ],
+    "past": [
+     {
+      "date": "2026-11-22",
+      "q": 111.7
+     },
+     {
+      "date": "2026-11-23",
+      "q": 109.2
+     },
+     {
+      "date": "2026-11-24",
+      "q": 106.7
+     },
+     {
+      "date": "2026-11-25",
+      "q": 104.2
+     },
+     {
+      "date": "2026-11-26",
+      "q": 103.2
+     },
+     {
+      "date": "2026-11-27",
+      "q": 109.7
+     },
+     {
+      "date": "2026-11-28",
+      "q": 106.4
+     }
+    ]
+   },
+   {
+    "id": "cauvery-trichy",
+    "name": "Cauvery at Tiruchirappalli",
+    "lat": 10.91,
+    "lng": 78.45,
+    "baseline": 324.4,
+    "peak": 400.8,
+    "peakDate": "2026-11-29",
+    "ensembleMax": 413,
+    "ratio": 1.24,
+    "warningLevel": null,
+    "dangerLevel": null,
+    "minDischarge": 140,
+    "series": [
+     {
+      "date": "2026-11-29",
+      "q": 400.8
+     },
+     {
+      "date": "2026-11-30",
+      "q": 353.8
+     },
+     {
+      "date": "2026-12-01",
+      "q": 372.3
+     },
+     {
+      "date": "2026-12-02",
+      "q": 344.1
+     },
+     {
+      "date": "2026-12-03",
+      "q": 318.2
+     },
+     {
+      "date": "2026-12-04",
+      "q": 310.2
+     },
+     {
+      "date": "2026-12-05",
+      "q": 310.9
+     }
+    ],
+    "past": [
+     {
+      "date": "2026-11-22",
+      "q": 319.6
+     },
+     {
+      "date": "2026-11-23",
+      "q": 314.5
+     },
+     {
+      "date": "2026-11-24",
+      "q": 308.7
+     },
+     {
+      "date": "2026-11-25",
+      "q": 308.7
+     },
+     {
+      "date": "2026-11-26",
+      "q": 313.8
+     },
+     {
+      "date": "2026-11-27",
+      "q": 341
+     },
+     {
+      "date": "2026-11-28",
+      "q": 364.6
+     }
+    ]
+   },
+   {
+    "id": "bhavani",
+    "name": "Bhavani at Bhavanisagar",
+    "lat": 11.47,
+    "lng": 77.13,
+    "baseline": 51.8,
+    "peak": 56.9,
+    "peakDate": "2026-11-29",
+    "ensembleMax": 69.6,
+    "ratio": 1.1,
+    "warningLevel": null,
+    "dangerLevel": null,
+    "minDischarge": 22,
+    "series": [
+     {
+      "date": "2026-11-29",
+      "q": 56.9
+     },
+     {
+      "date": "2026-11-30",
+      "q": 56.7
+     },
+     {
+      "date": "2026-12-01",
+      "q": 56.7
+     },
+     {
+      "date": "2026-12-02",
+      "q": 50.9
+     },
+     {
+      "date": "2026-12-03",
+      "q": 47.1
+     },
+     {
+      "date": "2026-12-04",
+      "q": 46.6
+     },
+     {
+      "date": "2026-12-05",
+      "q": 45.8
+     }
+    ],
+    "past": [
+     {
+      "date": "2026-11-22",
+      "q": 51.5
+     },
+     {
+      "date": "2026-11-23",
+      "q": 50.4
+     },
+     {
+      "date": "2026-11-24",
+      "q": 49.6
+     },
+     {
+      "date": "2026-11-25",
+      "q": 47.8
+     },
+     {
+      "date": "2026-11-26",
+      "q": 49.9
+     },
+     {
+      "date": "2026-11-27",
+      "q": 56.5
+     },
+     {
+      "date": "2026-11-28",
+      "q": 56.7
+     }
+    ]
+   },
+   {
+    "id": "amaravathi-karur",
+    "name": "Amaravathi at Karur",
+    "lat": 10.96,
+    "lng": 78.08,
+    "baseline": 68.8,
+    "peak": 76.3,
+    "peakDate": "2026-11-29",
+    "ensembleMax": 78.4,
+    "ratio": 1.11,
+    "warningLevel": null,
+    "dangerLevel": null,
+    "minDischarge": 19,
+    "series": [
+     {
+      "date": "2026-11-29",
+      "q": 76.3
+     },
+     {
+      "date": "2026-11-30",
+      "q": 68.8
+     },
+     {
+      "date": "2026-12-01",
+      "q": 68.2
+     },
+     {
+      "date": "2026-12-02",
+      "q": 66.6
+     },
+     {
+      "date": "2026-12-03",
+      "q": 65.5
+     },
+     {
+      "date": "2026-12-04",
+      "q": 66.5
+     },
+     {
+      "date": "2026-12-05",
+      "q": 66.8
+     }
+    ],
+    "past": [
+     {
+      "date": "2026-11-22",
+      "q": 70.6
+     },
+     {
+      "date": "2026-11-23",
+      "q": 68.8
+     },
+     {
+      "date": "2026-11-24",
+      "q": 67.2
+     },
+     {
+      "date": "2026-11-25",
+      "q": 66.6
+     },
+     {
+      "date": "2026-11-26",
+      "q": 65.7
+     },
+     {
+      "date": "2026-11-27",
+      "q": 68.5
+     },
+     {
+      "date": "2026-11-28",
+      "q": 74.2
+     }
+    ]
+   },
+   {
+    "id": "vaigai-dam",
+    "name": "Vaigai below Vaigai Dam",
+    "lat": 10.05,
+    "lng": 77.63,
+    "baseline": 18.8,
+    "peak": 87.3,
+    "peakDate": "2026-11-29",
+    "ensembleMax": 140.6,
+    "ratio": 4.65,
+    "warningLevel": null,
+    "dangerLevel": null,
+    "minDischarge": 10,
+    "series": [
+     {
+      "date": "2026-11-29",
+      "q": 87.3
+     },
+     {
+      "date": "2026-11-30",
+      "q": 18.1
+     },
+     {
+      "date": "2026-12-01",
+      "q": 23.2
+     },
+     {
+      "date": "2026-12-02",
+      "q": 19
+     },
+     {
+      "date": "2026-12-03",
+      "q": 11.5
+     },
+     {
+      "date": "2026-12-04",
+      "q": 15.9
+     },
+     {
+      "date": "2026-12-05",
+      "q": 20.7
+     }
+    ],
+    "past": [
+     {
+      "date": "2026-11-22",
+      "q": 2.7
+     },
+     {
+      "date": "2026-11-23",
+      "q": 2.5
+     },
+     {
+      "date": "2026-11-24",
+      "q": 2.5
+     },
+     {
+      "date": "2026-11-25",
+      "q": 3.4
+     },
+     {
+      "date": "2026-11-26",
+      "q": 3.3
+     },
+     {
+      "date": "2026-11-27",
+      "q": 39.3
+     },
+     {
+      "date": "2026-11-28",
+      "q": 77.7
+     }
+    ]
+   },
+   {
+    "id": "vaigai-madurai",
+    "name": "Vaigai at Madurai",
+    "lat": 9.88,
+    "lng": 78.12,
+    "baseline": 51.3,
+    "peak": 203.6,
+    "peakDate": "2026-11-29",
+    "ensembleMax": 260.2,
+    "ratio": 3.97,
+    "warningLevel": null,
+    "dangerLevel": null,
+    "minDischarge": 16,
+    "series": [
+     {
+      "date": "2026-11-29",
+      "q": 203.6
+     },
+     {
+      "date": "2026-11-30",
+      "q": 44.8
+     },
+     {
+      "date": "2026-12-01",
+      "q": 45.8
+     },
+     {
+      "date": "2026-12-02",
+      "q": 38.5
+     },
+     {
+      "date": "2026-12-03",
+      "q": 27.4
+     },
+     {
+      "date": "2026-12-04",
+      "q": 34
+     },
+     {
+      "date": "2026-12-05",
+      "q": 44
+     }
+    ],
+    "past": [
+     {
+      "date": "2026-11-22",
+      "q": 5.8
+     },
+     {
+      "date": "2026-11-23",
+      "q": 5.4
+     },
+     {
+      "date": "2026-11-24",
+      "q": 5.1
+     },
+     {
+      "date": "2026-11-25",
+      "q": 5.2
+     },
+     {
+      "date": "2026-11-26",
+      "q": 11.1
+     },
+     {
+      "date": "2026-11-27",
+      "q": 123.5
+     },
+     {
+      "date": "2026-11-28",
+      "q": 203.2
+     }
+    ]
+   },
+   {
+    "id": "thamirabarani",
+    "name": "Thamirabarani at Tirunelveli",
+    "lat": 8.68,
+    "lng": 77.8,
+    "baseline": 65.9,
+    "peak": 324.1,
+    "peakDate": "2026-11-29",
+    "ensembleMax": 432.5,
+    "ratio": 4.92,
+    "warningLevel": null,
+    "dangerLevel": null,
+    "minDischarge": 10,
+    "series": [
+     {
+      "date": "2026-11-29",
+      "q": 324.1
+     },
+     {
+      "date": "2026-11-30",
+      "q": 141.9
+     },
+     {
+      "date": "2026-12-01",
+      "q": 159
+     },
+     {
+      "date": "2026-12-02",
+      "q": 133.3
+     },
+     {
+      "date": "2026-12-03",
+      "q": 77.3
+     },
+     {
+      "date": "2026-12-04",
+      "q": 54.7
+     },
+     {
+      "date": "2026-12-05",
+      "q": 93.6
+     }
+    ],
+    "past": [
+     {
+      "date": "2026-11-22",
+      "q": 4.3
+     },
+     {
+      "date": "2026-11-23",
+      "q": 4.1
+     },
+     {
+      "date": "2026-11-24",
+      "q": 3.9
+     },
+     {
+      "date": "2026-11-25",
+      "q": 4
+     },
+     {
+      "date": "2026-11-26",
+      "q": 7.9
+     },
+     {
+      "date": "2026-11-27",
+      "q": 147.6
+     },
+     {
+      "date": "2026-11-28",
+      "q": 289.4
+     }
+    ]
+   },
+   {
+    "id": "periyar-mullaperiyar",
+    "name": "Periyar at Mullaperiyar",
+    "lat": 9.53,
+    "lng": 77.14,
+    "baseline": 13.6,
+    "peak": 14.9,
+    "peakDate": "2026-11-29",
+    "ensembleMax": 15.4,
+    "ratio": 1.1,
+    "warningLevel": null,
+    "dangerLevel": null,
+    "minDischarge": 10,
+    "series": [
+     {
+      "date": "2026-11-29",
+      "q": 14.9
+     },
+     {
+      "date": "2026-11-30",
+      "q": 12.7
+     },
+     {
+      "date": "2026-12-01",
+      "q": 12.7
+     },
+     {
+      "date": "2026-12-02",
+      "q": 12.6
+     },
+     {
+      "date": "2026-12-03",
+      "q": 12
+     },
+     {
+      "date": "2026-12-04",
+      "q": 11.6
+     },
+     {
+      "date": "2026-12-05",
+      "q": 11.4
+     }
+    ],
+    "past": [
+     {
+      "date": "2026-11-22",
+      "q": 15.2
+     },
+     {
+      "date": "2026-11-23",
+      "q": 14.2
+     },
+     {
+      "date": "2026-11-24",
+      "q": 13.5
+     },
+     {
+      "date": "2026-11-25",
+      "q": 12.6
+     },
+     {
+      "date": "2026-11-26",
+      "q": 12.5
+     },
+     {
+      "date": "2026-11-27",
+      "q": 13.5
+     },
+     {
+      "date": "2026-11-28",
+      "q": 13.5
+     }
+    ]
+   },
+   {
+    "id": "palar-vellore",
+    "name": "Palar near Vellore",
+    "lat": 12.92,
+    "lng": 79.28,
+    "baseline": 24.9,
+    "peak": 29.1,
+    "peakDate": "2026-11-29",
+    "ensembleMax": 32.7,
+    "ratio": 1.17,
+    "warningLevel": null,
+    "dangerLevel": null,
+    "minDischarge": 10,
+    "series": [
+     {
+      "date": "2026-11-29",
+      "q": 29.1
+     },
+     {
+      "date": "2026-11-30",
+      "q": 15.8
+     },
+     {
+      "date": "2026-12-01",
+      "q": 13.6
+     },
+     {
+      "date": "2026-12-02",
+      "q": 11.8
+     },
+     {
+      "date": "2026-12-03",
+      "q": 11.2
+     },
+     {
+      "date": "2026-12-04",
+      "q": 11.5
+     },
+     {
+      "date": "2026-12-05",
+      "q": 11.7
+     }
+    ],
+    "past": [
+     {
+      "date": "2026-11-22",
+      "q": 7.6
+     },
+     {
+      "date": "2026-11-23",
+      "q": 7.5
+     },
+     {
+      "date": "2026-11-24",
+      "q": 7.4
+     },
+     {
+      "date": "2026-11-25",
+      "q": 34.5
+     },
+     {
+      "date": "2026-11-26",
+      "q": 56.9
+     },
+     {
+      "date": "2026-11-27",
+      "q": 29
+     },
+     {
+      "date": "2026-11-28",
+      "q": 31.2
+     }
+    ]
+   },
+   {
+    "id": "pennaiyar-krishnagiri",
+    "name": "Thenpennai near Krishnagiri",
+    "lat": 12.37,
+    "lng": 78.23,
+    "baseline": 12,
+    "peak": 22.7,
+    "peakDate": "2026-11-29",
+    "ensembleMax": 25.5,
+    "ratio": 1.9,
+    "warningLevel": null,
+    "dangerLevel": null,
+    "minDischarge": 10,
+    "series": [
+     {
+      "date": "2026-11-29",
+      "q": 22.7
+     },
+     {
+      "date": "2026-11-30",
+      "q": 15
+     },
+     {
+      "date": "2026-12-01",
+      "q": 12.8
+     },
+     {
+      "date": "2026-12-02",
+      "q": 11.2
+     },
+     {
+      "date": "2026-12-03",
+      "q": 10.4
+     },
+     {
+      "date": "2026-12-04",
+      "q": 10.1
+     },
+     {
+      "date": "2026-12-05",
+      "q": 10.5
+     }
+    ],
+    "past": [
+     {
+      "date": "2026-11-22",
+      "q": 8
+     },
+     {
+      "date": "2026-11-23",
+      "q": 7.9
+     },
+     {
+      "date": "2026-11-24",
+      "q": 7.8
+     },
+     {
+      "date": "2026-11-25",
+      "q": 8.1
+     },
+     {
+      "date": "2026-11-26",
+      "q": 10.2
+     },
+     {
+      "date": "2026-11-27",
+      "q": 20.4
+     },
+     {
+      "date": "2026-11-28",
+      "q": 21.3
+     }
+    ]
+   },
+   {
+    "id": "pennaiyar-cuddalore",
+    "name": "Thenpennai near Cuddalore",
+    "lat": 11.76,
+    "lng": 79.7,
+    "baseline": 27.5,
+    "peak": 90.4,
+    "peakDate": "2026-11-29",
+    "ensembleMax": 98.8,
+    "ratio": 3.28,
+    "warningLevel": null,
+    "dangerLevel": null,
+    "minDischarge": 13,
+    "series": [
+     {
+      "date": "2026-11-29",
+      "q": 90.4
+     },
+     {
+      "date": "2026-11-30",
+      "q": 35.8
+     },
+     {
+      "date": "2026-12-01",
+      "q": 31.7
+     },
+     {
+      "date": "2026-12-02",
+      "q": 26.2
+     },
+     {
+      "date": "2026-12-03",
+      "q": 22.7
+     },
+     {
+      "date": "2026-12-04",
+      "q": 25.7
+     },
+     {
+      "date": "2026-12-05",
+      "q": 31
+     }
+    ],
+    "past": [
+     {
+      "date": "2026-11-22",
+      "q": 15.1
+     },
+     {
+      "date": "2026-11-23",
+      "q": 14.7
+     },
+     {
+      "date": "2026-11-24",
+      "q": 14.4
+     },
+     {
+      "date": "2026-11-25",
+      "q": 15.7
+     },
+     {
+      "date": "2026-11-26",
+      "q": 27.8
+     },
+     {
+      "date": "2026-11-27",
+      "q": 34.6
+     },
+     {
+      "date": "2026-11-28",
+      "q": 70.6
+     }
+    ]
+   },
+   {
+    "id": "adyar-chennai",
+    "name": "Adyar, Chennai",
+    "lat": 13.01,
+    "lng": 80.24,
+    "baseline": 14.4,
+    "peak": 13.4,
+    "peakDate": "2026-11-30",
+    "ensembleMax": 24.8,
+    "ratio": 0.93,
+    "warningLevel": null,
+    "dangerLevel": null,
+    "minDischarge": 10,
+    "series": [
+     {
+      "date": "2026-11-29",
+      "q": 13
+     },
+     {
+      "date": "2026-11-30",
+      "q": 13.4
+     },
+     {
+      "date": "2026-12-01",
+      "q": 8.5
+     },
+     {
+      "date": "2026-12-02",
+      "q": 6.1
+     },
+     {
+      "date": "2026-12-03",
+      "q": 8.4
+     },
+     {
+      "date": "2026-12-04",
+      "q": 8.5
+     },
+     {
+      "date": "2026-12-05",
+      "q": 6.6
+     }
+    ],
+    "past": [
+     {
+      "date": "2026-11-22",
+      "q": 2.3
+     },
+     {
+      "date": "2026-11-23",
+      "q": 2.3
+     },
+     {
+      "date": "2026-11-24",
+      "q": 2.3
+     },
+     {
+      "date": "2026-11-25",
+      "q": 14.3
+     },
+     {
+      "date": "2026-11-26",
+      "q": 35.1
+     },
+     {
+      "date": "2026-11-27",
+      "q": 24.8
+     },
+     {
+      "date": "2026-11-28",
+      "q": 19.5
+     }
+    ]
+   }
+  ],
+  "heat": [
+   {
+    "id": "chennai",
+    "name": "Chennai",
+    "lat": 13.08,
+    "lng": 80.27,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 28.7,
+      "normal": 28.5,
+      "level": null
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 28.7,
+      "normal": 28.5,
+      "level": null
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 29.2,
+      "normal": 28.5,
+      "level": null
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 28.7,
+      "normal": 27.5,
+      "level": null
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 27.9,
+      "normal": 27.5,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "vellore",
+    "name": "Vellore",
+    "lat": 12.92,
+    "lng": 79.13,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 29,
+      "normal": 28.4,
+      "level": null
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 28.5,
+      "normal": 28.4,
+      "level": null
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 28.2,
+      "normal": 28.4,
+      "level": null
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 28.8,
+      "normal": 27.3,
+      "level": null
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 28.9,
+      "normal": 27.3,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "tiruvannamalai",
+    "name": "Tiruvannamalai",
+    "lat": 12.23,
+    "lng": 79.07,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 29.2,
+      "normal": 28.7,
+      "level": null
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 28.2,
+      "normal": 28.7,
+      "level": null
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 28.4,
+      "normal": 28.7,
+      "level": null
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 28.7,
+      "normal": 27.7,
+      "level": null
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 29.6,
+      "normal": 27.7,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "cuddalore",
+    "name": "Cuddalore",
+    "lat": 11.75,
+    "lng": 79.75,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 29.3,
+      "normal": 27.9,
+      "level": null
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 28.6,
+      "normal": 27.9,
+      "level": null
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 28.5,
+      "normal": 27.9,
+      "level": null
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 29.2,
+      "normal": 27,
+      "level": null
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 28.2,
+      "normal": 27,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "puducherry",
+    "name": "Puducherry",
+    "lat": 11.94,
+    "lng": 79.81,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 29.1,
+      "normal": 27.9,
+      "level": null
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 28.8,
+      "normal": 27.9,
+      "level": null
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 28.7,
+      "normal": 27.9,
+      "level": null
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 29.2,
+      "normal": 27.1,
+      "level": null
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 27.9,
+      "normal": 27.1,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "salem",
+    "name": "Salem",
+    "lat": 11.66,
+    "lng": 78.15,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 31,
+      "normal": 29.3,
+      "level": null
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 31.6,
+      "normal": 29.3,
+      "level": null
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 30.6,
+      "normal": 29.3,
+      "level": null
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 30.8,
+      "normal": 28.7,
+      "level": null
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 31.5,
+      "normal": 28.7,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "dharmapuri",
+    "name": "Dharmapuri",
+    "lat": 12.13,
+    "lng": 78.16,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 29,
+      "normal": 28.1,
+      "level": null
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 27.9,
+      "normal": 28.1,
+      "level": null
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 27.6,
+      "normal": 28.1,
+      "level": null
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 27.4,
+      "normal": 27.3,
+      "level": null
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 28.5,
+      "normal": 27.3,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "erode",
+    "name": "Erode",
+    "lat": 11.34,
+    "lng": 77.72,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 30.8,
+      "normal": 29.7,
+      "level": null
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 30,
+      "normal": 29.7,
+      "level": null
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 29.6,
+      "normal": 29.7,
+      "level": null
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 30.7,
+      "normal": 29.4,
+      "level": null
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 30.8,
+      "normal": 29.4,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "coimbatore",
+    "name": "Coimbatore",
+    "lat": 11.02,
+    "lng": 76.96,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 29,
+      "normal": 27.7,
+      "level": null
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 27.9,
+      "normal": 27.7,
+      "level": null
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 28.1,
+      "normal": 27.7,
+      "level": null
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 28.4,
+      "normal": 27.6,
+      "level": null
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 28.5,
+      "normal": 27.6,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "tiruchirappalli",
+    "name": "Tiruchirappalli",
+    "lat": 10.79,
+    "lng": 78.7,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 29.4,
+      "normal": 29.7,
+      "level": null
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 28.9,
+      "normal": 29.7,
+      "level": null
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 29.2,
+      "normal": 29.7,
+      "level": null
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 30,
+      "normal": 28.8,
+      "level": null
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 29.2,
+      "normal": 28.8,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "karur",
+    "name": "Karur",
+    "lat": 10.96,
+    "lng": 78.08,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 30.9,
+      "normal": 29.9,
+      "level": null
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 30.3,
+      "normal": 29.9,
+      "level": null
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 30.3,
+      "normal": 29.9,
+      "level": null
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 31.4,
+      "normal": 29.5,
+      "level": null
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 31.1,
+      "normal": 29.5,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "thanjavur",
+    "name": "Thanjavur",
+    "lat": 10.79,
+    "lng": 79.14,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 29,
+      "normal": 29.2,
+      "level": null
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 28.5,
+      "normal": 29.2,
+      "level": null
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 28.5,
+      "normal": 29.2,
+      "level": null
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 29.3,
+      "normal": 28.2,
+      "level": null
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 28.3,
+      "normal": 28.2,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "nagapattinam",
+    "name": "Nagapattinam",
+    "lat": 10.77,
+    "lng": 79.84,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 29.3,
+      "normal": 27.9,
+      "level": null
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 28.6,
+      "normal": 27.9,
+      "level": null
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 28,
+      "normal": 27.9,
+      "level": null
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 28.2,
+      "normal": 26.9,
+      "level": null
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 27.9,
+      "normal": 26.9,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "madurai",
+    "name": "Madurai",
+    "lat": 9.93,
+    "lng": 78.12,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 30.5,
+      "normal": 29.5,
+      "level": null
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 29.6,
+      "normal": 29.5,
+      "level": null
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 29.8,
+      "normal": 29.5,
+      "level": null
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 30.6,
+      "normal": 28.9,
+      "level": null
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 30.2,
+      "normal": 28.9,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "ramanathapuram",
+    "name": "Ramanathapuram",
+    "lat": 9.37,
+    "lng": 78.83,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 30.2,
+      "normal": 28.7,
+      "level": null
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 29.4,
+      "normal": 28.7,
+      "level": null
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 29.3,
+      "normal": 28.7,
+      "level": null
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 30.1,
+      "normal": 27.9,
+      "level": null
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 29.2,
+      "normal": 27.9,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "thoothukudi",
+    "name": "Thoothukudi",
+    "lat": 8.76,
+    "lng": 78.13,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 29.5,
+      "normal": 28.7,
+      "level": null
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 29.4,
+      "normal": 28.7,
+      "level": null
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 29.6,
+      "normal": 28.7,
+      "level": null
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 30.6,
+      "normal": 28.2,
+      "level": null
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 29.4,
+      "normal": 28.2,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "tirunelveli",
+    "name": "Tirunelveli",
+    "lat": 8.71,
+    "lng": 77.76,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 30.5,
+      "normal": 29.4,
+      "level": null
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 29.5,
+      "normal": 29.4,
+      "level": null
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 29.8,
+      "normal": 29.4,
+      "level": null
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 30.5,
+      "normal": 28.7,
+      "level": null
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 30.1,
+      "normal": 28.7,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "kanniyakumari",
+    "name": "Kanniyakumari",
+    "lat": 8.18,
+    "lng": 77.41,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 32,
+      "normal": 28.8,
+      "level": null
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 31.6,
+      "normal": 28.8,
+      "level": null
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 33.6,
+      "normal": 28.8,
+      "level": null
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 34.5,
+      "normal": 29.2,
+      "level": null
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 32.6,
+      "normal": 29.2,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "nilgiris",
+    "name": "Nilgiris",
+    "lat": 11.41,
+    "lng": 76.7,
+    "region": "hilly",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 19.1,
+      "normal": 18.9,
+      "level": null
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 17.6,
+      "normal": 18.9,
+      "level": null
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 18.5,
+      "normal": 18.9,
+      "level": null
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 19.7,
+      "normal": 19.2,
+      "level": null
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 18.1,
+      "normal": 19.2,
+      "level": null
+     }
+    ],
+    "alert": null
+   },
+   {
+    "id": "kodaikanal",
+    "name": "Kodaikanal",
+    "lat": 10.23,
+    "lng": 77.49,
+    "region": "hilly",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 17.5,
+      "normal": 18,
+      "level": null
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 14.8,
+      "normal": 18,
+      "level": null
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 17.2,
+      "normal": 18,
+      "level": null
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 19.1,
+      "normal": 17.9,
+      "level": null
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 16.2,
+      "normal": 17.9,
+      "level": null
+     }
+    ],
+    "alert": null
+   }
+  ],
+  "heatRaw": [
+   {
+    "id": "chennai",
+    "name": "Chennai",
+    "lat": 13.08,
+    "lng": 80.27,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 28.7
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 28.7
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 29.2
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 28.7
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 27.9
+     }
+    ]
+   },
+   {
+    "id": "vellore",
+    "name": "Vellore",
+    "lat": 12.92,
+    "lng": 79.13,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 29
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 28.5
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 28.2
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 28.8
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 28.9
+     }
+    ]
+   },
+   {
+    "id": "tiruvannamalai",
+    "name": "Tiruvannamalai",
+    "lat": 12.23,
+    "lng": 79.07,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 29.2
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 28.2
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 28.4
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 28.7
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 29.6
+     }
+    ]
+   },
+   {
+    "id": "cuddalore",
+    "name": "Cuddalore",
+    "lat": 11.75,
+    "lng": 79.75,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 29.3
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 28.6
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 28.5
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 29.2
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 28.2
+     }
+    ]
+   },
+   {
+    "id": "puducherry",
+    "name": "Puducherry",
+    "lat": 11.94,
+    "lng": 79.81,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 29.1
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 28.8
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 28.7
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 29.2
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 27.9
+     }
+    ]
+   },
+   {
+    "id": "salem",
+    "name": "Salem",
+    "lat": 11.66,
+    "lng": 78.15,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 31
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 31.6
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 30.6
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 30.8
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 31.5
+     }
+    ]
+   },
+   {
+    "id": "dharmapuri",
+    "name": "Dharmapuri",
+    "lat": 12.13,
+    "lng": 78.16,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 29
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 27.9
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 27.6
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 27.4
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 28.5
+     }
+    ]
+   },
+   {
+    "id": "erode",
+    "name": "Erode",
+    "lat": 11.34,
+    "lng": 77.72,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 30.8
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 30
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 29.6
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 30.7
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 30.8
+     }
+    ]
+   },
+   {
+    "id": "coimbatore",
+    "name": "Coimbatore",
+    "lat": 11.02,
+    "lng": 76.96,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 29
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 27.9
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 28.1
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 28.4
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 28.5
+     }
+    ]
+   },
+   {
+    "id": "tiruchirappalli",
+    "name": "Tiruchirappalli",
+    "lat": 10.79,
+    "lng": 78.7,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 29.4
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 28.9
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 29.2
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 30
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 29.2
+     }
+    ]
+   },
+   {
+    "id": "karur",
+    "name": "Karur",
+    "lat": 10.96,
+    "lng": 78.08,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 30.9
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 30.3
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 30.3
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 31.4
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 31.1
+     }
+    ]
+   },
+   {
+    "id": "thanjavur",
+    "name": "Thanjavur",
+    "lat": 10.79,
+    "lng": 79.14,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 29
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 28.5
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 28.5
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 29.3
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 28.3
+     }
+    ]
+   },
+   {
+    "id": "nagapattinam",
+    "name": "Nagapattinam",
+    "lat": 10.77,
+    "lng": 79.84,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 29.3
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 28.6
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 28
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 28.2
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 27.9
+     }
+    ]
+   },
+   {
+    "id": "madurai",
+    "name": "Madurai",
+    "lat": 9.93,
+    "lng": 78.12,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 30.5
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 29.6
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 29.8
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 30.6
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 30.2
+     }
+    ]
+   },
+   {
+    "id": "ramanathapuram",
+    "name": "Ramanathapuram",
+    "lat": 9.37,
+    "lng": 78.83,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 30.2
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 29.4
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 29.3
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 30.1
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 29.2
+     }
+    ]
+   },
+   {
+    "id": "thoothukudi",
+    "name": "Thoothukudi",
+    "lat": 8.76,
+    "lng": 78.13,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 29.5
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 29.4
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 29.6
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 30.6
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 29.4
+     }
+    ]
+   },
+   {
+    "id": "tirunelveli",
+    "name": "Tirunelveli",
+    "lat": 8.71,
+    "lng": 77.76,
+    "region": "plains",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 30.5
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 29.5
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 29.8
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 30.5
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 30.1
+     }
+    ]
+   },
+   {
+    "id": "kanniyakumari",
+    "name": "Kanniyakumari",
+    "lat": 8.18,
+    "lng": 77.41,
+    "region": "coastal",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 32
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 31.6
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 33.6
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 34.5
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 32.6
+     }
+    ]
+   },
+   {
+    "id": "nilgiris",
+    "name": "Nilgiris",
+    "lat": 11.41,
+    "lng": 76.7,
+    "region": "hilly",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 19.1
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 17.6
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 18.5
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 19.7
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 18.1
+     }
+    ]
+   },
+   {
+    "id": "kodaikanal",
+    "name": "Kodaikanal",
+    "lat": 10.23,
+    "lng": 77.49,
+    "region": "hilly",
+    "days": [
+     {
+      "date": "2026-11-28",
+      "tmax": 17.5
+     },
+     {
+      "date": "2026-11-29",
+      "tmax": 14.8
+     },
+     {
+      "date": "2026-11-30",
+      "tmax": 17.2
+     },
+     {
+      "date": "2026-12-01",
+      "tmax": 19.1
+     },
+     {
+      "date": "2026-12-02",
+      "tmax": 16.2
+     }
+    ]
+   }
+  ],
+  "reservoirs": {
+   "date": "2026-11-28",
+   "prevDate": "2026-11-27",
+   "source": "https://tnagriculture.in/people_app/more/reservoir/en/",
+   "items": [
+    {
+     "id": "mettur",
+     "name": "Mettur (Stanley)",
+     "river": "Cauvery",
+     "state": "Tamil Nadu",
+     "lat": 11.8,
+     "lng": 77.81,
+     "fullFt": 120,
+     "levelFt": 61.71,
+     "pctDepth": 51.4,
+     "inflow": 3422,
+     "outflow": 1003,
+     "levelChangeFt": 0.26,
+     "outflowChange": 0,
+     "prevOutflow": 1003,
+     "releaseHigh": 30000
+    },
+    {
+     "id": "krs",
+     "name": "Krishna Raja Sagar",
+     "river": "Cauvery",
+     "state": "Karnataka",
+     "lat": 12.42,
+     "lng": 76.57,
+     "fullFt": 124.8,
+     "levelFt": 94.62,
+     "pctDepth": 75.8,
+     "inflow": 767,
+     "outflow": 4606,
+     "levelChangeFt": -0.5,
+     "outflowChange": 231,
+     "prevOutflow": 4375,
+     "releaseHigh": 30000
+    },
+    {
+     "id": "kabini",
+     "name": "Kabini",
+     "river": "Kabini",
+     "state": "Karnataka",
+     "lat": 11.97,
+     "lng": 76.35,
+     "fullFt": 65,
+     "levelFt": 50.88,
+     "pctDepth": 78.3,
+     "inflow": 321,
+     "outflow": 1100,
+     "levelChangeFt": -0.15,
+     "outflowChange": -200,
+     "prevOutflow": 1300,
+     "releaseHigh": 30000
+    },
+    {
+     "id": "harangi",
+     "name": "Harangi",
+     "river": "Harangi",
+     "state": "Karnataka",
+     "lat": 12.49,
+     "lng": 75.91,
+     "fullFt": 129,
+     "levelFt": 112.3,
+     "pctDepth": 87.1,
+     "inflow": 251,
+     "outflow": 600,
+     "levelChangeFt": -0.32,
+     "outflowChange": 200,
+     "prevOutflow": 400,
+     "releaseHigh": 15000
+    },
+    {
+     "id": "hemavathy",
+     "name": "Hemavathy",
+     "river": "Hemavathi",
+     "state": "Karnataka",
+     "lat": 12.82,
+     "lng": 76.06,
+     "fullFt": 117,
+     "levelFt": 91.55,
+     "pctDepth": 78.2,
+     "inflow": 160,
+     "outflow": 2000,
+     "levelChangeFt": -0.29,
+     "outflowChange": 0,
+     "prevOutflow": 2000,
+     "releaseHigh": 20000
+    },
+    {
+     "id": "bhavanisagar",
+     "name": "Bhavanisagar",
+     "river": "Bhavani",
+     "state": "Tamil Nadu",
+     "lat": 11.47,
+     "lng": 77.11,
+     "fullFt": 105,
+     "levelFt": 79.97,
+     "pctDepth": 76.2,
+     "inflow": 3677,
+     "outflow": 355,
+     "levelChangeFt": 0.54,
+     "outflowChange": 50,
+     "prevOutflow": 305,
+     "releaseHigh": 15000
+    },
+    {
+     "id": "amaravathi",
+     "name": "Amaravathi",
+     "river": "Amaravathi",
+     "state": "Tamil Nadu",
+     "lat": 10.41,
+     "lng": 77.26,
+     "fullFt": 90,
+     "levelFt": 61.06,
+     "pctDepth": 67.8,
+     "inflow": 355,
+     "outflow": null,
+     "levelChangeFt": 0.49,
+     "outflowChange": null,
+     "prevOutflow": null,
+     "releaseHigh": 10000
+    },
+    {
+     "id": "periyar",
+     "name": "Periyar (Mullaperiyar)",
+     "river": "Periyar",
+     "state": "Kerala (TN-operated)",
+     "lat": 9.53,
+     "lng": 77.14,
+     "fullFt": 152,
+     "levelFt": 119.15,
+     "pctDepth": 78.4,
+     "inflow": 1206,
+     "outflow": 700,
+     "levelChangeFt": 0.25,
+     "outflowChange": 56,
+     "prevOutflow": 644,
+     "releaseHigh": 10000
+    },
+    {
+     "id": "vaigai",
+     "name": "Vaigai",
+     "river": "Vaigai",
+     "state": "Tamil Nadu",
+     "lat": 10.05,
+     "lng": 77.59,
+     "fullFt": 71,
+     "levelFt": 52.53,
+     "pctDepth": 74,
+     "inflow": 454,
+     "outflow": 886,
+     "levelChangeFt": -0.26,
+     "outflowChange": 0,
+     "prevOutflow": 886,
+     "releaseHigh": 7000
+    },
+    {
+     "id": "papanasam",
+     "name": "Papanasam",
+     "river": "Thamirabarani",
+     "state": "Tamil Nadu",
+     "lat": 8.71,
+     "lng": 77.37,
+     "fullFt": 143,
+     "levelFt": 80.05,
+     "pctDepth": 56,
+     "inflow": 832,
+     "outflow": 655,
+     "levelChangeFt": 0.65,
+     "outflowChange": 555,
+     "prevOutflow": 100,
+     "releaseHigh": 10000
+    },
+    {
+     "id": "manimuthar",
+     "name": "Manimuthar",
+     "river": "Manimuthar",
+     "state": "Tamil Nadu",
+     "lat": 8.65,
+     "lng": 77.43,
+     "fullFt": 118,
+     "levelFt": 73.15,
+     "pctDepth": 62,
+     "inflow": 141,
+     "outflow": 25,
+     "levelChangeFt": 0.16,
+     "outflowChange": 0,
+     "prevOutflow": 25,
+     "releaseHigh": 8000
+    },
+    {
+     "id": "pechiparai",
+     "name": "Pechiparai",
+     "river": "Kodayar",
+     "state": "Tamil Nadu",
+     "lat": 8.43,
+     "lng": 77.3,
+     "fullFt": 48,
+     "levelFt": 31.4,
+     "pctDepth": 65.4,
+     "inflow": 555,
+     "outflow": 423,
+     "levelChangeFt": 0.1,
+     "outflowChange": 0,
+     "prevOutflow": 423,
+     "releaseHigh": 8000
+    },
+    {
+     "id": "perunchani",
+     "name": "Perunchani",
+     "river": "Paralayar",
+     "state": "Tamil Nadu",
+     "lat": 8.39,
+     "lng": 77.35,
+     "fullFt": 77,
+     "levelFt": 49.25,
+     "pctDepth": 64,
+     "inflow": 72,
+     "outflow": 150,
+     "levelChangeFt": -0.15,
+     "outflowChange": 50,
+     "prevOutflow": 100,
+     "releaseHigh": 8000
+    },
+    {
+     "id": "krishnagiri",
+     "name": "Krishnagiri (KRP)",
+     "river": "Thenpennai",
+     "state": "Tamil Nadu",
+     "lat": 12.47,
+     "lng": 78.18,
+     "fullFt": 52,
+     "levelFt": 49.6,
+     "pctDepth": 95.4,
+     "inflow": 438,
+     "outflow": 204,
+     "levelChangeFt": 0.2,
+     "outflowChange": 0,
+     "prevOutflow": 204,
+     "releaseHigh": 5000
+    },
+    {
+     "id": "sathanur",
+     "name": "Sathanur",
+     "river": "Thenpennai",
+     "state": "Tamil Nadu",
+     "lat": 12.18,
+     "lng": 78.86,
+     "fullFt": 119,
+     "levelFt": 103.1,
+     "pctDepth": 86.6,
+     "inflow": 185,
+     "outflow": null,
+     "levelChangeFt": 0.1,
+     "outflowChange": null,
+     "prevOutflow": null,
+     "releaseHigh": 10000
+    },
+    {
+     "id": "sholayar",
+     "name": "Sholayar",
+     "river": "Chalakudy",
+     "state": "Tamil Nadu",
+     "lat": 10.3,
+     "lng": 76.73,
+     "fullFt": 160,
+     "levelFt": 48.88,
+     "pctDepth": 30.6,
+     "inflow": 219,
+     "outflow": 20,
+     "levelChangeFt": 0.88,
+     "outflowChange": 0,
+     "prevOutflow": 20,
+     "releaseHigh": 8000
+    },
+    {
+     "id": "parambikulam",
+     "name": "Parambikulam",
+     "river": "Parambikulam",
+     "state": "Kerala (TN-operated)",
+     "lat": 10.39,
+     "lng": 76.78,
+     "fullFt": 72,
+     "levelFt": 47.8,
+     "pctDepth": 66.4,
+     "inflow": 100,
+     "outflow": 980,
+     "levelChangeFt": -0.38,
+     "outflowChange": -10,
+     "prevOutflow": 990,
+     "releaseHigh": 8000
+    },
+    {
+     "id": "aliyar",
+     "name": "Aliyar",
+     "river": "Aliyar",
+     "state": "Tamil Nadu",
+     "lat": 10.48,
+     "lng": 76.97,
+     "fullFt": 120,
+     "levelFt": 65.45,
+     "pctDepth": 54.5,
+     "inflow": 261,
+     "outflow": 300,
+     "levelChangeFt": -0.1,
+     "outflowChange": 0,
+     "prevOutflow": 300,
+     "releaseHigh": 8000
+    },
+    {
+     "id": "thirumurthy",
+     "name": "Thirumurthy",
+     "river": "Palar (Udumalai)",
+     "state": "Tamil Nadu",
+     "lat": 10.46,
+     "lng": 77.18,
+     "fullFt": 60,
+     "levelFt": 40.68,
+     "pctDepth": 67.8,
+     "inflow": 882,
+     "outflow": 924,
+     "levelChangeFt": -0.12,
+     "outflowChange": -18,
+     "prevOutflow": 942,
+     "releaseHigh": 8000
+    }
+   ]
+  },
+  "rain": [
+   {
+    "id": "ariyalur",
+    "name": "Ariyalur",
+    "state": "Tamil Nadu",
+    "lat": 11.14,
+    "lng": 79.08,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 6.9
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 2.2
+     }
+    ],
+    "past24": 6.9,
+    "next72": 2.2,
+    "peakMm": 2.2,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "chengalpattu",
+    "name": "Chengalpattu",
+    "state": "Tamil Nadu",
+    "lat": 12.69,
+    "lng": 79.98,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 3.2
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0.1
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 3.2
+     }
+    ],
+    "past24": 3.2,
+    "next72": 3.3,
+    "peakMm": 3.2,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "chennai",
+    "name": "Chennai",
+    "state": "Tamil Nadu",
+    "lat": 13.08,
+    "lng": 80.27,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 1.7
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0.2
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 5.1
+     }
+    ],
+    "past24": 1.7,
+    "next72": 5.3,
+    "peakMm": 5.1,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "coimbatore",
+    "name": "Coimbatore",
+    "state": "Tamil Nadu",
+    "lat": 11.02,
+    "lng": 76.96,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 6.7
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 9.3
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 0.6
+     }
+    ],
+    "past24": 6.7,
+    "next72": 9.9,
+    "peakMm": 9.3,
+    "peakDate": "2026-11-29"
+   },
+   {
+    "id": "cuddalore",
+    "name": "Cuddalore",
+    "state": "Tamil Nadu",
+    "lat": 11.75,
+    "lng": 79.75,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 3.5
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 10.5
+     }
+    ],
+    "past24": 3.5,
+    "next72": 10.5,
+    "peakMm": 10.5,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "dharmapuri",
+    "name": "Dharmapuri",
+    "state": "Tamil Nadu",
+    "lat": 12.13,
+    "lng": 78.16,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 1.5
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 1.4
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 1.8
+     }
+    ],
+    "past24": 1.5,
+    "next72": 3.2,
+    "peakMm": 1.8,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "dindigul",
+    "name": "Dindigul",
+    "state": "Tamil Nadu",
+    "lat": 10.36,
+    "lng": 77.98,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 5.9
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 1.3
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 21.6
+     }
+    ],
+    "past24": 5.9,
+    "next72": 22.9,
+    "peakMm": 21.6,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "erode",
+    "name": "Erode",
+    "state": "Tamil Nadu",
+    "lat": 11.34,
+    "lng": 77.72,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 12.5
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 1.3
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 3.3
+     }
+    ],
+    "past24": 12.5,
+    "next72": 4.6,
+    "peakMm": 3.3,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "kallakurichi",
+    "name": "Kallakurichi",
+    "state": "Tamil Nadu",
+    "lat": 11.74,
+    "lng": 78.96,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 4.7
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 5.7
+     }
+    ],
+    "past24": 4.7,
+    "next72": 5.7,
+    "peakMm": 5.7,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "kancheepuram",
+    "name": "Kancheepuram",
+    "state": "Tamil Nadu",
+    "lat": 12.83,
+    "lng": 79.7,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 1.6
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 1.9
+     }
+    ],
+    "past24": 1.6,
+    "next72": 1.9,
+    "peakMm": 1.9,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "kanniyakumari",
+    "name": "Kanniyakumari",
+    "state": "Tamil Nadu",
+    "lat": 8.18,
+    "lng": 77.41,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 1
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0.7
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 0
+     }
+    ],
+    "past24": 1,
+    "next72": 0.7,
+    "peakMm": 0.7,
+    "peakDate": "2026-11-29"
+   },
+   {
+    "id": "karur",
+    "name": "Karur",
+    "state": "Tamil Nadu",
+    "lat": 10.96,
+    "lng": 78.08,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 3.1
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 3.2
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 1.1
+     }
+    ],
+    "past24": 3.1,
+    "next72": 4.3,
+    "peakMm": 3.2,
+    "peakDate": "2026-11-29"
+   },
+   {
+    "id": "krishnagiri",
+    "name": "Krishnagiri",
+    "state": "Tamil Nadu",
+    "lat": 12.52,
+    "lng": 78.21,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 3.9
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0.1
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 0.3
+     }
+    ],
+    "past24": 3.9,
+    "next72": 0.4,
+    "peakMm": 0.3,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "madurai",
+    "name": "Madurai",
+    "state": "Tamil Nadu",
+    "lat": 9.93,
+    "lng": 78.12,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 5.8
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 9.5
+     }
+    ],
+    "past24": 5.8,
+    "next72": 9.5,
+    "peakMm": 9.5,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "mayiladuthurai",
+    "name": "Mayiladuthurai",
+    "state": "Tamil Nadu",
+    "lat": 11.1,
+    "lng": 79.65,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 12.5
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 5.9
+     }
+    ],
+    "past24": 12.5,
+    "next72": 5.9,
+    "peakMm": 5.9,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "nagapattinam",
+    "name": "Nagapattinam",
+    "state": "Tamil Nadu",
+    "lat": 10.77,
+    "lng": 79.84,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 3.9
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 10.1
+     }
+    ],
+    "past24": 3.9,
+    "next72": 10.1,
+    "peakMm": 10.1,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "namakkal",
+    "name": "Namakkal",
+    "state": "Tamil Nadu",
+    "lat": 11.22,
+    "lng": 78.17,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 10.4
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 1.4
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 2.2
+     }
+    ],
+    "past24": 10.4,
+    "next72": 3.6,
+    "peakMm": 2.2,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "nilgiris",
+    "name": "Nilgiris",
+    "state": "Tamil Nadu",
+    "lat": 11.41,
+    "lng": 76.7,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 0.7
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 5.5
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 0
+     }
+    ],
+    "past24": 0.7,
+    "next72": 5.5,
+    "peakMm": 5.5,
+    "peakDate": "2026-11-29"
+   },
+   {
+    "id": "perambalur",
+    "name": "Perambalur",
+    "state": "Tamil Nadu",
+    "lat": 11.23,
+    "lng": 78.88,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 5.3
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 1.9
+     }
+    ],
+    "past24": 5.3,
+    "next72": 1.9,
+    "peakMm": 1.9,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "pudukkottai",
+    "name": "Pudukkottai",
+    "state": "Tamil Nadu",
+    "lat": 10.38,
+    "lng": 78.82,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 6.6
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 2.6
+     }
+    ],
+    "past24": 6.6,
+    "next72": 2.6,
+    "peakMm": 2.6,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "ramanathapuram",
+    "name": "Ramanathapuram",
+    "state": "Tamil Nadu",
+    "lat": 9.37,
+    "lng": 78.83,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 16.3
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 2.4
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 7.4
+     }
+    ],
+    "past24": 16.3,
+    "next72": 9.8,
+    "peakMm": 7.4,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "ranipet",
+    "name": "Ranipet",
+    "state": "Tamil Nadu",
+    "lat": 12.93,
+    "lng": 79.33,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 1.8
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0.3
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 1.5
+     }
+    ],
+    "past24": 1.8,
+    "next72": 1.8,
+    "peakMm": 1.5,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "salem",
+    "name": "Salem",
+    "state": "Tamil Nadu",
+    "lat": 11.66,
+    "lng": 78.15,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 1.1
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0.2
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 2.8
+     }
+    ],
+    "past24": 1.1,
+    "next72": 3,
+    "peakMm": 2.8,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "sivaganga",
+    "name": "Sivaganga",
+    "state": "Tamil Nadu",
+    "lat": 9.85,
+    "lng": 78.48,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 18.7
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0.1
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 4.4
+     }
+    ],
+    "past24": 18.7,
+    "next72": 4.5,
+    "peakMm": 4.4,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "tenkasi",
+    "name": "Tenkasi",
+    "state": "Tamil Nadu",
+    "lat": 8.96,
+    "lng": 77.3,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 9.9
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 12.7
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 1.5
+     }
+    ],
+    "past24": 9.9,
+    "next72": 14.2,
+    "peakMm": 12.7,
+    "peakDate": "2026-11-29"
+   },
+   {
+    "id": "thanjavur",
+    "name": "Thanjavur",
+    "state": "Tamil Nadu",
+    "lat": 10.79,
+    "lng": 79.14,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 7.7
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 4
+     }
+    ],
+    "past24": 7.7,
+    "next72": 4,
+    "peakMm": 4,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "theni",
+    "name": "Theni",
+    "state": "Tamil Nadu",
+    "lat": 10.01,
+    "lng": 77.48,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 10.5
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0.5
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 5
+     }
+    ],
+    "past24": 10.5,
+    "next72": 5.5,
+    "peakMm": 5,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "thoothukudi",
+    "name": "Thoothukudi",
+    "state": "Tamil Nadu",
+    "lat": 8.76,
+    "lng": 78.13,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 22.5
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 23.9
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 4.2
+     }
+    ],
+    "past24": 22.5,
+    "next72": 28.1,
+    "peakMm": 23.9,
+    "peakDate": "2026-11-29"
+   },
+   {
+    "id": "tiruchirappalli",
+    "name": "Tiruchirappalli",
+    "state": "Tamil Nadu",
+    "lat": 10.79,
+    "lng": 78.7,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 5.8
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 2.2
+     }
+    ],
+    "past24": 5.8,
+    "next72": 2.2,
+    "peakMm": 2.2,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "tirunelveli",
+    "name": "Tirunelveli",
+    "state": "Tamil Nadu",
+    "lat": 8.71,
+    "lng": 77.76,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 5.6
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 6.4
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 2.2
+     }
+    ],
+    "past24": 5.6,
+    "next72": 8.6,
+    "peakMm": 6.4,
+    "peakDate": "2026-11-29"
+   },
+   {
+    "id": "tirupathur",
+    "name": "Tirupathur",
+    "state": "Tamil Nadu",
+    "lat": 12.5,
+    "lng": 78.57,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 2
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 0.9
+     }
+    ],
+    "past24": 2,
+    "next72": 0.9,
+    "peakMm": 0.9,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "tiruppur",
+    "name": "Tiruppur",
+    "state": "Tamil Nadu",
+    "lat": 11.11,
+    "lng": 77.34,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 4.3
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 7.1
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 1.5
+     }
+    ],
+    "past24": 4.3,
+    "next72": 8.6,
+    "peakMm": 7.1,
+    "peakDate": "2026-11-29"
+   },
+   {
+    "id": "tiruvallur",
+    "name": "Tiruvallur",
+    "state": "Tamil Nadu",
+    "lat": 13.14,
+    "lng": 79.91,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 4.8
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0.1
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 1.8
+     }
+    ],
+    "past24": 4.8,
+    "next72": 1.9,
+    "peakMm": 1.8,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "tiruvannamalai",
+    "name": "Tiruvannamalai",
+    "state": "Tamil Nadu",
+    "lat": 12.23,
+    "lng": 79.07,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 2.9
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 3
+     }
+    ],
+    "past24": 2.9,
+    "next72": 3,
+    "peakMm": 3,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "tiruvarur",
+    "name": "Tiruvarur",
+    "state": "Tamil Nadu",
+    "lat": 10.77,
+    "lng": 79.64,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 9.4
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 5.6
+     }
+    ],
+    "past24": 9.4,
+    "next72": 5.6,
+    "peakMm": 5.6,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "vellore",
+    "name": "Vellore",
+    "state": "Tamil Nadu",
+    "lat": 12.92,
+    "lng": 79.13,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 2.4
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 4.1
+     }
+    ],
+    "past24": 2.4,
+    "next72": 4.1,
+    "peakMm": 4.1,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "viluppuram",
+    "name": "Viluppuram",
+    "state": "Tamil Nadu",
+    "lat": 11.94,
+    "lng": 79.49,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 3
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 4
+     }
+    ],
+    "past24": 3,
+    "next72": 4,
+    "peakMm": 4,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "virudhunagar",
+    "name": "Virudhunagar",
+    "state": "Tamil Nadu",
+    "lat": 9.58,
+    "lng": 77.96,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 7.5
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 1.4
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 5.4
+     }
+    ],
+    "past24": 7.5,
+    "next72": 6.8,
+    "peakMm": 5.4,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "puducherry",
+    "name": "Puducherry",
+    "state": "Puducherry",
+    "lat": 11.94,
+    "lng": 79.81,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 2.7
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 5.9
+     }
+    ],
+    "past24": 2.7,
+    "next72": 5.9,
+    "peakMm": 5.9,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "karaikal",
+    "name": "Karaikal",
+    "state": "Puducherry",
+    "lat": 10.93,
+    "lng": 79.84,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 7.4
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 10.2
+     }
+    ],
+    "past24": 7.4,
+    "next72": 10.2,
+    "peakMm": 10.2,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "idukki",
+    "name": "Idukki",
+    "state": "Kerala",
+    "lat": 9.85,
+    "lng": 76.97,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 0.1
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 3.2
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 0
+     }
+    ],
+    "past24": 0.1,
+    "next72": 3.2,
+    "peakMm": 3.2,
+    "peakDate": "2026-11-29"
+   },
+   {
+    "id": "palakkad",
+    "name": "Palakkad",
+    "state": "Kerala",
+    "lat": 10.78,
+    "lng": 76.65,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 6.1
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 0
+     }
+    ],
+    "past24": 0,
+    "next72": 6.1,
+    "peakMm": 6.1,
+    "peakDate": "2026-11-29"
+   },
+   {
+    "id": "thiruvananthapuram",
+    "name": "Thiruvananthapuram",
+    "state": "Kerala",
+    "lat": 8.52,
+    "lng": 76.94,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 1.6
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 1.6
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 0
+     }
+    ],
+    "past24": 1.6,
+    "next72": 1.6,
+    "peakMm": 1.6,
+    "peakDate": "2026-11-29"
+   },
+   {
+    "id": "kollam",
+    "name": "Kollam",
+    "state": "Kerala",
+    "lat": 8.89,
+    "lng": 76.61,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 1.2
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 0
+     }
+    ],
+    "past24": 0,
+    "next72": 1.2,
+    "peakMm": 1.2,
+    "peakDate": "2026-11-29"
+   },
+   {
+    "id": "pathanamthitta",
+    "name": "Pathanamthitta",
+    "state": "Kerala",
+    "lat": 9.26,
+    "lng": 76.79,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 0.1
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 10.4
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 0
+     }
+    ],
+    "past24": 0.1,
+    "next72": 10.4,
+    "peakMm": 10.4,
+    "peakDate": "2026-11-29"
+   },
+   {
+    "id": "kottayam",
+    "name": "Kottayam",
+    "state": "Kerala",
+    "lat": 9.59,
+    "lng": 76.52,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 7.9
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 3.6
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0.1
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 0
+     }
+    ],
+    "past24": 7.9,
+    "next72": 3.7,
+    "peakMm": 3.6,
+    "peakDate": "2026-11-29"
+   },
+   {
+    "id": "ernakulam",
+    "name": "Ernakulam",
+    "state": "Kerala",
+    "lat": 9.98,
+    "lng": 76.28,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 3
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 8.7
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 0
+     }
+    ],
+    "past24": 3,
+    "next72": 8.7,
+    "peakMm": 8.7,
+    "peakDate": "2026-11-29"
+   },
+   {
+    "id": "thrissur",
+    "name": "Thrissur",
+    "state": "Kerala",
+    "lat": 10.53,
+    "lng": 76.21,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 3.2
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0.7
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 0
+     }
+    ],
+    "past24": 3.2,
+    "next72": 0.7,
+    "peakMm": 0.7,
+    "peakDate": "2026-11-29"
+   },
+   {
+    "id": "wayanad",
+    "name": "Wayanad",
+    "state": "Kerala",
+    "lat": 11.69,
+    "lng": 76.13,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 1.1
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0.1
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 0
+     }
+    ],
+    "past24": 1.1,
+    "next72": 0.1,
+    "peakMm": 0.1,
+    "peakDate": "2026-11-29"
+   },
+   {
+    "id": "chamarajanagar",
+    "name": "Chamarajanagar",
+    "state": "Karnataka",
+    "lat": 11.92,
+    "lng": 76.94,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 0.8
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 0.2
+     }
+    ],
+    "past24": 0.8,
+    "next72": 0.2,
+    "peakMm": 0.2,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "mysuru",
+    "name": "Mysuru",
+    "state": "Karnataka",
+    "lat": 12.3,
+    "lng": 76.64,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 0
+     }
+    ],
+    "past24": 0,
+    "next72": 0,
+    "peakMm": 0,
+    "peakDate": "2026-11-29"
+   },
+   {
+    "id": "bengaluru-urban",
+    "name": "Bengaluru Urban",
+    "state": "Karnataka",
+    "lat": 12.97,
+    "lng": 77.59,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 0
+     }
+    ],
+    "past24": 0,
+    "next72": 0,
+    "peakMm": 0,
+    "peakDate": "2026-11-29"
+   },
+   {
+    "id": "kolar",
+    "name": "Kolar",
+    "state": "Karnataka",
+    "lat": 13.14,
+    "lng": 78.13,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 0.2
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 0
+     }
+    ],
+    "past24": 0.2,
+    "next72": 0,
+    "peakMm": 0,
+    "peakDate": "2026-11-29"
+   },
+   {
+    "id": "chittoor",
+    "name": "Chittoor",
+    "state": "Andhra Pradesh",
+    "lat": 13.22,
+    "lng": 79.1,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 1.1
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 1.6
+     }
+    ],
+    "past24": 1.1,
+    "next72": 1.6,
+    "peakMm": 1.6,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "tirupati",
+    "name": "Tirupati",
+    "state": "Andhra Pradesh",
+    "lat": 13.63,
+    "lng": 79.42,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 2.9
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 0.5
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 1.9
+     }
+    ],
+    "past24": 2.9,
+    "next72": 2.4,
+    "peakMm": 1.9,
+    "peakDate": "2026-12-01"
+   },
+   {
+    "id": "nellore",
+    "name": "Nellore",
+    "state": "Andhra Pradesh",
+    "lat": 14.44,
+    "lng": 79.99,
+    "days": [
+     {
+      "date": "2026-11-28",
+      "mm": 1
+     },
+     {
+      "date": "2026-11-29",
+      "mm": 0
+     },
+     {
+      "date": "2026-11-30",
+      "mm": 2.9
+     },
+     {
+      "date": "2026-12-01",
+      "mm": 6.5
+     }
+    ],
+    "past24": 1,
+    "next72": 9.4,
+    "peakMm": 6.5,
+    "peakDate": "2026-12-01"
+   }
+  ],
+  "cyclones": [],
+  "sea": [
+   {
+    "id": "pulicat",
+    "name": "Pulicat",
+    "lat": 13.42,
+    "lng": 80.42,
+    "nowM": 1.1,
+    "swellNowM": 0.9,
+    "directionDeg": 75,
+    "periodS": 5.4,
+    "days": [
+     {
+      "date": "2026-11-29",
+      "maxM": 1.2,
+      "swellM": 0.9,
+      "periodS": 5.4
+     },
+     {
+      "date": "2026-11-30",
+      "maxM": 0.8,
+      "swellM": 0.7,
+      "periodS": 6.3
+     },
+     {
+      "date": "2026-12-01",
+      "maxM": 1.1,
+      "swellM": 0.9,
+      "periodS": 6.1
+     }
+    ],
+    "peakM": 1.2,
+    "peakDate": "2026-11-29",
+    "state": "Slight"
+   },
+   {
+    "id": "chennai",
+    "name": "Chennai",
+    "lat": 13.08,
+    "lng": 80.4,
+    "nowM": 1,
+    "swellNowM": 0.8,
+    "directionDeg": 84,
+    "periodS": 5.6,
+    "days": [
+     {
+      "date": "2026-11-29",
+      "maxM": 1,
+      "swellM": 0.9,
+      "periodS": 5.9
+     },
+     {
+      "date": "2026-11-30",
+      "maxM": 0.7,
+      "swellM": 0.6,
+      "periodS": 7.2
+     },
+     {
+      "date": "2026-12-01",
+      "maxM": 0.9,
+      "swellM": 0.7,
+      "periodS": 6.9
+     }
+    ],
+    "peakM": 1,
+    "peakDate": "2026-11-29",
+    "state": "Slight"
+   },
+   {
+    "id": "mamallapuram",
+    "name": "Mamallapuram",
+    "lat": 12.62,
+    "lng": 80.3,
+    "nowM": 0.8,
+    "swellNowM": 0.6,
+    "directionDeg": 82,
+    "periodS": 5.5,
+    "days": [
+     {
+      "date": "2026-11-29",
+      "maxM": 0.8,
+      "swellM": 0.6,
+      "periodS": 6.2
+     },
+     {
+      "date": "2026-11-30",
+      "maxM": 0.6,
+      "swellM": 0.5,
+      "periodS": 7.5
+     },
+     {
+      "date": "2026-12-01",
+      "maxM": 0.7,
+      "swellM": 0.5,
+      "periodS": 7.2
+     }
+    ],
+    "peakM": 0.8,
+    "peakDate": "2026-11-29",
+    "state": "Slight"
+   },
+   {
+    "id": "puducherry",
+    "name": "Puducherry",
+    "lat": 11.93,
+    "lng": 79.92,
+    "nowM": 1.1,
+    "swellNowM": 0.9,
+    "directionDeg": 84,
+    "periodS": 5.6,
+    "days": [
+     {
+      "date": "2026-11-29",
+      "maxM": 1.1,
+      "swellM": 0.9,
+      "periodS": 5.8
+     },
+     {
+      "date": "2026-11-30",
+      "maxM": 0.8,
+      "swellM": 0.6,
+      "periodS": 7.1
+     },
+     {
+      "date": "2026-12-01",
+      "maxM": 0.9,
+      "swellM": 0.6,
+      "periodS": 7.1
+     }
+    ],
+    "peakM": 1.1,
+    "peakDate": "2026-11-29",
+    "state": "Slight"
+   },
+   {
+    "id": "cuddalore",
+    "name": "Cuddalore",
+    "lat": 11.72,
+    "lng": 79.88,
+    "nowM": 0.8,
+    "swellNowM": 0.7,
+    "directionDeg": 78,
+    "periodS": 5.3,
+    "days": [
+     {
+      "date": "2026-11-29",
+      "maxM": 0.9,
+      "swellM": 0.7,
+      "periodS": 5.3
+     },
+     {
+      "date": "2026-11-30",
+      "maxM": 0.6,
+      "swellM": 0.5,
+      "periodS": 5.8
+     },
+     {
+      "date": "2026-12-01",
+      "maxM": 0.8,
+      "swellM": 0.5,
+      "periodS": 5.8
+     }
+    ],
+    "peakM": 0.9,
+    "peakDate": "2026-11-29",
+    "state": "Slight"
+   },
+   {
+    "id": "nagapattinam",
+    "name": "Nagapattinam",
+    "lat": 10.77,
+    "lng": 79.95,
+    "nowM": 0.8,
+    "swellNowM": 0.4,
+    "directionDeg": 56,
+    "periodS": 4.6,
+    "days": [
+     {
+      "date": "2026-11-29",
+      "maxM": 0.8,
+      "swellM": 0.4,
+      "periodS": 4.6
+     },
+     {
+      "date": "2026-11-30",
+      "maxM": 0.7,
+      "swellM": 0.4,
+      "periodS": 4.4
+     },
+     {
+      "date": "2026-12-01",
+      "maxM": 0.7,
+      "swellM": 0.4,
+      "periodS": 4.8
+     }
+    ],
+    "peakM": 0.8,
+    "peakDate": "2026-11-29",
+    "state": "Slight"
+   },
+   {
+    "id": "point-calimere",
+    "name": "Point Calimere",
+    "lat": 10.22,
+    "lng": 79.95,
+    "nowM": 0.8,
+    "swellNowM": 0.2,
+    "directionDeg": 54,
+    "periodS": 3.9,
+    "days": [
+     {
+      "date": "2026-11-29",
+      "maxM": 0.8,
+      "swellM": 0.2,
+      "periodS": 3.9
+     },
+     {
+      "date": "2026-11-30",
+      "maxM": 0.7,
+      "swellM": 0.4,
+      "periodS": 3.7
+     },
+     {
+      "date": "2026-12-01",
+      "maxM": 0.7,
+      "swellM": 0.3,
+      "periodS": 3.6
+     }
+    ],
+    "peakM": 0.8,
+    "peakDate": "2026-11-29",
+    "state": "Slight"
+   },
+   {
+    "id": "rameswaram",
+    "name": "Rameswaram (Gulf of Mannar)",
+    "lat": 9.15,
+    "lng": 79.35,
+    "nowM": 0.8,
+    "swellNowM": 0.4,
+    "directionDeg": 77,
+    "periodS": 5.1,
+    "days": [
+     {
+      "date": "2026-11-29",
+      "maxM": 0.8,
+      "swellM": 0.4,
+      "periodS": 5.8
+     },
+     {
+      "date": "2026-11-30",
+      "maxM": 0.8,
+      "swellM": 0.4,
+      "periodS": 7
+     },
+     {
+      "date": "2026-12-01",
+      "maxM": 0.8,
+      "swellM": 0.5,
+      "periodS": 7.7
+     }
+    ],
+    "peakM": 0.8,
+    "peakDate": "2026-11-29",
+    "state": "Slight"
+   },
+   {
+    "id": "thoothukudi",
+    "name": "Thoothukudi",
+    "lat": 8.75,
+    "lng": 78.3,
+    "nowM": 0.7,
+    "swellNowM": 0.6,
+    "directionDeg": 121,
+    "periodS": 7,
+    "days": [
+     {
+      "date": "2026-11-29",
+      "maxM": 1.1,
+      "swellM": 0.6,
+      "periodS": 7.1
+     },
+     {
+      "date": "2026-11-30",
+      "maxM": 0.9,
+      "swellM": 0.6,
+      "periodS": 6.2
+     },
+     {
+      "date": "2026-12-01",
+      "maxM": 0.9,
+      "swellM": 0.6,
+      "periodS": 7.8
+     }
+    ],
+    "peakM": 1.1,
+    "peakDate": "2026-11-29",
+    "state": "Slight"
+   },
+   {
+    "id": "kanyakumari",
+    "name": "Kanyakumari",
+    "lat": 7.98,
+    "lng": 77.55,
+    "nowM": 1.1,
+    "swellNowM": 0.7,
+    "directionDeg": 102,
+    "periodS": 6.1,
+    "days": [
+     {
+      "date": "2026-11-29",
+      "maxM": 1.6,
+      "swellM": 0.7,
+      "periodS": 6.1
+     },
+     {
+      "date": "2026-11-30",
+      "maxM": 1.5,
+      "swellM": 0.5,
+      "periodS": 6.4
+     },
+     {
+      "date": "2026-12-01",
+      "maxM": 1.3,
+      "swellM": 0.7,
+      "periodS": 7.8
+     }
+    ],
+    "peakM": 1.6,
+    "peakDate": "2026-11-29",
+    "state": "Moderate"
+   },
+   {
+    "id": "colachel",
+    "name": "Colachel",
+    "lat": 8.1,
+    "lng": 77.2,
+    "nowM": 0.9,
+    "swellNowM": 0.7,
+    "directionDeg": 148,
+    "periodS": 7.4,
+    "days": [
+     {
+      "date": "2026-11-29",
+      "maxM": 1.1,
+      "swellM": 0.8,
+      "periodS": 7.5
+     },
+     {
+      "date": "2026-11-30",
+      "maxM": 1.1,
+      "swellM": 0.7,
+      "periodS": 8.8
+     },
+     {
+      "date": "2026-12-01",
+      "maxM": 0.9,
+      "swellM": 0.8,
+      "periodS": 9.8
+     }
+    ],
+    "peakM": 1.1,
+    "peakDate": "2026-11-29",
+    "state": "Slight"
+   }
+  ],
+  "fires": {
+   "fetchedAt": "2026-11-28T21:37:21.095Z",
+   "count": 5028,
+   "areas": [
+    {
+     "id": "nilgiris",
+     "name": "Nilgiris and Mudumalai",
+     "count": 1
+    },
+    {
+     "id": "megamalai",
+     "name": "Megamalai and Theni hills",
+     "count": 1
+    }
+   ]
+  },
+  "news": {
+   "fetchedAt": "2026-11-28T20:52:26.119Z",
+   "count": 9,
+   "tnCount": 2,
+   "byCategory": {
+    "unrest": 2,
+    "accident": 2,
+    "security": 3,
+    "hazard": 2
+   },
+   "top": [
+    {
+     "title": "Tension grips Kolkata SRFTI over removal of protest platform",
+     "place": "Kolkata",
+     "domain": "orissapost.com",
+     "url": "https://www.orissapost.com/tension-grips-kolkatas-srfti-over-removal-of-protest-platform/"
+    },
+    {
+     "title": "Fast food shop owner suffers 90 % burns in fire in Erode",
+     "place": "Erode",
+     "domain": "thehindu.com",
+     "url": "https://www.thehindu.com/news/cities/Coimbatore/fast-food-shop-owner-suffers-90-burns-in-fire-in-erode/article71754149.ece"
+    },
+    {
+     "title": "NIA launches probe into Myanmar - based armed group terror links in Manipur",
+     "place": "Manipur",
+     "domain": "timesofindia.indiatimes.com",
+     "url": "https://timesofindia.indiatimes.com/india/nia-launches-probe-into-myanmar-based-armed-groups-terror-links-in-manipur/articleshow/136246339.cms"
+    },
+    {
+     "title": "Fresh Tensions at Kolkata SRFTI as Protest Stage Set Up by Students Removed",
+     "place": "Kolkata",
+     "domain": "asianage.com",
+     "url": "https://www.asianage.com/nation/education/fresh-tensions-at-kolkatas-srfti-as-protest-stage-set-up-by-students-removed-2008752"
+    },
+    {
+     "title": "Andhra Pradesh DGP hands over ₹74 lakh financial aid to surrendered Maoists",
+     "place": "Andhra Pradesh",
+     "domain": "thehindu.com",
+     "url": "https://www.thehindu.com/news/national/andhra-pradesh/andhra-pradesh-dgp-hands-over-74-lakh-financial-aid-to-surrendered-maoists/article71753858.ece"
+    }
+   ]
+  }
+ },
+ "active": [
+  {
+   "key": "sachet:IN-1795891294039006_6",
+   "rule": "sachet_official",
+   "origin": "official",
+   "kind": "rain",
+   "severity": "low",
+   "title": "Heavy rain: Ernakulam,Thrissur districts of Kerala",
+   "summary": "Moderate Thunderstorm with Moderate rainfall (5-15mm/ hour) and wind speed likely to be 50 Kmph (in Gusts) at one or two places over Thrissur and Ernakulam districts.",
+   "instruction": "Please follow SDMA guidelines.",
+   "source": "Kerala-SDMA",
+   "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1795891294039006",
+   "lat": 10.254999999999999,
+   "lng": 76.245,
+   "places": [
+    {
+     "name": "Ernakulam",
+     "state": "Kerala",
+     "lat": 9.98,
+     "lng": 76.28
+    },
+    {
+     "name": "Thrissur",
+     "state": "Kerala",
+     "lat": 10.53,
+     "lng": 76.21
+    }
+   ],
+   "zones": [
+    "Tamil Nadu & coast",
+    "Indian subcontinent"
+   ],
+   "effective": "2026-11-28T18:40:00.000Z",
+   "expires": "2026-11-28T21:40:00.000Z",
+   "capSeverity": "Severe",
+   "urgency": "Expected",
+   "certainty": "Likely"
+  },
+  {
+   "key": "sachet:IN-1795893713075007_43",
+   "rule": "sachet_official",
+   "origin": "official",
+   "kind": "thunderstorm",
+   "severity": "low",
+   "title": "Thunderstorm: Coimbatore, Dindigul, Kallakurichi, Namakkal, Salem, Tenkasi, Theni, The Nilgiris, Tirunelveli, Tiruppur districts of Tamil Nadu",
+   "summary": "Light to Moderate Rain with light thunderstorm is likely to occur at isolated places over Coimbatore, Dindigul, Kallakurichi, Namakkal, Salem, Tenkasi, Theni, The Nilgiris, Tirunelveli, Tiruppur in next 3 hours.",
+   "instruction": "Please follow SDMA guidelines.",
+   "source": "IMD-Chennai",
+   "sourceUrl": "https://sachet.ndma.gov.in/cap_public_website/FetchXMLFile?identifier=1795893713075007",
+   "lat": 10.620000000000001,
+   "lng": 77.67999999999999,
+   "places": [
+    {
+     "name": "Coimbatore",
+     "state": "Tamil Nadu",
+     "lat": 11.02,
+     "lng": 76.96
+    },
+    {
+     "name": "Dindigul",
+     "state": "Tamil Nadu",
+     "lat": 10.36,
+     "lng": 77.98
+    },
+    {
+     "name": "Kallakurichi",
+     "state": "Tamil Nadu",
+     "lat": 11.74,
+     "lng": 78.96
+    },
+    {
+     "name": "Namakkal",
+     "state": "Tamil Nadu",
+     "lat": 11.22,
+     "lng": 78.17
+    },
+    {
+     "name": "Nilgiris",
+     "state": "Tamil Nadu",
+     "lat": 11.41,
+     "lng": 76.7
+    },
+    {
+     "name": "Salem",
+     "state": "Tamil Nadu",
+     "lat": 11.66,
+     "lng": 78.15
+    },
+    {
+     "name": "Tenkasi",
+     "state": "Tamil Nadu",
+     "lat": 8.96,
+     "lng": 77.3
+    },
+    {
+     "name": "Theni",
+     "state": "Tamil Nadu",
+     "lat": 10.01,
+     "lng": 77.48
+    },
+    {
+     "name": "Tirunelveli",
+     "state": "Tamil Nadu",
+     "lat": 8.71,
+     "lng": 77.76
+    },
+    {
+     "name": "Tiruppur",
+     "state": "Tamil Nadu",
+     "lat": 11.11,
+     "lng": 77.34
+    }
+   ],
+   "zones": [
+    "Tamil Nadu & coast",
+    "Indian subcontinent"
+   ],
+   "effective": "2026-11-28T19:19:00.000Z",
+   "expires": "2026-11-28T22:19:00.000Z",
+   "capSeverity": "Moderate",
+   "urgency": "Expected",
+   "certainty": "Possible"
+  },
+  {
+   "key": "river:vaigai-dam:high",
+   "rule": "river_discharge",
+   "origin": "derived",
+   "kind": "flood",
+   "severity": "high",
+   "title": "River rise forecast: Vaigai below Vaigai Dam",
+   "summary": "forecast peak 4.65x the 7-day mean (18.8 -> 87.3 m3/s); peak expected 2026-11-29. Model forecast, not an official warning.",
+   "source": "GloFAS via Open-Meteo",
+   "sourceUrl": "https://open-meteo.com/en/docs/flood-api",
+   "lat": 10.05,
+   "lng": 77.63,
+   "zones": [
+    "Tamil Nadu & coast",
+    "Indian subcontinent"
+   ]
+  },
+  {
+   "key": "river:vaigai-madurai:medium",
+   "rule": "river_discharge",
+   "origin": "derived",
+   "kind": "flood",
+   "severity": "medium",
+   "title": "River rise forecast: Vaigai at Madurai",
+   "summary": "forecast peak 3.97x the 7-day mean (51.3 -> 203.6 m3/s); peak expected 2026-11-29. Model forecast, not an official warning.",
+   "source": "GloFAS via Open-Meteo",
+   "sourceUrl": "https://open-meteo.com/en/docs/flood-api",
+   "lat": 9.88,
+   "lng": 78.12,
+   "zones": [
+    "Tamil Nadu & coast",
+    "Indian subcontinent"
+   ]
+  },
+  {
+   "key": "river:thamirabarani:high",
+   "rule": "river_discharge",
+   "origin": "derived",
+   "kind": "flood",
+   "severity": "high",
+   "title": "River rise forecast: Thamirabarani at Tirunelveli",
+   "summary": "forecast peak 4.92x the 7-day mean (65.9 -> 324.1 m3/s); peak expected 2026-11-29. Model forecast, not an official warning.",
+   "source": "GloFAS via Open-Meteo",
+   "sourceUrl": "https://open-meteo.com/en/docs/flood-api",
+   "lat": 8.68,
+   "lng": 77.8,
+   "zones": [
+    "Tamil Nadu & coast",
+    "Indian subcontinent"
+   ]
+  },
+  {
+   "key": "river:pennaiyar-cuddalore:medium",
+   "rule": "river_discharge",
+   "origin": "derived",
+   "kind": "flood",
+   "severity": "medium",
+   "title": "River rise forecast: Thenpennai near Cuddalore",
+   "summary": "forecast peak 3.28x the 7-day mean (27.5 -> 90.4 m3/s); peak expected 2026-11-29. Model forecast, not an official warning.",
+   "source": "GloFAS via Open-Meteo",
+   "sourceUrl": "https://open-meteo.com/en/docs/flood-api",
+   "lat": 11.76,
+   "lng": 79.7,
+   "zones": [
+    "Tamil Nadu & coast",
+    "Indian subcontinent"
+   ]
+  },
+  {
+   "key": "reservoir:krishnagiri:full:medium",
+   "rule": "reservoir_full",
+   "origin": "derived",
+   "kind": "dam",
+   "severity": "medium",
+   "title": "Near full: Krishnagiri (KRP) dam",
+   "summary": "Thenpennai, level 49.6 of 52 ft (+0.2 ft in a day); inflow 438, outflow 204 cusecs (was 204), as on 2026-11-28. Surplus release likely if inflow continues. Daily WRD figures; not an official flood warning.",
+   "source": "TN Agriculture Dept (WRD reservoir data)",
+   "sourceUrl": "https://tnagriculture.in/people_app/more/reservoir/en/",
+   "lat": 12.47,
+   "lng": 78.18,
+   "zones": [
+    "Tamil Nadu & coast",
+    "Indian subcontinent"
+   ]
+  }
+ ],
+ "heartbeat": {
+  "configured": true,
+  "ok": true,
+  "at": "2026-11-28T21:38:19.918Z",
+  "status": 200,
+  "signal": "success",
+  "host": "hc-ping.com"
+ },
+ "notifications": {
+  "telegramConfigured": true,
+  "attempted": 0,
+  "sent": 0,
+  "scheduled": {
+   "digest": false,
+   "weekly": false
+  },
+  "commandsAnswered": 0,
+  "feedbackRecorded": 0
+ },
+ "mutes": {}
+}

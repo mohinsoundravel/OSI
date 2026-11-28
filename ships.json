@@ -1,0 +1,54 @@
+{
+ "schema": 1,
+ "fetchedAt": "2026-11-28T21:37:21.095Z",
+ "source": "AISStream.io",
+ "heardThisRun": 2,
+ "messages": 3,
+ "fields": [
+  "mmsi",
+  "name",
+  "lat",
+  "lng",
+  "sog",
+  "cog",
+  "heading",
+  "type",
+  "status",
+  "time",
+  "destination",
+  "callsign",
+  "lengthM"
+ ],
+ "ships": [
+  [
+   518100544,
+   "MAJESTY ELENOLIYA",
+   8.16815,
+   98.34306666666666,
+   0,
+   157.5,
+   158,
+   null,
+   0,
+   1795901892,
+   "",
+   "",
+   null
+  ],
+  [
+   533130221,
+   "PILIGRIM",
+   8.169205,
+   98.339845,
+   0,
+   null,
+   null,
+   null,
+   0,
+   1795901892,
+   "",
+   "",
+   null
+  ]
+ ]
+}
