@@ -9,7 +9,7 @@ import { demoSatellites } from './demo.js';
 import { data } from './state.js';
 import {
   DIRSCALE, LIFT, LIFT_GLSL, MAXOFF, SUN, atmosphere, camera, canvas, globeGroup, latLngToVector3, liftLocal,
-  renderer, scene, vectorOnly, withLift
+  renderer, resolution, scene, vectorOnly, withLift
 } from './globe.js';
 import { NIGHT_STRENGTH } from './weather.js';
 import { updateTiles } from './points.js';
@@ -314,17 +314,67 @@ const smooth = (rate, dt) => 1 - Math.exp(-rate * dt);
 let lastFrame = performance.now();
 let firstFrame = true;
 
+/**
+ * Critically damped spring, solved exactly: eases in, then settles without overshoot. A plain
+ * exponential ease starts at full speed, which is what made fly-to feel like a snap.
+ */
+function spring(x, v, target, omega, dt) {
+  const e = x - target;
+  const k = v + omega * e;
+  const decay = Math.exp(-omega * dt);
+  return [target + (e + k * dt) * decay, (v - omega * k * dt) * decay];
+}
+
+/*
+ * Frame pacing. While nothing is moving under the user's control the globe is redrawn at
+ * most 30 times a second (satellites, flights and the idle spin are slow), which halves GPU
+ * load and fan noise; any input restores the display's full rate.
+ */
+const IDLE_FRAME_MS = 1000 / 30;
+function viewSettled(now) {
+  if (pointers.size || cam.fly || now - cam.lastInteraction < 1500 || Math.abs(cam.vx) + Math.abs(cam.vy) > 1e-3) return false;
+  const alt = camera.position.z - RADIUS;
+  return Math.abs(Math.log(Math.max(1e-5, alt)) - Math.log(Math.max(1e-5, cam.zoomTarget - RADIUS))) < 0.002;
+}
+
+/*
+ * Resolution governor. Frames that stay slow while the user is moving the globe mean the GPU
+ * cannot keep up (integrated graphics on a large high-DPI screen); render resolution then drops
+ * a step, down to 1 device pixel per CSS pixel. It never climbs back to a level that was too
+ * slow, so it cannot oscillate, and each step costs one framebuffer resize.
+ */
+const governor = { sum: 0, n: 0, slowWindows: 0 };
+function governResolution(frameMs) {
+  if (frameMs > 250) return; /* tab switch or a one-off stall, not GPU load */
+  governor.sum += frameMs;
+  governor.n++;
+  if (governor.sum < 1500) return;
+  const slow = governor.sum / governor.n > 26;
+  governor.sum = 0;
+  governor.n = 0;
+  governor.slowWindows = slow ? governor.slowWindows + 1 : 0;
+  if (governor.slowWindows < 2 || resolution.cap <= 1) return;
+  governor.slowWindows = 0;
+  resolution.cap = Math.max(1, Math.round((resolution.cap - 0.25) * 4) / 4);
+  renderer.setPixelRatio(resolution.cap);
+}
+
 export function animate(now) {
   requestAnimationFrame(animate);
-  const dt = Math.min(0.05, Math.max(0, (now - lastFrame) / 1000));
+  const settled = viewSettled(now);
+  if (settled && now - lastFrame < IDLE_FRAME_MS - 2) return;
+  const frameMs = now - lastFrame;
+  const dt = Math.min(0.05, Math.max(0, frameMs / 1000));
   lastFrame = now;
+  if (!settled) governResolution(frameMs);
   const dragging = pointers.size > 0;
 
   if (cam.fly) {
-    const f = smooth(4.2, dt);
-    globeGroup.rotation.x += (cam.fly.x - globeGroup.rotation.x) * f;
-    globeGroup.rotation.y += (cam.fly.y - globeGroup.rotation.y) * f;
-    if (Math.abs(cam.fly.x - globeGroup.rotation.x) < 0.0005 && Math.abs(cam.fly.y - globeGroup.rotation.y) < 0.0005) cam.fly = null;
+    const f = cam.fly;
+    [globeGroup.rotation.x, f.vx] = spring(globeGroup.rotation.x, f.vx || 0, f.x, 5.5, dt);
+    [globeGroup.rotation.y, f.vy] = spring(globeGroup.rotation.y, f.vy || 0, f.y, 5.5, dt);
+    if (Math.abs(f.x - globeGroup.rotation.x) < 0.0005 && Math.abs(f.y - globeGroup.rotation.y) < 0.0005
+      && Math.abs(f.vx) + Math.abs(f.vy) < 0.003) cam.fly = null;
   } else if (!dragging) {
     globeGroup.rotation.y += cam.vy * dt;
     globeGroup.rotation.x = clampLat(globeGroup.rotation.x + cam.vx * dt);
@@ -417,7 +467,7 @@ export function init() {
   window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setPixelRatio(resolution.cap);
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
 }

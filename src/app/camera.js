@@ -3,7 +3,7 @@ import { appState } from './app-state.js';
 import { DEG, RADIUS } from './core.js';
 import { LAYERS } from './layers.js';
 import { data } from './state.js';
-import { camera, canvas, earthMesh, globeGroup, vector3ToLatLng } from './globe.js';
+import { LIFT, MAXOFF, camera, canvas, earthMesh, globeGroup, vector3ToLatLng } from './globe.js';
 import { ALT_MAX, ALT_MIN_TILES, ALT_MIN_VECTOR, tileState } from './weather.js';
 import { alertItems, alertPoints, layerObjects } from './icons.js';
 import { handleGlobeClick, showPlaceInfo } from './place-info.js';
@@ -45,7 +45,8 @@ export function flyTo(lat, lng, zoom = null) {
   cam.vy = 0;
   const targetY = Math.PI / 2 - (lng + 180) * DEG;
   const y = globeGroup.rotation.y + wrapAngle(targetY - globeGroup.rotation.y);
-  cam.fly = { x: clampLat(lat * DEG), y };
+  /* Keep the current spin when retargeting mid-flight, so the move bends instead of jolting. */
+  cam.fly = { x: clampLat(lat * DEG), y, vx: cam.fly?.vx || 0, vy: cam.fly?.vy || 0 };
   if (zoom !== null) cam.zoomTarget = clampZoom(zoom);
   else if (cam.zoomTarget > 300) cam.zoomTarget = 260;
 }
@@ -66,12 +67,51 @@ function endPointer(e) {
 export const raycaster = new THREE.Raycaster();
 export const pointer = new THREE.Vector2();
 
+/**
+ * Cheap pre-test for picking: is a globe-local point within `maxPx` of the pick ray on
+ * screen? Compares the angle between the eye-to-point direction and the ray with the angle
+ * that many pixels span, using raw arithmetic on the buffer (no per-point objects), so the
+ * exact projection below runs only for the few points near the cursor.
+ */
+const rayDir = new THREE.Vector3();
+function nearRayTest(clientX, clientY, maxPx) {
+  pointer.x = (clientX / window.innerWidth) * 2 - 1;
+  pointer.y = -(clientY / window.innerHeight) * 2 + 1;
+  raycaster.setFromCamera(pointer, camera);
+  rayDir.copy(raycaster.ray.direction);
+  const focalPx = window.innerHeight / 2 / Math.tan((camera.fov * DEG) / 2);
+  const cosMax = Math.cos(Math.atan(maxPx / focalPx));
+  const m = globeGroup.matrixWorld.elements;
+  const { x: cx, y: cy, z: cz } = camera.position;
+  const lift = LIFT.value;
+  const maxOff = MAXOFF.value;
+  return (arr, i) => {
+    let x = arr[i * 3];
+    let y = arr[i * 3 + 1];
+    let z = arr[i * 3 + 2];
+    const r = Math.sqrt(x * x + y * y + z * z);
+    if (r > RADIUS) {
+      const k = (RADIUS + Math.min((r - RADIUS) * lift, maxOff)) / r;
+      x *= k; y *= k; z *= k;
+    }
+    const dx = m[0] * x + m[4] * y + m[8] * z + m[12] - cx;
+    const dy = m[1] * x + m[5] * y + m[9] * z + m[13] - cy;
+    const dz = m[2] * x + m[6] * y + m[10] * z + m[14] - cz;
+    const len = Math.sqrt(dx * dx + dy * dy + dz * dz);
+    return len > 0 && (dx * rayDir.x + dy * rayDir.y + dz * rayDir.z) / len >= cosMax;
+  };
+}
+
 /** Finds what is under a screen point: an alert halo, a layer item, or nothing.
     Done in screen space so the hit area matches the drawn (lifted) icon at any zoom. */
 const pickTmp = new THREE.Vector3();
 export function pickAt(clientX, clientY) {
   const reach = isCompact() ? 20 : 13;
+  const iconScale = Math.max(0.85, Math.min(1.7, 330 / camera.position.z));
+  /* Largest icon (about 52 px) at the largest scale, plus margin for the angle approximation. */
+  const nearRay = nearRayTest(clientX, clientY, reach + 52 * iconScale);
   const near = (attr, i, extra) => {
+    if (!nearRay(attr.array, i)) return Infinity;
     pickTmp.fromBufferAttribute(attr, i);
     const p = projectLocal(pickTmp);
     if (!p) return Infinity;
@@ -88,7 +128,6 @@ export function pickAt(clientX, clientY) {
     }
     if (bestI >= 0 && alertItems[bestI]) return { alert: alertItems[bestI] };
   }
-  const iconScale = Math.max(0.85, Math.min(1.7, 330 / camera.position.z));
   let best = null;
   for (const [key, obj] of Object.entries(layerObjects)) {
     if (!LAYERS[key].visible) continue;

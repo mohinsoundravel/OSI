@@ -6,7 +6,12 @@ export const canvas = $('globe');
 export const scene = new THREE.Scene();
 export const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 4000);
 
-export const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+/* Multisampling only on standard-density screens: at 1.5x and above the extra pixels already
+   smooth edges, and 4x MSAA on a 2x laptop panel is the biggest single GPU cost. */
+export const renderer = new THREE.WebGLRenderer({ canvas, antialias: (window.devicePixelRatio || 1) < 1.5, powerPreference: 'high-performance' });
+
+/** Render resolution; lowered at run time by the frame governor in tags.js when frames are slow. */
+export const resolution = { cap: Math.min(window.devicePixelRatio || 1, 2) };
 const sun = new THREE.DirectionalLight(0xffffff, 0.55);
 
 export const globeGroup = new THREE.Group();
@@ -172,7 +177,7 @@ export async function loadWorld() {
 /** Runs this module's start-up code; index.js calls every module's init in order. */
 export function init() {
   camera.position.z = 330;
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setPixelRatio(resolution.cap);
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setClearColor(0x03050a, 1);
 
